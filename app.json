@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "swift-rent",
+    "name": "Swift Rent",
     "slug": "swift-rent",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#00080d"
     },
     "assetBundlePatterns": [
       "**/*"
