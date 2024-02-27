@@ -1,6 +1,19 @@
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const SplashScreen = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 5 seconds
+    }, 5000); // where 1000 milliseconds = 1 second
+
+    // Clear the timer to prevent memory leaks
+    return () => clearTimeout(timer);
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Image style={styles.splashIcon} source={require("../assets/icon.png")} />
@@ -27,11 +40,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   splashTextSwift: {
+    flex: 1,
+    textAlign: "right",
     fontFamily: "OpenSansBold",
     fontSize: 50,
     color: "#1b66dc",
   },
   splashTextRent: {
+    flex: 1,
+    textAlign: "left",
     fontFamily: "OpenSansBold",
     fontSize: 50,
     color: "#54b9f9",

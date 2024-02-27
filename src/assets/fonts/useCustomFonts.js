@@ -2,8 +2,8 @@ import { useFonts } from "expo-font";
 
 export const useCustomFonts = () => {
   const [loaded] = useFonts({
-    OpenSansBold: require("./OpenSans-Bold.ttf"),
-    OpenSansRegular: require("./OpenSans-Regular.ttf"),
+    OpenSansBold: require("./fontFiles/OpenSans-Bold.ttf"),
+    OpenSansRegular: require("./fontFiles/OpenSans-Regular.ttf"),
   });
   if (!loaded) {
     return null;
