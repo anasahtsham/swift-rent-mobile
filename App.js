@@ -1,20 +1,23 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
+import SplashScreen from "./src/splash/SplashScreen";
+import WelcomeScreen from "./src/screens/WelcomeScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
+  const loaded = useCustomFonts();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="Splash Screen"
+      >
+        <Stack.Screen name="Splash Screen" component={SplashScreen} />
+        <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

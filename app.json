@@ -4,13 +4,9 @@
     "slug": "swift-rent",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#00080d"
-    },
+    
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -19,12 +15,21 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.siamax.swiftrent"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./src/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e62ee87b-abd3-4f1d-a8cf-7cc410d3dfe5"
+      }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
