@@ -26,7 +26,7 @@ const SplashScreen = () => {
     >
       <Image
         style={styles.splashIcon}
-        source={require("../assets/adaptive-icon.png")}
+        source={require("../assets/icons/adaptive-icon.png")}
       />
       <View style={styles.textContainer}>
         <Text style={[styles.splashTextSwift, { color: colors.textSecondary }]}>
