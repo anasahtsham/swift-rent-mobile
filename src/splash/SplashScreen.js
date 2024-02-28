@@ -1,25 +1,40 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, useColorScheme } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import * as darkTheme from "../assets/colorScheme/darkColorScheme";
+import * as defaultTheme from "../assets/colorScheme/defaultColorScheme";
 
 const SplashScreen = () => {
+  const colorScheme = useColorScheme();
+  const colors = colorScheme === "dark" ? darkTheme : defaultTheme;
+  console.log(colorScheme);
+  console.log(colors.backgroundPrimary);
   const navigation = useNavigation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 5 seconds
-    }, 5000); // where 1000 milliseconds = 1 second
+      navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
+    }, 3000); // where 1000 milliseconds = 1 second
 
     // Clear the timer to prevent memory leaks
     return () => clearTimeout(timer);
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <Image style={styles.splashIcon} source={require("../assets/icon.png")} />
+    <View
+      style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
+    >
+      <Image
+        style={styles.splashIcon}
+        source={require("../assets/adaptive-icon.png")}
+      />
       <View style={styles.textContainer}>
-        <Text style={styles.splashTextSwift}>Swift</Text>
-        <Text style={styles.splashTextRent}>Rent</Text>
+        <Text style={[styles.splashTextSwift, { color: colors.textSecondary }]}>
+          Swift
+        </Text>
+        <Text style={[styles.splashTextRent, { color: colors.textTertiary }]}>
+          Rent
+        </Text>
       </View>
     </View>
   );
@@ -44,14 +59,12 @@ const styles = StyleSheet.create({
     textAlign: "right",
     fontFamily: "OpenSansBold",
     fontSize: 50,
-    color: "#1b66dc",
   },
   splashTextRent: {
     flex: 1,
     textAlign: "left",
     fontFamily: "OpenSansBold",
     fontSize: 50,
-    color: "#54b9f9",
   },
 });
 
