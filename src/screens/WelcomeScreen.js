@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
+      <Image source={require("../assets/icons/adaptive-icon.png")} />
       <Text style={styles.text}>Welcome Screen</Text>
     </View>
   );
