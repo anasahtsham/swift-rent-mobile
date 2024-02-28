@@ -5,8 +5,9 @@ import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
+const colors = DarkTheme;
+
 const SplashScreen = () => {
-  const colors = DarkTheme;
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -19,17 +20,11 @@ const SplashScreen = () => {
   }, [navigation]);
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
-    >
+    <View style={styles.container}>
       <SwiftRentLogo250 />
       <View style={styles.textContainer}>
-        <Text style={[styles.splashTextSwift, { color: colors.textSecondary }]}>
-          Swift
-        </Text>
-        <Text style={[styles.splashTextRent, { color: colors.textTertiary }]}>
-          Rent
-        </Text>
+        <Text style={styles.splashTextSwift}>Swift</Text>
+        <Text style={styles.splashTextRent}>Rent</Text>
       </View>
     </View>
   );
@@ -41,6 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: colors.backgroundPrimary,
   },
   textContainer: {
     flexDirection: "row",
@@ -50,12 +46,14 @@ const styles = StyleSheet.create({
     textAlign: "right",
     fontFamily: "OpenSansBold",
     fontSize: 50,
+    color: colors.textSecondary,
   },
   splashTextRent: {
     flex: 1,
     textAlign: "left",
     fontFamily: "OpenSansBold",
     fontSize: 50,
+    color: colors.textTertiary,
   },
 });
 
