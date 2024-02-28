@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
-import * as darkTheme from "../assets/colorScheme/darkColorScheme";
-import * as defaultTheme from "../assets/colorScheme/defaultColorScheme";
+import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
 const SplashScreen = () => {
-  const colors = darkTheme;
+  const colors = DarkTheme;
   const navigation = useNavigation();
 
   useEffect(() => {
