@@ -1,9 +1,13 @@
 import React from "react";
 import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { opacityValueForButton } from "../../constants";
 
 const LanguageSelect = () => {
   return (
-    <TouchableOpacity style={styles.dropdownContainer}>
+    <TouchableOpacity
+      style={styles.dropdownContainer}
+      activeOpacity={opacityValueForButton}
+    >
       <Image
         source={require("../../assets/icons/language.png")}
         style={styles.languageIcon}

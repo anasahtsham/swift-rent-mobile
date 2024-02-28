@@ -1,8 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { opacityValueForButton } from "../../constants";
 
 const BigButton = (props) => {
   return (
-    <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+    <TouchableOpacity
+      style={styles.button}
+      activeOpacity={opacityValueForButton}
+    >
       <Text style={styles.buttonText}>{props.buttonText}</Text>
     </TouchableOpacity>
   );
