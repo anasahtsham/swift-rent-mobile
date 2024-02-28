@@ -4,7 +4,7 @@
     "slug": "swift-rent",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/icons/icon.png",
+    "icon": "./src/assets/icons/logos/icon.png",
     "splash": {
       "image": "./src/assets/icons/splash.png",
       "resizeMode": "contain",
@@ -18,12 +18,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/icons/adaptive-icon.png",
+        "foregroundImage": "./src/assets/icons/logos/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./src/assets/icons/favicon.png"
+      "favicon": "./src/assets/icons/logos/favicon.png"
     }
   }
 }

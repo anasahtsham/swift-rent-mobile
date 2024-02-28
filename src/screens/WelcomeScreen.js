@@ -1,13 +1,22 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
+import BigButton from "../components/common/BigButton";
+import LanguageSelect from "../components/common/LanguageSelect";
 
 const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.welcomeLogo}
-        source={require("../assets/icons/adaptive-icon.png")}
-      />
-      <Text style={styles.text}>Welcome Screen</Text>
+      <SwiftRentLogo250 />
+      <View style={styles.welcomeTextContainer}>
+        <Text style={styles.welcomeText}>Welcome To</Text>
+        <Text style={styles.welcomeText}>Swift Rent</Text>
+      </View>
+      <BigButton buttonText="Get Started" />
+      <Pressable style={styles.loginTextContainer}>
+        <Text style={styles.text}>Already have an account? </Text>
+        <Text style={styles.loginText}>LogIn</Text>
+      </Pressable>
+      <LanguageSelect />
     </View>
   );
 };
@@ -17,16 +26,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
   },
-  welcomeLogo: {
-    width: 250,
-    height: 250,
+  welcomeTextContainer: {
+    flex: 0.4,
+    flexDirection: "column",
   },
-  text: {
-    fontFamily: "OpenSansRegular",
-    fontSize: 50,
-    color: "#1b66dc",
+  welcomeText: {
+    fontFamily: "OpenSansBold",
+    fontSize: 40,
+    color: "#47b5ff",
+    textAlign: "center",
+  },
+  loginTextContainer: {
+    flexDirection: "row",
+  },
+  text: { fontFamily: "OpenSansRegular" },
+  loginText: {
+    color: "#47b5ff",
+    fontFamily: "OpenSansBold",
   },
 });
 

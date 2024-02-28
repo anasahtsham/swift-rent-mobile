@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Text, Image, useColorScheme } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
 import * as darkTheme from "../assets/colorScheme/darkColorScheme";
 import * as defaultTheme from "../assets/colorScheme/defaultColorScheme";
 
 const SplashScreen = () => {
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === "dark" ? darkTheme : defaultTheme;
-  console.log(colorScheme);
-  console.log(colors.backgroundPrimary);
+  const colors = darkTheme;
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -24,10 +22,7 @@ const SplashScreen = () => {
     <View
       style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
     >
-      <Image
-        style={styles.splashIcon}
-        source={require("../assets/icons/adaptive-icon.png")}
-      />
+      <SwiftRentLogo250 />
       <View style={styles.textContainer}>
         <Text style={[styles.splashTextSwift, { color: colors.textSecondary }]}>
           Swift
@@ -46,10 +41,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  splashIcon: {
-    width: 250,
-    height: 250,
   },
   textContainer: {
     flexDirection: "row",
