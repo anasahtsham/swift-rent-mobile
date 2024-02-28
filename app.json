@@ -5,8 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icons/icon.png",
-    "userInterfaceStyle": "light",
-    
+    "splash": {
+      "image": "./src/assets/icons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -17,19 +20,10 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.siamax.swiftrent"
+      }
     },
     "web": {
       "favicon": "./src/assets/icons/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "e62ee87b-abd3-4f1d-a8cf-7cc410d3dfe5"
-      }
-    },
-    "plugins": [
-      "expo-font"
-    ]
+    }
   }
 }

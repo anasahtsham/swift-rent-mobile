@@ -3,7 +3,10 @@ import { Image, StyleSheet, Text, View } from "react-native";
 const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/icons/adaptive-icon.png")} />
+      <Image
+        style={styles.welcomeLogo}
+        source={require("../assets/icons/adaptive-icon.png")}
+      />
       <Text style={styles.text}>Welcome Screen</Text>
     </View>
   );
@@ -15,6 +18,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  welcomeLogo: {
+    width: 250,
+    height: 250,
   },
   text: {
     fontFamily: "OpenSansRegular",
