@@ -2,19 +2,20 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
 import BigButton from "../components/common/BigButton";
 import LanguageSelect from "../components/common/LanguageSelect";
+import * as english from "../assets/fonts/displaytext/EN/en-pack";
 
 const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
       <SwiftRentLogo250 />
       <View style={styles.welcomeTextContainer}>
-        <Text style={styles.welcomeText}>Welcome To</Text>
-        <Text style={styles.welcomeText}>Swift Rent</Text>
+        <Text style={styles.welcomeText}>{english.welcomeTo}</Text>
+        <Text style={styles.welcomeText}>{english.swiftRent}</Text>
       </View>
-      <BigButton buttonText="Get Started" />
+      <BigButton buttonText={english.getStarted} />
       <Pressable style={styles.loginTextContainer}>
-        <Text style={styles.text}>Already have an account? </Text>
-        <Text style={styles.loginText}>LogIn</Text>
+        <Text style={styles.text}>{english.alreadyHaveAnAccount}</Text>
+        <Text style={styles.loginText}>{english.login}</Text>
       </Pressable>
       <LanguageSelect />
     </View>
