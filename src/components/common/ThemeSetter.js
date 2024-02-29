@@ -6,16 +6,27 @@ import { saveTheme, loadTheme } from "../../helpers";
 const ThemeSetter = () => {
   const [isSun, setIsSun] = useState(true);
 
+  // useEffect(() => {
+  //   setTimeout(() => {loadTheme()==="light" ? setIsSun(true) : setIsSun(false);
+  //   }, 1000);
+  // });
+
   useEffect(() => {
-    setTimeout(() => {loadTheme()==="light" ? setIsSun(true) : setIsSun(false);
-    }, 1000);
-  });
+    loadTheme().then(theme => {
+      setIsSun(theme === "light");
+    });
+  }, []);
 
+  // const toggleIcon = () => {
+  //   setIsSun(!isSun);
+  //   saveTheme(isSun? "dark": "light");
+  // };
   const toggleIcon = () => {
-    setIsSun(!isSun);
-    saveTheme(isSun? "dark": "light");
+    const newIsSun = !isSun;
+    setIsSun(newIsSun);
+    saveTheme(newIsSun ? "light" : "dark");
   };
-
+  
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}

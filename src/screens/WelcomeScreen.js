@@ -13,11 +13,16 @@ const WelcomeScreen = () => {
   const [colors, setColors] = useState(DefaultTheme);
 
   useEffect(() => {
-    setInterval(() => {
-      console.log(loadTheme());
-      setColors(loadTheme() === "light" ? DefaultTheme : DarkTheme);
-    }, 5000);
-  });
+    const interval = setInterval(() => {
+      loadTheme().then(theme => {
+        setColors(theme === "light" ? DefaultTheme : DarkTheme);
+      });
+    }, 500);
+  
+    // Clear interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+  
 
   return (
     <View style={styles.mainContainer}>
@@ -30,7 +35,7 @@ const WelcomeScreen = () => {
           { backgroundColor: colors.backgroundPrimary },
         ]}
       >
-        <SwiftRentLogo250 style={styles.test} />
+        <SwiftRentLogo250/>
         <View style={styles.welcomeTextContainer}>
           <Text style={styles.welcomeText}>{English.welcomeTo}</Text>
           <Text style={styles.welcomeText}>{English.swiftRent}</Text>
