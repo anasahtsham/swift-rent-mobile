@@ -5,7 +5,7 @@ import { loadTheme } from "../../helpers";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
-const BigButton = (props) => {
+const BigButtonBlue = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -17,10 +17,16 @@ const BigButton = (props) => {
 
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor: colors.backgroundSecondary }]}
+      style={[
+        styles.button,
+        {
+          backgroundColor: colors.backgroundGrey,
+          borderColor: colors.borderGrey,
+        },
+      ]}
       activeOpacity={opacityValueForButton}
     >
-      <Text style={[styles.buttonText, { color: colors.textQuaternary }]}>
+      <Text style={[styles.buttonText, { color: colors.textBlack }]}>
         {props.buttonText}
       </Text>
     </TouchableOpacity>
@@ -32,7 +38,6 @@ const styles = StyleSheet.create({
     width: "60%",
     paddingVertical: 2,
     borderRadius: 100,
-    borderColor: "#cdcdcd",
     borderWidth: 1.5,
   },
   buttonText: {
@@ -42,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BigButton;
+export default BigButtonBlue;

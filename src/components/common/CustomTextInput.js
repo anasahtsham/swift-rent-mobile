@@ -16,7 +16,15 @@ const CustomTextInput = ({ value, onChangeText, placeholder }) => {
 
   return (
     <TextInput
-      style={[styles.input, { backgroundColor: colors.backgroundSecondary }]}
+      placeholderTextColor={colors.textGrey}
+      style={[
+        styles.input,
+        {
+          backgroundColor: colors.backgroundPrimary,
+          borderColor: colors.borderPrimary,
+          color: colors.textPrimary,
+        },
+      ]}
       value={value}
       onChangeText={onChangeText}
       placeholder={placeholder}

@@ -15,7 +15,7 @@ const SplashScreen = () => {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
     });
-  },[]);
+  }, []);
 
   //timer to send off from splash screen
   const navigation = useNavigation();
@@ -70,16 +70,20 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: "row",
+    width: 300,
+    justifyContent: "space-around",
   },
   splashTextSwift: {
     textAlign: "right",
     fontFamily: "OpenSansBold",
     fontSize: 50,
+    width: 150,
   },
   splashTextRent: {
     textAlign: "left",
     fontFamily: "OpenSansBold",
     fontSize: 50,
+    width: 150,
   },
 });
 

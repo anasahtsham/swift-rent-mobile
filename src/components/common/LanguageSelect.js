@@ -20,7 +20,10 @@ const LanguageSelect = () => {
       style={[
         [
           styles.dropdownContainer,
-          { backgroundColor: colors.backgroundSecondary },
+          {
+            backgroundColor: colors.backgroundGrey,
+            borderColor: colors.borderGrey,
+          },
         ],
       ]}
       activeOpacity={opacityValueForButton}
@@ -29,7 +32,7 @@ const LanguageSelect = () => {
         source={require("../../assets/icons/language.png")}
         style={styles.languageIcon}
       />
-      <Text style={[styles.dropdownText, { color: colors.textQuaternary }]}>
+      <Text style={[styles.dropdownText, { color: colors.textBlack }]}>
         Select Language
       </Text>
       <Image
@@ -46,10 +49,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 2,
     borderRadius: 100,
-    borderColor: "#cdcdcd",
     borderWidth: 1.5,
   },
   dropdownText: {
+    width: 125,
     fontFamily: "OpenSansRegular",
     textAlign: "center",
     fontSize: 16,

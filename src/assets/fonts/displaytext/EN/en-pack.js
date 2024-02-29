@@ -6,3 +6,4 @@ export const login = "LogIn";
 export const selectLanguage = "Select Language";
 export const emailOrNumber = "Email or Number";
 export const Password = "Password";
+export const enterYourDetails = "Enter Your Details";

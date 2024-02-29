@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { loadTheme } from "../../helpers";
 
 import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import SwiftRentLogo150 from "../../components/common/SwiftRentLogo150";
+import BigButtonGrey from "../../components/common/BigButtonGrey";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
-import { loadTheme } from "../../helpers";
-import BigButton from "../../components/common/BigButton";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
 const LoginScreen = () => {
   const [username, setUsername] = useState("");
@@ -19,6 +20,7 @@ const LoginScreen = () => {
   };
 
   const [colors, setColors] = useState(DefaultTheme);
+  const fonts = FontSizes;
 
   //update theme on load
   useEffect(() => {
@@ -37,6 +39,14 @@ const LoginScreen = () => {
         ]}
       >
         <SwiftRentLogo150 />
+        <Text
+          style={[
+            styles.text,
+            { fontSize: fonts.large, color: colors.textTertiary },
+          ]}
+        >
+          {English.enterYourDetails}
+        </Text>
         <CustomTextInput
           value={username}
           onChangeText={setUsername}
@@ -48,10 +58,7 @@ const LoginScreen = () => {
           placeholder="Password"
           secureTextEntry
         />
-        {/* <Pressable style={styles.button} onPress={handleLogin}>
-          <Text>Login</Text>
-        </Pressable> */}
-        <BigButton buttonText={English.login} />
+        <BigButtonGrey buttonText={English.login} />
       </View>
     </View>
   );
@@ -69,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     position: "relative",
   },
+  text: { fontFamily: "OpenSansBold" },
   input: {
     width: "80%",
     height: 40,

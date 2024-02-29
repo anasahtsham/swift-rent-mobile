@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { opacityValueForButton } from "../../constants";
 import { saveTheme, loadTheme } from "../../helpers";
+import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
 const ThemeSetter = () => {
   const [isSun, setIsSun] = useState(true);
+  const [colors, setColors] = useState(DefaultTheme);
 
-  //checking on first run if theme is dark or light
+  //update theme on load
   useEffect(() => {
     loadTheme().then((theme) => {
-      //this declares a theme parameter and stores the
-      //value (true/false) in it based on if lightmode is on or not
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
       setIsSun(theme === "light");
     });
-  }, []);
+  });
 
   const toggleIcon = () => {
     const newIsSun = !isSun; //the logic that makes it toggle
@@ -24,10 +26,17 @@ const ThemeSetter = () => {
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}
-      style={styles.container}
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.backgroundPrimary,
+          borderColor: colors.borderPrimary,
+        },
+      ]}
       onPress={toggleIcon}
     >
       <Image
+        tintColor={colors.textPrimary}
         source={
           isSun
             ? require("../../assets/icons/sun.png")
@@ -41,13 +50,11 @@ const ThemeSetter = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: "#000",
     borderRadius: 8,
     borderWidth: 2,
     padding: 4,
     flexDirection: "row",
     justifyContent: "flex-end",
-    backgroundColor: "#fff",
   },
   themeIcon: { width: 30, height: 30 },
 });

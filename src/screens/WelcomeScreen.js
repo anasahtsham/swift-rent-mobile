@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { loadTheme } from "../helpers";
 
 import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
-import BigButton from "../components/common/BigButton";
+import BigButtonGrey from "../components/common/BigButtonGrey";
 import LanguageSelect from "../components/common/LanguageSelect";
 import ThemeSetter from "../components/common/ThemeSetter";
 import Header from "../components/common/header";
@@ -11,6 +11,7 @@ import Header from "../components/common/header";
 import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
+
 const WelcomeScreen = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -51,7 +52,7 @@ const WelcomeScreen = ({ navigation }) => {
           </Text>
         </View>
 
-        <BigButton buttonText={English.getStarted} />
+        <BigButtonGrey buttonText={English.getStarted} />
 
         <Pressable
           style={styles.loginTextContainer}
@@ -96,10 +97,11 @@ const styles = StyleSheet.create({
     fontFamily: "OpenSansBold",
     fontSize: 40,
     textAlign: "center",
+    width: 300,
   },
   loginTextContainer: {
     flexDirection: "row",
-    width: 220,
+    width: 180,
     justifyContent: "space-between",
   },
   alreadyLoggedText: {
