@@ -1,4 +1,6 @@
+import React, { useState, useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { loadTheme } from "../helpers";
 import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
 import BigButton from "../components/common/BigButton";
 import LanguageSelect from "../components/common/LanguageSelect";
@@ -7,15 +9,27 @@ import ThemeSetter from "../components/common/ThemeSetter";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
-const colors = DarkTheme;
-
 const WelcomeScreen = () => {
+  const [colors, setColors] = useState(DefaultTheme);
+
+  useEffect(() => {
+    setInterval(() => {
+      console.log(loadTheme());
+      setColors(loadTheme() === "light" ? DefaultTheme : DarkTheme);
+    }, 5000);
+  });
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.themeContainer}>
         <ThemeSetter />
       </View>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: colors.backgroundPrimary },
+        ]}
+      >
         <SwiftRentLogo250 style={styles.test} />
         <View style={styles.welcomeTextContainer}>
           <Text style={styles.welcomeText}>{English.welcomeTo}</Text>
@@ -47,7 +61,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundColor,
     alignItems: "center",
     justifyContent: "space-evenly",
     position: "relative",

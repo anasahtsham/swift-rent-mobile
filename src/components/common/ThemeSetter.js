@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { opacityValueForButton } from "../../constants";
-import * as DarkTheme from "../../assets/colorScheme/defaultColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/darkColorScheme";
+import { saveTheme, loadTheme } from "../../helpers";
 
 const ThemeSetter = () => {
   const [isSun, setIsSun] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {loadTheme()==="light" ? setIsSun(true) : setIsSun(false);
+    }, 1000);
+  });
+
   const toggleIcon = () => {
     setIsSun(!isSun);
+    saveTheme(isSun? "dark": "light");
   };
 
   return (
