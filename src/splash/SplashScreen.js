@@ -1,15 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { loadTheme } from "../helpers";
+
 import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
+import Header from "../components/common/header";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
-const colors = DarkTheme;
-
 const SplashScreen = () => {
-  const navigation = useNavigation();
+  //set theme
+  const [colors, setColors] = useState(DefaultTheme);
+  useEffect(() => {
+    setInterval(() => {
+      loadTheme().then((theme) => {
+        setColors(theme === "light" ? DefaultTheme : DarkTheme);
+      });
+    }, 1);
+  });
 
+  //timer to send off from splash screen
+  const navigation = useNavigation();
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
@@ -20,11 +31,18 @@ const SplashScreen = () => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
+    >
+      <Header />
       <SwiftRentLogo250 />
       <View style={styles.textContainer}>
-        <Text style={styles.splashTextSwift}>Swift</Text>
-        <Text style={styles.splashTextRent}>Rent</Text>
+        <Text style={[styles.splashTextSwift, { color: colors.textSecondary }]}>
+          Swift
+        </Text>
+        <Text style={[styles.splashTextRent, { color: colors.textTertiary }]}>
+          Rent
+        </Text>
       </View>
     </View>
   );
@@ -36,7 +54,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.backgroundPrimary,
   },
   textContainer: {
     flexDirection: "row",
@@ -46,14 +63,12 @@ const styles = StyleSheet.create({
     textAlign: "right",
     fontFamily: "OpenSansBold",
     fontSize: 50,
-    color: colors.textSecondary,
   },
   splashTextRent: {
     flex: 1,
     textAlign: "left",
     fontFamily: "OpenSansBold",
     fontSize: 50,
-    color: colors.textTertiary,
   },
 });
 
