@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { opacityValueForButton } from "../../constants";
+import { loadTheme } from "../../helpers";
+import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
 const LanguageSelect = () => {
+  const [colors, setColors] = useState(DefaultTheme);
+
+  //update theme on load
+  useEffect(() => {
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }, []);
+
   return (
     <TouchableOpacity
-      style={styles.dropdownContainer}
+      style={[
+        [
+          styles.dropdownContainer,
+          { backgroundColor: colors.backgroundSecondary },
+        ],
+      ]}
       activeOpacity={opacityValueForButton}
     >
       <Image
         source={require("../../assets/icons/language.png")}
         style={styles.languageIcon}
       />
-      <Text style={styles.dropdownText}>Select Language</Text>
+      <Text style={[styles.dropdownText, { color: colors.textQuaternary }]}>
+        Select Language
+      </Text>
       <Image
         source={require("../../assets/icons/dropdown.png")}
         style={styles.dropdownIcon}
@@ -26,14 +45,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 2,
-    backgroundColor: "#e5e5e5",
     borderRadius: 100,
     borderColor: "#cdcdcd",
     borderWidth: 1.5,
   },
   dropdownText: {
     fontFamily: "OpenSansRegular",
-    color: "#06283d",
     textAlign: "center",
     fontSize: 16,
   },

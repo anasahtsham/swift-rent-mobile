@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import SplashScreen from "./src/splash/SplashScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
+import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
 
 const Stack = createStackNavigator();
 
@@ -13,10 +14,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName="Splash Screen"
+        initialRouteName="Welcome Screen"
       >
         <Stack.Screen name="Splash Screen" component={SplashScreen} />
         <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
+        <Stack.Screen name="Login Screen" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

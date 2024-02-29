@@ -15,7 +15,7 @@ const SplashScreen = () => {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
     });
-  });
+  },[]);
 
   //timer to send off from splash screen
   const navigation = useNavigation();

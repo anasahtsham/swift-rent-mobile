@@ -11,7 +11,7 @@ import Header from "../components/common/header";
 import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -53,13 +53,18 @@ const WelcomeScreen = () => {
 
         <BigButton buttonText={English.getStarted} />
 
-        <Pressable style={styles.loginTextContainer}>
+        <Pressable
+          style={styles.loginTextContainer}
+          onTouchEnd={() => navigation.navigate("Login Screen")}
+        >
           <Text
             style={[styles.alreadyLoggedText, { color: colors.textPrimary }]}
           >
             {English.alreadyHaveAnAccount}
           </Text>
-          <Text style={styles.loginText}>{English.login}</Text>
+          <Text style={[styles.loginText, { color: colors.textTertiary }]}>
+            {English.login}
+          </Text>
         </Pressable>
 
         <LanguageSelect />
@@ -94,11 +99,16 @@ const styles = StyleSheet.create({
   },
   loginTextContainer: {
     flexDirection: "row",
+    width: 220,
+    justifyContent: "space-between",
   },
-  alreadyLoggedText: { fontFamily: "OpenSansRegular" },
+  alreadyLoggedText: {
+    fontFamily: "OpenSansRegular",
+    flex: 100,
+  },
   loginText: {
-    color: "#47b5ff",
     fontFamily: "OpenSansBold",
+    flex: 25,
   },
 });
 
