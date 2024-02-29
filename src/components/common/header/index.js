@@ -5,7 +5,11 @@ const Header = () => {
 };
 
 const styles = StyleSheet.create({
-  header: { flex: 0.035, backgroundColor: "#fff" },
+  header: {
+    flex: 0.033,
+    backgroundColor: "#fff",
+    zIndex: 10,
+  },
 });
 
 export default Header;

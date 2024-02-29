@@ -12,11 +12,9 @@ const SplashScreen = () => {
   //set theme
   const [colors, setColors] = useState(DefaultTheme);
   useEffect(() => {
-    setInterval(() => {
-      loadTheme().then((theme) => {
-        setColors(theme === "light" ? DefaultTheme : DarkTheme);
-      });
-    }, 1);
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
   });
 
   //timer to send off from splash screen
@@ -31,41 +29,54 @@ const SplashScreen = () => {
   }, [navigation]);
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
-    >
+    <View style={styles.header}>
       <Header />
-      <SwiftRentLogo250 />
-      <View style={styles.textContainer}>
-        <Text style={[styles.splashTextSwift, { color: colors.textSecondary }]}>
-          Swift
-        </Text>
-        <Text style={[styles.splashTextRent, { color: colors.textTertiary }]}>
-          Rent
-        </Text>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: colors.backgroundPrimary },
+        ]}
+      >
+        <SwiftRentLogo250 />
+
+        <View style={styles.textContainer}>
+          <Text
+            style={[styles.splashTextSwift, { color: colors.textSecondary }]}
+          >
+            Swift
+          </Text>
+          <Text style={[styles.splashTextRent, { color: colors.textTertiary }]}>
+            Rent
+          </Text>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  header: {
     flex: 1,
+    justifyContent: "flex-end",
+    position: "relative",
+  },
+  container: {
+    flex: 0.99,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 0,
+    position: "relative",
   },
   textContainer: {
     flexDirection: "row",
   },
   splashTextSwift: {
-    flex: 1,
     textAlign: "right",
     fontFamily: "OpenSansBold",
     fontSize: 50,
   },
   splashTextRent: {
-    flex: 1,
     textAlign: "left",
     fontFamily: "OpenSansBold",
     fontSize: 50,

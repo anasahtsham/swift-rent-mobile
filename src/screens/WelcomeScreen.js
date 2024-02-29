@@ -14,18 +14,24 @@ import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 const WelcomeScreen = () => {
   const [colors, setColors] = useState(DefaultTheme);
 
+  //update theme on load
   useEffect(() => {
-    setInterval(() => {
-      loadTheme().then((theme) => {
-        setColors(theme === "light" ? DefaultTheme : DarkTheme);
-      });
-    }, 1);
-  });
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }, []);
+
+  //update theme on click
+  function updateTheme() {
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles.header}>
       <Header />
-      <View style={styles.themeContainer}>
+      <View style={styles.themeButtonContainer} onTouchEnd={updateTheme}>
         <ThemeSetter setColors={setColors} />
       </View>
       <View
@@ -63,12 +69,12 @@ const WelcomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  header: {
     flex: 1,
     justifyContent: "flex-end",
     position: "relative",
   },
-  themeContainer: {
+  themeButtonContainer: {
     marginEnd: 20,
     position: "absolute",
     right: 0,
