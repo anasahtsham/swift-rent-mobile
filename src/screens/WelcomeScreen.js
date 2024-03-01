@@ -8,6 +8,7 @@ import LanguageSelect from "../components/common/LanguageSelect";
 import ThemeSetter from "../components/common/ThemeSetter";
 import Header from "../components/common/header";
 
+import * as FontSizes from "../assets/fonts/FontSizes";
 import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
@@ -41,32 +42,44 @@ const WelcomeScreen = ({ navigation }) => {
           { backgroundColor: colors.backgroundPrimary },
         ]}
       >
-        <SwiftRentLogo250 />
+        <View style={styles.logoAndTextContainer}>
+          <SwiftRentLogo250 />
 
-        <View>
-          <Text style={[styles.welcomeText, { color: colors.textTertiary }]}>
-            {English.welcomeTo}
-          </Text>
-          <Text style={[styles.welcomeText, { color: colors.textTertiary }]}>
-            {English.swiftRent}
-          </Text>
+          <View>
+            <Text style={[styles.welcomeText, { color: colors.textTertiary }]}>
+              {English.welcomeTo}
+            </Text>
+            <Text style={[styles.welcomeText, { color: colors.textTertiary }]}>
+              {English.swiftRent}
+            </Text>
+          </View>
         </View>
 
-        <BigButtonGrey buttonText={English.getStarted} />
+        <View style={styles.buttonAndLoginContainer}>
+          <BigButtonGrey buttonText={English.getStarted} />
 
-        <Pressable
-          style={styles.loginTextContainer}
-          onTouchEnd={() => navigation.navigate("Login Screen")}
-        >
-          <Text
-            style={[styles.alreadyLoggedText, { color: colors.textPrimary }]}
+          <Pressable
+            style={styles.loginTextContainer}
+            onTouchEnd={() => navigation.navigate("Login Screen")}
           >
-            {English.alreadyHaveAnAccount}
-          </Text>
-          <Text style={[styles.loginText, { color: colors.textTertiary }]}>
-            {English.login}
-          </Text>
-        </Pressable>
+            <Text
+              style={[
+                styles.alreadyLoggedText,
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              {English.alreadyHaveAnAccount}
+            </Text>
+            <Text
+              style={[
+                styles.loginText,
+                { color: colors.textTertiary, fontSize: FontSizes.small },
+              ]}
+            >
+              {English.login}
+            </Text>
+          </Pressable>
+        </View>
 
         <LanguageSelect />
       </View>
@@ -90,8 +103,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     position: "relative",
+  },
+  logoAndTextContainer: {
+    alignItems: "center",
   },
   welcomeText: {
     fontFamily: "OpenSansBold",
@@ -99,18 +115,26 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 300,
   },
+  buttonAndLoginContainer: {
+    flex: 0.2,
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 400,
+  },
   loginTextContainer: {
     flexDirection: "row",
-    width: 180,
+    width: 220,
     justifyContent: "space-between",
   },
   alreadyLoggedText: {
     fontFamily: "OpenSansRegular",
     flex: 100,
+    textAlign: "center",
   },
   loginText: {
     fontFamily: "OpenSansBold",
-    flex: 25,
+    flex: 30,
+    textAlign: "center",
   },
 });
 

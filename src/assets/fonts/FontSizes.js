@@ -1,3 +1,3 @@
-export const small = 20;
-export const medium = 30;
-export const large = 40;
+export const small = 16;
+export const medium = 26;
+export const large = 36;

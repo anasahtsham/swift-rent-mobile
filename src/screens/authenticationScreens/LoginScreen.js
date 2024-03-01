@@ -38,26 +38,38 @@ const LoginScreen = () => {
           { backgroundColor: colors.backgroundPrimary },
         ]}
       >
-        <SwiftRentLogo150 />
-        <Text
-          style={[
-            styles.text,
-            { fontSize: fonts.large, color: colors.textTertiary },
-          ]}
-        >
-          {English.enterYourDetails}
-        </Text>
-        <CustomTextInput
-          value={username}
-          onChangeText={setUsername}
-          placeholder={English.emailOrNumber}
-        />
-        <CustomTextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Password"
-          secureTextEntry
-        />
+        <View style={styles.logoAndTextContainer}>
+          <SwiftRentLogo150 />
+          <Text
+            style={[
+              styles.text,
+              { fontSize: fonts.large, color: colors.textTertiary },
+            ]}
+          >
+            {English.enterYourDetails}
+          </Text>
+        </View>
+
+        <View style={styles.textInputsContainer}>
+          <CustomTextInput
+            value={username}
+            onChangeText={setUsername}
+            placeholder={English.emailOrNumber}
+          />
+          <CustomTextInput
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Password"
+            secureTextEntry
+          />
+
+          <Text
+            style={[{ fontSize: FontSizes.small, color: colors.textPrimary }]}
+          >
+            {English.forgotPassword}
+          </Text>
+        </View>
+
         <BigButtonGrey buttonText={English.login} style={styles.button} />
       </View>
     </View>
@@ -73,18 +85,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     position: "relative",
   },
-  text: { fontFamily: "OpenSansBold" },
-  input: {
-    width: "80%",
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 10,
-    padding: 10,
+  logoAndTextContainer: {
+    alignItems: "center",
   },
+  text: { fontFamily: "OpenSansBold" },
+  textInputsContainer: { width: 330, alignItems: "center" },
   button: {
     width: "40%",
     height: 40,
