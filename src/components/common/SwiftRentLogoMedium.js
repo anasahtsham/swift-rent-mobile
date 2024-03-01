@@ -1,4 +1,4 @@
-import { Image, StyleSheet } from "react-native";
+import { Dimensions, Image, StyleSheet } from "react-native";
 
 const SwiftRentLogoMedium = () => {
   return (
@@ -11,8 +11,9 @@ const SwiftRentLogoMedium = () => {
 
 const styles = StyleSheet.create({
   SwiftRentLogoMedium: {
-    width: 150,
-    height: 150,
+    width: Dimensions.get("window").width * 0.4,
+    height: Dimensions.get("window").width * 0.4,
+    resizeMode: "contain",
   },
 });
 

@@ -6,7 +6,7 @@ import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogo150 from "../../components/common/swiftRentLogoMedium";
+import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
@@ -48,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
             ]}
           >
             <View style={styles.logoAndTextContainer}>
-              <SwiftRentLogo150 />
+              <SwiftRentLogoMedium />
               <Text
                 style={[
                   styles.text,

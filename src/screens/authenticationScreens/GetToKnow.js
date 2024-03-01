@@ -12,7 +12,7 @@ import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogo150 from "../../components/common/swiftRentLogoMedium";
+import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
@@ -22,8 +22,9 @@ import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const GetToKnow = ({ navigation }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [DOB, setDOB] = useState("");
 
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -51,7 +52,7 @@ const GetToKnow = ({ navigation }) => {
             ]}
           >
             <View style={styles.logoAndTextContainer}>
-              <SwiftRentLogo150 />
+              <SwiftRentLogoMedium />
               <Text
                 style={[
                   styles.text,
@@ -64,37 +65,23 @@ const GetToKnow = ({ navigation }) => {
 
             <View style={styles.textInputsContainer}>
               <CustomTextInput
-                value={username}
-                onChangeText={setUsername}
+                value={firstName}
+                onChangeText={setFirstName}
                 placeholder={English.firstName}
                 textFieldIcon={icons.userIcon}
               />
               <CustomTextInput
-                value={password}
-                onChangeText={setPassword}
+                value={lastName}
+                onChangeText={setLastName}
                 placeholder={English.lastName}
                 textFieldIcon={icons.userIcon}
               />
-              <View style={styles.dobContainer}>
-                {/* <CustomTextInput
-                  value={password}
-                  onChangeText={setPassword}
-                  placeholder={English.lastName}
-                  customStyle={{ width: 50 }}
-                />
-                <CustomTextInput
-                  value={password}
-                  onChangeText={setPassword}
-                  placeholder={English.lastName}
-                  customStyle={{ width: 50 }}
-                />
-                <CustomTextInput
-                  value={password}
-                  onChangeText={setPassword}
-                  placeholder={English.lastName}
-                  customStyle={{ width: 50 }}
-                /> */}
-              </View>
+              <CustomTextInput
+                value={DOB}
+                onChangeText={setDOB}
+                placeholder={English.DOB}
+                textFieldIcon={icons.calendarIcon}
+              />
               <Text
                 style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
               >

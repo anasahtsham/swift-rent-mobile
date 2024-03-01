@@ -17,3 +17,4 @@ export const tenant = "Tenant";
 export const letsGetToKnowYou = "Lets Get To Know You";
 export const firstName = "First Name";
 export const lastName = "Last Name";
+export const DOB = "Date Of Birth";

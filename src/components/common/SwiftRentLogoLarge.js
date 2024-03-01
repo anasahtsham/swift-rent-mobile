@@ -11,8 +11,8 @@ const SwiftRentLogoLarge = () => {
 
 const styles = StyleSheet.create({
   SwiftRentLogoLarge: {
-    width: Dimensions.get("window").width * 0.5,
-    height: Dimensions.get("window").width * 0.5,
+    width: Dimensions.get("window").width * 0.7,
+    height: Dimensions.get("window").width * 0.7,
     resizeMode: "contain",
   },
 });

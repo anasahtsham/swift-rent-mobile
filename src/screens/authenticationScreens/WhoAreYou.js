@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   customButton: {
-    width: "80%",
-    height: "20%",
+    width: "70%",
+    height: "15%",
   },
 });
 
