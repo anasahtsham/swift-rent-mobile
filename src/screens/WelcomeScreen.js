@@ -66,6 +66,8 @@ const WelcomeScreen = ({ navigation }) => {
           <BigButtonGrey
             buttonText={English.getStarted}
             customStyle={{ width: 270 }}
+            destinationScreen="Who Are You"
+            navigation={navigation}
           />
 
           <Pressable

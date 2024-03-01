@@ -13,7 +13,7 @@ import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
-const LoginScreen = () => {
+const LoginScreen = (navigation) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

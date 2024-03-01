@@ -15,6 +15,10 @@ const BigButtonGrey = (props) => {
     });
   }, []);
 
+  const handlePress = () => {
+    props.navigation.navigate(props.destinationScreen);
+  };
+
   return (
     <TouchableOpacity
       style={[
@@ -25,6 +29,7 @@ const BigButtonGrey = (props) => {
         },
         props.customStyle,
       ]}
+      onPress={handlePress}
       activeOpacity={opacityValueForButton}
     >
       <Text style={[styles.buttonText, { color: colors.textBlack }]}>
