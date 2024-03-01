@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { loadTheme } from "../../helpers";
 
 import Header from "../../components/common/header";
-import SwiftRentLogo150 from "../../components/common/SwiftRentLogo150";
+import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
@@ -31,7 +31,7 @@ const WhoAreYou = ({ navigation }) => {
         ]}
       >
         <View style={styles.logoAndTextContainer}>
-          <SwiftRentLogo150 />
+          <SwiftRentLogoMedium />
           <Text
             style={[
               styles.text,

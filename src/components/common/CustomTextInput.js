@@ -13,6 +13,7 @@ const CustomTextInput = ({
   placeholder,
   hideContent,
   textFieldIcon,
+  customStyle,
 }) => {
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -31,6 +32,7 @@ const CustomTextInput = ({
           backgroundColor: colors.backgroundPrimary,
           borderColor: colors.borderPrimary,
         },
+        customStyle,
       ]}
     >
       <TextInput

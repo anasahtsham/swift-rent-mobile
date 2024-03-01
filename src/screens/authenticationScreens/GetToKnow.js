@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogo150 from "../../components/common/SwiftRentLogo150";
+import SwiftRentLogo150 from "../../components/common/swiftRentLogoMedium";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const GetToKnow = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -28,8 +36,13 @@ const GetToKnow = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      <ScrollView style={styles.scrollViewContainer}>
-        <Header />
+      <Header />
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        scrollEnabled={true}
+        extraScrollHeight={2500}
+      >
         <View style={styles.mainContainer}>
           <View
             style={[
@@ -62,13 +75,26 @@ const GetToKnow = ({ navigation }) => {
                 placeholder={English.lastName}
                 textFieldIcon={icons.userIcon}
               />
-              <CustomTextInput
-                value={password}
-                onChangeText={setPassword}
-                placeholder={English.lastName}
-                textFieldIcon={icons.userIcon}
-              />
-
+              <View style={styles.dobContainer}>
+                {/* <CustomTextInput
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder={English.lastName}
+                  customStyle={{ width: 50 }}
+                />
+                <CustomTextInput
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder={English.lastName}
+                  customStyle={{ width: 50 }}
+                />
+                <CustomTextInput
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder={English.lastName}
+                  customStyle={{ width: 50 }}
+                /> */}
+              </View>
               <Text
                 style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
               >
@@ -82,14 +108,13 @@ const GetToKnow = ({ navigation }) => {
             />
           </View>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeAreaViewContainer: { backgroundColor: "red", flex: 1 },
-  scrollViewContainer: { backgroundColor: "green" },
+  safeAreaViewContainer: { flex: 1 },
   mainContainer: {
     flex: 1,
     justifyContent: "flex-end",
@@ -97,6 +122,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    height: Dimensions.get("window").height - 30,
     alignItems: "center",
     justifyContent: "space-evenly",
     position: "relative",
@@ -107,6 +133,11 @@ const styles = StyleSheet.create({
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: { width: "90%", alignItems: "center" },
+  dobContainer: {
+    flexDirection: "row",
+    width: "30%",
+    justifyContent: "center",
+  },
   customButton: {
     width: "40%",
   },

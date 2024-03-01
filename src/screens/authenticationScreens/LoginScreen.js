@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogo150 from "../../components/common/SwiftRentLogo150";
+import SwiftRentLogo150 from "../../components/common/swiftRentLogoMedium";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
@@ -31,58 +32,70 @@ const LoginScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.safeAreaViewContainer}>
       <Header />
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: colors.backgroundPrimary },
-        ]}
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        scrollEnabled={true}
+        extraScrollHeight={10}
       >
-        <View style={styles.logoAndTextContainer}>
-          <SwiftRentLogo150 />
-          <Text
+        <View style={styles.mainContainer}>
+          <View
             style={[
-              styles.text,
-              { fontSize: FontSizes.large, color: colors.textLightBlue },
+              styles.container,
+              { backgroundColor: colors.backgroundPrimary },
             ]}
           >
-            {English.enterYourDetails}
-          </Text>
+            <View style={styles.logoAndTextContainer}>
+              <SwiftRentLogo150 />
+              <Text
+                style={[
+                  styles.text,
+                  { fontSize: FontSizes.large, color: colors.textLightBlue },
+                ]}
+              >
+                {English.enterYourDetails}
+              </Text>
+            </View>
+
+            <View style={styles.textInputsContainer}>
+              <CustomTextInput
+                value={username}
+                onChangeText={setUsername}
+                placeholder={English.emailOrNumber}
+                textFieldIcon={icons.userIcon}
+              />
+              <CustomTextInput
+                value={password}
+                onChangeText={setPassword}
+                placeholder={English.password}
+                hideContent={true}
+                textFieldIcon={icons.passwordFieldIcon}
+              />
+
+              <Text
+                style={{
+                  fontSize: FontSizes.small,
+                  color: colors.textPrimary,
+                }}
+              >
+                {English.forgotPassword}
+              </Text>
+            </View>
+
+            <BigButtonGrey
+              buttonText={English.login}
+              customStyle={styles.customButton}
+            />
+          </View>
         </View>
-
-        <View style={styles.textInputsContainer}>
-          <CustomTextInput
-            value={username}
-            onChangeText={setUsername}
-            placeholder={English.emailOrNumber}
-            textFieldIcon={icons.userIcon}
-          />
-          <CustomTextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder={English.password}
-            hideContent={true}
-            textFieldIcon={icons.passwordFieldIcon}
-          />
-
-          <Text
-            style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-          >
-            {English.forgotPassword}
-          </Text>
-        </View>
-
-        <BigButtonGrey
-          buttonText={English.login}
-          customStyle={styles.customButton}
-        />
-      </View>
-    </View>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
+  safeAreaViewContainer: { flex: 1 },
   mainContainer: {
     flex: 1,
     justifyContent: "flex-end",
@@ -90,6 +103,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    height: Dimensions.get("window").height - 30,
     alignItems: "center",
     justifyContent: "space-evenly",
     position: "relative",

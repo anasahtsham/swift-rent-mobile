@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { loadTheme } from "../helpers";
 
-import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
+import SwiftRentLogoMedium from "../components/common/SwiftRentLogoMedium";
 import BigButtonGrey from "../components/common/BigButtonGrey";
 import LanguageSelect from "../components/common/LanguageSelect";
 import ThemeSetter from "../components/common/ThemeSetter";
@@ -43,7 +43,7 @@ const WelcomeScreen = ({ navigation }) => {
         ]}
       >
         <View style={styles.logoAndTextContainer}>
-          <SwiftRentLogo250 />
+          <SwiftRentLogoMedium />
           <Text
             style={[
               styles.welcomeText,

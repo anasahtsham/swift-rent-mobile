@@ -6,7 +6,7 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 0.05,
+    height: 30,
     backgroundColor: "#fff",
     zIndex: 10,
   },

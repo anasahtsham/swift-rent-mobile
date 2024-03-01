@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { loadTheme } from "../helpers";
 
-import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
+import SwiftRentLogoLarge from "../components/common/SwiftRentLogoLarge";
 import Header from "../components/common/header";
 import * as FontSizes from "../assets/fonts/FontSizes";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
@@ -38,7 +38,7 @@ const SplashScreen = () => {
           { backgroundColor: colors.backgroundPrimary },
         ]}
       >
-        <SwiftRentLogo250 />
+        <SwiftRentLogoLarge />
 
         <View style={styles.textContainer}>
           <Text
