@@ -5,6 +5,15 @@ export const alreadyHaveAnAccount = "Already have an account?";
 export const login = "Login";
 export const selectLanguage = "Select Language";
 export const emailOrNumber = "Email or Number";
-export const Password = "Password";
+export const password = "Password";
 export const enterYourDetails = "Enter Your Details";
 export const forgotPassword = "Forgot Password?";
+export const whoAreYou = "Who Are You?";
+export const createNewRoleOnExistingCredentials =
+  "Create new role on existing credentials?";
+export const propertyOwner = "Property Owner";
+export const propertyManager = "Property Manager";
+export const tenant = "Tenant";
+export const letsGetToKnowYou = "Lets Get To Know You";
+export const firstName = "First Name";
+export const lastName = "Last Name";

@@ -13,7 +13,7 @@ import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
-const LoginScreen = (navigation) => {
+const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -61,13 +61,13 @@ const LoginScreen = (navigation) => {
           <CustomTextInput
             value={password}
             onChangeText={setPassword}
-            placeholder="Password"
+            placeholder={English.password}
             hideContent={true}
             textFieldIcon={icons.passwordFieldIcon}
           />
 
           <Text
-            style={[{ fontSize: FontSizes.small, color: colors.textPrimary }]}
+            style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
           >
             {English.forgotPassword}
           </Text>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   logoAndTextContainer: {
     alignItems: "center",
   },
-  text: { fontFamily: "OpenSansBold" },
+  text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: { width: "90%", alignItems: "center" },
   customButton: {
     width: "40%",

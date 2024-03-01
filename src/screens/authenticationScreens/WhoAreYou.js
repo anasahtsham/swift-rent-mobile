@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { loadTheme } from "../../helpers";
-import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
-import CustomTextInput from "../../components/common/CustomTextInput";
 import SwiftRentLogo150 from "../../components/common/SwiftRentLogo150";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
 
@@ -13,7 +11,7 @@ import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
-const WhoAreYou = () => {
+const WhoAreYou = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -40,22 +38,33 @@ const WhoAreYou = () => {
               { fontSize: FontSizes.large, color: colors.textLightBlue },
             ]}
           >
-            {English.enterYourDetails}
+            {English.whoAreYou}
           </Text>
         </View>
 
-        <View style={styles.textInputsContainer}>
-          <CustomTextInput />
-          <CustomTextInput />
-
-          <Text
-            style={[{ fontSize: FontSizes.small, color: colors.textPrimary }]}
-          >
-            {English.forgotPassword}
-          </Text>
+        <View style={styles.buttonsContainer}>
+          <BigButtonGrey
+            buttonText={English.propertyOwner}
+            customStyle={styles.customButton}
+            destinationScreen="Get To Know"
+            navigation={navigation}
+          />
+          <BigButtonGrey
+            buttonText={English.propertyManager}
+            customStyle={styles.customButton}
+            destinationScreen="Get To Know"
+            navigation={navigation}
+          />
+          <BigButtonGrey
+            buttonText={English.tenant}
+            customStyle={styles.customButton}
+            destinationScreen="Get To Know"
+            navigation={navigation}
+          />
         </View>
-
-        <BigButtonGrey />
+        <Text style={{ fontSize: FontSizes.small, color: colors.textPrimary }}>
+          {English.createNewRoleOnExistingCredentials}
+        </Text>
       </View>
     </View>
   );
@@ -76,10 +85,16 @@ const styles = StyleSheet.create({
   logoAndTextContainer: {
     alignItems: "center",
   },
-  text: { fontFamily: "OpenSansBold" },
-  textInputsContainer: { width: "90%", alignItems: "center" },
+  text: { fontFamily: "OpenSansBold", textAlign: "center" },
+  buttonsContainer: {
+    width: "90%",
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
   customButton: {
-    width: "40%",
+    width: "80%",
+    height: "20%",
   },
 });
 

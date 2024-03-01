@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 100,
     borderWidth: 1.5,
+    justifyContent: "center",
   },
   buttonText: {
     fontFamily: "OpenSansRegular",
