@@ -18,16 +18,16 @@ const SplashScreen = () => {
     });
   }, []);
 
-  //timer to send off from splash screen
-  // const navigation = useNavigation();
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
-  //   }, 3000); // where 1000 milliseconds = 1 second
+  // timer to send off from splash screen
+  const navigation = useNavigation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
+    }, 3000); // where 1000 milliseconds = 1 second
 
-  //   // Clear the timer to prevent memory leaks
-  //   return () => clearTimeout(timer);
-  // }, [navigation]);
+    // Clear the timer to prevent memory leaks
+    return () => clearTimeout(timer);
+  }, [navigation]);
 
   return (
     <View style={styles.header}>
@@ -84,10 +84,12 @@ const styles = StyleSheet.create({
   },
   splashTextSwift: {
     textAlign: "right",
+    width: "50%",
     fontFamily: "OpenSansBold",
   },
   splashTextRent: {
     textAlign: "left",
+    width: "50%",
     fontFamily: "OpenSansBold",
   },
 });

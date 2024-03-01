@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     fontFamily: "OpenSansBold",
   },
   buttonAndLoginContainer: {
-    flex: 0.2,
+    flex: 0.25,
     alignItems: "center",
     justifyContent: "space-between",
   },

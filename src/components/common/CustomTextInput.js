@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { TextInput, StyleSheet, View, Image } from "react-native";
 import { loadTheme } from "../../helpers";
+import { icons } from "../../helpers/ImageImports";
+
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -45,8 +47,10 @@ const CustomTextInput = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
       />
+
       <Image
-        source={require("../../assets/icons/img/userIcon.png")}
+        tintColor={colors.textPrimary}
+        source={textFieldIcon}
         style={styles.icon}
       />
     </View>

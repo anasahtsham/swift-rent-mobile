@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { loadTheme } from "../../helpers";
+import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
@@ -55,14 +56,14 @@ const LoginScreen = () => {
             value={username}
             onChangeText={setUsername}
             placeholder={English.emailOrNumber}
-            textFieldIcon={"../../assets/icons/img/userIcon.png"}
+            textFieldIcon={icons.userIcon}
           />
           <CustomTextInput
             value={password}
             onChangeText={setPassword}
             placeholder="Password"
             hideContent={true}
-            textFieldIcon={"../../assets/icons/img/userIcon.png"}
+            textFieldIcon={icons.passwordFieldIcon}
           />
 
           <Text
@@ -100,9 +101,6 @@ const styles = StyleSheet.create({
   textInputsContainer: { width: "90%", alignItems: "center" },
   customButton: {
     width: "40%",
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
