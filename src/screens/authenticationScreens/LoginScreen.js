@@ -44,7 +44,7 @@ const LoginScreen = () => {
           <Text
             style={[
               styles.text,
-              { fontSize: FontSizes.large, color: colors.textTertiary },
+              { fontSize: FontSizes.large, color: colors.textLightBlue },
             ]}
           >
             {English.enterYourDetails}

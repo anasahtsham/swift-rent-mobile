@@ -49,7 +49,7 @@ const CustomTextInput = ({
       />
 
       <Image
-        tintColor={colors.textPrimary}
+        tintColor={colors.iconPrimary}
         source={textFieldIcon}
         style={styles.icon}
       />

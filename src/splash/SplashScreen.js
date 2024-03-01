@@ -44,7 +44,7 @@ const SplashScreen = () => {
           <Text
             style={[
               styles.splashTextSwift,
-              { color: colors.textSecondary, fontSize: FontSizes.extraLarge },
+              { color: colors.textDarkBlue, fontSize: FontSizes.extraLarge },
             ]}
           >
             Swift
@@ -52,7 +52,7 @@ const SplashScreen = () => {
           <Text
             style={[
               styles.splashTextRent,
-              { color: colors.textTertiary, fontSize: FontSizes.extraLarge },
+              { color: colors.textLightBlue, fontSize: FontSizes.extraLarge },
             ]}
           >
             Rent

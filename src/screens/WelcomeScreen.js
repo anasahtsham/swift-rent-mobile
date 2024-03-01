@@ -47,7 +47,7 @@ const WelcomeScreen = ({ navigation }) => {
           <Text
             style={[
               styles.welcomeText,
-              { color: colors.textTertiary, fontSize: FontSizes.large },
+              { color: colors.textLightBlue, fontSize: FontSizes.large },
             ]}
           >
             {English.welcomeTo}
@@ -55,7 +55,7 @@ const WelcomeScreen = ({ navigation }) => {
           <Text
             style={[
               styles.welcomeText,
-              { color: colors.textTertiary, fontSize: FontSizes.large },
+              { color: colors.textLightBlue, fontSize: FontSizes.large },
             ]}
           >
             {English.swiftRent}
@@ -83,7 +83,7 @@ const WelcomeScreen = ({ navigation }) => {
             <Text
               style={[
                 styles.loginText,
-                { color: colors.textTertiary, fontSize: FontSizes.small },
+                { color: colors.textLightBlue, fontSize: FontSizes.small },
               ]}
             >
               {English.login}
