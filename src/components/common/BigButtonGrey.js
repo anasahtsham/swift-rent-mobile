@@ -6,6 +6,7 @@ import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
 const BigButtonBlue = (props) => {
+  const { style } = props; // Add this line
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -23,6 +24,7 @@ const BigButtonBlue = (props) => {
           backgroundColor: colors.backgroundGrey,
           borderColor: colors.borderGrey,
         },
+        style,
       ]}
       activeOpacity={opacityValueForButton}
     >

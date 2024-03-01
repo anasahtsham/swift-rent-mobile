@@ -58,7 +58,7 @@ const LoginScreen = () => {
           placeholder="Password"
           secureTextEntry
         />
-        <BigButtonGrey buttonText={English.login} />
+        <BigButtonGrey buttonText={English.login} style={styles.button} />
       </View>
     </View>
   );
@@ -86,9 +86,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    width: "80%",
+    width: "40%",
     height: 40,
-    backgroundColor: "blue",
     justifyContent: "center",
     alignItems: "center",
   },
