@@ -55,12 +55,14 @@ const LoginScreen = () => {
             value={username}
             onChangeText={setUsername}
             placeholder={English.emailOrNumber}
+            textFieldIcon={"../../assets/icons/img/userIcon.png"}
           />
           <CustomTextInput
             value={password}
             onChangeText={setPassword}
             placeholder="Password"
-            secureTextEntry
+            hideContent={true}
+            textFieldIcon={"../../assets/icons/img/userIcon.png"}
           />
 
           <Text
