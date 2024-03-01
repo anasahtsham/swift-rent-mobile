@@ -19,11 +19,15 @@ const BigButtonBlue = (props) => {
     <TouchableOpacity
       style={[
         styles.button,
-        { backgroundColor: "#1177d1", borderColor: "#0f5fba" },
+        {
+          backgroundColor: colors.backgroundGrey,
+          borderColor: colors.borderGrey,
+        },
+        props.customStyle,
       ]}
       activeOpacity={opacityValueForButton}
     >
-      <Text style={[styles.buttonText, { color: colors.textWhite }]}>
+      <Text style={[styles.buttonText, { color: colors.textBlack }]}>
         {props.buttonText}
       </Text>
     </TouchableOpacity>
@@ -33,7 +37,8 @@ const BigButtonBlue = (props) => {
 const styles = StyleSheet.create({
   button: {
     width: "60%",
-    paddingVertical: 2,
+    paddingVertical: 5,
+    paddingHorizontal: 20,
     borderRadius: 100,
     borderWidth: 1.5,
   },

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
   },
   dropdownText: {
-    width: 125,
+    width: "33%",
     fontFamily: "OpenSansRegular",
     textAlign: "center",
     fontSize: 16,

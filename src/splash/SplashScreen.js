@@ -5,6 +5,7 @@ import { loadTheme } from "../helpers";
 
 import SwiftRentLogo250 from "../components/common/SwiftRentLogo250";
 import Header from "../components/common/header";
+import * as FontSizes from "../assets/fonts/FontSizes";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
@@ -18,15 +19,15 @@ const SplashScreen = () => {
   }, []);
 
   //timer to send off from splash screen
-  const navigation = useNavigation();
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
-    }, 3000); // where 1000 milliseconds = 1 second
+  // const navigation = useNavigation();
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
+  //   }, 3000); // where 1000 milliseconds = 1 second
 
-    // Clear the timer to prevent memory leaks
-    return () => clearTimeout(timer);
-  }, [navigation]);
+  //   // Clear the timer to prevent memory leaks
+  //   return () => clearTimeout(timer);
+  // }, [navigation]);
 
   return (
     <View style={styles.header}>
@@ -41,11 +42,19 @@ const SplashScreen = () => {
 
         <View style={styles.textContainer}>
           <Text
-            style={[styles.splashTextSwift, { color: colors.textSecondary }]}
+            style={[
+              styles.splashTextSwift,
+              { color: colors.textSecondary, fontSize: FontSizes.extraLarge },
+            ]}
           >
             Swift
           </Text>
-          <Text style={[styles.splashTextRent, { color: colors.textTertiary }]}>
+          <Text
+            style={[
+              styles.splashTextRent,
+              { color: colors.textTertiary, fontSize: FontSizes.extraLarge },
+            ]}
+          >
             Rent
           </Text>
         </View>
@@ -70,20 +79,16 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: "row",
-    width: 300,
-    justifyContent: "space-around",
+    width: "100%",
+    justifyContent: "center",
   },
   splashTextSwift: {
     textAlign: "right",
     fontFamily: "OpenSansBold",
-    fontSize: 50,
-    width: 150,
   },
   splashTextRent: {
     textAlign: "left",
     fontFamily: "OpenSansBold",
-    fontSize: 50,
-    width: 150,
   },
 });
 

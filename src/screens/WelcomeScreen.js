@@ -44,19 +44,29 @@ const WelcomeScreen = ({ navigation }) => {
       >
         <View style={styles.logoAndTextContainer}>
           <SwiftRentLogo250 />
-
-          <View>
-            <Text style={[styles.welcomeText, { color: colors.textTertiary }]}>
-              {English.welcomeTo}
-            </Text>
-            <Text style={[styles.welcomeText, { color: colors.textTertiary }]}>
-              {English.swiftRent}
-            </Text>
-          </View>
+          <Text
+            style={[
+              styles.welcomeText,
+              { color: colors.textTertiary, fontSize: FontSizes.large },
+            ]}
+          >
+            {English.welcomeTo}
+          </Text>
+          <Text
+            style={[
+              styles.welcomeText,
+              { color: colors.textTertiary, fontSize: FontSizes.large },
+            ]}
+          >
+            {English.swiftRent}
+          </Text>
         </View>
 
         <View style={styles.buttonAndLoginContainer}>
-          <BigButtonGrey buttonText={English.getStarted} />
+          <BigButtonGrey
+            buttonText={English.getStarted}
+            customStyle={{ width: 270 }}
+          />
 
           <Pressable
             style={styles.loginTextContainer}
@@ -111,30 +121,22 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontFamily: "OpenSansBold",
-    fontSize: 40,
-    textAlign: "center",
-    width: 300,
   },
   buttonAndLoginContainer: {
     flex: 0.2,
     alignItems: "center",
     justifyContent: "space-between",
-    width: 400,
   },
   loginTextContainer: {
     flexDirection: "row",
-    width: 220,
+    width: "60%",
     justifyContent: "space-between",
   },
   alreadyLoggedText: {
     fontFamily: "OpenSansRegular",
-    flex: 100,
-    textAlign: "center",
   },
   loginText: {
     fontFamily: "OpenSansBold",
-    flex: 30,
-    textAlign: "center",
   },
 });
 

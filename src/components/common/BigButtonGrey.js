@@ -5,8 +5,7 @@ import { loadTheme } from "../../helpers";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
-const BigButtonBlue = (props) => {
-  const { style } = props;
+const BigButtonGrey = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -24,7 +23,7 @@ const BigButtonBlue = (props) => {
           backgroundColor: colors.backgroundGrey,
           borderColor: colors.borderGrey,
         },
-        style,
+        props.customStyle,
       ]}
       activeOpacity={opacityValueForButton}
     >
@@ -38,7 +37,8 @@ const BigButtonBlue = (props) => {
 const styles = StyleSheet.create({
   button: {
     width: "60%",
-    paddingVertical: 2,
+    paddingVertical: 5,
+    paddingHorizontal: 20,
     borderRadius: 100,
     borderWidth: 1.5,
   },
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BigButtonBlue;
+export default BigButtonGrey;

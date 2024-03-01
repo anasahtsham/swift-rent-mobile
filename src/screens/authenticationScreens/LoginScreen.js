@@ -6,6 +6,7 @@ import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
 import SwiftRentLogo150 from "../../components/common/SwiftRentLogo150";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
+
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
@@ -20,7 +21,6 @@ const LoginScreen = () => {
   };
 
   const [colors, setColors] = useState(DefaultTheme);
-  const fonts = FontSizes;
 
   //update theme on load
   useEffect(() => {
@@ -43,7 +43,7 @@ const LoginScreen = () => {
           <Text
             style={[
               styles.text,
-              { fontSize: fonts.large, color: colors.textTertiary },
+              { fontSize: FontSizes.large, color: colors.textTertiary },
             ]}
           >
             {English.enterYourDetails}
@@ -72,7 +72,10 @@ const LoginScreen = () => {
           </Text>
         </View>
 
-        <BigButtonGrey buttonText={English.login} style={styles.button} />
+        <BigButtonGrey
+          buttonText={English.login}
+          customStyle={styles.customButton}
+        />
       </View>
     </View>
   );
@@ -94,8 +97,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: { fontFamily: "OpenSansBold" },
-  textInputsContainer: { width: 330, alignItems: "center" },
-  button: {
+  textInputsContainer: { width: "90%", alignItems: "center" },
+  customButton: {
     width: "40%",
     height: 40,
     justifyContent: "center",

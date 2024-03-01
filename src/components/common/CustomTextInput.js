@@ -22,31 +22,21 @@ const CustomTextInput = ({
   }, []);
 
   return (
-    // <TextInput
-    //   placeholderTextColor={colors.textGrey}
-    //   style={[
-    //     styles.input,
-    //     {
-    //       backgroundColor: colors.backgroundPrimary,
-    //       borderColor: colors.borderPrimary,
-    //       color: colors.textPrimary,
-    //       fontSize: FontSizes.small,
-    //     },
-    //   ]}
-    //   value={value}
-    //   onChangeText={onChangeText}
-    //   placeholder={placeholder}
-    // />
-
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.backgroundPrimary,
+          borderColor: colors.borderPrimary,
+        },
+      ]}
+    >
       <TextInput
         secureTextEntry={hideContent}
         placeholderTextColor={colors.textGrey}
         style={[
           styles.input,
           {
-            backgroundColor: colors.backgroundPrimary,
-            borderColor: colors.borderPrimary,
             color: colors.textPrimary,
             fontSize: FontSizes.small,
           },
@@ -55,8 +45,10 @@ const CustomTextInput = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
       />
-      {console.log(JSON.stringify(textFieldIcon))}
-      <Image source={textFieldIcon} style={styles.icon} />
+      <Image
+        source={require("../../assets/icons/img/userIcon.png")}
+        style={styles.icon}
+      />
     </View>
   );
 };
@@ -65,22 +57,21 @@ const styles = StyleSheet.create({
   input: {
     fontFamily: "OpenSansRegular",
     width: "80%",
-    height: 40,
-    borderColor: "gray",
-    borderRadius: 15,
-    borderWidth: 2,
-    marginBottom: 10,
-    padding: 10,
   },
   container: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    borderRadius: 15,
+    height: 45,
+    borderWidth: 2,
+    marginBottom: 10,
+    padding: 10,
     width: "80%",
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: 30,
+    height: 30,
     marginLeft: 10,
   },
 });
