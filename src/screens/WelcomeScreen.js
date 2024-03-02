@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { loadTheme } from "../helpers";
 
 import SwiftRentLogoMedium from "../components/common/SwiftRentLogoMedium";
@@ -43,7 +50,11 @@ const WelcomeScreen = ({ navigation }) => {
         ]}
       >
         <View style={styles.logoAndTextContainer}>
-          <SwiftRentLogoMedium />
+          <Image
+            tintColor={colors.logoPrimary}
+            style={styles.SwiftRentLogoMedium}
+            source={require("../assets/icons/logos/adaptive-icon.png")}
+          />
           <Text
             style={[
               styles.welcomeText,
@@ -121,6 +132,11 @@ const styles = StyleSheet.create({
   logoAndTextContainer: {
     alignItems: "center",
   },
+  SwiftRentLogoMedium: {
+    width: Dimensions.get("window").width * 0.4,
+    height: Dimensions.get("window").width * 0.4,
+    resizeMode: "contain",
+  },
   welcomeText: {
     fontFamily: "OpenSansBold",
   },
@@ -132,10 +148,11 @@ const styles = StyleSheet.create({
   loginTextContainer: {
     flexDirection: "row",
     width: "60%",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
   },
   alreadyLoggedText: {
     fontFamily: "OpenSansRegular",
+    marginEnd: "1%",
   },
   loginText: {
     fontFamily: "OpenSansBold",

@@ -51,7 +51,7 @@ const WhoAreYou = ({ navigation }) => {
           />
           <BigButtonGrey
             buttonText={English.propertyManager}
-            customStyle={styles.customButton}
+            customStyle={[styles.customButton, { height: "25%" }]}
             destinationScreen="Get To Know"
             navigation={navigation}
           />

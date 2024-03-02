@@ -7,7 +7,7 @@ import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
-const BigButtonGrey = (props) => {
+const SmallButtonGrey = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -37,7 +37,7 @@ const BigButtonGrey = (props) => {
       <Text
         style={[
           styles.buttonText,
-          { color: colors.textBlack, fontSize: FontSizes.medium },
+          { color: colors.textBlack, fontSize: FontSizes.small },
         ]}
       >
         {props.buttonText}
@@ -48,9 +48,9 @@ const BigButtonGrey = (props) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: "60%",
+    width: "30%",
     paddingVertical: 5,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 100,
     borderWidth: 1.5,
     justifyContent: "center",
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BigButtonGrey;
+export default SmallButtonGrey;

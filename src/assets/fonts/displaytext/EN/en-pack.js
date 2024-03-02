@@ -18,3 +18,5 @@ export const letsGetToKnowYou = "Lets Get To Know You";
 export const firstName = "First Name";
 export const lastName = "Last Name";
 export const DOB = "Date Of Birth";
+export const back = "Back";
+export const next = "Next";

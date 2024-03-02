@@ -13,6 +13,7 @@ import { icons } from "../../helpers/ImageImports";
 import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
 import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
+import SmallButtonGrey from "../../components/common/SmallButtonGrey";
 import BigButtonGrey from "../../components/common/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
@@ -82,17 +83,20 @@ const GetToKnow = ({ navigation }) => {
                 placeholder={English.DOB}
                 textFieldIcon={icons.calendarIcon}
               />
-              <Text
-                style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-              >
-                {English.forgotPassword}
-              </Text>
             </View>
 
-            <BigButtonGrey
-              buttonText={English.login}
-              customStyle={styles.customButton}
-            />
+            <View style={styles.buttonsContainer}>
+              <SmallButtonGrey
+                buttonText={English.back}
+                destinationScreen="Who Are You"
+                navigation={navigation}
+              />
+              <SmallButtonGrey
+                buttonText={English.next}
+                destinationScreen="Get To Know"
+                navigation={navigation}
+              />
+            </View>
           </View>
         </View>
       </KeyboardAwareScrollView>
@@ -116,7 +120,7 @@ const styles = StyleSheet.create({
   },
   logoAndTextContainer: {
     alignItems: "center",
-    width: "50%",
+    width: "70%",
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: { width: "90%", alignItems: "center" },
@@ -125,8 +129,10 @@ const styles = StyleSheet.create({
     width: "30%",
     justifyContent: "center",
   },
-  customButton: {
-    width: "40%",
+  buttonsContainer: {
+    flexDirection: "row",
+    width: "70%",
+    justifyContent: "space-evenly",
   },
 });
 

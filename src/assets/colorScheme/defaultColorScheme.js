@@ -12,3 +12,5 @@ export const borderPrimary = "#000";
 export const borderGrey = "#C7C7C7";
 
 export const iconPrimary = "#1363DF";
+
+export const logoPrimary = "#47b5ff";
