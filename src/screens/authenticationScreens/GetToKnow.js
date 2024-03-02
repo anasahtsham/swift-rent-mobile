@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Button,
   Dimensions,
   Pressable,
   SafeAreaView,
@@ -14,7 +15,6 @@ import Header from "../../components/common/header";
 import CustomTextInput from "../../components/common/CustomTextInput";
 import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
 import SmallButtonGrey from "../../components/common/SmallButtonGrey";
-import BigButtonGrey from "../../components/common/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -26,6 +26,7 @@ const GetToKnow = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [DOB, setDOB] = useState("");
+  const [error, setError] = useState(null);
 
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -67,23 +68,39 @@ const GetToKnow = ({ navigation }) => {
             <View style={styles.textInputsContainer}>
               <CustomTextInput
                 value={firstName}
-                onChangeText={setFirstName}
-                placeholder={English.firstName}
+                label={English.firstName}
                 textFieldIcon={icons.userIcon}
+                style={styles.textField}
+                errorText={error}
+                onChangeText={(text) => setFirstName(text)}
               />
               <CustomTextInput
                 value={lastName}
-                onChangeText={setLastName}
-                placeholder={English.lastName}
+                label={English.lastName}
                 textFieldIcon={icons.userIcon}
+                style={styles.textField}
+                errorText={error}
+                onChangeText={(text) => setLastName(text)}
               />
               <CustomTextInput
                 value={DOB}
-                onChangeText={setDOB}
-                placeholder={English.DOB}
+                label={English.DOB}
                 textFieldIcon={icons.calendarIcon}
+                style={styles.textField}
+                errorText={error}
+                onChangeText={(text) => setDOB(text)}
               />
             </View>
+
+            {/* dont remove below comment */}
+
+            {/* <View>
+              <Button
+                title="Set error"
+                onPress={() => setError("This field is required.")}
+              />
+              <Button title="Remove error" onPress={() => setError("")} />
+            </View> */}
 
             <View style={styles.buttonsContainer}>
               <SmallButtonGrey
@@ -113,9 +130,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    height: Dimensions.get("window").height - 30,
+    height: Dimensions.get("window").height - 40,
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     position: "relative",
   },
   logoAndTextContainer: {
@@ -123,7 +140,13 @@ const styles = StyleSheet.create({
     width: "70%",
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
-  textInputsContainer: { width: "90%", alignItems: "center" },
+  textInputsContainer: {
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    width: "90%",
+    height: "30%",
+    alignItems: "center",
+  },
   dobContainer: {
     flexDirection: "row",
     width: "30%",
@@ -133,6 +156,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "70%",
     justifyContent: "space-evenly",
+  },
+  textField: {
+    marginBottom: 10,
+    width: "80%",
   },
 });
 

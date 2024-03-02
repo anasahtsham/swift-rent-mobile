@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { TextInput, StyleSheet, View, Image } from "react-native";
-import { loadTheme } from "../../helpers";
-import { icons } from "../../helpers/ImageImports";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Text,
+  TextInput,
+  StyleSheet,
+  View,
+  Animated,
+  Easing,
+  TouchableWithoutFeedback,
+  Image,
+} from "react-native";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
+import { loadTheme } from "../../helpers";
 
-const CustomTextInput = ({
-  value,
-  onChangeText,
-  placeholder,
-  hideContent,
-  textFieldIcon,
-  customStyle,
-}) => {
+const CustomTextInput = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -24,61 +25,149 @@ const CustomTextInput = ({
     });
   }, []);
 
+  const {
+    label,
+    errorText,
+    value,
+    style,
+    onBlur,
+    onFocus,
+    textFieldIcon,
+    ...restOfProps
+  } = props;
+  const [isFocused, setIsFocused] = useState(false);
+
+  const inputRef = useRef(null);
+  const focusAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(focusAnim, {
+      toValue: isFocused || !!value ? 1 : 0,
+      duration: 150,
+      easing: Easing.bezier(0.4, 0, 0.2, 1),
+      useNativeDriver: true,
+    }).start();
+  }, [focusAnim, isFocused, value]);
+
+  let color = isFocused ? colors.borderBlue : colors.borderPrimary;
+  if (errorText) {
+    color = "#B00020";
+  }
+
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          backgroundColor: colors.backgroundPrimary,
-          borderColor: colors.borderPrimary,
-        },
-        customStyle,
-      ]}
-    >
-      <TextInput
-        secureTextEntry={hideContent}
-        placeholderTextColor={colors.textGrey}
+    <View style={styles.mainContainer}>
+      <View
         style={[
-          styles.input,
+          styles.container,
           {
-            color: colors.textPrimary,
-            fontSize: FontSizes.small,
+            borderColor: color,
           },
         ]}
-        value={value}
-        onChangeText={onChangeText}
-        placeholder={placeholder}
-      />
+      >
+        <View style={style}>
+          <TextInput
+            style={[
+              styles.input,
+              {
+                color: colors.textPrimary,
+                fontSize: FontSizes.small,
+              },
+            ]}
+            ref={inputRef}
+            value={value}
+            onBlur={(event) => {
+              setIsFocused(false);
+              onBlur?.(event);
+            }}
+            onFocus={(event) => {
+              setIsFocused(true);
+              onFocus?.(event);
+            }}
+            {...restOfProps}
+          />
+          <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
+            <Animated.View
+              style={[
+                styles.labelContainer,
+                {
+                  backgroundColor: colors.backgroundPrimary,
+                  transform: [
+                    {
+                      scale: focusAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [1, 0.75],
+                      }),
+                    },
+                    {
+                      translateY: focusAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [13, -18],
+                      }),
+                    },
+                    {
+                      translateX: focusAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, -20],
+                      }),
+                    },
+                  ],
+                },
+              ]}
+            >
+              <Text style={{ fontSize: FontSizes.small, color }}>
+                {label}
+                {errorText ? "*" : ""}
+              </Text>
+            </Animated.View>
+          </TouchableWithoutFeedback>
+        </View>
 
-      <Image
-        tintColor={colors.iconPrimary}
-        source={textFieldIcon}
-        style={styles.icon}
-      />
+        <Image tintColor={color} source={textFieldIcon} style={styles.icon} />
+      </View>
+      {!!errorText && (
+        <Text
+          style={[
+            styles.error,
+            {
+              color: colors.textRed,
+
+              fontSize: FontSizes.extraSmall,
+            },
+          ]}
+        >
+          {errorText}
+        </Text>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  input: {
-    fontFamily: "OpenSansRegular",
-    width: "80%",
+  mainContainer: {
+    flexDirection: "column",
+    marginBottom: 50,
   },
   container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    paddingHorizontal: 15,
+    borderWidth: 2.5,
     borderRadius: 25,
-    height: 45,
-    borderWidth: 2,
-    marginBottom: 10,
-    padding: 10,
-    width: "80%",
+    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  input: { marginTop: 10 },
+  labelContainer: {
+    position: "absolute",
+    paddingHorizontal: 8,
+  },
+  error: {
+    marginTop: 4,
+    marginLeft: 12,
   },
   icon: {
     width: 30,
     height: 30,
-    marginLeft: 10,
   },
 });
 

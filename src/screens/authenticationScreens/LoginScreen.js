@@ -15,8 +15,9 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
 const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = useState("");
+  const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const handleLogin = () => {
     // Handle login logic here
@@ -61,17 +62,20 @@ const LoginScreen = ({ navigation }) => {
 
             <View style={styles.textInputsContainer}>
               <CustomTextInput
-                value={username}
-                onChangeText={setUsername}
-                placeholder={English.emailOrNumber}
+                value={emailOrPhone}
+                label={English.emailOrNumber}
                 textFieldIcon={icons.userIcon}
+                style={styles.textField}
+                errorText={error}
+                onChangeText={(text) => setEmailOrPhone(text)}
               />
               <CustomTextInput
                 value={password}
-                onChangeText={setPassword}
-                placeholder={English.password}
-                hideContent={true}
+                label={English.password}
                 textFieldIcon={icons.passwordFieldIcon}
+                style={styles.textField}
+                errorText={error}
+                onChangeText={(text) => setPassword(text)}
               />
 
               <Text
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    height: Dimensions.get("window").height - 30,
+    height: Dimensions.get("window").height - 40,
     alignItems: "center",
     justifyContent: "space-evenly",
     position: "relative",
@@ -112,9 +116,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
-  textInputsContainer: { width: "90%", alignItems: "center" },
+  textInputsContainer: {
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    width: "90%",
+    height: "30%",
+    alignItems: "center",
+  },
   customButton: {
     width: "40%",
+  },
+  textField: {
+    marginBottom: 10,
+    width: "80%",
   },
 });
 
