@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
@@ -77,6 +84,16 @@ const LoginScreen = ({ navigation }) => {
                 errorText={error}
                 onChangeText={(text) => setPassword(text)}
               />
+
+              {/* dont remove below comment */}
+
+              {/* <View>
+                <Button
+                  title="Set error"
+                  onPress={() => setError("This field is required.")}
+                />
+                <Button title="Remove error" onPress={() => setError("")} />
+              </View> */}
 
               <Text
                 style={{
