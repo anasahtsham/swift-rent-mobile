@@ -14,6 +14,7 @@ import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
+import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
 
@@ -88,10 +89,9 @@ const LoginScreen = ({ navigation }) => {
                 errorText={emailOrPhoneError}
                 onChangeText={(text) => setEmailOrPhone(text)}
               />
-              <CustomTextField
+              <CustomPasswordField
                 value={password}
                 label={languages.password}
-                textFieldIcon={icons.passwordFieldIcon}
                 isPasswordField={true}
                 errorText={passwordError}
                 onChangeText={(text) => setPassword(text)}
