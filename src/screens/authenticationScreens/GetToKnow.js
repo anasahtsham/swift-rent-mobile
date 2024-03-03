@@ -37,17 +37,6 @@ const GetToKnow = ({ navigation }) => {
     });
   }, []);
 
-  const lastNameRef = useRef(null);
-  const dobRef = useRef(null);
-
-  // Function to focus on the next input
-  const focusNextInput = (nextInputRef) => {
-    if (nextInputRef && nextInputRef.current) {
-      console.log("bazinga");
-      nextInputRef.current.focus();
-    }
-  };
-
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <Header />
@@ -83,7 +72,6 @@ const GetToKnow = ({ navigation }) => {
                 textFieldIcon={icons.userIcon}
                 errorText={error}
                 onChangeText={(text) => setFirstName(text)}
-                onSubmitEditing={() => focusNextInput(lastNameRef)}
               />
               <CustomTextInput
                 value={lastName}
@@ -91,16 +79,12 @@ const GetToKnow = ({ navigation }) => {
                 textFieldIcon={icons.userIcon}
                 errorText={error}
                 onChangeText={(text) => setLastName(text)}
-                ref={lastNameRef}
-                onSubmitEditing={() => focusNextInput(dobRef)}
               />
               <CustomTextInput
                 value={DOB}
                 label={English.DOB}
                 textFieldIcon={icons.calendarIcon}
                 errorText={error}
-                onChangeText={(text) => setDOB(text)}
-                ref={dobRef}
               />
             </View>
 

@@ -16,3 +16,20 @@ export const loadTheme = async () => {
     console.error("Error loading theme:", error);
   }
 };
+
+export const saveLanguage = async (language) => {
+  try {
+    await AsyncStorage.setItem("language", language);
+  } catch (error) {
+    console.error("Error saving language:", error);
+  }
+};
+
+export const loadLanguage = async () => {
+  try {
+    const savedLanguage = await AsyncStorage.getItem("language");
+    return saveLanguage !== null ? savedLanguage : null;
+  } catch (error) {
+    console.error("Error loading language:", error);
+  }
+};

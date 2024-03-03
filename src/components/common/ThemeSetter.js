@@ -18,7 +18,7 @@ const ThemeSetter = () => {
   });
 
   const toggleIcon = () => {
-    const newIsSun = !isSun; //the logic that makes it toggle
+    const newIsSun = !isSun; //the logic that makes the image icon toggle
     setIsSun(newIsSun);
     saveTheme(newIsSun ? "light" : "dark");
   };

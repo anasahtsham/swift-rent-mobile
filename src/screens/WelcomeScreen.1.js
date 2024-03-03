@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from "react";
-import {
-  Dimensions,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { loadLanguage, loadTheme } from "../helpers";
-
+import SwiftRentLogoMedium from "../components/common/SwiftRentLogoMedium";
 import BigButtonGrey from "../components/common/BigButtonGrey";
 import LanguageSelect from "../components/common/LanguageSelect";
 import ThemeSetter from "../components/common/ThemeSetter";
 import Header from "../components/common/header";
-
 import * as FontSizes from "../assets/fonts/FontSizes";
 import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
+import { styles } from "./WelcomeScreen";
 
-const WelcomeScreen = ({ navigation }) => {
+export const WelcomeScreen = ({ navigation }) => {
   const [languages, setLanguage] = useState(English);
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -65,11 +58,7 @@ const WelcomeScreen = ({ navigation }) => {
         ]}
       >
         <View style={styles.logoAndTextContainer}>
-          <Image
-            tintColor={colors.logoPrimary}
-            style={styles.SwiftRentLogoMedium}
-            source={require("../assets/icons/logos/adaptive-icon.png")}
-          />
+          <SwiftRentLogoMedium />
           <Text
             style={[
               styles.welcomeText,
@@ -126,55 +115,3 @@ const WelcomeScreen = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    flex: 1,
-    justifyContent: "flex-end",
-    position: "relative",
-  },
-  themeButtonContainer: {
-    marginEnd: 20,
-    position: "absolute",
-    right: 0,
-    top: 50,
-    zIndex: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-around",
-    position: "relative",
-  },
-  logoAndTextContainer: {
-    alignItems: "center",
-  },
-  SwiftRentLogoMedium: {
-    width: Dimensions.get("window").width * 0.4,
-    height: Dimensions.get("window").width * 0.4,
-    resizeMode: "contain",
-  },
-  welcomeText: {
-    fontFamily: "OpenSansBold",
-  },
-  buttonAndLoginContainer: {
-    flex: 0.25,
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  loginTextContainer: {
-    padding: 10,
-    flexDirection: "row",
-    width: "60%",
-    justifyContent: "flex-start",
-  },
-  alreadyLoggedText: {
-    fontFamily: "OpenSansRegular",
-    marginEnd: "1%",
-  },
-  loginText: {
-    fontFamily: "OpenSansBold",
-  },
-});
-
-export default WelcomeScreen;

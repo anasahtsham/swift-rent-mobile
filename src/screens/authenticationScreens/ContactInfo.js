@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { loadTheme } from "../../helpers";
+import { loadLanguage, loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
@@ -20,12 +20,12 @@ import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
+import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const ContactInfo = ({ navigation }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [DOB, setDOB] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
   const [error, setError] = useState(null);
 
   const [colors, setColors] = useState(DefaultTheme);
@@ -37,16 +37,14 @@ const ContactInfo = ({ navigation }) => {
     });
   }, []);
 
-  const lastNameRef = useRef(null);
-  const dobRef = useRef(null);
+  const [languages, setLanguages] = useState(English);
 
-  // Function to focus on the next input
-  const focusNextInput = (nextInputRef) => {
-    if (nextInputRef && nextInputRef.current) {
-      console.log("bazinga");
-      nextInputRef.current.focus();
-    }
-  };
+  //update language on load
+  useEffect(() => {
+    loadLanguage().then((language) => {
+      setLanguages(language === "english" ? English : Urdu);
+    });
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
@@ -72,35 +70,24 @@ const ContactInfo = ({ navigation }) => {
                   { fontSize: FontSizes.large, color: colors.textLightBlue },
                 ]}
               >
-                {English.letsGetToKnowYou}
+                {languages.weNeedYourContactInformation}
               </Text>
             </View>
 
             <View style={styles.textInputsContainer}>
               <CustomTextInput
-                value={firstName}
-                label={English.firstName}
-                textFieldIcon={icons.userIcon}
+                value={email}
+                label={languages.email}
+                textFieldIcon={icons.emailIcon}
                 errorText={error}
-                onChangeText={(text) => setFirstName(text)}
-                onSubmitEditing={() => focusNextInput(lastNameRef)}
+                onChangeText={(text) => setEmail(text)}
               />
               <CustomTextInput
-                value={lastName}
-                label={English.lastName}
-                textFieldIcon={icons.userIcon}
+                value={mobileNumber}
+                label={languages.phoneNumber}
+                textFieldIcon={icons.phoneNumberIcon}
                 errorText={error}
-                onChangeText={(text) => setLastName(text)}
-                ref={lastNameRef}
-                onSubmitEditing={() => focusNextInput(dobRef)}
-              />
-              <CustomTextInput
-                value={DOB}
-                label={English.DOB}
-                textFieldIcon={icons.calendarIcon}
-                errorText={error}
-                onChangeText={(text) => setDOB(text)}
-                ref={dobRef}
+                onChangeText={(text) => setMobileNumber(text)}
               />
             </View>
 
@@ -116,13 +103,13 @@ const ContactInfo = ({ navigation }) => {
 
             <View style={styles.buttonsContainer}>
               <SmallButtonGrey
-                buttonText={English.back}
-                destinationScreen="Who Are You"
+                buttonText={languages.back}
+                destinationScreen="Get To Know"
                 navigation={navigation}
               />
               <SmallButtonGrey
-                buttonText={English.next}
-                destinationScreen="Get To Know"
+                buttonText={languages.next}
+                destinationScreen="Contact Info"
                 navigation={navigation}
               />
             </View>

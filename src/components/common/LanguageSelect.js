@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { opacityValueForButton } from "../../constants";
-import { loadTheme } from "../../helpers";
+import { loadLanguage, loadTheme, saveLanguage } from "../../helpers";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import * as English from "../../assets/fonts/displaytext/EN/en-pack";
+import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
 const LanguageSelect = () => {
+  const [isEnglish, setIsEnglish] = useState(true);
+
+  const [languages, setLanguage] = useState(English);
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -15,8 +21,22 @@ const LanguageSelect = () => {
     });
   }, []);
 
+  //update language on load
+  useEffect(() => {
+    loadLanguage().then((language) => {
+      setLanguage(language === "english" ? English : Urdu);
+    });
+  }, []);
+
+  const toggleLanguage = () => {
+    const newIsEnglish = !isEnglish; //the logic that makes the language toggle
+    setIsEnglish(newIsEnglish);
+    saveLanguage(newIsEnglish ? "english" : "urdu");
+  };
+
   return (
     <TouchableOpacity
+      onPress={toggleLanguage}
       style={[
         [
           styles.dropdownContainer,
@@ -32,30 +52,33 @@ const LanguageSelect = () => {
         source={require("../../assets/icons/language.png")}
         style={styles.languageIcon}
       />
-      <Text style={[styles.dropdownText, { color: colors.textBlack }]}>
-        Select Language
+      <Text
+        style={[
+          styles.dropdownText,
+          { color: colors.textBlack, fontSize: FontSizes.small },
+        ]}
+      >
+        {isEnglish ? "Select Language" : "زبان منتخب کریں"}
       </Text>
-      <Image
-        source={require("../../assets/icons/dropdown.png")}
-        style={styles.dropdownIcon}
-      />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   dropdownContainer: {
+    width: "40%",
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 2,
+    paddingStart: 8,
+    paddingEnd: 10,
     borderRadius: 100,
     borderWidth: 1.5,
+    backgroundColor: "red",
   },
   dropdownText: {
-    width: "33%",
     fontFamily: "OpenSansRegular",
     textAlign: "center",
-    fontSize: 16,
   },
   languageIcon: {
     width: 24,

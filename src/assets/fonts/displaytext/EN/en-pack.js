@@ -20,3 +20,6 @@ export const lastName = "Last Name";
 export const DOB = "Date Of Birth";
 export const back = "Back";
 export const next = "Next";
+export const email = "Email";
+export const phoneNumber = "Phone Number";
+export const weNeedYourContactInformation = "We Need Your Contact Information";
