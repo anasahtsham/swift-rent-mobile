@@ -25,7 +25,9 @@ import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 const LoginScreen = ({ navigation }) => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+
+  const [emailOrPhoneError, setEmailOrPhoneError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
 
   const handleLogin = () => {
     // Handle login logic here
@@ -82,14 +84,14 @@ const LoginScreen = ({ navigation }) => {
                 value={emailOrPhone}
                 label={languages.emailOrNumber}
                 textFieldIcon={icons.userIcon}
-                errorText={error}
+                errorText={emailOrPhoneError}
                 onChangeText={(text) => setEmailOrPhone(text)}
               />
               <CustomTextInput
                 value={password}
                 label={languages.password}
                 textFieldIcon={icons.passwordFieldIcon}
-                errorText={error}
+                errorText={passwordError}
                 onChangeText={(text) => setPassword(text)}
               />
 
@@ -98,9 +100,24 @@ const LoginScreen = ({ navigation }) => {
               {/* <View>
                 <Button
                   title="Set error"
-                  onPress={() => setError("This field is required.")}
+                  onPress={() =>
+                    setEmailOrPhoneError(languages.thisFieldIsRequired)
+                  }
                 />
-                <Button title="Remove error" onPress={() => setError("")} />
+                <Button
+                  title="Remove error"
+                  onPress={() => setEmailOrPhoneError("")}
+                />
+                <Button
+                  title="Set error"
+                  onPress={() =>
+                    setPasswordError(languages.thisFieldIsRequired)
+                  }
+                />
+                <Button
+                  title="Remove error"
+                  onPress={() => setPasswordError("")}
+                />
               </View> */}
 
               <Text

@@ -45,7 +45,7 @@ const WelcomeScreen = ({ navigation }) => {
     });
   }, []);
 
-  //update theme on click
+  //update language on click
   function updateLanguage() {
     loadLanguage().then((language) => {
       setLanguage(language === "english" ? English : Urdu);
@@ -119,9 +119,9 @@ const WelcomeScreen = ({ navigation }) => {
           </Pressable>
         </View>
 
-        <View onTouchEnd={updateLanguage}>
+        {/* <View onTouchEnd={updateLanguage}>
           <LanguageSelect />
-        </View>
+        </View> */}
       </View>
     </View>
   );

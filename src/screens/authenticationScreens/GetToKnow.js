@@ -26,8 +26,10 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 const GetToKnow = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [DOB, setDOB] = useState("");
-  const [error, setError] = useState(null);
+  const [dob, setDob] = useState("");
+  const [firstNameError, setFirstNameError] = useState(null);
+  const [lastNameError, setLastNameError] = useState(null);
+  const [dobError, setDobError] = useState(null);
 
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -80,22 +82,22 @@ const GetToKnow = ({ navigation }) => {
                 value={firstName}
                 label={languages.firstName}
                 textFieldIcon={icons.userIcon}
-                errorText={error}
+                errorText={firstNameError}
                 onChangeText={(text) => setFirstName(text)}
               />
               <CustomTextInput
                 value={lastName}
                 label={languages.lastName}
                 textFieldIcon={icons.userIcon}
-                errorText={error}
+                errorText={lastNameError}
                 onChangeText={(text) => setLastName(text)}
               />
               <CustomTextInput
-                value={DOB}
+                value={dob}
                 label={languages.DOB}
                 textFieldIcon={icons.calendarIcon}
-                errorText={error}
-                onChangeText={(text) => setDOB(text)}
+                errorText={dobError}
+                onChangeText={(text) => setDob(text)}
               />
             </View>
 
@@ -104,9 +106,25 @@ const GetToKnow = ({ navigation }) => {
             {/* <View>
               <Button
                 title="Set error"
-                onPress={() => setError("This field is required.")}
+                onPress={() => setFirstNameError(languages.thisFieldIsRequired)}
               />
-              <Button title="Remove error" onPress={() => setError("")} />
+              <Button
+                title="Remove error"
+                onPress={() => setFirstNameError("")}
+              />
+              <Button
+                title="Set error"
+                onPress={() => setLastNameError(languages.thisFieldIsRequired)}
+              />
+              <Button
+                title="Remove error"
+                onPress={() => setLastNameError("")}
+              />
+              <Button
+                title="Set error"
+                onPress={() => setDobError(languages.thisFieldIsRequired)}
+              />
+              <Button title="Remove error" onPress={() => setDobError("")} />
             </View> */}
 
             <View style={styles.buttonsContainer}>

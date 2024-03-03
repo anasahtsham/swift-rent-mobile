@@ -25,8 +25,9 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 const ContactInfo = ({ navigation }) => {
   const [email, setEmail] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [error, setError] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [emailError, setEmailError] = useState(null);
+  const [phoneNumberError, setPhoneNumberError] = useState(null);
 
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -79,15 +80,15 @@ const ContactInfo = ({ navigation }) => {
                 value={email}
                 label={languages.email}
                 textFieldIcon={icons.emailIcon}
-                errorText={error}
+                errorText={emailError}
                 onChangeText={(text) => setEmail(text)}
               />
               <CustomTextInput
-                value={mobileNumber}
+                value={phoneNumber}
                 label={languages.phoneNumber}
                 textFieldIcon={icons.phoneNumberIcon}
-                errorText={error}
-                onChangeText={(text) => setMobileNumber(text)}
+                errorText={phoneNumberError}
+                onChangeText={(text) => setPhoneNumber(text)}
               />
             </View>
 
@@ -96,9 +97,19 @@ const ContactInfo = ({ navigation }) => {
             {/* <View>
               <Button
                 title="Set error"
-                onPress={() => setError("This field is required.")}
+                onPress={() => setEmailError(languages.thisFieldIsRequired)}
               />
-              <Button title="Remove error" onPress={() => setError("")} />
+              <Button title="Remove error" onPress={() => setEmailError("")} />
+              <Button
+                title="Set error"
+                onPress={() =>
+                  setPhoneNumberError(languages.thisFieldIsRequired)
+                }
+              />
+              <Button
+                title="Remove error"
+                onPress={() => setPhoneNumberError("")}
+              />
             </View> */}
 
             <View style={styles.buttonsContainer}>
