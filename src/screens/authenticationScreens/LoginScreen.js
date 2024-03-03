@@ -92,7 +92,6 @@ const LoginScreen = ({ navigation }) => {
               <CustomPasswordField
                 value={password}
                 label={languages.password}
-                isPasswordField={true}
                 errorText={passwordError}
                 onChangeText={(text) => setPassword(text)}
               />
@@ -128,7 +127,8 @@ const LoginScreen = ({ navigation }) => {
                 <Text
                   style={{
                     fontSize: FontSizes.small,
-                    color: colors.textPrimary,
+                    color: colors.textLightBlue,
+                    textDecorationLine: "underline",
                   }}
                 >
                   {languages.forgotPassword}
@@ -138,7 +138,9 @@ const LoginScreen = ({ navigation }) => {
 
             <BigButtonGrey
               buttonText={languages.login}
+              destinationScreen="Login As"
               customStyle={styles.customButton}
+              navigation={navigation}
             />
           </View>
         </View>

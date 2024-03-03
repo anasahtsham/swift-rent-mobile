@@ -61,7 +61,13 @@ const RegisterAs = ({ navigation }) => {
           />
           <BigButtonGrey
             buttonText={languages.propertyManager}
-            customStyle={[styles.customButton, { height: "25%" }]}
+            customStyle={styles.customButton}
+            destinationScreen="Get To Know"
+            navigation={navigation}
+          />
+          <BigButtonGrey
+            buttonText={languages.tenant}
+            customStyle={styles.customButton}
             destinationScreen="Get To Know"
             navigation={navigation}
           />

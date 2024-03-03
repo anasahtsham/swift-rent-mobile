@@ -56,19 +56,19 @@ const LoginAs = ({ navigation }) => {
           <BigButtonGrey
             buttonText={languages.propertyOwner}
             customStyle={styles.customButton}
-            destinationScreen="Login Screen"
+            destinationScreen="Login As"
             navigation={navigation}
           />
           <BigButtonGrey
             buttonText={languages.propertyManager}
-            customStyle={[styles.customButton, { height: "25%" }]}
-            destinationScreen="Login Screen"
+            customStyle={styles.customButton}
+            destinationScreen="Login As"
             navigation={navigation}
           />
           <BigButtonGrey
             buttonText={languages.tenant}
             customStyle={styles.customButton}
-            destinationScreen="Login Screen"
+            destinationScreen="Login As"
             navigation={navigation}
           />
         </View>

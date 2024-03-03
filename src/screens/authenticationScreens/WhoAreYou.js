@@ -61,7 +61,7 @@ const WhoAreYou = ({ navigation }) => {
           />
           <BigButtonGrey
             buttonText={languages.propertyManager}
-            customStyle={[styles.customButton, { height: "25%" }]}
+            customStyle={styles.customButton}
             destinationScreen="Get To Know"
             navigation={navigation}
           />
@@ -74,7 +74,13 @@ const WhoAreYou = ({ navigation }) => {
         </View>
         <Pressable onTouchEnd={() => navigation.navigate("Register As")}>
           <Text
-            style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
+            style={[
+              {
+                fontSize: FontSizes.small,
+                color: colors.textLightBlue,
+                textDecorationLine: "underline",
+              },
+            ]}
           >
             {languages.createNewRoleOnExistingCredentials}
           </Text>

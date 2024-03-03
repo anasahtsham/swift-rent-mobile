@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Dimensions,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { loadLanguage, loadTheme } from "../../helpers";
-import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
-import CustomTextField from "../../components/common/input fields/CustomTextField";
-import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
@@ -22,6 +11,7 @@ import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
+import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 
 const SetUpPassword = ({ navigation }) => {
   const [password, setPassword] = useState("");
@@ -80,19 +70,15 @@ const SetUpPassword = ({ navigation }) => {
             </View>
 
             <View style={styles.textInputsContainer}>
-              <CustomTextField
+              <CustomPasswordField
                 value={confirmPassword}
                 label={languages.password}
-                textFieldIcon={icons.passwordFieldIcon}
-                isPasswordField={true}
                 errorText={passwordError}
                 onChangeText={(text) => setConfirmPassword(text)}
               />
-              <CustomTextField
+              <CustomPasswordField
                 value={password}
                 label={languages.confirmPassword}
-                textFieldIcon={icons.userIcon}
-                isPasswordField={true}
                 errorText={confirmPasswordError}
                 onChangeText={(text) => setPassword(text)}
               />
@@ -126,6 +112,8 @@ const SetUpPassword = ({ navigation }) => {
             <BigButtonGrey
               buttonText={languages.login}
               customStyle={styles.customButton}
+              destinationScreen="Set Up Password"
+              navigation={navigation}
             />
           </View>
         </View>

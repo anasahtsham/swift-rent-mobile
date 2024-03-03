@@ -98,7 +98,7 @@ const WelcomeScreen = ({ navigation }) => {
 
           <Pressable
             style={styles.loginTextContainer}
-            onTouchEnd={() => navigation.navigate("Login As")}
+            onTouchEnd={() => navigation.navigate("Login Screen")}
           >
             <Text
               style={[

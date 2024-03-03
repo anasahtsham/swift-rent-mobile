@@ -1,19 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Button, //dont remove till integration
-  Dimensions,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { loadTheme, loadLanguage } from "../../helpers";
-import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
-import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import SmallButtonGrey from "../../components/common/buttons/SmallButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
@@ -22,6 +12,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 
 const ForgotPassword = ({ navigation }) => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -92,17 +83,15 @@ const ForgotPassword = ({ navigation }) => {
                 errorText={codeError}
                 onChangeText={(text) => setCode(text)}
               />
-              <CustomTextField
+              <CustomPasswordField
                 value={newPass}
                 label={languages.newPassword}
-                isPasswordField={true}
                 errorText={newPassError}
                 onChangeText={(text) => setNewPass(text)}
               />
-              <CustomTextField
+              <CustomPasswordField
                 value={confirmNewPass}
                 label={languages.confirmNewPassword}
-                isPasswordField={true}
                 errorText={confirmNewPassError}
                 onChangeText={(text) => setConfirmNewPass(text)}
               />
@@ -148,7 +137,7 @@ const ForgotPassword = ({ navigation }) => {
 
             <SmallButtonGrey
               buttonText={languages.change}
-              destinationScreen="Contact Info"
+              destinationScreen="Forgot Password"
               navigation={navigation}
             />
           </View>

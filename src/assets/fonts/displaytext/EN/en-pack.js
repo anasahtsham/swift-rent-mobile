@@ -16,8 +16,8 @@ export const forgotPassword = "Forgot Password?";
 export const whoAreYou = "Who Are You?";
 export const createNewRoleOnExistingCredentials =
   "Create new role on existing credentials?";
-export const propertyOwner = "Property Owner";
-export const propertyManager = "Property Manager";
+export const propertyOwner = "Owner";
+export const propertyManager = "Manager";
 export const tenant = "Tenant";
 
 //get to know screen

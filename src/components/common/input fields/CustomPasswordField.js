@@ -127,6 +127,7 @@ const CustomPasswordField = (props) => {
 
               <Pressable onPress={() => setSecureTextEntry(!secureTextEntry)}>
                 <Image
+                  tintColor={colors.textPrimary}
                   style={styles.icon}
                   source={
                     secureTextEntry
