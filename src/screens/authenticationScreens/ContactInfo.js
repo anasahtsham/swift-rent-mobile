@@ -22,7 +22,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const GetToKnow = ({ navigation }) => {
+const ContactInfo = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [DOB, setDOB] = useState("");
@@ -122,7 +122,7 @@ const GetToKnow = ({ navigation }) => {
               />
               <SmallButtonGrey
                 buttonText={English.next}
-                destinationScreen="Contact Info"
+                destinationScreen="Get To Know"
                 navigation={navigation}
               />
             </View>
@@ -171,4 +171,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GetToKnow;
+export default ContactInfo;

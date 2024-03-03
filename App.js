@@ -9,6 +9,7 @@ import WelcomeScreen from "./src/screens/WelcomeScreen";
 import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
 import WhoAreYou from "./src/screens/authenticationScreens/WhoAreYou";
 import GetToKnow from "./src/screens/authenticationScreens/GetToKnow";
+import ContactInfo from "./src/screens/authenticationScreens/ContactInfo";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ export default function App() {
         <Stack.Screen name="Login Screen" component={LoginScreen} />
         <Stack.Screen name="Who Are You" component={WhoAreYou} />
         <Stack.Screen name="Get To Know" component={GetToKnow} />
+        <Stack.Screen name="Contact Info" component={ContactInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
