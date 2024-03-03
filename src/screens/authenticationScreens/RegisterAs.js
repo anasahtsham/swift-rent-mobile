@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { loadLanguage, loadTheme } from "../../helpers";
 
 import Header from "../../components/common/header";
@@ -12,7 +12,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
-const WhoAreYou = ({ navigation }) => {
+const RegisterAs = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -48,7 +48,7 @@ const WhoAreYou = ({ navigation }) => {
               { fontSize: FontSizes.large, color: colors.textLightBlue },
             ]}
           >
-            {languages.whoAreYou}
+            {languages.registerAs}
           </Text>
         </View>
 
@@ -65,20 +65,7 @@ const WhoAreYou = ({ navigation }) => {
             destinationScreen="Get To Know"
             navigation={navigation}
           />
-          <BigButtonGrey
-            buttonText={languages.tenant}
-            customStyle={styles.customButton}
-            destinationScreen="Get To Know"
-            navigation={navigation}
-          />
         </View>
-        <Pressable onTouchEnd={() => navigation.navigate("Register As")}>
-          <Text
-            style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-          >
-            {languages.createNewRoleOnExistingCredentials}
-          </Text>
-        </Pressable>
       </View>
     </View>
   );
@@ -112,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WhoAreYou;
+export default RegisterAs;

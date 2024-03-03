@@ -7,7 +7,7 @@ export const login = "Login";
 export const selectLanguage = "Select Language";
 
 //login screen
-export const emailOrNumber = "Email or Number";
+export const emailOrPhone = "Email or Phone";
 export const password = "Password";
 export const enterYourDetails = "Enter Your Details";
 export const forgotPassword = "Forgot Password?";
@@ -33,3 +33,23 @@ export const email = "Email";
 export const phoneNumber = "Phone Number";
 export const weNeedYourContactInformation = "We Need Your Contact Information";
 export const thisFieldIsRequired = "This field is required.";
+
+//login as screen
+
+export const loginAs = "Login As";
+
+//forgot password screen
+
+export const resetYourPassword = "Reset Your Password";
+export const code = "16 Digit Code";
+export const newPassword = "New Password";
+export const confirmNewPassword = "Confirm New Password";
+export const change = "Change";
+
+//register as screen
+export const registerAs = "Register As:";
+
+//set up password screen
+
+export const nowLetsSetUpYourPassword = "Now let’s set up your password";
+export const confirmPassword = "Confirm Password";

@@ -33,6 +33,8 @@ const CustomTextInput = (props) => {
     onBlur,
     onFocus,
     textFieldIcon,
+    isPasswordField,
+    keyboardType,
     ...restOfProps
   } = props;
 
@@ -63,6 +65,8 @@ const CustomTextInput = (props) => {
             <View style={styles.container}>
               <View style={[style, styles.inputContainer]}>
                 <TextInput
+                  keyboardType={keyboardType}
+                  secureTextEntry={isPasswordField}
                   style={[
                     styles.input,
                     {

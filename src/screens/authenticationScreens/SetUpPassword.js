@@ -23,12 +23,12 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 
-const LoginScreen = ({ navigation }) => {
-  const [emailOrPhone, setEmailOrPhone] = useState("");
+const SetUpPassword = ({ navigation }) => {
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [emailOrPhoneError, setEmailOrPhoneError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(null);
 
   const handleLogin = () => {
     // Handle login logic here
@@ -69,47 +69,37 @@ const LoginScreen = ({ navigation }) => {
             ]}
           >
             <View style={styles.logoAndTextContainer}>
-              <SwiftRentLogoMedium />
               <Text
                 style={[
                   styles.text,
                   { fontSize: FontSizes.large, color: colors.textLightBlue },
                 ]}
               >
-                {languages.enterYourDetails}
+                {languages.nowLetsSetUpYourPassword}
               </Text>
             </View>
 
             <View style={styles.textInputsContainer}>
               <CustomTextInput
-                value={emailOrPhone}
-                label={languages.emailOrPhone}
-                textFieldIcon={icons.userIcon}
-                errorText={emailOrPhoneError}
-                onChangeText={(text) => setEmailOrPhone(text)}
-              />
-              <CustomTextInput
-                value={password}
+                value={confirmPassword}
                 label={languages.password}
                 textFieldIcon={icons.passwordFieldIcon}
                 isPasswordField={true}
                 errorText={passwordError}
+                onChangeText={(text) => setConfirmPassword(text)}
+              />
+              <CustomTextInput
+                value={password}
+                label={languages.confirmPassword}
+                textFieldIcon={icons.userIcon}
+                isPasswordField={true}
+                errorText={confirmPasswordError}
                 onChangeText={(text) => setPassword(text)}
               />
 
               {/* dont remove below comment */}
 
               {/* <View>
-                <Button
-                  title="Set error"
-                  onPress={() =>
-                    setEmailOrPhoneError(languages.thisFieldIsRequired)
-                  }
-                />
-                <Button
-                  title="Remove error"
-                  onPress={() => setEmailOrPhoneError("")}
-                />
                 <Button
                   title="Set error"
                   onPress={() =>
@@ -120,20 +110,17 @@ const LoginScreen = ({ navigation }) => {
                   title="Remove error"
                   onPress={() => setPasswordError("")}
                 />
+                <Button
+                  title="Set error"
+                  onPress={() =>
+                    setConfirmPasswordError(languages.thisFieldIsRequired)
+                  }
+                />
+                <Button
+                  title="Remove error"
+                  onPress={() => setConfirmPasswordError("")}
+                />
               </View> */}
-
-              <Pressable
-                onTouchEnd={() => navigation.navigate("Forgot Password")}
-              >
-                <Text
-                  style={{
-                    fontSize: FontSizes.small,
-                    color: colors.textPrimary,
-                  }}
-                >
-                  {languages.forgotPassword}
-                </Text>
-              </Pressable>
             </View>
 
             <BigButtonGrey
@@ -162,6 +149,7 @@ const styles = StyleSheet.create({
   },
   logoAndTextContainer: {
     alignItems: "center",
+    width: "80%",
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
@@ -176,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SetUpPassword;

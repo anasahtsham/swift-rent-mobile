@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { loadLanguage, loadTheme } from "../../helpers";
+import { loadTheme, loadLanguage } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
@@ -23,11 +23,16 @@ import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const ContactInfo = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [emailError, setEmailError] = useState(null);
-  const [phoneNumberError, setPhoneNumberError] = useState(null);
+const ForgotPassword = ({ navigation }) => {
+  const [emailOrPhone, setEmailOrPhone] = useState("");
+  const [code, setCode] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [confirmNewPass, setConfirmNewPass] = useState("");
+
+  const [emailOrPhoneError, setEmailOrPhoneError] = useState(null);
+  const [codeError, setCodeError] = useState(null);
+  const [newPassError, setNewPassError] = useState(null);
+  const [confirmNewPassError, setConfirmNewPassError] = useState(null);
 
   const [colors, setColors] = useState(DefaultTheme);
 
@@ -64,33 +69,42 @@ const ContactInfo = ({ navigation }) => {
             ]}
           >
             <View style={styles.logoAndTextContainer}>
-              <SwiftRentLogoMedium />
               <Text
                 style={[
                   styles.text,
-                  { fontSize: FontSizes.large, color: colors.textLightBlue },
+                  { fontSize: FontSizes.large, color: colors.textPrimary },
                 ]}
               >
-                {languages.weNeedYourContactInformation}
+                {languages.resetYourPassword}
               </Text>
             </View>
 
             <View style={styles.textInputsContainer}>
               <CustomTextInput
-                value={email}
-                label={languages.email}
-                textFieldIcon={icons.emailIcon}
-                keyboardType="email-address"
-                errorText={emailError}
-                onChangeText={(text) => setEmail(text)}
+                value={emailOrPhone}
+                label={languages.emailOrPhone}
+                errorText={emailOrPhoneError}
+                onChangeText={(text) => setEmailOrPhone(text)}
               />
               <CustomTextInput
-                value={phoneNumber}
-                label={languages.phoneNumber}
-                textFieldIcon={icons.phoneNumberIcon}
-                keyboardType="number-pad"
-                errorText={phoneNumberError}
-                onChangeText={(text) => setPhoneNumber(text)}
+                value={code}
+                label={languages.code}
+                errorText={codeError}
+                onChangeText={(text) => setCode(text)}
+              />
+              <CustomTextInput
+                value={newPass}
+                label={languages.newPassword}
+                isPasswordField={true}
+                errorText={newPassError}
+                onChangeText={(text) => setNewPass(text)}
+              />
+              <CustomTextInput
+                value={confirmNewPass}
+                label={languages.confirmNewPassword}
+                isPasswordField={true}
+                errorText={confirmNewPassError}
+                onChangeText={(text) => setConfirmNewPass(text)}
               />
             </View>
 
@@ -99,33 +113,44 @@ const ContactInfo = ({ navigation }) => {
             {/* <View>
               <Button
                 title="Set error"
-                onPress={() => setEmailError(languages.thisFieldIsRequired)}
-              />
-              <Button title="Remove error" onPress={() => setEmailError("")} />
-              <Button
-                title="Set error"
                 onPress={() =>
-                  setPhoneNumberError(languages.thisFieldIsRequired)
+                  setEmailOrPhoneError(languages.thisFieldIsRequired)
                 }
               />
               <Button
                 title="Remove error"
-                onPress={() => setPhoneNumberError("")}
+                onPress={() => setEmailOrPhoneError("")}
+              />
+              <Button
+                title="Set error"
+                onPress={() => setCodeError(languages.thisFieldIsRequired)}
+              />
+              <Button title="Remove error" onPress={() => setCodeError("")} />
+              <Button
+                title="Set error"
+                onPress={() => setNewPassError(languages.thisFieldIsRequired)}
+              />
+              <Button
+                title="Remove error"
+                onPress={() => setNewPassError("")}
+              />
+              <Button
+                title="Set error"
+                onPress={() =>
+                  setConfirmNewPassError(languages.thisFieldIsRequired)
+                }
+              />
+              <Button
+                title="Remove error"
+                onPress={() => setConfirmNewPassError("")}
               />
             </View> */}
 
-            <View style={styles.buttonsContainer}>
-              <SmallButtonGrey
-                buttonText={languages.back}
-                destinationScreen="Get To Know"
-                navigation={navigation}
-              />
-              <SmallButtonGrey
-                buttonText={languages.next}
-                destinationScreen="Set Up Password"
-                navigation={navigation}
-              />
-            </View>
+            <SmallButtonGrey
+              buttonText={languages.change}
+              destinationScreen="Contact Info"
+              navigation={navigation}
+            />
           </View>
         </View>
       </KeyboardAwareScrollView>
@@ -171,4 +196,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ContactInfo;
+export default ForgotPassword;
