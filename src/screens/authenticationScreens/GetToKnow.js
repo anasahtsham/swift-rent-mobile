@@ -12,9 +12,9 @@ import { loadTheme, loadLanguage } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
-import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
-import SmallButtonGrey from "../../components/common/SmallButtonGrey";
+import CustomTextField from "../../components/common/input fields/CustomTextField";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import SmallButtonGrey from "../../components/common/buttons/SmallButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -78,21 +78,21 @@ const GetToKnow = ({ navigation }) => {
             </View>
 
             <View style={styles.textInputsContainer}>
-              <CustomTextInput
+              <CustomTextField
                 value={firstName}
                 label={languages.firstName}
                 textFieldIcon={icons.userIcon}
                 errorText={firstNameError}
                 onChangeText={(text) => setFirstName(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={lastName}
                 label={languages.lastName}
                 textFieldIcon={icons.userIcon}
                 errorText={lastNameError}
                 onChangeText={(text) => setLastName(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={dob}
                 label={languages.DOB}
                 textFieldIcon={icons.calendarIcon}

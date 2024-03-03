@@ -13,9 +13,9 @@ import { loadLanguage, loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
-import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
-import BigButtonGrey from "../../components/common/BigButtonGrey";
+import CustomTextField from "../../components/common/input fields/CustomTextField";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -81,14 +81,14 @@ const LoginScreen = ({ navigation }) => {
             </View>
 
             <View style={styles.textInputsContainer}>
-              <CustomTextInput
+              <CustomTextField
                 value={emailOrPhone}
                 label={languages.emailOrPhone}
                 textFieldIcon={icons.userIcon}
                 errorText={emailOrPhoneError}
                 onChangeText={(text) => setEmailOrPhone(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={password}
                 label={languages.password}
                 textFieldIcon={icons.passwordFieldIcon}

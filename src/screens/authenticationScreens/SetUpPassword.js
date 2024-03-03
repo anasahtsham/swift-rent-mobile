@@ -13,9 +13,9 @@ import { loadLanguage, loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
-import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
-import BigButtonGrey from "../../components/common/BigButtonGrey";
+import CustomTextField from "../../components/common/input fields/CustomTextField";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -80,7 +80,7 @@ const SetUpPassword = ({ navigation }) => {
             </View>
 
             <View style={styles.textInputsContainer}>
-              <CustomTextInput
+              <CustomTextField
                 value={confirmPassword}
                 label={languages.password}
                 textFieldIcon={icons.passwordFieldIcon}
@@ -88,7 +88,7 @@ const SetUpPassword = ({ navigation }) => {
                 errorText={passwordError}
                 onChangeText={(text) => setConfirmPassword(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={password}
                 label={languages.confirmPassword}
                 textFieldIcon={icons.userIcon}

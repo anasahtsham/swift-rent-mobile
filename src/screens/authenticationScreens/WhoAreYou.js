@@ -3,8 +3,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { loadLanguage, loadTheme } from "../../helpers";
 
 import Header from "../../components/common/header";
-import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
-import BigButtonGrey from "../../components/common/BigButtonGrey";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";

@@ -12,9 +12,9 @@ import { loadTheme, loadLanguage } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
-import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
-import SmallButtonGrey from "../../components/common/SmallButtonGrey";
+import CustomTextField from "../../components/common/input fields/CustomTextField";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import SmallButtonGrey from "../../components/common/buttons/SmallButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -80,26 +80,26 @@ const ForgotPassword = ({ navigation }) => {
             </View>
 
             <View style={styles.textInputsContainer}>
-              <CustomTextInput
+              <CustomTextField
                 value={emailOrPhone}
                 label={languages.emailOrPhone}
                 errorText={emailOrPhoneError}
                 onChangeText={(text) => setEmailOrPhone(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={code}
                 label={languages.code}
                 errorText={codeError}
                 onChangeText={(text) => setCode(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={newPass}
                 label={languages.newPassword}
                 isPasswordField={true}
                 errorText={newPassError}
                 onChangeText={(text) => setNewPass(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={confirmNewPass}
                 label={languages.confirmNewPassword}
                 isPasswordField={true}

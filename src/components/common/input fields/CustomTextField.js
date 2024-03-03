@@ -10,12 +10,12 @@ import {
   Image,
 } from "react-native";
 
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
-import { loadTheme } from "../../helpers";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
+import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import { loadTheme } from "../../../helpers";
 
-const CustomTextInput = (props) => {
+const CustomTextField = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -185,4 +185,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomTextInput;
+export default CustomTextField;

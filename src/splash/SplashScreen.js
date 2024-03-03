@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { loadTheme } from "../helpers";
 
-import SwiftRentLogoLarge from "../components/common/SwiftRentLogoLarge";
+import SwiftRentLogoLarge from "../components/common/images/SwiftRentLogoLarge";
 import Header from "../components/common/header";
 import * as FontSizes from "../assets/fonts/FontSizes";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";

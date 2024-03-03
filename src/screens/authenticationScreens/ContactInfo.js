@@ -12,9 +12,9 @@ import { loadLanguage, loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
-import CustomTextInput from "../../components/common/CustomTextInput";
-import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
-import SmallButtonGrey from "../../components/common/SmallButtonGrey";
+import CustomTextField from "../../components/common/input fields/CustomTextField";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import SmallButtonGrey from "../../components/common/buttons/SmallButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -76,7 +76,7 @@ const ContactInfo = ({ navigation }) => {
             </View>
 
             <View style={styles.textInputsContainer}>
-              <CustomTextInput
+              <CustomTextField
                 value={email}
                 label={languages.email}
                 textFieldIcon={icons.emailIcon}
@@ -84,7 +84,7 @@ const ContactInfo = ({ navigation }) => {
                 errorText={emailError}
                 onChangeText={(text) => setEmail(text)}
               />
-              <CustomTextInput
+              <CustomTextField
                 value={phoneNumber}
                 label={languages.phoneNumber}
                 textFieldIcon={icons.phoneNumberIcon}

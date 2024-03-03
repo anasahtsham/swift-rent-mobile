@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Dimensions, Image, StyleSheet } from "react-native";
-import { loadTheme } from "../../helpers";
+import { loadTheme } from "../../../helpers";
 
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
+import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 
 const SwiftRentLogoMedium = () => {
   const [colors, setColors] = useState(DefaultTheme);
@@ -19,7 +19,7 @@ const SwiftRentLogoMedium = () => {
     <Image
       tintColor={colors.logoPrimary}
       style={styles.SwiftRentLogoMedium}
-      source={require("../../assets/icons/logos/adaptive-icon.png")}
+      source={require("../../../assets/icons/logos/adaptive-icon.png")}
     />
   );
 };

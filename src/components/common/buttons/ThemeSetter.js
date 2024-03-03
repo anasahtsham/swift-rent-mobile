@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import { opacityValueForButton } from "../../constants";
-import { saveTheme, loadTheme } from "../../helpers";
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
+import { opacityValueForButton } from "../../../constants";
+import { saveTheme, loadTheme } from "../../../helpers";
+import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 
 const ThemeSetter = () => {
   const [isSun, setIsSun] = useState(true);
@@ -39,8 +39,8 @@ const ThemeSetter = () => {
         tintColor={colors.textPrimary}
         source={
           isSun
-            ? require("../../assets/icons/sun.png")
-            : require("../../assets/icons/moon.png")
+            ? require("../../../assets/icons/sun.png")
+            : require("../../../assets/icons/moon.png")
         }
         style={styles.themeIcon}
       />

@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import { loadLanguage, loadTheme } from "../helpers";
 
-import BigButtonGrey from "../components/common/BigButtonGrey";
-import LanguageSelect from "../components/common/LanguageSelect";
-import ThemeSetter from "../components/common/ThemeSetter";
+import BigButtonGrey from "../components/common/buttons/BigButtonGrey";
+import LanguageSelect from "../components/common/buttons/LanguageSelect";
+import ThemeSetter from "../components/common/buttons/ThemeSetter";
 import Header from "../components/common/header";
 
 import * as FontSizes from "../assets/fonts/FontSizes";

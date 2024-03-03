@@ -1,11 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { opacityValueForButton } from "../../constants";
+import { opacityValueForButton } from "../../../constants";
 import { useEffect, useState } from "react";
-import { loadTheme } from "../../helpers";
+import { loadTheme } from "../../../helpers";
 
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
-import * as FontSizes from "../../assets/fonts/FontSizes";
+import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 const BigButtonGrey = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
