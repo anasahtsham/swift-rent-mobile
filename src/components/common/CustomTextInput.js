@@ -35,6 +35,7 @@ const CustomTextInput = (props) => {
     textFieldIcon,
     ...restOfProps
   } = props;
+
   const [isFocused, setIsFocused] = useState(false);
 
   const inputRef = useRef(null);
@@ -55,114 +56,117 @@ const CustomTextInput = (props) => {
   }
 
   return (
-    <View style={styles.mainContainer}>
-      <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
-        <View>
-          <View
+    <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
+      <View style={styles.mainContainer}>
+        <View style={[styles.textInputContainer, { borderColor: color }]}>
+          <View>
+            <View style={styles.container}>
+              <View style={[style, styles.inputContainer]}>
+                <TextInput
+                  style={[
+                    styles.input,
+                    {
+                      color: colors.textPrimary,
+                      fontSize: FontSizes.small,
+                    },
+                  ]}
+                  ref={inputRef}
+                  value={value}
+                  onBlur={(event) => {
+                    setIsFocused(false);
+                    onBlur?.(event);
+                  }}
+                  onFocus={(event) => {
+                    setIsFocused(true);
+                    onFocus?.(event);
+                  }}
+                  {...restOfProps}
+                />
+                <Animated.View
+                  style={[
+                    styles.labelContainer,
+                    {
+                      backgroundColor: colors.backgroundPrimary,
+                      transform: [
+                        {
+                          scale: focusAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [1, 0.75],
+                            // scale (size) of text
+                          }),
+                        },
+                        {
+                          translateY: focusAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, -30],
+                            // [start position on y axis, ending position on y axis]
+                          }),
+                        },
+                        {
+                          translateX: focusAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [-8, -5],
+                            // [start position on x axis, ending position on x axis]
+                          }),
+                        },
+                      ],
+                    },
+                  ]}
+                >
+                  <Text style={{ fontSize: FontSizes.small, color }}>
+                    {label}
+                    {errorText ? "*" : ""}
+                  </Text>
+                </Animated.View>
+              </View>
+
+              <Image
+                tintColor={color}
+                source={textFieldIcon}
+                style={styles.icon}
+              />
+            </View>
+          </View>
+        </View>
+        {!!errorText && (
+          <Text
             style={[
-              styles.container,
+              styles.error,
               {
-                borderColor: color,
+                color: colors.textRed,
+
+                fontSize: FontSizes.extraSmall,
               },
             ]}
           >
-            <View style={style}>
-              <TextInput
-                style={[
-                  styles.input,
-                  {
-                    color: colors.textPrimary,
-                    fontSize: FontSizes.small,
-                  },
-                ]}
-                ref={inputRef}
-                value={value}
-                onBlur={(event) => {
-                  setIsFocused(false);
-                  onBlur?.(event);
-                }}
-                onFocus={(event) => {
-                  setIsFocused(true);
-                  onFocus?.(event);
-                }}
-                {...restOfProps}
-              />
-              <Animated.View
-                style={[
-                  styles.labelContainer,
-                  {
-                    backgroundColor: colors.backgroundPrimary,
-                    transform: [
-                      {
-                        scale: focusAnim.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [1, 0.75],
-                        }),
-                      },
-                      {
-                        translateY: focusAnim.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [13, -18],
-                        }),
-                      },
-                      {
-                        translateX: focusAnim.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [0, -20],
-                        }),
-                      },
-                    ],
-                  },
-                ]}
-              >
-                <Text style={{ fontSize: FontSizes.small, color }}>
-                  {label}
-                  {errorText ? "*" : ""}
-                </Text>
-              </Animated.View>
-            </View>
-
-            <Image
-              tintColor={color}
-              source={textFieldIcon}
-              style={styles.icon}
-            />
-          </View>
-          {!!errorText && (
-            <Text
-              style={[
-                styles.error,
-                {
-                  color: colors.textRed,
-
-                  fontSize: FontSizes.extraSmall,
-                },
-              ]}
-            >
-              {errorText}
-            </Text>
-          )}
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
+            {errorText}
+          </Text>
+        )}
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flexDirection: "column",
-    marginBottom: 50,
+    width: "85%",
+    marginBottom: 30,
+  },
+  textInputContainer: {
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    borderWidth: 2,
+    borderRadius: 25,
   },
   container: {
-    paddingHorizontal: 15,
-    borderWidth: 2.5,
-    borderRadius: 25,
-    width: "90%",
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
-  input: { marginTop: 10 },
+  inputContainer: {
+    alignItems: "flex-start",
+    flex: 1,
+    justifyContent: "center",
+  },
+  input: { flex: 1 },
   labelContainer: {
     position: "absolute",
     paddingHorizontal: 8,

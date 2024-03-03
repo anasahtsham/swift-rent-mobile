@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  Button,
+  Button, //dont remove till integration
   Dimensions,
   Pressable,
   SafeAreaView,
@@ -37,6 +37,17 @@ const GetToKnow = ({ navigation }) => {
     });
   }, []);
 
+  const lastNameRef = useRef(null);
+  const dobRef = useRef(null);
+
+  // Function to focus on the next input
+  const focusNextInput = (nextInputRef) => {
+    if (nextInputRef && nextInputRef.current) {
+      console.log("bazinga");
+      nextInputRef.current.focus();
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <Header />
@@ -70,25 +81,26 @@ const GetToKnow = ({ navigation }) => {
                 value={firstName}
                 label={English.firstName}
                 textFieldIcon={icons.userIcon}
-                style={styles.textField}
                 errorText={error}
                 onChangeText={(text) => setFirstName(text)}
+                onSubmitEditing={() => focusNextInput(lastNameRef)}
               />
               <CustomTextInput
                 value={lastName}
                 label={English.lastName}
                 textFieldIcon={icons.userIcon}
-                style={styles.textField}
                 errorText={error}
                 onChangeText={(text) => setLastName(text)}
+                ref={lastNameRef}
+                onSubmitEditing={() => focusNextInput(dobRef)}
               />
               <CustomTextInput
                 value={DOB}
                 label={English.DOB}
                 textFieldIcon={icons.calendarIcon}
-                style={styles.textField}
                 errorText={error}
                 onChangeText={(text) => setDOB(text)}
+                ref={dobRef}
               />
             </View>
 
@@ -156,10 +168,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "70%",
     justifyContent: "space-evenly",
-  },
-  textField: {
-    marginBottom: 10,
-    width: "80%",
   },
 });
 

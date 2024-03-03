@@ -72,7 +72,6 @@ const LoginScreen = ({ navigation }) => {
                 value={emailOrPhone}
                 label={English.emailOrNumber}
                 textFieldIcon={icons.userIcon}
-                style={styles.textField}
                 errorText={error}
                 onChangeText={(text) => setEmailOrPhone(text)}
               />
@@ -80,7 +79,6 @@ const LoginScreen = ({ navigation }) => {
                 value={password}
                 label={English.password}
                 textFieldIcon={icons.passwordFieldIcon}
-                style={styles.textField}
                 errorText={error}
                 onChangeText={(text) => setPassword(text)}
               />
@@ -142,10 +140,6 @@ const styles = StyleSheet.create({
   },
   customButton: {
     width: "40%",
-  },
-  textField: {
-    marginBottom: 10,
-    width: "80%",
   },
 });
 

@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   loginTextContainer: {
+    padding: 10,
     flexDirection: "row",
     width: "60%",
     justifyContent: "flex-start",

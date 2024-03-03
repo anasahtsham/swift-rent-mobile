@@ -17,7 +17,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: true,
+          gestureDirection: "horizontal",
+        }}
         initialRouteName="Splash Screen"
       >
         <Stack.Screen name="Splash Screen" component={SplashScreen} />
