@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { loadTheme } from "../../helpers";
+import { loadLanguage, loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
@@ -20,6 +20,7 @@ import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
+import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 
 const LoginScreen = ({ navigation }) => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -36,6 +37,15 @@ const LoginScreen = ({ navigation }) => {
   useEffect(() => {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }, []);
+
+  const [languages, setLanguages] = useState(English);
+
+  //update language on load
+  useEffect(() => {
+    loadLanguage().then((language) => {
+      setLanguages(language === "english" ? English : Urdu);
     });
   }, []);
 
@@ -63,21 +73,21 @@ const LoginScreen = ({ navigation }) => {
                   { fontSize: FontSizes.large, color: colors.textLightBlue },
                 ]}
               >
-                {English.enterYourDetails}
+                {languages.enterYourDetails}
               </Text>
             </View>
 
             <View style={styles.textInputsContainer}>
               <CustomTextInput
                 value={emailOrPhone}
-                label={English.emailOrNumber}
+                label={languages.emailOrNumber}
                 textFieldIcon={icons.userIcon}
                 errorText={error}
                 onChangeText={(text) => setEmailOrPhone(text)}
               />
               <CustomTextInput
                 value={password}
-                label={English.password}
+                label={languages.password}
                 textFieldIcon={icons.passwordFieldIcon}
                 errorText={error}
                 onChangeText={(text) => setPassword(text)}
@@ -99,12 +109,12 @@ const LoginScreen = ({ navigation }) => {
                   color: colors.textPrimary,
                 }}
               >
-                {English.forgotPassword}
+                {languages.forgotPassword}
               </Text>
             </View>
 
             <BigButtonGrey
-              buttonText={English.login}
+              buttonText={languages.login}
               customStyle={styles.customButton}
             />
           </View>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { loadTheme } from "../../helpers";
+import { loadLanguage, loadTheme } from "../../helpers";
 
 import Header from "../../components/common/header";
 import SwiftRentLogoMedium from "../../components/common/SwiftRentLogoMedium";
@@ -9,7 +9,7 @@ import BigButtonGrey from "../../components/common/BigButtonGrey";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as Urdu from "../../asssets/fonts/displaytext/UR/ur-pack";
+import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
 const WhoAreYou = ({ navigation }) => {
@@ -48,32 +48,32 @@ const WhoAreYou = ({ navigation }) => {
               { fontSize: FontSizes.large, color: colors.textLightBlue },
             ]}
           >
-            {English.whoAreYou}
+            {languages.whoAreYou}
           </Text>
         </View>
 
         <View style={styles.buttonsContainer}>
           <BigButtonGrey
-            buttonText={English.propertyOwner}
+            buttonText={languages.propertyOwner}
             customStyle={styles.customButton}
             destinationScreen="Get To Know"
             navigation={navigation}
           />
           <BigButtonGrey
-            buttonText={English.propertyManager}
+            buttonText={languages.propertyManager}
             customStyle={[styles.customButton, { height: "25%" }]}
             destinationScreen="Get To Know"
             navigation={navigation}
           />
           <BigButtonGrey
-            buttonText={English.tenant}
+            buttonText={languages.tenant}
             customStyle={styles.customButton}
             destinationScreen="Get To Know"
             navigation={navigation}
           />
         </View>
         <Text style={{ fontSize: FontSizes.small, color: colors.textPrimary }}>
-          {English.createNewRoleOnExistingCredentials}
+          {languages.createNewRoleOnExistingCredentials}
         </Text>
       </View>
     </View>

@@ -25,6 +25,7 @@ const LanguageSelect = () => {
   useEffect(() => {
     loadLanguage().then((language) => {
       setLanguage(language === "english" ? English : Urdu);
+      setIsEnglish(language === "english");
     });
   }, []);
 
