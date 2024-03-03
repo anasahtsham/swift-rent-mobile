@@ -56,88 +56,94 @@ const CustomTextInput = (props) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View
-        style={[
-          styles.container,
-          {
-            borderColor: color,
-          },
-        ]}
-      >
-        <View style={style}>
-          <TextInput
+      <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
+        <View>
+          <View
             style={[
-              styles.input,
+              styles.container,
               {
-                color: colors.textPrimary,
-                fontSize: FontSizes.small,
+                borderColor: color,
               },
             ]}
-            ref={inputRef}
-            value={value}
-            onBlur={(event) => {
-              setIsFocused(false);
-              onBlur?.(event);
-            }}
-            onFocus={(event) => {
-              setIsFocused(true);
-              onFocus?.(event);
-            }}
-            {...restOfProps}
-          />
-          <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
-            <Animated.View
+          >
+            <View style={style}>
+              <TextInput
+                style={[
+                  styles.input,
+                  {
+                    color: colors.textPrimary,
+                    fontSize: FontSizes.small,
+                  },
+                ]}
+                ref={inputRef}
+                value={value}
+                onBlur={(event) => {
+                  setIsFocused(false);
+                  onBlur?.(event);
+                }}
+                onFocus={(event) => {
+                  setIsFocused(true);
+                  onFocus?.(event);
+                }}
+                {...restOfProps}
+              />
+              <Animated.View
+                style={[
+                  styles.labelContainer,
+                  {
+                    backgroundColor: colors.backgroundPrimary,
+                    transform: [
+                      {
+                        scale: focusAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [1, 0.75],
+                        }),
+                      },
+                      {
+                        translateY: focusAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [13, -18],
+                        }),
+                      },
+                      {
+                        translateX: focusAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, -20],
+                        }),
+                      },
+                    ],
+                  },
+                ]}
+              >
+                <Text style={{ fontSize: FontSizes.small, color }}>
+                  {label}
+                  {errorText ? "*" : ""}
+                </Text>
+              </Animated.View>
+            </View>
+
+            <Image
+              tintColor={color}
+              source={textFieldIcon}
+              style={styles.icon}
+            />
+          </View>
+          {!!errorText && (
+            <Text
               style={[
-                styles.labelContainer,
+                styles.error,
                 {
-                  backgroundColor: colors.backgroundPrimary,
-                  transform: [
-                    {
-                      scale: focusAnim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [1, 0.75],
-                      }),
-                    },
-                    {
-                      translateY: focusAnim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [13, -18],
-                      }),
-                    },
-                    {
-                      translateX: focusAnim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, -20],
-                      }),
-                    },
-                  ],
+                  color: colors.textRed,
+
+                  fontSize: FontSizes.extraSmall,
                 },
               ]}
             >
-              <Text style={{ fontSize: FontSizes.small, color }}>
-                {label}
-                {errorText ? "*" : ""}
-              </Text>
-            </Animated.View>
-          </TouchableWithoutFeedback>
+              {errorText}
+            </Text>
+          )}
         </View>
-
-        <Image tintColor={color} source={textFieldIcon} style={styles.icon} />
-      </View>
-      {!!errorText && (
-        <Text
-          style={[
-            styles.error,
-            {
-              color: colors.textRed,
-
-              fontSize: FontSizes.extraSmall,
-            },
-          ]}
-        >
-          {errorText}
-        </Text>
-      )}
+      </TouchableWithoutFeedback>
     </View>
   );
 };
