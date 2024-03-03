@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { loadTheme } from "../../helpers";
+import { loadTheme, loadLanguage } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
@@ -20,6 +20,7 @@ import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
+import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const GetToKnow = ({ navigation }) => {
@@ -34,6 +35,15 @@ const GetToKnow = ({ navigation }) => {
   useEffect(() => {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }, []);
+
+  const [languages, setLanguages] = useState(English);
+
+  //update language on load
+  useEffect(() => {
+    loadLanguage().then((language) => {
+      setLanguages(language === "english" ? English : Urdu);
     });
   }, []);
 
@@ -61,30 +71,31 @@ const GetToKnow = ({ navigation }) => {
                   { fontSize: FontSizes.large, color: colors.textLightBlue },
                 ]}
               >
-                {English.letsGetToKnowYou}
+                {languages.letsGetToKnowYou}
               </Text>
             </View>
 
             <View style={styles.textInputsContainer}>
               <CustomTextInput
                 value={firstName}
-                label={English.firstName}
+                label={languages.firstName}
                 textFieldIcon={icons.userIcon}
                 errorText={error}
                 onChangeText={(text) => setFirstName(text)}
               />
               <CustomTextInput
                 value={lastName}
-                label={English.lastName}
+                label={languages.lastName}
                 textFieldIcon={icons.userIcon}
                 errorText={error}
                 onChangeText={(text) => setLastName(text)}
               />
               <CustomTextInput
                 value={DOB}
-                label={English.DOB}
+                label={languages.DOB}
                 textFieldIcon={icons.calendarIcon}
                 errorText={error}
+                onChangeText={(text) => setDOB(text)}
               />
             </View>
 
@@ -100,12 +111,12 @@ const GetToKnow = ({ navigation }) => {
 
             <View style={styles.buttonsContainer}>
               <SmallButtonGrey
-                buttonText={English.back}
+                buttonText={languages.back}
                 destinationScreen="Who Are You"
                 navigation={navigation}
               />
               <SmallButtonGrey
-                buttonText={English.next}
+                buttonText={languages.next}
                 destinationScreen="Contact Info"
                 navigation={navigation}
               />

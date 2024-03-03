@@ -9,6 +9,7 @@ import BigButtonGrey from "../../components/common/BigButtonGrey";
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import * as Urdu from "../../asssets/fonts/displaytext/UR/ur-pack";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
 const WhoAreYou = ({ navigation }) => {
@@ -18,6 +19,15 @@ const WhoAreYou = ({ navigation }) => {
   useEffect(() => {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }, []);
+
+  const [languages, setLanguages] = useState(English);
+
+  //update language on load
+  useEffect(() => {
+    loadLanguage().then((language) => {
+      setLanguages(language === "english" ? English : Urdu);
     });
   }, []);
 
