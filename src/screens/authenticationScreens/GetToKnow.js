@@ -43,11 +43,6 @@ const GetToKnow = ({ navigation }) => {
     });
   }, []);
 
-  //this will be called when user selects a date and will set it in the placeholder of the CustomDateOfBirthField:
-  const onDateSelected = (date) => {
-    console.log("Selected date:", date);
-  };
-
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <Header />

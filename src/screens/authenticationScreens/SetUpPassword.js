@@ -113,8 +113,8 @@ const SetUpPassword = ({ navigation }) => {
             <ButtonGrey
               width={buttonWidthMedium}
               fontSize={FontSizes.medium}
-              buttonText={languages.login}
-              destinationScreen="Set Up Password"
+              buttonText={languages.continueText}
+              destinationScreen="All Set Up"
               navigation={navigation}
             />
           </View>

@@ -1,4 +1,5 @@
 import "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -14,7 +15,7 @@ import LoginAs from "./src/screens/authenticationScreens/LoginAs";
 import ForgotPassword from "./src/screens/authenticationScreens/ForgotPassword";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 
 const Stack = createStackNavigator();
 
@@ -58,6 +59,7 @@ export default function App() {
           <Stack.Screen name="Forgot Password" component={ForgotPassword} />
           <Stack.Screen name="Register As" component={RegisterAs} />
           <Stack.Screen name="Set Up Password" component={SetUpPassword} />
+          <Stack.Screen name="All Set Up" component={AllSetUpSplash} />
         </Stack.Navigator>
       </NavigationContainer>
     );

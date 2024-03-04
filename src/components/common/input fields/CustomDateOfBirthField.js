@@ -15,10 +15,11 @@ import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 import { loadTheme } from "../../../helpers";
 
-const CustomDateOfBirthField = ({ onDateSelected, ...props }) => {
+const CustomDateOfBirthField = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
   const [isPickerOpen, setPickerOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [formattedDate, setFormattedDate] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
 
   const {
@@ -45,12 +46,12 @@ const CustomDateOfBirthField = ({ onDateSelected, ...props }) => {
 
   useEffect(() => {
     Animated.timing(focusAnim, {
-      toValue: isFocused || !!selectedDate ? 1 : 0,
+      toValue: isFocused || !!formattedDate ? 1 : 0,
       duration: 150,
       easing: Easing.bezier(0.4, 0, 0.2, 1),
       useNativeDriver: true,
     }).start();
-  }, [focusAnim, isFocused, selectedDate]);
+  }, [focusAnim, isFocused, formattedDate]);
 
   const showDatePicker = () => {
     setPickerOpen(true);
@@ -63,9 +64,12 @@ const CustomDateOfBirthField = ({ onDateSelected, ...props }) => {
   };
 
   const handleConfirm = (date) => {
-    setSelectedDate(date);
+    let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")}-${date.getFullYear()}`;
+    setFormattedDate(formatted);
     hideDatePicker();
-    onDateSelected(date);
+    setSelectedDate(date);
   };
 
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
@@ -80,6 +84,7 @@ const CustomDateOfBirthField = ({ onDateSelected, ...props }) => {
           <View style={styles.container}>
             <View style={[style, styles.inputContainer]}>
               <TextInput
+                ref={inputRef}
                 style={[
                   styles.input,
                   {
@@ -88,7 +93,7 @@ const CustomDateOfBirthField = ({ onDateSelected, ...props }) => {
                   },
                 ]}
                 editable={false}
-                value={selectedDate ? selectedDate.toDateString() : ""}
+                value={formattedDate ? formattedDate : null}
               />
               <Animated.View
                 style={[
@@ -139,6 +144,7 @@ const CustomDateOfBirthField = ({ onDateSelected, ...props }) => {
         <DateTimePickerModal
           isVisible={isPickerOpen}
           mode="date"
+          date={selectedDate}
           onConfirm={handleConfirm}
           onCancel={hideDatePicker}
         />
