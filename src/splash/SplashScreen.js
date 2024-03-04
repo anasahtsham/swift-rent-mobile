@@ -9,7 +9,7 @@ import * as FontSizes from "../assets/fonts/FontSizes";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
-const SplashScreen = () => {
+const SplashScreen = ({ navigation }) => {
   //set theme
   const [colors, setColors] = useState(DefaultTheme);
   useEffect(() => {
@@ -19,7 +19,6 @@ const SplashScreen = () => {
   }, []);
 
   // timer to send off from splash screen
-  const navigation = useNavigation();
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
