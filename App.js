@@ -22,23 +22,18 @@ export default function App() {
   const setLanguageToEnglish = async () => {
     try {
       await AsyncStorage.setItem("language", "english");
-      const value = await AsyncStorage.getItem("language");
-      console.log("language: " + value); // This should print "english" if the item was set successfully
     } catch (e) {
-      console.log(e); // Log the error
+      console.log(e);
     }
-
-    console.log("language set to english.");
   };
-
   setLanguageToEnglish();
   const clearLanguageSetting = async () => {
     try {
       await AsyncStorage.removeItem("language");
       const value = await AsyncStorage.getItem("language");
-      console.log("language: " + value); // This should print null if the item was removed successfully
+      console.log("language: " + value);
     } catch (e) {
-      console.log(e); // Log the error
+      console.log(e);
     }
 
     console.log("cleared.");

@@ -10,7 +10,6 @@ import {
 import { loadLanguage, loadTheme } from "../helpers";
 import { buttonWidthMedium } from "../constants";
 
-// import LanguageSelect from "../components/common/buttons/LanguageSelect";
 import ButtonGrey from "../components/common/buttons/ButtonGrey";
 import ThemeSetter from "../components/common/buttons/ThemeSetter";
 import Header from "../components/common/header";
@@ -104,7 +103,6 @@ const WelcomeScreen = ({ navigation }) => {
             </Text>
           </Pressable>
         </View>
-        {/* <LanguageSelect /> */}
       </View>
     </View>
   );
