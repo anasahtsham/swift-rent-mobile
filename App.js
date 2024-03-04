@@ -18,28 +18,29 @@ import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
 const Stack = createStackNavigator();
 
 export default function App() {
-  const loaded = useCustomFonts();
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          gestureEnabled: true,
-          gestureDirection: "horizontal",
-        }}
-        initialRouteName="Splash Screen"
-      >
-        <Stack.Screen name="Splash Screen" component={SplashScreen} />
-        <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
-        <Stack.Screen name="Login Screen" component={LoginScreen} />
-        <Stack.Screen name="Who Are You" component={WhoAreYou} />
-        <Stack.Screen name="Get To Know" component={GetToKnow} />
-        <Stack.Screen name="Contact Info" component={ContactInfo} />
-        <Stack.Screen name="Login As" component={LoginAs} />
-        <Stack.Screen name="Forgot Password" component={ForgotPassword} />
-        <Stack.Screen name="Register As" component={RegisterAs} />
-        <Stack.Screen name="Set Up Password" component={SetUpPassword} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  if (useCustomFonts()) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: true,
+            gestureDirection: "horizontal",
+          }}
+          initialRouteName="Splash Screen"
+        >
+          <Stack.Screen name="Splash Screen" component={SplashScreen} />
+          <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
+          <Stack.Screen name="Login Screen" component={LoginScreen} />
+          <Stack.Screen name="Who Are You" component={WhoAreYou} />
+          <Stack.Screen name="Get To Know" component={GetToKnow} />
+          <Stack.Screen name="Contact Info" component={ContactInfo} />
+          <Stack.Screen name="Login As" component={LoginAs} />
+          <Stack.Screen name="Forgot Password" component={ForgotPassword} />
+          <Stack.Screen name="Register As" component={RegisterAs} />
+          <Stack.Screen name="Set Up Password" component={SetUpPassword} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
