@@ -4,7 +4,7 @@ import { loadTheme, loadLanguage } from "../../helpers";
 
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
-import SmallButtonGrey from "../../components/common/buttons/SmallButtonGrey";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -13,6 +13,7 @@ import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
+import { buttonWidthMedium } from "../../constants";
 
 const ForgotPassword = ({ navigation }) => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -135,7 +136,9 @@ const ForgotPassword = ({ navigation }) => {
               />
             </View> */}
 
-            <SmallButtonGrey
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
               buttonText={languages.change}
               destinationScreen="Forgot Password"
               navigation={navigation}

@@ -7,8 +7,16 @@ import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const SmallButtonGrey = (props) => {
+const ButtonGrey = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
+
+  if (props.fontSize === undefined) {
+    throw new Error('The prop "fontSize" is required in ButtonGrey component');
+  }
+
+  if (props.width === undefined) {
+    throw new Error('The prop "width" is required in ButtonGrey component');
+  }
 
   //update theme on load
   useEffect(() => {
@@ -28,8 +36,8 @@ const SmallButtonGrey = (props) => {
         {
           backgroundColor: colors.backgroundGrey,
           borderColor: colors.borderGrey,
+          width: props.width,
         },
-        props.customStyle,
       ]}
       onPress={handlePress}
       activeOpacity={opacityValueForButton}
@@ -37,7 +45,10 @@ const SmallButtonGrey = (props) => {
       <Text
         style={[
           styles.buttonText,
-          { color: colors.textBlack, fontSize: FontSizes.small },
+          {
+            color: colors.textBlack,
+            fontSize: props.fontSize,
+          },
         ]}
       >
         {props.buttonText}
@@ -48,17 +59,16 @@ const SmallButtonGrey = (props) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: "30%",
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 100,
     borderWidth: 1.5,
-    justifyContent: "center",
   },
   buttonText: {
+    fontSize: FontSizes.small,
     fontFamily: "OpenSansRegular",
     textAlign: "center",
   },
 });
 
-export default SmallButtonGrey;
+export default ButtonGrey;

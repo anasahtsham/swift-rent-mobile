@@ -14,18 +14,42 @@ import LoginAs from "./src/screens/authenticationScreens/LoginAs";
 import ForgotPassword from "./src/screens/authenticationScreens/ForgotPassword";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  const setLanguageToEnglish = async () => {
+    try {
+      await AsyncStorage.setItem("language", "english");
+      const value = await AsyncStorage.getItem("language");
+      console.log("language: " + value); // This should print "english" if the item was set successfully
+    } catch (e) {
+      console.log(e); // Log the error
+    }
+
+    console.log("language set to english.");
+  };
+
+  setLanguageToEnglish();
+  const clearLanguageSetting = async () => {
+    try {
+      await AsyncStorage.removeItem("language");
+      const value = await AsyncStorage.getItem("language");
+      console.log("language: " + value); // This should print null if the item was removed successfully
+    } catch (e) {
+      console.log(e); // Log the error
+    }
+
+    console.log("cleared.");
+  };
+  // clearLanguageSetting();
   if (useCustomFonts()) {
     return (
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
-            gestureEnabled: true,
-            gestureDirection: "horizontal",
           }}
           initialRouteName="Splash Screen"
         >

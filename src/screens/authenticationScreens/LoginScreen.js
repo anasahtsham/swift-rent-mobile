@@ -16,13 +16,14 @@ import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
+import { buttonWidthMedium } from "../../constants";
 
 const LoginScreen = ({ navigation }) => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -128,7 +129,7 @@ const LoginScreen = ({ navigation }) => {
                   style={{
                     fontSize: FontSizes.small,
                     color: colors.textLightBlue,
-                    textDecorationLine: "underline",
+                    padding: 10,
                   }}
                 >
                   {languages.forgotPassword}
@@ -136,10 +137,11 @@ const LoginScreen = ({ navigation }) => {
               </Pressable>
             </View>
 
-            <BigButtonGrey
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
               buttonText={languages.login}
               destinationScreen="Login As"
-              customStyle={styles.customButton}
               navigation={navigation}
             />
           </View>

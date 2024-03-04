@@ -4,13 +4,14 @@ import { loadLanguage, loadTheme } from "../../helpers";
 
 import Header from "../../components/common/header";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
+import { buttonWidthMedium } from "../../constants";
 
 const LoginAs = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);
@@ -53,21 +54,24 @@ const LoginAs = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonsContainer}>
-          <BigButtonGrey
+          <ButtonGrey
+            width={buttonWidthMedium}
+            fontSize={FontSizes.medium}
             buttonText={languages.propertyOwner}
-            customStyle={styles.customButton}
             destinationScreen="Login As"
             navigation={navigation}
           />
-          <BigButtonGrey
+          <ButtonGrey
+            width={buttonWidthMedium}
+            fontSize={FontSizes.medium}
             buttonText={languages.propertyManager}
-            customStyle={styles.customButton}
             destinationScreen="Login As"
             navigation={navigation}
           />
-          <BigButtonGrey
+          <ButtonGrey
+            width={buttonWidthMedium}
+            fontSize={FontSizes.medium}
             buttonText={languages.tenant}
-            customStyle={styles.customButton}
             destinationScreen="Login As"
             navigation={navigation}
           />

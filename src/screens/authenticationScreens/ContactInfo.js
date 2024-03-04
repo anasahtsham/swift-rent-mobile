@@ -14,7 +14,7 @@ import { icons } from "../../helpers/ImageImports";
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import SmallButtonGrey from "../../components/common/buttons/SmallButtonGrey";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -22,6 +22,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { buttonWidthMedium, buttonWidthMediumSmall } from "../../constants";
 
 const ContactInfo = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -115,12 +116,16 @@ const ContactInfo = ({ navigation }) => {
             </View> */}
 
             <View style={styles.buttonsContainer}>
-              <SmallButtonGrey
+              <ButtonGrey
+                width={buttonWidthMediumSmall}
+                fontSize={FontSizes.small}
                 buttonText={languages.back}
                 destinationScreen="Get To Know"
                 navigation={navigation}
               />
-              <SmallButtonGrey
+              <ButtonGrey
+                width={buttonWidthMediumSmall}
+                fontSize={FontSizes.small}
                 buttonText={languages.next}
                 destinationScreen="Set Up Password"
                 navigation={navigation}

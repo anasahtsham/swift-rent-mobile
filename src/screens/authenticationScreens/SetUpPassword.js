@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { loadLanguage, loadTheme } from "../../helpers";
 
 import Header from "../../components/common/header";
-import BigButtonGrey from "../../components/common/buttons/BigButtonGrey";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -12,6 +12,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
+import { buttonWidthMedium } from "../../constants";
 
 const SetUpPassword = ({ navigation }) => {
   const [password, setPassword] = useState("");
@@ -109,9 +110,10 @@ const SetUpPassword = ({ navigation }) => {
               </View> */}
             </View>
 
-            <BigButtonGrey
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
               buttonText={languages.login}
-              customStyle={styles.customButton}
               destinationScreen="Set Up Password"
               navigation={navigation}
             />

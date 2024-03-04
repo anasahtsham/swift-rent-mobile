@@ -8,9 +8,10 @@ import {
   View,
 } from "react-native";
 import { loadLanguage, loadTheme } from "../helpers";
+import { buttonWidthMedium } from "../constants";
 
-import BigButtonGrey from "../components/common/buttons/BigButtonGrey";
-import LanguageSelect from "../components/common/buttons/LanguageSelect";
+// import LanguageSelect from "../components/common/buttons/LanguageSelect";
+import ButtonGrey from "../components/common/buttons/ButtonGrey";
 import ThemeSetter from "../components/common/buttons/ThemeSetter";
 import Header from "../components/common/header";
 
@@ -45,15 +46,8 @@ const WelcomeScreen = ({ navigation }) => {
     });
   }, []);
 
-  //update language on click
-  function updateLanguage() {
-    loadLanguage().then((language) => {
-      setLanguage(language === "english" ? English : Urdu);
-    });
-  }
-
   return (
-    <View style={styles.header}>
+    <View style={styles.mainContainer}>
       <Header />
       <View style={styles.themeButtonContainer} onTouchEnd={updateTheme}>
         <ThemeSetter setColors={setColors} />
@@ -76,26 +70,18 @@ const WelcomeScreen = ({ navigation }) => {
               { color: colors.textLightBlue, fontSize: FontSizes.large },
             ]}
           >
-            {languages.welcomeTo}
-          </Text>
-          <Text
-            style={[
-              styles.welcomeText,
-              { color: colors.textLightBlue, fontSize: FontSizes.large },
-            ]}
-          >
-            {languages.swiftRent}
+            {languages.welcomeToSwiftRent}
           </Text>
         </View>
 
         <View style={styles.buttonAndLoginContainer}>
-          <BigButtonGrey
+          <ButtonGrey
+            width={buttonWidthMedium}
+            fontSize={FontSizes.medium}
             buttonText={languages.getStarted}
-            customStyle={{ width: 270 }}
             destinationScreen="Who Are You"
             navigation={navigation}
           />
-
           <Pressable
             style={styles.loginTextContainer}
             onTouchEnd={() => navigation.navigate("Login Screen")}
@@ -118,19 +104,15 @@ const WelcomeScreen = ({ navigation }) => {
             </Text>
           </Pressable>
         </View>
-
-        {/* <View onTouchEnd={updateLanguage}>
-          <LanguageSelect />
-        </View> */}
+        {/* <LanguageSelect /> */}
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
+  mainContainer: {
     flex: 1,
-    justifyContent: "flex-end",
     position: "relative",
   },
   themeButtonContainer: {
@@ -146,26 +128,28 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     position: "relative",
   },
-  logoAndTextContainer: {
-    alignItems: "center",
-  },
   SwiftRentLogoMedium: {
     width: Dimensions.get("window").width * 0.4,
     height: Dimensions.get("window").width * 0.4,
     resizeMode: "contain",
   },
+  logoAndTextContainer: {
+    alignItems: "center",
+    width: "70%",
+  },
   welcomeText: {
     fontFamily: "OpenSansBold",
+    textAlign: "center",
   },
   buttonAndLoginContainer: {
-    flex: 0.25,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
+    width: "100%",
+    flex: 0.25,
   },
   loginTextContainer: {
     padding: 10,
     flexDirection: "row",
-    width: "60%",
     justifyContent: "flex-start",
   },
   alreadyLoggedText: {
