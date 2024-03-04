@@ -94,7 +94,7 @@ const GetToKnow = ({ navigation }) => {
               <CustomDateOfBirthField
                 value={dob}
                 label={languages.DOB}
-                textFieldIcon={icons.calendar}
+                textFieldIcon={icons.calendarIcon}
                 errorText={lastNameError}
                 onChangeText={(text) => setDob(text)}
               />
