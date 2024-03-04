@@ -6,7 +6,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
-//import CustomDateOfBirthField from "../../components/common/input fields/CustomDateOfBirthField";
+import CustomDateOfBirthField from "../../components/common/input fields/CustomDateOfBirthField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
@@ -44,9 +44,9 @@ const GetToKnow = ({ navigation }) => {
   }, []);
 
   //this will be called when user selects a date and will set it in the placeholder of the CustomDateOfBirthField:
-  // const onDateSelected = (date) => {
-  //   console.log("Selected date:", date);
-  // };
+  const onDateSelected = (date) => {
+    console.log("Selected date:", date);
+  };
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
@@ -91,15 +91,13 @@ const GetToKnow = ({ navigation }) => {
                 errorText={lastNameError}
                 onChangeText={(text) => setLastName(text)}
               />
-              <CustomTextField
+              <CustomDateOfBirthField
                 value={dob}
                 label={languages.DOB}
-                textFieldIcon={icons.calendarIcon}
-                errorText={dobError}
+                textFieldIcon={icons.calendar}
+                errorText={lastNameError}
                 onChangeText={(text) => setDob(text)}
               />
-
-              {/* <CustomDateOfBirthField onDateSelected={onDateSelected} /> */}
             </View>
 
             {/* dont remove below comment */}
