@@ -151,7 +151,6 @@ const CustomDateOfBirthField = (props) => {
         <DateTimePickerModal
           minimumDate={new Date(1950, 0, 1)}
           maximumDate={maxDate}
-          isDarkModeEnabled={true}
           isVisible={isPickerOpen}
           mode="date"
           date={selectedDate}

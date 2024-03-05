@@ -3,7 +3,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 
 import SplashScreen from "./src/splash/SplashScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
@@ -16,6 +15,9 @@ import ForgotPassword from "./src/screens/authenticationScreens/ForgotPassword";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
+import OwnerTabNavigator from "./src/components/owner/OwnerTabNavigator";
+
+import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 
 const Stack = createStackNavigator();
 
@@ -60,6 +62,11 @@ export default function App() {
           <Stack.Screen name="Register As" component={RegisterAs} />
           <Stack.Screen name="Set Up Password" component={SetUpPassword} />
           <Stack.Screen name="All Set Up" component={AllSetUpSplash} />
+          <Stack.Screen
+            name="Owner Tab Navigator"
+            component={OwnerTabNavigator}
+          />
+          {/* Add the Tab.Navigator as a screen in the Stack.Navigator */}
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, BackHandler } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { loadTheme } from "../helpers";
 
@@ -18,15 +18,26 @@ const AllSetUpSplash = () => {
   }, []);
 
   // timer to send off from splash screen
-  //   const navigation = useNavigation();
-  //   useEffect(() => {
-  //     const timer = setTimeout(() => {
-  //       navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
-  //     }, 3000); // where 1000 milliseconds = 1 second
+  const navigation = useNavigation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace("Owner Tab Navigator"); // Navigate to Welcome Screen after 3 seconds
+    }, 3000); // where 1000 milliseconds = 1 second
 
-  //     // Clear the timer to prevent memory leaks
-  //     return () => clearTimeout(timer);
-  //   }, [navigation]);
+    const backAction = () => {
+      return true; // This will prevent the back action
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+
+    // Clear the timer to prevent memory leaks
+    return () => clearTimeout(timer);
+  }, [navigation]);
 
   return (
     <View style={styles.mainContainer}>
