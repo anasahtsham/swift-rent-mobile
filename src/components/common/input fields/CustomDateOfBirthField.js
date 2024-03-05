@@ -10,15 +10,22 @@ import {
   Image,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+
+import { loadTheme } from "../../../helpers";
+
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
-import { loadTheme } from "../../../helpers";
 
 const CustomDateOfBirthField = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
   const [isPickerOpen, setPickerOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  let maxDate = new Date(
+    new Date().getFullYear() - 18,
+    new Date().getMonth(),
+    new Date().getDate()
+  );
   const [formattedDate, setFormattedDate] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -142,6 +149,9 @@ const CustomDateOfBirthField = (props) => {
           </Text>
         )}
         <DateTimePickerModal
+          minimumDate={new Date(1950, 0, 1)}
+          maximumDate={maxDate}
+          isDarkModeEnabled={true}
           isVisible={isPickerOpen}
           mode="date"
           date={selectedDate}
