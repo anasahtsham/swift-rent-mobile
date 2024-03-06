@@ -1,11 +1,9 @@
-import "react-native-gesture-handler";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
 
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
+import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 
 import SplashScreen from "./src/splash/SplashScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
@@ -24,28 +22,7 @@ import SettingScreen from "./src/components/common/SettingScreen";
 const Stack = createStackNavigator();
 
 export default function App() {
-  const setLanguageToEnglish = async () => {
-    try {
-      await AsyncStorage.setItem("language", "english");
-    } catch (e) {
-      console.log(e);
-    }
-  };
   setLanguageToEnglish();
-  const clearLanguageSetting = async () => {
-    try {
-      await AsyncStorage.removeItem("language");
-      const value = await AsyncStorage.getItem("language");
-      console.log("language: " + value);
-    } catch (e) {
-      console.log(e);
-    }
-
-    console.log("cleared.");
-  };
-
-  const background = "white";
-  // clearLanguageSetting();
   if (useCustomFonts()) {
     return (
       <NavigationContainer>

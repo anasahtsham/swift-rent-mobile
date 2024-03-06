@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -13,7 +13,6 @@ import { useColors } from "../../helpers/SetColors";
 
 const Profile = () => {
   const navigation = useNavigation();
-
   const colors = useColors();
 
   return (
@@ -52,7 +51,6 @@ const Profile = () => {
             containerStyle={styles.buttonContainer}
             onPress={() => navigation.navigate("Setting Screen")}
           />
-
           <Button
             title="Button 2"
             titleStyle={{ color: colors.textSecondary }}
