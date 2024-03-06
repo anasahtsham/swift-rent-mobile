@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { loadTheme } from "../helpers";
+
+import { useColors } from "../helpers/SetColors";
 
 import SwiftRentLogoLarge from "../components/common/images/SwiftRentLogoLarge";
 import Header from "../components/common/header";
+
 import * as FontSizes from "../assets/fonts/FontSizes";
-import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
 const SplashScreen = ({ navigation }) => {
   //set theme
-  const [colors, setColors] = useState(DefaultTheme);
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
+  const colors = useColors();
 
   // timer to send off from splash screen
   useEffect(() => {
@@ -67,6 +61,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     position: "relative",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   container: {
     flex: 0.99,

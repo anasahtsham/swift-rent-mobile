@@ -1,28 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Button, //dont remove till integration
-  Dimensions,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { loadLanguage, loadTheme } from "../../helpers";
+import React, { useState, useEffect } from "react";
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import { loadLanguage } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
+import { buttonWidthMediumSmall } from "../../constants";
+import { useColors } from "../../helpers/SetColors";
 
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { buttonWidthMedium, buttonWidthMediumSmall } from "../../constants";
 
 const ContactInfo = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -30,14 +22,8 @@ const ContactInfo = ({ navigation }) => {
   const [emailError, setEmailError] = useState(null);
   const [phoneNumberError, setPhoneNumberError] = useState(null);
 
-  const [colors, setColors] = useState(DefaultTheme);
-
-  //update theme on load
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
+  //set theme
+  const colors = useColors();
 
   const [languages, setLanguages] = useState(English);
 

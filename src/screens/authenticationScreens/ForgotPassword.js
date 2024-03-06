@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { loadTheme, loadLanguage } from "../../helpers";
+
+import { loadLanguage } from "../../helpers";
+import { useColors } from "../../helpers/SetColors";
+import { buttonWidthMedium } from "../../constants";
 
 import Header from "../../components/common/header";
+import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
-import { buttonWidthMedium } from "../../constants";
 
 const ForgotPassword = ({ navigation }) => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -26,14 +26,8 @@ const ForgotPassword = ({ navigation }) => {
   const [newPassError, setNewPassError] = useState(null);
   const [confirmNewPassError, setConfirmNewPassError] = useState(null);
 
-  const [colors, setColors] = useState(DefaultTheme);
-
-  //update theme on load
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
+  //set theme
+  const colors = useColors();
 
   const [languages, setLanguages] = useState(English);
 

@@ -21,7 +21,6 @@ import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
 const WelcomeScreen = ({ navigation }) => {
-  const [languages, setLanguage] = useState(English);
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
@@ -30,6 +29,8 @@ const WelcomeScreen = ({ navigation }) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
     });
   }, []);
+
+  const [languages, setLanguage] = useState(English);
 
   //update theme on click
   function updateTheme() {

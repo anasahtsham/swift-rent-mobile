@@ -6,9 +6,15 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   header: {
-    height: 40,
-    backgroundColor: "#fff",
+    position: "absolute",
+    height: 30,
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "white",
     zIndex: 10,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 });
 

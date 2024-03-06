@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { loadLanguage, loadTheme } from "../../helpers";
+import { loadLanguage } from "../../helpers";
+import { useColors } from "../../helpers/SetColors";
 
 import Header from "../../components/common/header";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
@@ -25,14 +24,8 @@ const SetUpPassword = ({ navigation }) => {
     // Handle login logic here
   };
 
-  const [colors, setColors] = useState(DefaultTheme);
-
-  //update theme on load
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
+  //set theme
+  const colors = useColors();
 
   const [languages, setLanguages] = useState(English);
 

@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Animated, BackHandler, Easing } from "react-native";
+import { Animated, BackHandler, Easing, View } from "react-native";
 import { useEffect, useRef, useState } from "react";
 
 import { loadTheme } from "../../helpers";
@@ -91,7 +91,22 @@ const OwnerTabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveBackgroundColor: colors.bottomBarBackgroundPrimary,
-        tabBarLabelStyle: { fontSize: 16, color: colors.bottomBarText },
+        tabBarItemStyle: {
+          paddingVertical: 10,
+          height: 60,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        },
+        tabBarLabelStyle: {
+          fontSize: 16,
+          color: colors.bottomBarText,
+        },
+        tabBarStyle: {
+          position: "absolute",
+          height: 60,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        },
       }}
     >
       <BottomTab.Screen

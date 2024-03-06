@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { loadTheme, loadLanguage } from "../../helpers";
-import { icons } from "../../helpers/ImageImports";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import { loadLanguage } from "../../helpers";
+import { useColors } from "../../helpers/SetColors";
+import { icons } from "../../helpers/ImageImports";
 
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
@@ -10,12 +12,10 @@ import CustomDateOfBirthField from "../../components/common/input fields/CustomD
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
-import { buttonWidthMedium, buttonWidthMediumSmall } from "../../constants";
+import { buttonWidthMediumSmall } from "../../constants";
 
 const GetToKnow = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
@@ -25,14 +25,8 @@ const GetToKnow = ({ navigation }) => {
   const [lastNameError, setLastNameError] = useState(null);
   const [dobError, setDobError] = useState(null);
 
-  const [colors, setColors] = useState(DefaultTheme);
-
-  //update theme on load
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
+  //set theme
+  const colors = useColors();
 
   const [languages, setLanguages] = useState(English);
 
@@ -90,7 +84,7 @@ const GetToKnow = ({ navigation }) => {
                 value={dob}
                 label={languages.DOB}
                 textFieldIcon={icons.calendarIcon}
-                errorText={lastNameError}
+                errorText={dobError}
                 onChangeText={(text) => setDob(text)}
               />
             </View>

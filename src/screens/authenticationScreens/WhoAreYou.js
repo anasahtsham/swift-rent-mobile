@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { loadLanguage, loadTheme } from "../../helpers";
+
+import { loadLanguage } from "../../helpers";
+import { useColors } from "../../helpers/SetColors";
+import { buttonWidthMedium } from "../../constants";
 
 import Header from "../../components/common/header";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import { buttonWidthMedium } from "../../constants";
 
 const WhoAreYou = ({ navigation }) => {
-  const [colors, setColors] = useState(DefaultTheme);
-
-  //update theme on load
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
+  //set theme
+  const colors = useColors();
 
   const [languages, setLanguages] = useState(English);
 
