@@ -1,9 +1,17 @@
-import { Button, Pressable, Text, View } from "react-native";
+import {
+  BackHandler,
+  Button,
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useEffect, useState } from "react";
 
 import { loadTheme } from "../../helpers";
 
 import ThemeSetter from "./buttons/ThemeSetter";
+import ButtonGrey from "./buttons/ButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
@@ -16,6 +24,17 @@ const SettingScreen = ({ navigation }) => {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
     });
+
+    const backAction = () => {
+      navigation.goBack();
+      return true; // This will prevent the app from closing
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
   }, []);
 
   const handleToggle = () => {
@@ -27,19 +46,13 @@ const SettingScreen = ({ navigation }) => {
     <View
       style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
     >
-      <Pressable style={styles.button} onTouchEnd={handleToggle}>
-        <Text style={{ fontSize: FontSizes.small }}>Change Theme</Text>
-        <ThemeSetter />
-      </Pressable>
-      <Button
-        title="Go Back"
-        titleStyle={{ color: colors.textSecondary }}
-        buttonStyle={[
-          styles.button,
-          { backgroundColor: colors.backgroundSecondary },
-        ]}
-        containerStyle={styles.buttonContainer}
-        onPress={() => navigation.navigate("Owner Tab Navigator")}
+      <ThemeSetter text="Change Theme" onPress={handleToggle} width="80%" />
+      <ButtonGrey
+        fontSize={FontSizes.small}
+        width="30%"
+        buttonText="Go Back"
+        destinationScreen="Profile"
+        navigation={navigation}
       />
     </View>
   );
@@ -48,18 +61,8 @@ const SettingScreen = ({ navigation }) => {
 const styles = {
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-  },
-  button: {
-    width: "80%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 10,
-    margin: 10,
-    borderRadius: 10,
-    backgroundColor: "lightgray",
+    justifyContent: "space-around",
   },
 };
 

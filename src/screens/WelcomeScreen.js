@@ -46,8 +46,8 @@ const WelcomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.themeButtonContainer} onTouchEnd={updateTheme}>
-        <ThemeSetter />
+      <View style={styles.themeButtonContainer}>
+        <ThemeSetter onPress={updateTheme} />
       </View>
       <View
         style={[

@@ -53,16 +53,6 @@ const Profile = () => {
             containerStyle={styles.buttonContainer}
             onPress={() => navigation.navigate("Setting Screen")}
           />
-          <Button
-            title="Button 2"
-            titleStyle={{ color: colors.textSecondary }}
-            buttonStyle={[
-              styles.button,
-              { backgroundColor: colors.backgroundSecondary },
-            ]}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
         </View>
       </ScrollView>
     </SafeAreaView>

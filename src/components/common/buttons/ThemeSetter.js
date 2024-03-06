@@ -1,28 +1,30 @@
 import { useState, useEffect, useContext } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { opacityValueForButton } from "../../../constants";
 import { saveTheme, loadTheme } from "../../../helpers";
 
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const ThemeSetter = () => {
+const ThemeSetter = (props) => {
   const [isSun, setIsSun] = useState(true);
   const [colors, setColors] = useState(DefaultTheme);
 
   //update theme on load
   useEffect(() => {
     loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
       setIsSun(theme === "light");
     });
   });
 
   const toggleIcon = () => {
     const newIsSun = !isSun; //the logic that makes the image icon toggle
-    setIsSun(newIsSun);
     saveTheme(newIsSun ? "light" : "dark");
+    loadTheme().then((theme) => {
+      props.onPress(setColors(theme === "light" ? DefaultTheme : DarkTheme));
+    });
   };
 
   return (
@@ -33,10 +35,14 @@ const ThemeSetter = () => {
         {
           backgroundColor: colors.backgroundPrimary,
           borderColor: colors.borderPrimary,
+          width: props.width,
         },
       ]}
       onPress={toggleIcon}
     >
+      <Text style={{ fontSize: FontSizes.small, color: colors.textPrimary }}>
+        {props.text}
+      </Text>
       <Image
         tintColor={colors.textPrimary}
         source={
@@ -54,9 +60,11 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
     borderWidth: 2,
-    padding: 4,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   themeIcon: { width: 30, height: 30 },
 });
