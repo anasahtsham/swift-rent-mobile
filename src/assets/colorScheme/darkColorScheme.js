@@ -9,6 +9,7 @@ export const textRed = "#B00020";
 
 export const backgroundPrimary = "#000";
 export const backgroundSecondary = "#fff";
+export const backgroundWhite = "#fff";
 export const backgroundGrey = "#e6e6e6";
 
 export const borderPrimary = "#fff";
@@ -22,7 +23,7 @@ export const logoPrimary = "#fff";
 
 export const bottomBarBackgroundPrimary = "#F3F2F2";
 export const bottomBarActiveBackgroundPrimary = "#202020";
-export const bottomBarBackgroundSecondary = "#000000";
+export const bottomBarbackgroundWhite = "#000000";
 export const bottomBarIcon = "#9E9E9E";
 export const bottomBarIconActive = "#1463df";
 export const bottomBarIconInactive = "#fff";

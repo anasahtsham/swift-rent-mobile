@@ -15,6 +15,7 @@ const ThemeSetter = (props) => {
   //update theme on load
   useEffect(() => {
     loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
       setIsSun(theme === "light");
     });
   });
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    elevation: 5,
   },
   themeIcon: { width: 30, height: 30 },
 });

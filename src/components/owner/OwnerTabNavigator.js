@@ -92,18 +92,13 @@ const OwnerTabNavigator = () => {
         tabBarActiveBackgroundColor: colors.bottomBarActiveBackgroundPrimary,
         tabBarItemStyle: {
           paddingVertical: 5,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
         },
 
         tabBarLabelStyle: {
           fontSize: 16,
         },
         tabBarStyle: {
-          position: "absolute",
           height: 60,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
           backgroundColor: colors.headerAndFooterBackground,
         },
       }}
