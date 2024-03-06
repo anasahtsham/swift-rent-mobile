@@ -12,6 +12,7 @@ export const backgroundSecondary = "#fff";
 export const backgroundGrey = "#e6e6e6";
 
 export const borderPrimary = "#fff";
+export const borderSecondary = "#7C7C7C";
 export const borderGrey = "#C7C7C7";
 export const borderBlue = "#1363DF";
 
@@ -20,8 +21,12 @@ export const iconPrimary = "#fff";
 export const logoPrimary = "#fff";
 
 export const bottomBarBackgroundPrimary = "#F3F2F2";
+export const bottomBarActiveBackgroundPrimary = "#202020";
 export const bottomBarBackgroundSecondary = "#000000";
 export const bottomBarIcon = "#9E9E9E";
-export const bottomBarIconActive = "#fff";
-export const bottomBarText = "#9E9E9E";
-export const bottomBarTextActive = "#000";
+export const bottomBarIconActive = "#1463df";
+export const bottomBarIconInactive = "#fff";
+export const bottomBarText = "#fff";
+export const bottomBarTextActive = "#1463df";
+export const headerAndFooterBackground = "#000";
+export const bodyBackground = "#353535";

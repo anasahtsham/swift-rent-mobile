@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -9,14 +9,26 @@ import {
 } from "react-native";
 import { Card, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+import { useColors } from "../../helpers/SetColors";
 
 const Profile = () => {
   const navigation = useNavigation();
 
+  const colors = useColors();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Card containerStyle={styles.card}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.bodyBackground }]}
+    >
+      <View
+        style={[styles.header, { backgroundColor: colors.backgroundPrimary }]}
+      >
+        <Card
+          containerStyle={[
+            styles.card,
+            { borderColor: colors.borderSecondary },
+          ]}
+        >
           <View style={styles.userInfo}>
             <Image
               source={require("../../assets/icons/userIcon.png")}
@@ -24,212 +36,30 @@ const Profile = () => {
             />
             <Text style={styles.userName}>Ibrahim Ahtsham</Text>
           </View>
-          <Text style={styles.userDetails}>+92 317 0572192</Text>
-          <Text style={styles.userDetails}>ibrahimahthsam2002@gmail.com</Text>
+          <Text>+92 317 0572192</Text>
+          <Text>ibrahimahthsam2002@gmail.com</Text>
         </Card>
       </View>
       <ScrollView>
         <View style={styles.buttons}>
           <Button
-            title="Button 1"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
+            title="Settings"
+            titleStyle={{ color: colors.textSecondary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundSecondary },
+            ]}
             containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen1")}
+            onPress={() => navigation.navigate("Setting Screen")}
           />
+
           <Button
             title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Screen2")}
-          />
-          <Button
-            title="Button 2"
-            titleStyle={styles.buttonText}
-            buttonStyle={styles.button}
+            titleStyle={{ color: colors.textSecondary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundSecondary },
+            ]}
             containerStyle={styles.buttonContainer}
             onPress={() => navigation.navigate("Screen2")}
           />
@@ -241,29 +71,24 @@ const Profile = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "white",
-    padding: 10,
+    paddingBottom: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
-  container: { flex: 1, backgroundColor: "lightblue" },
-  card: { borderColor: "blue", borderRadius: 10, borderWidth: 2 },
+  container: { flex: 1 },
+  card: { borderRadius: 10, borderWidth: 4 },
   userInfo: { flexDirection: "row" },
   userImage: { width: 50, height: 50 },
   userName: { marginLeft: 10, fontSize: 20 },
-  userDetails: { marginLeft: 60 },
   buttons: {
     alignSelf: "center",
     width: "80%",
   },
   buttonContainer: {
-    backgroundColor: "white",
     borderRadius: 20,
     marginTop: 10,
   },
-  button: { backgroundColor: "white", borderRadius: 20 },
-
-  buttonText: { color: "black" },
+  button: { borderRadius: 20 },
 });
 
 export default Profile;

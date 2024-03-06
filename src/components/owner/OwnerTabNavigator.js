@@ -1,15 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Animated, BackHandler, Easing, View } from "react-native";
-import { useEffect, useRef, useState } from "react";
-
-import { loadTheme } from "../../helpers";
+import { Animated, BackHandler, Easing } from "react-native";
+import { useEffect, useRef } from "react";
 
 import Properties from "../common/Properties";
 import Profile from "../common/Profile";
 import Analytics from "../common/Analytics";
 import Alerts from "../common/Alerts";
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
+
+import { useColors } from "../../helpers/SetColors";
+
+import * as FontSizes from "../../assets/fonts/FontSizes";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -27,7 +27,7 @@ const AnimatedTabBarLabel = ({ focused, text, colors }) => {
   return (
     <Animated.Text
       style={{
-        fontSize: 16,
+        fontSize: FontSizes.small,
         color: focused ? colors.bottomBarTextActive : colors.bottomBarText,
         transform: [{ scale }],
       }}
@@ -50,13 +50,17 @@ const AnimatedTabBarIcon = ({ focused, source, colors }) => {
 
   return (
     <Animated.Image
-      tintColor={focused ? colors.bottomBarIconActive : colors.bottomBarIcon}
+      tintColor={
+        focused ? colors.bottomBarIconActive : colors.bottomBarIconInactive
+      }
       source={source}
       style={{
         width: 24,
         height: 24,
         resizeMode: "contain",
-        backgroundColor: focused ? colors.bottomBarBackgroundSecondary : null,
+        backgroundColor: focused
+          ? colors.bottomBarActiveBackgroundPrimary
+          : null,
         borderRadius: 50,
         paddingHorizontal: 25,
         transform: [{ scale }],
@@ -66,12 +70,7 @@ const AnimatedTabBarIcon = ({ focused, source, colors }) => {
 };
 
 const OwnerTabNavigator = () => {
-  const [colors, setColors] = useState(DefaultTheme);
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, [colors]);
+  const colors = useColors();
 
   useEffect(() => {
     const backAction = () => {
@@ -90,7 +89,7 @@ const OwnerTabNavigator = () => {
     <BottomTab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveBackgroundColor: colors.bottomBarBackgroundPrimary,
+        tabBarActiveBackgroundColor: colors.bottomBarActiveBackgroundPrimary,
         tabBarItemStyle: {
           paddingVertical: 5,
           borderTopLeftRadius: 20,
@@ -99,13 +98,13 @@ const OwnerTabNavigator = () => {
 
         tabBarLabelStyle: {
           fontSize: 16,
-          color: colors.bottomBarText,
         },
         tabBarStyle: {
           position: "absolute",
           height: 60,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
+          backgroundColor: colors.headerAndFooterBackground,
         },
       }}
     >

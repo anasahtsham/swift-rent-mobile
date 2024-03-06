@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Dimensions,
   Image,
@@ -19,6 +19,7 @@ import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
+import { useColors } from "../helpers/SetColors";
 
 const WelcomeScreen = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);
@@ -47,7 +48,7 @@ const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.themeButtonContainer} onTouchEnd={updateTheme}>
-        <ThemeSetter setColors={setColors} />
+        <ThemeSetter />
       </View>
       <View
         style={[

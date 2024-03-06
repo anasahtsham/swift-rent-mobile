@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { opacityValueForButton } from "../../../constants";
 import { saveTheme, loadTheme } from "../../../helpers";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import { useColors } from "../../../helpers/SetColors";
 
 const ThemeSetter = () => {
   const [isSun, setIsSun] = useState(true);
