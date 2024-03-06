@@ -1,13 +1,32 @@
 import { Button, Pressable, Text, View } from "react-native";
-import { useColors } from "../../helpers/SetColors";
+import { useEffect, useState } from "react";
+
 import ThemeSetter from "./buttons/ThemeSetter";
+import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import { loadTheme } from "../../helpers";
 
 const SettingScreen = ({ navigation }) => {
-  const colors = useColors();
+  const [colors, setColors] = useState(DefaultTheme);
+
+  useEffect(() => {
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }, []);
+
+  const handleToggle = () => {
+    loadTheme().then((theme) => {
+      setColors(theme === "dark" ? DarkTheme : DefaultTheme);
+    });
+  };
   return (
-    <View style={styles.container}>
-      <Pressable style={styles.button}>
-        <Text>Change Theme</Text>
+    <View
+      style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
+    >
+      <Pressable style={styles.button} onTouchEnd={handleToggle}>
+        <Text style={{ fontSize: FontSizes.small }}>Change Theme</Text>
         <ThemeSetter />
       </Pressable>
       <Button
@@ -18,7 +37,7 @@ const SettingScreen = ({ navigation }) => {
           { backgroundColor: colors.backgroundSecondary },
         ]}
         containerStyle={styles.buttonContainer}
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Owner Tab Navigator")}
       />
     </View>
   );

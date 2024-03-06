@@ -1,76 +1,86 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Animated, BackHandler, Easing } from "react-native";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import { useColors } from "../../helpers/SetColors";
 
 import Properties from "../common/Properties";
 import Profile from "../common/Profile";
 import Analytics from "../common/Analytics";
 import Alerts from "../common/Alerts";
 
-import { useColors } from "../../helpers/SetColors";
-
 import * as FontSizes from "../../assets/fonts/FontSizes";
-
-const BottomTab = createBottomTabNavigator();
-
-const AnimatedTabBarLabel = ({ focused, text, colors }) => {
-  const scale = useRef(new Animated.Value(1)).current;
-  useEffect(() => {
-    Animated.timing(scale, {
-      toValue: focused ? 1.05 : 1,
-      duration: 200,
-      easing: Easing.linear,
-      useNativeDriver: true,
-    }).start();
-  }, [focused]);
-
-  return (
-    <Animated.Text
-      style={{
-        fontSize: FontSizes.small,
-        color: focused ? colors.bottomBarTextActive : colors.bottomBarText,
-        transform: [{ scale }],
-      }}
-    >
-      {text}
-    </Animated.Text>
-  );
-};
-
-const AnimatedTabBarIcon = ({ focused, source, colors }) => {
-  const scale = useRef(new Animated.Value(1)).current;
-  useEffect(() => {
-    Animated.timing(scale, {
-      toValue: focused ? 1.05 : 1,
-      duration: 200,
-      easing: Easing.linear,
-      useNativeDriver: true,
-    }).start();
-  }, [focused]);
-
-  return (
-    <Animated.Image
-      tintColor={
-        focused ? colors.bottomBarIconActive : colors.bottomBarIconInactive
-      }
-      source={source}
-      style={{
-        width: 24,
-        height: 24,
-        resizeMode: "contain",
-        backgroundColor: focused
-          ? colors.bottomBarActiveBackgroundPrimary
-          : null,
-        borderRadius: 50,
-        paddingHorizontal: 25,
-        transform: [{ scale }],
-      }}
-    />
-  );
-};
+import { useFocusEffect } from "@react-navigation/native";
+import { loadTheme } from "../../helpers";
+import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
 const OwnerTabNavigator = () => {
-  const colors = useColors();
+  const [colors, setColors] = useState(DefaultTheme);
+
+  useFocusEffect(() => {
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  });
+
+  const BottomTab = createBottomTabNavigator();
+
+  const AnimatedTabBarLabel = ({ focused, text, colors }) => {
+    const scale = useRef(new Animated.Value(1)).current;
+    useEffect(() => {
+      Animated.timing(scale, {
+        toValue: focused ? 1.05 : 1,
+        duration: 200,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    }, [focused]);
+
+    return (
+      <Animated.Text
+        style={{
+          fontSize: FontSizes.small,
+          color: focused ? colors.bottomBarTextActive : colors.bottomBarText,
+          transform: [{ scale }],
+        }}
+      >
+        {text}
+      </Animated.Text>
+    );
+  };
+
+  const AnimatedTabBarIcon = ({ focused, source, colors }) => {
+    const scale = useRef(new Animated.Value(1)).current;
+    useEffect(() => {
+      Animated.timing(scale, {
+        toValue: focused ? 1.05 : 1,
+        duration: 200,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    }, [focused]);
+
+    return (
+      <Animated.Image
+        tintColor={
+          focused ? colors.bottomBarIconActive : colors.bottomBarIconInactive
+        }
+        source={source}
+        style={{
+          width: 24,
+          height: 24,
+          resizeMode: "contain",
+          backgroundColor: focused
+            ? colors.bottomBarActiveBackgroundPrimary
+            : null,
+          borderRadius: 50,
+          paddingHorizontal: 25,
+          transform: [{ scale }],
+        }}
+      />
+    );
+  };
 
   useEffect(() => {
     const backAction = () => {

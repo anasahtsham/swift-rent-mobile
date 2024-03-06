@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -8,12 +8,21 @@ import {
   StyleSheet,
 } from "react-native";
 import { Card, Button } from "react-native-elements";
-import { useNavigation } from "@react-navigation/native";
-import { useColors } from "../../helpers/SetColors";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+
+import { loadTheme } from "../../helpers";
+import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
 const Profile = () => {
   const navigation = useNavigation();
-  const colors = useColors();
+  const [colors, setColors] = useState(DefaultTheme);
+
+  useFocusEffect(() => {
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  });
 
   return (
     <SafeAreaView
