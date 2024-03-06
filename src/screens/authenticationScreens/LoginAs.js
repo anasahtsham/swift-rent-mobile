@@ -2,13 +2,12 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { useColors } from "../../helpers/SetColors";
 import { buttonWidthMedium } from "../../constants";
+import { useLanguages } from "../../helpers/SetLanguages";
 
-import Header from "../../components/common/header";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { useLanguages } from "../../helpers/SetLanguages";
 
 const LoginAs = ({ navigation }) => {
   //set theme
@@ -18,7 +17,6 @@ const LoginAs = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <Header />
       <View
         style={[
           styles.container,

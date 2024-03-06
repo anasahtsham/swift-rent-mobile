@@ -4,7 +4,6 @@ import { StyleSheet, View, Text } from "react-native";
 import { useColors } from "../helpers/SetColors";
 
 import SwiftRentLogoLarge from "../components/common/images/SwiftRentLogoLarge";
-import Header from "../components/common/header";
 
 import * as FontSizes from "../assets/fonts/FontSizes";
 
@@ -23,49 +22,36 @@ const SplashScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={styles.header}>
-      <Header />
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: colors.backgroundPrimary },
-        ]}
-      >
-        <SwiftRentLogoLarge />
+    <View
+      style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
+    >
+      <SwiftRentLogoLarge />
 
-        <View style={styles.textContainer}>
-          <Text
-            style={[
-              styles.splashTextSwift,
-              { color: colors.textDarkBlue, fontSize: FontSizes.extraLarge },
-            ]}
-          >
-            Swift
-          </Text>
-          <Text
-            style={[
-              styles.splashTextRent,
-              { color: colors.textLightBlue, fontSize: FontSizes.extraLarge },
-            ]}
-          >
-            Rent
-          </Text>
-        </View>
+      <View style={styles.textContainer}>
+        <Text
+          style={[
+            styles.splashTextSwift,
+            { color: colors.textDarkBlue, fontSize: FontSizes.extraLarge },
+          ]}
+        >
+          Swift
+        </Text>
+        <Text
+          style={[
+            styles.splashTextRent,
+            { color: colors.textLightBlue, fontSize: FontSizes.extraLarge },
+          ]}
+        >
+          Rent
+        </Text>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    flex: 1,
-    justifyContent: "flex-end",
-    position: "relative",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-  },
   container: {
-    flex: 0.99,
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",

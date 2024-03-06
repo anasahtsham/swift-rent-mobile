@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   Text,
   TextInput,
-  StyleSheet,
   View,
   Animated,
   Easing,
@@ -11,10 +10,12 @@ import {
   Pressable,
 } from "react-native";
 
+import { loadTheme } from "../../../helpers";
+import { inputStyles } from "./styles/CustomInputFieldStyles";
+
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
-import { loadTheme } from "../../../helpers";
 
 const CustomPasswordField = (props) => {
   const [colors, setColors] = useState(DefaultTheme);
@@ -53,22 +54,28 @@ const CustomPasswordField = (props) => {
   }, [focusAnim, isFocused, value]);
 
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
+  let width = isFocused ? 2 : 1;
   if (errorText) {
     color = "#B00020";
   }
 
   return (
     <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
-      <View style={styles.mainContainer}>
-        <View style={[styles.textInputContainer, { borderColor: color }]}>
+      <View style={inputStyles.mainContainer}>
+        <View
+          style={[
+            inputStyles.textInputContainer,
+            { borderColor: color, borderWidth: width },
+          ]}
+        >
           <View>
-            <View style={styles.container}>
-              <View style={[style, styles.inputContainer]}>
+            <View style={inputStyles.container}>
+              <View style={[style, inputStyles.inputContainer]}>
                 <TextInput
                   keyboardType={keyboardType}
                   secureTextEntry={secureTextEntry}
                   style={[
-                    styles.input,
+                    inputStyles.input,
                     {
                       color: colors.textPrimary,
                       fontSize: FontSizes.small,
@@ -89,7 +96,7 @@ const CustomPasswordField = (props) => {
 
                 <Animated.View
                   style={[
-                    styles.labelContainer,
+                    inputStyles.labelContainer,
                     {
                       backgroundColor: colors.backgroundPrimary,
                       transform: [
@@ -128,7 +135,7 @@ const CustomPasswordField = (props) => {
               <Pressable onPress={() => setSecureTextEntry(!secureTextEntry)}>
                 <Image
                   tintColor={colors.textPrimary}
-                  style={styles.icon}
+                  style={inputStyles.icon}
                   source={
                     secureTextEntry
                       ? require("../../../assets/icons/hide-password.png")
@@ -142,7 +149,7 @@ const CustomPasswordField = (props) => {
         {!!errorText && (
           <Text
             style={[
-              styles.error,
+              inputStyles.error,
               {
                 color: colors.textRed,
 
@@ -157,39 +164,5 @@ const CustomPasswordField = (props) => {
     </TouchableWithoutFeedback>
   );
 };
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    width: "85%",
-    marginBottom: 30,
-  },
-  textInputContainer: {
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderWidth: 2,
-    borderRadius: 25,
-  },
-  container: {
-    flexDirection: "row",
-  },
-  inputContainer: {
-    alignItems: "flex-start",
-    flex: 1,
-    justifyContent: "center",
-  },
-  input: { flex: 1 },
-  labelContainer: {
-    position: "absolute",
-    paddingHorizontal: 8,
-  },
-  error: {
-    marginTop: 4,
-    marginLeft: 12,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-  },
-});
 
 export default CustomPasswordField;

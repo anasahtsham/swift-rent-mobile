@@ -7,7 +7,6 @@ import { buttonWidthMediumSmall } from "../../constants";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { useColors } from "../../helpers/SetColors";
 
-import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
@@ -27,7 +26,6 @@ const ContactInfo = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      <Header />
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={{ flexGrow: 1 }}

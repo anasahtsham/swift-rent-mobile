@@ -4,7 +4,6 @@ import { useColors } from "../../helpers/SetColors";
 import { buttonWidthMedium } from "../../constants";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-import Header from "../../components/common/header";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
@@ -18,7 +17,6 @@ const WhoAreYou = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <Header />
       <View
         style={[
           styles.container,

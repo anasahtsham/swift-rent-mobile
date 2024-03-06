@@ -14,7 +14,6 @@ import { useColors } from "../../helpers/SetColors";
 import { buttonWidthMedium } from "../../constants";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
@@ -40,7 +39,6 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      <Header />
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={{ flexGrow: 1 }}

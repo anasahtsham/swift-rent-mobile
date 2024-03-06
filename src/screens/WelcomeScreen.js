@@ -13,7 +13,6 @@ import { buttonWidthMedium } from "../constants";
 
 import ButtonGrey from "../components/common/buttons/ButtonGrey";
 import ThemeSetter from "../components/common/buttons/ThemeSetter";
-import Header from "../components/common/header";
 
 import * as FontSizes from "../assets/fonts/FontSizes";
 import * as English from "../assets/fonts/displaytext/EN/en-pack";
@@ -47,7 +46,6 @@ const WelcomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <Header />
       <View style={styles.themeButtonContainer} onTouchEnd={updateTheme}>
         <ThemeSetter setColors={setColors} />
       </View>

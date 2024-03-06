@@ -6,7 +6,6 @@ import { useColors } from "../../helpers/SetColors";
 import { buttonWidthMedium } from "../../constants";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-import Header from "../../components/common/header";
 import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
@@ -31,7 +30,6 @@ const ForgotPassword = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      <Header />
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={{ flexGrow: 1 }}

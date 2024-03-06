@@ -3,6 +3,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
+import { useColors } from "./src/helpers/SetColors";
+import { StatusBar } from "react-native";
 
 import SplashScreen from "./src/splash/SplashScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
@@ -16,8 +19,6 @@ import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import OwnerTabNavigator from "./src/components/owner/OwnerTabNavigator";
-
-import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 
 const Stack = createStackNavigator();
 
@@ -41,10 +42,13 @@ export default function App() {
 
     console.log("cleared.");
   };
+
+  const background = "white";
   // clearLanguageSetting();
   if (useCustomFonts()) {
     return (
       <NavigationContainer>
+        <StatusBar barStyle="light-content" />
         <Stack.Navigator
           screenOptions={{
             headerShown: false,

@@ -4,7 +4,6 @@ import {
   TextInput,
   View,
   TouchableWithoutFeedback,
-  StyleSheet,
   Animated,
   Easing,
   Image,
@@ -12,6 +11,7 @@ import {
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { loadTheme } from "../../../helpers";
+import { inputStyles } from "./styles/CustomInputFieldStyles";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
@@ -80,20 +80,26 @@ const CustomDateOfBirthField = (props) => {
   };
 
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
+  let width = isFocused ? 2 : 1;
   if (errorText) {
     color = "#B00020";
   }
 
   return (
     <TouchableWithoutFeedback onPress={showDatePicker}>
-      <View style={[styles.mainContainer, style]}>
-        <View style={[styles.textInputContainer, { borderColor: color }]}>
-          <View style={styles.container}>
-            <View style={[style, styles.inputContainer]}>
+      <View style={[inputStyles.mainContainer, style]}>
+        <View
+          style={[
+            inputStyles.textInputContainer,
+            { borderColor: color, borderWidth: width },
+          ]}
+        >
+          <View style={inputStyles.container}>
+            <View style={[style, inputStyles.inputContainer]}>
               <TextInput
                 ref={inputRef}
                 style={[
-                  styles.input,
+                  inputStyles.input,
                   {
                     color: colors.textPrimary,
                     fontSize: FontSizes.small,
@@ -104,7 +110,7 @@ const CustomDateOfBirthField = (props) => {
               />
               <Animated.View
                 style={[
-                  styles.labelContainer,
+                  inputStyles.labelContainer,
                   {
                     backgroundColor: colors.backgroundPrimary,
                     transform: [
@@ -139,12 +145,12 @@ const CustomDateOfBirthField = (props) => {
             <Image
               tintColor={color}
               source={textFieldIcon}
-              style={styles.icon}
+              style={inputStyles.icon}
             />
           </View>
         </View>
         {!!errorText && (
-          <Text style={[styles.error, { color: colors.textRed }]}>
+          <Text style={[inputStyles.error, { color: colors.textRed }]}>
             {errorText}
           </Text>
         )}
@@ -161,39 +167,5 @@ const CustomDateOfBirthField = (props) => {
     </TouchableWithoutFeedback>
   );
 };
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    width: "85%",
-    marginBottom: 30,
-  },
-  textInputContainer: {
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderWidth: 2,
-    borderRadius: 25,
-  },
-  container: {
-    flexDirection: "row",
-  },
-  inputContainer: {
-    alignItems: "flex-start",
-    flex: 1,
-    justifyContent: "center",
-  },
-  input: { flex: 1 },
-  labelContainer: {
-    position: "absolute",
-    paddingHorizontal: 8,
-  },
-  error: {
-    marginTop: 4,
-    marginLeft: 12,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-  },
-});
 
 export default CustomDateOfBirthField;

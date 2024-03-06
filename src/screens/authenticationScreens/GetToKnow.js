@@ -7,7 +7,6 @@ import { icons } from "../../helpers/ImageImports";
 import { buttonWidthMediumSmall } from "../../constants";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
 import CustomDateOfBirthField from "../../components/common/input fields/CustomDateOfBirthField";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
@@ -30,7 +29,6 @@ const GetToKnow = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      <Header />
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={{ flexGrow: 1 }}

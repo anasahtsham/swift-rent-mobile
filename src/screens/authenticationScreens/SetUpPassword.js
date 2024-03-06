@@ -6,11 +6,10 @@ import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-import Header from "../../components/common/header";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
 
 const SetUpPassword = ({ navigation }) => {
   const [password, setPassword] = useState("");
@@ -31,7 +30,6 @@ const SetUpPassword = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      <Header />
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={{ flexGrow: 1 }}

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, BackHandler } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useColors } from "../helpers/SetColors";
 
-import Header from "../components/common/header";
 import * as FontSizes from "../assets/fonts/FontSizes";
 
 const AllSetUpSplash = () => {
@@ -33,40 +32,29 @@ const AllSetUpSplash = () => {
   }, [navigation]);
 
   return (
-    <View style={styles.mainContainer}>
-      <Header />
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: colors.backgroundPrimary },
-        ]}
-      >
-        <View style={styles.textContainer}>
-          <Text
-            style={[
-              styles.splashText,
-              {
-                color: colors.textLightBlue,
-                fontSize: FontSizes.extraExtraLarge,
-              },
-            ]}
-          >
-            You’re all set!
-          </Text>
-        </View>
+    <View
+      style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
+    >
+      <View style={styles.textContainer}>
+        <Text
+          style={[
+            styles.splashText,
+            {
+              color: colors.textLightBlue,
+              fontSize: FontSizes.extraExtraLarge,
+            },
+          ]}
+        >
+          You’re all set!
+        </Text>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    position: "relative",
-  },
   container: {
-    flex: 0.99,
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
