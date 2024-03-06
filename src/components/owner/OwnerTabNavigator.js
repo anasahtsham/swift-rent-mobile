@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Animated, BackHandler, Easing } from "react-native";
 import { useEffect, useRef, useState } from "react";
 
-import { useColors } from "../../helpers/SetColors";
+import { useColorsOnFocus } from "../../helpers/SetColors";
 
 import Properties from "../common/Properties";
 import Profile from "../common/Profile";
@@ -10,19 +10,9 @@ import Analytics from "../common/Analytics";
 import Alerts from "../common/Alerts";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { useFocusEffect } from "@react-navigation/native";
-import { loadTheme } from "../../helpers";
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 
 const OwnerTabNavigator = () => {
-  const [colors, setColors] = useState(DefaultTheme);
-
-  useFocusEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  });
+  const colors = useColorsOnFocus();
 
   const BottomTab = createBottomTabNavigator();
 

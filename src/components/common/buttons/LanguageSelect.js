@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+
 import { opacityValueForButton } from "../../../constants";
 import { loadLanguage, loadTheme, saveLanguage } from "../../../helpers";
+
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as English from "../../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../../assets/fonts/displaytext/UR/ur-pack";

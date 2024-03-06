@@ -1,11 +1,13 @@
 import { Button, Pressable, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 
+import { loadTheme } from "../../helpers";
+
 import ThemeSetter from "./buttons/ThemeSetter";
+
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { loadTheme } from "../../helpers";
 
 const SettingScreen = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);

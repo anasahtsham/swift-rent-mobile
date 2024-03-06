@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+
 import { loadTheme } from ".";
+
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
@@ -15,8 +18,14 @@ export const useColors = () => {
   return colors;
 };
 
-const SetColors = () => {
-  const colors = useColors();
-};
+export const useColorsOnFocus = () => {
+  const [colors, setColors] = useState(DefaultTheme);
 
-export default SetColors;
+  useFocusEffect(() => {
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  });
+
+  return colors;
+};

@@ -19,7 +19,6 @@ import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
-import { useColors } from "../helpers/SetColors";
 
 const WelcomeScreen = ({ navigation }) => {
   const [colors, setColors] = useState(DefaultTheme);

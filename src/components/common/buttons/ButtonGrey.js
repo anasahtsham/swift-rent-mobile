@@ -1,7 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { opacityValueForButton } from "../../../constants";
 import { useEffect, useState } from "react";
+
 import { loadTheme } from "../../../helpers";
+import { opacityValueForButton } from "../../../constants";
 
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
