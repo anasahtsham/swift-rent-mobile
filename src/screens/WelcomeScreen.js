@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+
 import { loadLanguage, loadTheme } from "../helpers";
 import { buttonWidthMedium } from "../constants";
 
@@ -25,19 +26,10 @@ const WelcomeScreen = ({ navigation }) => {
 
   //update theme on load
   useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
+    updateTheme();
   }, []);
 
   const [languages, setLanguage] = useState(English);
-
-  //update theme on click
-  function updateTheme() {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }
 
   //update language on load
   useEffect(() => {
@@ -45,6 +37,13 @@ const WelcomeScreen = ({ navigation }) => {
       setLanguage(language === "english" ? English : Urdu);
     });
   }, []);
+
+  //update theme on clicking toggle theme button
+  function updateTheme() {
+    loadTheme().then((theme) => {
+      setColors(theme === "light" ? DefaultTheme : DarkTheme);
+    });
+  }
 
   return (
     <View style={styles.mainContainer}>

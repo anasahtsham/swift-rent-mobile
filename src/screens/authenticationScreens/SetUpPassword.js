@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { loadLanguage } from "../../helpers";
+
+import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
+import { useLanguages } from "../../helpers/SetLanguages";
 
 import Header from "../../components/common/header";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
 import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
-import { buttonWidthMedium } from "../../constants";
 
 const SetUpPassword = ({ navigation }) => {
   const [password, setPassword] = useState("");
@@ -27,14 +26,8 @@ const SetUpPassword = ({ navigation }) => {
   //set theme
   const colors = useColors();
 
-  const [languages, setLanguages] = useState(English);
-
-  //update language on load
-  useEffect(() => {
-    loadLanguage().then((language) => {
-      setLanguages(language === "english" ? English : Urdu);
-    });
-  }, []);
+  //set languages
+  const languages = useLanguages();
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>

@@ -1,29 +1,20 @@
-import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { loadLanguage } from "../../helpers";
+
 import { useColors } from "../../helpers/SetColors";
+import { buttonWidthMedium } from "../../constants";
 
 import Header from "../../components/common/header";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import { buttonWidthMedium } from "../../constants";
+import { useLanguages } from "../../helpers/SetLanguages";
 
 const LoginAs = ({ navigation }) => {
   //set theme
   const colors = useColors();
 
-  const [languages, setLanguages] = useState(English);
-
-  //update language on load
-  useEffect(() => {
-    loadLanguage().then((language) => {
-      setLanguages(language === "english" ? English : Urdu);
-    });
-  }, []);
+  const languages = useLanguages();
 
   return (
     <View style={styles.mainContainer}>

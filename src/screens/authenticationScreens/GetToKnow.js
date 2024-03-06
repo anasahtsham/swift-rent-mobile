@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { loadLanguage } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { icons } from "../../helpers/ImageImports";
+import { buttonWidthMediumSmall } from "../../constants";
+import { useLanguages } from "../../helpers/SetLanguages";
 
 import Header from "../../components/common/header";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
@@ -13,9 +14,6 @@ import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMed
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
-import { buttonWidthMediumSmall } from "../../constants";
 
 const GetToKnow = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
@@ -28,14 +26,7 @@ const GetToKnow = ({ navigation }) => {
   //set theme
   const colors = useColors();
 
-  const [languages, setLanguages] = useState(English);
-
-  //update language on load
-  useEffect(() => {
-    loadLanguage().then((language) => {
-      setLanguages(language === "english" ? English : Urdu);
-    });
-  }, []);
+  const languages = useLanguages();
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
