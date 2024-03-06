@@ -4,7 +4,7 @@ import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 
 export const useLanguages = () => {
-  const [languages, setLanguages] = useState(DefaultTheme);
+  const [languages, setLanguages] = useState(English);
 
   useEffect(() => {
     loadLanguage().then((language) => {
@@ -16,7 +16,7 @@ export const useLanguages = () => {
 };
 
 const SetLanuages = () => {
-  const languages = useLanguages();
+  useLanguages();
 };
 
 export default SetLanuages;
