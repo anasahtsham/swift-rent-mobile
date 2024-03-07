@@ -50,7 +50,7 @@ const ProfileHeader = () => {
             fontSize: FontSizes.small,
           }}
         >
-          ibrahimahthsam2002@gmail.com
+          ibrahimahtsham2002@gmail.com
         </Text>
       </View>
     </View>
