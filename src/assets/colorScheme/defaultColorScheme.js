@@ -31,3 +31,7 @@ export const bottomBarText = "#000";
 export const bottomBarTextActive = "#47b5ff";
 export const headerAndFooterBackground = "#fff";
 export const bodyBackground = "#47b5ff";
+
+export const buttonBackgroundPrimary = "#e6e6e6";
+export const buttonBorderPrimary = "#9E9E9E";
+export const buttonTextPrimary = "#000000";

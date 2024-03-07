@@ -1,15 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useEffect, useState } from "react";
 
-import { loadTheme } from "../../../helpers";
 import { opacityValueForButton } from "../../../constants";
 
-import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { useColorsOnFocus } from "../../../helpers/SetColors";
 
 const ButtonGrey = (props) => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const colors = useColorsOnFocus();
 
   if (props.fontSize === undefined) {
     throw new Error('The prop "fontSize" is required in ButtonGrey component');
@@ -18,13 +15,6 @@ const ButtonGrey = (props) => {
   if (props.width === undefined) {
     throw new Error('The prop "width" is required in ButtonGrey component');
   }
-
-  //update theme on load
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
 
   const handlePress = () => {
     props.navigation.navigate(props.destinationScreen);
@@ -35,8 +25,8 @@ const ButtonGrey = (props) => {
       style={[
         styles.button,
         {
-          backgroundColor: colors.backgroundGrey,
-          borderColor: colors.borderGrey,
+          backgroundColor: colors.buttonBackgroundPrimary,
+          borderColor: colors.buttonBorderPrimary,
           width: props.width,
         },
       ]}
@@ -47,7 +37,7 @@ const ButtonGrey = (props) => {
         style={[
           styles.buttonText,
           {
-            color: colors.textBlack,
+            color: colors.buttonTextPrimary,
             fontSize: props.fontSize,
           },
         ]}
