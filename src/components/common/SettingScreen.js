@@ -11,7 +11,7 @@ import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
 const SettingScreen = ({ navigation }) => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
 
   useEffect(() => {
     loadTheme().then((theme) => {

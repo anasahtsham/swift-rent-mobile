@@ -19,14 +19,15 @@ import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
+import { useFocusEffect } from "@react-navigation/native";
 
 const WelcomeScreen = ({ navigation }) => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
 
   //update theme on load
-  useEffect(() => {
+  useFocusEffect(() => {
     updateTheme();
-  }, []);
+  });
 
   const [languages, setLanguage] = useState(English);
 

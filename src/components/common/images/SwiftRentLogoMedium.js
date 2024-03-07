@@ -6,7 +6,7 @@ import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 
 const SwiftRentLogoMedium = () => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
 
   //update theme on load
   useEffect(() => {

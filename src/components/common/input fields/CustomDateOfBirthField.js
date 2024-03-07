@@ -18,7 +18,7 @@ import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 
 const CustomDateOfBirthField = (props) => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
   const [isPickerOpen, setPickerOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   let maxDate = new Date(

@@ -10,7 +10,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 const ThemeSetter = (props) => {
   const [isSun, setIsSun] = useState(true);
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
 
   //update theme on load
   useEffect(() => {

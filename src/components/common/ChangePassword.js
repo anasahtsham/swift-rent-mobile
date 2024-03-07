@@ -24,9 +24,10 @@ import { useLanguages } from "../../helpers/SetLanguages";
 import CustomTextField from "./input fields/CustomTextField";
 import CustomPasswordField from "./input fields/CustomPasswordField";
 import { buttonWidthMedium } from "../../constants";
+import { useColors } from "../../helpers/SetColors";
 
 const ChangePassword = ({ navigation }) => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const colors = useColors();
   const languages = useLanguages();
 
   const [oldPassword, setOldPassword] = useState("");
@@ -38,10 +39,6 @@ const ChangePassword = ({ navigation }) => {
   const [confirmNewPasswordError, setConfirmNewPasswordError] = useState(null);
 
   useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing

@@ -14,7 +14,7 @@ const LanguageSelect = () => {
   const [isEnglish, setIsEnglish] = useState(true);
 
   const [languages, setLanguage] = useState(English);
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
 
   //update theme on load
   useEffect(() => {

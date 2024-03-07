@@ -7,7 +7,7 @@ import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 
 export const useColors = () => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
 
   useEffect(() => {
     loadTheme().then((theme) => {
@@ -19,7 +19,7 @@ export const useColors = () => {
 };
 
 export const useColorsOnFocus = () => {
-  const [colors, setColors] = useState(DefaultTheme);
+  const [colors, setColors] = useState(DarkTheme);
 
   useFocusEffect(() => {
     loadTheme().then((theme) => {
