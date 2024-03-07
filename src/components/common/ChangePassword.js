@@ -104,7 +104,7 @@ const ChangePassword = ({ navigation }) => {
               width={buttonWidthMedium}
               fontSize={FontSizes.medium}
               buttonText={languages.change}
-              destinationScreen="Forgot Password"
+              destinationScreen="Change Password"
               navigation={navigation}
             />
           </View>
