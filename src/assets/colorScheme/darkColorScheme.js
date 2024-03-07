@@ -13,9 +13,9 @@ export const backgroundWhite = "#fff";
 export const backgroundGrey = "#e6e6e6";
 
 export const borderPrimary = "#fff";
-export const borderSecondary = "#7C7C7C";
+export const borderSecondary = "#9E9E9E";
 export const borderGrey = "#C7C7C7";
-export const borderBlue = "#1363DF";
+export const borderBlue = "#1463df";
 
 export const iconPrimary = "#fff";
 
