@@ -19,6 +19,36 @@ const Profile = () => {
       <ScrollView>
         <View style={styles.buttons}>
           <Button
+            title="Change Password"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate("Change Password")}
+          />
+          <Button
+            title="FAQ's"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate("FAQ Screen")}
+          />
+          <Button
+            title="My Ratings"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate("Setting Screen")}
+          />
+          <Button
             title="Settings"
             titleStyle={{ color: colors.textPrimary }}
             buttonStyle={[
@@ -28,7 +58,18 @@ const Profile = () => {
             containerStyle={styles.buttonContainer}
             onPress={() => navigation.navigate("Setting Screen")}
           />
+          <Button
+            title="Logout"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate("Welcome Screen")}
+          />
         </View>
+        <View style={{ height: 60 }}></View>
       </ScrollView>
     </SafeAreaView>
   );

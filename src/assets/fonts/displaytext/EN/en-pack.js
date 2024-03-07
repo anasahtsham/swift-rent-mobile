@@ -53,3 +53,8 @@ export const registerAs = "Register As:";
 export const nowLetsSetUpYourPassword = "Now let’s set up your password";
 export const confirmPassword = "Confirm Password";
 export const continueText = "Continue";
+
+//change pass screen
+
+export const oldPassword = "Old Password";
+export const changeYourPassword = "Change Your Password";

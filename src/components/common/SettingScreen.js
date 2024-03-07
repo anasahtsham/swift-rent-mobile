@@ -1,11 +1,4 @@
-import {
-  BackHandler,
-  Button,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { BackHandler, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import { loadTheme } from "../../helpers";
