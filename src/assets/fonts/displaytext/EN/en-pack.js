@@ -58,3 +58,7 @@ export const continueText = "Continue";
 
 export const oldPassword = "Old Password";
 export const changeYourPassword = "Change Your Password";
+
+//faq's screen
+
+export const faqs = "FAQ's";

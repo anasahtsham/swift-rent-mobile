@@ -33,17 +33,35 @@ const FAQScreen = ({ navigation }) => {
       content:
         "You can change your tenant by first removing your old tenant and then adding a new one.",
     },
+    {
+      title: "What are the requirements for property registration?",
+      content:
+        "To register a property, you need to provide proof of ownership, identification documents, and pay the necessary fees.",
+    },
+    {
+      title: "How do I renew my tenant agreement?",
+      content:
+        "Tenant agreements can usually be renewed by contacting your landlord or property management company before the expiration date and requesting a renewal.",
+    },
+    {
+      title: "What should I do if I want to terminate my tenancy?",
+      content:
+        "To terminate your tenancy, you typically need to provide written notice to your landlord or property management company as per the terms of your rental agreement.",
+    },
     // Add more FAQs here
   ];
 
   const renderHeader = (section, _, isActive) => {
     return (
-      <View style={styles.header}>
+      <View style={styles.accordionHeader}>
         <Text
           style={[
-            styles.headerText,
+            styles.accordionHeaderText,
             isActive
-              ? { color: colors.textDarkBlue, fontSize: FontSizes.small }
+              ? {
+                  color: colors.textDarkBlue,
+                  fontSize: FontSizes.small,
+                }
               : { color: colors.textPrimary, fontSize: FontSizes.small },
           ]}
         >
@@ -65,10 +83,10 @@ const FAQScreen = ({ navigation }) => {
 
   const renderContent = (section, _, isActive) => {
     return (
-      <View style={styles.content}>
+      <View style={styles.accordionContent}>
         <Text
           style={[
-            styles.contentText,
+            styles.accordionContentText,
             { color: colors.textPrimary, fontSize: FontSizes.small },
           ]}
         >
@@ -86,31 +104,35 @@ const FAQScreen = ({ navigation }) => {
     <View
       style={[styles.container, { backgroundColor: colors.backgroundPrimary }]}
     >
-      <View style={styles.logoAndTextContainer}>
+      <View style={styles.headerTextContainer}>
         <Text
           style={[
             styles.text,
             { fontSize: FontSizes.large, color: colors.textPrimary },
           ]}
         >
-          {languages.changeYourPassword}
+          {languages.faqs}
         </Text>
       </View>
-      <Accordion
-        touchableProps={{ underlayColor: "transparent" }}
-        containerStyle={{
-          width: "80%",
-        }}
-        sectionContainerStyle={[
-          styles.accordionContainer,
-          { borderColor: colors.borderBlue },
-        ]}
-        sections={faqs}
-        activeSections={activeSections}
-        renderHeader={renderHeader}
-        renderContent={renderContent}
-        onChange={updateSections}
-      />
+      <View style={{ height: "70%", width: "100%" }}>
+        <Accordion
+          renderAsFlatList={true}
+          touchableProps={{ underlayColor: "transparent" }}
+          containerStyle={{
+            width: "100%",
+          }}
+          sectionContainerStyle={[
+            styles.accordionSectionContainer,
+            { borderColor: colors.borderBlue },
+          ]}
+          sections={faqs}
+          activeSections={activeSections}
+          renderHeader={renderHeader}
+          renderContent={renderContent}
+          onChange={updateSections}
+        />
+      </View>
+
       <ButtonGrey
         fontSize={FontSizes.small}
         width="30%"
@@ -126,27 +148,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
   },
-  logoAndTextContainer: {
+  headerTextContainer: {
     alignItems: "center",
-    width: "70%",
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
-  accordionContainer: {
+  accordionSectionContainer: {
+    alignSelf: "center",
     borderWidth: 4,
     borderRadius: 20,
     marginVertical: 10,
+    width: "80%",
   },
-  header: {
+  accordionHeader: {
     padding: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  headerText: { fontFamily: "OpenSansBold" },
-  content: { padding: 20 },
-  contentText: { fontFamily: "OpenSansRegular" },
+  accordionHeaderText: { fontFamily: "OpenSansBold", flex: 0.9 },
+  accordionContent: { padding: 20 },
+  accordionContentText: { fontFamily: "OpenSansRegular" },
 });
 
 export default FAQScreen;
