@@ -11,11 +11,17 @@ export const backgroundPrimary = "#000";
 export const backgroundSecondary = "#fff";
 export const backgroundWhite = "#fff";
 export const backgroundGrey = "#e6e6e6";
+export const backgroundRed = "#ff0c0c";
+export const backgroundYellow = "#ffce00";
+export const backgroundGreen = "#00bf63";
 
 export const borderPrimary = "#fff";
 export const borderSecondary = "#9E9E9E";
 export const borderGrey = "#C7C7C7";
 export const borderBlue = "#1463df";
+export const borderRed = "#ff0c0c";
+export const borderYellow = "#ffce00";
+export const borderGreen = "#00bf63";
 
 export const iconPrimary = "#fff";
 
