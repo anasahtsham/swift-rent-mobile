@@ -14,7 +14,7 @@ const Analytics = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <AnalyticsHeader />
+      <AnalyticsHeader colors={colors} />
       <View
         style={{ paddingTop: 20, paddingHorizontal: 20, paddingBottom: 10 }}
       >
@@ -32,6 +32,7 @@ const Analytics = () => {
         <View style={styles.buttons}>
           {dummyData.map((data) => (
             <AnalyticsButton
+              colors={colors}
               key={data.id}
               month={data.month}
               income={data.incomingPayment}

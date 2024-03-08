@@ -4,8 +4,8 @@ import { styles } from "./styles";
 import { icons } from "../../../../helpers/ImageImports";
 import { opacityValueForButton } from "../../../../constants";
 
-const PendingRentsCard = () => {
-  const colors = useColorsOnFocus();
+const PendingRentsCard = (props) => {
+  const colors = props.colors;
   return (
     <TouchableOpacity activeOpacity={opacityValueForButton} style={{ flex: 1 }}>
       <View

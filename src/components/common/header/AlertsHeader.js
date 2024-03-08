@@ -25,8 +25,8 @@ const HeaderButton = ({ colors, borderColor, children }) => (
   </TouchableOpacity>
 );
 
-const AlertsHeader = () => {
-  const colors = useColorsOnFocus();
+const AlertsHeader = (props) => {
+  const colors = props.colors;
   return (
     <View
       style={[

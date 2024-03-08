@@ -5,7 +5,7 @@ import { useColorsOnFocus } from "../../../helpers/SetColors";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 export const AlertButton = (props) => {
-  const colors = useColorsOnFocus();
+  const colors = props.colors;
 
   function getBackgroundColor(notificationType) {
     switch (notificationType) {

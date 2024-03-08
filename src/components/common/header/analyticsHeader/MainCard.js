@@ -5,8 +5,8 @@ import { icons } from "../../../../helpers/ImageImports";
 import { opacityValueForButton } from "../../../../constants/index";
 import { formatNumber } from "../../../../helpers";
 
-const MainCard = () => {
-  const colors = useColorsOnFocus();
+const MainCard = (props) => {
+  const colors = props.colors;
   const InfoRow = ({ title, value, imageSource, tintColor }) => {
     return (
       <View>

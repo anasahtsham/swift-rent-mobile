@@ -7,7 +7,7 @@ import { icons } from "../../../helpers/ImageImports";
 import { formatNumber } from "../../../helpers";
 
 export const AnalyticsButton = (props) => {
-  const colors = useColorsOnFocus();
+  const colors = props.colors;
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}

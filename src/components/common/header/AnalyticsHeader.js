@@ -5,8 +5,8 @@ import MainCard from "./analyticsHeader/MainCard";
 import RecievedRentsCard from "./analyticsHeader/RecievedRentsCard";
 import PendingRentsCard from "./analyticsHeader/PendingRentsCard";
 
-const AnalyticsHeader = () => {
-  const colors = useColorsOnFocus();
+const AnalyticsHeader = (props) => {
+  const colors = props.colors;
 
   return (
     <View
@@ -16,12 +16,12 @@ const AnalyticsHeader = () => {
       ]}
     >
       <View style={styles.mainCardContainer}>
-        <MainCard />
+        <MainCard colors={colors} />
       </View>
       <View style={styles.recievedAndPendingRentsContainer}>
-        <RecievedRentsCard />
+        <RecievedRentsCard colors={colors} />
         <View style={{ height: 10 }}></View>
-        <PendingRentsCard />
+        <PendingRentsCard colors={colors} />
       </View>
     </View>
   );

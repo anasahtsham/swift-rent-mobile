@@ -16,11 +16,12 @@ const Alerts = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <AlertsHeader />
+      <AlertsHeader colors={colors} />
       <ScrollView>
         <View style={styles.buttons}>
           {alertsData.map((alert) => (
             <AlertButton
+              colors={colors}
               key={alert.id}
               dateAndYear={alert.dateAndYear}
               time={alert.time}
