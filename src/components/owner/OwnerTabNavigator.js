@@ -21,7 +21,7 @@ const OwnerTabNavigator = () => {
     useEffect(() => {
       Animated.timing(scale, {
         toValue: focused ? 1.05 : 1,
-        duration: 200,
+        duration: 300,
         easing: Easing.linear,
         useNativeDriver: true,
       }).start();
@@ -45,7 +45,7 @@ const OwnerTabNavigator = () => {
     useEffect(() => {
       Animated.timing(scale, {
         toValue: focused ? 1.05 : 1,
-        duration: 200,
+        duration: 300,
         easing: Easing.linear,
         useNativeDriver: true,
       }).start();
@@ -58,14 +58,11 @@ const OwnerTabNavigator = () => {
         }
         source={source}
         style={{
-          width: 24,
-          height: 24,
-          resizeMode: "contain",
+          width: 25,
+          height: 25,
           backgroundColor: focused
             ? colors.bottomBarActiveBackgroundPrimary
             : null,
-          borderRadius: 50,
-          paddingHorizontal: 25,
           transform: [{ scale }],
         }}
       />
