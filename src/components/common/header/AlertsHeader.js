@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useColorsOnFocus } from "../../../helpers/SetColors";
+
+import { opacityValueForButton } from "../../../constants";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
 
 const HeaderButton = ({ colors, borderColor, children }) => (
   <TouchableOpacity

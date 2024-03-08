@@ -15,7 +15,7 @@ const Profile = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <ProfileHeader />
+      <ProfileHeader colors={colors} />
       <ScrollView>
         <View style={styles.buttons}>
           <Button

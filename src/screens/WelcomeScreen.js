@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { loadLanguage, loadTheme } from "../helpers";
 import { buttonWidthMedium } from "../constants";
@@ -19,7 +20,6 @@ import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
-import { useFocusEffect } from "@react-navigation/native";
 
 const WelcomeScreen = ({ navigation }) => {
   const [colors, setColors] = useState(DarkTheme);

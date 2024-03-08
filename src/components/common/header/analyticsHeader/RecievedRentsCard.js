@@ -1,5 +1,5 @@
 import { Image, Text, Touchable, TouchableOpacity, View } from "react-native";
-import { useColorsOnFocus } from "../../../../helpers/SetColors";
+
 import { styles } from "./styles";
 import { icons } from "../../../../helpers/ImageImports";
 import { opacityValueForButton } from "../../../../constants";

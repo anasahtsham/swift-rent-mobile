@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
 import { opacityValueForButton } from "../../../constants";
-import { useColorsOnFocus } from "../../../helpers/SetColors";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 

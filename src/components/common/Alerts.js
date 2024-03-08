@@ -1,11 +1,12 @@
 import React from "react";
 import { SafeAreaView, ScrollView, View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { AlertButton } from "./buttons/AlertButton";
 
+import { AlertButton } from "./buttons/AlertButton";
 import { useColorsOnFocus } from "../../helpers/SetColors";
-import AlertsHeader from "./header/AlertsHeader";
 import { alertsData } from "../../helpers/AlertsData";
+
+import AlertsHeader from "./header/AlertsHeader";
 
 const Alerts = () => {
   const navigation = useNavigation();

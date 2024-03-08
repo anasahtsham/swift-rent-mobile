@@ -1,10 +1,9 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { useColorsOnFocus } from "../../../helpers/SetColors";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const ProfileHeader = () => {
-  const colors = useColorsOnFocus();
+const ProfileHeader = (props) => {
+  const colors = props.colors;
   return (
     <View
       style={[

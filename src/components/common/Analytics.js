@@ -1,9 +1,12 @@
-import AnalyticsButton from "./buttons/AnalyticsButton";
-import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
-import AnalyticsHeader from "./header/AnalyticsHeader";
-import { useColorsOnFocus } from "../../helpers/SetColors";
 import { useNavigation } from "@react-navigation/native";
+import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+
+import { useColorsOnFocus } from "../../helpers/SetColors";
 import { dummyData } from "../../helpers/AnalyticsData";
+
+import AnalyticsHeader from "./header/AnalyticsHeader";
+import AnalyticsButton from "./buttons/AnalyticsButton";
+
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
 const Analytics = () => {

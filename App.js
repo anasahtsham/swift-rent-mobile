@@ -1,4 +1,4 @@
-import { NavigationContainer, useFocusEffect } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
 
@@ -47,15 +47,15 @@ export default function App() {
           <Stack.Screen name="Register As" component={RegisterAs} />
           <Stack.Screen name="Set Up Password" component={SetUpPassword} />
           <Stack.Screen name="All Set Up" component={AllSetUpSplash} />
-          <Stack.Screen name="Setting Screen" component={SettingScreen} />
-          <Stack.Screen name="Change Password" component={ChangePassword} />
-          <Stack.Screen name="FAQ Screen" component={FAQScreen} />
           {/* Owner Tab Navigator */}
           <Stack.Screen
             name="Owner Tab Navigator"
             component={OwnerTabNavigator}
           />
           {/* Owner Screens*/}
+          <Stack.Screen name="Setting Screen" component={SettingScreen} />
+          <Stack.Screen name="Change Password" component={ChangePassword} />
+          <Stack.Screen name="FAQ Screen" component={FAQScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

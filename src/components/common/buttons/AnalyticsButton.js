@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { opacityValueForButton } from "../../../constants";
-import { useColorsOnFocus } from "../../../helpers/SetColors";
 
-import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 import { formatNumber } from "../../../helpers";
+
+import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 export const AnalyticsButton = (props) => {
   const colors = props.colors;

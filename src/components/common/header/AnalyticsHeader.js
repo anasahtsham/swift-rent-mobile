@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import { useColorsOnFocus } from "../../../helpers/SetColors";
 
 import MainCard from "./analyticsHeader/MainCard";
 import RecievedRentsCard from "./analyticsHeader/RecievedRentsCard";

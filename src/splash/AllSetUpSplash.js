@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View, Text, BackHandler } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 import { useColors } from "../helpers/SetColors";
 
 import * as FontSizes from "../assets/fonts/FontSizes";

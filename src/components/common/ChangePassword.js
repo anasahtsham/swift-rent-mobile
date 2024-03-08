@@ -1,9 +1,6 @@
 import {
   BackHandler,
-  Button,
   Dimensions,
-  Pressable,
-  TouchableOpacity,
   View,
   SafeAreaView,
   StyleSheet,
@@ -12,19 +9,14 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useEffect, useState } from "react";
 
-import { loadTheme } from "../../helpers";
-
-import ThemeSetter from "./buttons/ThemeSetter";
-import ButtonGrey from "./buttons/ButtonGrey";
-
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
-import * as FontSizes from "../../assets/fonts/FontSizes";
 import { useLanguages } from "../../helpers/SetLanguages";
-import CustomTextField from "./input fields/CustomTextField";
-import CustomPasswordField from "./input fields/CustomPasswordField";
 import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
+
+import CustomPasswordField from "./input fields/CustomPasswordField";
+import ButtonGrey from "./buttons/ButtonGrey";
+
+import * as FontSizes from "../../assets/fonts/FontSizes";
 
 const ChangePassword = ({ navigation }) => {
   const colors = useColors();
