@@ -20,7 +20,6 @@ import OwnerTabNavigator from "./src/components/owner/OwnerTabNavigator";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
-import OwnerAnalytics from "./src/screens/ownerScreens/OwnerAnalytics";
 
 const Stack = createStackNavigator();
 
@@ -57,7 +56,6 @@ export default function App() {
             component={OwnerTabNavigator}
           />
           {/* Owner Screens*/}
-          <Stack.Screen name="Owner Analytics" component={OwnerAnalytics} />
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -24,6 +24,10 @@ export const borderYellow = "#ffce00";
 export const borderGreen = "#00bf63";
 
 export const iconPrimary = "#fff";
+export const iconBlue = "#1463df";
+export const iconRed = "#ff0c0c";
+export const iconYellow = "#ffce00";
+export const iconGreen = "#00bf63";
 
 export const logoPrimary = "#fff";
 
