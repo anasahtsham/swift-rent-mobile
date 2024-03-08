@@ -1,13 +1,23 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useColorsOnFocus } from "../../../../helpers/SetColors";
 import { styles } from "./styles";
+import { icons } from "../../../../helpers/ImageImports";
+import { opacityValueForButton } from "../../../../constants/index";
 
 const MainCard = () => {
   const colors = useColorsOnFocus();
   const InfoRow = ({ title, value, imageSource, tintColor }) => {
     return (
       <View>
-        <Text style={[styles.textRegular, styles.textSmall]}>{title}</Text>
+        <Text
+          style={[
+            styles.textRegular,
+            styles.textSmall,
+            { color: colors.textPrimary },
+          ]}
+        >
+          {title}
+        </Text>
         <View style={{ flexDirection: "row" }}>
           <Image
             tintColor={tintColor}
@@ -20,58 +30,86 @@ const MainCard = () => {
               styles.textSmall,
               {
                 marginRight: 5,
+                color: colors.textPrimary,
               },
             ]}
           >
             {value}
           </Text>
-          <Text style={[styles.textRegular, styles.textSmall]}>PKR</Text>
+          <Text
+            style={[
+              styles.textRegular,
+              styles.textSmall,
+              { color: colors.textPrimary },
+            ]}
+          >
+            PKR
+          </Text>
         </View>
       </View>
     );
   };
   return (
-    <View
-      style={[
-        styles.commonStylesForCards,
-        {
-          borderColor: colors.borderBlue,
-          backgroundColor: colors.headerAndFooterBackground,
-        },
-      ]}
-    >
-      <Text style={[styles.textBold, styles.textMedium]}>September 2024</Text>
-      <InfoRow
-        title="Rents Collected"
-        value="117,000"
-        imageSource={require("../../../../assets/icons/up-long-arrow.png")}
-        tintColor={colors.iconGreen}
-      />
-      <InfoRow
-        title="Maintenance Costs"
-        value="11,000"
-        imageSource={require("../../../../assets/icons/down-long-arrow.png")}
-        tintColor={colors.iconRed}
-      />
-      <View>
-        <Text style={[styles.textRegular, styles.textSmall]}>
-          Total Properties
-        </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+    <TouchableOpacity activeOpacity={opacityValueForButton}>
+      <View
+        style={[
+          styles.commonStylesForCards,
+          {
+            borderColor: colors.borderBlue,
+            backgroundColor: colors.headerAndFooterBackground,
+          },
+        ]}
+      >
+        <Text
+          style={[
+            styles.textBold,
+            styles.textSmall,
+            { color: colors.textPrimary },
+          ]}
         >
-          <Text style={[styles.textBold, styles.textSmall]}>25</Text>
-          <Image
-            style={{ width: 20, height: 20 }}
-            source={require("../../../../assets/icons/external-link.png")}
-          />
+          September 2024
+        </Text>
+        <InfoRow
+          title="Rents Collected"
+          value="117,000"
+          imageSource={icons.upLongArrow}
+          tintColor={colors.iconGreen}
+        />
+        <InfoRow
+          title="Maintenance Costs"
+          value="11,000"
+          imageSource={icons.downLongArrow}
+          tintColor={colors.iconRed}
+        />
+        <View>
+          <Text style={[styles.textRegular, styles.textSmall]}>
+            Total Properties
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={[
+                styles.textBold,
+                styles.textSmall,
+                { color: colors.textPrimary },
+              ]}
+            >
+              25
+            </Text>
+            <Image
+              tintColor={colors.iconPrimary}
+              style={{ width: 20, height: 20 }}
+              source={icons.externalLink}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

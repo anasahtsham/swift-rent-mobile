@@ -1,45 +1,58 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, Touchable, TouchableOpacity, View } from "react-native";
 import { useColorsOnFocus } from "../../../../helpers/SetColors";
 import { styles } from "./styles";
+import { icons } from "../../../../helpers/ImageImports";
+import { opacityValueForButton } from "../../../../constants";
 
 const RecievedRentsCard = () => {
   const colors = useColorsOnFocus();
   return (
-    <View
-      style={[
-        styles.recievedAndPendingRentsCard,
-        styles.commonStylesForCards,
-        {
-          borderColor: colors.borderBlue,
-          backgroundColor: colors.headerAndFooterBackground,
-        },
-      ]}
-    >
-      <Text style={[styles.textBold, styles.textSmall]}>Recieved Rents</Text>
+    <TouchableOpacity activeOpacity={opacityValueForButton} style={{ flex: 1 }}>
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+        style={[
+          styles.recievedAndPendingRentsCard,
+          styles.commonStylesForCards,
+          {
+            borderColor: colors.borderBlue,
+            backgroundColor: colors.headerAndFooterBackground,
+          },
+        ]}
       >
         <Text
           style={[
-            styles.textRegular,
-            styles.textMedium,
-            {
-              color: colors.textGreen,
-            },
+            styles.textBold,
+            styles.textSmall,
+            { color: colors.textPrimary },
           ]}
         >
-          15
+          Recieved Rents
         </Text>
-        <Image
-          style={{ width: 20, height: 20 }}
-          source={require("../../../../assets/icons/external-link.png")}
-        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={[
+              styles.textRegular,
+              styles.textLarge,
+              {
+                color: colors.textGreen,
+              },
+            ]}
+          >
+            15
+          </Text>
+          <Image
+            tintColor={colors.iconPrimary}
+            style={{ width: 20, height: 20 }}
+            source={icons.externalLink}
+          />
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

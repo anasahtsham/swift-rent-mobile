@@ -6,12 +6,12 @@ export const styles = StyleSheet.create({
   textBold: { fontFamily: "OpenSansBold" },
   textSmall: { fontSize: FontSizes.small },
   textMedium: { fontSize: FontSizes.medium },
+  textLarge: { fontSize: FontSizes.large },
 
   commonStylesForCards: {
     borderRadius: 10,
     borderWidth: 4,
     padding: 10,
-    elevation: 10,
   },
   recievedAndPendingRentsCard: {
     flex: 1,

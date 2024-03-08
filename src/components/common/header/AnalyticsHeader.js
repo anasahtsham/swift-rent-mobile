@@ -1,7 +1,6 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useColorsOnFocus } from "../../../helpers/SetColors";
 
-import * as FontSizes from "../../../assets/fonts/FontSizes";
 import MainCard from "./analyticsHeader/MainCard";
 import RecievedRentsCard from "./analyticsHeader/RecievedRentsCard";
 import PendingRentsCard from "./analyticsHeader/PendingRentsCard";
@@ -29,11 +28,6 @@ const AnalyticsHeader = () => {
 };
 
 const styles = StyleSheet.create({
-  textRegular: { fontFamily: "OpenSansRegular" },
-  textBold: { fontFamily: "OpenSansBold" },
-  textSmall: { fontSize: FontSizes.small },
-  textMedium: { fontSize: FontSizes.medium },
-
   header: {
     flexDirection: "row",
     paddingVertical: 10,
@@ -45,23 +39,7 @@ const styles = StyleSheet.create({
   },
   mainCardContainer: { flex: 1, marginRight: 10 },
 
-  commonStylesForCards: {
-    borderRadius: 10,
-    borderWidth: 4,
-    padding: 10,
-    elevation: 10,
-  },
-
   recievedAndPendingRentsContainer: { flex: 1, flexDirection: "column" },
-
-  RecievedRentsCard: {
-    flex: 1,
-    justifyContent: "space-between",
-  },
-  PendingRentsCard: {
-    flex: 1,
-    justifyContent: "space-between",
-  },
 });
 
 export default AnalyticsHeader;
