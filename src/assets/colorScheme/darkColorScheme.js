@@ -5,7 +5,9 @@ export const textLightBlue = "#47b5ff";
 export const textBlack = "#000";
 export const textGrey = "#9E9E9E";
 export const textWhite = "#fff";
-export const textRed = "#B00020";
+export const textRed = "#ff0c0c";
+export const textYellow = "#ffce00";
+export const textGreen = "#00bf63";
 
 export const backgroundPrimary = "#000";
 export const backgroundSecondary = "#fff";

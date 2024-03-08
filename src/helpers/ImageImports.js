@@ -8,4 +8,5 @@ export const icons = {
   upLongArrow: require("../assets/icons/up-long-arrow.png"),
   incomingArrow: require("../assets/icons/incoming-arrow.png"),
   outgoingArrow: require("../assets/icons/outgoing-arrow.png"),
+  externalLink: require("../assets/icons/external-link.png"),
 };
