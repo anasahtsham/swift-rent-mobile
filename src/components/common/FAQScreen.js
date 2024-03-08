@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 20,
     marginVertical: 10,
-    width: "80%",
+    width: "90%",
   },
   accordionHeader: {
     padding: 10,
