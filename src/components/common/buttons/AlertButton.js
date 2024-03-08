@@ -6,16 +6,35 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 export const AlertButton = (props) => {
   const colors = useColorsOnFocus();
+
+  function getBackgroundColor(notificationType) {
+    switch (notificationType) {
+      case "Maintenance":
+        return colors.backgroundRed;
+      case "Complains":
+        return colors.backgroundYellow;
+      case "Rent":
+        return colors.backgroundGreen;
+      default:
+        return colors.backgroundPrimary;
+    }
+  }
+
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View
-        style={[styles.timeAndDate, { backgroundColor: props.backgroundColor }]}
+        style={[
+          styles.timeAndDate,
+          {
+            backgroundColor: getBackgroundColor(props.notificationType),
+          },
+        ]}
       >
-        <Text style={styles.timeAndDateText}>19:02 2024</Text>
-        <Text style={styles.timeAndDateText}>7:04 PM</Text>
+        <Text style={styles.timeAndDateText}>{props.dateAndYear}</Text>
+        <Text style={styles.timeAndDateText}>{props.time}</Text>
       </View>
       <View>
         <Text
@@ -26,7 +45,7 @@ export const AlertButton = (props) => {
             },
           ]}
         >
-          Nadeem - Manager
+          {props.name} - {props.userType}
         </Text>
         <Text
           style={[
@@ -36,7 +55,7 @@ export const AlertButton = (props) => {
             },
           ]}
         >
-          Maintenance Requested
+          {props.notificationText}
         </Text>
       </View>
       <View>
@@ -76,5 +95,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    flexWrap: "wrap",
   },
 });
