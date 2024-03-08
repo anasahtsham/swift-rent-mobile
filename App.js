@@ -20,6 +20,7 @@ import OwnerTabNavigator from "./src/components/owner/OwnerTabNavigator";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
+import OwnerAnalytics from "./src/screens/ownerScreens/OwnerAnalytics";
 
 const Stack = createStackNavigator();
 
@@ -33,8 +34,9 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Splash Screen"
+          initialRouteName="Owner Analytics"
         >
+          {/* Authentication Screens */}
           <Stack.Screen name="Splash Screen" component={SplashScreen} />
           <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
           <Stack.Screen name="Login Screen" component={LoginScreen} />
@@ -49,11 +51,13 @@ export default function App() {
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
+          {/* Owner Tab Navigator */}
           <Stack.Screen
             name="Owner Tab Navigator"
             component={OwnerTabNavigator}
           />
-          {/* Add the Tab.Navigator as a screen in the Stack.Navigator */}
+          {/* Owner Screens*/}
+          <Stack.Screen name="Owner Analytics" component={OwnerAnalytics} />
         </Stack.Navigator>
       </NavigationContainer>
     );
