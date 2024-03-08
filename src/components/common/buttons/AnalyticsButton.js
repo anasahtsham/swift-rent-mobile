@@ -4,6 +4,7 @@ import { useColorsOnFocus } from "../../../helpers/SetColors";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
+import { formatNumber } from "../../../helpers";
 
 export const AnalyticsButton = (props) => {
   const colors = useColorsOnFocus();
@@ -33,7 +34,7 @@ export const AnalyticsButton = (props) => {
           color: colors.textPrimary,
         }}
       >
-        {props.income}
+        {formatNumber(props.income)}
       </Text>
       <Image
         tintColor={colors.iconRed}
@@ -47,7 +48,7 @@ export const AnalyticsButton = (props) => {
           color: colors.textPrimary,
         }}
       >
-        {props.outcome}
+        {formatNumber(props.outcome)}
       </Text>
       <Image
         tintColor={colors.iconPrimary}

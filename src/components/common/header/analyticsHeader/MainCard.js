@@ -3,6 +3,7 @@ import { useColorsOnFocus } from "../../../../helpers/SetColors";
 import { styles } from "./styles";
 import { icons } from "../../../../helpers/ImageImports";
 import { opacityValueForButton } from "../../../../constants/index";
+import { formatNumber } from "../../../../helpers";
 
 const MainCard = () => {
   const colors = useColorsOnFocus();
@@ -71,13 +72,13 @@ const MainCard = () => {
         </Text>
         <InfoRow
           title="Rents Collected"
-          value="117,000"
+          value={formatNumber(110900)}
           imageSource={icons.upLongArrow}
           tintColor={colors.iconGreen}
         />
         <InfoRow
           title="Maintenance Costs"
-          value="11,000"
+          value={formatNumber(110900)}
           imageSource={icons.downLongArrow}
           tintColor={colors.iconRed}
         />

@@ -33,3 +33,12 @@ export const loadLanguage = async () => {
     console.error("Error loading language:", error);
   }
 };
+
+export function formatNumber(num) {
+  num = Number(num);
+  if (num >= 10000000) {
+    return (num / 10000000).toFixed(1) + " Crore";
+  } else {
+    return num.toLocaleString();
+  }
+}
