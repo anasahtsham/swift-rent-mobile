@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "90%",
   },
-  bottomSpace: { height: 60 },
+  bottomSpace: { height: 70 },
 });
 
 export default Alerts;

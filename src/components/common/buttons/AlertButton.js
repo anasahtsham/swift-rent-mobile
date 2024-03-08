@@ -36,7 +36,7 @@ export const AlertButton = (props) => {
         <Text style={styles.timeAndDateText}>{props.dateAndYear}</Text>
         <Text style={styles.timeAndDateText}>{props.time}</Text>
       </View>
-      <View>
+      <View style={{ flex: 1, flexDirection: "column" }}>
         <Text
           style={[
             styles.text,
@@ -52,6 +52,7 @@ export const AlertButton = (props) => {
             styles.text,
             {
               color: colors.textPrimary,
+              flexShrink: 1,
             },
           ]}
         >
@@ -95,6 +96,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    flexWrap: "wrap",
   },
 });
