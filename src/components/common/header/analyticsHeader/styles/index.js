@@ -4,6 +4,7 @@ import * as FontSizes from "../../../../../assets/fonts/FontSizes";
 export const styles = StyleSheet.create({
   textRegular: { fontFamily: "OpenSansRegular" },
   textBold: { fontFamily: "OpenSansBold" },
+  textExtraSmall: { fontSize: FontSizes.extraSmall },
   textSmall: { fontSize: FontSizes.small },
   textMedium: { fontSize: FontSizes.medium },
   textLarge: { fontSize: FontSizes.large },

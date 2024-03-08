@@ -18,7 +18,7 @@ const MainCard = () => {
         >
           {title}
         </Text>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             tintColor={tintColor}
             style={{ width: 20, height: 20, marginRight: 5 }}
@@ -39,7 +39,7 @@ const MainCard = () => {
           <Text
             style={[
               styles.textRegular,
-              styles.textSmall,
+              styles.textExtraSmall,
               { color: colors.textPrimary },
             ]}
           >
@@ -82,7 +82,13 @@ const MainCard = () => {
           tintColor={colors.iconRed}
         />
         <View>
-          <Text style={[styles.textRegular, styles.textSmall]}>
+          <Text
+            style={[
+              styles.textRegular,
+              styles.textSmall,
+              { color: colors.textPrimary },
+            ]}
+          >
             Total Properties
           </Text>
           <View
