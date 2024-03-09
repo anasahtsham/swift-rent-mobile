@@ -21,6 +21,7 @@ import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
 import WhoAreYou from "./src/screens/authenticationScreens/WhoAreYou";
+import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 
@@ -59,6 +60,7 @@ export default function App() {
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
           <Stack.Screen name="Received Rents" component={RecievedRents} />
+          <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
         </Stack.Navigator>
       </NavigationContainer>
     );
