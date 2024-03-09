@@ -2,16 +2,16 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Animated, BackHandler, Easing } from "react-native";
 import { useEffect, useRef } from "react";
 
-import { useColorsOnFocus } from "../../helpers/SetColors";
+import { useColorsOnFocus } from "../../../helpers/SetColors";
 
-import Properties from "../common/Properties";
-import Profile from "../common/Profile";
-import Analytics from "../common/Analytics";
-import Alerts from "../common/Alerts";
+import Properties from "../Properties";
+import Profile from "../Profile";
+import Analytics from "../Analytics";
+import Alerts from "../Alerts";
 
-import * as FontSizes from "../../assets/fonts/FontSizes";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const OwnerTabNavigator = () => {
+const TabNavigator = () => {
   const colors = useColorsOnFocus();
 
   const BottomTab = createBottomTabNavigator();
@@ -115,7 +115,7 @@ const OwnerTabNavigator = () => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("../../assets/icons/analytics.png")}
+              source={require("./../../../assets/icons/analytics.png")}
               colors={colors}
             />
           ),
@@ -131,7 +131,7 @@ const OwnerTabNavigator = () => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("../../assets/icons/properties.png")}
+              source={require("./../../../assets/icons/properties.png")}
               colors={colors}
             />
           ),
@@ -147,7 +147,7 @@ const OwnerTabNavigator = () => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("../../assets/icons/alert.png")}
+              source={require("./../../../assets/icons/alert.png")}
               colors={colors}
             />
           ),
@@ -163,7 +163,7 @@ const OwnerTabNavigator = () => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("../../assets/icons/userIcon.png")}
+              source={require("./../../../assets/icons/userIcon.png")}
               colors={colors}
             />
           ),
@@ -173,4 +173,4 @@ const OwnerTabNavigator = () => {
   );
 };
 
-export default OwnerTabNavigator;
+export default TabNavigator;

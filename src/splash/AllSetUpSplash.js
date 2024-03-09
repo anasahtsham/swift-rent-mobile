@@ -14,7 +14,7 @@ const AllSetUpSplash = () => {
   const navigation = useNavigation();
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace("Owner Tab Navigator"); // Navigate to Welcome Screen after 3 seconds
+      navigation.replace("Tab Navigator"); // Navigate to Welcome Screen after 3 seconds
     }, 3000); // where 1000 milliseconds = 1 second
 
     const backAction = () => {

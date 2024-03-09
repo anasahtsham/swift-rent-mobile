@@ -16,7 +16,7 @@ import ForgotPassword from "./src/screens/authenticationScreens/ForgotPassword";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
-import OwnerTabNavigator from "./src/components/owner/OwnerTabNavigator";
+import TabNavigator from "./src/components/common/footer/TabNavigator";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
@@ -47,11 +47,8 @@ export default function App() {
           <Stack.Screen name="Register As" component={RegisterAs} />
           <Stack.Screen name="Set Up Password" component={SetUpPassword} />
           <Stack.Screen name="All Set Up" component={AllSetUpSplash} />
-          {/* Owner Tab Navigator */}
-          <Stack.Screen
-            name="Owner Tab Navigator"
-            component={OwnerTabNavigator}
-          />
+          {/* Tab Navigator */}
+          <Stack.Screen name="Tab Navigator" component={TabNavigator} />
           {/* Owner Screens*/}
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
