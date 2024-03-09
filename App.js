@@ -5,25 +5,26 @@ import { StatusBar } from "react-native";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 
-import SplashScreen from "./src/splash/SplashScreen";
-import WelcomeScreen from "./src/screens/WelcomeScreen";
-import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
-import WhoAreYou from "./src/screens/authenticationScreens/WhoAreYou";
-import GetToKnow from "./src/screens/authenticationScreens/GetToKnow";
-import ContactInfo from "./src/screens/authenticationScreens/ContactInfo";
-import LoginAs from "./src/screens/authenticationScreens/LoginAs";
-import ForgotPassword from "./src/screens/authenticationScreens/ForgotPassword";
-import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
-import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
-import AllSetUpSplash from "./src/splash/AllSetUpSplash";
-import SettingScreen from "./src/components/common/SettingScreen";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
+import RecievedRents from "./src/components/common/RecievedRents";
+import SettingScreen from "./src/components/common/SettingScreen";
+import ManagerNavigator from "./src/components/common/footer/ManagerNavigator";
 import OwnerNavigator from "./src/components/common/footer/OwnerNavigator";
 import TenantNavigator from "./src/components/common/footer/TenantNavigator";
-import ManagerNavigator from "./src/components/common/footer/ManagerNavigator";
+import WelcomeScreen from "./src/screens/WelcomeScreen";
+import ContactInfo from "./src/screens/authenticationScreens/ContactInfo";
+import ForgotPassword from "./src/screens/authenticationScreens/ForgotPassword";
+import GetToKnow from "./src/screens/authenticationScreens/GetToKnow";
+import LoginAs from "./src/screens/authenticationScreens/LoginAs";
+import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
+import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
+import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
+import WhoAreYou from "./src/screens/authenticationScreens/WhoAreYou";
 import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
 import OwnerAnalyticalReport from "./src/screens/ownerScreens/OwnerAnalyticalReport";
+import AllSetUpSplash from "./src/splash/AllSetUpSplash";
+import SplashScreen from "./src/splash/SplashScreen";
 
 const Stack = createStackNavigator();
 
@@ -59,6 +60,7 @@ export default function App() {
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
+          <Stack.Screen name="Received Rents" component={RecievedRents} />
           <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
           <Stack.Screen
             name="Owner Analytical Report"

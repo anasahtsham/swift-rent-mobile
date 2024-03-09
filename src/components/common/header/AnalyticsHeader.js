@@ -1,11 +1,17 @@
 import { StyleSheet, View } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
 import MainCard from "./analyticsHeader/MainCard";
-import RecievedRentsCard from "./analyticsHeader/RecievedRentsCard";
 import PendingRentsCard from "./analyticsHeader/PendingRentsCard";
+import RecievedRentsCard from "./analyticsHeader/RecievedRentsCard";
 
 const AnalyticsHeader = (props) => {
   const colors = props.colors;
+  const navigation = useNavigation();
+
+  const goToReceivedRents = () => {
+    navigation.navigate("Received Rents");
+  };
 
   return (
     <View
@@ -25,6 +31,7 @@ const AnalyticsHeader = (props) => {
       </View>
       <View style={styles.recievedAndPendingRentsContainer}>
         <RecievedRentsCard
+          onPress={goToReceivedRents}
           recievedRents={props.recievedRents}
           colors={colors}
         />

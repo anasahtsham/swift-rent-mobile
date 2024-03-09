@@ -1,13 +1,17 @@
-import { Image, Text, Touchable, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
-import { styles } from "./styles";
-import { icons } from "../../../../helpers/ImageImports";
 import { opacityValueForButton } from "../../../../constants";
+import { icons } from "../../../../helpers/ImageImports";
+import { styles } from "./styles";
 
 const RecievedRentsCard = (props) => {
   const colors = props.colors;
   return (
-    <TouchableOpacity activeOpacity={opacityValueForButton} style={{ flex: 1 }}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      activeOpacity={opacityValueForButton}
+      style={{ flex: 1 }}
+    >
       <View
         style={[
           styles.recievedAndPendingRentsCard,
