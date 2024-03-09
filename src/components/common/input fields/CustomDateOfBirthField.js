@@ -124,12 +124,14 @@ const CustomDateOfBirthField = (props) => {
                         translateY: focusAnim.interpolate({
                           inputRange: [0, 1],
                           outputRange: [0, -30],
+                          // [start position on y axis, ending position on y axis]
                         }),
                       },
                       {
                         translateX: focusAnim.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [-8, -5],
+                          outputRange: [-8, -25],
+                          // [start position on x axis, ending position on x axis]
                         }),
                       },
                     ],
