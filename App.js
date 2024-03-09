@@ -23,6 +23,7 @@ import OwnerNavigator from "./src/components/common/footer/OwnerNavigator";
 import TenantNavigator from "./src/components/common/footer/TenantNavigator";
 import ManagerNavigator from "./src/components/common/footer/ManagerNavigator";
 import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
+import OwnerAnalyticalReport from "./src/screens/ownerScreens/OwnerAnalyticalReport";
 
 const Stack = createStackNavigator();
 
@@ -36,7 +37,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Splash Screen"
+          initialRouteName="Owner Analytical Report"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Splash Screen" component={SplashScreen} />
@@ -59,6 +60,10 @@ export default function App() {
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
           <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
+          <Stack.Screen
+            name="Owner Analytical Report"
+            component={OwnerAnalyticalReport}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
