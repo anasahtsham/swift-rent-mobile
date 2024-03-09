@@ -8,10 +8,11 @@ import ButtonGrey from "./buttons/ButtonGrey";
 
 import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
+import * as LoadingTheme from "../../assets/colorScheme/loadingColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
 const SettingScreen = ({ navigation }) => {
-  const [colors, setColors] = useState(DarkTheme);
+  const [colors, setColors] = useState(LoadingTheme);
 
   useEffect(() => {
     loadTheme().then((theme) => {

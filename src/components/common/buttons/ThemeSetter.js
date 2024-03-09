@@ -7,10 +7,11 @@ import { saveTheme, loadTheme } from "../../../helpers";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import * as LoadingTheme from "../../../assets/colorScheme/loadingColorScheme";
 
 const ThemeSetter = (props) => {
   const [isSun, setIsSun] = useState(true);
-  const [colors, setColors] = useState(DarkTheme);
+  const [colors, setColors] = useState(LoadingTheme);
 
   //update theme on load
   useEffect(() => {

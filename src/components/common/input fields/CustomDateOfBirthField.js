@@ -16,9 +16,10 @@ import { inputStyles } from "./styles/CustomInputFieldStyles";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import * as LoadingTheme from "../../../assets/colorScheme/loadingColorScheme";
 
 const CustomDateOfBirthField = (props) => {
-  const [colors, setColors] = useState(DarkTheme);
+  const [colors, setColors] = useState(LoadingTheme);
   const [isPickerOpen, setPickerOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   let maxDate = new Date(
