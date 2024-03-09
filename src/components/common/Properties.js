@@ -1,12 +1,11 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { useColorsOnFocus } from "../../helpers/SetColors";
-import PropertiesHeader from "./header/PropertiesHeader";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import ButtonGrey from "./buttons/ButtonGrey";
 import { useNavigation } from "@react-navigation/native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthSmall } from "../../constants";
+import { useColorsOnFocus } from "../../helpers/SetColors";
+import ButtonGrey from "./buttons/ButtonGrey";
 import { PropertiesButton } from "./buttons/PropertiesButton";
-import { propertiesData } from "./../../helpers/PropertiesData";
+import PropertiesHeader from "./header/PropertiesHeader";
 
 const Properties = (props) => {
   const colors = useColorsOnFocus();
@@ -44,7 +43,7 @@ const Properties = (props) => {
       </View>
       <ScrollView>
         <View style={styles.buttons}>
-          {props.propertiesData.map((property, index) => (
+          {props.propertiesData.map((property) => (
             <PropertiesButton
               colors={colors}
               key={property.id}

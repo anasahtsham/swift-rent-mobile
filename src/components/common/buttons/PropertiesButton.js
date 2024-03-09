@@ -4,6 +4,7 @@ import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { formatNumber } from "./../../../helpers/index";
 
 export const PropertiesButton = (props) => {
   const colors = props.colors;
@@ -48,7 +49,7 @@ export const PropertiesButton = (props) => {
               source={icons.downLongArrow}
             />
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              {props.income}
+              {formatNumber(props.income)}
             </Text>
           </View>
           <View style={{ alignItems: "center", flexDirection: "row" }}>
@@ -58,7 +59,7 @@ export const PropertiesButton = (props) => {
               source={icons.upLongArrow}
             />
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              {props.outcome}
+              {formatNumber(props.outcome)}
             </Text>
           </View>
           <Text
@@ -99,7 +100,7 @@ export const PropertiesButton = (props) => {
         {!!props.rentStatus && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Rented To:{" "}
+              Rent Status:{" "}
             </Text>
             <Text
               style={[
