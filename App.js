@@ -22,6 +22,7 @@ import FAQScreen from "./src/components/common/FAQScreen";
 import OwnerNavigator from "./src/components/common/footer/OwnerNavigator";
 import TenantNavigator from "./src/components/common/footer/TenantNavigator";
 import ManagerNavigator from "./src/components/common/footer/ManagerNavigator";
+import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,7 @@ export default function App() {
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
+          <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
         </Stack.Navigator>
       </NavigationContainer>
     );
