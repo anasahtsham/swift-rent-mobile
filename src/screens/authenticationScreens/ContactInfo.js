@@ -3,7 +3,7 @@ import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { icons } from "../../helpers/ImageImports";
-import { buttonWidthMediumSmall } from "../../constants";
+import { buttonWidthSmaller } from "../../constants";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { useColors } from "../../helpers/SetColors";
 
@@ -92,14 +92,14 @@ const ContactInfo = ({ navigation }) => {
 
             <View style={styles.buttonsContainer}>
               <ButtonGrey
-                width={buttonWidthMediumSmall}
+                width={buttonWidthSmaller}
                 fontSize={FontSizes.small}
                 buttonText={languages.back}
                 destinationScreen="Get To Know"
                 navigation={navigation}
               />
               <ButtonGrey
-                width={buttonWidthMediumSmall}
+                width={buttonWidthSmaller}
                 fontSize={FontSizes.small}
                 buttonText={languages.next}
                 destinationScreen="Set Up Password"

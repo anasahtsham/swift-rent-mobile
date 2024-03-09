@@ -1,4 +1,5 @@
 export const opacityValueForButton = 0.8;
 
 export const buttonWidthMedium = "60%";
-export const buttonWidthMediumSmall = "30%";
+export const buttonWidthSmall = "40%";
+export const buttonWidthSmaller = "30%";

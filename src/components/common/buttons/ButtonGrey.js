@@ -50,6 +50,7 @@ const ButtonGrey = (props) => {
 
 const styles = StyleSheet.create({
   button: {
+    justifyContent: "center",
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 100,

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   userInfo: { flexDirection: "row" },
   userImage: { width: 50, height: 50 },
-  userName: { marginLeft: 10, fontSize: 20 },
+  userName: { marginLeft: 10 },
 });
 
 export default ProfileHeader;

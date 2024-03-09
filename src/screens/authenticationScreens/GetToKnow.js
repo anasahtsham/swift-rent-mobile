@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import { useColors } from "../../helpers/SetColors";
 import { icons } from "../../helpers/ImageImports";
-import { buttonWidthMediumSmall } from "../../constants";
+import { buttonWidthSmaller } from "../../constants";
 import { useLanguages } from "../../helpers/SetLanguages";
 
 import CustomTextField from "../../components/common/input fields/CustomTextField";
@@ -106,14 +106,14 @@ const GetToKnow = ({ navigation }) => {
 
             <View style={styles.buttonsContainer}>
               <ButtonGrey
-                width={buttonWidthMediumSmall}
+                width={buttonWidthSmaller}
                 fontSize={FontSizes.small}
                 buttonText={languages.back}
                 destinationScreen="Who Are You"
                 navigation={navigation}
               />
               <ButtonGrey
-                width={buttonWidthMediumSmall}
+                width={buttonWidthSmaller}
                 fontSize={FontSizes.small}
                 buttonText={languages.next}
                 destinationScreen="Contact Info"
