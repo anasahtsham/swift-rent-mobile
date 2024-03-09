@@ -68,17 +68,17 @@ const MainCard = (props) => {
             { color: colors.textPrimary },
           ]}
         >
-          September 2024
+          {props.month}
         </Text>
         <InfoRow
           title="Rents Collected"
-          value={formatNumber(110900)}
+          value={formatNumber(props.rentsCollected)}
           imageSource={icons.downLongArrow}
           tintColor={colors.iconGreen}
         />
         <InfoRow
           title="Maintenance Costs"
-          value={formatNumber(110900)}
+          value={formatNumber(props.maintenanceCost)}
           imageSource={icons.upLongArrow}
           tintColor={colors.iconRed}
         />
@@ -106,7 +106,7 @@ const MainCard = (props) => {
                 { color: colors.textPrimary },
               ]}
             >
-              25
+              {props.totalProperties}
             </Text>
             <Image
               tintColor={colors.iconPrimary}

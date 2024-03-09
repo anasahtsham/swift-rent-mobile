@@ -84,6 +84,7 @@ export const PropertiesButton = (props) => {
             </Text>
           </View>
         )}
+
         {!!props.tenant && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
@@ -94,6 +95,7 @@ export const PropertiesButton = (props) => {
             </Text>
           </View>
         )}
+
         {!!props.rentStatus && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>

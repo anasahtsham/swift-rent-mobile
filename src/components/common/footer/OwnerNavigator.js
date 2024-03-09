@@ -1,17 +1,17 @@
 import TabNavigator from "./TabNavigator";
-import Alerts from "./../Alerts";
-import Analytics from "./../Analytics";
 import Profile from "./../Profile";
-import Properties from "./../Properties";
+import OwnerAnalytics from "../../../screens/ownerScreens/OwnerAnalytics";
+import OwnerProperties from "../../../screens/ownerScreens/OwnerProperties";
+import OwnerAlerts from "../../../screens/ownerScreens/OwnerAlerts";
 const OwnerNavigator = () => {
   return (
     <TabNavigator
       screen1="Analytics"
-      component1={Analytics}
+      component1={OwnerAnalytics}
       screen2="Properties"
-      component2={Properties}
+      component2={OwnerProperties}
       screen3="Alers"
-      component3={Alerts}
+      component3={OwnerAlerts}
       screen4="Profile"
       component4={Profile}
     />

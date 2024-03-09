@@ -15,12 +15,21 @@ const AnalyticsHeader = (props) => {
       ]}
     >
       <View style={styles.mainCardContainer}>
-        <MainCard colors={colors} />
+        <MainCard
+          month={props.month}
+          rentsCollected={props.rentsCollected}
+          maintenanceCost={props.maintenanceCost}
+          totalProperties={props.totalProperties}
+          colors={colors}
+        />
       </View>
       <View style={styles.recievedAndPendingRentsContainer}>
-        <RecievedRentsCard colors={colors} />
+        <RecievedRentsCard
+          recievedRents={props.recievedRents}
+          colors={colors}
+        />
         <View style={{ height: 10 }}></View>
-        <PendingRentsCard colors={colors} />
+        <PendingRentsCard pendingRents={props.pendingRents} colors={colors} />
       </View>
     </View>
   );

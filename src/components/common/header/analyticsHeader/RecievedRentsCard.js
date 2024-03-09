@@ -43,7 +43,7 @@ const RecievedRentsCard = (props) => {
               },
             ]}
           >
-            15
+            {props.recievedRents}
           </Text>
           <Image
             tintColor={colors.iconPrimary}

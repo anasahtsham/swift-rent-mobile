@@ -43,7 +43,7 @@ const PendingRentsCard = (props) => {
               },
             ]}
           >
-            5
+            {props.pendingRents}
           </Text>
           <Image
             tintColor={colors.iconPrimary}

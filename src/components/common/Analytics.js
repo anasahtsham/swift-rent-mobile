@@ -2,14 +2,13 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 
 import { useColorsOnFocus } from "../../helpers/SetColors";
-import { dummyData } from "../../helpers/AnalyticsData";
 
 import AnalyticsHeader from "./header/AnalyticsHeader";
 import AnalyticsButton from "./buttons/AnalyticsButton";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
-const Analytics = () => {
+const Analytics = (props) => {
   const navigation = useNavigation();
   const colors = useColorsOnFocus();
 
@@ -17,7 +16,15 @@ const Analytics = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <AnalyticsHeader colors={colors} />
+      <AnalyticsHeader
+        month={props.month}
+        rentsCollected={props.rentsCollected}
+        maintenanceCost={props.maintenanceCost}
+        totalProperties={props.totalProperties}
+        recievedRents={props.recievedRents}
+        pendingRents={props.pendingRents}
+        colors={colors}
+      />
       <View
         style={{ paddingTop: 20, paddingHorizontal: 20, paddingBottom: 10 }}
       >
@@ -33,7 +40,7 @@ const Analytics = () => {
       </View>
       <ScrollView>
         <View style={styles.buttons}>
-          {dummyData.map((data) => (
+          {props.dummyData.map((data) => (
             <AnalyticsButton
               colors={colors}
               key={data.id}

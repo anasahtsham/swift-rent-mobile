@@ -8,7 +8,7 @@ import { buttonWidthSmall } from "../../constants";
 import { PropertiesButton } from "./buttons/PropertiesButton";
 import { propertiesData } from "./../../helpers/PropertiesData";
 
-const Properties = () => {
+const Properties = (props) => {
   const colors = useColorsOnFocus();
   const navigation = useNavigation();
   return (
@@ -44,7 +44,7 @@ const Properties = () => {
       </View>
       <ScrollView>
         <View style={styles.buttons}>
-          {propertiesData.map((property, index) => (
+          {props.propertiesData.map((property, index) => (
             <PropertiesButton
               colors={colors}
               key={property.id}

@@ -4,11 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 
 import { AlertButton } from "./buttons/AlertButton";
 import { useColorsOnFocus } from "../../helpers/SetColors";
-import { alertsData } from "../../helpers/AlertsData";
 
 import AlertsHeader from "./header/AlertsHeader";
 
-const Alerts = () => {
+const Alerts = (props) => {
   const navigation = useNavigation();
 
   const colors = useColorsOnFocus();
@@ -20,7 +19,7 @@ const Alerts = () => {
       <AlertsHeader colors={colors} />
       <ScrollView>
         <View style={styles.buttons}>
-          {alertsData.map((alert) => (
+          {props.alertsData.map((alert) => (
             <AlertButton
               colors={colors}
               key={alert.id}
