@@ -40,21 +40,21 @@ const LoginAs = ({ navigation }) => {
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyOwner}
-            destinationScreen="Tab Navigator"
+            destinationScreen="Owner Navigator"
             navigation={navigation}
           />
           <ButtonGrey
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyManager}
-            destinationScreen="Tab Navigator"
+            destinationScreen="Manager Navigator"
             navigation={navigation}
           />
           <ButtonGrey
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.tenant}
-            destinationScreen="Tab Navigator"
+            destinationScreen="Tenant Navigator"
             navigation={navigation}
           />
         </View>

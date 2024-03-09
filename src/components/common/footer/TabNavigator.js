@@ -11,7 +11,11 @@ import Alerts from "../Alerts";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const TabNavigator = () => {
+const TabNavigator = (props) => {
+  const screen1 = props.screen1;
+  const screen2 = props.screen2;
+  const screen3 = props.screen3;
+  const screen4 = props.screen4;
   const colors = useColorsOnFocus();
 
   const BottomTab = createBottomTabNavigator();
@@ -106,11 +110,11 @@ const TabNavigator = () => {
       }}
     >
       <BottomTab.Screen
-        name="Analytics"
-        component={Analytics}
+        name={screen1}
+        component={props.component1}
         options={{
           tabBarLabel: (props) => (
-            <AnimatedTabBarLabel {...props} text="Analytics" colors={colors} />
+            <AnimatedTabBarLabel {...props} text={screen1} colors={colors} />
           ),
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
@@ -122,11 +126,11 @@ const TabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Properties"
-        component={Properties}
+        name={screen2}
+        component={props.component2}
         options={{
           tabBarLabel: (props) => (
-            <AnimatedTabBarLabel {...props} text="Properties" colors={colors} />
+            <AnimatedTabBarLabel {...props} text={screen2} colors={colors} />
           ),
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
@@ -138,11 +142,11 @@ const TabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Alerts"
-        component={Alerts}
+        name={screen3}
+        component={props.component3}
         options={{
           tabBarLabel: (props) => (
-            <AnimatedTabBarLabel {...props} text="Alerts" colors={colors} />
+            <AnimatedTabBarLabel {...props} text={screen3} colors={colors} />
           ),
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
@@ -154,11 +158,11 @@ const TabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Profile"
-        component={Profile}
+        name={screen4}
+        component={props.component4}
         options={{
           tabBarLabel: (props) => (
-            <AnimatedTabBarLabel {...props} text="Profile" colors={colors} />
+            <AnimatedTabBarLabel {...props} text={screen4} colors={colors} />
           ),
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon

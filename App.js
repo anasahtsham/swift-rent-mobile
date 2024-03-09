@@ -16,10 +16,12 @@ import ForgotPassword from "./src/screens/authenticationScreens/ForgotPassword";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
-import TabNavigator from "./src/components/common/footer/TabNavigator";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
+import OwnerNavigator from "./src/components/common/footer/OwnerNavigator";
+import TenantNavigator from "./src/components/common/footer/TenantNavigator";
+import ManagerNavigator from "./src/components/common/footer/ManagerNavigator";
 
 const Stack = createStackNavigator();
 
@@ -48,7 +50,9 @@ export default function App() {
           <Stack.Screen name="Set Up Password" component={SetUpPassword} />
           <Stack.Screen name="All Set Up" component={AllSetUpSplash} />
           {/* Tab Navigator */}
-          <Stack.Screen name="Tab Navigator" component={TabNavigator} />
+          <Stack.Screen name="Owner Navigator" component={OwnerNavigator} />
+          <Stack.Screen name="Tenant Navigator" component={TenantNavigator} />
+          <Stack.Screen name="Manager Navigator" component={ManagerNavigator} />
           {/* Owner Screens*/}
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
