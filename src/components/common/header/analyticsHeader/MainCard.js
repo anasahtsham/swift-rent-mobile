@@ -73,13 +73,13 @@ const MainCard = (props) => {
         <InfoRow
           title="Rents Collected"
           value={formatNumber(110900)}
-          imageSource={icons.upLongArrow}
+          imageSource={icons.downLongArrow}
           tintColor={colors.iconGreen}
         />
         <InfoRow
           title="Maintenance Costs"
           value={formatNumber(110900)}
-          imageSource={icons.downLongArrow}
+          imageSource={icons.upLongArrow}
           tintColor={colors.iconRed}
         />
         <View>
