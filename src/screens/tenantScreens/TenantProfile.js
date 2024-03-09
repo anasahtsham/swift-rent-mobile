@@ -1,13 +1,13 @@
 import Profile from "../../components/common/Profile";
 
-const OwnerProfile = () => {
+const TenantProfile = () => {
   return (
     <Profile
-      userName="Owner Name"
+      userName="Tenant Name"
       phone="123-456-7890"
       email="example@mail.com"
     />
   );
 };
 
-export default OwnerProfile;
+export default TenantProfile;

@@ -32,7 +32,7 @@ const ProfileHeader = (props) => {
               { color: colors.textPrimary, fontSize: FontSizes.medium },
             ]}
           >
-            Ibrahim Ahtsham
+            {props.userName}
           </Text>
         </View>
         <Text
@@ -41,7 +41,7 @@ const ProfileHeader = (props) => {
             fontSize: FontSizes.small,
           }}
         >
-          +92 317 0572192
+          {props.phone}
         </Text>
         <Text
           style={{
@@ -49,7 +49,7 @@ const ProfileHeader = (props) => {
             fontSize: FontSizes.small,
           }}
         >
-          ibrahimahtsham2002@gmail.com
+          {props.email}
         </Text>
       </View>
     </View>

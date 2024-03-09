@@ -1,8 +1,8 @@
-import TabNavigator from "./TabNavigator";
-import Profile from "./../Profile";
-import OwnerAnalytics from "../../../screens/ownerScreens/OwnerAnalytics";
-import OwnerProperties from "../../../screens/ownerScreens/OwnerProperties";
 import OwnerAlerts from "../../../screens/ownerScreens/OwnerAlerts";
+import OwnerAnalytics from "../../../screens/ownerScreens/OwnerAnalytics";
+import OwnerProfile from "../../../screens/ownerScreens/OwnerProfile";
+import OwnerProperties from "../../../screens/ownerScreens/OwnerProperties";
+import TabNavigator from "./TabNavigator";
 const OwnerNavigator = () => {
   return (
     <TabNavigator
@@ -13,7 +13,7 @@ const OwnerNavigator = () => {
       screen3="Alers"
       component3={OwnerAlerts}
       screen4="Profile"
-      component4={Profile}
+      component4={OwnerProfile}
     />
   );
 };

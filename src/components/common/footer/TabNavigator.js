@@ -1,13 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Animated, BackHandler, Easing } from "react-native";
 import { useEffect, useRef } from "react";
+import { Animated, BackHandler, Easing } from "react-native";
 
 import { useColorsOnFocus } from "../../../helpers/SetColors";
-
-import Properties from "../Properties";
-import Profile from "../Profile";
-import Analytics from "../Analytics";
-import Alerts from "../Alerts";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 

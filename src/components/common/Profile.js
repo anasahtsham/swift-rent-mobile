@@ -1,12 +1,12 @@
-import React from "react";
-import { SafeAreaView, ScrollView, View, StyleSheet } from "react-native";
-import { Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Button } from "react-native-elements";
 
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import ProfileHeader from "./header/ProfileHeader";
 
-const Profile = () => {
+const Profile = (props) => {
   const navigation = useNavigation();
 
   const colors = useColorsOnFocus();
@@ -15,7 +15,12 @@ const Profile = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <ProfileHeader colors={colors} />
+      <ProfileHeader
+        userName={props.userName}
+        phone={props.phone}
+        email={props.email}
+        colors={colors}
+      />
       <ScrollView>
         <View style={styles.buttons}>
           <Button

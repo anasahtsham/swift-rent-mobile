@@ -1,19 +1,19 @@
+import TenantAlerts from "../../../screens/tenantScreens/TenantAlerts";
+import TenantAnalytics from "../../../screens/tenantScreens/TenantAnalytics";
+import TenantProfile from "../../../screens/tenantScreens/TenantProfile";
+import TenantRentals from "../../../screens/tenantScreens/TenantRentals";
 import TabNavigator from "./TabNavigator";
-import Alerts from "./../Alerts";
-import Analytics from "./../Analytics";
-import Profile from "./../Profile";
-import Properties from "./../Properties";
 const TenantNavigator = () => {
   return (
     <TabNavigator
       screen1="Analytics"
-      component1={Analytics}
+      component1={TenantAnalytics}
       screen2="Rentals"
-      component2={Properties}
+      component2={TenantRentals}
       screen3="Alers"
-      component3={Alerts}
+      component3={TenantAlerts}
       screen4="Profile"
-      component4={Profile}
+      component4={TenantProfile}
     />
   );
 };
