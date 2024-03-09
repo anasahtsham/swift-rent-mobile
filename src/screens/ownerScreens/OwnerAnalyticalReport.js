@@ -24,11 +24,13 @@ const OwnerAnalyticalReport = ({ navigation }) => {
           <View style={styles.topCardRowEnd}>
             <Text style={styles.monthNameText}>Month Name</Text>
             <Image
+              styles={{ height: 20, width: 20 }}
               src="../../assets/icons/down-long-arrow.png"
               alt="Arrow Right"
             />
             <Text style={styles.monthNameTextNested}>117,000</Text>
             <Image
+              styles={{ height: 20, width: 20 }}
               src="../../assets/icons/down-long-arrow.png"
               alt="Arrow Right"
             />
@@ -36,31 +38,71 @@ const OwnerAnalyticalReport = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.bottomContainer}>
-          <Pressable style={styles.card}>
-            <Text style={styles.cardMainText}>Properties Status</Text>
+      <View style={styles.bottomContainer}>
+        <Pressable style={styles.card}>
+          <Text style={styles.cardMainText}>Properties Status</Text>
+          <View style={styles.rightInRow}>
             <Text style={styles.cardSubText}>Total Properties</Text>
-            <Text style={styles.cardSubText}>Properties on Rent </Text>
+            <Text style={[styles.cardFetchableData, { color: "black" }]}>
+              5
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Properties on Rent</Text>
+            <Text style={[styles.cardFetchableData, { color: "green" }]}>
+              4
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
             <Text style={styles.cardSubText}>Vacant Properties</Text>
-            <Text style={styles.cardSubText}>Manage Properties</Text>
-          </Pressable>
-          <Pressable style={styles.card}>
-            <Text style={styles.cardMainText}>Properties Status</Text>
-            <Text style={styles.cardSubText}>Total Properties</Text>
-            <Text style={styles.cardSubText}>Properties on Rent </Text>
-            <Text style={styles.cardSubText}>Vacant Properties</Text>
-            <Text style={styles.cardSubText}>Manage Properties</Text>
-          </Pressable>
-          <Pressable style={styles.card}>
-            <Text style={styles.cardMainText}>Properties Status</Text>
-            <Text style={styles.cardSubText}>Total Properties</Text>
-            <Text style={styles.cardSubText}>Properties on Rent </Text>
-            <Text style={styles.cardSubText}>Vacant Properties</Text>
-            <Text style={styles.cardSubText}>Manage Properties</Text>
-          </Pressable>
-        </View>
-      </ScrollView>
+            <Text style={[styles.cardFetchableData, { color: "red" }]}>1</Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Managed Properties</Text>
+            <Text style={styles.cardFetchableData}>2</Text>
+          </View>
+        </Pressable>
+
+        <Pressable style={styles.card}>
+          <Text style={styles.cardMainText}>Maintenance</Text>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Total Requests</Text>
+            <Text style={[styles.cardFetchableData, { color: "black" }]}>
+              6
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Accepted</Text>
+            <Text style={[styles.cardFetchableData, { color: "green" }]}>
+              4
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Rejected</Text>
+            <Text style={[styles.cardFetchableData, { color: "red" }]}>1</Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Pending</Text>
+            <Text style={styles.cardFetchableData}>2</Text>
+          </View>
+        </Pressable>
+
+        <Pressable style={styles.card}>
+          <Text style={styles.cardMainText}>Complaints</Text>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Total Requests</Text>
+            <Text style={[styles.cardFetchableData, { color: "black" }]}>
+              5
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text style={styles.cardSubText}>Resolved Requests</Text>
+            <Text style={[styles.cardFetchableData, { color: "green" }]}>
+              4
+            </Text>
+          </View>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -157,8 +199,11 @@ const styles = StyleSheet.create({
     paddingLeft: "4%",
     paddingVertical: "0.5%",
   },
-  scrollViewContent: {
-    flexGrow: 1,
+  cardFetchableData: {
+    fontWeight: "bold",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginRight: "30%",
   },
 });
 
