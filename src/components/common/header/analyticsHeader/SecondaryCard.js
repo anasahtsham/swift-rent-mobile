@@ -4,7 +4,7 @@ import { opacityValueForButton } from "../../../../constants";
 import { icons } from "../../../../helpers/ImageImports";
 import { styles } from "./styles";
 
-const PendingRentsCard = (props) => {
+const SecondaryCard = (props) => {
   const colors = props.colors;
   return (
     <TouchableOpacity
@@ -29,7 +29,10 @@ const PendingRentsCard = (props) => {
             { color: colors.textPrimary },
           ]}
         >
-          Pending Rents
+          {!!props.receivedRents ? "Received Rents" : ""}
+          {!!props.rentsPaid ? "Rents Paid" : ""}
+          {!!props.pendingRents ? "Pending Rents" : ""}
+          {!!props.rentsPending ? "Rents Pending" : ""}
         </Text>
         <View
           style={{
@@ -43,11 +46,17 @@ const PendingRentsCard = (props) => {
               styles.textRegular,
               styles.textLarge,
               {
-                color: colors.textRed,
+                color:
+                  !!props.receivedRents || !!props.rentsPaid
+                    ? colors.textGreen
+                    : colors.textRed,
               },
             ]}
           >
+            {props.receivedRents}
+            {props.rentsPaid}
             {props.pendingRents}
+            {props.rentsPending}
           </Text>
           <Image
             tintColor={colors.iconPrimary}
@@ -60,4 +69,4 @@ const PendingRentsCard = (props) => {
   );
 };
 
-export default PendingRentsCard;
+export default SecondaryCard;

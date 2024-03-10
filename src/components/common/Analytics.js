@@ -18,13 +18,15 @@ const Analytics = (props) => {
     >
       <AnalyticsHeader
         month={props.month}
-        rentsPaid={props.rentsPaid}
+        totalRentsPaid={props.totalRentsPaid}
         rentals={props.rentals}
         rentsCollected={props.rentsCollected}
         maintenanceCost={props.maintenanceCost}
         totalProperties={props.totalProperties}
         receivedRents={props.receivedRents}
         pendingRents={props.pendingRents}
+        rentsPaid={props.rentsPaid}
+        rentsPending={props.rentsPending}
         colors={colors}
       />
       <View

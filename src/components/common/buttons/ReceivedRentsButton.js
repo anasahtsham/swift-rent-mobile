@@ -63,6 +63,48 @@ export const ReceivedRentsButton = (props) => {
             </Text>
           </View>
         )}
+
+        {!!props.rentPaid && (
+          <View style={{ flexDirection: "row" }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Paid:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontBold,
+                {
+                  color: colors.textGreen,
+                },
+              ]}
+            >
+              {formatNumber(props.rentPaid)}{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              PKR
+            </Text>
+          </View>
+        )}
+
+        {!!props.rentAmount && (
+          <View style={{ flexDirection: "row" }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Rent:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontBold,
+                {
+                  color: colors.textRed,
+                },
+              ]}
+            >
+              {formatNumber(props.rentAmount)}{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              PKR
+            </Text>
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );

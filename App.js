@@ -7,8 +7,7 @@ import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
-import PendingRents from "./src/components/common/PendingRents";
-import ReceivedRents from "./src/components/common/ReceivedRents";
+import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ManagerNavigator from "./src/components/common/footer/ManagerNavigator";
 import OwnerNavigator from "./src/components/common/footer/OwnerNavigator";
@@ -61,8 +60,7 @@ export default function App() {
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
-          <Stack.Screen name="Received Rents" component={ReceivedRents} />
-          <Stack.Screen name="Pending Rents" component={PendingRents} />
+          <Stack.Screen name="Rents" component={Rents} />
           <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
           <Stack.Screen
             name="Owner Analytical Report"

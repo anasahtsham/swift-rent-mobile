@@ -101,15 +101,15 @@ const MainCard = (props) => {
             tintColor={colors.iconRed}
           />
         )}
-        {!!props.rentsPaid && (
+        {!!props.totalRentsPaid && (
           <InfoRow
             title="Rents Paid"
-            value={formatNumber(props.rentsPaid)}
+            value={formatNumber(props.totalRentsPaid)}
             imageSource={icons.upLongArrow}
             tintColor={colors.iconRed}
           />
         )}
-        {!!props.rentsPaid && (
+        {!!props.totalRentsPaid && (
           <View>
             <InfoRow
               title="Rentals"

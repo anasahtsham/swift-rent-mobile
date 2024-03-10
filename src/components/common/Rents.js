@@ -17,11 +17,42 @@ import {
 } from "../../assets/colorScheme/darkColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
-import { receivedRentsData } from "../../helpers/ReceivedRentsData";
+import {
+  pendingRentsData,
+  receivedRentsData,
+  rentsPaidData,
+  rentsPendingData,
+} from "../../helpers/RentsData";
 import ReceivedRentsButton from "./buttons/ReceivedRentsButton";
 
-const ReceivedRents = ({ navigation }) => {
+const Rents = ({ navigation, route }) => {
   const colors = useColors();
+  const { header } = route.params;
+
+  let firstButtonText = "";
+  let secondButtonText = "";
+  let dataToBeRendered = [];
+
+  if (header === "Received Rents" || header === "Pending Rents") {
+    firstButtonText = "Received Rents";
+    secondButtonText = "Pending Rents";
+  } else {
+    firstButtonText = "Rents Paid";
+    secondButtonText = "Rents Pending";
+  }
+
+  if (header === "Received Rents") {
+    dataToBeRendered = receivedRentsData;
+  }
+  if (header === "Pending Rents") {
+    dataToBeRendered = pendingRentsData;
+  }
+  if (header === "Rents Paid") {
+    dataToBeRendered = rentsPaidData;
+  }
+  if (header === "Rents Pending") {
+    dataToBeRendered = rentsPendingData;
+  }
 
   useEffect(() => {
     const backAction = () => {
@@ -52,12 +83,12 @@ const ReceivedRents = ({ navigation }) => {
             },
           ]}
         >
-          Received Rents
+          {header}
         </Text>
       </View>
       <ScrollView>
         <View style={styles.buttons}>
-          {receivedRentsData.map((rent) => (
+          {dataToBeRendered.map((rent) => (
             <ReceivedRentsButton
               colors={colors}
               key={rent.id}
@@ -66,6 +97,8 @@ const ReceivedRents = ({ navigation }) => {
               manager={rent.manager}
               tenant={rent.tenant}
               amountCollected={rent.amountCollected}
+              rentPaid={rent.rentPaid}
+              rentAmount={rent.rentAmount}
             />
           ))}
         </View>
@@ -81,16 +114,22 @@ const ReceivedRents = ({ navigation }) => {
           activeOpacity={opacityValueForButton}
           style={[styles.button, { borderColor: borderGreen }]}
           onPress={() => {
-            navigation.navigate("Received Rents");
+            if (header === "Received Rents" || header === "Pending Rents") {
+              navigation.navigate("Rents", { header: "Received Rents" });
+            } else {
+              navigation.navigate("Rents", { header: "Rents Paid" });
+            }
           }}
         >
           <Text
             style={[
-              styles.fontBold,
+              header === "Received Rents" || header === "Rents Paid"
+                ? styles.fontBold
+                : styles.fontRegular,
               { color: colors.textPrimary, fontSize: FontSizes.small },
             ]}
           >
-            Received Rents
+            {firstButtonText}
           </Text>
         </TouchableOpacity>
 
@@ -98,16 +137,22 @@ const ReceivedRents = ({ navigation }) => {
           activeOpacity={opacityValueForButton}
           style={[styles.button, { borderColor: borderRed }]}
           onPress={() => {
-            navigation.navigate("Pending Rents");
+            if (header === "Received Rents" || header === "Pending Rents") {
+              navigation.navigate("Rents", { header: "Pending Rents" });
+            } else {
+              navigation.navigate("Rents", { header: "Rents Pending" });
+            }
           }}
         >
           <Text
             style={[
-              styles.fontRegular,
+              header === "Pending Rents" || header === "Rents Pending"
+                ? styles.fontBold
+                : styles.fontRegular,
               { color: colors.textPrimary, fontSize: FontSizes.small },
             ]}
           >
-            Pending Rents
+            {secondButtonText}
           </Text>
         </TouchableOpacity>
       </View>
@@ -141,4 +186,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReceivedRents;
+export default Rents;
