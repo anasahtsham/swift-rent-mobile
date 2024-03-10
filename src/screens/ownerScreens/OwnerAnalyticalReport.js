@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  BackHandler,
   Image,
   Pressable,
   SafeAreaView,
@@ -35,6 +36,16 @@ const OwnerAnalyticalReport = ({ navigation }) => {
     loadLanguage().then((language) => {
       setLanguage(language === "english" ? English : Urdu);
     });
+    const backAction = () => {
+      navigation.goBack();
+      return true; // This will prevent the app from closing
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
   }, []);
 
   //update theme on clicking toggle theme button
@@ -57,7 +68,7 @@ const OwnerAnalyticalReport = ({ navigation }) => {
             styles.topCard,
             {
               backgroundColor: colors.backgroundPrimary,
-              borderColor: colors.borderPrimary,
+              borderColor: colors.borderBlue,
             },
           ]}
         >
@@ -389,6 +400,7 @@ const OwnerAnalyticalReport = ({ navigation }) => {
             </View>
           </Pressable>
         </ScrollView>
+        <View style={{ height: 280 }}></View>
       </View>
     </SafeAreaView>
   );
@@ -404,7 +416,7 @@ const styles = StyleSheet.create({
   },
 
   topCard: {
-    borderColor: "#1463df",
+    margin: 10,
     borderWidth: 4,
     borderRadius: 20,
     padding: 10,
@@ -465,14 +477,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 
-  boldText: {
-    fontWeight: "bold",
-    marginRight: "5%",
-  },
-
   bottomContainer: {
-    marginTop: "5%",
-    position: "relative",
     borderRadius: 20,
     alignSelf: "center",
     width: "100%",
