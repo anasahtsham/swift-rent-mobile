@@ -11,7 +11,7 @@ const MainCard = (props) => {
   const navigation = useNavigation();
   const InfoRow = ({ title, value, imageSource, tintColor }) => {
     return (
-      <View>
+      <View style={{ marginBottom: 10 }}>
         <Text
           style={[
             styles.textRegular,
@@ -79,8 +79,8 @@ const MainCard = (props) => {
         <Text
           style={[
             styles.textBold,
-            styles.textSmall,
-            { color: colors.textPrimary },
+            styles.textMidSmall,
+            { color: colors.textPrimary, marginBottom: 20 },
           ]}
         >
           {props.month}

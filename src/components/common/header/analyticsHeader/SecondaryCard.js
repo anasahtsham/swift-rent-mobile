@@ -25,7 +25,7 @@ const SecondaryCard = (props) => {
         <Text
           style={[
             styles.textBold,
-            styles.textSmall,
+            styles.textMidSmall,
             { color: colors.textPrimary },
           ]}
         >

@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   textBold: { fontFamily: "OpenSansBold" },
   textExtraSmall: { fontSize: FontSizes.extraSmall },
   textSmall: { fontSize: FontSizes.small },
+  textMidSmall: { fontSize: FontSizes.midSmall },
   textMedium: { fontSize: FontSizes.medium },
   textLarge: { fontSize: FontSizes.large },
 
