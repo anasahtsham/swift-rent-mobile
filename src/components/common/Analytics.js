@@ -27,6 +27,7 @@ const Analytics = (props) => {
         pendingRents={props.pendingRents}
         rentsPaid={props.rentsPaid}
         rentsPending={props.rentsPending}
+        tenantScrollHeader={props.tenantScrollHeader}
         colors={colors}
       />
       <View
@@ -39,18 +40,21 @@ const Analytics = (props) => {
             color: colors.textWhite,
           }}
         >
-          Monthly Reports
+          {!!props.tenantScrollHeader
+            ? props.tenantScrollHeader
+            : "Monthly Reports"}
         </Text>
       </View>
       <ScrollView>
         <View style={styles.buttons}>
-          {props.dummyData.map((data) => (
+          {props.analyticsData.map((data) => (
             <AnalyticsButton
               colors={colors}
               key={data.id}
               month={data.month}
-              income={data.incomingPayment}
-              outcome={data.outgoingPayment}
+              incomingPayment={data.incomingPayment}
+              outgoingPayment={data.outgoingPayment}
+              properties={data.properties}
               backgroundColor={colors.backgroundRed}
               navigation={navigation}
             />
