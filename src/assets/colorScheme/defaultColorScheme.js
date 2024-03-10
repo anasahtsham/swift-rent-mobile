@@ -30,6 +30,8 @@ export const iconBlue = "#1463df";
 export const iconRed = "#ff0c0c";
 export const iconYellow = "#ffce00";
 export const iconGreen = "#00bf63";
+export const iconWhite = "#fff";
+export const iconGrey = "#9E9E9E";
 
 export const logoPrimary = "#47b5ff";
 
