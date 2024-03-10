@@ -1,8 +1,27 @@
-import React from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import React, { useEffect } from "react";
+import {
+  BackHandler,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 const OwnerAnalyticalReport = ({ navigation }) => {
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true; // This will prevent the app from closing
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>

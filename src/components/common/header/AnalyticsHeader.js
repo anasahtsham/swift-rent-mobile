@@ -3,11 +3,15 @@ import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import MainCard from "./analyticsHeader/MainCard";
 import PendingRentsCard from "./analyticsHeader/PendingRentsCard";
-import RecievedRentsCard from "./analyticsHeader/RecievedRentsCard";
+import ReceivedRentsCard from "./analyticsHeader/ReceivedRentsCard";
 
 const AnalyticsHeader = (props) => {
   const colors = props.colors;
   const navigation = useNavigation();
+
+  const goToPendingRents = () => {
+    navigation.navigate("Pending Rents");
+  };
 
   const goToReceivedRents = () => {
     navigation.navigate("Received Rents");
@@ -23,20 +27,34 @@ const AnalyticsHeader = (props) => {
       <View style={styles.mainCardContainer}>
         <MainCard
           month={props.month}
+          rentsPaid={props.rentsPaid}
+          rentals={props.rentals}
           rentsCollected={props.rentsCollected}
           maintenanceCost={props.maintenanceCost}
           totalProperties={props.totalProperties}
           colors={colors}
         />
       </View>
-      <View style={styles.recievedAndPendingRentsContainer}>
-        <RecievedRentsCard
-          onPress={goToReceivedRents}
-          recievedRents={props.recievedRents}
+      <View style={styles.receivedAndPendingRentsContainer}>
+        <ReceivedRentsCard
+          onPress={() => {
+            if (!!props.rentsCollected) {
+              goToReceivedRents();
+            }
+          }}
+          receivedRents={props.receivedRents}
           colors={colors}
         />
         <View style={{ height: 10 }}></View>
-        <PendingRentsCard pendingRents={props.pendingRents} colors={colors} />
+        <PendingRentsCard
+          onPress={() => {
+            if (!!props.rentsCollected) {
+              goToPendingRents();
+            }
+          }}
+          pendingRents={props.pendingRents}
+          colors={colors}
+        />
       </View>
     </View>
   );
@@ -54,7 +72,7 @@ const styles = StyleSheet.create({
   },
   mainCardContainer: { flex: 1, marginRight: 10 },
 
-  recievedAndPendingRentsContainer: { flex: 1, flexDirection: "column" },
+  receivedAndPendingRentsContainer: { flex: 1, flexDirection: "column" },
 });
 
 export default AnalyticsHeader;

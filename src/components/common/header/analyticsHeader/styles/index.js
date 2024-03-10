@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     borderWidth: 4,
     padding: 10,
   },
-  recievedAndPendingRentsCard: {
+  receivedAndPendingRentsCard: {
     flex: 1,
     justifyContent: "space-between",
   },

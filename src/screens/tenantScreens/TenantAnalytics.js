@@ -6,10 +6,9 @@ const TenantAnalytics = () => {
     <Analytics
       dummyData={dummyData}
       month="June 2024"
-      rentsCollected="1230000"
-      maintenanceCost="20000"
-      totalProperties="10"
-      recievedRents="123"
+      rentsPaid="1230000"
+      rentals="5"
+      receivedRents="123"
       pendingRents="321"
     />
   );

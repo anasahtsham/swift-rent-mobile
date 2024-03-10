@@ -1,12 +1,14 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
-import { styles } from "./styles";
-import { icons } from "../../../../helpers/ImageImports";
+import { useNavigation } from "@react-navigation/native";
 import { opacityValueForButton } from "../../../../constants/index";
 import { formatNumber } from "../../../../helpers";
+import { icons } from "../../../../helpers/ImageImports";
+import { styles } from "./styles";
 
 const MainCard = (props) => {
   const colors = props.colors;
+  const navigation = useNavigation();
   const InfoRow = ({ title, value, imageSource, tintColor }) => {
     return (
       <View>
@@ -20,11 +22,14 @@ const MainCard = (props) => {
           {title}
         </Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            tintColor={tintColor}
-            style={{ width: 20, height: 20, marginRight: 5 }}
-            source={imageSource}
-          />
+          {!!props.rentsCollected && (
+            <Image
+              tintColor={tintColor}
+              style={{ width: 20, height: 20, marginRight: 5 }}
+              source={imageSource}
+            />
+          )}
+
           <Text
             style={[
               styles.textBold,
@@ -37,21 +42,31 @@ const MainCard = (props) => {
           >
             {value}
           </Text>
-          <Text
-            style={[
-              styles.textRegular,
-              styles.textExtraSmall,
-              { color: colors.textPrimary },
-            ]}
-          >
-            PKR
-          </Text>
+          {!!props.rentsCollected && (
+            <Text
+              style={[
+                styles.textRegular,
+                styles.textExtraSmall,
+                { color: colors.textPrimary },
+              ]}
+            >
+              PKR
+            </Text>
+          )}
         </View>
       </View>
     );
   };
+
   return (
-    <TouchableOpacity activeOpacity={opacityValueForButton}>
+    <TouchableOpacity
+      onPress={() => {
+        if (!!props.rentsCollected) {
+          navigation.navigate("Owner Analytical Report");
+        }
+      }}
+      activeOpacity={!!props.rentsCollected ? opacityValueForButton : 1}
+    >
       <View
         style={[
           styles.commonStylesForCards,
@@ -70,51 +85,77 @@ const MainCard = (props) => {
         >
           {props.month}
         </Text>
-        <InfoRow
-          title="Rents Collected"
-          value={formatNumber(props.rentsCollected)}
-          imageSource={icons.downLongArrow}
-          tintColor={colors.iconGreen}
-        />
-        <InfoRow
-          title="Maintenance Costs"
-          value={formatNumber(props.maintenanceCost)}
-          imageSource={icons.upLongArrow}
-          tintColor={colors.iconRed}
-        />
-        <View>
-          <Text
-            style={[
-              styles.textRegular,
-              styles.textSmall,
-              { color: colors.textPrimary },
-            ]}
-          >
-            Total Properties
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+        {!!props.rentsCollected && (
+          <InfoRow
+            title="Rents Collected"
+            value={formatNumber(props.rentsCollected)}
+            imageSource={icons.downLongArrow}
+            tintColor={colors.iconGreen}
+          />
+        )}
+        {!!props.rentsCollected && (
+          <InfoRow
+            title="Maintenance Costs"
+            value={formatNumber(props.maintenanceCost)}
+            imageSource={icons.upLongArrow}
+            tintColor={colors.iconRed}
+          />
+        )}
+        {!!props.rentsPaid && (
+          <InfoRow
+            title="Rents Paid"
+            value={formatNumber(props.rentsPaid)}
+            imageSource={icons.upLongArrow}
+            tintColor={colors.iconRed}
+          />
+        )}
+        {!!props.rentsPaid && (
+          <View>
+            <InfoRow
+              title="Rentals"
+              value={props.rentals}
+              imageSource={icons.upLongArrow}
+              tintColor={colors.iconRed}
+            />
+            <View style={{ height: 40 }}></View>
+          </View>
+        )}
+
+        {!!props.rentsCollected && (
+          <View>
             <Text
               style={[
-                styles.textBold,
+                styles.textRegular,
                 styles.textSmall,
                 { color: colors.textPrimary },
               ]}
             >
-              {props.totalProperties}
+              Total Properties
             </Text>
-            <Image
-              tintColor={colors.iconPrimary}
-              style={{ width: 20, height: 20 }}
-              source={icons.externalLink}
-            />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={[
+                  styles.textBold,
+                  styles.textSmall,
+                  { color: colors.textPrimary },
+                ]}
+              >
+                {props.totalProperties}
+              </Text>
+              <Image
+                tintColor={colors.iconPrimary}
+                style={{ width: 20, height: 20 }}
+                source={icons.externalLink}
+              />
+            </View>
           </View>
-        </View>
+        )}
       </View>
     </TouchableOpacity>
   );

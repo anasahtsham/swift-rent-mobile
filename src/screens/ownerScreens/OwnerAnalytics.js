@@ -9,7 +9,7 @@ const OwnerAnalytics = () => {
       rentsCollected="1230000"
       maintenanceCost="20000"
       totalProperties="10"
-      recievedRents="123"
+      receivedRents="123"
       pendingRents="321"
     />
   );

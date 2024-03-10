@@ -5,7 +5,7 @@ import { opacityValueForButton } from "../../../constants";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { formatNumber } from "./../../../helpers/index";
 
-export const ReceivedRentsButton = (props) => {
+export const PendingRentsButton = (props) => {
   const colors = props.colors;
   return (
     <TouchableOpacity
@@ -43,20 +43,20 @@ export const ReceivedRentsButton = (props) => {
           </View>
         )}
 
-        {!!props.amountCollected && (
+        {!!props.rentDue && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Collected:{" "}
+              Rent:{" "}
             </Text>
             <Text
               style={[
                 styles.fontBold,
                 {
-                  color: colors.textGreen,
+                  color: colors.textRed,
                 },
               ]}
             >
-              {formatNumber(props.amountCollected)}{" "}
+              {formatNumber(props.rentDue)}{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               PKR
@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReceivedRentsButton;
+export default PendingRentsButton;

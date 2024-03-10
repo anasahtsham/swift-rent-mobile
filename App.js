@@ -7,7 +7,8 @@ import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
-import RecievedRents from "./src/components/common/RecievedRents";
+import PendingRents from "./src/components/common/PendingRents";
+import ReceivedRents from "./src/components/common/ReceivedRents";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ManagerNavigator from "./src/components/common/footer/ManagerNavigator";
 import OwnerNavigator from "./src/components/common/footer/OwnerNavigator";
@@ -21,8 +22,8 @@ import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
 import WhoAreYou from "./src/screens/authenticationScreens/WhoAreYou";
-import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
 import OwnerAnalyticalReport from "./src/screens/ownerScreens/OwnerAnalyticalReport";
+import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 
@@ -38,7 +39,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Owner Analytical Report"
+          initialRouteName="Splash Screen"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Splash Screen" component={SplashScreen} />
@@ -60,7 +61,8 @@ export default function App() {
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
-          <Stack.Screen name="Received Rents" component={RecievedRents} />
+          <Stack.Screen name="Received Rents" component={ReceivedRents} />
+          <Stack.Screen name="Pending Rents" component={PendingRents} />
           <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
           <Stack.Screen
             name="Owner Analytical Report"

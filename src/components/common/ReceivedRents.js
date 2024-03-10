@@ -1,4 +1,5 @@
 import {
+  BackHandler,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -9,6 +10,7 @@ import {
 
 import { useColors } from "../../helpers/SetColors";
 
+import { useEffect } from "react";
 import {
   borderGreen,
   borderRed,
@@ -18,8 +20,21 @@ import { opacityValueForButton } from "../../constants";
 import { receivedRentsData } from "../../helpers/ReceivedRentsData";
 import ReceivedRentsButton from "./buttons/ReceivedRentsButton";
 
-const RecievedRents = () => {
+const ReceivedRents = ({ navigation }) => {
   const colors = useColors();
+
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true; // This will prevent the app from closing
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <SafeAreaView
@@ -65,6 +80,9 @@ const RecievedRents = () => {
         <TouchableOpacity
           activeOpacity={opacityValueForButton}
           style={[styles.button, { borderColor: borderGreen }]}
+          onPress={() => {
+            navigation.navigate("Received Rents");
+          }}
         >
           <Text
             style={[
@@ -79,10 +97,13 @@ const RecievedRents = () => {
         <TouchableOpacity
           activeOpacity={opacityValueForButton}
           style={[styles.button, { borderColor: borderRed }]}
+          onPress={() => {
+            navigation.navigate("Pending Rents");
+          }}
         >
           <Text
             style={[
-              styles.fontBold,
+              styles.fontRegular,
               { color: colors.textPrimary, fontSize: FontSizes.small },
             ]}
           >
@@ -120,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RecievedRents;
+export default ReceivedRents;

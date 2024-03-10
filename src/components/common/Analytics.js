@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { useColorsOnFocus } from "../../helpers/SetColors";
 
-import AnalyticsHeader from "./header/AnalyticsHeader";
 import AnalyticsButton from "./buttons/AnalyticsButton";
+import AnalyticsHeader from "./header/AnalyticsHeader";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
@@ -18,10 +18,12 @@ const Analytics = (props) => {
     >
       <AnalyticsHeader
         month={props.month}
+        rentsPaid={props.rentsPaid}
+        rentals={props.rentals}
         rentsCollected={props.rentsCollected}
         maintenanceCost={props.maintenanceCost}
         totalProperties={props.totalProperties}
-        recievedRents={props.recievedRents}
+        receivedRents={props.receivedRents}
         pendingRents={props.pendingRents}
         colors={colors}
       />
