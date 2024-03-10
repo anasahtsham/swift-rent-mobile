@@ -20,6 +20,7 @@ import LoginAs from "./src/screens/authenticationScreens/LoginAs";
 import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
+import TestScreen from "./src/screens/authenticationScreens/TestScreen";
 import WhoAreYou from "./src/screens/authenticationScreens/WhoAreYou";
 import OwnerAnalyticalReport from "./src/screens/ownerScreens/OwnerAnalyticalReport";
 import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
@@ -39,9 +40,10 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Splash Screen"
+          initialRouteName="Test Screen"
         >
           {/* Authentication Screens */}
+          <Stack.Screen name="Test Screen" component={TestScreen} />
           <Stack.Screen name="Splash Screen" component={SplashScreen} />
           <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
           <Stack.Screen name="Login Screen" component={LoginScreen} />

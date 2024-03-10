@@ -7,12 +7,11 @@ import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
+import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import CustomDateOfBirthField from "../../components/common/input fields/CustomDateOfBirthField";
 import CustomTextField from "../../components/common/input fields/CustomTextField";
-
-import * as FontSizes from "../../assets/fonts/FontSizes";
 
 const GetToKnow = ({ navigation, route }) => {
   const [firstName, setFirstName] = useState("");
