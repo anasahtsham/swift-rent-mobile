@@ -2,19 +2,26 @@ import { StyleSheet, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import MainCard from "./analyticsHeader/MainCard";
-import PendingRentsCard from "./analyticsHeader/PendingRentsCard";
-import ReceivedRentsCard from "./analyticsHeader/ReceivedRentsCard";
+import SecondaryCard from "./analyticsHeader/SecondaryCard";
 
 const AnalyticsHeader = (props) => {
   const colors = props.colors;
   const navigation = useNavigation();
 
-  const goToPendingRents = () => {
-    navigation.navigate("Pending Rents");
+  const goToTopRentsScreen = () => {
+    if (!!props.receivedRents) {
+      navigation.navigate("Rents", { header: "Received Rents" });
+    } else {
+      navigation.navigate("Rents", { header: "Rents Paid" });
+    }
   };
 
-  const goToReceivedRents = () => {
-    navigation.navigate("Received Rents");
+  const goToBottomRentsScreen = () => {
+    if (!!props.pendingRents) {
+      navigation.navigate("Rents", { header: "Pending Rents" });
+    } else {
+      navigation.navigate("Rents", { header: "Rents Pending" });
+    }
   };
 
   return (
@@ -27,7 +34,7 @@ const AnalyticsHeader = (props) => {
       <View style={styles.mainCardContainer}>
         <MainCard
           month={props.month}
-          rentsPaid={props.rentsPaid}
+          totalRentsPaid={props.totalRentsPaid}
           rentals={props.rentals}
           rentsCollected={props.rentsCollected}
           maintenanceCost={props.maintenanceCost}
@@ -36,23 +43,17 @@ const AnalyticsHeader = (props) => {
         />
       </View>
       <View style={styles.receivedAndPendingRentsContainer}>
-        <ReceivedRentsCard
-          onPress={() => {
-            if (!!props.rentsCollected) {
-              goToReceivedRents();
-            }
-          }}
+        <SecondaryCard
+          onPress={goToTopRentsScreen}
           receivedRents={props.receivedRents}
+          rentsPaid={props.rentsPaid}
           colors={colors}
         />
         <View style={{ height: 10 }}></View>
-        <PendingRentsCard
-          onPress={() => {
-            if (!!props.rentsCollected) {
-              goToPendingRents();
-            }
-          }}
+        <SecondaryCard
+          onPress={goToBottomRentsScreen}
           pendingRents={props.pendingRents}
+          rentsPending={props.rentsPending}
           colors={colors}
         />
       </View>
