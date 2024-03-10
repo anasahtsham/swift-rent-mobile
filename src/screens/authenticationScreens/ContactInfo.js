@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { icons } from "../../helpers/ImageImports";
 import { buttonWidthSmaller } from "../../constants";
-import { useLanguages } from "../../helpers/SetLanguages";
+import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
+import { useLanguages } from "../../helpers/SetLanguages";
 
-import CustomTextField from "../../components/common/input fields/CustomTextField";
-import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import CustomTextField from "../../components/common/input fields/CustomTextField";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
-const ContactInfo = ({ navigation }) => {
+const ContactInfo = ({ navigation, route }) => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailError, setEmailError] = useState(null);
   const [phoneNumberError, setPhoneNumberError] = useState(null);
+
+  const { userType, firstName, lastName, dob } = route.params;
 
   //set theme
   const colors = useColors();
@@ -95,6 +97,7 @@ const ContactInfo = ({ navigation }) => {
                 width={buttonWidthSmaller}
                 fontSize={FontSizes.small}
                 buttonText={languages.back}
+                userType={userType}
                 destinationScreen="Get To Know"
                 navigation={navigation}
               />
@@ -102,6 +105,12 @@ const ContactInfo = ({ navigation }) => {
                 width={buttonWidthSmaller}
                 fontSize={FontSizes.small}
                 buttonText={languages.next}
+                userType={userType}
+                firstName={firstName}
+                lastName={lastName}
+                dob={dob}
+                email={email}
+                phoneNumber={phoneNumber}
                 destinationScreen="Set Up Password"
                 navigation={navigation}
               />

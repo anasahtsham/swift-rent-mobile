@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Text,
-  TextInput,
-  View,
   Animated,
   Easing,
-  TouchableWithoutFeedback,
   Image,
   Pressable,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 
 import { loadTheme } from "../../../helpers";
 import { inputStyles } from "./styles/CustomInputFieldStyles";
 
-import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 import * as LoadingTheme from "../../../assets/colorScheme/loadingColorScheme";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 const CustomPasswordField = (props) => {
   const [colors, setColors] = useState(LoadingTheme);
@@ -73,6 +73,7 @@ const CustomPasswordField = (props) => {
             <View style={inputStyles.container}>
               <View style={[style, inputStyles.inputContainer]}>
                 <TextInput
+                  onChangeText={props.onChangeText}
                   keyboardType={keyboardType}
                   secureTextEntry={secureTextEntry}
                   style={[

@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Text,
-  TextInput,
-  View,
-  TouchableWithoutFeedback,
   Animated,
   Easing,
   Image,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { loadTheme } from "../../../helpers";
 import { inputStyles } from "./styles/CustomInputFieldStyles";
 
-import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 import * as LoadingTheme from "../../../assets/colorScheme/loadingColorScheme";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 const CustomDateOfBirthField = (props) => {
   const [colors, setColors] = useState(LoadingTheme);
@@ -78,6 +78,7 @@ const CustomDateOfBirthField = (props) => {
     setFormattedDate(formatted);
     hideDatePicker();
     setSelectedDate(date);
+    props.onChangeText(formatted);
   };
 
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
@@ -98,6 +99,7 @@ const CustomDateOfBirthField = (props) => {
           <View style={inputStyles.container}>
             <View style={[style, inputStyles.inputContainer]}>
               <TextInput
+                onChangeText={props.onChangeText}
                 ref={inputRef}
                 style={[
                   inputStyles.input,

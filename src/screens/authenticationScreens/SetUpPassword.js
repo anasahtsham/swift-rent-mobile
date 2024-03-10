@@ -11,12 +11,15 @@ import CustomPasswordField from "../../components/common/input fields/CustomPass
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
-const SetUpPassword = ({ navigation }) => {
+const SetUpPassword = ({ navigation, route }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [passwordError, setPasswordError] = useState(null);
   const [confirmPasswordError, setConfirmPasswordError] = useState(null);
+
+  const { userType, firstName, lastName, dob, email, phoneNumber } =
+    route.params;
 
   const handleLogin = () => {
     // Handle login logic here
@@ -56,16 +59,16 @@ const SetUpPassword = ({ navigation }) => {
 
             <View style={styles.textInputsContainer}>
               <CustomPasswordField
-                value={confirmPassword}
+                value={password}
                 label={languages.password}
                 errorText={passwordError}
-                onChangeText={(text) => setConfirmPassword(text)}
+                onChangeText={(text) => setPassword(text)}
               />
               <CustomPasswordField
-                value={password}
+                value={confirmPassword}
                 label={languages.confirmPassword}
                 errorText={confirmPasswordError}
-                onChangeText={(text) => setPassword(text)}
+                onChangeText={(text) => setConfirmPassword(text)}
               />
 
               {/* dont remove below comment */}
@@ -98,6 +101,13 @@ const SetUpPassword = ({ navigation }) => {
               width={buttonWidthMedium}
               fontSize={FontSizes.medium}
               buttonText={languages.continueText}
+              userType={userType}
+              firstName={firstName}
+              lastName={lastName}
+              dob={dob}
+              email={email}
+              phoneNumber={phoneNumber}
+              password={password}
               destinationScreen="All Set Up"
               navigation={navigation}
             />

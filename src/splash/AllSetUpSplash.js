@@ -1,12 +1,32 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, Text, BackHandler } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import { BackHandler, StyleSheet, Text, View } from "react-native";
 
 import { useColors } from "../helpers/SetColors";
 
 import * as FontSizes from "../assets/fonts/FontSizes";
 
-const AllSetUpSplash = () => {
+const AllSetUpSplash = ({ route }) => {
+  const { userType, firstName, lastName, dob, email, phoneNumber, password } =
+    route.params;
+
+  console.log("userType: ", userType);
+  console.log("firstName: ", firstName);
+  console.log("lastName: ", lastName);
+  console.log("dob: ", dob);
+  console.log("email: ", email);
+  console.log("phoneNumber: ", phoneNumber);
+  console.log("password: ", password);
+
+  let userScreen = "";
+
+  if (userType === "owner") {
+    userScreen = "Owner Navigator";
+  } else if (userType === "manager") {
+    userScreen = "Manager Navigator";
+  } else if (userType === "tenant") {
+    userScreen = "Tenant Navigator";
+  }
   //set theme
   const colors = useColors();
 
@@ -14,7 +34,7 @@ const AllSetUpSplash = () => {
   const navigation = useNavigation();
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace("Tab Navigator"); // Navigate to Welcome Screen after 3 seconds
+      navigation.replace(userScreen); // Navigate to Welcome Screen after 3 seconds
     }, 3000); // where 1000 milliseconds = 1 second
 
     const backAction = () => {

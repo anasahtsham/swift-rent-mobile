@@ -17,7 +17,15 @@ const ButtonGrey = (props) => {
   }
 
   const handlePress = () => {
-    props.navigation.navigate(props.destinationScreen);
+    props.navigation.navigate(props.destinationScreen, {
+      userType: props.userType,
+      firstName: props.firstName,
+      lastName: props.lastName,
+      dob: props.dob,
+      email: props.email,
+      phoneNumber: props.phoneNumber,
+      password: props.password,
+    });
   };
 
   return (

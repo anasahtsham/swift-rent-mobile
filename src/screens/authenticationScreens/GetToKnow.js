@@ -2,25 +2,27 @@ import React, { useState } from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { useColors } from "../../helpers/SetColors";
-import { icons } from "../../helpers/ImageImports";
 import { buttonWidthSmaller } from "../../constants";
+import { icons } from "../../helpers/ImageImports";
+import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-import CustomTextField from "../../components/common/input fields/CustomTextField";
-import CustomDateOfBirthField from "../../components/common/input fields/CustomDateOfBirthField";
-import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import CustomDateOfBirthField from "../../components/common/input fields/CustomDateOfBirthField";
+import CustomTextField from "../../components/common/input fields/CustomTextField";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
-const GetToKnow = ({ navigation }) => {
+const GetToKnow = ({ navigation, route }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
   const [firstNameError, setFirstNameError] = useState(null);
   const [lastNameError, setLastNameError] = useState(null);
   const [dobError, setDobError] = useState(null);
+
+  const { userType } = route.params;
 
   //set theme
   const colors = useColors();
@@ -116,6 +118,10 @@ const GetToKnow = ({ navigation }) => {
                 width={buttonWidthSmaller}
                 fontSize={FontSizes.small}
                 buttonText={languages.next}
+                userType={userType}
+                firstName={firstName}
+                lastName={lastName}
+                dob={dob}
                 destinationScreen="Contact Info"
                 navigation={navigation}
               />
