@@ -30,6 +30,7 @@ export const AlertButton = (props) => {
           styles.timeAndDate,
           {
             backgroundColor: getBackgroundColor(props.notificationType),
+            marginEnd: 10,
           },
         ]}
       >

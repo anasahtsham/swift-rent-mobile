@@ -32,7 +32,12 @@ export const PropertiesButton = (props) => {
           />
         </View>
 
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+        <Text
+          style={[
+            styles.fontBold,
+            { color: colors.textPrimary, marginBottom: 10 },
+          ]}
+        >
           {props.city}
         </Text>
         <View
@@ -76,7 +81,7 @@ export const PropertiesButton = (props) => {
         </View>
 
         {!!props.manager && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginTop: 10 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Manager:{" "}
             </Text>
@@ -87,7 +92,7 @@ export const PropertiesButton = (props) => {
         )}
 
         {!!props.tenant && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginTop: 10 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Rented To:{" "}
             </Text>
@@ -98,7 +103,7 @@ export const PropertiesButton = (props) => {
         )}
 
         {!!props.rentStatus && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginTop: 10 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Rent Status:{" "}
             </Text>
