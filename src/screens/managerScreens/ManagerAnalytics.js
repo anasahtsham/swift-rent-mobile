@@ -1,10 +1,10 @@
 import Analytics from "../../components/common/Analytics";
-import { dummyData } from "../../helpers/AnalyticsData";
+import { ownerAndManagerData } from "../../helpers/AnalyticsData";
 
 const ManagerAnalytics = () => {
   return (
     <Analytics
-      dummyData={dummyData}
+      analyticsData={ownerAndManagerData}
       month="June 2024"
       rentsCollected="1230000"
       maintenanceCost="20000"

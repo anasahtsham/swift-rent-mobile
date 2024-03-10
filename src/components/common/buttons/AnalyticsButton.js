@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { opacityValueForButton } from "../../../constants";
-import { icons } from "../../../helpers/ImageImports";
 import { formatNumber } from "../../../helpers";
+import { icons } from "../../../helpers/ImageImports";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
@@ -22,11 +22,53 @@ export const AnalyticsButton = (props) => {
       >
         {props.month}
       </Text>
-      <Image
-        tintColor={colors.iconGreen}
-        source={icons.downLongArrow}
-        style={{ width: 20, height: 20 }}
-      />
+      {!!props.incomingPayment && (
+        <Image
+          tintColor={colors.iconGreen}
+          source={icons.downLongArrow}
+          style={{ width: 20, height: 20 }}
+        />
+      )}
+
+      {!!props.incomingPayment && (
+        <Text
+          style={{
+            fontFamily: "OpenSansRegular",
+            fontSize: FontSizes.small,
+            color: colors.textPrimary,
+          }}
+        >
+          {formatNumber(props.incomingPayment)}
+        </Text>
+      )}
+
+      {!!props.properties && (
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Image
+            tintColor={colors.iconPrimary}
+            source={icons.home}
+            style={{ width: 20, height: 20, marginRight: 5 }}
+          />
+          <Text
+            style={{
+              fontFamily: "OpenSansRegular",
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+            }}
+          >
+            {props.properties}
+          </Text>
+        </View>
+      )}
+
+      {!!props.incomingPayment && (
+        <Image
+          tintColor={colors.iconRed}
+          source={icons.upLongArrow}
+          style={{ width: 20, height: 20 }}
+        />
+      )}
+
       <Text
         style={{
           fontFamily: "OpenSansRegular",
@@ -34,21 +76,10 @@ export const AnalyticsButton = (props) => {
           color: colors.textPrimary,
         }}
       >
-        {formatNumber(props.income)}
-      </Text>
-      <Image
-        tintColor={colors.iconRed}
-        source={icons.upLongArrow}
-        style={{ width: 20, height: 20 }}
-      />
-      <Text
-        style={{
-          fontFamily: "OpenSansRegular",
-          fontSize: FontSizes.small,
-          color: colors.textPrimary,
-        }}
-      >
-        {formatNumber(props.outcome)}
+        {!!props.outgoingPayment
+          ? formatNumber(props.outgoingPayment)
+          : formatNumber(props.outcome)}
+        {!!props.incomingPayment ? "" : " PKR"}
       </Text>
       <Image
         tintColor={colors.iconPrimary}

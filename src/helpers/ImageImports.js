@@ -10,4 +10,5 @@ export const icons = {
   outgoingArrow: require("../assets/icons/outgoing-arrow.png"),
   externalLink: require("../assets/icons/external-link.png"),
   barGraph: require("../assets/icons/bar-graph.png"),
+  home: require("../assets/icons/home.png"),
 };
