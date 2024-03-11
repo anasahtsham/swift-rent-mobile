@@ -9,24 +9,14 @@ import {
   View,
 } from "react-native";
 
-import { loadTheme } from "../../../helpers";
 import { inputStyles } from "./styles/CustomInputFieldStyles";
 
-import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
-import * as LoadingTheme from "../../../assets/colorScheme/loadingColorScheme";
+import { DateTimePickerModal } from "react-native-modal-datetime-picker";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { icons } from "../../../helpers/ImageImports";
+import { useColors } from "../../../helpers/SetColors";
 
 const CustomTextField = (props) => {
-  const [colors, setColors] = useState(LoadingTheme);
-
-  //update theme on load
-  useEffect(() => {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }, []);
-
   const {
     label,
     errorText,
@@ -38,10 +28,28 @@ const CustomTextField = (props) => {
     ...restOfProps
   } = props;
 
-  const [isFocused, setIsFocused] = useState(false);
+  const colors = useColors();
 
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHidden, setIsHidden] = useState(fieldType === "password");
   const inputRef = useRef(null);
   const focusAnim = useRef(new Animated.Value(0)).current;
+  let color = isFocused ? colors.borderBlue : colors.borderPrimary;
+  let width = isFocused ? 4 : 1;
+
+  //for date picker
+  const [isPickerOpen, setPickerOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  let maxDate = new Date(
+    new Date().getFullYear() - 18,
+    new Date().getMonth(),
+    new Date().getDate()
+  );
+  const [formattedDate, setFormattedDate] = useState(null);
+
+  if (errorText) {
+    color = "#B00020";
+  }
 
   useEffect(() => {
     Animated.timing(focusAnim, {
@@ -52,15 +60,36 @@ const CustomTextField = (props) => {
     }).start();
   }, [focusAnim, isFocused, value]);
 
-  let color = isFocused ? colors.borderBlue : colors.borderPrimary;
-  let width = isFocused ? 4 : 1;
+  const showDatePicker = () => {
+    setPickerOpen(true);
+    setIsFocused(true);
+  };
 
-  if (errorText) {
-    color = "#B00020";
-  }
+  const hideDatePicker = () => {
+    setPickerOpen(false);
+    setIsFocused(false);
+  };
+
+  const handleConfirm = (date) => {
+    let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")}-${date.getFullYear()}`;
+    setFormattedDate(formatted);
+    hideDatePicker();
+    setSelectedDate(date);
+    props.onChangeText(formatted);
+  };
 
   return (
-    <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        if (fieldType === "date") {
+          showDatePicker();
+        } else {
+          inputRef.current?.focus();
+        }
+      }}
+    >
       <View style={inputStyles.mainContainer}>
         <View
           style={[
@@ -72,6 +101,8 @@ const CustomTextField = (props) => {
             <View style={inputStyles.container}>
               <View style={[inputStyles.inputContainer]}>
                 <TextInput
+                  editable={fieldType !== "date"}
+                  secureTextEntry={isHidden}
                   keyboardType={
                     fieldType === "email-address" || fieldType === "phone-pad"
                       ? fieldType
@@ -133,12 +164,26 @@ const CustomTextField = (props) => {
                   </Text>
                 </Animated.View>
               </View>
-
-              <Image
-                tintColor={color}
-                source={textFieldIcon}
-                style={inputStyles.icon}
-              />
+              {fieldType !== "password" && (
+                <Image
+                  tintColor={color}
+                  source={textFieldIcon}
+                  style={inputStyles.icon}
+                />
+              )}
+              {fieldType === "password" && (
+                <TouchableWithoutFeedback
+                  onPress={() => setIsHidden(!isHidden)}
+                >
+                  <Image
+                    tintColor={color}
+                    source={
+                      isHidden ? icons.hidePasswordIcon : icons.showPasswordIcon
+                    }
+                    style={inputStyles.icon}
+                  />
+                </TouchableWithoutFeedback>
+              )}
             </View>
           </View>
         </View>
@@ -155,6 +200,17 @@ const CustomTextField = (props) => {
           >
             {errorText}
           </Text>
+        )}
+        {fieldType === "date" && (
+          <DateTimePickerModal
+            minimumDate={new Date(1950, 0, 1)}
+            maximumDate={maxDate}
+            isVisible={isPickerOpen}
+            mode="date"
+            date={selectedDate}
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
         )}
       </View>
     </TouchableWithoutFeedback>

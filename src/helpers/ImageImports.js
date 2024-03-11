@@ -14,4 +14,6 @@ export const icons = {
   star: require("../assets/icons/star.png"),
   like: require("../assets/icons/like.png"),
   dislike: require("../assets/icons/dislike.png"),
+  hidePasswordIcon: require("../assets/icons/hide-password.png"),
+  showPasswordIcon: require("../assets/icons/show-password.png"),
 };
