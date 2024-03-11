@@ -1,82 +1,125 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Formik } from "formik";
+import React from "react";
+import { Button, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
+import * as Yup from "yup";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
-import { useLanguages } from "../../helpers/SetLanguages";
 import InputField from "./../../components/common/input fields/InputField";
 
-const TestScreen = ({ navigation }) => {
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [date, setDate] = useState("");
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("Required")
+    .min(3, "Name must be 3 characters or more")
+    .trim("No spaces allowed"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Required")
+    .trim("No spaces allowed"),
+  password: Yup.string()
+    .required("Required")
+    .min(6, "Password must be more than 5 characters")
+    .trim("No spaces allowed"),
+  phoneNumber: Yup.string()
+    .required("Required")
+    .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03")
+    .trim("No spaces allowed"),
+  date: Yup.string().required("Required").trim("No spaces allowed"),
+});
 
-  //set theme
+const TestScreen = () => {
   const colors = useColors();
-
-  const languages = useLanguages();
-
   return (
-    <KeyboardAwareScrollView
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={{ flexGrow: 1 }}
-      scrollEnabled={true}
-      extraScrollHeight={2500}
+    <Formik
+      initialValues={{
+        firstName: "",
+        email: "",
+        password: "",
+        phoneNumber: "",
+        date: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={(values, { setTouched }) => {
+        setTouched({
+          firstName: true,
+          email: true,
+          password: true,
+          phoneNumber: true,
+          date: true,
+        });
+      }}
     >
-      <View
-        style={[
-          styles.textInputsContainer,
-          { backgroundColor: colors.backgroundPrimary },
-        ]}
-      >
-        <InputField
-          value={firstName}
-          label="First Name"
-          textFieldIcon={icons.userIcon}
-          fieldType="name"
-          onChangeText={(text) => setFirstName(text)}
-        />
-        <InputField
-          value={email}
-          label="Email"
-          textFieldIcon={icons.emailIcon}
-          fieldType="email-address"
-          onChangeText={(text) => setEmail(text)}
-        />
-        <InputField
-          value={password}
-          label="Password"
-          fieldType="password"
-          onChangeText={(text) => setPassword(text)}
-        />
-        <InputField
-          value={phoneNumber}
-          label="Phone Number"
-          textFieldIcon={icons.phoneNumberIcon}
-          fieldType="phone-pad"
-          onChangeText={(text) => setPhoneNumber(text)}
-        />
-        <InputField
-          value={date}
-          label="Date"
-          textFieldIcon={icons.calendarIcon}
-          fieldType="date"
-          onChangeText={(text) => setDate(text)}
-        />
-      </View>
-    </KeyboardAwareScrollView>
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+      }) => (
+        <KeyboardAwareScrollView
+          resetScrollToCoords={{ x: 0, y: 0 }}
+          contentContainerStyle={{ flexGrow: 1 }}
+          scrollEnabled={true}
+          extraScrollHeight={2500}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: colors.backgroundPrimary,
+            }}
+          >
+            <InputField
+              textFieldIcon={icons.userIcon}
+              fieldType="name"
+              label="First Name"
+              value={values.firstName}
+              handleChange={handleChange("firstName")}
+              handleBlur={handleBlur("firstName")}
+              errorText={touched.firstName ? errors.firstName : ""}
+            />
+            <InputField
+              textFieldIcon={icons.emailIcon}
+              fieldType="email-address"
+              label="Email"
+              value={values.email}
+              handleChange={handleChange("email")}
+              handleBlur={handleBlur("email")}
+              errorText={touched.email ? errors.email : ""}
+            />
+            <InputField
+              fieldType="password"
+              label="Password"
+              value={values.password}
+              handleChange={handleChange("password")}
+              handleBlur={handleBlur("password")}
+              errorText={touched.password ? errors.password : ""}
+            />
+            <InputField
+              textFieldIcon={icons.phoneNumberIcon}
+              fieldType="phone-pad"
+              label="Phone Number"
+              value={values.phoneNumber}
+              handleChange={handleChange("phoneNumber")}
+              handleBlur={handleBlur("phoneNumber")}
+              errorText={touched.phoneNumber ? errors.phoneNumber : ""}
+            />
+            <InputField
+              fieldType="date"
+              label="Date"
+              value={values.date}
+              handleChange={handleChange("date")}
+              handleBlur={handleBlur("date")}
+              errorText={touched.date ? errors.date : ""}
+            />
+            <Button onPress={handleSubmit} title="Submit" />
+          </View>
+        </KeyboardAwareScrollView>
+      )}
+    </Formik>
   );
 };
-
-const styles = StyleSheet.create({
-  textInputsContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 export default TestScreen;

@@ -25,6 +25,9 @@ const CustomTextField = (props) => {
     onFocus,
     textFieldIcon,
     fieldType,
+    handleChange,
+    touched,
+    errors,
     ...restOfProps
   } = props;
 
@@ -71,13 +74,15 @@ const CustomTextField = (props) => {
   };
 
   const handleConfirm = (date) => {
+    console.log("is this work");
     let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
       date.getMonth() + 1
     ).padStart(2, "0")}-${date.getFullYear()}`;
     setFormattedDate(formatted);
     hideDatePicker();
     setSelectedDate(date);
-    props.onChangeText(formatted);
+    // Create a custom event object and pass it to handleChange
+    handleChange({ target: { name: "date", value: formatted } });
   };
 
   return (
@@ -125,6 +130,7 @@ const CustomTextField = (props) => {
                     setIsFocused(true);
                     onFocus?.(event);
                   }}
+                  onChangeText={handleChange}
                   {...restOfProps}
                 />
                 <Animated.View
@@ -184,6 +190,17 @@ const CustomTextField = (props) => {
                   />
                 </TouchableWithoutFeedback>
               )}
+              {fieldType === "date" && (
+                <TouchableWithoutFeedback
+                  onPress={() => setIsHidden(!isHidden)}
+                >
+                  <Image
+                    tintColor={color}
+                    source={icons.calendarIcon}
+                    style={inputStyles.icon}
+                  />
+                </TouchableWithoutFeedback>
+              )}
             </View>
           </View>
         </View>
@@ -193,7 +210,6 @@ const CustomTextField = (props) => {
               inputStyles.error,
               {
                 color: colors.textRed,
-
                 fontSize: FontSizes.extraSmall,
               },
             ]}
@@ -201,6 +217,7 @@ const CustomTextField = (props) => {
             {errorText}
           </Text>
         )}
+        {errors}
         {fieldType === "date" && (
           <DateTimePickerModal
             minimumDate={new Date(1950, 0, 1)}
