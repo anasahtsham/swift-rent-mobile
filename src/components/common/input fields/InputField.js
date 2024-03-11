@@ -190,15 +190,11 @@ const CustomTextField = (props) => {
                 </TouchableWithoutFeedback>
               )}
               {fieldType === "date" && (
-                <TouchableWithoutFeedback
-                  onPress={() => setIsHidden(!isHidden)}
-                >
-                  <Image
-                    tintColor={color}
-                    source={icons.calendarIcon}
-                    style={inputStyles.icon}
-                  />
-                </TouchableWithoutFeedback>
+                <Image
+                  tintColor={color}
+                  source={icons.calendarIcon}
+                  style={inputStyles.icon}
+                />
               )}
             </View>
           </View>

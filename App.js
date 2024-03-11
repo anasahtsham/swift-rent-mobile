@@ -20,13 +20,13 @@ import LoginAs from "./src/screens/authenticationScreens/LoginAs";
 import LoginScreen from "./src/screens/authenticationScreens/LoginScreen";
 import RegisterAs from "./src/screens/authenticationScreens/RegisterAs";
 import SetUpPassword from "./src/screens/authenticationScreens/SetUpPassword";
-import TestScreen from "./src/screens/authenticationScreens/TestScreen";
 import WhoAreYou from "./src/screens/authenticationScreens/WhoAreYou";
 import OwnerAnalyticalReport from "./src/screens/ownerScreens/OwnerAnalyticalReport";
 import OwnerHiring from "./src/screens/ownerScreens/OwnerHiring";
 import RatingScreen from "./src/screens/ownerScreens/RatingScreen";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
+import TestScreen from "./src/tests/TestScreen";
 
 const Stack = createStackNavigator();
 

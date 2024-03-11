@@ -3,9 +3,9 @@ import React from "react";
 import { Button, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as Yup from "yup";
-import { icons } from "../../helpers/ImageImports";
-import { useColors } from "../../helpers/SetColors";
-import InputField from "./../../components/common/input fields/InputField";
+import InputField from "../components/common/input fields/InputField";
+import { icons } from "../helpers/ImageImports";
+import { useColors } from "../helpers/SetColors";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string()
