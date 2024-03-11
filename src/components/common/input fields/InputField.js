@@ -74,14 +74,13 @@ const CustomTextField = (props) => {
   };
 
   const handleConfirm = (date) => {
-    console.log("is this work");
     let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
       date.getMonth() + 1
     ).padStart(2, "0")}-${date.getFullYear()}`;
     setFormattedDate(formatted);
     hideDatePicker();
     setSelectedDate(date);
-    // Create a custom event object and pass it to handleChange
+
     handleChange({ target: { name: "date", value: formatted } });
   };
 

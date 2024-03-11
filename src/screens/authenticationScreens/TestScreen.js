@@ -11,22 +11,22 @@ const validationSchema = Yup.object().shape({
   firstName: Yup.string()
     .required("Required")
     .min(3, "Name must be 3 characters or more")
-    .trim("No spaces allowed"),
+    .matches(/^\S*$/, "No spaces allowed"),
   email: Yup.string()
     .email("Invalid email")
     .required("Required")
-    .trim("No spaces allowed"),
+    .matches(/^\S*$/, "No spaces allowed")
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email address"),
   password: Yup.string()
     .required("Required")
-    .min(6, "Password must be more than 5 characters")
-    .trim("No spaces allowed"),
+    .min(8, "Password must be more than 7 characters")
+    .matches(/^\S*$/, "No spaces allowed"),
   phoneNumber: Yup.string()
     .required("Required")
     .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03")
-    .trim("No spaces allowed"),
-  date: Yup.string().required("Required").trim("No spaces allowed"),
+    .matches(/^\S*$/, "No spaces allowed"),
+  date: Yup.string().required("Required").matches(/^\S*$/, "No spaces allowed"),
 });
-
 const TestScreen = () => {
   const colors = useColors();
   return (
