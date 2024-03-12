@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
@@ -14,6 +15,7 @@ import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import InputField from "../../components/common/input_fields/InputField";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 
 const ReportBug = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);
@@ -69,29 +71,33 @@ const ReportBug = ({ navigation }) => {
           Report a Bug
         </Text>
       </View>
-      <View style={styles.issueTypeField}>
-        <InputField
-          fieldType="Type of Issue"
-          label="Issue Type"
-          value={issueType}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          errorText={issueTypeError}
+      <View
+        style={[styles.issueTypeField, { borderColor: colors.borderPrimary }]}
+      >
+        <TextInput
+          placeholder="Type of Issue"
+          placeholderTextColor={colors.textPrimary}
+          style={{ textAlign: "left", paddingLeft: 0 }} // Align placeholder text to the left
         />
       </View>
-      <View style={styles.bugDescriptiionField}>
-        <InputField
-          fieldType="Describe your Problem"
-          label="Description Problem"
-          value={issueType}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          errorText={issueTypeError}
-          style={{
-            backgroundColor: "transparent",
-            textAlignVertical: "top",
-            height: 200,
-          }}
+      <View
+        style={[
+          styles.bugDescriptiionField,
+          { borderColor: colors.borderPrimary },
+        ]}
+      >
+        <TextInput
+          placeholder="Describe your problem"
+          placeholderTextColor={colors.textPrimary}
+          style={{ textAlign: "left" }} // Align placeholder text to the left
+        />
+      </View>
+
+      <View style={{ alignSelf: "center", marginTop: 30 }}>
+        <ButtonGrey
+          fontSize={FontSizes.small}
+          width={120}
+          buttonText="Submit"
         />
       </View>
     </SafeAreaView>
@@ -110,13 +116,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   issueTypeField: {
-    paddingTop: 20,
-    alignItems: "center",
-    paddinTop: 20,
+    height: 50,
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 15,
+    borderWidth: 1,
+    marginLeft: 30,
+    marginRight: 30,
   },
   bugDescriptiionField: {
-    marginTop: -30,
-    alignItems: "center",
+    height: 150,
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 15,
+    borderWidth: 1,
+    marginLeft: 30,
+    marginRight: 30,
   },
 });
 
