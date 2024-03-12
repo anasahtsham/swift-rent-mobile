@@ -115,7 +115,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require(icons.analyticsIcon)}
+              source={icons.analyticsIcon}
               colors={colors}
             />
           ),
@@ -131,7 +131,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require(icons.propertiesIcon)}
+              source={icons.propertiesIcon}
               colors={colors}
             />
           ),
@@ -147,7 +147,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require(icons.alertIcon)}
+              source={icons.alertIcon}
               colors={colors}
             />
           ),
@@ -163,7 +163,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require(icons.userIcon)}
+              source={icons.userIcon}
               colors={colors}
             />
           ),

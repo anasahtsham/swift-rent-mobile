@@ -10,7 +10,7 @@ import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { loginSchema } from "../../helpers/validation/ValidationSchemas";
-import InputField from "./../../components/common/input fields/InputField";
+import InputField from "./../../components/common/input_fields/InputField";
 
 const LoginScreen = ({ navigation }) => {
   const colors = useColors();

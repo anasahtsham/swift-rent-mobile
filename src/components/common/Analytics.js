@@ -4,7 +4,6 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 
 import AnalyticsButton from "./buttons/AnalyticsButton";
-import AnalyticsHeader from "./header/AnalyticsHeader";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
@@ -16,7 +15,7 @@ const Analytics = (props) => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <AnalyticsHeader
+      <analytics_header
         month={props.month}
         totalRentsPaid={props.totalRentsPaid}
         rentals={props.rentals}

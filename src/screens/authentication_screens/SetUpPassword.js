@@ -9,7 +9,7 @@ import { buttonWidthSmaller } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { setUpPasswordSchema } from "../../helpers/validation/ValidationSchemas";
-import InputField from "./../../components/common/input fields/InputField";
+import InputField from "./../../components/common/input_fields/InputField";
 
 const SetUpPassword = ({ navigation, route }) => {
   const { userType, firstName, lastName, date, email, phoneNumber } =

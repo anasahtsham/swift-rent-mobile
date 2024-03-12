@@ -1,3 +1,4 @@
+import { useFocusEffect } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   BackHandler,
@@ -9,17 +10,15 @@ import {
   View,
 } from "react-native";
 import { icons } from "../../helpers/ImageImports";
-import { useFocusEffect } from "@react-navigation/native";
 
 import { loadLanguage, loadTheme } from "../../helpers";
 
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as LoadingTheme from "../../assets/colorScheme/loadingColorScheme";
-import { color } from "react-native-elements/dist/helpers";
 import { ScrollView } from "react-native-gesture-handler";
+import * as DarkTheme from "../../assets/color_scheme/DarkColorScheme";
+import * as DefaultTheme from "../../assets/color_scheme/DefaultColorScheme";
+import * as LoadingTheme from "../../assets/color_scheme/LoadingColorScheme";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 
 const OwnerAnalyticalReport = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);

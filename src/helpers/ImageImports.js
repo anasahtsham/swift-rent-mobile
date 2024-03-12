@@ -6,8 +6,6 @@ export const icons = {
   phoneNumberIcon: require("../assets/icons/phone-number.png"),
   downLongArrow: require("../assets/icons/down-long-arrow.png"),
   upLongArrow: require("../assets/icons/up-long-arrow.png"),
-  incomingArrow: require("../assets/icons/incoming-arrow.png"),
-  outgoingArrow: require("../assets/icons/outgoing-arrow.png"),
   externalLink: require("../assets/icons/external-link.png"),
   barGraph: require("../assets/icons/bar-graph.png"),
   home: require("../assets/icons/home.png"),
@@ -22,4 +20,6 @@ export const icons = {
   analyticsIcon: require("../assets/icons/analytics.png"),
   propertiesIcon: require("../assets/icons/properties.png"),
   alertIcon: require("../assets/icons/alert.png"),
+  sunIcon: require("../assets/icons/sun.png"),
+  moonIcon: require("../assets/icons/moon.png"),
 };

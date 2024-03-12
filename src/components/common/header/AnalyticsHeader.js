@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
-import MainCard from "./analyticsHeader/MainCard";
-import SecondaryCard from "./analyticsHeader/SecondaryCard";
+import MainCard from "./analytics_header/MainCard";
+import SecondaryCard from "./analytics_header/SecondaryCard";
 
-const AnalyticsHeader = (props) => {
+const analytics_header = (props) => {
   const colors = props.colors;
   const navigation = useNavigation();
 
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
   receivedAndPendingRentsContainer: { flex: 1, flexDirection: "column" },
 });
 
-export default AnalyticsHeader;
+export default analytics_header;

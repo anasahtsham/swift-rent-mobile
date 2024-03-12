@@ -4,8 +4,8 @@ import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { opacityValueForButton } from "../../../constants";
 import { loadLanguage, loadTheme, saveLanguage } from "../../../helpers";
 
-import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import * as DarkTheme from "../../../assets/color_scheme/DarkColorScheme";
+import * as DefaultTheme from "../../../assets/color_scheme/DefaultColorScheme";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as English from "../../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../../assets/fonts/displaytext/UR/ur-pack";
@@ -52,7 +52,7 @@ const LanguageSelect = () => {
       ]}
       activeOpacity={opacityValueForButton}
     >
-      <Image source={require(icons.languageIcon)} style={styles.languageIcon} />
+      <Image source={icons.languageIcon} style={styles.languageIcon} />
       <Text
         style={[
           styles.dropdownText,

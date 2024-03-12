@@ -24,7 +24,7 @@ const ProfileHeader = (props) => {
         <View style={styles.userInfo}>
           <Image
             tintColor={colors.textPrimary}
-            source={require(icons.userIcon)}
+            source={icons.userIcon}
             style={styles.userImage}
           />
           <Text

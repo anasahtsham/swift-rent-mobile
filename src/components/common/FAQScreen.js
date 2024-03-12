@@ -123,9 +123,7 @@ const FAQScreen = ({ navigation }) => {
           tintColor={
             isActive ? colors.bottomBarIconActive : colors.bottomBarIconInactive
           }
-          source={
-            isActive ? require(icons.collapseArrow) : require(icons.expandArrow)
-          }
+          source={isActive ? icons.collapseArrow : icons.expandArrow}
         />
       </View>
     );

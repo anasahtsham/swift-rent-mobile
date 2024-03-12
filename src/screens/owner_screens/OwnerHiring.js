@@ -1,29 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-  Dimensions,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
-
-import {
-  loadLanguage,
-  loadTheme,
-} from "../../components/common/buttons/ButtonGrey";
-import { buttonWidthMedium } from "../../constants";
-
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import ThemeSetter from "../../components/common/buttons/ThemeSetter";
-
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as Urdu from "../../assets/fonts/displaytext/UR/ur-pack";
-import * as DarkTheme from "../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../assets/colorScheme/defaultColorScheme";
-import * as LoadingTheme from "../../assets/colorScheme/loadingColorScheme";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 const OwnerHiring = ({ navigation }) => {
   return (

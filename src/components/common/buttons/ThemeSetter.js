@@ -1,13 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { opacityValueForButton } from "../../../constants";
-import { saveTheme, loadTheme } from "../../../helpers";
+import { loadTheme, saveTheme } from "../../../helpers";
+import { icons } from "./../../../helpers/ImageImports";
 
-import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import * as DarkTheme from "../../../assets/color_scheme/DarkColorScheme";
+import * as DefaultTheme from "../../../assets/color_scheme/DefaultColorScheme";
+import * as LoadingTheme from "../../../assets/color_scheme/LoadingColorScheme";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import * as LoadingTheme from "../../../assets/colorScheme/loadingColorScheme";
 
 const ThemeSetter = (props) => {
   const [isSun, setIsSun] = useState(true);
@@ -47,11 +48,7 @@ const ThemeSetter = (props) => {
       </Text>
       <Image
         tintColor={colors.textPrimary}
-        source={
-          isSun
-            ? require("../../../assets/icons/sun.png")
-            : require("../../../assets/icons/moon.png")
-        }
+        source={isSun ? icons.sunIcon : icons.moonIcon}
         style={styles.themeIcon}
       />
     </TouchableOpacity>

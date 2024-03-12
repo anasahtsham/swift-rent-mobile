@@ -2,7 +2,7 @@ import { Formik } from "formik";
 import React from "react";
 import { Button, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import InputField from "../components/common/input fields/InputField";
+import InputField from "../components/common/input_fields/InputField";
 import { icons } from "../helpers/ImageImports";
 import { setColorsToDark, useColors } from "../helpers/SetColors";
 import { validationSchema } from "./../helpers/validation/ValidationSchemas";

@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import {
   borderGreen,
   borderRed,
-} from "../../assets/colorScheme/darkColorScheme";
+} from "../../assets/color_scheme/DarkColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
 import {

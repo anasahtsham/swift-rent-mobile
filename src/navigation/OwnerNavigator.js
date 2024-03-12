@@ -1,7 +1,7 @@
-import OwnerAlerts from "../screens/ownerScreens/OwnerAlerts";
-import OwnerAnalytics from "../screens/ownerScreens/OwnerAnalytics";
-import OwnerProfile from "../screens/ownerScreens/OwnerProfile";
-import OwnerProperties from "../screens/ownerScreens/OwnerProperties";
+import OwnerAlerts from "../screens/owner_screens/OwnerAlerts";
+import OwnerAnalytics from "../screens/owner_screens/OwnerAnalytics";
+import OwnerProfile from "../screens/owner_screens/OwnerProfile";
+import OwnerProperties from "../screens/owner_screens/OwnerProperties";
 import TabNavigator from "./TabNavigator";
 const OwnerNavigator = () => {
   return (

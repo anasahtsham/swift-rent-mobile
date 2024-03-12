@@ -8,7 +8,7 @@ import { buttonWidthSmall } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { changePasswordSchema } from "../../helpers/validation/ValidationSchemas";
-import InputField from "./../../components/common/input fields/InputField";
+import InputField from "./../../components/common/input_fields/InputField";
 
 const ChangePassword = ({ navigation }) => {
   const colors = useColors();

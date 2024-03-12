@@ -65,7 +65,7 @@ export const AlertButton = (props) => {
         <Image
           style={styles.buttonImage}
           tintColor={colors.iconPrimary}
-          source={require(icons.externalLink)}
+          source={icons.externalLink}
         />
       </View>
     </TouchableOpacity>
