@@ -2,9 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useEffect, useRef } from "react";
 import { Animated, BackHandler, Easing } from "react-native";
 
-import { useColorsOnFocus } from "../../../helpers/SetColors";
+import { useColorsOnFocus } from "../helpers/SetColors";
 
-import * as FontSizes from "../../../assets/fonts/FontSizes";
+import * as FontSizes from "../assets/fonts/FontSizes";
 
 const TabNavigator = (props) => {
   const screen1 = props.screen1;
@@ -114,7 +114,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("./../../../assets/icons/analytics.png")}
+              source={require("../assets/icons/analytics.png")}
               colors={colors}
             />
           ),
@@ -130,7 +130,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("./../../../assets/icons/properties.png")}
+              source={require("../assets/icons/properties.png")}
               colors={colors}
             />
           ),
@@ -146,7 +146,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("./../../../assets/icons/alert.png")}
+              source={require("../assets/icons/alert.png")}
               colors={colors}
             />
           ),
@@ -162,7 +162,7 @@ const TabNavigator = (props) => {
           tabBarIcon: (props) => (
             <AnimatedTabBarIcon
               {...props}
-              source={require("./../../../assets/icons/userIcon.png")}
+              source={require("../assets/icons/userIcon.png")}
               colors={colors}
             />
           ),

@@ -1,7 +1,7 @@
-import TenantAlerts from "../../../screens/tenantScreens/TenantAlerts";
-import TenantAnalytics from "../../../screens/tenantScreens/TenantAnalytics";
-import TenantProfile from "../../../screens/tenantScreens/TenantProfile";
-import TenantRentals from "../../../screens/tenantScreens/TenantRentals";
+import TenantAlerts from "../screens/tenantScreens/TenantAlerts";
+import TenantAnalytics from "../screens/tenantScreens/TenantAnalytics";
+import TenantProfile from "../screens/tenantScreens/TenantProfile";
+import TenantRentals from "../screens/tenantScreens/TenantRentals";
 import TabNavigator from "./TabNavigator";
 const TenantNavigator = () => {
   return (

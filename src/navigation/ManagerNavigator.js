@@ -1,7 +1,7 @@
-import ManagerAlerts from "./../../../screens/managerScreens/ManagerAlerts";
-import ManagerAnalytics from "./../../../screens/managerScreens/ManagerAnalytics";
-import ManagerProfile from "./../../../screens/managerScreens/ManagerProfile";
-import ManagerProperties from "./../../../screens/managerScreens/ManagerProperties";
+import ManagerAlerts from "../screens/managerScreens/ManagerAlerts";
+import ManagerAnalytics from "../screens/managerScreens/ManagerAnalytics";
+import ManagerProfile from "../screens/managerScreens/ManagerProfile";
+import ManagerProperties from "../screens/managerScreens/ManagerProperties";
 import TabNavigator from "./TabNavigator";
 const ManagerNavigator = () => {
   return (
