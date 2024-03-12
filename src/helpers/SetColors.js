@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { loadTheme } from ".";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
-import * as LoadingTheme from "../assets/colorScheme/loadingColorScheme";
+import * as DarkTheme from "../assets/color_scheme/DarkColorScheme";
+import * as DefaultTheme from "../assets/color_scheme/DefaultColorScheme";
+import * as LoadingTheme from "../assets/color_scheme/LoadingColorScheme";
 
 export const useColors = () => {
   const [colors, setColors] = useState(LoadingTheme);
