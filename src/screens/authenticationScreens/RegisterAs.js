@@ -4,8 +4,8 @@ import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
 
@@ -40,6 +40,7 @@ const RegisterAs = ({ navigation }) => {
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyOwner}
+            userType="owner"
             destinationScreen="Get To Know"
             navigation={navigation}
           />
@@ -47,6 +48,7 @@ const RegisterAs = ({ navigation }) => {
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyManager}
+            userType="manager"
             destinationScreen="Get To Know"
             navigation={navigation}
           />
@@ -55,6 +57,7 @@ const RegisterAs = ({ navigation }) => {
             fontSize={FontSizes.medium}
             buttonText={languages.tenant}
             destinationScreen="Get To Know"
+            userType="tenant"
             navigation={navigation}
           />
         </View>
