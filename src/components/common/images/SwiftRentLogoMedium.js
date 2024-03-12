@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Dimensions, Image, StyleSheet } from "react-native";
 import { loadTheme } from "../../../helpers";
 
-import * as DarkTheme from "../../../assets/color_scheme/DarkColorScheme";
-import * as DefaultTheme from "../../../assets/color_scheme/DefaultColorScheme";
-import * as LoadingTheme from "../../../assets/color_scheme/LoadingColorScheme";
+import * as DarkTheme from "../../../assets/themes/DarkColorScheme";
+import * as DefaultTheme from "../../../assets/themes/DefaultColorScheme";
+import * as LoadingTheme from "../../../assets/themes/LoadingColorScheme";
 
 const SwiftRentLogoMedium = () => {
   const [colors, setColors] = useState(LoadingTheme);

@@ -14,11 +14,11 @@ import { icons } from "../../helpers/ImageImports";
 import { loadLanguage, loadTheme } from "../../helpers";
 
 import { ScrollView } from "react-native-gesture-handler";
-import * as DarkTheme from "../../assets/color_scheme/DarkColorScheme";
-import * as DefaultTheme from "../../assets/color_scheme/DefaultColorScheme";
-import * as LoadingTheme from "../../assets/color_scheme/LoadingColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
+import * as DarkTheme from "../../assets/themes/DarkColorScheme";
+import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
+import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
 
 const OwnerAnalyticalReport = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);

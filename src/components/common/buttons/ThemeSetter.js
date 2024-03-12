@@ -5,10 +5,10 @@ import { opacityValueForButton } from "../../../constants";
 import { loadTheme, saveTheme } from "../../../helpers";
 import { icons } from "./../../../helpers/ImageImports";
 
-import * as DarkTheme from "../../../assets/color_scheme/DarkColorScheme";
-import * as DefaultTheme from "../../../assets/color_scheme/DefaultColorScheme";
-import * as LoadingTheme from "../../../assets/color_scheme/LoadingColorScheme";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import * as DarkTheme from "../../../assets/themes/DarkColorScheme";
+import * as DefaultTheme from "../../../assets/themes/DefaultColorScheme";
+import * as LoadingTheme from "../../../assets/themes/LoadingColorScheme";
 
 const ThemeSetter = (props) => {
   const [isSun, setIsSun] = useState(true);

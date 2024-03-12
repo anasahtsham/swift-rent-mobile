@@ -11,11 +11,8 @@ import {
 import { useColors } from "../../helpers/SetColors";
 
 import { useEffect } from "react";
-import {
-  borderGreen,
-  borderRed,
-} from "../../assets/color_scheme/DarkColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import { borderGreen, borderRed } from "../../assets/themes/DarkColorScheme";
 import { opacityValueForButton } from "../../constants";
 import {
   pendingRentsData,
