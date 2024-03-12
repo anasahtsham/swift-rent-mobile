@@ -244,7 +244,7 @@ const inputStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
-  input: { flex: 1 },
+  input: { width: "100%", padding: 0 },
   labelContainer: {
     position: "absolute",
     paddingHorizontal: 8,

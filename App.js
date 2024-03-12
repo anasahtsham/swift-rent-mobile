@@ -22,10 +22,10 @@ import WhoAreYou from "./src/screens/authentication_screens/WhoAreYou";
 import OwnerAnalyticalReport from "./src/screens/owner_screens/OwnerAnalyticalReport";
 import OwnerHiring from "./src/screens/owner_screens/OwnerHiring";
 import RatingScreen from "./src/screens/owner_screens/RatingScreen";
+import ReportBug from "./src/screens/owner_screens/ReportBug";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import ReportBug from "./src/screens/owner_screens/ReportBug";
 
 const Stack = createStackNavigator();
 
@@ -39,7 +39,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Report Bug"
+          initialRouteName="Splash Screen"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
