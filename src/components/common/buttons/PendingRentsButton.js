@@ -1,8 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
-import { opacityValueForButton } from "../../../constants";
-
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { opacityValueForButton } from "../../../constants";
 import { formatNumber } from "./../../../helpers/index";
 
 export const PendingRentsButton = (props) => {

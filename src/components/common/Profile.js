@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import ProfileHeader from "./header/ProfileHeader";
 

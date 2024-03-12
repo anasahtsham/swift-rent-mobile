@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-
-import { opacityValueForButton } from "../../../constants";
-import { loadTheme, saveTheme } from "../../../helpers";
-import { icons } from "./../../../helpers/ImageImports";
-
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../../assets/themes/LoadingColorScheme";
+import { opacityValueForButton } from "../../../constants";
+import { loadTheme, saveTheme } from "../../../helpers";
+import { icons } from "./../../../helpers/ImageImports";
 
 const ThemeSetter = (props) => {
   const [isSun, setIsSun] = useState(true);

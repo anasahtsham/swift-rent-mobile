@@ -1,6 +1,5 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
-
 import { useNavigation } from "@react-navigation/native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { opacityValueForButton } from "../../../../constants/index";
 import { formatNumber } from "../../../../helpers";
 import { icons } from "../../../../helpers/ImageImports";

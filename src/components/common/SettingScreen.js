@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { BackHandler, View } from "react-native";
-
-import { loadTheme } from "../../helpers";
-
-import ButtonGrey from "./buttons/ButtonGrey";
-import ThemeSetter from "./buttons/ThemeSetter";
-
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
+import { loadTheme } from "../../helpers";
+import ButtonGrey from "./buttons/ButtonGrey";
+import ThemeSetter from "./buttons/ThemeSetter";
 
 const SettingScreen = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);

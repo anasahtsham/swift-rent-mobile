@@ -1,14 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
-
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
-import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
-
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
 import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
+import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 import ManagerNavigator from "./src/navigation/ManagerNavigator";
 import OwnerNavigator from "./src/navigation/OwnerNavigator";
 import TenantNavigator from "./src/navigation/TenantNavigator";

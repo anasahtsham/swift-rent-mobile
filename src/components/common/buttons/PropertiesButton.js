@@ -1,9 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
-
-import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { formatNumber } from "./../../../helpers/index";
 
 export const PropertiesButton = (props) => {

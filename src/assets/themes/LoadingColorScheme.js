@@ -30,6 +30,8 @@ export const iconBlue = "#fff";
 export const iconRed = "#fff";
 export const iconYellow = "#fff";
 export const iconGreen = "#fff";
+export const iconWhite = "#fff";
+export const iconGrey = "#fff";
 
 export const logoPrimary = "#fff";
 

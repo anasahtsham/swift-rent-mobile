@@ -1,5 +1,4 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 

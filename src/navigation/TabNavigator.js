@@ -1,11 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useEffect, useRef } from "react";
 import { Animated, BackHandler, Easing } from "react-native";
-
-import { useColorsOnFocus } from "../helpers/SetColors";
-
 import * as FontSizes from "../assets/fonts/FontSizes";
 import { icons } from "../helpers/ImageImports";
+import { useColorsOnFocus } from "../helpers/SetColors";
 
 const TabNavigator = (props) => {
   const screen1 = props.screen1;
