@@ -22,7 +22,7 @@ import {
   receivedRentsData,
   rentsPaidData,
   rentsPendingData,
-} from "../../helpers/RentsData";
+} from "../../helpers/data/RentsData";
 import ReceivedRentsButton from "./buttons/ReceivedRentsButton";
 
 const Rents = ({ navigation, route }) => {

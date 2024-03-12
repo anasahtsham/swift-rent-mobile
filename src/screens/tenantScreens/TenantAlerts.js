@@ -1,5 +1,5 @@
 import Alerts from "../../components/common/Alerts";
-import { alertsData } from "../../helpers/AlertsData";
+import { alertsData } from "../../helpers/data/AlertsData";
 
 const TenantAlerts = () => {
   return <Alerts alertsData={alertsData} />;

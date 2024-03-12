@@ -1,5 +1,5 @@
 import Analytics from "../../components/common/Analytics";
-import { tenantData } from "../../helpers/AnalyticsData";
+import { tenantData } from "../../helpers/data/AnalyticsData";
 
 const TenantAnalytics = () => {
   return (

@@ -1,5 +1,5 @@
 import Analytics from "../../components/common/Analytics";
-import { ownerAndManagerData } from "../../helpers/AnalyticsData";
+import { ownerAndManagerData } from "../../helpers/data/AnalyticsData";
 
 const ManagerAnalytics = () => {
   return (
