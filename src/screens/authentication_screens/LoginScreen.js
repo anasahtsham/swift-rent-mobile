@@ -16,6 +16,9 @@ const LoginScreen = ({ navigation }) => {
   const colors = useColors();
   const languages = useLanguages();
 
+  const emailOrPhoneRef = React.useRef();
+  const passwordRef = React.useRef();
+
   return (
     <Formik
       initialValues={{
@@ -65,6 +68,7 @@ const LoginScreen = ({ navigation }) => {
 
             <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
               <InputField
+                ref={emailOrPhoneRef}
                 textFieldIcon={icons.emailIcon}
                 fieldType="email-address"
                 label="Email or Phone"
@@ -72,14 +76,17 @@ const LoginScreen = ({ navigation }) => {
                 handleChange={handleChange("emailOrPhone")}
                 handleBlur={handleBlur("emailOrPhone")}
                 errorText={touched.emailOrPhone ? errors.emailOrPhone : ""}
+                onSubmitEditing={() => passwordRef.current.focus()}
               />
               <InputField
+                ref={passwordRef}
                 fieldType="password"
                 label="Password"
                 value={values.password}
                 handleChange={handleChange("password")}
                 handleBlur={handleBlur("password")}
                 errorText={touched.password ? errors.password : ""}
+                onSubmitEditing={handleSubmit}
               />
               <Pressable
                 onTouchEnd={() => navigation.navigate("Forgot Password")}

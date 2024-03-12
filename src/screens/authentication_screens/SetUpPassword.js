@@ -18,6 +18,9 @@ const SetUpPassword = ({ navigation, route }) => {
   const colors = useColors();
   const languages = useLanguages();
 
+  const passwordRef = React.useRef();
+  const confirmPasswordRef = React.useRef();
+
   return (
     <Formik
       initialValues={{
@@ -82,14 +85,17 @@ const SetUpPassword = ({ navigation, route }) => {
 
               <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
                 <InputField
+                  ref={passwordRef}
                   fieldType="password"
                   label="Password"
                   value={values.password}
                   handleChange={handleChange("password")}
                   handleBlur={handleBlur("password")}
                   errorText={touched.password ? errors.password : ""}
+                  onSubmitEditing={() => confirmPasswordRef.current.focus()}
                 />
                 <InputField
+                  ref={confirmPasswordRef}
                   fieldType="password"
                   label="Confirm Password"
                   value={values.confirmPassword}
@@ -98,6 +104,7 @@ const SetUpPassword = ({ navigation, route }) => {
                   errorText={
                     touched.confirmPassword ? errors.confirmPassword : ""
                   }
+                  onSubmitEditing={handleSubmit}
                 />
               </View>
 

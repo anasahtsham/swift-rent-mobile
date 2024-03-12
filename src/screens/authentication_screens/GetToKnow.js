@@ -18,6 +18,10 @@ const GetToKnow = ({ navigation, route }) => {
   const colors = useColors();
   const languages = useLanguages();
 
+  const firstNameRef = React.useRef();
+  const lastNameRef = React.useRef();
+  const dateRef = React.useRef();
+
   return (
     <Formik
       initialValues={{
@@ -79,6 +83,7 @@ const GetToKnow = ({ navigation, route }) => {
 
               <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
                 <InputField
+                  ref={firstNameRef}
                   textFieldIcon={icons.userIcon}
                   fieldType="name"
                   label="First Name"
@@ -86,8 +91,10 @@ const GetToKnow = ({ navigation, route }) => {
                   handleChange={handleChange("firstName")}
                   handleBlur={handleBlur("firstName")}
                   errorText={touched.firstName ? errors.firstName : ""}
+                  onSubmitEditing={() => lastNameRef.current.focus()}
                 />
                 <InputField
+                  ref={lastNameRef}
                   textFieldIcon={icons.userIcon}
                   fieldType="name"
                   label="Last Name"
@@ -97,6 +104,7 @@ const GetToKnow = ({ navigation, route }) => {
                   errorText={touched.lastName ? errors.lastName : ""}
                 />
                 <InputField
+                  ref={dateRef}
                   fieldType="date"
                   label="Date of Birth"
                   value={values.date}

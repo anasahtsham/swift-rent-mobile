@@ -14,7 +14,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
-const CustomTextField = (props) => {
+const CustomTextField = React.forwardRef((props, ref) => {
   const {
     label,
     errorText,
@@ -33,7 +33,9 @@ const CustomTextField = (props) => {
 
   const [isFocused, setIsFocused] = useState(false);
   const [isHidden, setIsHidden] = useState(fieldType === "password");
-  const inputRef = useRef(null);
+
+  // const inputRef = useRef(ref);
+  const inputRef = ref || useRef();
   const focusAnim = useRef(new Animated.Value(0)).current;
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
   let width = isFocused ? 3 : 1;
@@ -223,7 +225,7 @@ const CustomTextField = (props) => {
       </View>
     </TouchableWithoutFeedback>
   );
-};
+});
 
 const inputStyles = StyleSheet.create({
   mainContainer: {

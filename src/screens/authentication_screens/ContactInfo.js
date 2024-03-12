@@ -18,6 +18,9 @@ const ContactInfo = ({ navigation, route }) => {
   const colors = useColors();
   const languages = useLanguages();
 
+  const emailRef = React.useRef();
+  const phoneNumberRef = React.useRef();
+
   return (
     <Formik
       initialValues={{
@@ -80,6 +83,7 @@ const ContactInfo = ({ navigation, route }) => {
 
               <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
                 <InputField
+                  ref={emailRef}
                   textFieldIcon={icons.emailIcon}
                   fieldType="email-address"
                   label="Email"
@@ -87,8 +91,10 @@ const ContactInfo = ({ navigation, route }) => {
                   handleChange={handleChange("email")}
                   handleBlur={handleBlur("email")}
                   errorText={touched.email ? errors.email : ""}
+                  onSubmitEditing={() => phoneNumberRef.current.focus()}
                 />
                 <InputField
+                  ref={phoneNumberRef}
                   textFieldIcon={icons.phoneNumberIcon}
                   fieldType="phone-pad"
                   label="Phone Number"
@@ -96,6 +102,7 @@ const ContactInfo = ({ navigation, route }) => {
                   handleChange={handleChange("phoneNumber")}
                   handleBlur={handleBlur("phoneNumber")}
                   errorText={touched.phoneNumber ? errors.phoneNumber : ""}
+                  onSubmitEditing={handleSubmit}
                 />
               </View>
 
