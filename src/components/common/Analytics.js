@@ -15,7 +15,7 @@ const Analytics = (props) => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <analytics_header
+      <AnalyticsHeader
         month={props.month}
         totalRentsPaid={props.totalRentsPaid}
         rentals={props.rentals}
