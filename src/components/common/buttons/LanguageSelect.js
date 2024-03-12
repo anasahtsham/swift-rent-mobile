@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { opacityValueForButton } from "../../../constants";
 import { loadLanguage, loadTheme, saveLanguage } from "../../../helpers";
 
+import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
+import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as English from "../../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../../assets/fonts/displaytext/UR/ur-pack";
-import * as DarkTheme from "../../../assets/colorScheme/darkColorScheme";
-import * as DefaultTheme from "../../../assets/colorScheme/defaultColorScheme";
+import { icons } from "../../../helpers/ImageImports";
 
 const LanguageSelect = () => {
   const [isEnglish, setIsEnglish] = useState(true);
@@ -51,10 +52,7 @@ const LanguageSelect = () => {
       ]}
       activeOpacity={opacityValueForButton}
     >
-      <Image
-        source={require("../../../assets/icons/language.png")}
-        style={styles.languageIcon}
-      />
+      <Image source={require(icons.languageIcon)} style={styles.languageIcon} />
       <Text
         style={[
           styles.dropdownText,

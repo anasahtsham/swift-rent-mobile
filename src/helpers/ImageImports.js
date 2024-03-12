@@ -16,4 +16,10 @@ export const icons = {
   dislike: require("../assets/icons/dislike.png"),
   hidePasswordIcon: require("../assets/icons/hide-password.png"),
   showPasswordIcon: require("../assets/icons/show-password.png"),
+  collapseArrow: require("../assets/icons/collapse-arrow.png"),
+  expandArrow: require("../assets/icons/expand-arrow.png"),
+  languageIcon: require("../assets/icons/language.png"),
+  analyticsIcon: require("../assets/icons/analytics.png"),
+  propertiesIcon: require("../assets/icons/properties.png"),
+  alertIcon: require("../assets/icons/alert.png"),
 };

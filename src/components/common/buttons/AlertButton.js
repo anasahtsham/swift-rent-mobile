@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { opacityValueForButton } from "../../../constants";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { icons } from "../../../helpers/ImageImports";
 
 export const AlertButton = (props) => {
   const colors = props.colors;
@@ -64,7 +65,7 @@ export const AlertButton = (props) => {
         <Image
           style={styles.buttonImage}
           tintColor={colors.iconPrimary}
-          source={require("../../../assets/icons/external-link.png")}
+          source={require(icons.externalLink)}
         />
       </View>
     </TouchableOpacity>

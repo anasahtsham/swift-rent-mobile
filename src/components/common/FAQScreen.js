@@ -8,6 +8,7 @@ import { useLanguages } from "../../helpers/SetLanguages";
 import ButtonGrey from "./buttons/ButtonGrey";
 
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import { icons } from "../../helpers/ImageImports";
 
 const FAQScreen = ({ navigation }) => {
   const colors = useColors();
@@ -123,9 +124,7 @@ const FAQScreen = ({ navigation }) => {
             isActive ? colors.bottomBarIconActive : colors.bottomBarIconInactive
           }
           source={
-            isActive
-              ? require("../../assets/icons/collapse-arrow.png")
-              : require("../../assets/icons/down-arrow.png")
+            isActive ? require(icons.collapseArrow) : require(icons.expandArrow)
           }
         />
       </View>

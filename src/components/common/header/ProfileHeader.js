@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { icons } from "../../../helpers/ImageImports";
 
 const ProfileHeader = (props) => {
   const colors = props.colors;
@@ -23,7 +24,7 @@ const ProfileHeader = (props) => {
         <View style={styles.userInfo}>
           <Image
             tintColor={colors.textPrimary}
-            source={require("../../../assets/icons/userIcon.png")}
+            source={require(icons.userIcon)}
             style={styles.userImage}
           />
           <Text
