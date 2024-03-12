@@ -48,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
               { backgroundColor: colors.backgroundPrimary },
             ]}
           >
-            <View style={[styles.logoAndTextContainer, { marginBottom: 40 }]}>
+            <View style={[styles.logoAndTextContainer, { marginBottom: 100 }]}>
               <SwiftRentLogoMedium />
               <Text
                 style={[
@@ -63,7 +63,7 @@ const LoginScreen = ({ navigation }) => {
               </Text>
             </View>
 
-            <View style={[styles.textInputsContainer]}>
+            <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
               <InputField
                 textFieldIcon={icons.emailIcon}
                 fieldType="email-address"
@@ -74,7 +74,6 @@ const LoginScreen = ({ navigation }) => {
                 errorText={touched.emailOrPhone ? errors.emailOrPhone : ""}
               />
               <InputField
-                textFieldIcon={icons.phoneNumberIcon}
                 fieldType="password"
                 label="Password"
                 value={values.password}
@@ -126,9 +125,8 @@ const styles = StyleSheet.create({
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between ",
     width: "100%",
-    height: "50%",
   },
 });
 
