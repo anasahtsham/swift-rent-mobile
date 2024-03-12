@@ -1,11 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-
-import { useColorsOnFocus } from "../../helpers/SetColors";
-
-import AnalyticsButton from "./buttons/AnalyticsButton";
-
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import { useColorsOnFocus } from "../../helpers/SetColors";
+import AnalyticsButton from "./buttons/AnalyticsButton";
 import AnalyticsHeader from "./header/AnalyticsHeader";
 
 const Analytics = (props) => {

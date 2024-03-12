@@ -1,9 +1,7 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-
 import { loadTheme } from ".";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as DarkTheme from "../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../assets/themes/LoadingColorScheme";

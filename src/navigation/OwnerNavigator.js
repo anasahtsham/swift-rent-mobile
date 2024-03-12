@@ -3,6 +3,7 @@ import OwnerAnalytics from "../screens/owner_screens/OwnerAnalytics";
 import OwnerProfile from "../screens/owner_screens/OwnerProfile";
 import OwnerProperties from "../screens/owner_screens/OwnerProperties";
 import TabNavigator from "./TabNavigator";
+
 const OwnerNavigator = () => {
   return (
     <TabNavigator

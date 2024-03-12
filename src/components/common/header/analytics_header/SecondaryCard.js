@@ -1,5 +1,4 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-
 import { opacityValueForButton } from "../../../../constants";
 import { icons } from "../../../../helpers/ImageImports";
 import { styles } from "./styles";

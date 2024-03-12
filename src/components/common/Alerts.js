@@ -1,10 +1,8 @@
-import React from "react";
-import { SafeAreaView, ScrollView, View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
-import { AlertButton } from "./buttons/AlertButton";
+import React from "react";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { useColorsOnFocus } from "../../helpers/SetColors";
-
+import { AlertButton } from "./buttons/AlertButton";
 import AlertsHeader from "./header/AlertsHeader";
 
 const Alerts = (props) => {

@@ -1,13 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
-
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-
-import * as FontSizes from "../../assets/fonts/FontSizes";
 
 const RegisterAs = ({ navigation }) => {
   //set theme

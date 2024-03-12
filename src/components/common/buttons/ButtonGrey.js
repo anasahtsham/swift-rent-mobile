@@ -1,8 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-
-import { opacityValueForButton } from "../../../constants";
-
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { opacityValueForButton } from "../../../constants";
 import { useColorsOnFocus } from "../../../helpers/SetColors";
 
 const ButtonGrey = (props) => {

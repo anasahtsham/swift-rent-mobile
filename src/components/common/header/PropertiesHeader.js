@@ -1,7 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-
 import { opacityValueForButton } from "../../../constants";
 
 const PropertiesHeader = (props) => {

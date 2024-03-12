@@ -1,10 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
-
-import { useColors } from "../helpers/SetColors";
-
 import * as FontSizes from "../assets/fonts/FontSizes";
+import { useColors } from "../helpers/SetColors";
 
 const AllSetUpSplash = ({ route }) => {
   const { userType, firstName, lastName, date, email, phoneNumber, password } =

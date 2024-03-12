@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   BackHandler,
   SafeAreaView,
@@ -7,13 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-import { useColors } from "../../helpers/SetColors";
-
-import { useEffect } from "react";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { borderGreen, borderRed } from "../../assets/themes/DarkColorScheme";
 import { opacityValueForButton } from "../../constants";
+import { useColors } from "../../helpers/SetColors";
 import {
   pendingRentsData,
   receivedRentsData,
