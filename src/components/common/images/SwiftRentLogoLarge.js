@@ -4,7 +4,7 @@ const SwiftRentLogoLarge = () => {
   return (
     <Image
       style={styles.SwiftRentLogoLarge}
-      source={require("../../../assets/icons/logos/adaptive-icon.png")}
+      source={require("../../../assets/icons/favicons/adaptive-icon.png")}
     />
   );
 };

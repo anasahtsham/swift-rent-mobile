@@ -20,7 +20,7 @@ const SwiftRentLogoMedium = () => {
     <Image
       tintColor={colors.logoPrimary}
       style={styles.SwiftRentLogoMedium}
-      source={require("../../../assets/icons/logos/adaptive-icon.png")}
+      source={require("../../../assets/icons/favicons/adaptive-icon.png")}
     />
   );
 };
