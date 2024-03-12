@@ -8,7 +8,7 @@ import { buttonWidthSmall } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-import { forgotPasswordSchema } from "../../helpers/validation/ValidationSchema";
+import { forgotPasswordSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input fields/InputField";
 
 const LoginScreen = ({ navigation }) => {

@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import InputField from "../components/common/input fields/InputField";
 import { icons } from "../helpers/ImageImports";
 import { setColorsToDark, useColors } from "../helpers/SetColors";
-import { validationSchema } from "./../helpers/validation/ValidationSchema";
+import { validationSchema } from "./../helpers/validation/ValidationSchemas";
 
 const TestScreen = () => {
   setColorsToDark();

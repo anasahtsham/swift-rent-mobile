@@ -9,7 +9,7 @@ import { buttonWidthSmaller } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-import { getToKnowSchema } from "../../helpers/validation/ValidationSchema";
+import { getToKnowSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input fields/InputField";
 
 const GetToKnow = ({ navigation, route }) => {
