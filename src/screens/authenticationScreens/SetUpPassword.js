@@ -76,7 +76,7 @@ const SetUpPassword = ({ navigation, route }) => {
                     },
                   ]}
                 >
-                  {languages.letsGetToKnowYou}
+                  {languages.nowLetsSetUpYourPassword}
                 </Text>
               </View>
 

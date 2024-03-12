@@ -74,7 +74,7 @@ const ContactInfo = ({ navigation, route }) => {
                     },
                   ]}
                 >
-                  {languages.letsGetToKnowYou}
+                  {languages.weNeedYourContactInformation}
                 </Text>
               </View>
 

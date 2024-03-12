@@ -10,7 +10,7 @@ const AllSetUpSplash = ({ route }) => {
   const { userType, firstName, lastName, date, email, phoneNumber, password } =
     route.params;
 
-  console.log("userType: ", userType);
+  console.log("\n\n\n\n\nuserType: ", userType);
   console.log("firstName: ", firstName);
   console.log("lastName: ", lastName);
   console.log("date: ", date);
