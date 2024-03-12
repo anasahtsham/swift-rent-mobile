@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
-import AnalyticsHeader from "./AnalyticsHeader";
 import MainCard from "./analytics_header/MainCard";
 import SecondaryCard from "./analytics_header/SecondaryCard";
 
