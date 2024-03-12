@@ -7,30 +7,16 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
-import { loadLanguage, loadTheme } from "../../helpers";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as DarkTheme from "../../assets/themes/DarkColorScheme";
-import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
-import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import InputField from "../../components/common/input_fields/InputField";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import { useColors } from "../../helpers/SetColors";
 
 const ReportBug = ({ navigation }) => {
-  const [colors, setColors] = useState(LoadingTheme);
-  const [languages, setLanguage] = useState(English);
+  const colors = useColors();
   const [issueType, setIssueType] = useState("");
   const [issueTypeError, setIssueTypeError] = useState("");
 
-  useFocusEffect(() => {
-    updateTheme();
-  });
-
   useEffect(() => {
-    loadLanguage().then((language) => {
-      setLanguage(language === "english" ? English : Urdu);
-    });
     const backAction = () => {
       navigation.goBack();
       return true;
@@ -42,12 +28,6 @@ const ReportBug = ({ navigation }) => {
     );
     return () => backHandler.remove();
   }, []);
-
-  function updateTheme() {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }
 
   const handleChange = (text) => {
     setIssueType(text);
@@ -77,7 +57,11 @@ const ReportBug = ({ navigation }) => {
         <TextInput
           placeholder="Type of Issue"
           placeholderTextColor={colors.textPrimary}
-          style={{ textAlign: "left", paddingLeft: 0 }} // Align placeholder text to the left
+          style={{
+            textAlign: "left",
+            paddingLeft: 0,
+            color: colors.textPrimary,
+          }}
         />
       </View>
       <View
@@ -89,7 +73,7 @@ const ReportBug = ({ navigation }) => {
         <TextInput
           placeholder="Describe your problem"
           placeholderTextColor={colors.textPrimary}
-          style={{ textAlign: "left" }} // Align placeholder text to the left
+          style={{ textAlign: "left", color: colors.textPrimary }}
         />
       </View>
 
