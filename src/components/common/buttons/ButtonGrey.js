@@ -21,7 +21,7 @@ const ButtonGrey = (props) => {
       userType: props.userType,
       firstName: props.firstName,
       lastName: props.lastName,
-      dob: props.dob,
+      date: props.dob,
       email: props.email,
       phoneNumber: props.phoneNumber,
       password: props.password,
@@ -38,7 +38,7 @@ const ButtonGrey = (props) => {
           width: props.width,
         },
       ]}
-      onPress={handlePress}
+      onPress={props.isSubmitButton ? props.onPress : handlePress}
       activeOpacity={opacityValueForButton}
     >
       <Text

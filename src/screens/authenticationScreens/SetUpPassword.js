@@ -1,150 +1,150 @@
-import React, { useState } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Formik } from "formik";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
-import { buttonWidthMedium } from "../../constants";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import { buttonWidthSmaller } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import CustomPasswordField from "../../components/common/input fields/CustomPasswordField";
-
-import * as FontSizes from "../../assets/fonts/FontSizes";
+import { setUpPasswordSchema } from "../../helpers/validation/ValidationSchema";
+import InputField from "./../../components/common/input fields/InputField";
 
 const SetUpPassword = ({ navigation, route }) => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [passwordError, setPasswordError] = useState(null);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(null);
-
-  const { userType, firstName, lastName, dob, email, phoneNumber } =
+  const { userType, firstName, lastName, date, email, phoneNumber } =
     route.params;
 
-  const handleLogin = () => {
-    // Handle login logic here
-  };
-
-  //set theme
   const colors = useColors();
-
-  //set languages
   const languages = useLanguages();
 
   return (
-    <SafeAreaView style={styles.safeAreaViewContainer}>
-      <KeyboardAwareScrollView
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{ flexGrow: 1 }}
-        scrollEnabled={true}
-        extraScrollHeight={10}
-      >
-        <View style={styles.mainContainer}>
+    <Formik
+      initialValues={{
+        password: "",
+        confirmPassword: "",
+      }}
+      validationSchema={setUpPasswordSchema}
+      onSubmit={(values) => {
+        navigation.navigate("All Set Up", {
+          userType: userType,
+          firstName: firstName,
+          lastName: lastName,
+          date: date,
+          email: email,
+          phoneNumber: phoneNumber,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+        });
+      }}
+    >
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+      }) => (
+        <KeyboardAwareScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          scrollEnabled={true}
+        >
           <View
             style={[
               styles.container,
               { backgroundColor: colors.backgroundPrimary },
             ]}
           >
-            <View style={styles.logoAndTextContainer}>
-              <Text
-                style={[
-                  styles.text,
-                  { fontSize: FontSizes.large, color: colors.textLightBlue },
-                ]}
-              >
-                {languages.nowLetsSetUpYourPassword}
-              </Text>
-            </View>
+            <View
+              style={[
+                {
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+              ]}
+            >
+              <View style={[styles.logoAndTextContainer, { marginBottom: 40 }]}>
+                <SwiftRentLogoMedium />
+                <Text
+                  style={[
+                    styles.text,
+                    {
+                      fontSize: FontSizes.large,
+                      color: colors.textLightBlue,
+                    },
+                  ]}
+                >
+                  {languages.letsGetToKnowYou}
+                </Text>
+              </View>
 
-            <View style={styles.textInputsContainer}>
-              <CustomPasswordField
-                value={password}
-                label={languages.password}
-                errorText={passwordError}
-                onChangeText={(text) => setPassword(text)}
-              />
-              <CustomPasswordField
-                value={confirmPassword}
-                label={languages.confirmPassword}
-                errorText={confirmPasswordError}
-                onChangeText={(text) => setConfirmPassword(text)}
-              />
-
-              {/* dont remove below comment */}
-
-              {/* <View>
-                <Button
-                  title="Set error"
-                  onPress={() =>
-                    setPasswordError(languages.thisFieldIsRequired)
+              <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
+                <InputField
+                  fieldType="password"
+                  label="Password"
+                  value={values.password}
+                  handleChange={handleChange("password")}
+                  handleBlur={handleBlur("password")}
+                  errorText={touched.password ? errors.password : ""}
+                />
+                <InputField
+                  fieldType="password"
+                  label="Confirm Password"
+                  value={values.confirmPassword}
+                  handleChange={handleChange("confirmPassword")}
+                  handleBlur={handleBlur("confirmPassword")}
+                  errorText={
+                    touched.confirmPassword ? errors.confirmPassword : ""
                   }
                 />
-                <Button
-                  title="Remove error"
-                  onPress={() => setPasswordError("")}
-                />
-                <Button
-                  title="Set error"
-                  onPress={() =>
-                    setConfirmPasswordError(languages.thisFieldIsRequired)
-                  }
-                />
-                <Button
-                  title="Remove error"
-                  onPress={() => setConfirmPasswordError("")}
-                />
-              </View> */}
-            </View>
+              </View>
 
-            <ButtonGrey
-              width={buttonWidthMedium}
-              fontSize={FontSizes.medium}
-              buttonText={languages.continueText}
-              userType={userType}
-              firstName={firstName}
-              lastName={lastName}
-              dob={dob}
-              email={email}
-              phoneNumber={phoneNumber}
-              password={password}
-              destinationScreen="All Set Up"
-              navigation={navigation}
-            />
+              <View style={styles.buttonsContainer}>
+                <ButtonGrey
+                  width={buttonWidthSmaller}
+                  fontSize={FontSizes.small}
+                  buttonText={languages.back}
+                  userType={userType}
+                  destinationScreen="Contact Info"
+                  navigation={navigation}
+                />
+                <ButtonGrey
+                  width={buttonWidthSmaller}
+                  fontSize={FontSizes.small}
+                  buttonText={languages.next}
+                  onPress={handleSubmit}
+                  isSubmitButton={true}
+                />
+              </View>
+            </View>
           </View>
-        </View>
-      </KeyboardAwareScrollView>
-    </SafeAreaView>
+        </KeyboardAwareScrollView>
+      )}
+    </Formik>
   );
 };
+
 const styles = StyleSheet.create({
-  safeAreaViewContainer: { flex: 1 },
-  mainContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    position: "relative",
-  },
   container: {
     flex: 1,
-    height: Dimensions.get("window").height - 40,
     alignItems: "center",
-    justifyContent: "space-evenly",
-    position: "relative",
+    justifyContent: "center",
   },
   logoAndTextContainer: {
     alignItems: "center",
-    width: "80%",
+    width: "70%",
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    width: "90%",
-    height: "30%",
     alignItems: "center",
+    width: "100%",
   },
-  customButton: {
-    width: "40%",
+  buttonsContainer: {
+    flexDirection: "row",
+    width: "70%",
+    justifyContent: "space-between",
   },
 });
 

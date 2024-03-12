@@ -7,13 +7,13 @@ import { useColors } from "../helpers/SetColors";
 import * as FontSizes from "../assets/fonts/FontSizes";
 
 const AllSetUpSplash = ({ route }) => {
-  const { userType, firstName, lastName, dob, email, phoneNumber, password } =
+  const { userType, firstName, lastName, date, email, phoneNumber, password } =
     route.params;
 
   console.log("userType: ", userType);
   console.log("firstName: ", firstName);
   console.log("lastName: ", lastName);
-  console.log("dob: ", dob);
+  console.log("date: ", date);
   console.log("email: ", email);
   console.log("phoneNumber: ", phoneNumber);
   console.log("password: ", password);
