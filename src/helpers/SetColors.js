@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 
 import { loadTheme } from ".";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as DarkTheme from "../assets/colorScheme/darkColorScheme";
 import * as DefaultTheme from "../assets/colorScheme/defaultColorScheme";
 import * as LoadingTheme from "../assets/colorScheme/loadingColorScheme";
@@ -29,4 +30,12 @@ export const useColorsOnFocus = () => {
   });
 
   return colors;
+};
+
+export const setColorsToDark = async () => {
+  try {
+    await AsyncStorage.setItem("theme", "dark");
+  } catch (e) {
+    console.log(e);
+  }
 };

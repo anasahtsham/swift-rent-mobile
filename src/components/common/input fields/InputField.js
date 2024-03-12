@@ -94,7 +94,7 @@ const CustomTextField = (props) => {
         }
       }}
     >
-      <View style={inputStyles.mainContainer}>
+      <View style={[inputStyles.mainContainer, { height: 65 }]}>
         <View
           style={[
             inputStyles.textInputContainer,
