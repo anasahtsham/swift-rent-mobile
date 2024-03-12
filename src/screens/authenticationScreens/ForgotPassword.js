@@ -71,7 +71,7 @@ const LoginScreen = ({ navigation }) => {
               />
               <InputField
                 fieldType="password"
-                label="Password"
+                label="New Password"
                 value={values.password}
                 handleChange={handleChange("password")}
                 handleBlur={handleBlur("password")}

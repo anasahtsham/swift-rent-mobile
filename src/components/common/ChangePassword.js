@@ -1,35 +1,18 @@
-import {
-  BackHandler,
-  Dimensions,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-} from "react-native";
+import { Formik } from "formik";
+import React, { useEffect } from "react";
+import { BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useEffect, useState } from "react";
-
-import { useLanguages } from "../../helpers/SetLanguages";
-import { buttonWidthMedium } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
-
-import CustomPasswordField from "./input fields/CustomPasswordField";
-import ButtonGrey from "./buttons/ButtonGrey";
-
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import { buttonWidthSmall } from "../../constants";
+import { useColors } from "../../helpers/SetColors";
+import { useLanguages } from "../../helpers/SetLanguages";
+import { changePasswordSchema } from "../../helpers/validation/ValidationSchemas";
+import InputField from "./../../components/common/input fields/InputField";
 
 const ChangePassword = ({ navigation }) => {
   const colors = useColors();
   const languages = useLanguages();
-
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPass] = useState("");
-
-  const [oldPasswordError, setOldPasswordError] = useState(null);
-  const [newPasswordError, setNewPasswordError] = useState(null);
-  const [confirmNewPasswordError, setConfirmNewPasswordError] = useState(null);
-
   useEffect(() => {
     const backAction = () => {
       navigation.goBack();
@@ -42,102 +25,109 @@ const ChangePassword = ({ navigation }) => {
     );
     return () => backHandler.remove();
   }, []);
+
   return (
-    <SafeAreaView style={styles.safeAreaViewContainer}>
-      <KeyboardAwareScrollView
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{ flexGrow: 1 }}
-        scrollEnabled={true}
-        extraScrollHeight={2500}
-      >
-        <View style={styles.mainContainer}>
+    <Formik
+      initialValues={{
+        oldPassword: "",
+        password: "",
+        confirmPassword: "",
+      }}
+      validationSchema={changePasswordSchema}
+      onSubmit={() => {
+        navigation.navigate("Change Password");
+      }}
+    >
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+      }) => (
+        <KeyboardAwareScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          scrollEnabled={true}
+        >
           <View
             style={[
               styles.container,
               { backgroundColor: colors.backgroundPrimary },
             ]}
           >
-            <View style={styles.logoAndTextContainer}>
+            <View style={[styles.logoAndTextContainer, { marginBottom: 100 }]}>
               <Text
                 style={[
                   styles.text,
-                  { fontSize: FontSizes.large, color: colors.textPrimary },
+                  {
+                    fontSize: FontSizes.large,
+                    color: colors.textPrimary,
+                  },
                 ]}
               >
                 {languages.changeYourPassword}
               </Text>
             </View>
 
-            <View style={styles.textInputsContainer}>
-              <CustomPasswordField
-                value={oldPassword}
-                label={languages.oldPassword}
-                errorText={oldPasswordError}
-                onChangeText={(text) => setOldPassword(text)}
+            <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
+              <InputField
+                fieldType="password"
+                label="Old Password"
+                value={values.oldPassword}
+                handleChange={handleChange("oldPassword")}
+                handleBlur={handleBlur("oldPassword")}
+                errorText={touched.oldPassword ? errors.oldPassword : ""}
               />
-              <CustomPasswordField
-                value={newPassword}
-                label={languages.newPassword}
-                errorText={newPasswordError}
-                onChangeText={(text) => setNewPassword(text)}
+              <InputField
+                fieldType="password"
+                label="Password"
+                value={values.password}
+                handleChange={handleChange("password")}
+                handleBlur={handleBlur("password")}
+                errorText={touched.password ? errors.password : ""}
               />
-              <CustomPasswordField
-                value={confirmNewPassword}
-                label={languages.confirmNewPassword}
-                errorText={confirmNewPasswordError}
-                onChangeText={(text) => setConfirmNewPass(text)}
+              <InputField
+                fieldType="password"
+                label="Confirm Password"
+                value={values.confirmPassword}
+                handleChange={handleChange("confirmPassword")}
+                handleBlur={handleBlur("confirmPassword")}
+                errorText={
+                  touched.confirmPassword ? errors.confirmPassword : ""
+                }
               />
             </View>
 
             <ButtonGrey
-              width={buttonWidthMedium}
+              width={buttonWidthSmall}
               fontSize={FontSizes.medium}
               buttonText={languages.change}
-              destinationScreen="Change Password"
-              navigation={navigation}
+              onPress={handleSubmit}
+              isSubmitButton={true}
             />
           </View>
-        </View>
-      </KeyboardAwareScrollView>
-    </SafeAreaView>
+        </KeyboardAwareScrollView>
+      )}
+    </Formik>
   );
 };
 
 const styles = StyleSheet.create({
-  safeAreaViewContainer: { flex: 1 },
-  mainContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    position: "relative",
-  },
   container: {
     flex: 1,
-    height: Dimensions.get("window").height - 40,
     alignItems: "center",
-    justifyContent: "space-around",
-    position: "relative",
+    justifyContent: "center",
   },
   logoAndTextContainer: {
     alignItems: "center",
-    width: "70%",
+    width: "80%",
   },
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    width: "90%",
-    height: "30%",
     alignItems: "center",
-  },
-  dobContainer: {
-    flexDirection: "row",
-    width: "30%",
-    justifyContent: "center",
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    width: "70%",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between ",
+    width: "100%",
   },
 });
 

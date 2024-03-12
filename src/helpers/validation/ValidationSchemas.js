@@ -102,3 +102,19 @@ export const forgotPasswordSchema = Yup.object().shape({
     .min(8, "Password must be 8 characters or more")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
+
+export const changePasswordSchema = Yup.object().shape({
+  oldPassword: Yup.string()
+    .matches(/^\S*$/, "No spaces allowed")
+    .required("Required")
+    .min(8, "Password must be 8 characters or more"),
+  password: Yup.string()
+    .matches(/^\S*$/, "No spaces allowed")
+    .required("Required")
+    .min(8, "Password must be 8 characters or more"),
+  confirmPassword: Yup.string()
+    .matches(/^\S*$/, "No spaces allowed")
+    .required("Required")
+    .min(8, "Password must be 8 characters or more")
+    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+});

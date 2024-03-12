@@ -48,10 +48,9 @@ const CustomTextField = (props) => {
     new Date().getMonth(),
     new Date().getDate()
   );
-  const [formattedDate, setFormattedDate] = useState(null);
 
   if (errorText) {
-    color = "#B00020";
+    color = colors.textRed;
   }
 
   useEffect(() => {
@@ -77,7 +76,6 @@ const CustomTextField = (props) => {
     let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
       date.getMonth() + 1
     ).padStart(2, "0")}-${date.getFullYear()}`;
-    setFormattedDate(formatted);
     hideDatePicker();
     setSelectedDate(date);
 
