@@ -25,6 +25,7 @@ import * as Yup from "yup";
 
 export const getToKnowSchema = Yup.object().shape({
   firstName: Yup.string()
+    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
     .matches(
       /^[A-Z][a-z]*$/,
@@ -32,6 +33,7 @@ export const getToKnowSchema = Yup.object().shape({
     )
     .min(3, "Name must be 3 characters or more"),
   lastName: Yup.string()
+    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
     .matches(
       /^[A-Z][a-z]*$/,
@@ -48,6 +50,7 @@ export const contactInfoSchema = Yup.object().shape({
     .required("Required")
     .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email address"),
   phoneNumber: Yup.string()
+    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
     .matches(/^\S*$/, "No spaces allowed")
     .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03"),

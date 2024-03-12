@@ -36,7 +36,7 @@ const CustomTextField = (props) => {
   const inputRef = useRef(null);
   const focusAnim = useRef(new Animated.Value(0)).current;
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
-  let width = isFocused ? 4 : 1;
+  let width = isFocused ? 3 : 1;
 
   //for date picker
   const [isPickerOpen, setPickerOpen] = useState(false);
