@@ -1,5 +1,5 @@
-import { useFocusEffect } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import React, { useEffect } from "react";
 import {
   BackHandler,
   Pressable,
@@ -10,28 +10,14 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as DarkTheme from "../../assets/themes/DarkColorScheme";
-import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
-import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
-import { loadLanguage, loadTheme } from "../../helpers";
+import { useColors } from "./../../helpers/SetColors";
 import AnalyticalReportHeader from "./header/AnalyticalReportHeader";
 
-const OwnerAnalyticalReport = ({ navigation }) => {
-  const [colors, setColors] = useState(LoadingTheme);
+const OwnerAnalyticalReport = () => {
+  const colors = useColors();
+  const navigation = useNavigation();
 
-  //update theme on load
-  useFocusEffect(() => {
-    updateTheme();
-  });
-
-  const [languages, setLanguage] = useState(English);
-
-  //update language on load
   useEffect(() => {
-    loadLanguage().then((language) => {
-      setLanguage(language === "english" ? English : Urdu);
-    });
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -43,13 +29,6 @@ const OwnerAnalyticalReport = ({ navigation }) => {
     );
     return () => backHandler.remove();
   }, []);
-
-  //update theme on clicking toggle theme button
-  function updateTheme() {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-    });
-  }
 
   return (
     <SafeAreaView style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
