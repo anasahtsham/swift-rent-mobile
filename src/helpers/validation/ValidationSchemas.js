@@ -47,13 +47,32 @@ export const contactInfoSchema = Yup.object().shape({
   email: Yup.string()
     .matches(/^\S*$/, "No spaces allowed")
     .email("Invalid email")
-    .required("Required")
-    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email address"),
+    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email address")
+    .test(
+      "emailOrPhoneNumber",
+      "Either email or phone number must be provided",
+      function (value) {
+        const { phoneNumber } = this.parent;
+        if (!value && !phoneNumber) {
+          return false;
+        }
+        return true;
+      }
+    ),
   phoneNumber: Yup.string()
     .matches(/^\S*$/, "No spaces allowed")
-    .required("Required")
-    .matches(/^\S*$/, "No spaces allowed")
-    .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03"),
+    .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03")
+    .test(
+      "emailOrPhoneNumber",
+      "Either email or phone number must be provided",
+      function (value) {
+        const { email } = this.parent;
+        if (!value && !email) {
+          return false;
+        }
+        return true;
+      }
+    ),
 });
 
 export const setUpPasswordSchema = Yup.object().shape({
