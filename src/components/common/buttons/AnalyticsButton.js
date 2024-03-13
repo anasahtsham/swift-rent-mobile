@@ -8,6 +8,9 @@ export const AnalyticsButton = (props) => {
   const colors = props.colors;
   return (
     <TouchableOpacity
+      onPress={() => {
+        props.navigation.navigate("Month Report");
+      }}
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >

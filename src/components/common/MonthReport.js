@@ -12,9 +12,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
 import { useColors } from "./../../helpers/SetColors";
-import AnalyticalReportHeader from "./header/AnalyticalReportHeader";
+import MonthReportHeader from "./header/MonthReportHeader";
 
-const AnalyticalReport = (props) => {
+const MonthReport = (props) => {
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -33,7 +33,7 @@ const AnalyticalReport = (props) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
-      <AnalyticalReportHeader colors={colors} />
+      <MonthReportHeader colors={colors} />
       <View
         style={[
           styles.bottomContainer,
@@ -303,4 +303,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AnalyticalReport;
+export default MonthReport;

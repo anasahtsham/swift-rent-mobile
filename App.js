@@ -4,6 +4,7 @@ import { StatusBar } from "react-native";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
+import MonthReport from "./src/components/common/MonthReport";
 import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
@@ -70,6 +71,7 @@ export default function App() {
             component={OwnerAnalyticalReport}
           />
           <Stack.Screen name="Report Bug" component={ReportBug} />
+          <Stack.Screen name="Month Report" component={MonthReport} />
         </Stack.Navigator>
       </NavigationContainer>
     );
