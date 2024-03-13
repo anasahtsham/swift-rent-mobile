@@ -34,7 +34,9 @@ const ReportBug = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
+      <SafeAreaView
+        style={{ backgroundColor: colors.backgroundPrimary, flex: 1 }}
+      >
         <Formik
           initialValues={{ issueType: "", issueDescription: "" }}
           validationSchema={reportBugSchema}
@@ -55,7 +57,10 @@ const ReportBug = ({ navigation }) => {
               <View
                 style={[
                   styles.issueTypeField,
-                  { borderColor: colors.borderPrimary },
+                  {
+                    borderColor: colors.borderPrimary,
+                    backgroundColor: colors.textInputFieldBackground,
+                  },
                 ]}
               >
                 <TextInput
@@ -77,7 +82,10 @@ const ReportBug = ({ navigation }) => {
               <View
                 style={[
                   styles.bugDescriptiionField,
-                  { borderColor: colors.borderPrimary },
+                  {
+                    borderColor: colors.borderPrimary,
+                    backgroundColor: colors.textInputFieldBackground,
+                  },
                 ]}
               >
                 <TextInput

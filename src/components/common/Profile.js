@@ -72,6 +72,16 @@ const Profile = (props) => {
             containerStyle={styles.buttonContainer}
             onPress={() => navigation.navigate("Welcome Screen")}
           />
+          <Button
+            title="Customer Support"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate("Report Bug")}
+          />
         </View>
         <View style={{ height: 60 }}></View>
       </ScrollView>
