@@ -28,6 +28,7 @@ import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
 import ProblemForm from "./src/components/common/ProblemForm";
+import OwnerPropertyMenu from "./src/screens/owner_screens/OwnerPropertyMenu";
 
 const Stack = createStackNavigator();
 
@@ -41,7 +42,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Splash Screen"
+          initialRouteName="Owner Property Menu"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -67,6 +68,10 @@ export default function App() {
           <Stack.Screen name="Rents" component={Rents} />
           <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
           <Stack.Screen name="Rating Screen" component={RatingScreen} />
+          <Stack.Screen
+            name="Owner Property Menu"
+            component={OwnerPropertyMenu}
+          />
           <Stack.Screen
             name="Owner Analytical Report"
             component={OwnerAnalyticalReport}

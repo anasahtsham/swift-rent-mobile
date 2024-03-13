@@ -51,3 +51,7 @@ export const buttonBorderPrimary = "#9E9E9E";
 export const buttonTextPrimary = "#000000";
 
 export const textInputFieldBackground = "#fff";
+
+export const buttonWithImagePrimary = "#FFFFFF";
+export const buttonWithImageBorderPrimary = "#FFFFFF";
+export const buttonWithImageTextPrimary = "#000";
