@@ -15,19 +15,6 @@ import ButtonGrey from "./buttons/ButtonGrey";
 const AddProperty = ({ navigation }) => {
   const colors = useColors();
 
-  useEffect(() => {
-    const backAction = () => {
-      navigation.goBack();
-      return true; // This will prevent the app from closing
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, []);
-
   const [openCity, setOpenCity] = useState(false);
   const [valueCity, setValueCity] = useState(null);
   const [itemsCity, setItemsCity] = useState([
@@ -84,6 +71,19 @@ const AddProperty = ({ navigation }) => {
     setOpenSubArea(false);
   }, []);
 
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true; // This will prevent the app from closing
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -113,6 +113,20 @@ const AddProperty = ({ navigation }) => {
         <View style={{ width: "80%" }}>
           <View style={styles.dropdownContainer}>
             <DropDownPicker
+              style={{
+                backgroundColor: colors.backgroundPrimary,
+                borderColor: colors.borderPrimary,
+                borderWidth: 1,
+              }}
+              textStyle={{
+                fontFamily: "OpenSansRegular",
+                color: colors.textPrimary,
+              }}
+              dropDownContainerStyle={{
+                backgroundColor: colors.backgroundPrimary,
+                borderColor: colors.borderPrimary,
+                borderWidth: 1,
+              }}
               theme={colors.dropDownTheme}
               zIndex={3000}
               zIndexInverse={1000}
@@ -128,6 +142,20 @@ const AddProperty = ({ navigation }) => {
           </View>
           <View style={styles.dropdownContainer}>
             <DropDownPicker
+              style={{
+                backgroundColor: colors.backgroundPrimary,
+                borderColor: colors.borderPrimary,
+                borderWidth: 1,
+              }}
+              textStyle={{
+                fontFamily: "OpenSansRegular",
+                color: colors.textPrimary,
+              }}
+              dropDownContainerStyle={{
+                backgroundColor: colors.backgroundPrimary,
+                borderColor: colors.borderPrimary,
+                borderWidth: 1,
+              }}
               theme={colors.dropDownTheme}
               zIndex={2000}
               zIndexInverse={2000}
@@ -143,6 +171,20 @@ const AddProperty = ({ navigation }) => {
           </View>
           <View style={styles.dropdownContainer}>
             <DropDownPicker
+              style={{
+                backgroundColor: colors.backgroundPrimary,
+                borderColor: colors.borderPrimary,
+                borderWidth: 1,
+              }}
+              textStyle={{
+                fontFamily: "OpenSansRegular",
+                color: colors.textPrimary,
+              }}
+              dropDownContainerStyle={{
+                backgroundColor: colors.backgroundPrimary,
+                borderColor: colors.borderPrimary,
+                borderWidth: 1,
+              }}
               theme={colors.dropDownTheme}
               zIndex={1000}
               zIndexInverse={3000}
