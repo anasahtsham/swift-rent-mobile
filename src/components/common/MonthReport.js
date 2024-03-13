@@ -191,7 +191,7 @@ const MonthReport = (props) => {
             </View>
           </TouchableOpacity>
         </ScrollView>
-        <View style={{ height: 280 }}></View>
+        <View style={{ height: 50 }}></View>
       </View>
     </SafeAreaView>
   );
