@@ -23,10 +23,11 @@ import WhoAreYou from "./src/screens/authentication_screens/WhoAreYou";
 import OwnerAnalyticalReport from "./src/screens/owner_screens/OwnerAnalyticalReport";
 import OwnerHiring from "./src/screens/owner_screens/OwnerHiring";
 import RatingScreen from "./src/screens/owner_screens/RatingScreen";
-import ReportBug from "./src/screens/owner_screens/ReportBug";
+import ReportBug from "./src/components/common/ProblemForm";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
+import ProblemForm from "./src/components/common/ProblemForm";
 
 const Stack = createStackNavigator();
 
@@ -70,7 +71,7 @@ export default function App() {
             name="Owner Analytical Report"
             component={OwnerAnalyticalReport}
           />
-          <Stack.Screen name="Report Bug" component={ReportBug} />
+          <Stack.Screen name="Problem Form" component={ProblemForm} />
           <Stack.Screen name="Month Report" component={MonthReport} />
         </Stack.Navigator>
       </NavigationContainer>

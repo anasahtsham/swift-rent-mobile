@@ -33,6 +33,20 @@ const Profile = (props) => {
             onPress={() => navigation.navigate("Change Password")}
           />
           <Button
+            title="Customer Support"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() =>
+              navigation.navigate("Problem Form", {
+                headerText: "Customer Support",
+              })
+            }
+          />
+          <Button
             title="FAQ's"
             titleStyle={{ color: colors.textPrimary }}
             buttonStyle={[
@@ -71,16 +85,6 @@ const Profile = (props) => {
             ]}
             containerStyle={styles.buttonContainer}
             onPress={() => navigation.navigate("Welcome Screen")}
-          />
-          <Button
-            title="Customer Support"
-            titleStyle={{ color: colors.textPrimary }}
-            buttonStyle={[
-              styles.button,
-              { backgroundColor: colors.backgroundPrimary },
-            ]}
-            containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Report Bug")}
           />
         </View>
         <View style={{ height: 60 }}></View>
