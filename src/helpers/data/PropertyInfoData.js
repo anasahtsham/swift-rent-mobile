@@ -1,3 +1,15 @@
+export const cityData = [
+  { label: "Islamabad", value: "islamabad" },
+  { label: "Rawalpindi", value: "rawalpindi" },
+];
+
+export const propertyTypeData = [
+  { label: "Residential Homes", value: "residential_homes" },
+  { label: "Plots", value: "plots" },
+  { label: "Commercial", value: "commercial" },
+  { label: "Hotel Room", value: "hotel_room" },
+];
+
 export const subSectorData = [
   { label: "D-12", value: "D-12" },
   { label: "D-12/1", value: "D-12/1", parent: "D-12" },
@@ -77,7 +89,7 @@ export const subSectorData = [
   { label: "G-11/3", value: "G-11/3", parent: "G-11" },
   { label: "G-11/4", value: "G-11/4", parent: "G-11" },
   { label: "G-11 Markaz", value: "G-11 Markaz", parent: "G-11" },
-  { label: "G-12", value: "G-12" },
+  { label: "G-13", value: "G-13" },
   { label: "G-13/1", value: "G-13/1", parent: "G-13" },
   { label: "G-13/2", value: "G-13/2", parent: "G-13" },
   { label: "G-13/3", value: "G-13/3", parent: "G-13" },
@@ -138,3 +150,24 @@ export const subSectorData = [
   { label: "I-11/4", value: "I-11/4", parent: "I-11" },
   { label: "I-11 Markaz", value: "I-11 Markaz", parent: "I-11" },
 ];
+export const propertySubTypeData = {
+  residential_homes: [
+    { label: "Houses", value: "houses" },
+    { label: "Upper", value: "upper" },
+    { label: "Lower", value: "lower" },
+    { label: "Flat", value: "flat" },
+    { label: "Room", value: "room" },
+  ],
+  plots: [
+    { label: "Commercial", value: "commercial" },
+    { label: "Agriculture", value: "agriculture" },
+    { label: "Industrial", value: "industrial" },
+  ],
+  commercial: [
+    { label: "Office", value: "office" },
+    { label: "Shop", value: "shop" },
+    { label: "Building", value: "building" },
+    { label: "Warehouse", value: "warehouse" },
+    { label: "Factory", value: "factory" },
+  ],
+};

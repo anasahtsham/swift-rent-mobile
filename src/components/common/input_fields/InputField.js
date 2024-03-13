@@ -14,7 +14,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
-const CustomTextField = React.forwardRef((props, ref) => {
+const InputField = React.forwardRef((props, ref) => {
   const {
     label,
     errorText,
@@ -261,4 +261,4 @@ const inputStyles = StyleSheet.create({
   },
 });
 
-export default CustomTextField;
+export default InputField;
