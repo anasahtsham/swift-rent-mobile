@@ -143,18 +143,18 @@ export const changePasswordSchema = Yup.object().shape({
 
 export const reportBugSchema = Yup.object().shape({
   issueType: Yup.string()
-    .trim("No leading or trailing spaces")
     .required("Can't leave empty")
     .min(2, "Issue type must be at least 2 characters")
     .max(50, "Issue type must be at most 50 characters")
+    .matches(/^[^\s].*[^\s]$/, "No leading or trailing spaces")
     .matches(/^(?!.*  ).*$/, "No double spaces")
     .matches(/^(?!\d+$).*$/, "Issue type can't be only numbers")
     .matches(/^[a-zA-Z0-9\s]*$/, "Can't be only special characters or symbols"),
   issueDescription: Yup.string()
-    .trim("No leading or trailing spaces")
     .required("Can't leave empty")
     .min(10, "Description must be at least 10 characters")
     .max(500, "Description must be at most 500 characters")
+    .matches(/^[^\s].*[^\s]$/, "No leading or trailing spaces")
     .matches(/^(?!.*  ).*$/, "No double spaces")
     .matches(/^(?!\d+$).*$/, "Description can't be only numbers")
     .matches(/^[a-zA-Z0-9\s]*$/, "Can't be only special characters or symbols"),
