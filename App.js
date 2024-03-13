@@ -43,7 +43,6 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Owner Navigator"
           initialRouteName="Owner Property Menu"
         >
           {/* Authentication Screens */}
