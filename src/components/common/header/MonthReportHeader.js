@@ -23,6 +23,7 @@ const MonthReportHeader = (props) => {
           <View style={styles.rightInRow}>
             <Text
               style={{
+                color: colors.textPrimary,
                 fontSize: FontSizes.medium,
                 fontFamily: "OpenSansBold",
                 marginBottom: 20,
