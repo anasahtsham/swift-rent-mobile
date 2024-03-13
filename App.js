@@ -2,9 +2,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
+import AddProperty from "./src/components/common/AddProperty";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
 import MonthReport from "./src/components/common/MonthReport";
+import ProblemForm from "./src/components/common/ProblemForm";
 import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
@@ -23,7 +25,6 @@ import WhoAreYou from "./src/screens/authentication_screens/WhoAreYou";
 import OwnerAnalyticalReport from "./src/screens/owner_screens/OwnerAnalyticalReport";
 import OwnerHiring from "./src/screens/owner_screens/OwnerHiring";
 import RatingScreen from "./src/screens/owner_screens/RatingScreen";
-import ReportBug from "./src/components/common/ProblemForm";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
@@ -42,6 +43,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
+          initialRouteName="Owner Navigator"
           initialRouteName="Owner Property Menu"
         >
           {/* Authentication Screens */}
@@ -78,6 +80,7 @@ export default function App() {
           />
           <Stack.Screen name="Problem Form" component={ProblemForm} />
           <Stack.Screen name="Month Report" component={MonthReport} />
+          <Stack.Screen name="Add Property" component={AddProperty} />
         </Stack.Navigator>
       </NavigationContainer>
     );
