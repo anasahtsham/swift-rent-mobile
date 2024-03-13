@@ -47,7 +47,7 @@ export const headerAndFooterBackground = "#000";
 export const bodyBackground = "#353535";
 
 export const buttonBackgroundPrimary = "#353535";
-export const buttonBorderPrimary = "#8D8D8D";
+export const buttonBorderPrimary = "#9E9E9E";
 export const buttonTextPrimary = "#FFFFFF";
 
 export const textInputFieldBackground = "#353535";

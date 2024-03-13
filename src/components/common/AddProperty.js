@@ -10,10 +10,30 @@ import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
+import { subSectorData } from "../../helpers/data/SectorsData";
 import ButtonGrey from "./buttons/ButtonGrey";
 
 const AddProperty = ({ navigation }) => {
   const colors = useColors();
+
+  const dropdownStyles = {
+    style: {
+      backgroundColor: colors.buttonBackgroundPrimary,
+      borderColor: colors.buttonBorderPrimary,
+      borderWidth: 1,
+    },
+    textStyle: {
+      fontFamily: "OpenSansRegular",
+      color: colors.textPrimary,
+    },
+    dropDownContainerStyle: {
+      backgroundColor: colors.backgroundPrimary,
+      borderColor: colors.buttonBorderPrimary,
+      borderWidth: 1,
+    },
+    theme: colors.dropDownTheme,
+    itemSeparator: true,
+  };
 
   const [openCity, setOpenCity] = useState(false);
   const [valueCity, setValueCity] = useState(null);
@@ -24,28 +44,7 @@ const AddProperty = ({ navigation }) => {
 
   const [openSubArea, setOpenSubArea] = useState(false);
   const [valueSubArea, setValueSubArea] = useState(null);
-  const [itemsSubArea, setItemsSubArea] = useState([
-    { label: "D-10/2", value: "d-10/2" },
-    { label: "E-7/4", value: "e-7/4" },
-    { label: "F-11/3", value: "f-11/3" },
-    { label: "G-9/1", value: "g-9/1" },
-    { label: "H-12/2", value: "h-12/2" },
-    { label: "I-8/4", value: "i-8/4" },
-    { label: "D-13/1", value: "d-13/1" },
-    { label: "E-6/3", value: "e-6/3" },
-    { label: "F-8/2", value: "f-8/2" },
-    { label: "G-10/4", value: "g-10/4" },
-    { label: "H-7/1", value: "h-7/1" },
-    { label: "I-11/4", value: "i-11/4" },
-    { label: "D-12/3", value: "d-12/3" },
-    { label: "E-8/1", value: "e-8/1" },
-    { label: "F-9/4", value: "f-9/4" },
-    { label: "G-6/2", value: "g-6/2" },
-    { label: "H-11/3", value: "h-11/3" },
-    { label: "I-7/1", value: "i-7/1" },
-    { label: "D-9/4", value: "d-9/4" },
-    { label: "E-13/2", value: "e-13/2" },
-  ]);
+  const [itemsSubArea, setItemsSubArea] = useState(subSectorData);
 
   const [openPropertyType, setOpenPropertyType] = useState(false);
   const [valuePropertyType, setValuePropertyType] = useState(null);
@@ -105,6 +104,7 @@ const AddProperty = ({ navigation }) => {
               color: colors.textPrimary,
               fontSize: FontSizes.medium,
               textAlign: "center",
+              width: "80%",
             },
           ]}
         >
@@ -113,20 +113,8 @@ const AddProperty = ({ navigation }) => {
         <View style={{ width: "80%" }}>
           <View style={styles.dropdownContainer}>
             <DropDownPicker
-              style={{
-                backgroundColor: colors.backgroundPrimary,
-                borderColor: colors.borderPrimary,
-                borderWidth: 1,
-              }}
-              textStyle={{
-                fontFamily: "OpenSansRegular",
-                color: colors.textPrimary,
-              }}
-              dropDownContainerStyle={{
-                backgroundColor: colors.backgroundPrimary,
-                borderColor: colors.borderPrimary,
-                borderWidth: 1,
-              }}
+              {...dropdownStyles}
+              searchPlaceholderTextColor={colors.textGreen}
               theme={colors.dropDownTheme}
               zIndex={3000}
               zIndexInverse={1000}
@@ -142,20 +130,13 @@ const AddProperty = ({ navigation }) => {
           </View>
           <View style={styles.dropdownContainer}>
             <DropDownPicker
-              style={{
-                backgroundColor: colors.backgroundPrimary,
-                borderColor: colors.borderPrimary,
-                borderWidth: 1,
+              {...dropdownStyles}
+              searchable={true}
+              searchPlaceholder="Search Sub Area"
+              listParentLabelStyle={{
+                fontWeight: "bold",
               }}
-              textStyle={{
-                fontFamily: "OpenSansRegular",
-                color: colors.textPrimary,
-              }}
-              dropDownContainerStyle={{
-                backgroundColor: colors.backgroundPrimary,
-                borderColor: colors.borderPrimary,
-                borderWidth: 1,
-              }}
+              categorySelectable={false}
               theme={colors.dropDownTheme}
               zIndex={2000}
               zIndexInverse={2000}
@@ -171,20 +152,7 @@ const AddProperty = ({ navigation }) => {
           </View>
           <View style={styles.dropdownContainer}>
             <DropDownPicker
-              style={{
-                backgroundColor: colors.backgroundPrimary,
-                borderColor: colors.borderPrimary,
-                borderWidth: 1,
-              }}
-              textStyle={{
-                fontFamily: "OpenSansRegular",
-                color: colors.textPrimary,
-              }}
-              dropDownContainerStyle={{
-                backgroundColor: colors.backgroundPrimary,
-                borderColor: colors.borderPrimary,
-                borderWidth: 1,
-              }}
+              {...dropdownStyles}
               theme={colors.dropDownTheme}
               zIndex={1000}
               zIndexInverse={3000}
