@@ -37,7 +37,7 @@ const Properties = (props) => {
           width={buttonWidthSmall}
           fontSize={14}
           buttonText="+ Add a Property"
-          destinationScreen=""
+          destinationScreen="Add Property"
           navigation={navigation}
         />
       </View>
