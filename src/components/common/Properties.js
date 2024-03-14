@@ -23,6 +23,7 @@ const Properties = (props) => {
       manager={property.manager}
       tenant={property.tenant}
       rentStatus={property.rentStatus}
+      navigation={navigation}
     />
   );
 

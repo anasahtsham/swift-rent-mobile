@@ -5,22 +5,13 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import {
-  buttonWidthMedium,
-  buttonWidthSmall,
-  buttonWidthSmaller,
-  opacityValueForButton,
-} from "../../constants";
-import { useColors } from "./../../helpers/SetColors";
-import PropertyMenuHeader from "../../components/common/header/PropertyMenuHeader";
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import { icons } from "../../helpers/ImageImports";
 import ButtonWithImage from "../../components/common/buttons/ButtonWithImage";
+import PropertyMenuHeader from "../../components/common/header/PropertyMenuHeader";
+import { useColors } from "./../../helpers/SetColors";
 
 const OwnerPropertyMenu = (props) => {
   const colors = useColors();
