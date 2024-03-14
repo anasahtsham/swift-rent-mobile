@@ -31,6 +31,7 @@ import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
 import ViewMaintenance from "./src/components/common/ViewMaintenance";
+import ViewComplains from "./src/components/common/ViewComplains";
 
 const Stack = createStackNavigator();
 
@@ -44,7 +45,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="View Maintenance"
+          initialRouteName="Splash Screen"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -86,6 +87,7 @@ export default function App() {
             component={MaintenanceComplainsList}
           />
           <Stack.Screen name="View Maintenance" component={ViewMaintenance} />
+          <Stack.Screen name="View Complains" component={ViewComplains} />
         </Stack.Navigator>
       </NavigationContainer>
     );
