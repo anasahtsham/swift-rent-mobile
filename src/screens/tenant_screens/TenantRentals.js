@@ -1,8 +1,8 @@
 import Properties from "../../components/common/Properties";
-import { propertiesData } from "../../helpers/data/PropertiesData";
+import { rentalsData } from "../../helpers/data/PropertiesData";
 
 const TenantRentals = () => {
-  return <Properties propertiesData={propertiesData} />;
+  return <Properties isTenant={true} rentalsData={rentalsData} />;
 };
 
 export default TenantRentals;

@@ -11,18 +11,25 @@ const Properties = (props) => {
   const colors = useColorsOnFocus();
   const navigation = useNavigation();
 
-  const renderItem = ({ item: property }) => (
+  const dataToRender = props.isTenant
+    ? props.rentalsData
+    : props.propertiesData;
+
+  const renderItem = ({ item: data }) => (
     <PropertiesButton
       colors={colors}
-      key={property.id}
-      address={property.address}
-      city={property.city}
-      income={property.income}
-      outcome={property.outcome}
-      status={property.status}
-      manager={property.manager}
-      tenant={property.tenant}
-      rentStatus={property.rentStatus}
+      key={data.id}
+      address={data.address}
+      city={data.city}
+      income={data.income}
+      outcome={data.outcome}
+      status={data.status}
+      manager={data.manager}
+      tenant={data.tenant}
+      rentStatus={data.rentStatus}
+      rentAmount={data.rentAmount}
+      dueDate={data.dueDate}
+      owner={data.owner}
       navigation={navigation}
     />
   );
@@ -48,18 +55,18 @@ const Properties = (props) => {
             color: colors.textWhite,
           }}
         >
-          My Properties
+          {props.isTenant ? "My Rentals" : "My Properties"}
         </Text>
         <ButtonGrey
           width={buttonWidthSmall}
           fontSize={14}
-          buttonText="+ Add a Property"
+          buttonText={props.isTenant ? "Rental Requests" : "+ Add a Property"}
           destinationScreen="Add Property"
           navigation={navigation}
         />
       </View>
       <FlatList
-        data={props.propertiesData}
+        data={dataToRender}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.buttons}

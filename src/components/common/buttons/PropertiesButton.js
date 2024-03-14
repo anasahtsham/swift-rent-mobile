@@ -41,45 +41,81 @@ export const PropertiesButton = (props) => {
         >
           {props.city}
         </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
+        {!!props.dueDate && (
           <View style={{ alignItems: "center", flexDirection: "row" }}>
-            <Image
-              style={styles.icon}
-              tintColor={colors.iconGreen}
-              source={icons.downLongArrow}
-            />
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              {formatNumber(props.income)}
+              PKR{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontBold,
+                { color: colors.textPrimary, marginRight: 80 },
+              ]}
+            >
+              {formatNumber(props.rentAmount)}
+            </Text>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Due Date{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              {props.dueDate}
             </Text>
           </View>
-          <View style={{ alignItems: "center", flexDirection: "row" }}>
-            <Image
-              style={styles.icon}
-              tintColor={colors.iconRed}
-              source={icons.upLongArrow}
-            />
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              {formatNumber(props.outcome)}
-            </Text>
-          </View>
-          <Text
-            style={[
-              styles.fontBold,
-              {
-                color:
-                  props.status === "Vacant" ? colors.textRed : colors.textGreen,
-              },
-            ]}
+        )}
+        {!props.dueDate && (
+          <View
+            style={{
+              flexDirection: "row",
+              width: "100%",
+              justifyContent: "space-between",
+            }}
           >
-            {props.status}
-          </Text>
-        </View>
+            <View style={{ alignItems: "center", flexDirection: "row" }}>
+              <Image
+                style={styles.icon}
+                tintColor={colors.iconGreen}
+                source={icons.downLongArrow}
+              />
+              <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+                {formatNumber(props.income)}
+              </Text>
+            </View>
+            <View style={{ alignItems: "center", flexDirection: "row" }}>
+              <Image
+                style={styles.icon}
+                tintColor={colors.iconRed}
+                source={icons.upLongArrow}
+              />
+              <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+                {formatNumber(props.outcome)}
+              </Text>
+            </View>
+            <Text
+              style={[
+                styles.fontBold,
+                {
+                  color:
+                    props.status === "Vacant"
+                      ? colors.textRed
+                      : colors.textGreen,
+                },
+              ]}
+            >
+              {props.status}
+            </Text>
+          </View>
+        )}
+
+        {!!props.owner && (
+          <View style={{ flexDirection: "row", marginTop: 10 }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Manager:{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              {props.owner}
+            </Text>
+          </View>
+        )}
 
         {!!props.manager && (
           <View style={{ flexDirection: "row", marginTop: 10 }}>
@@ -113,7 +149,8 @@ export const PropertiesButton = (props) => {
                 styles.fontBold,
                 {
                   color:
-                    props.rentStatus === "Collected"
+                    props.rentStatus === "Collected" ||
+                    props.rentStatus === "Paid"
                       ? colors.textGreen
                       : colors.textRed,
                 },
