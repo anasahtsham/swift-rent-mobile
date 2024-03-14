@@ -98,6 +98,7 @@ const TabNavigator = (props) => {
           position: "absolute",
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
+          borderTopWidth: 0,
           height: 60,
           backgroundColor: colors.headerAndFooterBackground,
         },

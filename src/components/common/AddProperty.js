@@ -262,30 +262,25 @@ const AddProperty = ({ navigation }) => {
                 placeholder="Property Type"
               />
             </View>
-            <View style={styles.dropdownContainer}>
-              <DropDownPicker
-                {...dropdownStyles}
-                style={
-                  !valuePropertyType || valuePropertyType === "hotel_room"
-                    ? { backgroundColor: colors.dropDownDisabled }
-                    : dropdownStyles.style
-                }
-                theme={colors.dropDownTheme}
-                zIndex={1000}
-                zIndexInverse={4000}
-                open={openPropertySubType}
-                value={valuePropertySubType}
-                items={itemsPropertySubType}
-                onOpen={onPropertySubTypeOpen}
-                setOpen={setOpenPropertySubType}
-                setValue={setValuePropertySubType}
-                setItems={setItemsPropertySubType}
-                placeholder="Property Sub Type"
-                disabled={
-                  !valuePropertyType || valuePropertyType === "hotel_room"
-                }
-              />
-            </View>
+            {!(!valuePropertyType || valuePropertyType === "hotel_room") && (
+              <View style={styles.dropdownContainer}>
+                <DropDownPicker
+                  {...dropdownStyles}
+                  style={dropdownStyles.style}
+                  theme={colors.dropDownTheme}
+                  zIndex={1000}
+                  zIndexInverse={4000}
+                  open={openPropertySubType}
+                  value={valuePropertySubType}
+                  items={itemsPropertySubType}
+                  onOpen={onPropertySubTypeOpen}
+                  setOpen={setOpenPropertySubType}
+                  setValue={setValuePropertySubType}
+                  setItems={setItemsPropertySubType}
+                  placeholder="Property Sub Type"
+                />
+              </View>
+            )}
           </View>
           <ButtonGrey
             buttonText="Next"
