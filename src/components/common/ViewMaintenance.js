@@ -65,7 +65,11 @@ const ViewMaintenance = (props) => {
           <TextInput
             style={[
               styles.remarksBox,
-              { borderColor: colors.borderPrimary, paddingLeft: 10 },
+              {
+                borderColor: colors.borderPrimary,
+                paddingLeft: 10,
+                color: colors.textPrimary,
+              },
             ]}
             placeholder="Add Remarks"
             placeholderTextColor={colors.textPrimary}
@@ -159,13 +163,16 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   footer: {
-    marginTop: "auto",
+    position: "absolute", // remove this line when un commenting marginTop:260
+    marginTop: 260, // This keeps the footer at the bottom even when the keyboard is open and stays behind the keyboard
+    bottom: 0,
     height: 70,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     alignItems: "center",
     justifyContent: "space-evenly",
     flexDirection: "row",
+    width: "100%",
   },
 });
 
