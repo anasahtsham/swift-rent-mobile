@@ -30,8 +30,7 @@ import RatingScreen from "./src/screens/owner_screens/RatingScreen";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import ViewMaintenance from "./src/components/common/ViewMaintenance";
-import ViewComplains from "./src/components/common/ViewComplains";
+import ViewMaintenanceAndComplains from "./src/components/common/ViewMaintenanceAndComplains";
 
 const Stack = createStackNavigator();
 
@@ -86,8 +85,10 @@ export default function App() {
             name="Maintenance Complains List"
             component={MaintenanceComplainsList}
           />
-          <Stack.Screen name="View Maintenance" component={ViewMaintenance} />
-          <Stack.Screen name="View Complains" component={ViewComplains} />
+          <Stack.Screen
+            name="View Maintenance And Complains"
+            component={ViewMaintenanceAndComplains}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

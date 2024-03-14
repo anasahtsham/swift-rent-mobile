@@ -12,11 +12,16 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
-import { useColors } from "./../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 import ViewMaintenanceHeader from "./header/ViewMaintenanceHeader";
 import InputField from "./input_fields/InputField";
+import ViewMaintenanceAndComplainsHeader from "./header/ViewMaintenanceAndComplainsHeader";
+import {
+  maintenanceHeaderData,
+  complaintsHeaderData,
+} from "../../helpers/data/MaintenanceAndComplainsData";
 
-const ViewMaintenance = (props) => {
+const ViewMaintenanceAndComplains = (props) => {
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -36,9 +41,16 @@ const ViewMaintenance = (props) => {
     return () => backHandler.remove();
   }, []);
 
+  const headerData = props.showComplaints
+    ? complaintsHeaderData
+    : maintenanceHeaderData;
+
   return (
     <SafeAreaView style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
-      <ViewMaintenanceHeader colors={colors} />
+      <ViewMaintenanceAndComplainsHeader
+        colors={colors}
+        MaintenanceAndComplainsData={headerData}
+      />
       <View
         style={[
           styles.bottomContainer,
@@ -176,4 +188,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewMaintenance;
+export default ViewMaintenanceAndComplains;
