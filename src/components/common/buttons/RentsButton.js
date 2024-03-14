@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
-import { formatNumber } from "./../../../helpers/index";
+import { formatNumber } from "../../../helpers/index";
 
-export const ReceivedRentsButton = (props) => {
+export const RentsButton = (props) => {
   const colors = props.colors;
   return (
     <TouchableOpacity
@@ -131,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReceivedRentsButton;
+export default RentsButton;

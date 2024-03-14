@@ -18,7 +18,7 @@ import {
   rentsPaidData,
   rentsPendingData,
 } from "../../helpers/data/RentsData";
-import ReceivedRentsButton from "./buttons/ReceivedRentsButton";
+import RentsButton from "./buttons/RentsButton";
 
 const Rents = ({ navigation, route }) => {
   const colors = useColors();
@@ -63,7 +63,7 @@ const Rents = ({ navigation, route }) => {
   }, []);
 
   const renderItem = ({ item: rent }) => (
-    <ReceivedRentsButton
+    <RentsButton
       colors={colors}
       key={rent.id}
       address={rent.address}

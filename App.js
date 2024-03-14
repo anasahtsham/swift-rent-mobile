@@ -5,6 +5,7 @@ import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import AddProperty from "./src/components/common/AddProperty";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
+import MaintenanceComplainsList from "./src/components/common/MaintenanceComplainsList";
 import MonthReport from "./src/components/common/MonthReport";
 import ProblemForm from "./src/components/common/ProblemForm";
 import Rents from "./src/components/common/Rents";
@@ -79,6 +80,10 @@ export default function App() {
           <Stack.Screen name="Problem Form" component={ProblemForm} />
           <Stack.Screen name="Month Report" component={MonthReport} />
           <Stack.Screen name="Add Property" component={AddProperty} />
+          <Stack.Screen
+            name="Maintenance Complains List"
+            component={MaintenanceComplainsList}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
