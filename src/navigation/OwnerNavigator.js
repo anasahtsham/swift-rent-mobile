@@ -11,7 +11,7 @@ const OwnerNavigator = () => {
       component1={OwnerAnalytics}
       screen2="Properties"
       component2={OwnerProperties}
-      screen3="Alers"
+      screen3="Alerts"
       component3={OwnerAlerts}
       screen4="Profile"
       component4={OwnerProfile}

@@ -2,13 +2,21 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 
-const HeaderButton = ({ colors, borderColor, children }) => (
+const HeaderButton = ({
+  colors,
+  borderColor,
+  children,
+  onPress,
+  isSelected,
+}) => (
   <TouchableOpacity
+    onPress={onPress}
     activeOpacity={opacityValueForButton}
     style={[
       styles.headerButton,
       {
         borderColor: borderColor,
+        backgroundColor: isSelected ? colors.selectedBackground : "transparent",
       },
     ]}
   >
@@ -16,6 +24,7 @@ const HeaderButton = ({ colors, borderColor, children }) => (
       style={{
         color: colors.textPrimary,
         fontSize: FontSizes.small,
+        fontFamily: isSelected ? "OpenSansBold" : "OpenSansRegular",
       }}
     >
       {children}
@@ -48,17 +57,32 @@ const AlertsHeader = (props) => {
               { color: colors.textPrimary, fontSize: FontSizes.medium },
             ]}
           >
-            Notifications 25
+            Notifications {props.notificationsAmount}
           </Text>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <HeaderButton colors={colors} borderColor={colors.borderRed}>
+          <HeaderButton
+            onPress={() => props.onHeaderButtonPress("Maintenance")}
+            colors={colors}
+            borderColor={colors.borderRed}
+            isSelected={props.selectedTypes.includes("Maintenance")}
+          >
             Maintenance
           </HeaderButton>
-          <HeaderButton colors={colors} borderColor={colors.borderYellow}>
+          <HeaderButton
+            onPress={() => props.onHeaderButtonPress("Complains")}
+            colors={colors}
+            borderColor={colors.borderYellow}
+            isSelected={props.selectedTypes.includes("Complains")}
+          >
             Complains
           </HeaderButton>
-          <HeaderButton colors={colors} borderColor={colors.borderGreen}>
+          <HeaderButton
+            onPress={() => props.onHeaderButtonPress("Rent")}
+            colors={colors}
+            borderColor={colors.borderGreen}
+            isSelected={props.selectedTypes.includes("Rent")}
+          >
             Rent
           </HeaderButton>
         </View>

@@ -10,7 +10,7 @@ const TenantNavigator = () => {
       component1={TenantAnalytics}
       screen2="Rentals"
       component2={TenantRentals}
-      screen3="Alers"
+      screen3="Alerts"
       component3={TenantAlerts}
       screen4="Profile"
       component4={TenantProfile}

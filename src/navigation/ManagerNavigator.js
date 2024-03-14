@@ -11,7 +11,7 @@ const ManagerNavigator = () => {
       component1={ManagerAnalytics}
       screen2="Properties"
       component2={ManagerProperties}
-      screen3="Alers"
+      screen3="Alerts"
       component3={ManagerAlerts}
       screen4="Profile"
       component4={ManagerProfile}
