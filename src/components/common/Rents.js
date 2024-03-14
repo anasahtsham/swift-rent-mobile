@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import {
   BackHandler,
+  FlatList,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -62,6 +62,20 @@ const Rents = ({ navigation, route }) => {
     return () => backHandler.remove();
   }, []);
 
+  const renderItem = ({ item: rent }) => (
+    <ReceivedRentsButton
+      colors={colors}
+      key={rent.id}
+      address={rent.address}
+      city={rent.city}
+      manager={rent.manager}
+      tenant={rent.tenant}
+      amountCollected={rent.amountCollected}
+      rentPaid={rent.rentPaid}
+      rentAmount={rent.rentAmount}
+    />
+  );
+
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
@@ -81,24 +95,13 @@ const Rents = ({ navigation, route }) => {
           {header}
         </Text>
       </View>
-      <ScrollView>
-        <View style={styles.buttons}>
-          {dataToBeRendered.map((rent) => (
-            <ReceivedRentsButton
-              colors={colors}
-              key={rent.id}
-              address={rent.address}
-              city={rent.city}
-              manager={rent.manager}
-              tenant={rent.tenant}
-              amountCollected={rent.amountCollected}
-              rentPaid={rent.rentPaid}
-              rentAmount={rent.rentAmount}
-            />
-          ))}
-        </View>
-        <View style={{ height: 10 }}></View>
-      </ScrollView>
+      <FlatList
+        data={dataToBeRendered}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.buttons}
+        ListFooterComponent={<View style={{ height: 10 }} />}
+      />
       <View
         style={[
           styles.footer,

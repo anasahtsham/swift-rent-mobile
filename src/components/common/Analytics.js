@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import AnalyticsButton from "./buttons/AnalyticsButton";
@@ -8,6 +8,19 @@ import AnalyticsHeader from "./header/AnalyticsHeader";
 const Analytics = (props) => {
   const navigation = useNavigation();
   const colors = useColorsOnFocus();
+
+  const renderItem = ({ item: data }) => (
+    <AnalyticsButton
+      colors={colors}
+      key={data.id}
+      month={data.month}
+      incomingPayment={data.incomingPayment}
+      outgoingPayment={data.outgoingPayment}
+      properties={data.properties}
+      backgroundColor={colors.backgroundRed}
+      navigation={navigation}
+    />
+  );
 
   return (
     <SafeAreaView
@@ -42,23 +55,13 @@ const Analytics = (props) => {
             : "Monthly Reports"}
         </Text>
       </View>
-      <ScrollView>
-        <View style={styles.buttons}>
-          {props.analyticsData.map((data) => (
-            <AnalyticsButton
-              colors={colors}
-              key={data.id}
-              month={data.month}
-              incomingPayment={data.incomingPayment}
-              outgoingPayment={data.outgoingPayment}
-              properties={data.properties}
-              backgroundColor={colors.backgroundRed}
-              navigation={navigation}
-            />
-          ))}
-        </View>
-        <View style={{ height: 70 }}></View>
-      </ScrollView>
+      <FlatList
+        data={props.analyticsData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.buttons}
+        ListFooterComponent={<View style={{ height: 70 }} />}
+      />
     </SafeAreaView>
   );
 };

@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthSmall } from "../../constants";
 import { useColorsOnFocus } from "../../helpers/SetColors";
@@ -10,6 +10,22 @@ import PropertiesHeader from "./header/PropertiesHeader";
 const Properties = (props) => {
   const colors = useColorsOnFocus();
   const navigation = useNavigation();
+
+  const renderItem = ({ item: property }) => (
+    <PropertiesButton
+      colors={colors}
+      key={property.id}
+      address={property.address}
+      city={property.city}
+      income={property.income}
+      outcome={property.outcome}
+      status={property.status}
+      manager={property.manager}
+      tenant={property.tenant}
+      rentStatus={property.rentStatus}
+    />
+  );
+
   return (
     <View
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
@@ -41,25 +57,13 @@ const Properties = (props) => {
           navigation={navigation}
         />
       </View>
-      <ScrollView>
-        <View style={styles.buttons}>
-          {props.propertiesData.map((property) => (
-            <PropertiesButton
-              colors={colors}
-              key={property.id}
-              address={property.address}
-              city={property.city}
-              income={property.income}
-              outcome={property.outcome}
-              status={property.status}
-              manager={property.manager}
-              tenant={property.tenant}
-              rentStatus={property.rentStatus}
-            />
-          ))}
-        </View>
-        <View style={{ height: 70 }}></View>
-      </ScrollView>
+      <FlatList
+        data={props.propertiesData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.buttons}
+        ListFooterComponent={<View style={{ height: 70 }} />}
+      />
     </View>
   );
 };

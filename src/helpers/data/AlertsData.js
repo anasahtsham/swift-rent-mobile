@@ -189,4 +189,329 @@ export const alertsData = [
       "Scheduled maintenance for the HVAC system will occur next week.",
     notificationType: "Maintenance",
   },
+  {
+    id: 21,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken door lock has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 22,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 23,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the plumbing system will occur next week.",
+    notificationType: "Maintenance",
+  },
+  {
+    id: 24,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken window has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 25,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 26,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the HVAC system will occur next week.",
+    notificationType: "Maintenance",
+  },
+  {
+    id: 27,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken door lock has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 28,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 29,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the plumbing system will occur next week.",
+    notificationType: "Maintenance",
+  },
+  {
+    id: 30,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken window has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 31,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 32,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the HVAC system will occur next week.",
+    notificationType: "Maintenance",
+  },
+  {
+    id: 33,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken door lock has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 34,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 35,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the plumbing system will occur next week.",
+    notificationType: "Maintenance",
+  },
+  {
+    id: 36,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken window has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 37,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 38,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the HVAC system will occur next week.",
+    notificationType: "Maintenance",
+  },
+  {
+    id: 39,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken door lock has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 40,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 41,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the plumbing system will occur next week.",
+    notificationType: "Maintenance",
+  },
+  {
+    id: 42,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken window has been fixed.",
+    notificationType: "Complains",
+  },
+  {
+    id: 43,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
+  {
+    id: 44,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the HVAC system will occur next week.",
+
+    notificationType: "Maintenance",
+  },
+  {
+    id: 45,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken door lock has been fixed.",
+
+    notificationType: "Complains",
+  },
+  {
+    id: 46,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+
+    notificationType: "Rent",
+  },
+  {
+    id: 47,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the plumbing system will occur next week.",
+
+    notificationType: "Maintenance",
+  },
+  {
+    id: 48,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken window has been fixed.",
+
+    notificationType: "Complains",
+  },
+  {
+    id: 49,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+
+    notificationType: "Rent",
+  },
+  {
+    id: 50,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText:
+      "Scheduled maintenance for the HVAC system will occur next week.",
+
+    notificationType: "Maintenance",
+  },
+  {
+    id: 51,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+
+    userType: "Manager",
+    notificationText:
+      "Your complaint regarding a broken door lock has been fixed.",
+
+    notificationType: "Complains",
+  },
+  {
+    id: 52,
+    dateAndYear: "12/12/2021",
+    time: "12:00",
+    name: "John Doe",
+    userType: "Manager",
+    notificationText: "Rent payment reminder: Your rent is overdue.",
+    notificationType: "Rent",
+  },
 ];
