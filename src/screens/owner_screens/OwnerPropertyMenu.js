@@ -134,7 +134,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
@@ -142,7 +142,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
               </View>
@@ -152,7 +152,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
@@ -160,7 +160,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
               </View>
@@ -170,7 +170,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
@@ -178,7 +178,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
               </View>
@@ -188,7 +188,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
@@ -196,7 +196,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
               </View>
@@ -206,7 +206,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
@@ -214,7 +214,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
               </View>
@@ -224,7 +224,7 @@ const OwnerPropertyMenu = (props) => {
                   fontSize={FontSizes.small}
                   width={160}
                   height={65}
-                  imageSource={require("../../assets/icons/external-link.png")}
+                  imageSource={require("../../assets/icons/external-link-button-arrow.png")}
                   tintColor={colors.textPrimary}
                 />
               </View>

@@ -6,7 +6,7 @@ import { formatNumber } from "../../../helpers/index";
 export const RentsButton = (props) => {
   const colors = props.colors;
   return (
-    <TouchableOpacity
+    <View
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
@@ -104,7 +104,7 @@ export const RentsButton = (props) => {
           </View>
         )}
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
