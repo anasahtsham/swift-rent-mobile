@@ -50,6 +50,13 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
       tenant={list.tenant}
       maintenanceStatus={list.maintenanceStatus}
       complaintStatus={list.complaintStatus}
+      onPress={() =>
+        navigation.navigate("View Maintenance And Complains", {
+          headerTitle: !!list.maintenanceStatus
+            ? "Maintenance Request"
+            : "Complain",
+        })
+      }
     />
   );
 

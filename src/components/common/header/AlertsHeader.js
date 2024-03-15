@@ -16,7 +16,7 @@ const HeaderButton = ({
       styles.headerButton,
       {
         borderColor: borderColor,
-        backgroundColor: isSelected ? colors.selectedBackground : "transparent",
+        borderWidth: isSelected ? 3 : 1,
       },
     ]}
   >
@@ -100,10 +100,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerButton: {
-    marginHorizontal: 5,
-    padding: 5,
+    alignItems: "center",
+    marginRight: 5,
+    paddingHorizontal: 3,
     borderRadius: 10,
-    borderWidth: 2,
   },
   userInfoContainer: {
     borderRadius: 10,

@@ -1,17 +1,15 @@
 export const complaintsHeaderData = {
-  title: "Complains",
-  ticket: "# 1231",
-  status: ["Pending", "Resolved"],
-  issuedBy: "Ikram Hussain (teanant/Manager)",
+  ticketID: "1231",
+  status: ["Pending", "Responded"],
+  issuedBy: "Ikram Hussain (Tenant/Manager)",
   issuedOn: "12-03-2024 (11:47 pm)",
   address: "House 540, Street 05, G-11/1, Islamabad",
 };
 
 export const maintenanceHeaderData = {
-  title: "Maintenance Requests",
-  ticket: "# 1231",
+  ticketID: "1231",
   status: ["Pending", "In-Progress", "Resolved"],
-  issuedBy: "Ikram Hussain (teanant/Manager)",
+  issuedBy: "Ikram Hussain (Tenant/Manager)",
   issuedOn: "12-03-2024 (11:47 pm)",
   address: "House 540, Street 05, G-11/1, Islamabad",
 };

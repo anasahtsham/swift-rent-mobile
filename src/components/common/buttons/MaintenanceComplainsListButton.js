@@ -7,6 +7,7 @@ export const MaintenanceComplainsListButton = (props) => {
   const colors = props.colors;
   return (
     <TouchableOpacity
+      onPress={props.onPress}
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >

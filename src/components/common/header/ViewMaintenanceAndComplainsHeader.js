@@ -1,7 +1,6 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { icons } from "../../../helpers/ImageImports";
 
 const getStatusColor = (status) => {
   switch (status.toLowerCase()) {
@@ -11,6 +10,8 @@ const getStatusColor = (status) => {
       return "textYellow";
     case "resolved":
       return "textGreen";
+    case "responded":
+      return "textGreen";
     default:
       return "textPrimary";
   }
@@ -18,7 +19,8 @@ const getStatusColor = (status) => {
 
 const ViewMaintenanceAndComplainsHeader = ({
   colors,
-  MaintenanceAndComplainsData,
+  headerData,
+  headerTitle,
 }) => {
   return (
     <View
@@ -37,67 +39,111 @@ const ViewMaintenanceAndComplainsHeader = ({
         ]}
       >
         <Text style={[styles.topCardTitle, { color: colors.textPrimary }]}>
-          {MaintenanceAndComplainsData.title}
+          {headerTitle}
         </Text>
         <View style={styles.topCardBodyText}>
-          <View style={[styles.rightInRow]}>
-            <Text style={{ color: colors.textPrimary }}>
-              Maintenance Ticket
+          <View style={[styles.inRow]}>
+            <Text
+              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+            >
+              {headerTitle === "Maintenance Request"
+                ? "Maintenance"
+                : "Complain"}{" "}
+              Ticket #
             </Text>
-            <Text style={{ color: colors.textPrimary, paddingLeft: 10 }}>
-              {MaintenanceAndComplainsData.ticket}
+            <Text
+              style={{
+                color: colors.textPrimary,
+                fontFamily: "OpenSansBold",
+                fontSize: FontSizes.small,
+              }}
+            >
+              {headerData.ticketID}
             </Text>
           </View>
-          <View style={[styles.rightInRow]}>
-            <Text style={{ color: colors.textPrimary }}>Status: </Text>
-            {MaintenanceAndComplainsData.status.map((status, index) => (
+          <View style={[styles.inRow]}>
+            <Text
+              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+            >
+              Status:{" "}
+            </Text>
+            {headerData.status.map((status, index) => (
               <React.Fragment key={index}>
-                <Text style={{ color: colors[getStatusColor(status)] }}>
+                <Text
+                  style={{
+                    color: colors[getStatusColor(status)],
+                    fontFamily: "OpenSansBold",
+                    fontSize: FontSizes.small,
+                  }}
+                >
                   {status}
                 </Text>
-                {index < MaintenanceAndComplainsData.status.length - 1 && (
-                  <Text style={{ color: colors.textPrimary }}> / </Text>
+                {index < headerData.status.length - 1 && (
+                  <Text
+                    style={{
+                      color: colors.textPrimary,
+                      fontSize: FontSizes.small,
+                    }}
+                  >
+                    {" "}
+                    /{" "}
+                  </Text>
                 )}
               </React.Fragment>
             ))}
           </View>
-          <View style={[styles.rightInRow]}>
-            <Text style={{ color: colors.textPrimary }}>Issued by:</Text>
+          <View style={[styles.inRow]}>
+            <Text
+              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+            >
+              Issued by:{" "}
+            </Text>
             <Text
               style={[
                 {
                   color: colors.textPrimary,
+                  fontSize: FontSizes.small,
                 },
                 styles.dynamicData,
               ]}
             >
-              {MaintenanceAndComplainsData.issuedBy}
+              {headerData.issuedBy}
             </Text>
           </View>
-          <View style={[styles.rightInRow]}>
-            <Text style={{ color: colors.textPrimary }}>Issued On:</Text>
+          <View style={[styles.inRow]}>
+            <Text
+              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+            >
+              Issued On:{" "}
+            </Text>
             <Text
               style={[
                 {
                   color: colors.textPrimary,
+                  fontSize: FontSizes.small,
                 },
                 styles.dynamicData,
               ]}
             >
-              {MaintenanceAndComplainsData.issuedOn}
+              {headerData.issuedOn}
             </Text>
           </View>
-          <View style={[styles.rightInRow]}>
-            <Text style={{ color: colors.textPrimary }}>Address:</Text>
+          <View style={[styles.inRow]}>
+            <Text
+              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+            >
+              Address:{" "}
+            </Text>
             <Text
               style={[
                 {
                   color: colors.textPrimary,
+                  fontSize: FontSizes.small,
                 },
                 styles.dynamicData,
               ]}
             >
-              {MaintenanceAndComplainsData.address}
+              {headerData.address}
             </Text>
           </View>
         </View>
@@ -112,12 +158,9 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 20,
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 10,
+    paddingVertical: 10,
   },
   topCard: {
-    margin: 10,
-
-    height: 200,
     width: "95%",
     borderWidth: 4,
     borderRadius: 20,
@@ -125,23 +168,20 @@ const styles = StyleSheet.create({
   },
   topCardTitle: {
     fontSize: FontSizes.medium,
-    paddingLeft: 10,
     paddingBottom: 5,
   },
 
   topCardBodyText: {
-    fontSize: FontSizes.small,
-    paddingLeft: "4%",
     textAlign: "left",
   },
-  rightInRow: {
+  inRow: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    alignItems: "center",
+    flexWrap: "wrap",
     padding: 4,
   },
 
   dynamicData: {
-    paddingLeft: 10,
     fontWeight: "bold",
   },
 });

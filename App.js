@@ -10,6 +10,7 @@ import MonthReport from "./src/components/common/MonthReport";
 import ProblemForm from "./src/components/common/ProblemForm";
 import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
+import ViewMaintenanceAndComplains from "./src/components/common/ViewMaintenanceAndComplains";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 import ManagerNavigator from "./src/navigation/ManagerNavigator";
 import OwnerNavigator from "./src/navigation/OwnerNavigator";
@@ -30,7 +31,6 @@ import RatingScreen from "./src/screens/owner_screens/RatingScreen";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import ViewMaintenanceAndComplains from "./src/components/common/ViewMaintenanceAndComplains";
 
 const Stack = createStackNavigator();
 
@@ -44,7 +44,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Splash Screen"
+          initialRouteName="Owner Navigator"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />

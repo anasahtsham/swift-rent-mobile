@@ -2,31 +2,28 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import {
   BackHandler,
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import ViewMaintenanceHeader from "./header/ViewMaintenanceHeader";
-import InputField from "./input_fields/InputField";
-import ViewMaintenanceAndComplainsHeader from "./header/ViewMaintenanceAndComplainsHeader";
 import {
-  maintenanceHeaderData,
+  complaintsData,
   complaintsHeaderData,
+  maintenanceData,
+  maintenanceHeaderData,
 } from "../../helpers/data/MaintenanceAndComplainsData";
+import ViewMaintenanceAndComplainsHeader from "./header/ViewMaintenanceAndComplainsHeader";
 
-const ViewMaintenanceAndComplains = (props) => {
+const ViewMaintenanceAndComplains = ({ route, ...props }) => {
   const colors = useColors();
   const navigation = useNavigation();
-
-  let firstButtonText = " Accept";
-  let secondButtonText = "Reject";
+  const headerTitle = route.params.headerTitle;
 
   useEffect(() => {
     const backAction = () => {
@@ -41,94 +38,148 @@ const ViewMaintenanceAndComplains = (props) => {
     return () => backHandler.remove();
   }, []);
 
-  const headerData = props.showComplaints
-    ? complaintsHeaderData
-    : maintenanceHeaderData;
+  const headerData =
+    headerTitle === "Maintenance Request"
+      ? maintenanceHeaderData
+      : complaintsHeaderData;
 
   return (
-    <SafeAreaView style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: "space-between" }}
+      scrollEnabled={true}
+      style={{ backgroundColor: colors.bodyBackground }}
+    >
       <ViewMaintenanceAndComplainsHeader
         colors={colors}
-        MaintenanceAndComplainsData={headerData}
+        headerTitle={headerTitle}
+        headerData={headerData}
       />
       <View
         style={[
-          styles.bottomContainer,
-          { backgroundColor: colors.bodyBackground },
+          styles.requestCard,
+          { backgroundColor: colors.backgroundPrimary },
         ]}
       >
-        <TouchableOpacity
-          activeOpacity={opacityValueForButton}
+        <Text
           style={[
-            styles.requestCard,
-            { backgroundColor: colors.backgroundPrimary },
+            styles.requestTile,
+            { color: colors.textPrimary, fontSize: FontSizes.small },
           ]}
         >
-          <Text style={[styles.requestTile, { color: colors.textPrimary }]}>
-            Motor needs repairing
-          </Text>
-          <Text
-            style={[styles.requestDescription, { color: colors.textPrimary }]}
-          >
-            The motor is not working, we tried to call you but you did not
-            reply. Please fix this issue as soon as possible. As water is a
-            necessity.
-          </Text>
-          <TextInput
-            style={[
-              styles.remarksBox,
-              {
-                borderColor: colors.borderPrimary,
-                paddingLeft: 10,
-                color: colors.textPrimary,
-              },
-            ]}
-            placeholder="Add Remarks"
-            placeholderTextColor={colors.textPrimary}
-          />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={[
-          styles.footer,
-          { backgroundColor: colors.headerAndFooterBackground },
-        ]}
-      >
-        <TouchableOpacity
-          activeOpacity={opacityValueForButton}
-          style={[styles.button, { borderColor: colors.borderGreen }]}
-          onPress={() => {
-            navigation.navigate("Rents", { header: "Received Rents" });
-          }}
+          {headerTitle === "Maintenance Request"
+            ? maintenanceData.title
+            : complaintsData.title}
+        </Text>
+        <Text
+          style={[
+            styles.requestDescription,
+            { color: colors.textPrimary, fontSize: FontSizes.small },
+          ]}
         >
-          <Text
-            style={[
-              styles.fontBold,
-              { color: colors.textPrimary, fontSize: FontSizes.small },
-            ]}
-          >
-            {firstButtonText}
-          </Text>
-        </TouchableOpacity>
+          {headerTitle === "Maintenance Request"
+            ? maintenanceData.description
+            : complaintsData.description}
+        </Text>
+        <TextInput
+          style={[
+            styles.remarksBox,
+            {
+              borderColor: colors.borderPrimary,
+              paddingLeft: 10,
+              color: colors.textPrimary,
+              fontSize: FontSizes.small,
+            },
+          ]}
+          placeholder={
+            headerTitle === "Maintenance Request"
+              ? "Add Remarks"
+              : "Reply to Complain"
+          }
+          placeholderTextColor={colors.textGrey}
+        />
+      </View>
 
-        <TouchableOpacity
-          activeOpacity={opacityValueForButton}
-          style={[styles.button, { borderColor: colors.borderRed }]}
-          onPress={() => {
-            navigation.navigate("Rents", { header: "Pending Rents" });
-          }}
+      {headerTitle === "Maintenance Request" && (
+        <View
+          style={[
+            styles.footer,
+            {
+              backgroundColor: colors.headerAndFooterBackground,
+              marginTop: 150,
+            },
+          ]}
         >
-          <Text
-            style={[
-              styles.fontBold,
-              { color: colors.textPrimary, fontSize: FontSizes.small },
-            ]}
+          <TouchableOpacity
+            activeOpacity={opacityValueForButton}
+            style={[styles.button, { borderColor: colors.borderGreen }]}
+            onPress={() => {
+              navigation.navigate("View Maintenance And Complains", {
+                headerTitle: headerTitle,
+              });
+            }}
           >
-            {secondButtonText}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+            <Text
+              style={[
+                styles.fontBold,
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              Accept
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={opacityValueForButton}
+            style={[styles.button, { borderColor: colors.borderRed }]}
+            onPress={() => {
+              navigation.navigate("View Maintenance And Complains", {
+                headerTitle: headerTitle,
+              });
+            }}
+          >
+            <Text
+              style={[
+                styles.fontBold,
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              Reject
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {headerTitle === "Complain" && (
+        <View
+          style={[
+            styles.footer,
+            {
+              backgroundColor: colors.headerAndFooterBackground,
+              marginTop: 150,
+            },
+          ]}
+        >
+          <TouchableOpacity
+            activeOpacity={opacityValueForButton}
+            style={[styles.button, { borderColor: colors.borderGreen }]}
+            onPress={() => {
+              navigation.navigate("View Maintenance And Complains", {
+                headerTitle: headerTitle,
+              });
+            }}
+          >
+            <Text
+              style={[
+                styles.fontBold,
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              Send Response
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -175,9 +226,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   footer: {
-    position: "absolute", // remove this line when un commenting marginTop:260
-    marginTop: 260, // This keeps the footer at the bottom even when the keyboard is open and stays behind the keyboard
-    bottom: 0,
     height: 70,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
