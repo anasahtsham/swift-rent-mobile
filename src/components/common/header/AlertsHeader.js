@@ -50,16 +50,14 @@ const AlertsHeader = (props) => {
           },
         ]}
       >
-        <View style={styles.userInfo}>
-          <Text
-            style={[
-              styles.userName,
-              { color: colors.textPrimary, fontSize: FontSizes.medium },
-            ]}
-          >
-            Notifications {props.notificationsAmount}
-          </Text>
-        </View>
+        <Text
+          style={[
+            styles.headerTitle,
+            { color: colors.textPrimary, fontSize: FontSizes.medium },
+          ]}
+        >
+          Notifications {props.notificationsAmount}
+        </Text>
         <View style={{ flexDirection: "row" }}>
           <HeaderButton
             onPress={() => props.onHeaderButtonPress("Maintenance")}
@@ -100,9 +98,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerButton: {
+    width: "auto",
+    height: 30,
+    paddingHorizontal: 10,
     alignItems: "center",
+    justifyContent: "center",
     marginRight: 5,
-    paddingHorizontal: 3,
     borderRadius: 10,
   },
   userInfoContainer: {
@@ -113,8 +114,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   userInfo: { flexDirection: "row" },
-  userImage: { width: 50, height: 50 },
-  userName: { marginLeft: 10, fontSize: 20 },
+  headerTitle: { fontSize: FontSizes.medium, fontFamily: "OpenSansBold" },
 });
 
 export default AlertsHeader;
