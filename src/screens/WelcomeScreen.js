@@ -1,6 +1,7 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
+  BackHandler,
   Dimensions,
   Image,
   Pressable,
@@ -23,18 +24,32 @@ const WelcomeScreen = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);
 
   //update theme on load
-  useFocusEffect(() => {
-    updateTheme();
-  });
+  useFocusEffect(() => {});
 
   const [languages, setLanguage] = useState(English);
 
   //update language on load
   useEffect(() => {
+    updateTheme();
     loadLanguage().then((language) => {
       setLanguage(language === "english" ? English : Urdu);
     });
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        return true;
+      };
+
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        onBackPress
+      );
+
+      return () => backHandler.remove();
+    }, [])
+  );
 
   //update theme on clicking toggle theme button
   function updateTheme() {

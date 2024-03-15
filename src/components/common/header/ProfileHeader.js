@@ -20,16 +20,20 @@ const ProfileHeader = (props) => {
           },
         ]}
       >
-        <View style={styles.userInfo}>
+        <View style={styles.userNameAndPFP}>
           <Image
-            tintColor={colors.textPrimary}
+            tintColor={colors.iconPrimary}
             source={icons.userIcon}
-            style={styles.userImage}
+            style={[styles.userImage, { borderColor: colors.borderBlue }]}
           />
           <Text
             style={[
-              styles.userName,
-              { color: colors.textPrimary, fontSize: FontSizes.medium },
+              {
+                color: colors.textPrimary,
+                fontSize: FontSizes.medium,
+                fontFamily: "OpenSansBold",
+                marginLeft: 10,
+              },
             ]}
           >
             {props.userName}
@@ -39,6 +43,7 @@ const ProfileHeader = (props) => {
           style={{
             color: colors.textPrimary,
             fontSize: FontSizes.small,
+            marginBottom: 5,
           }}
         >
           {props.phone}
@@ -47,6 +52,7 @@ const ProfileHeader = (props) => {
           style={{
             color: colors.textPrimary,
             fontSize: FontSizes.small,
+            marginBottom: 5,
           }}
         >
           {props.email}
@@ -71,9 +77,12 @@ const styles = StyleSheet.create({
     width: "90%",
     elevation: 10,
   },
-  userInfo: { flexDirection: "row" },
-  userImage: { width: 50, height: 50 },
-  userName: { marginLeft: 10 },
+  userNameAndPFP: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  userImage: { width: 50, height: 50, borderRadius: 10, borderWidth: 2 },
 });
 
 export default ProfileHeader;
