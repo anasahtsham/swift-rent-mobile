@@ -57,7 +57,10 @@ const ButtonWithImage = (props) => {
         {props.buttonText}
       </Text>
       {props.imageSource && (
-        <Image source={props.imageSource} style={styles.image} />
+        <Image
+          source={props.imageSource}
+          style={[styles.image, { tintColor: props.tintColor }]}
+        />
       )}
     </TouchableOpacity>
   );
@@ -66,8 +69,9 @@ const ButtonWithImage = (props) => {
 const styles = StyleSheet.create({
   button: {
     justifyContent: "center",
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+
+    paddingLeft: 20,
+
     borderRadius: 100,
     borderWidth: 1.5,
     elevation: 5,
@@ -75,12 +79,12 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: FontSizes.small,
     fontFamily: "OpenSansRegular",
-    marginBottom: 15,
   },
   image: {
     position: "absolute",
-    right: 10,
-    bottom: 5,
+    right: 18,
+    top: 38,
+    bottom: 2,
     width: 20,
     height: 20,
   },

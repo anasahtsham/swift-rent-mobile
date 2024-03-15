@@ -74,52 +74,6 @@ const OwnerPropertyMenu = (props) => {
           { backgroundColor: colors.bodyBackground, overflow: "visible" },
         ]}
       >
-        <Card
-          title="Property Information"
-          endText="Managed"
-          endTextStyle={{ marginRight: 38 }}
-        >
-          <CardRow title="Registered On" value="06-02-2024" />
-          <CardRow
-            title="On-Rent Months"
-            value="4"
-            style={{ color: colors.textGreen, marginRight: "20%" }}
-          />
-          <CardRow
-            title="Vacant Months"
-            value="1"
-            style={{ color: colors.textRed, marginRight: "20%" }}
-          />
-          <CardRow
-            title="Tenant:"
-            value="Abbas Tariq"
-            style={{ marginRight: "60%", marginTop: "0.5%" }}
-          />
-          <CardRow
-            title="Manager:"
-            value="Hussain Talha"
-            style={{ marginRight: "50%", marginTop: "0.5%" }}
-          />
-        </Card>
-        <Card title="Lease Information">
-          <CardRow
-            title="Lease Ends:"
-            value="08-06-2025"
-            style={{ fontWeight: "bold" }}
-          />
-          <CardRow
-            title="Due Date:"
-            value="15th"
-            style={{ fontWeight: "bold" }}
-          />
-          <CardRow title="Eviction Period:" value="14 Days" />
-          <CardRow title="Yearly Increment:" value="10%" />
-          <CardRow
-            title="Rent 40,000"
-            value="Security 80,000"
-            style={{ marginRight: "10%", marginTop: "0.5%" }}
-          />
-        </Card>
         <View style={{ flex: 1 }}>
           <ScrollView
             contentContainerStyle={{
@@ -127,6 +81,52 @@ const OwnerPropertyMenu = (props) => {
               flexGrow: 1,
             }}
           >
+            <Card
+              title="Property Information"
+              endText="Managed"
+              endTextStyle={{ marginRight: 38 }}
+            >
+              <CardRow title="Registered On" value="06-02-2024" />
+              <CardRow
+                title="On-Rent Months"
+                value="4"
+                style={{ color: colors.textGreen, marginRight: "20%" }}
+              />
+              <CardRow
+                title="Vacant Months"
+                value="1"
+                style={{ color: colors.textRed, marginRight: "20%" }}
+              />
+              <CardRow
+                title="Tenant:"
+                value="Abbas Tariq"
+                style={{ marginRight: "60%", marginTop: "0.5%" }}
+              />
+              <CardRow
+                title="Manager:"
+                value="Hussain Talha"
+                style={{ marginRight: "50%", marginTop: "0.5%" }}
+              />
+            </Card>
+            <Card title="Lease Information">
+              <CardRow
+                title="Lease Ends:"
+                value="08-06-2025"
+                style={{ fontWeight: "bold" }}
+              />
+              <CardRow
+                title="Due Date:"
+                value="15th"
+                style={{ fontWeight: "bold" }}
+              />
+              <CardRow title="Eviction Period:" value="14 Days" />
+              <CardRow title="Yearly Increment:" value="10%" />
+              <CardRow
+                title="Rent 40,000"
+                value="Security 80,000"
+                style={{ marginRight: "10%", marginTop: "0.5%" }}
+              />
+            </Card>
             <View style={styles.buttonContainer}>
               <View style={styles.buttonRow}>
                 <ButtonWithImage
@@ -135,6 +135,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
                   buttonText={"Complaints"}
@@ -142,6 +143,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
               </View>
               <View style={styles.buttonRow}>
@@ -151,6 +153,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
                   buttonText={"Appoint A Manager"}
@@ -158,6 +161,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
               </View>
               <View style={styles.buttonRow}>
@@ -167,6 +171,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
                   buttonText={"Fire Manager"}
@@ -174,6 +179,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
               </View>
               <View style={styles.buttonRow}>
@@ -183,6 +189,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
                   buttonText={"Chat Manager/Tenant"}
@@ -190,6 +197,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
               </View>
               <View style={styles.buttonRow}>
@@ -199,6 +207,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
                 <ButtonWithImage
                   buttonText={"Rent History"}
@@ -206,6 +215,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
               </View>
               <View style={styles.buttonRow}>
@@ -215,6 +225,7 @@ const OwnerPropertyMenu = (props) => {
                   width={160}
                   height={65}
                   imageSource={require("../../assets/icons/external-link.png")}
+                  tintColor={colors.textPrimary}
                 />
               </View>
             </View>

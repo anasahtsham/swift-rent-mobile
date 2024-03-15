@@ -41,7 +41,7 @@ const AnalyticalReport = (props) => {
         ]}
       >
         <ScrollView>
-          <TouchableOpacity
+          <View
             activeOpacity={opacityValueForButton}
             style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
           >
@@ -94,8 +94,8 @@ const AnalyticalReport = (props) => {
                 2
               </Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </View>
+          <View
             activeOpacity={opacityValueForButton}
             style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
           >
@@ -148,8 +148,8 @@ const AnalyticalReport = (props) => {
                 2
               </Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </View>
+          <View
             activeOpacity={opacityValueForButton}
             style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
           >
@@ -189,7 +189,7 @@ const AnalyticalReport = (props) => {
                 4
               </Text>
             </View>
-          </TouchableOpacity>
+          </View>
         </ScrollView>
         <View style={{ height: 280 }}></View>
       </View>
@@ -198,6 +198,8 @@ const AnalyticalReport = (props) => {
 };
 
 const styles = StyleSheet.create({
+  fontBold: { fontFamily: "OpenSansBold" },
+  fontRegular: { fontFamily: "OpenSansRegular" },
   header: {
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
