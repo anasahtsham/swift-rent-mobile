@@ -13,11 +13,12 @@ import { getToKnowSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
 
 const GetToKnow = ({ navigation, route }) => {
-  const { userType } = route.params;
+  const { userType } = route.params; // userType is either "tenant", "owner", or "manager"
 
   const colors = useColors();
   const languages = useLanguages();
 
+  // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const firstNameRef = React.useRef();
   const lastNameRef = React.useRef();
   const dateRef = React.useRef();
@@ -31,6 +32,7 @@ const GetToKnow = ({ navigation, route }) => {
       }}
       validationSchema={getToKnowSchema}
       onSubmit={(values) => {
+        // Pass the user's first name, last name, and date of birth to the next screen
         navigation.navigate("Contact Info", {
           userType: userType,
           firstName: values.firstName,
@@ -90,7 +92,7 @@ const GetToKnow = ({ navigation, route }) => {
                   value={values.firstName}
                   handleChange={handleChange("firstName")}
                   handleBlur={handleBlur("firstName")}
-                  errorText={touched.firstName ? errors.firstName : ""}
+                  errorText={touched.firstName ? errors.firstName : ""} // If the user has touched the input field, display the error message
                   onSubmitEditing={() => lastNameRef.current.focus()}
                 />
                 <InputField
@@ -101,7 +103,7 @@ const GetToKnow = ({ navigation, route }) => {
                   value={values.lastName}
                   handleChange={handleChange("lastName")}
                   handleBlur={handleBlur("lastName")}
-                  errorText={touched.lastName ? errors.lastName : ""}
+                  errorText={touched.lastName ? errors.lastName : ""} // If the user has touched the input field, display the error message
                 />
                 <InputField
                   ref={dateRef}
@@ -110,7 +112,7 @@ const GetToKnow = ({ navigation, route }) => {
                   value={values.date}
                   handleChange={handleChange("date")}
                   handleBlur={handleBlur("date")}
-                  errorText={touched.date ? errors.date : ""}
+                  errorText={touched.date ? errors.date : ""} // If the user has touched the input field, display the error message
                 />
               </View>
 
@@ -126,8 +128,8 @@ const GetToKnow = ({ navigation, route }) => {
                   width={buttonWidthSmaller}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
-                  onPress={handleSubmit}
-                  isSubmitButton={true}
+                  onPress={handleSubmit} // When the user presses "Next", the form is submitted
+                  isSubmitButton={true} // pass true so that the component can change its functionality according to submit button and the onPress is called that is passed from the prop instead of the default navigation
                 />
               </View>
             </View>

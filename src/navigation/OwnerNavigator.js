@@ -4,6 +4,8 @@ import OwnerProfile from "../screens/owner_screens/OwnerProfile";
 import OwnerProperties from "../screens/owner_screens/OwnerProperties";
 import TabNavigator from "./TabNavigator";
 
+// This is the navigation bar that is used when the user type is owner
+
 const OwnerNavigator = () => {
   return (
     <TabNavigator

@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import AddProperty from "./src/components/common/AddProperty";
+import AnalyticalReport from "./src/components/common/AnalyticalReport";
 import ChangePassword from "./src/components/common/ChangePassword";
 import FAQScreen from "./src/components/common/FAQScreen";
 import MaintenanceComplainsList from "./src/components/common/MaintenanceComplainsList";
@@ -24,7 +25,6 @@ import LoginScreen from "./src/screens/authentication_screens/LoginScreen";
 import RegisterAs from "./src/screens/authentication_screens/RegisterAs";
 import SetUpPassword from "./src/screens/authentication_screens/SetUpPassword";
 import WhoAreYou from "./src/screens/authentication_screens/WhoAreYou";
-import OwnerAnalyticalReport from "./src/screens/owner_screens/OwnerAnalyticalReport";
 import OwnerHiring from "./src/screens/owner_screens/OwnerHiring";
 import OwnerPropertyMenu from "./src/screens/owner_screens/OwnerPropertyMenu";
 import RatingScreen from "./src/screens/owner_screens/RatingScreen";
@@ -74,10 +74,7 @@ export default function App() {
             name="Owner Property Menu"
             component={OwnerPropertyMenu}
           />
-          <Stack.Screen
-            name="Owner Analytical Report"
-            component={OwnerAnalyticalReport}
-          />
+          <Stack.Screen name="Analytical Report" component={AnalyticalReport} />
           <Stack.Screen name="Problem Form" component={ProblemForm} />
           <Stack.Screen name="Month Report" component={MonthReport} />
           <Stack.Screen name="Add Property" component={AddProperty} />

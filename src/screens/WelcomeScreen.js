@@ -1,5 +1,5 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   BackHandler,
   Dimensions,
@@ -10,34 +10,27 @@ import {
   View,
 } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
-import * as English from "../assets/fonts/displaytext/EN/en-pack";
-import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../assets/themes/LoadingColorScheme";
 import ButtonGrey from "../components/common/buttons/ButtonGrey";
 import ThemeSetter from "../components/common/buttons/ThemeSetter";
 import { buttonWidthMedium } from "../constants";
-import { loadLanguage, loadTheme } from "../helpers";
+import { loadTheme } from "../helpers";
+import { useLanguages } from "./../helpers/SetLanguages";
 
 const WelcomeScreen = ({ navigation }) => {
-  const [colors, setColors] = useState(LoadingTheme);
+  const [colors, setColors] = useState(LoadingTheme); //declaring state so that it can be updated when toggle button is pressed for theme
 
   //update theme on load
-  useFocusEffect(() => {});
 
-  const [languages, setLanguage] = useState(English);
+  const languages = useLanguages();
 
-  //update language on load
-  useEffect(() => {
-    updateTheme();
-    loadLanguage().then((language) => {
-      setLanguage(language === "english" ? English : Urdu);
-    });
-  }, []);
-
+  //prevent back button from going back to splash screen and back to the profile screen after logging out
   useFocusEffect(
+    //using useFocusEffect so that the back button is only disabled for this screen and doest disable it for all the screens that are being navigated to from this screen
     useCallback(() => {
+      updateTheme(); //update theme on first load
       const onBackPress = () => {
         return true;
       };

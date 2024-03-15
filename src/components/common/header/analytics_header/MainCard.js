@@ -61,7 +61,7 @@ const MainCard = (props) => {
     <TouchableOpacity
       onPress={() => {
         if (!!props.rentsCollected) {
-          navigation.navigate("Owner Analytical Report");
+          navigation.navigate("Analytical Report");
         }
       }}
       activeOpacity={!!props.rentsCollected ? opacityValueForButton : 1}

@@ -3,6 +3,9 @@ import TenantAnalytics from "../screens/tenant_screens/TenantAnalytics";
 import TenantProfile from "../screens/tenant_screens/TenantProfile";
 import TenantRentals from "../screens/tenant_screens/TenantRentals";
 import TabNavigator from "./TabNavigator";
+
+// This is the navigation bar that is used when the user type is tenant
+
 const TenantNavigator = () => {
   return (
     <TabNavigator

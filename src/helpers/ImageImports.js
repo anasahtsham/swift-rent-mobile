@@ -1,3 +1,5 @@
+// Description: This file contains the image imports for the app that are used all across it.
+
 export const icons = {
   userIcon: require("../assets/icons/userIcon.png"),
   passwordFieldIcon: require("../assets/icons/passwordFieldIcon.png"),

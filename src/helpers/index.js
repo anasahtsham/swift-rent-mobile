@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// These functions are used to save and load the theme and language settings
+
 export const saveTheme = async (theme) => {
   try {
     await AsyncStorage.setItem("theme", theme);
@@ -33,6 +35,8 @@ export const loadLanguage = async () => {
     console.error("Error loading language:", error);
   }
 };
+
+// This function is used to format the number to a more readable format and also so that it does not take too much space
 
 export function formatNumber(num) {
   num = Number(num);

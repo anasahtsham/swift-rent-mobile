@@ -4,6 +4,8 @@ import { loadLanguage } from ".";
 import * as English from "../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../assets/fonts/displaytext/UR/ur-pack";
 
+// These functions are used to set the language accross the app
+
 export const useLanguages = () => {
   const [languages, setLanguages] = useState(English);
 

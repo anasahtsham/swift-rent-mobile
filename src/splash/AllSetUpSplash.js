@@ -6,7 +6,7 @@ import { useColors } from "../helpers/SetColors";
 
 const AllSetUpSplash = ({ route }) => {
   const { userType, firstName, lastName, date, email, phoneNumber, password } =
-    route.params;
+    route.params; // getting all the values needed to register the user from the previous screens
 
   console.log("\n\n\n\n\nuserType: ", userType);
   console.log("firstName: ", firstName);
@@ -16,7 +16,7 @@ const AllSetUpSplash = ({ route }) => {
   console.log("phoneNumber: ", phoneNumber);
   console.log("password: ", password);
 
-  let userScreen = "";
+  let userScreen = ""; // setting the user based on the user type at registration
 
   if (userType === "owner") {
     userScreen = "Owner Navigator";
@@ -25,13 +25,14 @@ const AllSetUpSplash = ({ route }) => {
   } else if (userType === "tenant") {
     userScreen = "Tenant Navigator";
   }
+
   //set theme
   const colors = useColors();
 
   // timer to send off from splash screen
   const navigation = useNavigation();
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       navigation.replace(userScreen); // Navigate to Welcome Screen after 3 seconds
     }, 3000); // where 1000 milliseconds = 1 second
 
@@ -44,10 +45,8 @@ const AllSetUpSplash = ({ route }) => {
       backAction
     );
 
+    clearTimeout(); // clear the timer when the component unmounts to prevent memory leaks
     return () => backHandler.remove();
-
-    // Clear the timer to prevent memory leaks
-    return () => clearTimeout(timer);
   }, [navigation]);
 
   return (

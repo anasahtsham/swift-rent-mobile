@@ -16,6 +16,7 @@ const LoginScreen = ({ navigation }) => {
   const colors = useColors();
   const languages = useLanguages();
 
+  // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const emailOrPhoneRef = React.useRef();
   const passwordRef = React.useRef();
 
@@ -27,6 +28,7 @@ const LoginScreen = ({ navigation }) => {
       }}
       validationSchema={loginSchema}
       onSubmit={(values) => {
+        // Pass the user's email or phone and password to the next screen so that the user can be redirected to their respective dashboard
         navigation.navigate("Login As", {
           emailOrPhone: values.emailOrPhone,
           password: values.password,
@@ -75,8 +77,8 @@ const LoginScreen = ({ navigation }) => {
                 value={values.emailOrPhone}
                 handleChange={handleChange("emailOrPhone")}
                 handleBlur={handleBlur("emailOrPhone")}
-                errorText={touched.emailOrPhone ? errors.emailOrPhone : ""}
-                onSubmitEditing={() => passwordRef.current.focus()}
+                errorText={touched.emailOrPhone ? errors.emailOrPhone : ""} // If the user has touched the input field and there's an error, display the error message
+                onSubmitEditing={() => passwordRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
               />
               <InputField
                 ref={passwordRef}
@@ -85,8 +87,8 @@ const LoginScreen = ({ navigation }) => {
                 value={values.password}
                 handleChange={handleChange("password")}
                 handleBlur={handleBlur("password")}
-                errorText={touched.password ? errors.password : ""}
-                onSubmitEditing={handleSubmit}
+                errorText={touched.password ? errors.password : ""} // If the user has touched the input field and there's an error, display the error message
+                onSubmitEditing={handleSubmit} // When the user presses "Next" on the keyboard, the form will be submitted
               />
               <Pressable
                 onTouchEnd={() => navigation.navigate("Forgot Password")}
@@ -109,8 +111,8 @@ const LoginScreen = ({ navigation }) => {
               width={buttonWidthSmall}
               fontSize={FontSizes.medium}
               buttonText={languages.login}
-              onPress={handleSubmit}
-              isSubmitButton={true}
+              onPress={handleSubmit} // When the user presses "Login", the form will be submitted
+              isSubmitButton={true} // Indicates to the component that this is a submit button so that it can change its flow
             />
           </View>
         </KeyboardAwareScrollView>

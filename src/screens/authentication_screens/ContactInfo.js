@@ -18,6 +18,7 @@ const ContactInfo = ({ navigation, route }) => {
   const colors = useColors();
   const languages = useLanguages();
 
+  // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const emailRef = React.useRef();
   const phoneNumberRef = React.useRef();
 
@@ -29,6 +30,7 @@ const ContactInfo = ({ navigation, route }) => {
       }}
       validationSchema={contactInfoSchema}
       onSubmit={(values) => {
+        // Pass the user's email and phone number to the next screen
         navigation.navigate("Set Up Password", {
           userType: userType,
           firstName: firstName,
@@ -90,8 +92,8 @@ const ContactInfo = ({ navigation, route }) => {
                   value={values.email}
                   handleChange={handleChange("email")}
                   handleBlur={handleBlur("email")}
-                  errorText={touched.email ? errors.email : ""}
-                  onSubmitEditing={() => phoneNumberRef.current.focus()}
+                  errorText={touched.email ? errors.email : ""} // If the user has touched the input field, display the error message
+                  onSubmitEditing={() => phoneNumberRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
                 />
                 <InputField
                   ref={phoneNumberRef}
@@ -101,8 +103,8 @@ const ContactInfo = ({ navigation, route }) => {
                   value={values.phoneNumber}
                   handleChange={handleChange("phoneNumber")}
                   handleBlur={handleBlur("phoneNumber")}
-                  errorText={touched.phoneNumber ? errors.phoneNumber : ""}
-                  onSubmitEditing={handleSubmit}
+                  errorText={touched.phoneNumber ? errors.phoneNumber : ""} // If the user has touched the input field, display the error message
+                  onSubmitEditing={handleSubmit} // When the user presses "Next" on the keyboard, the form will be submitted
                 />
               </View>
 
@@ -119,8 +121,8 @@ const ContactInfo = ({ navigation, route }) => {
                   width={buttonWidthSmaller}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
-                  onPress={handleSubmit}
-                  isSubmitButton={true}
+                  onPress={handleSubmit} // When the user presses "Next", the form is submitted
+                  isSubmitButton={true} // Indicates that this button is a submit button
                 />
               </View>
             </View>

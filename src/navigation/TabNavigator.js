@@ -6,31 +6,34 @@ import { icons } from "../helpers/ImageImports";
 import { useColorsOnFocus } from "../helpers/SetColors";
 
 const TabNavigator = (props) => {
+  // The props are the names of the screens and their respective components that are loaded dynamically based on the user type
   const screen1 = props.screen1;
   const screen2 = props.screen2;
   const screen3 = props.screen3;
   const screen4 = props.screen4;
+
   const colors = useColorsOnFocus();
 
   const BottomTab = createBottomTabNavigator();
 
+  // The following two components are used to animate the tab bar icons and labels
   const AnimatedTabBarLabel = ({ focused, text, colors }) => {
     const scale = useRef(new Animated.Value(1)).current;
     useEffect(() => {
       Animated.timing(scale, {
-        toValue: focused ? 1.05 : 1,
-        duration: 300,
+        toValue: focused ? 1.05 : 1, // Animate the scale of the text when the tab is focused or not
+        duration: 300, // The duration of the animation
         easing: Easing.linear,
-        useNativeDriver: true,
+        useNativeDriver: true, // Use the native driver for the animation for better performance
       }).start();
-    }, [focused]);
+    }, [focused]); // The animation is triggered when the tab is focused or not
 
     return (
       <Animated.Text
         style={{
           fontSize: FontSizes.small,
           color: focused ? colors.bottomBarTextActive : colors.bottomBarText,
-          transform: [{ scale }],
+          transform: [{ scale }], // Apply the scale (size) animation to the text
         }}
       >
         {text}
@@ -52,7 +55,7 @@ const TabNavigator = (props) => {
     return (
       <Animated.Image
         tintColor={
-          focused ? colors.bottomBarIconActive : colors.bottomBarIconInactive
+          focused ? colors.bottomBarIconActive : colors.bottomBarIconInactive // Change the color of the icon when it is focused or not
         }
         source={source}
         style={{
@@ -61,12 +64,13 @@ const TabNavigator = (props) => {
           backgroundColor: focused
             ? colors.bottomBarActiveBackgroundPrimary
             : null,
-          transform: [{ scale }],
+          transform: [{ scale }], // Apply the scale (size) animation to the icon
         }}
       />
     );
   };
 
+  // Prevent the user from going back to the previous screen when the tab navigator is focused
   useEffect(() => {
     const backAction = () => {
       return true; // This will prevent the back action
@@ -95,10 +99,10 @@ const TabNavigator = (props) => {
           fontSize: 16,
         },
         tabBarStyle: {
-          position: "absolute",
+          position: "absolute", // The position of the tab bar is absolute so that it is always visible and overlaps the content of the screen
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
-          borderTopWidth: 0,
+          borderTopWidth: 0, // Remove the top border of the tab bar, if it is not removed, the border will be visible, this can't be just borderWidth (dont ask why, it's just how it is)
           height: 60,
           backgroundColor: colors.headerAndFooterBackground,
         },

@@ -1,3 +1,5 @@
+// this file contains all the font sizes used across the app
+
 export const extraSmall = 10;
 export const small = 16;
 export const midSmall = 20;

@@ -12,12 +12,14 @@ import { setUpPasswordSchema } from "../../helpers/validation/ValidationSchemas"
 import InputField from "./../../components/common/input_fields/InputField";
 
 const SetUpPassword = ({ navigation, route }) => {
+  // Get the user's first name, last name, date of birth, email, and phone number from the previous screens
   const { userType, firstName, lastName, date, email, phoneNumber } =
     route.params;
 
   const colors = useColors();
   const languages = useLanguages();
 
+  // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const passwordRef = React.useRef();
   const confirmPasswordRef = React.useRef();
 
@@ -29,6 +31,7 @@ const SetUpPassword = ({ navigation, route }) => {
       }}
       validationSchema={setUpPasswordSchema}
       onSubmit={(values) => {
+        // Pass the user's password to the next screen
         navigation.navigate("All Set Up", {
           userType: userType,
           firstName: firstName,
@@ -37,7 +40,6 @@ const SetUpPassword = ({ navigation, route }) => {
           email: email,
           phoneNumber: phoneNumber,
           password: values.password,
-          confirmPassword: values.confirmPassword,
         });
       }}
     >
@@ -91,8 +93,8 @@ const SetUpPassword = ({ navigation, route }) => {
                   value={values.password}
                   handleChange={handleChange("password")}
                   handleBlur={handleBlur("password")}
-                  errorText={touched.password ? errors.password : ""}
-                  onSubmitEditing={() => confirmPasswordRef.current.focus()}
+                  errorText={touched.password ? errors.password : ""} // If the user has touched the input field, display the error message
+                  onSubmitEditing={() => confirmPasswordRef.current.focus()} // Focus on the next input field
                 />
                 <InputField
                   ref={confirmPasswordRef}
@@ -102,9 +104,9 @@ const SetUpPassword = ({ navigation, route }) => {
                   handleChange={handleChange("confirmPassword")}
                   handleBlur={handleBlur("confirmPassword")}
                   errorText={
-                    touched.confirmPassword ? errors.confirmPassword : ""
+                    touched.confirmPassword ? errors.confirmPassword : "" // If the user has touched the input field, display the error message
                   }
-                  onSubmitEditing={handleSubmit}
+                  onSubmitEditing={handleSubmit} // When the user presses "Next" on the keyboard, the form will be submitted
                 />
               </View>
 
@@ -121,8 +123,8 @@ const SetUpPassword = ({ navigation, route }) => {
                   width={buttonWidthSmaller}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
-                  onPress={handleSubmit}
-                  isSubmitButton={true}
+                  onPress={handleSubmit} // When the user presses "Next", the form is submitted
+                  isSubmitButton={true} // Indicates that this button is a submit button
                 />
               </View>
             </View>

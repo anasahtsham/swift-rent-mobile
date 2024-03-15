@@ -7,7 +7,6 @@ import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
 const RegisterAs = ({ navigation }) => {
-  //set theme
   const colors = useColors();
 
   const languages = useLanguages();

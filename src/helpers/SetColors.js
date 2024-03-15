@@ -6,6 +6,8 @@ import * as DarkTheme from "../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../assets/themes/LoadingColorScheme";
 
+// These functions are used to set the colors accross the app
+
 export const useColors = () => {
   const [colors, setColors] = useState(LoadingTheme);
 

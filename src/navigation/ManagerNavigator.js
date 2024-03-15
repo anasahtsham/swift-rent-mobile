@@ -4,6 +4,8 @@ import ManagerProfile from "../screens/manager_screens/ManagerProfile";
 import ManagerProperties from "../screens/manager_screens/ManagerProperties";
 import TabNavigator from "./TabNavigator";
 
+// This is the navigation bar that is used when the user type is manager
+
 const ManagerNavigator = () => {
   return (
     <TabNavigator
