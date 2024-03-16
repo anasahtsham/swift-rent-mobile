@@ -1,21 +1,21 @@
+import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import {
   BackHandler,
+  Keyboard,
   SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
-  View,
   TouchableWithoutFeedback,
-  Keyboard,
+  View,
 } from "react-native";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import ButtonGrey from "./buttons/ButtonGrey";
-import { useColors } from "../../helpers/SetColors";
-import { buttonWidthMedium } from "../../constants";
-import { Formik } from "formik";
-import { reportBugSchema } from "../../helpers/validation/ValidationSchemas";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import { buttonWidthMedium } from "../../constants";
+import { useColors } from "../../helpers/SetColors";
+import { reportBugSchema } from "../../helpers/validation/ValidationSchemas";
+import ButtonGrey from "./buttons/ButtonGrey";
 
 const ProblemForm = ({ navigation, route }) => {
   const { headerText } = route.params;
@@ -63,14 +63,18 @@ const ProblemForm = ({ navigation, route }) => {
               touched,
             }) => (
               <>
-                <Text style={[styles.topTitle, { color: colors.textPrimary }]}>
+                <Text
+                  style={[
+                    styles.topTitle,
+                    { color: colors.textPrimary, marginBottom: 10 },
+                  ]}
+                >
                   {headerText}
                 </Text>
 
                 <View
                   style={{
                     alignItems: "center",
-                    marginBottom: 60,
                     width: "100%",
                   }}
                 >
@@ -133,7 +137,11 @@ const ProblemForm = ({ navigation, route }) => {
                 </View>
 
                 <View
-                  style={{ marginTop: 30, width: "100%", alignItems: "center" }}
+                  style={{
+                    marginTop: 150,
+                    width: "100%",
+                    alignItems: "center",
+                  }}
                 >
                   <ButtonGrey
                     fontSize={FontSizes.medium}
