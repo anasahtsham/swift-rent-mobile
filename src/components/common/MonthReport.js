@@ -5,12 +5,10 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../constants";
 import { useColors } from "./../../helpers/SetColors";
 import MonthReportHeader from "./header/MonthReportHeader";
 
@@ -41,8 +39,7 @@ const MonthReport = (props) => {
         ]}
       >
         <ScrollView>
-          <TouchableOpacity
-            activeOpacity={opacityValueForButton}
+          <View
             style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
           >
             <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
@@ -94,9 +91,8 @@ const MonthReport = (props) => {
                 2
               </Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={opacityValueForButton}
+          </View>
+          <View
             style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
           >
             <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
@@ -148,9 +144,8 @@ const MonthReport = (props) => {
                 2
               </Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={opacityValueForButton}
+          </View>
+          <View
             style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
           >
             <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
@@ -189,7 +184,7 @@ const MonthReport = (props) => {
                 4
               </Text>
             </View>
-          </TouchableOpacity>
+          </View>
         </ScrollView>
 
         <View style={{ height: 50 }}></View>
@@ -292,7 +287,7 @@ const styles = StyleSheet.create({
     paddingBottom: "1%",
   },
   cardSubText: {
-    fontSize: 14,
+    fontSize: FontSizes.small,
     paddingLeft: "4%",
     paddingVertical: "0.5%",
   },
@@ -301,6 +296,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginRight: "30%",
+    fontSize: FontSizes.small,
   },
 });
 

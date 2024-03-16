@@ -1,34 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
-import { useColorsOnFocus } from "../../../helpers/SetColors";
-import { Image } from "react-native";
+import { icons } from "./../../../helpers/ImageImports";
 
 const ButtonWithImage = (props) => {
-  const colors = useColorsOnFocus();
-
-  if (props.fontSize === undefined) {
-    throw new Error(
-      'The prop "fontSize" is required in ButtonWithImage component'
-    );
-  }
-
-  if (props.width === undefined) {
-    throw new Error(
-      'The prop "width" is required in ButtonWithImage component'
-    );
-  }
-  if (props.height === undefined) {
-    throw new Error(
-      'The prop "height" is required in ButtonWithImage component'
-    );
-  }
-
-  const handlePress = () => {
-    props.navigation.navigate(props.destinationScreen, {
-      userType: props.userType,
-    });
-  };
+  const colors = props.colors;
 
   return (
     <TouchableOpacity
@@ -37,11 +13,8 @@ const ButtonWithImage = (props) => {
         {
           backgroundColor: colors.buttonWithImagePrimary,
           borderColor: colors.buttonWithImageBorderPrimary,
-          width: props.width,
-          height: props.height,
         },
       ]}
-      onPress={props.isSubmitButton ? props.onPress : handlePress}
       activeOpacity={opacityValueForButton}
     >
       <Text
@@ -49,42 +22,40 @@ const ButtonWithImage = (props) => {
           styles.buttonText,
           {
             color: colors.buttonWithImageTextPrimary,
-            fontSize: props.fontSize,
             fontWeight: "bold",
           },
         ]}
       >
         {props.buttonText}
       </Text>
-      {props.imageSource && (
-        <Image
-          source={props.imageSource}
-          style={[styles.image, { tintColor: props.tintColor }]}
-        />
-      )}
+      <Image
+        source={icons.externalLink}
+        style={[styles.image, { tintColor: colors.iconPrimary }]}
+      />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    justifyContent: "center",
-
-    paddingLeft: 20,
-
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 5,
+    width: 160,
+    height: 65,
     borderRadius: 100,
     borderWidth: 1.5,
     elevation: 5,
   },
   buttonText: {
+    flex: 0.85,
     fontSize: FontSizes.small,
     fontFamily: "OpenSansRegular",
+    textAlign: "center",
   },
   image: {
-    position: "absolute",
-    right: 18,
-    top: 38,
-    bottom: 2,
+    flex: 0.15,
     width: 20,
     height: 20,
   },

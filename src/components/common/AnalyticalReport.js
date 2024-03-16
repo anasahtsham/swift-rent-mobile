@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -293,7 +292,7 @@ const styles = StyleSheet.create({
     paddingBottom: "1%",
   },
   cardSubText: {
-    fontSize: 14,
+    fontSize: FontSizes.small,
     paddingLeft: "4%",
     paddingVertical: "0.5%",
   },
@@ -302,6 +301,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginRight: "30%",
+    fontSize: FontSizes.small,
   },
 });
 
