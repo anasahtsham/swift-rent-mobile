@@ -8,6 +8,7 @@ const ButtonWithImage = (props) => {
 
   return (
     <TouchableOpacity
+      onPress={props.onPress}
       style={[
         styles.button,
         {

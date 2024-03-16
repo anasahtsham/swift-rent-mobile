@@ -102,12 +102,22 @@ const PropertyMenu = () => {
         <View style={styles.buttonContainer}>
           <View style={styles.buttonRow}>
             <ButtonWithImage
+              onPress={() => {
+                navigation.navigate("Maintenance Complains List", {
+                  header: "Maintenance",
+                });
+              }}
               text={"Maintenance"}
               secondaryText="1"
               secondaryTextColor={colors.textRed}
               colors={colors}
             />
             <ButtonWithImage
+              onPress={() => {
+                navigation.navigate("Maintenance Complains List", {
+                  header: "Complains",
+                });
+              }}
               text={"Complaints"}
               secondaryText="0"
               secondaryTextColor={colors.textGreen}
