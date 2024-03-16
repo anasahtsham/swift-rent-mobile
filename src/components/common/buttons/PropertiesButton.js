@@ -9,7 +9,7 @@ export const PropertiesButton = (props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.navigation.navigate("Owner Property Menu");
+        props.navigation.navigate("Property Menu");
       }}
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}

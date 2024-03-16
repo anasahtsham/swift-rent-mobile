@@ -9,6 +9,7 @@ import FAQScreen from "./src/components/common/FAQScreen";
 import MaintenanceComplainsList from "./src/components/common/MaintenanceComplainsList";
 import MonthReport from "./src/components/common/MonthReport";
 import ProblemForm from "./src/components/common/ProblemForm";
+import PropertyMenu from "./src/components/common/PropertyMenu";
 import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ViewMaintenanceAndComplains from "./src/components/common/ViewMaintenanceAndComplains";
@@ -26,7 +27,6 @@ import RegisterAs from "./src/screens/authentication_screens/RegisterAs";
 import SetUpPassword from "./src/screens/authentication_screens/SetUpPassword";
 import WhoAreYou from "./src/screens/authentication_screens/WhoAreYou";
 import OwnerHiring from "./src/screens/owner_screens/OwnerHiring";
-import OwnerPropertyMenu from "./src/screens/owner_screens/OwnerPropertyMenu";
 import RatingScreen from "./src/screens/owner_screens/RatingScreen";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
@@ -44,7 +44,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Splash Screen"
+          initialRouteName="Owner Navigator"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -70,10 +70,7 @@ export default function App() {
           <Stack.Screen name="Rents" component={Rents} />
           <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
           <Stack.Screen name="Rating Screen" component={RatingScreen} />
-          <Stack.Screen
-            name="Owner Property Menu"
-            component={OwnerPropertyMenu}
-          />
+          <Stack.Screen name="Property Menu" component={PropertyMenu} />
           <Stack.Screen name="Analytical Report" component={AnalyticalReport} />
           <Stack.Screen name="Problem Form" component={ProblemForm} />
           <Stack.Screen name="Month Report" component={MonthReport} />

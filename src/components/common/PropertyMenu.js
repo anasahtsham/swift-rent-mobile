@@ -13,7 +13,7 @@ import ButtonWithImage from "../../components/common/buttons/ButtonWithImage";
 import PropertyMenuHeader from "../../components/common/header/PropertyMenuHeader";
 import { useColors } from "./../../helpers/SetColors";
 
-const OwnerPropertyMenu = () => {
+const PropertyMenu = () => {
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -181,4 +181,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OwnerPropertyMenu;
+export default PropertyMenu;
