@@ -101,39 +101,37 @@ const PropertyMenu = () => {
         </Card>
         <View style={styles.buttonContainer}>
           <View style={styles.buttonRow}>
-            <ButtonWithImage buttonText={"Maintenance"} colors={colors} />
-            <ButtonWithImage buttonText={"Complaints"} colors={colors} />
-          </View>
-          <View style={styles.buttonRow}>
             <ButtonWithImage
-              buttonText={"Receive/ Verify Rent"}
+              text={"Maintenance"}
+              secondaryText="1"
+              secondaryTextColor={colors.textRed}
               colors={colors}
             />
-            <ButtonWithImage buttonText={"Appoint A Manager"} colors={colors} />
-          </View>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage buttonText={"Register Tenant"} colors={colors} />
-            <ButtonWithImage buttonText={"Fire Manager"} colors={colors} />
-          </View>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage buttonText={"Eviction Notice"} colors={colors} />
             <ButtonWithImage
-              buttonText={"Chat Manager/Tenant"}
+              text={"Complaints"}
+              secondaryText="0"
+              secondaryTextColor={colors.textGreen}
               colors={colors}
             />
           </View>
           <View style={styles.buttonRow}>
-            <ButtonWithImage
-              buttonText={"Rate Manager /Tenant"}
-              colors={colors}
-            />
-            <ButtonWithImage buttonText={"Rent History"} colors={colors} />
+            <ButtonWithImage text={"Receive/ Verify Rent"} colors={colors} />
+            <ButtonWithImage text={"Appoint A Manager"} colors={colors} />
           </View>
           <View style={styles.buttonRow}>
-            <ButtonWithImage
-              buttonText={"Manager Offers (21)"}
-              colors={colors}
-            />
+            <ButtonWithImage text={"Register Tenant"} colors={colors} />
+            <ButtonWithImage text={"Fire Manager"} colors={colors} />
+          </View>
+          <View style={styles.buttonRow}>
+            <ButtonWithImage text={"Eviction Notice"} colors={colors} />
+            <ButtonWithImage text={"Chat Manager/Tenant"} colors={colors} />
+          </View>
+          <View style={styles.buttonRow}>
+            <ButtonWithImage text={"Rate Manager /Tenant"} colors={colors} />
+            <ButtonWithImage text={"Rent History"} colors={colors} />
+          </View>
+          <View style={styles.buttonRow}>
+            <ButtonWithImage text={"Manager Offers (21)"} colors={colors} />
           </View>
         </View>
       </ScrollView>

@@ -54,7 +54,3 @@ export const textInputFieldBackground = "#353535";
 
 export const dropDownTheme = "DARK";
 export const dropDownDisabled = "#9E9E9E";
-
-export const buttonWithImagePrimary = "#000";
-export const buttonWithImageBorderPrimary = "#FFFFFF";
-export const buttonWithImageTextPrimary = "#fff";

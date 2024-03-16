@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "./../../../helpers/ImageImports";
@@ -11,23 +11,44 @@ const ButtonWithImage = (props) => {
       style={[
         styles.button,
         {
-          backgroundColor: colors.buttonWithImagePrimary,
-          borderColor: colors.buttonWithImageBorderPrimary,
+          backgroundColor: colors.backgroundPrimary,
         },
       ]}
       activeOpacity={opacityValueForButton}
     >
-      <Text
-        style={[
-          styles.buttonText,
-          {
-            color: colors.buttonWithImageTextPrimary,
-            fontWeight: "bold",
-          },
-        ]}
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "space-between",
+          paddingHorizontal: 10,
+        }}
       >
-        {props.buttonText}
-      </Text>
+        <Text
+          style={[
+            styles.text,
+            {
+              color: colors.textPrimary,
+              fontWeight: "bold",
+            },
+          ]}
+        >
+          {props.text}
+        </Text>
+        {!!props.secondaryText && (
+          <Text
+            style={[
+              styles.text,
+              {
+                color: props.secondaryTextColor,
+                fontSize: FontSizes.midSmall,
+              },
+            ]}
+          >
+            {props.secondaryText}
+          </Text>
+        )}
+      </View>
+
       <Image
         source={icons.externalLink}
         style={[styles.image, { tintColor: colors.iconPrimary }]}
@@ -45,14 +66,12 @@ const styles = StyleSheet.create({
     width: 160,
     height: 65,
     borderRadius: 100,
-    borderWidth: 1.5,
     elevation: 5,
   },
-  buttonText: {
-    flex: 0.85,
+  text: {
     fontSize: FontSizes.small,
     fontFamily: "OpenSansRegular",
-    textAlign: "center",
+    fontWeight: "bold",
   },
   image: {
     flex: 0.15,
