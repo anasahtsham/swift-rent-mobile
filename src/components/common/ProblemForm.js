@@ -147,6 +147,7 @@ const ProblemForm = ({ navigation, route }) => {
                     fontSize={FontSizes.medium}
                     width={buttonWidthMedium}
                     buttonText="Submit"
+                    isSubmitButton={true}
                     onPress={handleSubmit}
                   />
                 </View>
