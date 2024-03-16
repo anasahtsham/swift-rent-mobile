@@ -7,7 +7,6 @@ export const propertyTypeData = [
   { label: "Residential Homes", value: "residential_homes" },
   { label: "Plots", value: "plots" },
   { label: "Commercial", value: "commercial" },
-  { label: "Hotel Room", value: "hotel_room" },
 ];
 
 export const subSectorData = [

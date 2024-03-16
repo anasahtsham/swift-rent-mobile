@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
     alignItems: "center",
-    width: "100%",
+    width: "90%",
   },
   buttonsContainer: {
     flexDirection: "row",

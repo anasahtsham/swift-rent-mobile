@@ -1,12 +1,11 @@
+import { Formik } from "formik";
 import { useCallback, useEffect, useState } from "react";
 import {
   BackHandler,
   Keyboard,
   KeyboardAvoidingView,
-  Platform,
   StyleSheet,
   Text,
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -20,7 +19,9 @@ import {
   propertyTypeData,
   subSectorData,
 } from "../../helpers/data/PropertyInfoData";
+import { addPropertySchema } from "../../helpers/validation/ValidationSchemas";
 import ButtonGrey from "./buttons/ButtonGrey";
+import InputField from "./input_fields/InputField";
 
 const AddProperty = ({ navigation }) => {
   const colors = useColors();
@@ -61,13 +62,18 @@ const AddProperty = ({ navigation }) => {
   const [valuePropertySubType, setValuePropertySubType] = useState(null);
   const [itemsPropertySubType, setItemsPropertySubType] = useState([]);
 
-  const onPropertySubTypeOpen = useCallback(() => {
-    setOpenCity(false);
-    setOpenSubArea(false);
-    setOpenPropertyType(false);
-  }, []);
+  const [errorDropdowns, setErrorDropdowns] = useState(false);
 
+  // set property sub type items based on property type
   useEffect(() => {
+    if (
+      !!valueCity &&
+      !!valueSubArea &&
+      !!valuePropertyType &&
+      !!valuePropertySubType
+    ) {
+      setErrorDropdowns(false);
+    }
     if (valuePropertyType) {
       switch (valuePropertyType) {
         case "residential_homes":
@@ -85,8 +91,9 @@ const AddProperty = ({ navigation }) => {
     } else {
       setItemsPropertySubType([]);
     }
-  }, [valuePropertyType]);
+  }, [valuePropertyType, valueCity, valuePropertySubType, valueSubArea]);
 
+  //close all other dropdowns when one is opened
   const onCityOpen = useCallback(() => {
     setOpenSubArea(false);
     setOpenPropertyType(false);
@@ -105,6 +112,12 @@ const AddProperty = ({ navigation }) => {
     setOpenPropertySubType(false);
   }, []);
 
+  const onPropertySubTypeOpen = useCallback(() => {
+    setOpenCity(false);
+    setOpenSubArea(false);
+    setOpenPropertyType(false);
+  }, []);
+
   useEffect(() => {
     const backAction = () => {
       navigation.goBack();
@@ -119,177 +132,217 @@ const AddProperty = ({ navigation }) => {
   }, []);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
+    <Formik
+      initialValues={{
+        street: "",
+        building: "",
+      }}
+      validationSchema={addPropertySchema}
+      onSubmit={(values) => {
+        // check if all dropdowns are set
+        if (
+          !!valueCity &&
+          !!valueSubArea &&
+          !!valuePropertyType &&
+          !!valuePropertySubType
+        ) {
+          navigation.navigate("Add Property", {
+            city: valueCity,
+            subArea: valueSubArea,
+            street: values.street,
+            building: values.building,
+            propertyType: valuePropertyType,
+            propertySubType: valuePropertySubType,
+          });
+        } else {
+          setErrorDropdowns(true);
+        }
+      }}
     >
-      <TouchableWithoutFeedback
-        onPress={() => {
-          setOpenCity(false);
-          setOpenSubArea(false);
-          setOpenPropertyType(false);
-          setOpenPropertySubType(false);
-          Keyboard.dismiss();
-        }}
-      >
-        <View
-          style={[
-            styles.container,
-            { backgroundColor: colors.backgroundPrimary },
-          ]}
-        >
-          <Text
-            style={[
-              styles.textBold,
-              {
-                color: colors.textPrimary,
-                fontSize: FontSizes.medium,
-                textAlign: "center",
-                width: "80%",
-                marginBottom: 50,
-              },
-            ]}
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+      }) => (
+        <KeyboardAvoidingView style={{ flex: 1 }}>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              setOpenCity(false);
+              setOpenSubArea(false);
+              setOpenPropertyType(false);
+              setOpenPropertySubType(false);
+              Keyboard.dismiss();
+            }}
           >
-            Add Your Property Information
-          </Text>
-          <View style={{ width: "80%", marginBottom: 50 }}>
-            <View style={styles.dropdownContainer}>
-              <DropDownPicker
-                {...dropdownStyles}
-                searchPlaceholderTextColor={colors.textGreen}
-                theme={colors.dropDownTheme}
-                zIndex={4000}
-                zIndexInverse={1000}
-                open={openCity}
-                value={valueCity}
-                items={itemsCity}
-                onOpen={onCityOpen}
-                setOpen={setOpenCity}
-                setValue={setValueCity}
-                setItems={setItemsCity}
-                placeholder="City"
-              />
-            </View>
-            <View style={styles.dropdownContainer}>
-              <DropDownPicker
-                {...dropdownStyles}
-                searchable={true}
-                searchPlaceholder="Search Sub Area"
-                listParentLabelStyle={{
-                  fontWeight: "bold",
-                }}
-                categorySelectable={false}
-                theme={colors.dropDownTheme}
-                zIndex={3000}
-                zIndexInverse={2000}
-                open={openSubArea}
-                value={valueSubArea}
-                items={itemsSubArea}
-                onOpen={onSubAreaOpen}
-                setOpen={setOpenSubArea}
-                setValue={setValueSubArea}
-                setItems={setItemsSubArea}
-                placeholder="Sub Area"
-              />
-            </View>
             <View
               style={[
-                styles.dropdownContainer,
-                { flexDirection: "row", justifyContent: "space-between" },
+                styles.container,
+                { backgroundColor: colors.backgroundPrimary },
               ]}
             >
-              <View style={{ width: "45%" }}>
-                <Text style={[styles.labelText, { color: colors.textPrimary }]}>
-                  Street #
-                </Text>
-                <TextInput
-                  onPressIn={() => {
-                    setOpenCity(false);
-                    setOpenSubArea(false);
-                    setOpenPropertyType(false);
-                    setOpenPropertySubType(false);
-                  }}
-                  placeholder="Street #"
-                  placeholderTextColor={colors.textGrey}
+              <Text
+                style={[
+                  styles.textBold,
+                  {
+                    color: colors.textPrimary,
+                    fontSize: FontSizes.medium,
+                    textAlign: "center",
+                    width: "80%",
+                    marginBottom: 50,
+                  },
+                ]}
+              >
+                Add Your Property Information
+              </Text>
+              <View style={{ width: "80%", marginBottom: 50 }}>
+                <View style={styles.dropdownContainer}>
+                  <DropDownPicker
+                    {...dropdownStyles}
+                    searchPlaceholderTextColor={colors.textGreen}
+                    theme={colors.dropDownTheme}
+                    zIndex={4000}
+                    zIndexInverse={1000}
+                    open={openCity}
+                    value={valueCity}
+                    items={itemsCity}
+                    onOpen={onCityOpen}
+                    setOpen={setOpenCity}
+                    setValue={setValueCity}
+                    setItems={setItemsCity}
+                    placeholder="City"
+                  />
+                </View>
+                <View style={styles.dropdownContainer}>
+                  <DropDownPicker
+                    {...dropdownStyles}
+                    searchable={true}
+                    searchPlaceholder="Search Sub Area"
+                    listParentLabelStyle={{
+                      fontWeight: "bold",
+                    }}
+                    categorySelectable={false}
+                    theme={colors.dropDownTheme}
+                    zIndex={3000}
+                    zIndexInverse={2000}
+                    open={openSubArea}
+                    value={valueSubArea}
+                    items={itemsSubArea}
+                    onOpen={onSubAreaOpen}
+                    setOpen={setOpenSubArea}
+                    setValue={setValueSubArea}
+                    setItems={setItemsSubArea}
+                    placeholder="Sub Area"
+                  />
+                </View>
+
+                <View
                   style={[
-                    styles.textFieldInput,
                     {
-                      color: colors.textPrimary,
-                      borderColor: colors.buttonBorderPrimary,
-                      backgroundColor: colors.textInputFieldBackground,
+                      flexDirection: "row",
+                      height: 80,
                     },
                   ]}
-                />
+                >
+                  <View style={{ flex: 1 }}>
+                    <InputField
+                      borderRadius={7}
+                      label="Street#"
+                      fieldType="numeric"
+                      value={values.street}
+                      handleChange={handleChange("street")}
+                      handleBlur={handleBlur("street")}
+                      errorText={touched.street ? errors.street : ""}
+                      onPressIn={() => {
+                        setOpenCity(false);
+                        setOpenSubArea(false);
+                        setOpenPropertyType(false);
+                        setOpenPropertySubType(false);
+                      }}
+                    />
+                  </View>
+                  <View style={{ width: 10 }} />
+
+                  <View style={{ flex: 1 }}>
+                    <InputField
+                      borderRadius={7}
+                      label="Building#"
+                      fieldType="numeric"
+                      value={values.building}
+                      handleChange={handleChange("building")}
+                      handleBlur={handleBlur("building")}
+                      errorText={touched.building ? errors.building : ""}
+                      onPressIn={() => {
+                        setOpenCity(false);
+                        setOpenSubArea(false);
+                        setOpenPropertyType(false);
+                        setOpenPropertySubType(false);
+                      }}
+                    />
+                  </View>
+                </View>
+
+                <View style={styles.dropdownContainer}>
+                  <DropDownPicker
+                    {...dropdownStyles}
+                    theme={colors.dropDownTheme}
+                    zIndex={2000}
+                    zIndexInverse={3000}
+                    open={openPropertyType}
+                    value={valuePropertyType}
+                    items={itemsPropertyType}
+                    onOpen={onPropertyTypeOpen}
+                    setOpen={setOpenPropertyType}
+                    setValue={setValuePropertyType}
+                    setItems={setItemsPropertyType}
+                    placeholder="Property Type"
+                  />
+                </View>
+                {!!valuePropertyType && (
+                  <View style={styles.dropdownContainer}>
+                    <DropDownPicker
+                      {...dropdownStyles}
+                      style={dropdownStyles.style}
+                      theme={colors.dropDownTheme}
+                      zIndex={1000}
+                      zIndexInverse={4000}
+                      open={openPropertySubType}
+                      value={valuePropertySubType}
+                      items={itemsPropertySubType}
+                      onOpen={onPropertySubTypeOpen}
+                      setOpen={setOpenPropertySubType}
+                      setValue={setValuePropertySubType}
+                      setItems={setItemsPropertySubType}
+                      placeholder="Property Sub Type"
+                    />
+                  </View>
+                )}
+                {errorDropdowns && (
+                  <Text
+                    style={[
+                      styles.textBold,
+                      { color: colors.textRed, textAlign: "center" },
+                    ]}
+                  >
+                    Please select all dropdowns first!
+                  </Text>
+                )}
               </View>
 
-              <View style={{ width: "45%" }}>
-                <Text style={[styles.labelText, { color: colors.textPrimary }]}>
-                  Building #
-                </Text>
-                <TextInput
-                  onPressIn={() => {
-                    setOpenCity(false);
-                    setOpenSubArea(false);
-                    setOpenPropertyType(false);
-                    setOpenPropertySubType(false);
-                  }}
-                  placeholder="Building #"
-                  placeholderTextColor={colors.textGrey}
-                  style={[
-                    styles.textFieldInput,
-                    {
-                      color: colors.textPrimary,
-                      borderColor: colors.buttonBorderPrimary,
-                      backgroundColor: colors.textInputFieldBackground,
-                    },
-                  ]}
-                />
-              </View>
-            </View>
-            <View style={styles.dropdownContainer}>
-              <DropDownPicker
-                {...dropdownStyles}
-                theme={colors.dropDownTheme}
-                zIndex={2000}
-                zIndexInverse={3000}
-                open={openPropertyType}
-                value={valuePropertyType}
-                items={itemsPropertyType}
-                onOpen={onPropertyTypeOpen}
-                setOpen={setOpenPropertyType}
-                setValue={setValuePropertyType}
-                setItems={setItemsPropertyType}
-                placeholder="Property Type"
+              <ButtonGrey
+                buttonText="Next"
+                fontSize={FontSizes.medium}
+                width={buttonWidthMedium}
+                isSubmitButton={true}
+                onPress={handleSubmit}
               />
             </View>
-            {!(!valuePropertyType || valuePropertyType === "hotel_room") && (
-              <View style={styles.dropdownContainer}>
-                <DropDownPicker
-                  {...dropdownStyles}
-                  style={dropdownStyles.style}
-                  theme={colors.dropDownTheme}
-                  zIndex={1000}
-                  zIndexInverse={4000}
-                  open={openPropertySubType}
-                  value={valuePropertySubType}
-                  items={itemsPropertySubType}
-                  onOpen={onPropertySubTypeOpen}
-                  setOpen={setOpenPropertySubType}
-                  setValue={setValuePropertySubType}
-                  setItems={setItemsPropertySubType}
-                  placeholder="Property Sub Type"
-                />
-              </View>
-            )}
-          </View>
-          <ButtonGrey
-            buttonText="Next"
-            fontSize={FontSizes.medium}
-            width={buttonWidthMedium}
-          />
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      )}
+    </Formik>
   );
 };
 
@@ -309,20 +362,7 @@ const styles = StyleSheet.create({
     fontSize: FontSizes.small,
   },
   dropdownContainer: {
-    marginVertical: 10,
-  },
-  labelText: {
-    fontFamily: "OpenSansRegular",
-    fontSize: FontSizes.extraSmall,
-    marginLeft: 10,
-    marginBottom: 5,
-  },
-  textFieldInput: {
-    width: "100%",
-    borderRadius: 15,
-    borderWidth: 1,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
+    marginBottom: 20,
   },
 });
 

@@ -3,6 +3,7 @@ import {
   Animated,
   Easing,
   Image,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -26,6 +27,7 @@ const InputField = React.forwardRef((props, ref) => {
     handleChange,
     touched,
     errors,
+    borderRadius,
     ...restOfProps
   } = props;
 
@@ -83,153 +85,157 @@ const InputField = React.forwardRef((props, ref) => {
   };
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        if (fieldType === "date") {
-          showDatePicker();
-        } else {
-          inputRef.current?.focus();
-        }
-      }}
-    >
-      <View style={[inputStyles.mainContainer, { height: 65 }]}>
-        <View
+    <View style={[styles.mainContainer, { height: 65 }]}>
+      <Pressable
+        onPress={() => {
+          if (fieldType === "date") {
+            showDatePicker();
+          } else {
+            inputRef.current?.focus();
+          }
+        }}
+        style={[
+          styles.textInputContainer,
+          {
+            borderColor: color,
+            borderWidth: width,
+            borderRadius: !!borderRadius ? borderRadius : 25,
+          },
+        ]}
+      >
+        <View style={[styles.textAndImageContainer]}>
+          <View style={[styles.inputContainer]}>
+            <TextInput
+              editable={fieldType !== "date"}
+              secureTextEntry={isHidden}
+              keyboardType={
+                fieldType === "email-address" ||
+                fieldType === "phone-pad" ||
+                fieldType === "numeric"
+                  ? fieldType
+                  : "default"
+              }
+              style={[
+                styles.input,
+                {
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                },
+              ]}
+              ref={inputRef}
+              value={value}
+              onBlur={(event) => {
+                setIsFocused(false);
+                onBlur?.(event);
+              }}
+              onFocus={(event) => {
+                setIsFocused(true);
+                onFocus?.(event);
+              }}
+              onChangeText={handleChange}
+              {...restOfProps}
+            />
+            <Animated.View
+              style={{
+                position: "absolute",
+                paddingHorizontal: 8,
+                backgroundColor: colors.backgroundPrimary,
+                transform: [
+                  {
+                    scale: focusAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [1, 0.75],
+                      // scale (size) of text
+                    }),
+                  },
+                  {
+                    translateY: focusAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, -30],
+                      // [start position on y axis, ending position on y axis]
+                    }),
+                  },
+                  {
+                    translateX: focusAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [-8, -5],
+                      // [start position on x axis, ending position on x axis]
+                    }),
+                  },
+                ],
+              }}
+            >
+              <Text
+                style={{
+                  width: "120%",
+                  fontSize: FontSizes.small,
+                  color,
+                }}
+              >
+                {label}
+                {errorText ? "*" : ""}
+              </Text>
+            </Animated.View>
+          </View>
+          {fieldType !== "password" && (
+            <Image
+              tintColor={color}
+              source={textFieldIcon}
+              style={styles.icon}
+            />
+          )}
+          {fieldType === "password" && (
+            <TouchableWithoutFeedback onPress={() => setIsHidden(!isHidden)}>
+              <Image
+                tintColor={color}
+                source={
+                  isHidden ? icons.hidePasswordIcon : icons.showPasswordIcon
+                }
+                style={styles.icon}
+              />
+            </TouchableWithoutFeedback>
+          )}
+          {fieldType === "date" && (
+            <Image
+              tintColor={color}
+              source={icons.calendarIcon}
+              style={styles.icon}
+            />
+          )}
+        </View>
+      </Pressable>
+      {!!errorText && (
+        <Text
           style={[
-            inputStyles.textInputContainer,
-            { borderColor: color, borderWidth: width },
+            styles.error,
+            {
+              color: colors.textRed,
+              fontSize: FontSizes.extraSmall,
+            },
           ]}
         >
-          <View>
-            <View style={inputStyles.container}>
-              <View style={[inputStyles.inputContainer]}>
-                <TextInput
-                  editable={fieldType !== "date"}
-                  secureTextEntry={isHidden}
-                  keyboardType={
-                    fieldType === "email-address" || fieldType === "phone-pad"
-                      ? fieldType
-                      : "default"
-                  }
-                  style={[
-                    inputStyles.input,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                  ref={inputRef}
-                  value={value}
-                  onBlur={(event) => {
-                    setIsFocused(false);
-                    onBlur?.(event);
-                  }}
-                  onFocus={(event) => {
-                    setIsFocused(true);
-                    onFocus?.(event);
-                  }}
-                  onChangeText={handleChange}
-                  {...restOfProps}
-                />
-                <Animated.View
-                  style={[
-                    inputStyles.labelContainer,
-                    {
-                      backgroundColor: colors.backgroundPrimary,
-                      transform: [
-                        {
-                          scale: focusAnim.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [1, 0.75],
-                            // scale (size) of text
-                          }),
-                        },
-                        {
-                          translateY: focusAnim.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [0, -30],
-                            // [start position on y axis, ending position on y axis]
-                          }),
-                        },
-                        {
-                          translateX: focusAnim.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [-8, -5],
-                            // [start position on x axis, ending position on x axis]
-                          }),
-                        },
-                      ],
-                    },
-                  ]}
-                >
-                  <Text style={{ fontSize: FontSizes.small, color }}>
-                    {label}
-                    {errorText ? "*" : ""}
-                  </Text>
-                </Animated.View>
-              </View>
-              {fieldType !== "password" && (
-                <Image
-                  tintColor={color}
-                  source={textFieldIcon}
-                  style={inputStyles.icon}
-                />
-              )}
-              {fieldType === "password" && (
-                <TouchableWithoutFeedback
-                  onPress={() => setIsHidden(!isHidden)}
-                >
-                  <Image
-                    tintColor={color}
-                    source={
-                      isHidden ? icons.hidePasswordIcon : icons.showPasswordIcon
-                    }
-                    style={inputStyles.icon}
-                  />
-                </TouchableWithoutFeedback>
-              )}
-              {fieldType === "date" && (
-                <Image
-                  tintColor={color}
-                  source={icons.calendarIcon}
-                  style={inputStyles.icon}
-                />
-              )}
-            </View>
-          </View>
-        </View>
-        {!!errorText && (
-          <Text
-            style={[
-              inputStyles.error,
-              {
-                color: colors.textRed,
-                fontSize: FontSizes.extraSmall,
-              },
-            ]}
-          >
-            {errorText}
-          </Text>
-        )}
-        {errors}
-        {fieldType === "date" && (
-          <DateTimePickerModal
-            minimumDate={new Date(1950, 0, 1)}
-            maximumDate={maxDate}
-            isVisible={isPickerOpen}
-            mode="date"
-            date={selectedDate}
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-          />
-        )}
-      </View>
-    </TouchableWithoutFeedback>
+          {errorText}
+        </Text>
+      )}
+      {errors}
+      {fieldType === "date" && (
+        <DateTimePickerModal
+          minimumDate={new Date(1950, 0, 1)}
+          maximumDate={maxDate}
+          isVisible={isPickerOpen}
+          mode="date"
+          date={selectedDate}
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+      )}
+    </View>
   );
 });
 
-const inputStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   mainContainer: {
-    width: "85%",
+    width: "100%",
     marginBottom: 30,
   },
   textInputContainer: {
@@ -238,19 +244,16 @@ const inputStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 25,
   },
-  container: {
+  textAndImageContainer: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   inputContainer: {
-    alignItems: "flex-start",
     flex: 1,
+    alignItems: "flex-start",
     justifyContent: "center",
   },
   input: { width: "100%", padding: 0 },
-  labelContainer: {
-    position: "absolute",
-    paddingHorizontal: 8,
-  },
   error: {
     marginTop: 4,
     marginLeft: 12,
