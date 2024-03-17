@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Popover, { PopoverPlacement } from "react-native-popover-view";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
+import { opacityValueForButton } from "./../../../constants/index";
 import InputField from "./InputField";
 
 const InputFieldWithHint = ({
@@ -15,7 +18,7 @@ const InputFieldWithHint = ({
   hintTexts,
 }) => {
   const colors = useColors();
-  const { english: englishHintText, spanish: spanishHintText } = hintTexts;
+  const { english: englishHintText, urdu: urudHintText } = hintTexts;
   const [hintText, setHintText] = useState(englishHintText);
   return (
     <View
@@ -39,20 +42,24 @@ const InputFieldWithHint = ({
         <Popover
           arrowShift={-0.2} // shifts arrow position upwards by a little, on default it was down a little
           offset={5} // adds gap between ? and popover
-          popoverStyle={{ padding: 10 }} // adds padding to the popover (the white box that opens up)
+          popoverStyle={{
+            padding: 10,
+            backgroundColor: colors.hintBackground,
+          }} // adds padding to the popover (the white box that opens up)
           placement={PopoverPlacement.LEFT} // opens the popover to the left
           from={
             <TouchableOpacity
+              activeOpacity={opacityValueForButton}
               style={{
                 justifyContent: "center",
-                backgroundColor: "grey",
+                backgroundColor: colors.backgroundGrey,
                 borderRadius: 50,
               }}
             >
               <Text
                 style={{
                   fontSize: 16,
-                  color: colors.textWhite,
+                  color: colors.textBlack,
                   textAlign: "center",
                   width: 20,
                 }}
@@ -63,17 +70,61 @@ const InputFieldWithHint = ({
           }
         >
           <View>
-            <Text>{hintText}</Text>
-            <Button
+            <Text
+              style={{
+                fontFamily: "OpenSansRegular",
+                fontSize: FontSizes.small,
+                color: colors.textPrimary,
+                textAlign: "center",
+                marginBottom: 10,
+              }}
+            >
+              {hintText}
+            </Text>
+            <TouchableOpacity
+              activeOpacity={opacityValueForButton}
+              style={{
+                backgroundColor: colors.backgroundPrimary,
+                paddingVertical: 2,
+                borderWidth: 2,
+                borderColor: colors.buttonBorderPrimary,
+                borderRadius: 20,
+              }}
               onPress={() =>
                 setHintText(
-                  hintText === englishHintText
-                    ? spanishHintText
-                    : englishHintText
+                  hintText === englishHintText ? urudHintText : englishHintText
                 )
               }
-              title="Toggle language"
-            />
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: 170,
+                }}
+              >
+                <Image
+                  style={{
+                    width: 20,
+                    height: 20,
+                    alignSelf: "center",
+                  }}
+                  tintColor={colors.iconPrimary}
+                  source={icons.languageIcon}
+                />
+                <Text
+                  style={{
+                    fontFamily: "OpenSansRegular",
+                    fontSize: FontSizes.small,
+                    color: colors.textPrimary,
+                    marginLeft: 5,
+                  }}
+                >
+                  Toggle Language
+                </Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </Popover>
       </View>

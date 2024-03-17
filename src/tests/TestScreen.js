@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import InputField from "../components/common/input_fields/InputField";
 import InputFieldWithHint from "../components/common/input_fields/InputFieldWithHint";
 import { icons } from "../helpers/ImageImports";
-import { setColorsToDark, useColors } from "../helpers/SetColors";
+import { setColorsToDefault, useColors } from "../helpers/SetColors";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
@@ -25,9 +25,9 @@ const validationSchema = Yup.object().shape({
 const TestScreen = () => {
   const hintTexts = {
     english: "This is the contents of the popover",
-    spanish: "Esto es el contenido del popover",
+    urdu: "یہ پاپ اوور کا مواد ہے۔",
   };
-  setColorsToDark();
+  setColorsToDefault();
   const colors = useColors();
   return (
     <Formik

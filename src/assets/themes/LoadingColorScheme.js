@@ -54,3 +54,5 @@ export const textInputFieldBackground = "#fff";
 
 export const dropDownTheme = "LIGHT";
 export const dropDownDisabled = "#fff";
+
+export const hintBackground = "#fff";

@@ -39,3 +39,11 @@ export const setColorsToDark = async () => {
     console.log(e);
   }
 };
+
+export const setColorsToDefault = async () => {
+  try {
+    await AsyncStorage.setItem("theme", "light");
+  } catch (e) {
+    console.log(e);
+  }
+};
