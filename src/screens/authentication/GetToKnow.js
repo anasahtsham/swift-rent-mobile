@@ -98,6 +98,7 @@ const GetToKnow = ({ navigation, route }) => {
                 />
                 <InputField
                   ref={lastNameRef}
+                  nextInput={dateRef}
                   textFieldIcon={icons.userIcon}
                   fieldType="name"
                   label="Last Name"
@@ -105,7 +106,6 @@ const GetToKnow = ({ navigation, route }) => {
                   handleChange={handleChange("lastName")}
                   handleBlur={handleBlur("lastName")}
                   errorText={touched.lastName ? errors.lastName : ""} // If the user has touched the input field, display the error message
-                  onSubmitEditing={handleSubmit}
                 />
                 <InputField
                   ref={dateRef}

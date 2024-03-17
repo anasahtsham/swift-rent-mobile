@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   textInputsContainer: {
     alignItems: "center",
     justifyContent: "space-evenly",
-    height: "30%",
+    height: "45%",
     width: "90%",
   },
 });

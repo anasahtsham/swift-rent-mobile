@@ -100,19 +100,6 @@ const InputField = forwardRef((props, ref) => {
 
   const [isEditable, setIsEditable] = useState(false);
 
-  // if (canBeDisabled) {
-  //   console.log("editable:", isEditable);
-  // }
-
-  // useEffect(() => {
-  //   if (fieldType === "date" || canBeDisabled) {
-  //     setIsEditable(false);
-  //     console.log("Editable:", isEditable);
-  //   } else {
-  //     setIsEditable(true);
-  //   }
-  // }, []);
-
   return (
     <View style={[styles.mainContainer, { height: 65 }]}>
       <Pressable
@@ -279,6 +266,7 @@ const InputField = forwardRef((props, ref) => {
 const styles = StyleSheet.create({
   mainContainer: {
     width: "100%",
+    height: 65,
   },
   textInputContainer: {
     paddingHorizontal: 15,

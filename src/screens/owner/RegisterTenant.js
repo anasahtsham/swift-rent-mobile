@@ -78,7 +78,6 @@ const RegisterTenant = ({ navigation }) => {
         leaseTill: "",
         evictionPeriod: "",
         yearlyIncrease: "",
-        rentDueDate: "",
         lateRentFine: "",
         tenantContact: "",
       }}
@@ -92,7 +91,14 @@ const RegisterTenant = ({ navigation }) => {
         navigation.navigate("Register Tenant");
       }}
     >
-      {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+      }) => (
         <KeyboardAwareScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           scrollEnabled={true}
@@ -127,7 +133,7 @@ const RegisterTenant = ({ navigation }) => {
                 value={values.rentAmount}
                 handleChange={handleChange("rentAmount")}
                 handleBlur={handleBlur("rentAmount")}
-                errorText={errors.rentAmount}
+                errorText={touched.rentAmount ? errors.rentAmount : ""}
                 returnKeyType="next"
                 onSubmitEditing={() => securityAmountRef.current.focus()}
               />
@@ -138,9 +144,9 @@ const RegisterTenant = ({ navigation }) => {
                 value={values.securityAmount}
                 handleChange={handleChange("securityAmount")}
                 handleBlur={handleBlur("securityAmount")}
-                errorText={errors.securityAmount}
+                errorText={touched.securityAmount ? errors.securityAmount : ""}
                 returnKeyType="next"
-                onSubmitEditing={() => leaseTillRef.current.focus()}
+                onSubmitEditing={() => evictionPeriodRef.current?.focus()}
                 ref={securityAmountRef}
               />
               <InputField
@@ -151,9 +157,8 @@ const RegisterTenant = ({ navigation }) => {
                 value={values.leaseTill}
                 handleChange={handleChange("leaseTill")}
                 handleBlur={handleBlur("leaseTill")}
-                errorText={errors.leaseTill}
+                errorText={touched.leaseTill ? errors.leaseTill : ""}
                 returnKeyType="next"
-                onSubmitEditing={() => evictionPeriodRef.current?.focus()}
                 ref={leaseTillRef}
               />
               <InputFieldWithHint
@@ -163,7 +168,7 @@ const RegisterTenant = ({ navigation }) => {
                 value={values.evictionPeriod}
                 handleChange={handleChange("evictionPeriod")}
                 handleBlur={handleBlur("evictionPeriod")}
-                errorText={errors.evictionPeriod}
+                errorText={touched.evictionPeriod ? errors.evictionPeriod : ""}
                 returnKeyType="next"
                 nextInput={yearlyIncreaseRef}
                 ref={evictionPeriodRef}
@@ -181,7 +186,7 @@ const RegisterTenant = ({ navigation }) => {
                 value={values.yearlyIncrease}
                 handleChange={handleChange("yearlyIncrease")}
                 handleBlur={handleBlur("yearlyIncrease")}
-                errorText={errors.yearlyIncrease}
+                errorText={touched.yearlyIncrease ? errors.yearlyIncrease : ""}
                 returnKeyType="next"
                 ref={yearlyIncreaseRef}
                 nextInput={lateRentFineRef}
@@ -228,7 +233,7 @@ const RegisterTenant = ({ navigation }) => {
                 value={values.lateRentFine}
                 handleChange={handleChange("lateRentFine")}
                 handleBlur={handleBlur("lateRentFine")}
-                errorText={errors.lateRentFine}
+                errorText={touched.lateRentFine ? errors.lateRentFine : ""}
                 returnKeyType="next"
                 nextInput={tenantContactRef}
                 ref={lateRentFineRef}
@@ -245,7 +250,7 @@ const RegisterTenant = ({ navigation }) => {
                 value={values.tenantContact}
                 handleChange={handleChange("tenantContact")}
                 handleBlur={handleBlur("tenantContact")}
-                errorText={errors.tenantContact}
+                errorText={touched.tenantContact ? errors.tenantContact : ""}
                 returnKeyType="done"
                 onSubmitEditing={handleSubmit}
                 ref={tenantContactRef}
