@@ -152,3 +152,7 @@ export const addPropertySchema = Yup.object().shape({
     .required("Required")
     .matches(/^\d*$/, "Only digits from 0-9 are allowed"),
 });
+
+export const viewMaintenanceAndComplainsSchema = Yup.object().shape({
+  remarks: Yup.string().matches(/^\S*$/, "No spaces allowed"),
+});

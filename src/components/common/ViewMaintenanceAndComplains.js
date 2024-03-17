@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
+import { Formik } from "formik";
 import React, { useEffect } from "react";
 import {
   BackHandler,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -18,7 +18,9 @@ import {
   maintenanceData,
   maintenanceHeaderData,
 } from "../../helpers/data/MaintenanceAndComplainsData";
+import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/ValidationSchemas";
 import ViewMaintenanceAndComplainsHeader from "./header/ViewMaintenanceAndComplainsHeader";
+import InputField from "./input_fields/InputField";
 
 const ViewMaintenanceAndComplains = ({ route, ...props }) => {
   const colors = useColors();
@@ -44,142 +46,154 @@ const ViewMaintenanceAndComplains = ({ route, ...props }) => {
       : complaintsHeaderData;
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={{ flexGrow: 1, justifyContent: "space-between" }}
-      scrollEnabled={true}
-      style={{ backgroundColor: colors.bodyBackground }}
+    <Formik
+      initialValues={{ remarks: "" }}
+      validationSchema={viewMaintenanceAndComplainsSchema}
+      onSubmit={() => {}}
     >
-      <ViewMaintenanceAndComplainsHeader
-        colors={colors}
-        headerTitle={headerTitle}
-        headerData={headerData}
-      />
-      <View
-        style={[
-          styles.requestCard,
-          { backgroundColor: colors.backgroundPrimary },
-        ]}
-      >
-        <Text
-          style={[
-            styles.requestTile,
-            { color: colors.textPrimary, fontSize: FontSizes.small },
-          ]}
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+      }) => (
+        <KeyboardAwareScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "space-between",
+          }}
+          style={{
+            backgroundColor: colors.bodyBackground,
+          }}
         >
-          {headerTitle === "Maintenance Request"
-            ? maintenanceData.title
-            : complaintsData.title}
-        </Text>
-        <Text
-          style={[
-            styles.requestDescription,
-            { color: colors.textPrimary, fontSize: FontSizes.small },
-          ]}
-        >
-          {headerTitle === "Maintenance Request"
-            ? maintenanceData.description
-            : complaintsData.description}
-        </Text>
-        <TextInput
-          style={[
-            styles.remarksBox,
-            {
-              borderColor: colors.borderPrimary,
-              paddingLeft: 10,
-              color: colors.textPrimary,
-              fontSize: FontSizes.small,
-            },
-          ]}
-          placeholder={
-            headerTitle === "Maintenance Request"
-              ? "Add Remarks"
-              : "Reply to Complain"
-          }
-          placeholderTextColor={colors.textGrey}
-        />
-      </View>
-
-      {headerTitle === "Maintenance Request" && (
-        <View
-          style={[
-            styles.footer,
-            {
-              backgroundColor: colors.headerAndFooterBackground,
-              marginTop: 150,
-            },
-          ]}
-        >
-          <TouchableOpacity
-            activeOpacity={opacityValueForButton}
-            style={[styles.button, { borderColor: colors.borderGreen }]}
-            onPress={() => {
-              navigation.navigate("View Maintenance And Complains", {
-                headerTitle: headerTitle,
-              });
-            }}
+          <ViewMaintenanceAndComplainsHeader
+            colors={colors}
+            headerTitle={headerTitle}
+            headerData={headerData}
+          />
+          <View
+            style={[
+              styles.requestCard,
+              { backgroundColor: colors.backgroundPrimary, marginTop: 10 },
+            ]}
           >
             <Text
               style={[
-                styles.fontBold,
+                styles.requestTile,
                 { color: colors.textPrimary, fontSize: FontSizes.small },
               ]}
             >
-              Accept
+              {headerTitle === "Maintenance Request"
+                ? maintenanceData.title
+                : complaintsData.title}
             </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            activeOpacity={opacityValueForButton}
-            style={[styles.button, { borderColor: colors.borderRed }]}
-            onPress={() => {
-              navigation.navigate("View Maintenance And Complains", {
-                headerTitle: headerTitle,
-              });
-            }}
-          >
             <Text
               style={[
-                styles.fontBold,
-                { color: colors.textPrimary, fontSize: FontSizes.small },
+                styles.requestDescription,
+                {
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                  marginBottom: 20,
+                },
               ]}
             >
-              Reject
+              {headerTitle === "Maintenance Request"
+                ? maintenanceData.description
+                : complaintsData.description}
             </Text>
-          </TouchableOpacity>
-        </View>
+            <View style={{ width: "90%", alignSelf: "center", height: 65 }}>
+              <InputField
+                borderRadius={10}
+                label={
+                  headerTitle === "Maintenance Request"
+                    ? "Add Remarks"
+                    : "Reply to Complain"
+                }
+                onChangeText={handleChange("remarks")}
+                onBlur={handleBlur("remarks")}
+                value={values.remarks}
+                errorText={touched.remarks && errors.remarks}
+              />
+            </View>
+          </View>
+
+          {headerTitle === "Maintenance Request" && (
+            <View
+              style={[
+                styles.footer,
+                {
+                  backgroundColor: colors.headerAndFooterBackground,
+                  marginTop: 150,
+                },
+              ]}
+            >
+              <TouchableOpacity
+                activeOpacity={opacityValueForButton}
+                style={[styles.button, { borderColor: colors.borderGreen }]}
+                onPress={() => {
+                  navigation.navigate("View Maintenance And Complains", {
+                    headerTitle: headerTitle,
+                  });
+                }}
+              >
+                <Text
+                  style={[
+                    styles.fontBold,
+                    { color: colors.textPrimary, fontSize: FontSizes.small },
+                  ]}
+                >
+                  Accept
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={opacityValueForButton}
+                style={[styles.button, { borderColor: colors.borderRed }]}
+                onPress={handleSubmit}
+              >
+                <Text
+                  style={[
+                    styles.fontBold,
+                    { color: colors.textPrimary, fontSize: FontSizes.small },
+                  ]}
+                >
+                  Reject
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {headerTitle === "Complain" && (
+            <View
+              style={[
+                styles.footer,
+                {
+                  backgroundColor: colors.headerAndFooterBackground,
+                  marginTop: 150,
+                },
+              ]}
+            >
+              <TouchableOpacity
+                activeOpacity={opacityValueForButton}
+                style={[styles.button, { borderColor: colors.borderGreen }]}
+                onPress={handleSubmit}
+              >
+                <Text
+                  style={[
+                    styles.fontBold,
+                    { color: colors.textPrimary, fontSize: FontSizes.small },
+                  ]}
+                >
+                  Send Response
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </KeyboardAwareScrollView>
       )}
-
-      {headerTitle === "Complain" && (
-        <View
-          style={[
-            styles.footer,
-            {
-              backgroundColor: colors.headerAndFooterBackground,
-              marginTop: 150,
-            },
-          ]}
-        >
-          <TouchableOpacity
-            activeOpacity={opacityValueForButton}
-            style={[styles.button, { borderColor: colors.borderGreen }]}
-            onPress={() => {
-              navigation.navigate("View Maintenance And Complains", {
-                headerTitle: headerTitle,
-              });
-            }}
-          >
-            <Text
-              style={[
-                styles.fontBold,
-                { color: colors.textPrimary, fontSize: FontSizes.small },
-              ]}
-            >
-              Send Response
-            </Text>
-          </TouchableOpacity>
-        </View>
-      )}
-    </KeyboardAwareScrollView>
+    </Formik>
   );
 };
 
@@ -188,7 +202,6 @@ const styles = StyleSheet.create({
   fontRegular: { fontFamily: "OpenSansRegular" },
 
   requestCard: {
-    marginTop: "5%",
     borderRadius: 20,
     backgroundColor: "white",
     alignSelf: "center",
