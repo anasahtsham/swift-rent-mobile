@@ -95,6 +95,7 @@ const SetUpPassword = ({ navigation, route }) => {
                   handleBlur={handleBlur("password")}
                   errorText={touched.password ? errors.password : ""} // If the user has touched the input field, display the error message
                   onSubmitEditing={() => confirmPasswordRef.current.focus()} // Focus on the next input field
+                  returnKeyType="next"
                 />
                 <InputField
                   ref={confirmPasswordRef}

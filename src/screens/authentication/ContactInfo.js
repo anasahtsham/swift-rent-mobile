@@ -94,6 +94,7 @@ const ContactInfo = ({ navigation, route }) => {
                   handleBlur={handleBlur("email")}
                   errorText={touched.email ? errors.email : ""} // If the user has touched the input field, display the error message
                   onSubmitEditing={() => phoneNumberRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
+                  returnKeyType="next"
                 />
                 <InputField
                   ref={phoneNumberRef}

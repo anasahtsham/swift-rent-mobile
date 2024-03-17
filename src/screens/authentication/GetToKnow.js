@@ -19,7 +19,6 @@ const GetToKnow = ({ navigation, route }) => {
   const languages = useLanguages();
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
-  const firstNameRef = React.useRef();
   const lastNameRef = React.useRef();
   const dateRef = React.useRef();
 
@@ -85,7 +84,6 @@ const GetToKnow = ({ navigation, route }) => {
 
               <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
                 <InputField
-                  ref={firstNameRef}
                   textFieldIcon={icons.userIcon}
                   fieldType="name"
                   label="First Name"
@@ -106,6 +104,8 @@ const GetToKnow = ({ navigation, route }) => {
                   handleChange={handleChange("lastName")}
                   handleBlur={handleBlur("lastName")}
                   errorText={touched.lastName ? errors.lastName : ""} // If the user has touched the input field, display the error message
+                  returnKeyType="next"
+                  onSubmitEditing={() => dateRef.current.focus()}
                 />
                 <InputField
                   ref={dateRef}
