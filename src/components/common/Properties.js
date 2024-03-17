@@ -38,7 +38,11 @@ const Properties = (props) => {
     <View
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <PropertiesHeader isManager={props.isManager} colors={colors} />
+      <PropertiesHeader
+        isTenant={props.isTenant}
+        isManager={props.isManager}
+        colors={colors}
+      />
       <View
         style={{
           paddingTop: 20,
