@@ -26,7 +26,10 @@ export const contactInfoSchema = Yup.object().shape({
   email: Yup.string()
     .matches(/^\S*$/, "No spaces allowed")
     .email("Invalid email")
-    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email address")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Invalid email"
+    )
     .test(
       "emailOrPhoneNumber",
       "Either email or phone number must be provided",
@@ -72,9 +75,10 @@ export const loginSchema = Yup.object().shape({
     .required("Required")
     .test(
       "emailOrPhone",
-      "Invalid email address or phone number",
+      "Invalid email or phone number",
       (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || /^03\d{9}$/.test(value)
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ||
+        /^03\d{9}$/.test(value)
     ),
 
   password: Yup.string()
@@ -89,9 +93,10 @@ export const forgotPasswordSchema = Yup.object().shape({
     .required("Required")
     .test(
       "emailOrPhone",
-      "Invalid email address or phone number",
+      "Invalid email or phone number",
       (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || /^03\d{9}$/.test(value)
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ||
+        /^03\d{9}$/.test(value)
     ),
   password: Yup.string()
     .matches(/^\S*$/, "No spaces allowed")
