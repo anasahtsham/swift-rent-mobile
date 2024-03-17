@@ -79,7 +79,7 @@ const TestScreen = () => {
               handleChange={handleChange("firstName")}
               handleBlur={handleBlur("firstName")}
               errorText={touched.firstName ? errors.firstName : ""}
-              hintText="This is the contents of the popover"
+              hintText="This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover "
             />
             <InputField
               textFieldIcon={icons.emailIcon}

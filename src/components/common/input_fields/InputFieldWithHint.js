@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Button, Text, TouchableOpacity, View } from "react-native";
 import Popover, { PopoverPlacement } from "react-native-popover-view";
 import { useColors } from "../../../helpers/SetColors";
 import InputField from "./InputField";
@@ -32,12 +32,13 @@ const InputFieldWithHint = ({
         handleBlur={handleBlur}
         errorText={errorText}
       />
+      {/* places the ? aligned to the center of the text field */}
       <View style={{ marginBottom: 55, marginLeft: 10 }}>
         <Popover
-          arrowShift={-0.2}
-          offset={5}
-          popoverStyle={{ padding: 10 }}
-          placement={PopoverPlacement.LEFT}
+          arrowShift={-0.2} // shifts arrow position upwards by a little, on default it was down a little
+          offset={5} // adds gap between ? and popover
+          popoverStyle={{ padding: 10 }} // adds padding to the popover (the white box that opens up)
+          placement={PopoverPlacement.LEFT} // opens the popover to the left
           from={
             <TouchableOpacity
               style={{
@@ -59,7 +60,10 @@ const InputFieldWithHint = ({
             </TouchableOpacity>
           }
         >
-          <Text>{hintText}</Text>
+          <View>
+            <Text>{hintText}</Text>
+            <Button title="Show in Urdu" />
+          </View>
         </Popover>
       </View>
     </View>
