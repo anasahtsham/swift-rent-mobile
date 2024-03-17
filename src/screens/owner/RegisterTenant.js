@@ -141,7 +141,7 @@ const RegisterTenant = ({ navigation }) => {
                 borderRadius={10}
                 label="Lease Till"
                 value={values.leaseTill}
-                onChangeText={handleChange("leaseTill")}
+                handleChange={handleChange("leaseTill")}
                 onBlur={handleBlur("leaseTill")}
                 error={errors.leaseTill}
                 touched={touched.leaseTill}
@@ -153,7 +153,7 @@ const RegisterTenant = ({ navigation }) => {
                 borderRadius={10}
                 label="Eviction Period"
                 value={values.evictionPeriod}
-                onChangeText={handleChange("evictionPeriod")}
+                handleChange={handleChange("evictionPeriod")}
                 onBlur={handleBlur("evictionPeriod")}
                 error={errors.evictionPeriod}
                 touched={touched.evictionPeriod}
@@ -171,7 +171,7 @@ const RegisterTenant = ({ navigation }) => {
                 borderRadius={10}
                 label="Yearly Increase"
                 value={values.yearlyIncrease}
-                onChangeText={handleChange("yearlyIncrease")}
+                handleChange={handleChange("yearlyIncrease")}
                 onBlur={handleBlur("yearlyIncrease")}
                 error={errors.yearlyIncrease}
                 touched={touched.yearlyIncrease}
@@ -205,7 +205,7 @@ const RegisterTenant = ({ navigation }) => {
                 borderRadius={10}
                 label="Late Rent Fine"
                 value={values.lateRentFine}
-                onChangeText={handleChange("lateRentFine")}
+                handleChange={handleChange("lateRentFine")}
                 onBlur={handleBlur("lateRentFine")}
                 error={errors.lateRentFine}
                 touched={touched.lateRentFine}

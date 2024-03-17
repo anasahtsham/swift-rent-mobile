@@ -70,7 +70,6 @@ const InputField = forwardRef((props, ref) => {
   }
 
   useEffect(() => {
-    console.log("editable:", isEditable);
     Animated.timing(focusAnim, {
       toValue: isFocused || !!value ? 1 : 0,
       duration: 150,
@@ -100,6 +99,10 @@ const InputField = forwardRef((props, ref) => {
   };
 
   const [isEditable, setIsEditable] = useState(false);
+
+  // if (canBeDisabled) {
+  //   console.log("editable:", isEditable);
+  // }
 
   // useEffect(() => {
   //   if (fieldType === "date" || canBeDisabled) {
