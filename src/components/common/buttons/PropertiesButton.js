@@ -121,7 +121,7 @@ export const PropertiesButton = (props) => {
         {!!props.owner && (
           <View style={{ flexDirection: "row", marginTop: 10 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Manager:{" "}
+              Owner:{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               {props.owner}
