@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import {
   Animated,
   Easing,
@@ -15,7 +15,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
-const InputField = React.forwardRef((props, ref) => {
+const InputField = forwardRef((props, ref) => {
   const {
     label,
     errorText,

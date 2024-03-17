@@ -40,19 +40,25 @@ const TestScreen = () => {
       }) => (
         <KeyboardAwareScrollView
           resetScrollToCoords={{ x: 0, y: 0 }}
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           scrollEnabled={true}
           extraScrollHeight={2500}
+          style={{
+            flex: 1,
+            backgroundColor: colors.backgroundPrimary,
+          }}
         >
           <View
             style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: colors.backgroundPrimary,
+              width: "90%",
             }}
           >
             <InputField
+              hintText="Enter your first name"
               textFieldIcon={icons.userIcon}
               fieldType="name"
               label="First Name"
