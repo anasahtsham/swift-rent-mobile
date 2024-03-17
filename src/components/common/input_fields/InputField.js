@@ -17,6 +17,8 @@ import { useColors } from "../../../helpers/SetColors";
 
 const InputField = forwardRef((props, ref) => {
   const {
+    canBeDisabled,
+    isLeaseTill,
     nextInput,
     label,
     errorText,
@@ -36,8 +38,16 @@ const InputField = forwardRef((props, ref) => {
 
   const [isFocused, setIsFocused] = useState(false);
   const [isHidden, setIsHidden] = useState(fieldType === "password");
+  const [isEditable, setIsEditable] = useState(false);
 
-  // const inputRef = useRef(ref);
+  useEffect(() => {
+    if (fieldType !== "date") {
+      setIsEditable(true);
+    } else {
+      setIsEditable(false);
+    }
+  }, []);
+
   const inputRef = ref || useRef();
   const focusAnim = useRef(new Animated.Value(0)).current;
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
@@ -51,6 +61,18 @@ const InputField = forwardRef((props, ref) => {
     new Date().getMonth(),
     new Date().getDate()
   );
+  let minDate = new Date(
+    new Date().getFullYear() - 100,
+    new Date().getMonth(),
+    new Date().getDate()
+  );
+
+  if (isLeaseTill) {
+    maxDate = null;
+  }
+  if (isLeaseTill) {
+    minDate = new Date();
+  }
 
   if (errorText) {
     color = colors.textRed;
@@ -108,7 +130,7 @@ const InputField = forwardRef((props, ref) => {
         <View style={[styles.textAndImageContainer]}>
           <View style={[styles.inputContainer]}>
             <TextInput
-              editable={fieldType !== "date"}
+              editable={isEditable}
               secureTextEntry={isHidden}
               keyboardType={
                 fieldType === "email-address" ||
@@ -198,6 +220,19 @@ const InputField = forwardRef((props, ref) => {
               />
             </TouchableWithoutFeedback>
           )}
+          {canBeDisabled && (
+            <TouchableWithoutFeedback
+              onPress={() => setIsEditable(!isEditable)}
+            >
+              <Image
+                tintColor={color}
+                source={
+                  isEditable ? icons.hidePasswordIcon : icons.showPasswordIcon
+                }
+                style={styles.icon}
+              />
+            </TouchableWithoutFeedback>
+          )}
           {fieldType === "date" && (
             <Image
               tintColor={color}
@@ -222,7 +257,7 @@ const InputField = forwardRef((props, ref) => {
       )}
       {fieldType === "date" && (
         <DateTimePickerModal
-          minimumDate={new Date(1950, 0, 1)}
+          minimumDate={minDate}
           maximumDate={maxDate}
           isVisible={isPickerOpen}
           mode="date"

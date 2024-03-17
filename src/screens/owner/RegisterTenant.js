@@ -111,7 +111,7 @@ const RegisterTenant = ({ navigation }) => {
               Register Tenant
             </Text>
 
-            <View style={[styles.bodyContainer, { marginBottom: 40 }]}>
+            <View style={[styles.bodyContainer, { marginBottom: 20 }]}>
               <InputField
                 borderRadius={10}
                 label="Rent Amount"
@@ -136,6 +136,8 @@ const RegisterTenant = ({ navigation }) => {
                 ref={securityAmountRef}
               />
               <InputField
+                isLeaseTill={true}
+                fieldType="date"
                 borderRadius={10}
                 label="Lease Till"
                 value={values.leaseTill}
@@ -159,11 +161,13 @@ const RegisterTenant = ({ navigation }) => {
                 nextInput={yearlyIncreaseRef}
                 ref={evictionPeriodRef}
                 hintTexts={{
-                  english: "english text placeholder",
-                  urdu: "urdu text placeholder",
+                  english:
+                    "Eviction period refers to the amount of time notice must be given before a tenant is required to vacate the property. For example, you can set it to 30 days or 60 days depending on your local laws and agreements.",
+                  urdu: "خارجی مدت وقت اس وقت کا حتمی وقت ہے جب کرایہ دار کو جائیداد خالی کرنے کا حکم دیا جاتا ہے۔ مثال کے طور پر، آپ اسے 30 دن یا 60 دن کر سکتے ہیں، جو آپ کے مقامی قوانین اور معاہدوں پر منحصر ہوتا ہے۔",
                 }}
               />
               <InputFieldWithHint
+                canBeDisabled={true}
                 borderRadius={10}
                 label="Yearly Increase"
                 value={values.yearlyIncrease}
@@ -175,8 +179,9 @@ const RegisterTenant = ({ navigation }) => {
                 ref={yearlyIncreaseRef}
                 nextInput={lateRentFineRef}
                 hintTexts={{
-                  english: "english text placeholder",
-                  urdu: "urdu text placeholder",
+                  english:
+                    "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
+                  urdu: "سالانہ اضافہ وقت کی فی صد میں اضافہ کا مطلب ہے جس سے کرایہ ہر سال بڑھایا جا سکتا ہے۔ مثال کے طور پر، آپ اسے 3 فی صد پر مقرر کر سکتے ہیں تاکہ کرایہ ہر سال 3 فی صد بڑھایا جا سکے۔",
                 }}
               />
               <DropDownPicker
@@ -196,6 +201,7 @@ const RegisterTenant = ({ navigation }) => {
               <View style={{ height: 25 }} />
 
               <InputFieldWithHint
+                canBeDisabled={true}
                 borderRadius={10}
                 label="Late Rent Fine"
                 value={values.lateRentFine}
@@ -207,8 +213,9 @@ const RegisterTenant = ({ navigation }) => {
                 nextInput={tenantContactRef}
                 ref={lateRentFineRef}
                 hintTexts={{
-                  english: "english text placeholder",
-                  urdu: "urdu text placeholder",
+                  english:
+                    "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to $50 to be charged if the rent is not paid within 5 days of the due date.",
+                  urdu: "دیر سے ادا کرایہ جرمانہ وہ اضافی فیس ہے جو کرایہ کی ادائیگی وقت پر نہیں کی جاتی ہے۔ مثال کے طور پر، آپ اسے 5 دن کی حد سے زائد دیر کے لئے ادا نہ ہونے پر 50 ڈالر مقرر کرسکتے ہیں۔",
                 }}
               />
               <InputField

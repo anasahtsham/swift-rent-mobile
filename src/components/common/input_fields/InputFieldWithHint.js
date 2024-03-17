@@ -10,6 +10,7 @@ import InputField from "./InputField";
 const InputFieldWithHint = React.forwardRef(
   (
     {
+      canBeDisabled,
       borderRadius,
       textFieldIcon,
       fieldType,
@@ -38,6 +39,7 @@ const InputFieldWithHint = React.forwardRef(
         }}
       >
         <InputField
+          canBeDisabled={canBeDisabled}
           returnKeyType={returnKeyType}
           ref={inputRef}
           nextInput={nextInput}
