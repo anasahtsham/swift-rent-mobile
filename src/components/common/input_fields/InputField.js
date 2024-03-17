@@ -88,17 +88,28 @@ const InputField = forwardRef((props, ref) => {
     setIsFocused(false);
   };
 
+  const [dateSet, setDateSet] = useState(false);
+
   const handleConfirm = (date) => {
     let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
       date.getMonth() + 1
     ).padStart(2, "0")}-${date.getFullYear()}`;
     hideDatePicker();
     setSelectedDate(date);
+    setDateSet(true);
 
     handleChange({ target: { name: "date", value: formatted } });
   };
 
   const [isEditable, setIsEditable] = useState(false);
+
+  const handleOnSubmitEditing = () => {
+    if (fieldType === "date") {
+      showDatePicker();
+    } else {
+      onSubmitEditing();
+    }
+  };
 
   return (
     <View style={[styles.mainContainer, { height: 65 }]}>
@@ -124,7 +135,11 @@ const InputField = forwardRef((props, ref) => {
           <View style={[styles.inputContainer]}>
             <TextInput
               editable={
-                canBeDisabled ? isEditable : fieldType === "date" ? false : true
+                fieldType === "date"
+                  ? !dateSet
+                  : canBeDisabled
+                  ? isEditable
+                  : true
               }
               secureTextEntry={isHidden}
               keyboardType={
@@ -142,7 +157,7 @@ const InputField = forwardRef((props, ref) => {
                 },
               ]}
               ref={inputRef}
-              onSubmitEditing={onSubmitEditing}
+              onSubmitEditing={handleOnSubmitEditing}
               value={value}
               onBlur={(event) => {
                 setIsFocused(false);
@@ -150,6 +165,9 @@ const InputField = forwardRef((props, ref) => {
               }}
               onFocus={(event) => {
                 setIsFocused(true);
+                if (fieldType === "date") {
+                  showDatePicker();
+                }
                 onFocus?.(event);
               }}
               onChangeText={handleChange}
