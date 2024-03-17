@@ -22,7 +22,7 @@ import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/Vali
 import ViewMaintenanceAndComplainsHeader from "./header/ViewMaintenanceAndComplainsHeader";
 import InputField from "./input_fields/InputField";
 
-const ViewMaintenanceAndComplains = ({ route, ...props }) => {
+const ViewMaintenanceAndComplains = ({ route }) => {
   const colors = useColors();
   const navigation = useNavigation();
   const headerTitle = route.params.headerTitle;
