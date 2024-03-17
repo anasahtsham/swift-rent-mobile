@@ -135,19 +135,16 @@ const ResidentialHome = ({ navigation }) => {
   }, []);
 
   const onSubAreaOpen = useCallback(() => {
-    setOpenCity(false);
     setOpenPropertyType(false);
     setOpenPropertySubType(false);
   }, []);
 
   const onPropertyTypeOpen = useCallback(() => {
-    setOpenCity(false);
     setOpenSubArea(false);
     setOpenPropertySubType(false);
   }, []);
 
   const onPropertySubTypeOpen = useCallback(() => {
-    setOpenCity(false);
     setOpenSubArea(false);
     setOpenPropertyType(false);
   }, []);
@@ -175,14 +172,8 @@ const ResidentialHome = ({ navigation }) => {
       validationSchema={addPropertySchema}
       onSubmit={(values) => {
         // check if all dropdowns are set
-        if (
-          !!valueCity &&
-          !!valueSubArea &&
-          !!valuePropertyType &&
-          !!valuePropertySubType
-        ) {
+        if (!!valueSubArea && !!valuePropertyType && !!valuePropertySubType) {
           navigation.navigate("Add Property", {
-            city: valueCity,
             subArea: valueSubArea,
             street: values.street,
             building: values.building,
@@ -205,7 +196,6 @@ const ResidentialHome = ({ navigation }) => {
         <KeyboardAvoidingView style={{ flex: 1 }}>
           <TouchableWithoutFeedback
             onPress={() => {
-              setOpenCity(false);
               setOpenSubArea(false);
               setOpenPropertyType(false);
               setOpenPropertySubType(false);
@@ -233,21 +223,86 @@ const ResidentialHome = ({ navigation }) => {
                 Residential Home
               </Text>
               <View style={{ width: "80%" }}>
-                <InputField
-                  borderRadius={7}
-                  label="Area sq. ft."
-                  fieldType="numeric"
-                  value={values.area}
-                  handleChange={handleChange("area")}
-                  handleBlur={handleBlur("area")}
-                  errorText={touched.street ? errors.street : ""}
-                  onPressIn={() => {
-                    setOpenCity(false);
-                    setOpenSubArea(false);
-                    setOpenPropertyType(false);
-                    setOpenPropertySubType(false);
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginBottom: -35,
                   }}
-                />
+                >
+                  <View style={{ flex: 1, marginRight: 10 }}>
+                    <InputField
+                      borderRadius={7}
+                      label="Area sq. ft."
+                      fieldType="numeric"
+                      value={values.area}
+                      handleChange={handleChange("area")}
+                      handleBlur={handleBlur("area")}
+                      errorText={touched.street ? errors.street : ""}
+                      onPressIn={() => {
+                        setOpenSubArea(false);
+                        setOpenPropertyType(false);
+                        setOpenPropertySubType(false);
+                      }}
+                    />
+                  </View>
+
+                  <View style={{ flex: 1, marginLeft: 10 }}>
+                    <InputField
+                      borderRadius={7}
+                      label="Portion #"
+                      fieldType="numeric"
+                      value={values.street}
+                      handleChange={handleChange("street")}
+                      handleBlur={handleBlur("street")}
+                      errorText={touched.street ? errors.street : ""}
+                      onPressIn={() => {
+                        setOpenSubArea(false);
+                        setOpenPropertyType(false);
+                        setOpenPropertySubType(false);
+                      }}
+                    />
+                  </View>
+                </View>
+
+                <View style={styles.dropdownContainer}>
+                  <DropDownPicker
+                    {...dropdownStyles}
+                    theme={colors.dropDownTheme}
+                    zIndex={3000}
+                    zIndexInverse={2000}
+                    open={openPropertyType}
+                    value={valuePropertyType}
+                    items={itemsPropertyType}
+                    onOpen={onPropertyTypeOpen}
+                    setOpen={setOpenPropertyType}
+                    setValue={setValuePropertyType}
+                    setItems={setItemsPropertyType}
+                    placeholder="Property Type"
+                  />
+                </View>
+                <View style={styles.dropdownContainer}>
+                  <DropDownPicker
+                    {...dropdownStyles}
+                    searchable={true}
+                    searchPlaceholder="Search Sub Area"
+                    listParentLabelStyle={{
+                      fontWeight: "bold",
+                    }}
+                    categorySelectable={false}
+                    theme={colors.dropDownTheme}
+                    zIndex={2500}
+                    zIndexInverse={3500}
+                    open={openSubArea}
+                    value={valueSubArea}
+                    items={itemsSubArea}
+                    onOpen={onSubAreaOpen}
+                    setOpen={setOpenSubArea}
+                    setValue={setValueSubArea}
+                    setItems={setItemsSubArea}
+                    placeholder="Sub Area"
+                  />
+                </View>
                 <View
                   style={{
                     flexDirection: "row",
@@ -257,6 +312,9 @@ const ResidentialHome = ({ navigation }) => {
                   <View style={{ flex: 1, marginRight: 10, marginBottom: 20 }}>
                     <DropDownPicker
                       {...dropdownStyles}
+                      theme={colors.dropDownTheme}
+                      zIndex={2000}
+                      zIndexInverse={3000}
                       open={openBedrooms}
                       value={valueBedrooms}
                       items={itemsBedrooms}
@@ -270,6 +328,9 @@ const ResidentialHome = ({ navigation }) => {
                   <View style={{ flex: 1, marginLeft: 10, marginBottom: 20 }}>
                     <DropDownPicker
                       {...dropdownStyles}
+                      theme={colors.dropDownTheme}
+                      zIndex={2000}
+                      zIndexInverse={3000}
                       open={openToilets}
                       value={valueToilets}
                       items={itemsToilets}
@@ -289,6 +350,9 @@ const ResidentialHome = ({ navigation }) => {
                   <View style={{ flex: 1, marginRight: 10, marginBottom: 20 }}>
                     <DropDownPicker
                       {...dropdownStyles}
+                      theme={colors.dropDownTheme}
+                      zIndex={1500}
+                      zIndexInverse={3000}
                       open={openWaterAvailability}
                       value={valueWaterAvailability}
                       items={itemsWaterAvailability}
@@ -302,6 +366,9 @@ const ResidentialHome = ({ navigation }) => {
                   <View style={{ flex: 1, marginLeft: 10, marginBottom: 20 }}>
                     <DropDownPicker
                       {...dropdownStyles}
+                      theme={colors.dropDownTheme}
+                      zIndex={1500}
+                      zIndexInverse={2500}
                       open={openKitchen}
                       value={valueKitchen}
                       items={itemsKitchen}
@@ -312,28 +379,6 @@ const ResidentialHome = ({ navigation }) => {
                     />
                   </View>
                 </View>
-                <View style={styles.dropdownContainer}>
-                  <DropDownPicker
-                    {...dropdownStyles}
-                    searchable={true}
-                    searchPlaceholder="Search Sub Area"
-                    listParentLabelStyle={{
-                      fontWeight: "bold",
-                    }}
-                    categorySelectable={false}
-                    theme={colors.dropDownTheme}
-                    zIndex={3000}
-                    zIndexInverse={2000}
-                    open={openSubArea}
-                    value={valueSubArea}
-                    items={itemsSubArea}
-                    onOpen={onSubAreaOpen}
-                    setOpen={setOpenSubArea}
-                    setValue={setValueSubArea}
-                    setItems={setItemsSubArea}
-                    placeholder="Sub Area"
-                  />
-                </View>
 
                 <View
                   style={[
@@ -342,61 +387,8 @@ const ResidentialHome = ({ navigation }) => {
                       height: 80,
                     },
                   ]}
-                >
-                  <View style={{ flex: 1 }}>
-                    <InputField
-                      borderRadius={7}
-                      label="Portion#"
-                      fieldType="numeric"
-                      value={values.street}
-                      handleChange={handleChange("street")}
-                      handleBlur={handleBlur("street")}
-                      errorText={touched.street ? errors.street : ""}
-                      onPressIn={() => {
-                        setOpenCity(false);
-                        setOpenSubArea(false);
-                        setOpenPropertyType(false);
-                        setOpenPropertySubType(false);
-                      }}
-                    />
-                  </View>
-                  <View style={{ width: 10 }} />
+                ></View>
 
-                  <View style={{ flex: 1 }}>
-                    <InputField
-                      borderRadius={7}
-                      label="Portion#"
-                      fieldType="numeric"
-                      value={values.building}
-                      handleChange={handleChange("building")}
-                      handleBlur={handleBlur("building")}
-                      errorText={touched.building ? errors.building : ""}
-                      onPressIn={() => {
-                        setOpenCity(false);
-                        setOpenSubArea(false);
-                        setOpenPropertyType(false);
-                        setOpenPropertySubType(false);
-                      }}
-                    />
-                  </View>
-                </View>
-
-                <View style={styles.dropdownContainer}>
-                  <DropDownPicker
-                    {...dropdownStyles}
-                    theme={colors.dropDownTheme}
-                    zIndex={2000}
-                    zIndexInverse={3000}
-                    open={openPropertyType}
-                    value={valuePropertyType}
-                    items={itemsPropertyType}
-                    onOpen={onPropertyTypeOpen}
-                    setOpen={setOpenPropertyType}
-                    setValue={setValuePropertyType}
-                    setItems={setItemsPropertyType}
-                    placeholder="Property Type"
-                  />
-                </View>
                 {!!valuePropertyType && (
                   <View style={styles.dropdownContainer}>
                     <DropDownPicker
