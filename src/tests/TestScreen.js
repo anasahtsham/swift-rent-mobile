@@ -2,10 +2,25 @@ import { Formik } from "formik";
 import React from "react";
 import { Button, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as Yup from "yup";
 import InputField from "../components/common/input_fields/InputField";
+import InputFieldWithHint from "../components/common/input_fields/InputFieldWithHint";
 import { icons } from "../helpers/ImageImports";
 import { setColorsToDark, useColors } from "../helpers/SetColors";
-import { validationSchema } from "./../helpers/validation/ValidationSchemas";
+
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required("First Name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
+  phoneNumber: Yup.string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(10, "Must be exactly 10 digits")
+    .max(10, "Must be exactly 10 digits")
+    .required("Phone number is required"),
+  date: Yup.date().required("Date is required"),
+});
 
 const TestScreen = () => {
   setColorsToDark();
@@ -54,18 +69,17 @@ const TestScreen = () => {
         >
           <View
             style={{
-              width: "90%",
+              width: "80%",
             }}
           >
-            <InputField
-              hintText="Enter your first name"
-              textFieldIcon={icons.userIcon}
+            <InputFieldWithHint
               fieldType="name"
               label="First Name"
               value={values.firstName}
               handleChange={handleChange("firstName")}
               handleBlur={handleBlur("firstName")}
               errorText={touched.firstName ? errors.firstName : ""}
+              hintText="This is the contents of the popover"
             />
             <InputField
               textFieldIcon={icons.emailIcon}

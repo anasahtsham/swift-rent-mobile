@@ -28,10 +28,10 @@ import SetUpPassword from "./src/screens/authentication/SetUpPassword";
 import WhoAreYou from "./src/screens/authentication/WhoAreYou";
 import OwnerHiring from "./src/screens/owner/OwnerHiring";
 import RatingScreen from "./src/screens/owner/RatingScreen";
+import ResidentialHome from "./src/screens/owner/ResidentialHome";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import ResidentialHome from "./src/screens/owner/ResidentialHome";
 
 const Stack = createStackNavigator();
 
