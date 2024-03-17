@@ -43,7 +43,7 @@ const AlertsHeader = (props) => {
     >
       <View
         style={[
-          styles.userInfoContainer,
+          styles.notificationsContainer,
           {
             borderColor: colors.borderBlue,
             backgroundColor: colors.headerAndFooterBackground,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     borderRadius: 10,
   },
-  userInfoContainer: {
+  notificationsContainer: {
     borderRadius: 10,
     borderWidth: 4,
     padding: 10,

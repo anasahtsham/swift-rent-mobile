@@ -5,12 +5,20 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import { opacityValueForButton } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import { complainsData } from "./../../helpers/data/ComplainsListData";
-import { maintenanceData } from "./../../helpers/data/MaintenanceData";
+import {
+  complainsData,
+  tenantComplainsData,
+} from "./../../helpers/data/ComplainsListData";
+import {
+  maintenanceData,
+  tenantMaintenanceData,
+} from "./../../helpers/data/MaintenanceData";
 import { MaintenanceComplainsListButton } from "./buttons/MaintenanceComplainsListButton";
 
 const MaintenanceComplainsList = ({ navigation, route }) => {
@@ -22,8 +30,14 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
   if (header === "Maintenance") {
     dataToBeRendered = maintenanceData;
   }
+  if (header === "My Requests") {
+    dataToBeRendered = tenantMaintenanceData;
+  }
   if (header === "Complains") {
     dataToBeRendered = complainsData;
+  }
+  if (header === "My Complains") {
+    dataToBeRendered = tenantComplainsData;
   }
 
   useEffect(() => {
@@ -64,6 +78,76 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
+      {header === "My Requests" && (
+        <View
+          style={[
+            styles.header,
+            { backgroundColor: colors.headerAndFooterBackground },
+          ]}
+        >
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Problem Form", {
+                headerText: "Submit Maintenance Request",
+              })
+            }
+            activeOpacity={opacityValueForButton}
+            style={[
+              styles.blueBorderCard,
+              {
+                borderColor: colors.borderBlue,
+                backgroundColor: colors.headerAndFooterBackground,
+              },
+            ]}
+          >
+            <Text
+              style={{
+                color: colors.textPrimary,
+                fontSize: FontSizes.medium,
+                textAlign: "center",
+              }}
+            >
+              + Request Maintenance
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {header === "My Complains" && (
+        <View
+          style={[
+            styles.header,
+            { backgroundColor: colors.headerAndFooterBackground },
+          ]}
+        >
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Problem Form", {
+                headerText: "Submit Complain",
+              })
+            }
+            activeOpacity={opacityValueForButton}
+            style={[
+              styles.blueBorderCard,
+              {
+                borderColor: colors.borderBlue,
+                backgroundColor: colors.headerAndFooterBackground,
+              },
+            ]}
+          >
+            <Text
+              style={{
+                color: colors.textPrimary,
+                fontSize: FontSizes.medium,
+                textAlign: "center",
+              }}
+            >
+              + New Complain
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
       <View
         style={{ paddingTop: 20, paddingHorizontal: 20, paddingBottom: 10 }}
       >
@@ -91,6 +175,20 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
+  header: {
+    paddingVertical: 10,
+    paddingBottom: 15,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    alignItems: "center",
+  },
+  blueBorderCard: {
+    borderRadius: 10,
+    borderWidth: 4,
+    padding: 10,
+    width: "90%",
+    elevation: 10,
+  },
   fontBold: { fontFamily: "OpenSansBold" },
   fontRegular: { fontFamily: "OpenSansRegular" },
   container: {
