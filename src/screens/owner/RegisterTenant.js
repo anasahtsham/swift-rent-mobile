@@ -1,28 +1,67 @@
 import { Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import InputField from "../../components/common/input_fields/InputField";
 import { buttonWidthSmall } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import { useLanguages } from "../../helpers/SetLanguages";
 import { forgotPasswordSchema } from "../../helpers/validation/ValidationSchemas";
+import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
 
 const RegisterTenant = ({ navigation }) => {
   const colors = useColors();
-  const languages = useLanguages();
+
+  const dropdownStyles = {
+    style: {
+      backgroundColor: colors.buttonBackgroundPrimary,
+      borderColor: colors.buttonBorderPrimary,
+      borderWidth: 1,
+    },
+    textStyle: {
+      fontFamily: "OpenSansRegular",
+      fontSize: FontSizes.small,
+      color: colors.textPrimary,
+    },
+    dropDownContainerStyle: {
+      backgroundColor: colors.backgroundPrimary,
+      borderColor: colors.buttonBorderPrimary,
+      borderWidth: 1,
+    },
+    theme: colors.dropDownTheme,
+    itemSeparator: true,
+  };
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
-  const rentAmountRef = React.useRef();
   const securityAmountRef = React.useRef();
   const leaseTillRef = React.useRef();
   const evictionPeriodRef = React.useRef();
   const yearlyIncreaseRef = React.useRef();
-  const rentDueDateRef = React.useRef();
   const lateRentFineRef = React.useRef();
   const tenantContactRef = React.useRef();
+
+  const [openRentDue, setOpenRentDue] = useState(false);
+  const [valueRentDue, setValueRentDue] = useState(null);
+  const [itemsRentDue, setItemsRentDue] = useState([
+    { label: "5", value: "5" },
+    { label: "6", value: "6" },
+    { label: "7", value: "7" },
+    { label: "8", value: "8" },
+    { label: "9", value: "9" },
+    { label: "10", value: "10" },
+    { label: "11", value: "11" },
+    { label: "12", value: "12" },
+    { label: "13", value: "13" },
+    { label: "14", value: "14" },
+    { label: "15", value: "15" },
+    { label: "16", value: "16" },
+    { label: "17", value: "17" },
+    { label: "18", value: "18" },
+    { label: "19", value: "19" },
+    { label: "20", value: "20" },
+  ]);
 
   return (
     <Formik
@@ -105,10 +144,10 @@ const RegisterTenant = ({ navigation }) => {
                 error={errors.leaseTill}
                 touched={touched.leaseTill}
                 returnKeyType="next"
-                onSubmitEditing={() => evictionPeriodRef.current.focus()}
+                onSubmitEditing={() => evictionPeriodRef.current?.focus()}
                 ref={leaseTillRef}
               />
-              <InputField
+              <InputFieldWithHint
                 borderRadius={10}
                 label="Eviction Period"
                 value={values.evictionPeriod}
@@ -117,10 +156,14 @@ const RegisterTenant = ({ navigation }) => {
                 error={errors.evictionPeriod}
                 touched={touched.evictionPeriod}
                 returnKeyType="next"
-                onSubmitEditing={() => yearlyIncreaseRef.current.focus()}
+                onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
                 ref={evictionPeriodRef}
+                hintTexts={{
+                  english: "english text placeholder",
+                  urdu: "urdu text placeholder",
+                }}
               />
-              <InputField
+              <InputFieldWithHint
                 borderRadius={10}
                 label="Yearly Increase"
                 value={values.yearlyIncrease}
@@ -129,22 +172,30 @@ const RegisterTenant = ({ navigation }) => {
                 error={errors.yearlyIncrease}
                 touched={touched.yearlyIncrease}
                 returnKeyType="next"
-                onSubmitEditing={() => rentDueDateRef.current.focus()}
                 ref={yearlyIncreaseRef}
-              />
-              <InputField
-                borderRadius={10}
-                label="Rent Due Date"
-                value={values.rentDueDate}
-                onChangeText={handleChange("rentDueDate")}
-                onBlur={handleBlur("rentDueDate")}
-                error={errors.rentDueDate}
-                touched={touched.rentDueDate}
-                returnKeyType="next"
                 onSubmitEditing={() => lateRentFineRef.current.focus()}
-                ref={rentDueDateRef}
+                hintTexts={{
+                  english: "english text placeholder",
+                  urdu: "urdu text placeholder",
+                }}
               />
-              <InputField
+              <DropDownPicker
+                {...dropdownStyles}
+                listMode="SCROLLVIEW"
+                theme={colors.dropDownTheme}
+                zIndex={4000}
+                open={openRentDue}
+                value={valueRentDue}
+                items={itemsRentDue}
+                setOpen={setOpenRentDue}
+                setValue={setValueRentDue}
+                setItems={setItemsRentDue}
+                placeholder="Rent Due Date"
+              />
+
+              <View style={{ height: 25 }} />
+
+              <InputFieldWithHint
                 borderRadius={10}
                 label="Late Rent Fine"
                 value={values.lateRentFine}
@@ -155,6 +206,10 @@ const RegisterTenant = ({ navigation }) => {
                 returnKeyType="next"
                 onSubmitEditing={() => tenantContactRef.current.focus()}
                 ref={lateRentFineRef}
+                hintTexts={{
+                  english: "english text placeholder",
+                  urdu: "urdu text placeholder",
+                }}
               />
               <InputField
                 borderRadius={10}
@@ -196,7 +251,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
     width: "80%",
   },
 });

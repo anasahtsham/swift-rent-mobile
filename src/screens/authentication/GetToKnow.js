@@ -105,10 +105,7 @@ const GetToKnow = ({ navigation, route }) => {
                   handleChange={handleChange("lastName")}
                   handleBlur={handleBlur("lastName")}
                   errorText={touched.lastName ? errors.lastName : ""} // If the user has touched the input field, display the error message
-                  onSubmitEditing={() => {
-                    dateRef.current.showDatePicker();
-                  }}
-                  returnKeyType="next"
+                  onSubmitEditing={handleSubmit}
                 />
                 <InputField
                   ref={dateRef}

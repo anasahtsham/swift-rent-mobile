@@ -68,7 +68,7 @@ const LoginScreen = ({ navigation }) => {
               </Text>
             </View>
 
-            <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
+            <View style={[styles.textInputsContainer]}>
               <InputField
                 ref={emailOrPhoneRef}
                 textFieldIcon={icons.emailIcon}
@@ -134,7 +134,8 @@ const styles = StyleSheet.create({
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
     alignItems: "center",
-    justifyContent: "space-between ",
+    justifyContent: "space-evenly",
+    height: "30%",
     width: "90%",
   },
 });

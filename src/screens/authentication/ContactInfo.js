@@ -146,6 +146,8 @@ const styles = StyleSheet.create({
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
     alignItems: "center",
+    justifyContent: "space-evenly",
+    height: "35%",
     width: "90%",
   },
   buttonsContainer: {

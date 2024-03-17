@@ -201,7 +201,6 @@ const AddProperty = ({ navigation }) => {
                 <View style={styles.dropdownContainer}>
                   <DropDownPicker
                     {...dropdownStyles}
-                    searchPlaceholderTextColor={colors.textGreen}
                     theme={colors.dropDownTheme}
                     zIndex={4000}
                     zIndexInverse={1000}
