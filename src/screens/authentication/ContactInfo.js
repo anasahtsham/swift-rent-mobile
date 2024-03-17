@@ -5,12 +5,12 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
+import InputField from "../../components/common/input_fields/InputField";
 import { buttonWidthSmaller } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { contactInfoSchema } from "../../helpers/validation/ValidationSchemas";
-import InputField from "./../../components/common/input_fields/InputField";
 
 const ContactInfo = ({ navigation, route }) => {
   const { userType, firstName, lastName, date } = route.params;

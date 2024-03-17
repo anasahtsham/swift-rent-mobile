@@ -1,7 +1,7 @@
-import ManagerAlerts from "../screens/manager_screens/ManagerAlerts";
-import ManagerAnalytics from "../screens/manager_screens/ManagerAnalytics";
-import ManagerProfile from "../screens/manager_screens/ManagerProfile";
-import ManagerProperties from "../screens/manager_screens/ManagerProperties";
+import ManagerAlerts from "../screens/manager/ManagerAlerts";
+import ManagerAnalytics from "../screens/manager/ManagerAnalytics";
+import ManagerProfile from "../screens/manager/ManagerProfile";
+import ManagerProperties from "../screens/manager/ManagerProperties";
 import TabNavigator from "./TabNavigator";
 
 // This is the navigation bar that is used when the user type is manager

@@ -1,7 +1,7 @@
-import OwnerAlerts from "../screens/owner_screens/OwnerAlerts";
-import OwnerAnalytics from "../screens/owner_screens/OwnerAnalytics";
-import OwnerProfile from "../screens/owner_screens/OwnerProfile";
-import OwnerProperties from "../screens/owner_screens/OwnerProperties";
+import OwnerAlerts from "../screens/owner/OwnerAlerts";
+import OwnerAnalytics from "../screens/owner/OwnerAnalytics";
+import OwnerProfile from "../screens/owner/OwnerProfile";
+import OwnerProperties from "../screens/owner/OwnerProperties";
 import TabNavigator from "./TabNavigator";
 
 // This is the navigation bar that is used when the user type is owner
