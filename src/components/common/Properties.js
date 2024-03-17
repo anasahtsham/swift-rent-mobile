@@ -38,7 +38,7 @@ const Properties = (props) => {
     <View
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <PropertiesHeader colors={colors} />
+      <PropertiesHeader isManager={props.isManager} colors={colors} />
       <View
         style={{
           paddingTop: 20,
@@ -57,13 +57,15 @@ const Properties = (props) => {
         >
           {props.isTenant ? "My Rentals" : "My Properties"}
         </Text>
-        <ButtonGrey
-          width={buttonWidthSmall}
-          fontSize={14}
-          buttonText={props.isTenant ? "Rental Requests" : "+ Add a Property"}
-          destinationScreen="Add Property"
-          navigation={navigation}
-        />
+        {!props.isManager && (
+          <ButtonGrey
+            width={buttonWidthSmall}
+            fontSize={14}
+            buttonText={props.isTenant ? "Rental Requests" : "+ Add a Property"}
+            destinationScreen="Add Property"
+            navigation={navigation}
+          />
+        )}
       </View>
       <FlatList
         data={dataToRender}

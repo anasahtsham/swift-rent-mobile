@@ -42,25 +42,37 @@ export const PropertiesButton = (props) => {
           {props.city}
         </Text>
         {!!props.dueDate && (
-          <View style={{ alignItems: "center", flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              PKR{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                { color: colors.textPrimary, marginRight: 80 },
-              ]}
+          <>
+            <View
+              style={{
+                flexDirection: "row",
+              }}
             >
-              {formatNumber(props.rentAmount)}
-            </Text>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Due Date{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.dueDate}
-            </Text>
-          </View>
+              <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+                Rent:{" "}
+              </Text>
+              <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+                {formatNumber(props.rentAmount)}
+              </Text>
+              <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+                {" "}
+                PKR
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 10,
+              }}
+            >
+              <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+                Due Date:{" "}
+              </Text>
+              <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+                {props.dueDate}
+              </Text>
+            </View>
+          </>
         )}
         {!props.dueDate && (
           <View
