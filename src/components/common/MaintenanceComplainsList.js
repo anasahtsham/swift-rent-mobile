@@ -11,14 +11,8 @@ import {
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import {
-  complainsData,
-  tenantComplainsData,
-} from "./../../helpers/data/ComplainsListData";
-import {
-  maintenanceData,
-  tenantMaintenanceData,
-} from "./../../helpers/data/MaintenanceData";
+import { complainsData } from "./../../helpers/data/ComplainsListData";
+import { maintenanceData } from "./../../helpers/data/MaintenanceData";
 import { MaintenanceComplainsListButton } from "./buttons/MaintenanceComplainsListButton";
 
 const MaintenanceComplainsList = ({ navigation, route }) => {
@@ -27,17 +21,11 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
 
   let dataToBeRendered = [];
 
-  if (header === "Maintenance") {
+  if (header === "Maintenance" || header === "My Requests") {
     dataToBeRendered = maintenanceData;
   }
-  if (header === "My Requests") {
-    dataToBeRendered = tenantMaintenanceData;
-  }
-  if (header === "Complains") {
+  if (header === "Complains" || header === "My Complains") {
     dataToBeRendered = complainsData;
-  }
-  if (header === "My Complains") {
-    dataToBeRendered = tenantComplainsData;
   }
 
   useEffect(() => {
