@@ -34,15 +34,19 @@ const Properties = (props) => {
     />
   );
 
+  let headerText = "My Properties";
+  if (props.isTenant) {
+    headerText = "My Rentals";
+  }
+  if (props.isManager) {
+    headerText = "Managed by Me";
+  }
+
   return (
     <View
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <PropertiesHeader
-        isTenant={props.isTenant}
-        isManager={props.isManager}
-        colors={colors}
-      />
+      <PropertiesHeader isTenant={props.isTenant} colors={colors} />
       <View
         style={{
           paddingTop: 20,
@@ -59,7 +63,7 @@ const Properties = (props) => {
             color: colors.textWhite,
           }}
         >
-          {props.isTenant ? "My Rentals" : "My Properties"}
+          {headerText}
         </Text>
         {!props.isManager && (
           <ButtonGrey

@@ -23,6 +23,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const TestScreen = () => {
+  const hintTexts = {
+    english: "This is the contents of the popover",
+    spanish: "Esto es el contenido del popover",
+  };
   setColorsToDark();
   const colors = useColors();
   return (
@@ -79,7 +83,7 @@ const TestScreen = () => {
               handleChange={handleChange("firstName")}
               handleBlur={handleBlur("firstName")}
               errorText={touched.firstName ? errors.firstName : ""}
-              hintText="This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover This is the contents of the popover "
+              hintTexts={hintTexts}
             />
             <InputField
               textFieldIcon={icons.emailIcon}

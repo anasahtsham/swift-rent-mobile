@@ -20,8 +20,8 @@ import {
   subSectorData,
 } from "../../helpers/data/PropertyInfoData";
 import { addPropertySchema } from "../../helpers/validation/ValidationSchemas";
-import ButtonGrey from "./buttons/ButtonGrey";
-import InputField from "./input_fields/InputField";
+import ButtonGrey from "../common/buttons/ButtonGrey";
+import InputField from "../common/input_fields/InputField";
 
 const AddProperty = ({ navigation }) => {
   const colors = useColors();

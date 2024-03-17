@@ -13,86 +13,57 @@ const PropertiesHeader = (props) => {
         { backgroundColor: colors.headerAndFooterBackground },
       ]}
     >
-      {!props.isManager && (
-        <>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Maintenance Complains List", {
-                header: props.isTenant ? "My Requests" : "Maintenance",
-              });
-            }}
-            activeOpacity={opacityValueForButton}
-            style={[
-              styles.headerCards,
-              {
-                borderColor: colors.borderBlue,
-                backgroundColor: colors.headerAndFooterBackground,
-              },
-            ]}
-          >
-            <Text
-              style={{
-                color: colors.textPrimary,
-                fontSize: FontSizes.medium,
-                textAlign: "center",
-              }}
-            >
-              Maintenance
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Maintenance Complains List", {
-                header: props.isTenant ? "My Complains" : "Complains",
-              })
-            }
-            activeOpacity={opacityValueForButton}
-            style={[
-              styles.headerCards,
-              {
-                borderColor: colors.borderBlue,
-                backgroundColor: colors.headerAndFooterBackground,
-              },
-            ]}
-          >
-            <Text
-              style={{
-                color: colors.textPrimary,
-                fontSize: FontSizes.medium,
-                textAlign: "center",
-              }}
-            >
-              Complains
-            </Text>
-          </TouchableOpacity>
-        </>
-      )}
-
-      {props.isManager && (
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Add Property")}
-          activeOpacity={opacityValueForButton}
-          style={[
-            styles.headerCards,
-            {
-              borderColor: colors.borderBlue,
-              backgroundColor: colors.headerAndFooterBackground,
-              width: "100%",
-            },
-          ]}
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Maintenance Complains List", {
+            header: props.isTenant ? "My Requests" : "Maintenance",
+          });
+        }}
+        activeOpacity={opacityValueForButton}
+        style={[
+          styles.headerCards,
+          {
+            borderColor: colors.borderBlue,
+            backgroundColor: colors.headerAndFooterBackground,
+          },
+        ]}
+      >
+        <Text
+          style={{
+            color: colors.textPrimary,
+            fontSize: FontSizes.medium,
+            textAlign: "center",
+          }}
         >
-          <Text
-            style={{
-              color: colors.textPrimary,
-              fontSize: FontSizes.medium,
-              textAlign: "center",
-            }}
-          >
-            + Add a Property
-          </Text>
-        </TouchableOpacity>
-      )}
+          Maintenance
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("Maintenance Complains List", {
+            header: props.isTenant ? "My Complains" : "Complains",
+          })
+        }
+        activeOpacity={opacityValueForButton}
+        style={[
+          styles.headerCards,
+          {
+            borderColor: colors.borderBlue,
+            backgroundColor: colors.headerAndFooterBackground,
+          },
+        ]}
+      >
+        <Text
+          style={{
+            color: colors.textPrimary,
+            fontSize: FontSizes.medium,
+            textAlign: "center",
+          }}
+        >
+          Complains
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

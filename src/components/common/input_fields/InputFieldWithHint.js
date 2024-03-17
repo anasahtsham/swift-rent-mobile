@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Text, TouchableOpacity, View } from "react-native";
 import Popover, { PopoverPlacement } from "react-native-popover-view";
 import { useColors } from "../../../helpers/SetColors";
@@ -12,9 +12,11 @@ const InputFieldWithHint = ({
   handleChange,
   handleBlur,
   errorText,
-  hintText,
+  hintTexts,
 }) => {
   const colors = useColors();
+  const { english: englishHintText, spanish: spanishHintText } = hintTexts;
+  const [hintText, setHintText] = useState(englishHintText);
   return (
     <View
       style={{
@@ -62,7 +64,16 @@ const InputFieldWithHint = ({
         >
           <View>
             <Text>{hintText}</Text>
-            <Button title="Show in Urdu" />
+            <Button
+              onPress={() =>
+                setHintText(
+                  hintText === englishHintText
+                    ? spanishHintText
+                    : englishHintText
+                )
+              }
+              title="Toggle language"
+            />
           </View>
         </Popover>
       </View>
