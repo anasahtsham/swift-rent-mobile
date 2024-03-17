@@ -158,3 +158,29 @@ export const viewMaintenanceAndComplainsSchema = Yup.object().shape({
     .matches(/^[^\s].*[^\s]$/, "No leading or trailing spaces")
     .matches(/^(?!.*  ).*$/, "No double spaces"),
 });
+
+export const registerTenantSchema = Yup.object().shape({
+  rentAmount: Yup.number()
+    .required("Rent Amount is required")
+    .positive("Rent Amount must be a positive number"),
+  securityAmount: Yup.number()
+    .required("Security Amount is required")
+    .positive("Security Amount must be a positive number"),
+  leaseTill: Yup.date()
+    .required("Lease Till date is required")
+    .min(new Date(), "Lease Till date cannot be in the past"),
+  evictionPeriod: Yup.number()
+    .required("Eviction Period is required")
+    .positive("Eviction Period must be a positive number"),
+  yearlyIncrease: Yup.number()
+    .required("Yearly Increase is required")
+    .positive("Yearly Increase must be a positive number")
+    .max(100, "Yearly Increase cannot be more than 100%"),
+  rentDueDate: Yup.string().required("Rent Due Date is required"),
+  lateRentFine: Yup.number()
+    .required("Late Rent Fine is required")
+    .positive("Late Rent Fine must be a positive number"),
+  tenantContact: Yup.string()
+    .required("Tenant Contact is required")
+    .matches(/^[0-9]+$/, "Tenant Contact must be a valid phone number"),
+});
