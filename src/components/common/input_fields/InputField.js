@@ -88,15 +88,12 @@ const InputField = forwardRef((props, ref) => {
     setIsFocused(false);
   };
 
-  const [dateSet, setDateSet] = useState(false);
-
   const handleConfirm = (date) => {
     let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
       date.getMonth() + 1
     ).padStart(2, "0")}-${date.getFullYear()}`;
     hideDatePicker();
     setSelectedDate(date);
-    setDateSet(true);
 
     handleChange({ target: { name: "date", value: formatted } });
   };
@@ -134,13 +131,7 @@ const InputField = forwardRef((props, ref) => {
         <View style={[styles.textAndImageContainer]}>
           <View style={[styles.inputContainer]}>
             <TextInput
-              editable={
-                fieldType === "date"
-                  ? !dateSet
-                  : canBeDisabled
-                  ? isEditable
-                  : true
-              }
+              editable={canBeDisabled ? isEditable : true}
               secureTextEntry={isHidden}
               keyboardType={
                 fieldType === "email-address" ||

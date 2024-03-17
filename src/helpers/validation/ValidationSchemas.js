@@ -19,7 +19,9 @@ export const getToKnowSchema = Yup.object().shape({
       "First character must be uppercase and the rest lowercase"
     )
     .min(3, "Name must be 3 characters or more"),
-  date: Yup.string().required("Required").matches(/^\S*$/, "No spaces allowed"),
+  date: Yup.date()
+    .typeError("Invalid date format")
+    .required("This Field is required"),
 });
 
 export const contactInfoSchema = Yup.object().shape({
@@ -168,7 +170,9 @@ export const registerTenantSchema = Yup.object().shape({
     .required("This Field is required")
     .matches(/^\S*$/, "No spaces allowed")
     .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9"),
-  leaseTill: Yup.date().required("This Field is required"),
+  leaseTill: Yup.date()
+    .typeError("Invalid date format")
+    .required("This Field is required"),
   evictionPeriod: Yup.string()
     .required("This Field is required")
     .matches(/^\S*$/, "No spaces allowed")
