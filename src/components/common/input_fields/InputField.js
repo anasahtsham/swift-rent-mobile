@@ -17,6 +17,7 @@ import { useColors } from "../../../helpers/SetColors";
 
 const InputField = forwardRef((props, ref) => {
   const {
+    nextInput,
     label,
     errorText,
     value,
@@ -124,6 +125,7 @@ const InputField = forwardRef((props, ref) => {
                 },
               ]}
               ref={inputRef}
+              onSubmitEditing={() => nextInput?.current?.focus()}
               value={value}
               onBlur={(event) => {
                 setIsFocused(false);

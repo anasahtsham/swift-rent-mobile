@@ -156,7 +156,7 @@ const RegisterTenant = ({ navigation }) => {
                 error={errors.evictionPeriod}
                 touched={touched.evictionPeriod}
                 returnKeyType="next"
-                onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
+                nextInput={yearlyIncreaseRef}
                 ref={evictionPeriodRef}
                 hintTexts={{
                   english: "english text placeholder",
@@ -173,7 +173,7 @@ const RegisterTenant = ({ navigation }) => {
                 touched={touched.yearlyIncrease}
                 returnKeyType="next"
                 ref={yearlyIncreaseRef}
-                onSubmitEditing={() => lateRentFineRef.current.focus()}
+                nextInput={lateRentFineRef}
                 hintTexts={{
                   english: "english text placeholder",
                   urdu: "urdu text placeholder",
@@ -204,7 +204,7 @@ const RegisterTenant = ({ navigation }) => {
                 error={errors.lateRentFine}
                 touched={touched.lateRentFine}
                 returnKeyType="next"
-                onSubmitEditing={() => tenantContactRef.current.focus()}
+                nextInput={tenantContactRef}
                 ref={lateRentFineRef}
                 hintTexts={{
                   english: "english text placeholder",

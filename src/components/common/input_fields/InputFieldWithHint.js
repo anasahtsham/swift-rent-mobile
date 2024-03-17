@@ -19,6 +19,7 @@ const InputFieldWithHint = React.forwardRef(
       handleBlur,
       errorText,
       hintTexts,
+      nextInput,
     },
     ref
   ) => {
@@ -37,6 +38,7 @@ const InputFieldWithHint = React.forwardRef(
       >
         <InputField
           ref={inputRef}
+          nextInput={nextInput}
           borderRadius={borderRadius}
           textFieldIcon={textFieldIcon}
           fieldType={fieldType}
