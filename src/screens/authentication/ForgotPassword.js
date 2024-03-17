@@ -75,6 +75,7 @@ const LoginScreen = ({ navigation }) => {
                 errorText={touched.emailOrPhone ? errors.emailOrPhone : ""} // If the user has touched the input field and there's an error, display the error message
                 ref={emailOrPhoneRef}
                 onSubmitEditing={() => passwordRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
+                returnKeyType="next"
               />
               <InputField
                 fieldType="password"
@@ -85,6 +86,7 @@ const LoginScreen = ({ navigation }) => {
                 errorText={touched.password ? errors.password : ""} // If the user has touched the input field and there's an error, display the error message
                 ref={passwordRef}
                 onSubmitEditing={() => confirmPasswordRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
+                returnKeyType="next"
               />
               <InputField
                 fieldType="password"
@@ -127,7 +129,8 @@ const styles = StyleSheet.create({
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
     alignItems: "center",
-    justifyContent: "space-between ",
+    justifyContent: "space-evenly",
+    height: "50%",
     width: "90%",
   },
 });

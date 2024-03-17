@@ -20,7 +20,6 @@ const InputField = forwardRef((props, ref) => {
     onSubmitEditing,
     canBeDisabled,
     isLeaseTill,
-    nextInput,
     label,
     errorText,
     value,

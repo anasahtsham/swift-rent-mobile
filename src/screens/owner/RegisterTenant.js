@@ -170,8 +170,8 @@ const RegisterTenant = ({ navigation }) => {
                 handleBlur={handleBlur("evictionPeriod")}
                 errorText={touched.evictionPeriod ? errors.evictionPeriod : ""}
                 returnKeyType="next"
-                nextInput={yearlyIncreaseRef}
                 ref={evictionPeriodRef}
+                onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
                 hintTexts={{
                   english:
                     "Eviction period refers to the amount of time notice must be given before a tenant is required to vacate the property. For example, you can set it to 30 days or 60 days depending on your local laws and agreements.",
@@ -189,7 +189,7 @@ const RegisterTenant = ({ navigation }) => {
                 errorText={touched.yearlyIncrease ? errors.yearlyIncrease : ""}
                 returnKeyType="next"
                 ref={yearlyIncreaseRef}
-                nextInput={lateRentFineRef}
+                onSubmitEditing={() => lateRentFineRef.current?.focus()}
                 hintTexts={{
                   english:
                     "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
@@ -235,8 +235,8 @@ const RegisterTenant = ({ navigation }) => {
                 handleBlur={handleBlur("lateRentFine")}
                 errorText={touched.lateRentFine ? errors.lateRentFine : ""}
                 returnKeyType="next"
-                nextInput={tenantContactRef}
                 ref={lateRentFineRef}
+                onSubmitEditing={() => tenantContactRef.current?.focus()}
                 hintTexts={{
                   english:
                     "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to $50 to be charged if the rent is not paid within 5 days of the due date.",

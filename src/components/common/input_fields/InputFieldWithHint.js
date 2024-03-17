@@ -20,8 +20,8 @@ const InputFieldWithHint = React.forwardRef(
       handleBlur,
       errorText,
       hintTexts,
-      nextInput,
       returnKeyType,
+      onSubmitEditing,
     },
     ref
   ) => {
@@ -42,7 +42,7 @@ const InputFieldWithHint = React.forwardRef(
           canBeDisabled={canBeDisabled}
           returnKeyType={returnKeyType}
           ref={inputRef}
-          nextInput={nextInput}
+          onSubmitEditing={onSubmitEditing}
           borderRadius={borderRadius}
           textFieldIcon={textFieldIcon}
           fieldType={fieldType}

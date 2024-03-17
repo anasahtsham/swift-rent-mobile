@@ -96,7 +96,6 @@ const GetToKnow = ({ navigation, route }) => {
                 />
                 <InputField
                   ref={lastNameRef}
-                  nextInput={dateRef}
                   textFieldIcon={icons.userIcon}
                   fieldType="name"
                   label="Last Name"
