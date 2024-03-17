@@ -186,8 +186,6 @@ const MonthReport = (props) => {
             </View>
           </View>
         </ScrollView>
-
-        <View style={{ height: 50 }}></View>
       </View>
     </SafeAreaView>
   );

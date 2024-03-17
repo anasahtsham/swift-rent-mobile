@@ -189,8 +189,8 @@ const AnalyticalReport = (props) => {
               </Text>
             </View>
           </View>
+          <View style={{ height: 260 }} />
         </ScrollView>
-        <View style={{ height: 280 }}></View>
       </View>
     </SafeAreaView>
   );
