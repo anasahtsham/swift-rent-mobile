@@ -28,6 +28,7 @@ import RegisterAs from "./src/screens/authentication/RegisterAs";
 import SetUpPassword from "./src/screens/authentication/SetUpPassword";
 import WhoAreYou from "./src/screens/authentication/WhoAreYou";
 import OwnerHiring from "./src/screens/owner/OwnerHiring";
+import RegisterTenant from "./src/screens/owner/RegisterTenant";
 import ResidentialHome from "./src/screens/owner/ResidentialHome";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
@@ -45,7 +46,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Test Screen"
+          initialRouteName="Owner Navigator"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -64,7 +65,7 @@ export default function App() {
           <Stack.Screen name="Owner Navigator" component={OwnerNavigator} />
           <Stack.Screen name="Tenant Navigator" component={TenantNavigator} />
           <Stack.Screen name="Manager Navigator" component={ManagerNavigator} />
-          {/* Owner Screens*/}
+          {/* Owner Screens */}
           <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Change Password" component={ChangePassword} />
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
@@ -85,6 +86,7 @@ export default function App() {
             component={ViewMaintenanceAndComplains}
           />
           <Stack.Screen name="Residential Home" component={ResidentialHome} />
+          <Stack.Screen name="Register Tenant" component={RegisterTenant} />
         </Stack.Navigator>
       </NavigationContainer>
     );

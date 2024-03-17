@@ -85,7 +85,9 @@ const InputField = forwardRef((props, ref) => {
   };
 
   return (
-    <View style={[styles.mainContainer, { height: 65 }]}>
+    <View
+      style={[styles.mainContainer, { height: 65, backgroundColor: "red" }]}
+    >
       <Pressable
         onPress={() => {
           if (fieldType === "date") {
@@ -218,7 +220,6 @@ const InputField = forwardRef((props, ref) => {
           {errorText}
         </Text>
       )}
-      {errors}
       {fieldType === "date" && (
         <DateTimePickerModal
           minimumDate={new Date(1950, 0, 1)}
