@@ -105,6 +105,7 @@ const ViewMaintenanceAndComplains = ({ route }) => {
             </Text>
             <View style={{ width: "90%", alignSelf: "center", height: 65 }}>
               <InputField
+                multiline={true}
                 borderRadius={10}
                 label={
                   headerTitle === "Maintenance Request"
@@ -112,9 +113,9 @@ const ViewMaintenanceAndComplains = ({ route }) => {
                     : "Reply to Complain"
                 }
                 onChangeText={handleChange("remarks")}
-                onBlur={handleBlur("remarks")}
+                handleBlur={handleBlur("remarks")}
                 value={values.remarks}
-                errorText={touched.remarks && errors.remarks}
+                errorText={touched.remarks ? errors.remarks : ""}
               />
             </View>
           </View>
@@ -132,11 +133,7 @@ const ViewMaintenanceAndComplains = ({ route }) => {
               <TouchableOpacity
                 activeOpacity={opacityValueForButton}
                 style={[styles.button, { borderColor: colors.borderGreen }]}
-                onPress={() => {
-                  navigation.navigate("View Maintenance And Complains", {
-                    headerTitle: headerTitle,
-                  });
-                }}
+                onPress={handleSubmit}
               >
                 <Text
                   style={[

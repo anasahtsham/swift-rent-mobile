@@ -154,5 +154,7 @@ export const addPropertySchema = Yup.object().shape({
 });
 
 export const viewMaintenanceAndComplainsSchema = Yup.object().shape({
-  remarks: Yup.string().matches(/^\S*$/, "No spaces allowed"),
+  remarks: Yup.string()
+    .matches(/^[^\s].*[^\s]$/, "No leading or trailing spaces")
+    .matches(/^(?!.*  ).*$/, "No double spaces"),
 });

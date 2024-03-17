@@ -100,6 +100,7 @@ const InputField = React.forwardRef((props, ref) => {
             borderColor: color,
             borderWidth: width,
             borderRadius: !!borderRadius ? borderRadius : 25,
+            height: 42,
           },
         ]}
       >
