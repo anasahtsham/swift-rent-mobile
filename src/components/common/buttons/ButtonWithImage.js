@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 5,
-    width: 160,
+    paddingHorizontal: 15,
+    width: "45%",
     height: 65,
-    borderRadius: 100,
+    borderRadius: 20,
     elevation: 5,
   },
   text: {

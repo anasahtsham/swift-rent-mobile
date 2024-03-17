@@ -229,8 +229,8 @@ const InputField = forwardRef((props, ref) => {
               onPress={() => setIsEditable(!isEditable)}
             >
               <Image
-                tintColor={isEditable ? colors.iconGreen : colors.iconRed}
-                source={isEditable ? icons.checkIcon : icons.crossIcon}
+                tintColor={isEditable ? colors.iconGreen : colors.iconGrey}
+                source={isEditable ? icons.checkIcon : icons.checkIcon}
                 style={styles.icon}
               />
             </TouchableWithoutFeedback>

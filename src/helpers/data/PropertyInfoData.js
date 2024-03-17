@@ -4,8 +4,8 @@ export const cityData = [
 ];
 
 export const propertyTypeData = [
-  { label: "Residential Homes", value: "residential_homes" },
-  { label: "Plots", value: "plots" },
+  { label: "Residential Home", value: "residential_home" },
+  { label: "Plot", value: "plot" },
   { label: "Commercial", value: "commercial" },
 ];
 
@@ -151,9 +151,9 @@ export const subSectorData = [
 ];
 export const propertySubTypeData = {
   residential_homes: [
-    { label: "Houses", value: "houses" },
-    { label: "Upper", value: "upper" },
-    { label: "Lower", value: "lower" },
+    { label: "House", value: "house" },
+    { label: "Upper Floor", value: "upper_floor" },
+    { label: "Lower Floor", value: "lower_floor" },
     { label: "Flat", value: "flat" },
     { label: "Room", value: "room" },
   ],
