@@ -71,11 +71,7 @@ const PropertiesHeader = (props) => {
 
       {props.isManager && (
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Maintenance Complains List", {
-              header: "Complains",
-            })
-          }
+          onPress={() => navigation.navigate("Add Property")}
           activeOpacity={opacityValueForButton}
           style={[
             styles.headerCards,
