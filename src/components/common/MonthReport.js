@@ -30,270 +30,175 @@ const MonthReport = (props) => {
   }, []);
 
   return (
-    <SafeAreaView style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
+    <SafeAreaView
+      style={{
+        backgroundColor: colors.bodyBackground,
+        flex: 1,
+      }}
+    >
       <MonthReportHeader colors={colors} />
-      <View
-        style={[
-          styles.bottomContainer,
-          { backgroundColor: colors.bodyBackground },
-        ]}
-      >
-        <ScrollView>
-          <View
-            style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
-          >
-            <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
-              Properties Status
+      <ScrollView>
+        <View
+          style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
+        >
+          <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
+            Properties Status
+          </Text>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Total Properties
             </Text>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Total Properties
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                5
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Properties on Rent
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Vacant Properties
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textRed }]}
-              >
-                1
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Managed Properties
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                2
-              </Text>
-            </View>
-          </View>
-          <View
-            style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
-          >
-            <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
-              Maintenance
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textPrimary }]}
+            >
+              5
             </Text>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Total Requests
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                6
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Accepted
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Rejected
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textRed }]}
-              >
-                1
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Pending
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                2
-              </Text>
-            </View>
           </View>
-          <View
-            style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
-          >
-            <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
-              Complaints
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Properties on Rent
             </Text>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Total Requests
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                5
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Resolved Requests
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Pending Requests
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textGreen }]}
+            >
+              4
+            </Text>
           </View>
-        </ScrollView>
-      </View>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Vacant Properties
+            </Text>
+            <Text style={[styles.cardFetchableData, { color: colors.textRed }]}>
+              1
+            </Text>
+          </View>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Managed Properties
+            </Text>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textPrimary }]}
+            >
+              2
+            </Text>
+          </View>
+        </View>
+        <View
+          style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
+        >
+          <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
+            Maintenance
+          </Text>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Total Requests
+            </Text>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textPrimary }]}
+            >
+              6
+            </Text>
+          </View>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Accepted
+            </Text>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textGreen }]}
+            >
+              4
+            </Text>
+          </View>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Rejected
+            </Text>
+            <Text style={[styles.cardFetchableData, { color: colors.textRed }]}>
+              1
+            </Text>
+          </View>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Pending
+            </Text>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textPrimary }]}
+            >
+              2
+            </Text>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.card,
+            { backgroundColor: colors.backgroundPrimary, marginBottom: 10 },
+          ]}
+        >
+          <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
+            Complaints
+          </Text>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Total Requests
+            </Text>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textPrimary }]}
+            >
+              5
+            </Text>
+          </View>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Resolved Requests
+            </Text>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textGreen }]}
+            >
+              4
+            </Text>
+          </View>
+          <View style={styles.inRow}>
+            <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+              Pending Requests
+            </Text>
+            <Text
+              style={[styles.cardFetchableData, { color: colors.textGreen }]}
+            >
+              4
+            </Text>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: 10,
-  },
-
-  topCard: {
-    margin: 10,
-    borderWidth: 4,
-    borderRadius: 20,
-    padding: 10,
-  },
-
-  topCardTopTextContainer: {
-    paddingTop: "2%",
-  },
-  topCardTopText: {
-    fontSize: FontSizes.small,
-    paddingLeft: "4%",
-    textAlign: "left",
-  },
-
-  rightInRow: {
+  inRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  nestedText: {
-    fontSize: FontSizes.small,
-    paddingLeft: "6%",
-    textAlign: "left",
-    marginRight: "10%",
-  },
-  currencyStyles: {
-    fontSize: FontSizes.small,
-    fontWeight: "bold",
-    paddingLeft: "1%",
-  },
-
-  monthNameText: {
-    paddingTop: "1%",
-    fontWeight: "bold",
-    fontSize: FontSizes.small,
-  },
-  monthNameTextNested: {
-    fontWeight: "bold",
-    fontSize: FontSizes.small,
-  },
-  topCardRowEnd: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: "4%",
-    paddingLeft: "4%",
-    paddingRight: "4%",
-  },
-  arrowImageDimensions: {
-    height: 20,
-    width: 20,
-    marginLeft: "12%",
-  },
-  barGraphImageDimensions: {
-    height: 100,
-    width: 100,
-    marginTop: "2%",
-    justifyContent: "center",
-    alignSelf: "center",
-  },
-
-  bottomContainer: {
-    borderRadius: 20,
-    alignSelf: "center",
-    width: "100%",
-    height: "100%",
   },
   card: {
-    marginTop: "5%",
     borderRadius: 20,
-    backgroundColor: "white",
     alignSelf: "center",
     width: "90%",
-    paddingBottom: 10,
+    marginTop: 20,
+    padding: 20,
   },
 
   cardMainText: {
     fontSize: FontSizes.small,
     fontWeight: "bold",
-    paddingLeft: "3%",
-    paddingTop: "3%",
-    paddingBottom: "1%",
+    marginBottom: 10,
   },
   cardSubText: {
     fontSize: FontSizes.small,
-    paddingLeft: "4%",
-    paddingVertical: "0.5%",
+    marginBottom: 5,
   },
   cardFetchableData: {
     fontWeight: "bold",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginRight: "30%",
     fontSize: FontSizes.small,
   },
 });
