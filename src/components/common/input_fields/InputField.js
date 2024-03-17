@@ -100,6 +100,14 @@ const InputField = forwardRef((props, ref) => {
 
   const [isEditable, setIsEditable] = useState(false);
 
+  const handleOnSubmitEditing = () => {
+    if (fieldType === "date") {
+      showDatePicker();
+    } else {
+      onSubmitEditing();
+    }
+  };
+
   return (
     <View style={[styles.mainContainer, { height: 65 }]}>
       <Pressable
@@ -123,9 +131,7 @@ const InputField = forwardRef((props, ref) => {
         <View style={[styles.textAndImageContainer]}>
           <View style={[styles.inputContainer]}>
             <TextInput
-              editable={
-                canBeDisabled ? isEditable : fieldType === "date" ? false : true
-              }
+              editable={canBeDisabled ? isEditable : true}
               secureTextEntry={isHidden}
               keyboardType={
                 fieldType === "email-address" ||
@@ -142,7 +148,7 @@ const InputField = forwardRef((props, ref) => {
                 },
               ]}
               ref={inputRef}
-              onSubmitEditing={onSubmitEditing}
+              onSubmitEditing={handleOnSubmitEditing}
               value={value}
               onBlur={(event) => {
                 setIsFocused(false);
@@ -150,6 +156,9 @@ const InputField = forwardRef((props, ref) => {
               }}
               onFocus={(event) => {
                 setIsFocused(true);
+                if (fieldType === "date") {
+                  showDatePicker();
+                }
                 onFocus?.(event);
               }}
               onChangeText={handleChange}

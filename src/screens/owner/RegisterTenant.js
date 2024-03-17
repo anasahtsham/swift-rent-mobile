@@ -146,7 +146,7 @@ const RegisterTenant = ({ navigation }) => {
                 handleBlur={handleBlur("securityAmount")}
                 errorText={touched.securityAmount ? errors.securityAmount : ""}
                 returnKeyType="next"
-                onSubmitEditing={() => evictionPeriodRef.current?.focus()}
+                onSubmitEditing={() => leaseTillRef.current?.focus()}
                 ref={securityAmountRef}
               />
               <InputField
@@ -160,6 +160,7 @@ const RegisterTenant = ({ navigation }) => {
                 errorText={touched.leaseTill ? errors.leaseTill : ""}
                 returnKeyType="next"
                 ref={leaseTillRef}
+                onSubmitEditing={() => evictionPeriodRef.current?.focus()}
               />
               <InputFieldWithHint
                 fieldType="numeric"
