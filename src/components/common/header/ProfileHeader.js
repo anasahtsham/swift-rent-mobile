@@ -24,7 +24,7 @@ const ProfileHeader = (props) => {
           <Image
             tintColor={colors.iconPrimary}
             source={icons.userIcon}
-            style={[styles.userImage, { borderColor: colors.borderBlue }]}
+            style={[styles.userImage]}
           />
           <Text
             style={[
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
   },
-  userImage: { width: 50, height: 50, borderRadius: 10, borderWidth: 2 },
+  userImage: { width: 50, height: 50 },
 });
 
 export default ProfileHeader;
