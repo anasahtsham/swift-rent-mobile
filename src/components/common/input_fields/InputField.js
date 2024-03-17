@@ -85,9 +85,7 @@ const InputField = forwardRef((props, ref) => {
   };
 
   return (
-    <View
-      style={[styles.mainContainer, { height: 65, backgroundColor: "red" }]}
-    >
+    <View style={[styles.mainContainer, { height: 65 }]}>
       <Pressable
         onPress={() => {
           if (fieldType === "date") {
@@ -238,7 +236,6 @@ const InputField = forwardRef((props, ref) => {
 const styles = StyleSheet.create({
   mainContainer: {
     width: "100%",
-    marginBottom: 30,
   },
   textInputContainer: {
     paddingHorizontal: 15,

@@ -94,6 +94,7 @@ const GetToKnow = ({ navigation, route }) => {
                   handleBlur={handleBlur("firstName")}
                   errorText={touched.firstName ? errors.firstName : ""} // If the user has touched the input field, display the error message
                   onSubmitEditing={() => lastNameRef.current.focus()}
+                  returnKeyType="next"
                 />
                 <InputField
                   ref={lastNameRef}
@@ -104,6 +105,10 @@ const GetToKnow = ({ navigation, route }) => {
                   handleChange={handleChange("lastName")}
                   handleBlur={handleBlur("lastName")}
                   errorText={touched.lastName ? errors.lastName : ""} // If the user has touched the input field, display the error message
+                  onSubmitEditing={() => {
+                    dateRef.current.showDatePicker();
+                  }}
+                  returnKeyType="next"
                 />
                 <InputField
                   ref={dateRef}
@@ -153,6 +158,8 @@ const styles = StyleSheet.create({
   text: { fontFamily: "OpenSansBold", textAlign: "center" },
   textInputsContainer: {
     alignItems: "center",
+    justifyContent: "space-evenly",
+    height: "40%",
     width: "90%",
   },
   buttonsContainer: {
