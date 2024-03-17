@@ -40,14 +40,6 @@ const InputField = forwardRef((props, ref) => {
   const [isHidden, setIsHidden] = useState(fieldType === "password");
   const [isEditable, setIsEditable] = useState(false);
 
-  useEffect(() => {
-    if (fieldType !== "date") {
-      setIsEditable(true);
-    } else {
-      setIsEditable(false);
-    }
-  }, []);
-
   const inputRef = ref || useRef();
   const focusAnim = useRef(new Animated.Value(0)).current;
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
@@ -106,6 +98,14 @@ const InputField = forwardRef((props, ref) => {
 
     handleChange({ target: { name: "date", value: formatted } });
   };
+
+  useEffect(() => {
+    if (fieldType !== "date") {
+      setIsEditable(true);
+    } else if (isEditable) {
+      setIsEditable(false);
+    }
+  }, []);
 
   return (
     <View style={[styles.mainContainer, { height: 65 }]}>
@@ -226,9 +226,7 @@ const InputField = forwardRef((props, ref) => {
             >
               <Image
                 tintColor={color}
-                source={
-                  isEditable ? icons.hidePasswordIcon : icons.showPasswordIcon
-                }
+                source={isEditable ? icons.checkIcon : icons.crossIcon}
                 style={styles.icon}
               />
             </TouchableWithoutFeedback>

@@ -24,4 +24,6 @@ export const icons = {
   alertIcon: require("../assets/icons/alert.png"),
   sunIcon: require("../assets/icons/sun.png"),
   moonIcon: require("../assets/icons/moon.png"),
+  crossIcon: require("../assets/icons/disabled.png"),
+  checkIcon: require("../assets/icons/check.png"),
 };
