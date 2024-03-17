@@ -100,8 +100,8 @@ const InputField = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    if (fieldType !== "date") {
-      setIsEditable(true);
+    if (fieldType === "date") {
+      setIsEditable(false);
     } else if (isEditable) {
       setIsEditable(false);
     }
