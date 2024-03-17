@@ -114,7 +114,7 @@ const RegisterTenant = ({ navigation }) => {
             <View style={[styles.bodyContainer, { marginBottom: 20 }]}>
               <InputField
                 borderRadius={10}
-                label="Rent Amount"
+                label="Rent Amount (PKR)"
                 value={values.rentAmount}
                 onChangeText={handleChange("rentAmount")}
                 onBlur={handleBlur("rentAmount")}
@@ -125,7 +125,7 @@ const RegisterTenant = ({ navigation }) => {
               />
               <InputField
                 borderRadius={10}
-                label="Security Amount"
+                label="Security Amount (PKR)"
                 value={values.securityAmount}
                 onChangeText={handleChange("securityAmount")}
                 onBlur={handleBlur("securityAmount")}

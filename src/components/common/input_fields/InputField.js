@@ -38,7 +38,6 @@ const InputField = forwardRef((props, ref) => {
 
   const [isFocused, setIsFocused] = useState(false);
   const [isHidden, setIsHidden] = useState(fieldType === "password");
-  const [isEditable, setIsEditable] = useState(false);
 
   const inputRef = ref || useRef();
   const focusAnim = useRef(new Animated.Value(0)).current;
@@ -71,13 +70,14 @@ const InputField = forwardRef((props, ref) => {
   }
 
   useEffect(() => {
+    console.log("editable:", isEditable);
     Animated.timing(focusAnim, {
       toValue: isFocused || !!value ? 1 : 0,
       duration: 150,
       easing: Easing.bezier(0.4, 0, 0.2, 1),
       useNativeDriver: true,
     }).start();
-  }, [focusAnim, isFocused, value]);
+  }, [focusAnim, isFocused, value, isEditable]);
 
   const showDatePicker = () => {
     setPickerOpen(true);
@@ -99,13 +99,16 @@ const InputField = forwardRef((props, ref) => {
     handleChange({ target: { name: "date", value: formatted } });
   };
 
-  useEffect(() => {
-    if (fieldType === "date") {
-      setIsEditable(false);
-    } else if (isEditable) {
-      setIsEditable(false);
-    }
-  }, []);
+  const [isEditable, setIsEditable] = useState(false);
+
+  // useEffect(() => {
+  //   if (fieldType === "date" || canBeDisabled) {
+  //     setIsEditable(false);
+  //     console.log("Editable:", isEditable);
+  //   } else {
+  //     setIsEditable(true);
+  //   }
+  // }, []);
 
   return (
     <View style={[styles.mainContainer, { height: 65 }]}>
@@ -130,7 +133,9 @@ const InputField = forwardRef((props, ref) => {
         <View style={[styles.textAndImageContainer]}>
           <View style={[styles.inputContainer]}>
             <TextInput
-              editable={isEditable}
+              editable={
+                canBeDisabled ? isEditable : fieldType === "date" ? false : true
+              }
               secureTextEntry={isHidden}
               keyboardType={
                 fieldType === "email-address" ||
@@ -225,7 +230,7 @@ const InputField = forwardRef((props, ref) => {
               onPress={() => setIsEditable(!isEditable)}
             >
               <Image
-                tintColor={color}
+                tintColor={isEditable ? colors.iconGreen : colors.iconRed}
                 source={isEditable ? icons.checkIcon : icons.crossIcon}
                 style={styles.icon}
               />
