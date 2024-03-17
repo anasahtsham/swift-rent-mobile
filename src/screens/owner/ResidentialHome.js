@@ -20,8 +20,8 @@ import {
   subSectorData,
 } from "../../helpers/data/PropertyInfoData";
 import { addPropertySchema } from "../../helpers/validation/ValidationSchemas";
-import ButtonGrey from "./buttons/ButtonGrey";
-import InputField from "./input_fields/InputField";
+import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import InputField from "../../components/common/input_fields/InputField";
 
 const ResidentialHome = ({ navigation }) => {
   const colors = useColors();
@@ -64,6 +64,40 @@ const ResidentialHome = ({ navigation }) => {
 
   const [errorDropdowns, setErrorDropdowns] = useState(false);
 
+  const [openBedrooms, setOpenBedrooms] = useState(false);
+  const [valueBedrooms, setValueBedrooms] = useState(null);
+  const [itemsBedrooms, setItemsBedrooms] = useState([
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    // Add more items if needed
+  ]);
+
+  const [openToilets, setOpenToilets] = useState(false);
+  const [valueToilets, setValueToilets] = useState(null);
+  const [itemsToilets, setItemsToilets] = useState([
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    // Add more items if needed
+  ]);
+
+  const [openWaterAvailability, setOpenWaterAvailability] = useState(false);
+  const [valueWaterAvailability, setValueWaterAvailability] = useState(null);
+  const [itemsWaterAvailability, setItemsWaterAvailability] = useState([
+    { label: "Boring", value: "boring" },
+    { label: "Water Supply", value: "water_supply" },
+    { label: "Tanker Supply", value: "tanker_supply" },
+  ]);
+
+  const [openKitchen, setOpenKitchen] = useState(false);
+  const [valueKitchen, setValueKitchen] = useState(null);
+  const [itemsKitchen, setItemsKitchen] = useState([
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    // Add more items if needed
+  ]);
   // set property sub type items based on property type
   useEffect(() => {
     if (
@@ -134,6 +168,7 @@ const ResidentialHome = ({ navigation }) => {
   return (
     <Formik
       initialValues={{
+        area: "",
         street: "",
         building: "",
       }}
@@ -195,25 +230,87 @@ const ResidentialHome = ({ navigation }) => {
                   },
                 ]}
               >
-                Add Your Property Information
+                Residential Home
               </Text>
-              <View style={{ width: "80%", marginBottom: 50 }}>
-                <View style={styles.dropdownContainer}>
-                  <DropDownPicker
-                    {...dropdownStyles}
-                    searchPlaceholderTextColor={colors.textGreen}
-                    theme={colors.dropDownTheme}
-                    zIndex={4000}
-                    zIndexInverse={1000}
-                    open={openCity}
-                    value={valueCity}
-                    items={itemsCity}
-                    onOpen={onCityOpen}
-                    setOpen={setOpenCity}
-                    setValue={setValueCity}
-                    setItems={setItemsCity}
-                    placeholder="City"
-                  />
+              <View style={{ width: "80%" }}>
+                <InputField
+                  borderRadius={7}
+                  label="Area sq. ft."
+                  fieldType="numeric"
+                  value={values.area}
+                  handleChange={handleChange("area")}
+                  handleBlur={handleBlur("area")}
+                  errorText={touched.street ? errors.street : ""}
+                  onPressIn={() => {
+                    setOpenCity(false);
+                    setOpenSubArea(false);
+                    setOpenPropertyType(false);
+                    setOpenPropertySubType(false);
+                  }}
+                />
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <View style={{ flex: 1, marginRight: 10, marginBottom: 20 }}>
+                    <DropDownPicker
+                      {...dropdownStyles}
+                      open={openBedrooms}
+                      value={valueBedrooms}
+                      items={itemsBedrooms}
+                      setOpen={setOpenBedrooms}
+                      setValue={setValueBedrooms}
+                      setItems={setItemsBedrooms}
+                      placeholder="Bedrooms"
+                    />
+                  </View>
+
+                  <View style={{ flex: 1, marginLeft: 10, marginBottom: 20 }}>
+                    <DropDownPicker
+                      {...dropdownStyles}
+                      open={openToilets}
+                      value={valueToilets}
+                      items={itemsToilets}
+                      setOpen={setOpenToilets}
+                      setValue={setValueToilets}
+                      setItems={setItemsToilets}
+                      placeholder="Toilets"
+                    />
+                  </View>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <View style={{ flex: 1, marginRight: 10, marginBottom: 20 }}>
+                    <DropDownPicker
+                      {...dropdownStyles}
+                      open={openWaterAvailability}
+                      value={valueWaterAvailability}
+                      items={itemsWaterAvailability}
+                      setOpen={setOpenWaterAvailability}
+                      setValue={setValueWaterAvailability}
+                      setItems={setItemsWaterAvailability}
+                      placeholder="Water Availability"
+                    />
+                  </View>
+
+                  <View style={{ flex: 1, marginLeft: 10, marginBottom: 20 }}>
+                    <DropDownPicker
+                      {...dropdownStyles}
+                      open={openKitchen}
+                      value={valueKitchen}
+                      items={itemsKitchen}
+                      setOpen={setOpenKitchen}
+                      setValue={setValueKitchen}
+                      setItems={setItemsKitchen}
+                      placeholder="Kitchen"
+                    />
+                  </View>
                 </View>
                 <View style={styles.dropdownContainer}>
                   <DropDownPicker
@@ -249,7 +346,7 @@ const ResidentialHome = ({ navigation }) => {
                   <View style={{ flex: 1 }}>
                     <InputField
                       borderRadius={7}
-                      label="Street#"
+                      label="Portion#"
                       fieldType="numeric"
                       value={values.street}
                       handleChange={handleChange("street")}
@@ -268,7 +365,7 @@ const ResidentialHome = ({ navigation }) => {
                   <View style={{ flex: 1 }}>
                     <InputField
                       borderRadius={7}
-                      label="Building#"
+                      label="Portion#"
                       fieldType="numeric"
                       value={values.building}
                       handleChange={handleChange("building")}
