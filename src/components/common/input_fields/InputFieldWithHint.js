@@ -20,6 +20,7 @@ const InputFieldWithHint = React.forwardRef(
       errorText,
       hintTexts,
       nextInput,
+      returnKeyType,
     },
     ref
   ) => {
@@ -37,6 +38,7 @@ const InputFieldWithHint = React.forwardRef(
         }}
       >
         <InputField
+          returnKeyType={returnKeyType}
           ref={inputRef}
           nextInput={nextInput}
           borderRadius={borderRadius}

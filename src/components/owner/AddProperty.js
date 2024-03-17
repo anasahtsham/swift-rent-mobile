@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   BackHandler,
   Keyboard,
@@ -63,6 +63,8 @@ const AddProperty = ({ navigation }) => {
   const [itemsPropertySubType, setItemsPropertySubType] = useState([]);
 
   const [errorDropdowns, setErrorDropdowns] = useState(false);
+
+  const buildingRef = useRef();
 
   // set property sub type items based on property type
   useEffect(() => {
@@ -254,6 +256,8 @@ const AddProperty = ({ navigation }) => {
                       handleChange={handleChange("street")}
                       handleBlur={handleBlur("street")}
                       errorText={touched.street ? errors.street : ""}
+                      onSubmitEditing={() => buildingRef.current.focus()}
+                      returnKeyType="next"
                       onPressIn={() => {
                         setOpenCity(false);
                         setOpenSubArea(false);
@@ -266,6 +270,7 @@ const AddProperty = ({ navigation }) => {
 
                   <View style={{ flex: 1 }}>
                     <InputField
+                      ref={buildingRef}
                       borderRadius={7}
                       label="Building#"
                       fieldType="numeric"

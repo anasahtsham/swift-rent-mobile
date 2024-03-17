@@ -105,7 +105,6 @@ const ViewMaintenanceAndComplains = ({ route }) => {
             </Text>
             <View style={{ width: "90%", alignSelf: "center", height: 65 }}>
               <InputField
-                multiline={true}
                 borderRadius={10}
                 label={
                   headerTitle === "Maintenance Request"
