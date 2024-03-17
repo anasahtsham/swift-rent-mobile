@@ -84,11 +84,13 @@ const InputFieldWithHint = ({
             <TouchableOpacity
               activeOpacity={opacityValueForButton}
               style={{
+                alignSelf: "center",
                 backgroundColor: colors.backgroundPrimary,
                 paddingVertical: 2,
                 borderWidth: 2,
                 borderColor: colors.buttonBorderPrimary,
                 borderRadius: 20,
+                width: 170,
               }}
               onPress={() =>
                 setHintText(
