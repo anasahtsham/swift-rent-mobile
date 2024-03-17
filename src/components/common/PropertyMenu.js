@@ -32,7 +32,7 @@ const PropertyMenu = () => {
 
   const Card = ({ title, endText, children }) => (
     <View style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}>
-      <View style={styles.cardHeader}>
+      <View style={[styles.headerTextContainer, { marginBottom: 10 }]}>
         <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
           {title}
         </Text>
@@ -47,7 +47,7 @@ const PropertyMenu = () => {
   );
 
   const CardRow = ({ title, value, style }) => (
-    <View style={styles.inRow}>
+    <View style={[styles.inRow, { marginBottom: 5 }]}>
       <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
         {title}
       </Text>
@@ -118,7 +118,7 @@ const PropertyMenu = () => {
                   header: "Complains",
                 });
               }}
-              text={"Complaints"}
+              text={"Complains"}
               secondaryText="0"
               secondaryTextColor={colors.textGreen}
               colors={colors}
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     width: "90%",
     padding: 10,
   },
-  cardHeader: {
+  headerTextContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
