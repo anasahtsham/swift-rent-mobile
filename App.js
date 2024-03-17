@@ -31,6 +31,7 @@ import RatingScreen from "./src/screens/owner/RatingScreen";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
+import ResidentialHome from "./src/screens/owner/ResidentialHome";
 
 const Stack = createStackNavigator();
 
@@ -44,7 +45,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Owner Navigator"
+          initialRouteName="Residential Home"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -83,6 +84,7 @@ export default function App() {
             name="View Maintenance And Complains"
             component={ViewMaintenanceAndComplains}
           />
+          <Stack.Screen name="Residential Home" component={ResidentialHome} />
         </Stack.Navigator>
       </NavigationContainer>
     );
