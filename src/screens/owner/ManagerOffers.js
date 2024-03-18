@@ -19,6 +19,8 @@ import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { opacityValueForButton } from "../../constants";
 
 const ManagerOffers = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);
@@ -74,7 +76,7 @@ const ManagerOffers = ({ navigation }) => {
               { fontSize: FontSizes.medium, color: colors.textPrimary },
             ]}
           >
-            Manger Offer (3)
+            Manager Offer (3)
           </Text>
           <View style={styles.rightInRow}>
             <Text
@@ -158,11 +160,12 @@ const ManagerOffers = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <ScrollView style={{ flex: 1 }}>
-        <View
-          style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
+      <ScrollView style={{ flex: 1, marginBottom: 5 }}>
+        <TouchableOpacity
+          activeOpacity={opacityValueForButton}
+          style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
         >
-          <View style={styles.inRow}>
+          <View style={styles.buttonHeaderContainer}>
             <Image
               style={styles.userIcon}
               source={icons.userIcon}
@@ -186,7 +189,7 @@ const ManagerOffers = ({ navigation }) => {
 
           <View
             style={[
-              styles.inRow,
+              styles.ratingsRow,
               { alignItems: "center", marginLeft: 55, marginTop: -20 },
             ]}
           >
@@ -317,7 +320,7 @@ const ManagerOffers = ({ navigation }) => {
               </Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -330,73 +333,66 @@ const styles = StyleSheet.create({
   header: {
     height: 200,
     width: "100%",
+    padding: 10,
+    paddingBottom: 15,
     borderBottomStartRadius: 20,
     borderBottomEndRadius: 20,
     alignSelf: "center",
   },
   mainCard: {
     height: 180,
+    padding: 10,
     borderRadius: 20,
-    margin: 10,
     borderWidth: 3,
   },
   mainTitle: {
     fontSize: FontSizes.small,
-    paddingTop: 10,
-    paddingLeft: 10,
     paddingBottom: 10,
   },
   subTitle: {
     fontSize: FontSizes.small,
-    paddingBottom: 5,
-    paddingLeft: 10,
+    marginBottom: 5,
   },
   rightInRow: {
     flexDirection: "row",
     justifyContent: "flex-start",
   },
-  inRow: {
+  ratingsRow: {
     flexDirection: "row",
     justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  buttonHeaderContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   userIcon: {
     width: 48,
     height: 48,
-    marginTop: 5,
   },
   expandArrowButton: {
     width: 28,
     height: 28,
-    marginTop: 2,
-    marginLeft: 110,
   },
   smallIcons: {
     width: 22,
     height: 22,
-    marginTop: 5,
   },
-  card: {
+  button: {
     height: "auto",
     marginTop: 10,
-    paddingBottom: 10,
+    padding: 10,
     borderRadius: 20,
     alignSelf: "center",
     width: "90%",
-    paddingTop: 5,
-    paddingLeft: 10,
   },
-  cardTitle: {
-    paddingTop: 10,
-    paddingLeft: 10,
-  },
+  cardTitle: {},
   textWithIcons: {
-    paddingHorizontal: 6,
+    marginRight: 6,
   },
   cardSubText: {
     fontSize: FontSizes.small,
-    paddingBottom: 5,
-    paddingLeft: 2,
-    paddingRight: 5,
   },
 });
 export default ManagerOffers;

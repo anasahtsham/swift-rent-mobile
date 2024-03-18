@@ -148,7 +148,11 @@ const PropertyMenu = () => {
               colors={colors}
               onPress={() => navigation.navigate("Rating Screen")}
             />
-            <ButtonWithImage text={"Rent History"} colors={colors} />
+            <ButtonWithImage
+              text={"Rent History"}
+              colors={colors}
+              onPress={() => navigation.navigate("Rent History")}
+            />
           </View>
           <View style={styles.buttonRow}>
             <ButtonWithImage
