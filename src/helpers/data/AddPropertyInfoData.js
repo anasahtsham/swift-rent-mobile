@@ -250,7 +250,6 @@ export const roomCheckboxes = [
     label: "Seperate Electricity Meter",
     stateKey: "hasSeperateElectricityMeter",
   },
-  { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Wi-Fi", stateKey: "hasWiFi" },
   { label: "Air Conditioned", stateKey: "hasAirConditioned" },
   { label: "Furnished", stateKey: "isFurnished" },
