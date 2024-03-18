@@ -119,14 +119,6 @@ const AddPropertyInfo = ({ navigation, route }) => {
   //dropdown open functions
   const onWaterAvailabilityDropdownOpen = useCallback(() => {}, []);
 
-  const refs = useRef(fieldNames.map(() => React.createRef()));
-
-  const focusNextField = (index) => {
-    if (index < fieldNames.length - 1) {
-      refs.current[index + 1].current.focus();
-    }
-  };
-
   const [checkboxStates, setCheckboxStates] = useState({
     hasDayCare: false,
     hasGarden: false,
@@ -203,21 +195,23 @@ const AddPropertyInfo = ({ navigation, route }) => {
       break;
   }
 
+  const refs = useRef(fieldNames.map(() => React.createRef()));
+
+  const focusNextField = (index) => {
+    if (index < fieldNames.length - 1) {
+      refs.current[index + 1].current.focus();
+    }
+  };
+
   const [validationSchema, setValidationSchema] = useState(yup.object());
 
   useEffect(() => {
     setValidationSchema(
       yup.object().shape(
         fieldNames.reduce((prev, curr) => {
-          if (curr.value === "area") {
-            prev[curr.value] = yup
-              .number()
-              .min(1, "Area must be at least 1")
-              .max(10, "Area must be at most 10")
-              .required("Area is required");
-          } else {
-            // prev[curr.value] = yup.string().required(`${curr.label} is required`);
-          }
+          prev[curr.value] = yup
+            .string()
+            .matches(/^[0-9]*$/, "Only digits allowed and no spaces");
           return prev;
         }, {})
       )
