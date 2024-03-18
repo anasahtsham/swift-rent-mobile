@@ -199,11 +199,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonContainer: {
-    width: "90%",
+    width: "85%",
   },
   buttonRow: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     marginTop: 15,
   },
 });

@@ -169,21 +169,21 @@ export const registerTenantSchema = (
     rentAmount: Yup.string()
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
-      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9"),
+      .matches(/^[0-9]*$/, "Only numbers allowed"),
     securityAmount: Yup.string()
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
-      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9"),
+      .matches(/^[0-9]*$/, "Only numbers allowed"),
     evictionPeriod: Yup.string()
       .required("This Field is required")
-      .matches(/^\S*$/, "No spaces allowed")
-      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9"),
+      .matches(/^[0-9]*$/, "Only numbers allowed")
+      .matches(/^[3-5][0-9]$|^60$/, "Value must be between 30 and 60"),
     tenantContact: Yup.string()
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
       .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03"),
     yearlyIncrease: Yup.string()
-      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9")
+      .matches(/^[0-9]*$/, "Only numbers allowed")
       .matches(/^\S*$/, "No spaces allowed")
       .test(
         "isYearlyIncreaseEditable",
@@ -197,7 +197,7 @@ export const registerTenantSchema = (
       ),
     lateRentFine: Yup.string()
       .matches(/^\S*$/, "No spaces allowed")
-      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9")
+      .matches(/^[0-9]*$/, "Only numbers allowed")
       .test(
         "isLateRentFineEditable",
         "This Field is required",
