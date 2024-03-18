@@ -143,7 +143,11 @@ const PropertyMenu = () => {
             <ButtonWithImage text={"Chat Manager/Tenant"} colors={colors} />
           </View>
           <View style={styles.buttonRow}>
-            <ButtonWithImage text={"Rate Manager /Tenant"} colors={colors} />
+            <ButtonWithImage
+              text={"Rate Manager /Tenant"}
+              colors={colors}
+              onPress={() => navigation.navigate("Rating Screen")}
+            />
             <ButtonWithImage text={"Rent History"} colors={colors} />
           </View>
           <View style={styles.buttonRow}>

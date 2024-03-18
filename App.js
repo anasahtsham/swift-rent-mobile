@@ -34,6 +34,7 @@ import ResidentialHome from "./src/screens/owner/ResidentialHome";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
+import ManagerOffers from "./src/screens/owner/ManagerOffers";
 
 const Stack = createStackNavigator();
 
@@ -89,6 +90,7 @@ export default function App() {
           <Stack.Screen name="Residential Home" component={ResidentialHome} />
           <Stack.Screen name="Register Tenant" component={RegisterTenant} />
           <Stack.Screen name="Rent History" component={RentHistory} />
+          <Stack.Screen name="Manager Offers" component={ManagerOffers} />
         </Stack.Navigator>
       </NavigationContainer>
     );
