@@ -48,21 +48,6 @@ import {
 
 let fieldNames = [];
 
-const validationSchema = yup.object().shape(
-  fieldNames.reduce((prev, curr) => {
-    if (curr.value === "area") {
-      prev[curr.value] = yup
-        .number()
-        .min(1, "Area must be at least 1")
-        .max(10, "Area must be at most 10")
-        .required("Area is required");
-    } else {
-      //   prev[curr.value] = yup.string().required(`${curr.label} is required`);
-    }
-    return prev;
-  }, {})
-);
-
 const AddPropertyInfo = ({ navigation, route }) => {
   const {
     city,
@@ -217,6 +202,27 @@ const AddPropertyInfo = ({ navigation, route }) => {
     default:
       break;
   }
+
+  const [validationSchema, setValidationSchema] = useState(yup.object());
+
+  useEffect(() => {
+    setValidationSchema(
+      yup.object().shape(
+        fieldNames.reduce((prev, curr) => {
+          if (curr.value === "area") {
+            prev[curr.value] = yup
+              .number()
+              .min(1, "Area must be at least 1")
+              .max(10, "Area must be at most 10")
+              .required("Area is required");
+          } else {
+            // prev[curr.value] = yup.string().required(`${curr.label} is required`);
+          }
+          return prev;
+        }, {})
+      )
+    );
+  }, [fieldNames]);
 
   return (
     <Formik
