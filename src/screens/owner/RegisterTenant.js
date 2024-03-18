@@ -102,12 +102,7 @@ const RegisterTenant = ({ navigation }) => {
       }}
       validationSchema={currentSchema}
       onSubmit={() => {
-        if (!valueRentDue) {
-          console.log("im in");
-          setValueRentDueError(true);
-          return;
-        }
-        navigation.navigate("Register Tenant");
+        navigation.navigate("Property Menu");
       }}
     >
       {(formikProps) => {
@@ -115,10 +110,10 @@ const RegisterTenant = ({ navigation }) => {
           handleChange,
           handleBlur,
           handleSubmit,
+          validateForm,
           values,
           errors,
           touched,
-          validateForm,
         } = formikProps;
 
         const isYearlyIncreaseEditableRef = useRef(isYearlyIncreaseEditable);
@@ -184,6 +179,7 @@ const RegisterTenant = ({ navigation }) => {
                   setItems={setItemsRentDue}
                   placeholder="Rent Due Date"
                 />
+
                 {valueRentDueError && (
                   <Text
                     style={{
@@ -198,7 +194,8 @@ const RegisterTenant = ({ navigation }) => {
                   </Text>
                 )}
 
-                <View style={{ height: valueRentDueError ? 6 : 25 }} />
+                <View style={{ height: valueRentDueError ? 10 : 25 }} />
+
                 <InputField
                   fieldType="numeric"
                   borderRadius={10}

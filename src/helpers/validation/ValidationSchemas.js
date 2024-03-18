@@ -174,23 +174,41 @@ export const registerTenantSchema = (
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
       .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9"),
-    leaseTill: Yup.date()
-      .typeError("Invalid date format")
-      .required("This Field is required"),
     evictionPeriod: Yup.string()
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
       .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9"),
-    yearlyIncrease: Yup.string()
-      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9")
-      .matches(/^\S*$/, "No spaces allowed")
-      .required(isYearlyIncreaseEditable ? "This Field is required" : false),
-    lateRentFine: Yup.string()
-      .matches(/^\S*$/, "No spaces allowed")
-      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9")
-      .required(isLateRentFineEditable ? "This Field is required" : false),
     tenantContact: Yup.string()
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
       .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03"),
+    yearlyIncrease: Yup.string()
+      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9")
+      .matches(/^\S*$/, "No spaces allowed")
+      .test(
+        "isYearlyIncreaseEditable",
+        "This Field is required",
+        function (value) {
+          if (isYearlyIncreaseEditable && !value) {
+            return false;
+          }
+          return true;
+        }
+      ),
+    lateRentFine: Yup.string()
+      .matches(/^\S*$/, "No spaces allowed")
+      .matches(/^[0-9]*$/, "Rent Amount must only contain digits from 0 to 9")
+      .test(
+        "isLateRentFineEditable",
+        "This Field is required",
+        function (value) {
+          if (isLateRentFineEditable && !value) {
+            return false;
+          }
+          return true;
+        }
+      ),
+    leaseTill: Yup.date()
+      .typeError("Invalid date format")
+      .required("This Field is required"),
   });

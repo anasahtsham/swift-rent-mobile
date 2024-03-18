@@ -110,7 +110,7 @@ const InputField = forwardRef((props, ref) => {
   };
 
   return (
-    <View style={[styles.mainContainer, { height: 65 }]}>
+    <View style={[styles.mainContainer, { height: 80 }]}>
       <Pressable
         onPress={() => {
           if (fieldType === "date") {
