@@ -46,6 +46,10 @@ const RegisterTenant = ({ navigation }) => {
   const [valueRentDue, setValueRentDue] = useState(null);
   const [valueRentDueError, setValueRentDueError] = useState(false);
   const [itemsRentDue, setItemsRentDue] = useState([
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    { label: "4", value: "4" },
     { label: "5", value: "5" },
     { label: "6", value: "6" },
     { label: "7", value: "7" },
@@ -62,17 +66,28 @@ const RegisterTenant = ({ navigation }) => {
     { label: "18", value: "18" },
     { label: "19", value: "19" },
     { label: "20", value: "20" },
+    { label: "21", value: "21" },
+    { label: "22", value: "22" },
+    { label: "23", value: "23" },
+    { label: "24", value: "24" },
+    { label: "25", value: "25" },
+    { label: "26", value: "26" },
+    { label: "27", value: "27" },
+    { label: "28", value: "28" },
   ]);
+
+  const [isYearlyIncreaseEditable, setIsYearlyIncreaseEditable] =
+    useState(false);
+  const [isLateRentFineEditable, setIsLateRentFineEditable] = useState(false);
+  const [currentSchema, setCurrentSchema] = useState(
+    registerTenantSchema(isYearlyIncreaseEditable, isLateRentFineEditable)
+  );
 
   useEffect(() => {
     if (valueRentDue) {
       setValueRentDueError(false);
     }
   }, [valueRentDue]);
-
-  const [isYearlyIncreaseEditable, setIsYearlyIncreaseEditable] =
-    useState(false);
-  const [isLateRentFineEditable, setIsLateRentFineEditable] = useState(false);
 
   return (
     <Formik
@@ -85,7 +100,7 @@ const RegisterTenant = ({ navigation }) => {
         lateRentFine: "",
         tenantContact: "",
       }}
-      validationSchema={registerTenantSchema}
+      validationSchema={currentSchema}
       onSubmit={() => {
         if (!valueRentDue) {
           console.log("im in");
@@ -95,197 +110,217 @@ const RegisterTenant = ({ navigation }) => {
         navigation.navigate("Register Tenant");
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-      }) => (
-        <KeyboardAwareScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          scrollEnabled={true}
-          onTouchEnd={() => {
-            setOpenRentDue(false);
-          }}
-        >
-          <View
-            style={[
-              styles.container,
-              { backgroundColor: colors.backgroundPrimary },
-            ]}
+      {(formikProps) => {
+        const {
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+          validateForm,
+        } = formikProps;
+        useEffect(() => {
+          setCurrentSchema(
+            registerTenantSchema(
+              isYearlyIncreaseEditable,
+              isLateRentFineEditable
+            )
+          );
+          validateForm();
+        }, [isYearlyIncreaseEditable, isLateRentFineEditable]);
+
+        return (
+          <KeyboardAwareScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            scrollEnabled={true}
+            onTouchEnd={() => {
+              setOpenRentDue(false);
+            }}
           >
-            <Text
+            <View
               style={[
-                styles.headerText,
-                {
-                  fontSize: FontSizes.large,
-                  color: colors.textPrimary,
-                  marginVertical: 30,
-                },
+                styles.container,
+                { backgroundColor: colors.backgroundPrimary },
               ]}
             >
-              Register Tenant
-            </Text>
+              <Text
+                style={[
+                  styles.headerText,
+                  {
+                    fontSize: FontSizes.large,
+                    color: colors.textPrimary,
+                    marginVertical: 30,
+                  },
+                ]}
+              >
+                Register Tenant
+              </Text>
 
-            <View style={[styles.bodyContainer, { marginBottom: 20 }]}>
-              <InputField
-                fieldType="numeric"
-                borderRadius={10}
-                label="Rent Amount (PKR)"
-                value={values.rentAmount}
-                handleChange={handleChange("rentAmount")}
-                handleBlur={handleBlur("rentAmount")}
-                errorText={touched.rentAmount ? errors.rentAmount : ""}
-                returnKeyType="next"
-                onSubmitEditing={() => securityAmountRef.current.focus()}
-              />
-              <InputField
-                fieldType="numeric"
-                borderRadius={10}
-                label="Security Amount (PKR)"
-                value={values.securityAmount}
-                handleChange={handleChange("securityAmount")}
-                handleBlur={handleBlur("securityAmount")}
-                errorText={touched.securityAmount ? errors.securityAmount : ""}
-                returnKeyType="next"
-                onSubmitEditing={() => evictionPeriodRef.current?.focus()}
-                ref={securityAmountRef}
-              />
-              <InputFieldWithHint
-                fieldType="numeric"
-                borderRadius={10}
-                label="Eviction Period (Days)"
-                value={values.evictionPeriod}
-                handleChange={handleChange("evictionPeriod")}
-                handleBlur={handleBlur("evictionPeriod")}
-                errorText={touched.evictionPeriod ? errors.evictionPeriod : ""}
-                returnKeyType="next"
-                ref={evictionPeriodRef}
-                onSubmitEditing={() => tenantContactRef.current?.focus()}
-                hintTexts={{
-                  english:
-                    "Eviction period refers to the amount of time notice must be given before a tenant is required to vacate the property. For example, you can set it to 30 days or 60 days depending on your local laws and agreements.",
-                  urdu: "خارجی مدت وقت اس وقت کا حتمی وقت ہے جب کرایہ دار کو جائیداد خالی کرنے کا حکم دیا جاتا ہے۔ مثال کے طور پر، آپ اسے 30 دن یا 60 دن کر سکتے ہیں، جو آپ کے مقامی قوانین اور معاہدوں پر منحصر ہوتا ہے۔",
-                }}
-              />
+              <View style={[styles.bodyContainer, { marginBottom: 20 }]}>
+                <DropDownPicker
+                  {...dropdownStyles}
+                  listMode="SCROLLVIEW"
+                  theme={colors.dropDownTheme}
+                  zIndex={4000}
+                  open={openRentDue}
+                  value={valueRentDue}
+                  items={itemsRentDue}
+                  setOpen={setOpenRentDue}
+                  setValue={setValueRentDue}
+                  setItems={setItemsRentDue}
+                  placeholder="Rent Due Date"
+                />
+                {valueRentDueError && (
+                  <Text
+                    style={{
+                      color: colors.textRed,
+                      fontSize: FontSizes.extraSmall,
+                      alignSelf: "flex-start",
+                      marginLeft: 13,
+                      marginTop: 5,
+                    }}
+                  >
+                    Select an Option!
+                  </Text>
+                )}
 
-              <InputField
-                fieldType="phone-pad"
-                borderRadius={10}
-                label="Tenant Contact"
-                value={values.tenantContact}
-                handleChange={handleChange("tenantContact")}
-                handleBlur={handleBlur("tenantContact")}
-                errorText={touched.tenantContact ? errors.tenantContact : ""}
-                onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
-                returnKeyType="next"
-                ref={tenantContactRef}
-              />
-              <DropDownPicker
-                {...dropdownStyles}
-                listMode="SCROLLVIEW"
-                theme={colors.dropDownTheme}
-                zIndex={4000}
-                open={openRentDue}
-                value={valueRentDue}
-                items={itemsRentDue}
-                setOpen={setOpenRentDue}
-                setValue={setValueRentDue}
-                setItems={setItemsRentDue}
-                placeholder="Rent Due Date"
-              />
-              {valueRentDueError && (
-                <Text
-                  style={{
-                    color: colors.textRed,
-                    fontSize: FontSizes.extraSmall,
-                    alignSelf: "flex-start",
-                    marginLeft: 13,
-                    marginTop: 5,
+                <View style={{ height: valueRentDueError ? 6 : 25 }} />
+                <InputField
+                  fieldType="numeric"
+                  borderRadius={10}
+                  label="Rent Amount (PKR)"
+                  value={values.rentAmount}
+                  handleChange={handleChange("rentAmount")}
+                  handleBlur={handleBlur("rentAmount")}
+                  errorText={touched.rentAmount ? errors.rentAmount : ""}
+                  returnKeyType="next"
+                  onSubmitEditing={() => securityAmountRef.current.focus()}
+                />
+                <InputField
+                  fieldType="numeric"
+                  borderRadius={10}
+                  label="Security Amount (PKR)"
+                  value={values.securityAmount}
+                  handleChange={handleChange("securityAmount")}
+                  handleBlur={handleBlur("securityAmount")}
+                  errorText={
+                    touched.securityAmount ? errors.securityAmount : ""
+                  }
+                  returnKeyType="next"
+                  onSubmitEditing={() => evictionPeriodRef.current?.focus()}
+                  ref={securityAmountRef}
+                />
+                <InputFieldWithHint
+                  fieldType="numeric"
+                  borderRadius={10}
+                  label="Eviction Period (Days)"
+                  value={values.evictionPeriod}
+                  handleChange={handleChange("evictionPeriod")}
+                  handleBlur={handleBlur("evictionPeriod")}
+                  errorText={
+                    touched.evictionPeriod ? errors.evictionPeriod : ""
+                  }
+                  returnKeyType="next"
+                  ref={evictionPeriodRef}
+                  onSubmitEditing={() => tenantContactRef.current?.focus()}
+                  hintTexts={{
+                    english:
+                      "Eviction period refers to the amount of time notice must be given before a tenant is required to vacate the property. For example, you can set it to 30 days or 60 days depending on your local laws and agreements.",
+                    urdu: "خارجی مدت وقت اس وقت کا حتمی وقت ہے جب کرایہ دار کو جائیداد خالی کرنے کا حکم دیا جاتا ہے۔ مثال کے طور پر، آپ اسے 30 دن یا 60 دن کر سکتے ہیں، جو آپ کے مقامی قوانین اور معاہدوں پر منحصر ہوتا ہے۔",
                   }}
-                >
-                  Select an Option!
-                </Text>
-              )}
+                />
 
-              <View style={{ height: valueRentDueError ? 6 : 25 }} />
+                <InputField
+                  fieldType="phone-pad"
+                  borderRadius={10}
+                  label="Tenant Contact"
+                  value={values.tenantContact}
+                  handleChange={handleChange("tenantContact")}
+                  handleBlur={handleBlur("tenantContact")}
+                  errorText={touched.tenantContact ? errors.tenantContact : ""}
+                  onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
+                  returnKeyType="next"
+                  ref={tenantContactRef}
+                />
 
-              <InputFieldWithHint
-                isEditable={isYearlyIncreaseEditable}
-                setIsEditable={setIsYearlyIncreaseEditable}
-                fieldType="numeric"
-                canBeDisabled={true}
-                borderRadius={10}
-                label="Yearly Increase (%)"
-                value={values.yearlyIncrease}
-                handleChange={handleChange("yearlyIncrease")}
-                handleBlur={handleBlur("yearlyIncrease")}
-                errorText={touched.yearlyIncrease ? errors.yearlyIncrease : ""}
-                returnKeyType="next"
-                ref={yearlyIncreaseRef}
-                onSubmitEditing={() => lateRentFineRef.current?.focus()}
-                hintTexts={{
-                  english:
-                    "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
-                  urdu: "سالانہ اضافہ وقت کی فی صد میں اضافہ کا مطلب ہے جس سے کرایہ ہر سال بڑھایا جا سکتا ہے۔ مثال کے طور پر، آپ اسے 3 فی صد پر مقرر کر سکتے ہیں تاکہ کرایہ ہر سال 3 فی صد بڑھایا جا سکے۔",
-                }}
-              />
-              <InputFieldWithHint
-                isEditable={isLateRentFineEditable}
-                setIsEditable={setIsLateRentFineEditable}
-                fieldType="numeric"
-                canBeDisabled={true}
-                borderRadius={10}
-                label="Late Rent Fine (PKR)"
-                value={values.lateRentFine}
-                handleChange={handleChange("lateRentFine")}
-                handleBlur={handleBlur("lateRentFine")}
-                errorText={touched.lateRentFine ? errors.lateRentFine : ""}
-                returnKeyType="next"
-                ref={lateRentFineRef}
-                onSubmitEditing={() => leaseTillRef.current?.focus()}
-                hintTexts={{
-                  english:
-                    "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to $50 to be charged if the rent is not paid within 5 days of the due date.",
-                  urdu: "دیر سے ادا کرایہ جرمانہ وہ اضافی فیس ہے جو کرایہ کی ادائیگی وقت پر نہیں کی جاتی ہے۔ مثال کے طور پر، آپ اسے 5 دن کی حد سے زائد دیر کے لئے ادا نہ ہونے پر 50 ڈالر مقرر کرسکتے ہیں۔",
-                }}
-              />
+                <InputFieldWithHint
+                  isEditable={isYearlyIncreaseEditable}
+                  setIsEditable={setIsYearlyIncreaseEditable}
+                  fieldType="numeric"
+                  canBeDisabled={true}
+                  borderRadius={10}
+                  label="Yearly Increase (%)"
+                  value={isYearlyIncreaseEditable ? values.yearlyIncrease : ""}
+                  handleChange={handleChange("yearlyIncrease")}
+                  handleBlur={handleBlur("yearlyIncrease")}
+                  errorText={
+                    touched.yearlyIncrease ? errors.yearlyIncrease : ""
+                  }
+                  returnKeyType="next"
+                  ref={yearlyIncreaseRef}
+                  onSubmitEditing={() => lateRentFineRef.current?.focus()}
+                  hintTexts={{
+                    english:
+                      "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
+                    urdu: "سالانہ اضافہ وقت کی فی صد میں اضافہ کا مطلب ہے جس سے کرایہ ہر سال بڑھایا جا سکتا ہے۔ مثال کے طور پر، آپ اسے 3 فی صد پر مقرر کر سکتے ہیں تاکہ کرایہ ہر سال 3 فی صد بڑھایا جا سکے۔",
+                  }}
+                />
+                <InputFieldWithHint
+                  isEditable={isLateRentFineEditable}
+                  setIsEditable={setIsLateRentFineEditable}
+                  fieldType="numeric"
+                  canBeDisabled={true}
+                  borderRadius={10}
+                  label="Late Rent Fine (PKR)"
+                  value={isLateRentFineEditable ? values.lateRentFine : ""}
+                  handleChange={handleChange("lateRentFine")}
+                  handleBlur={handleBlur("lateRentFine")}
+                  errorText={touched.lateRentFine ? errors.lateRentFine : ""}
+                  returnKeyType="next"
+                  ref={lateRentFineRef}
+                  onSubmitEditing={() => leaseTillRef.current?.focus()}
+                  hintTexts={{
+                    english:
+                      "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to $50 to be charged if the rent is not paid within 5 days of the due date.",
+                    urdu: "دیر سے ادا کرایہ جرمانہ وہ اضافی فیس ہے جو کرایہ کی ادائیگی وقت پر نہیں کی جاتی ہے۔ مثال کے طور پر، آپ اسے 5 دن کی حد سے زائد دیر کے لئے ادا نہ ہونے پر 50 ڈالر مقرر کرسکتے ہیں۔",
+                  }}
+                />
 
-              <InputField
-                isLeaseTill={true}
-                fieldType="date"
-                borderRadius={10}
-                label="Lease Till"
-                value={values.leaseTill}
-                handleChange={handleChange("leaseTill")}
-                handleBlur={handleBlur("leaseTill")}
-                errorText={touched.leaseTill ? errors.leaseTill : ""}
-                ref={leaseTillRef}
-                onSubmitEditing={handleSubmit}
+                <InputField
+                  isLeaseTill={true}
+                  fieldType="date"
+                  borderRadius={10}
+                  label="Lease Till"
+                  value={values.leaseTill}
+                  handleChange={handleChange("leaseTill")}
+                  handleBlur={handleBlur("leaseTill")}
+                  errorText={touched.leaseTill ? errors.leaseTill : ""}
+                  ref={leaseTillRef}
+                  onSubmitEditing={handleSubmit}
+                />
+              </View>
+
+              <ButtonGrey
+                width={buttonWidthSmall}
+                fontSize={FontSizes.medium}
+                buttonText="Register"
+                onPress={() => {
+                  if (!valueRentDue) {
+                    setValueRentDueError(true);
+                    handleSubmit();
+                  } else {
+                    setValueRentDueError(false);
+                    handleSubmit();
+                  }
+                }} // When the user presses "Change", the form will be submitted
+                isSubmitButton={true} // Indicates to the component that this is a submit button so that it can change its flow
               />
+              <View style={{ height: 30 }} />
             </View>
-
-            <ButtonGrey
-              width={buttonWidthSmall}
-              fontSize={FontSizes.medium}
-              buttonText="Register"
-              onPress={() => {
-                if (!valueRentDue) {
-                  setValueRentDueError(true);
-                  handleSubmit();
-                } else {
-                  setValueRentDueError(false);
-                  handleSubmit();
-                }
-              }} // When the user presses "Change", the form will be submitted
-              isSubmitButton={true} // Indicates to the component that this is a submit button so that it can change its flow
-            />
-            <View style={{ height: 30 }} />
-          </View>
-        </KeyboardAwareScrollView>
-      )}
+          </KeyboardAwareScrollView>
+        );
+      }}
     </Formik>
   );
 };
