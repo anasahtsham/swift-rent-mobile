@@ -127,28 +127,14 @@ const RegisterTenant = ({ navigation }) => {
         useEffect(() => {
           isYearlyIncreaseEditableRef.current = isYearlyIncreaseEditable;
           isLateRentFineEditableRef.current = isLateRentFineEditable;
-          console.log(
-            "\n\n\n\nisYearlyIncreaseEditable",
-            isYearlyIncreaseEditable
-          );
-          console.log(
-            "isYearlyIncreaseEditableRef.current",
-            isYearlyIncreaseEditableRef.current
-          );
-          console.log("isLateRentFineEditable", isLateRentFineEditable);
-          console.log(
-            "isLateRentFineEditableRef.current",
-            isLateRentFineEditableRef.current
-          );
-        }, [isYearlyIncreaseEditable, isLateRentFineEditable]);
 
-        useEffect(() => {
           setCurrentSchema(
             registerTenantSchema(
-              isYearlyIncreaseEditableRef.current,
-              isLateRentFineEditableRef.current
+              isYearlyIncreaseEditable,
+              isLateRentFineEditable
             )
           );
+
           validateForm();
         }, [
           isYearlyIncreaseEditableRef.current,
