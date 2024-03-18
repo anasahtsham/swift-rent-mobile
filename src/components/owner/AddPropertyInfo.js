@@ -18,9 +18,35 @@ import ButtonGrey from "../common/buttons/ButtonGrey";
 import Checkbox from "../common/checkbox/Checkbox";
 import InputField from "../common/input_fields/InputField";
 import {
-  checkboxes,
-  fieldNames,
+  agricultureCheckboxes,
+  agricultureFieldTypes,
+  buildingCheckboxes,
+  buildingFieldTypes,
+  commercialCheckboxes,
+  commercialFieldTypes,
+  factoryCheckboxes,
+  factoryFieldTypes,
+  flatCheckboxes,
+  flatFieldTypes,
+  housesCheckboxes,
+  housesFieldTypes,
+  industrialCheckboxes,
+  industrialFieldTypes,
+  lowerCheckboxes,
+  lowerFieldTypes,
+  officeCheckboxes,
+  officeFieldTypes,
+  roomCheckboxes,
+  roomFieldTypes,
+  shopCheckboxes,
+  shopFieldTypes,
+  upperCheckboxes,
+  upperFieldTypes,
+  warehouseCheckboxes,
+  warehouseFieldTypes,
 } from "./../../helpers/data/AddPropertyInfoData";
+
+let fieldNames = [];
 
 const validationSchema = yup.object().shape(
   fieldNames.reduce((prev, curr) => {
@@ -132,6 +158,65 @@ const AddPropertyInfo = ({ navigation, route }) => {
     isFurnished: false,
     isShared: false,
   });
+
+  let checkboxes = [];
+
+  switch (propertySubType) {
+    case "house":
+      checkboxes = housesCheckboxes;
+      fieldNames = housesFieldTypes;
+      break;
+    case "upper_floor":
+      checkboxes = upperCheckboxes;
+      fieldNames = upperFieldTypes;
+      break;
+    case "lower_floor":
+      checkboxes = lowerCheckboxes;
+      fieldNames = lowerFieldTypes;
+      break;
+    case "flat":
+      checkboxes = flatCheckboxes;
+      fieldNames = flatFieldTypes;
+      break;
+    case "room":
+      checkboxes = roomCheckboxes;
+      fieldNames = roomFieldTypes;
+      break;
+    case "commercial":
+      checkboxes = commercialCheckboxes;
+      fieldNames = commercialFieldTypes;
+      break;
+    case "agriculture":
+      checkboxes = agricultureCheckboxes;
+      fieldNames = agricultureFieldTypes;
+      break;
+    case "industrial":
+      checkboxes = industrialCheckboxes;
+      fieldNames = industrialFieldTypes;
+      break;
+    case "office":
+      checkboxes = officeCheckboxes;
+      fieldNames = officeFieldTypes;
+      break;
+    case "shop":
+      checkboxes = shopCheckboxes;
+      fieldNames = shopFieldTypes;
+      break;
+    case "building":
+      checkboxes = buildingCheckboxes;
+      fieldNames = buildingFieldTypes;
+      break;
+    case "warehouse":
+      checkboxes = warehouseCheckboxes;
+      fieldNames = warehouseFieldTypes;
+      break;
+    case "factory":
+      checkboxes = factoryCheckboxes;
+      fieldNames = factoryFieldTypes;
+      break;
+    default:
+      break;
+  }
 
   return (
     <Formik

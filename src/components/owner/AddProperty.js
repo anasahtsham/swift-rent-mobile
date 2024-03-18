@@ -154,9 +154,6 @@ const AddProperty = ({ navigation }) => {
           ? selectedPropertySubType.label
           : "No match found";
 
-        console.log("Property Type: ", propertyTypeLabel);
-        console.log("Property Sub Type: ", propertySubTypeLabel);
-
         // check if all dropdowns are set
         if (
           !!valueCity &&

@@ -1,7 +1,7 @@
 export const fieldNames = [
   { label: "Area", value: "area" },
   { label: "Height", value: "height" },
-  { label: "Appartments", value: "appartments" },
+  { label: "Apartments", value: "apartments" },
   { label: "Balcony", value: "balcony" },
   { label: "Bedrooms", value: "bedrooms" },
   { label: "Floors", value: "floors" },
@@ -88,7 +88,7 @@ export const industrialFieldTypes = [{ label: "Area", value: "area" }];
 
 //commercial
 
-export const officeFieldNames = [
+export const officeFieldTypes = [
   { label: "Area", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Floors", value: "floors" },
@@ -101,7 +101,7 @@ export const officeFieldNames = [
   { label: "Person Capacity", value: "personCapacity" },
 ];
 
-export const shopFieldNames = [
+export const shopFieldTypes = [
   { label: "Area", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Floors", value: "floors" },
@@ -113,7 +113,7 @@ export const shopFieldNames = [
   { label: "Height", value: "height" },
 ];
 
-export const buildingFieldNames = [
+export const buildingFieldTypes = [
   { label: "Area", value: "area" },
   { label: "Apartments", value: "apartments" },
   { label: "Floors", value: "floors" },
@@ -126,7 +126,7 @@ export const buildingFieldNames = [
   { label: "Height", value: "height" },
 ];
 
-export const warehouseFieldNames = [
+export const warehouseFieldTypes = [
   { label: "Area", value: "area" },
   { label: "Toilets", value: "toilets" },
   { label: "Parking Capacity", value: "parkingCapacity" },
@@ -134,7 +134,7 @@ export const warehouseFieldNames = [
   { label: "Height", value: "height" },
 ];
 
-export const factoryFieldNames = [
+export const factoryFieldTypes = [
   { label: "Area", value: "area" },
   { label: "Kitchen", value: "kitchen" },
   { label: "Store Rooms", value: "storeRooms" },
