@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as yup from "yup";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
@@ -21,24 +22,32 @@ import {
   fieldNames,
 } from "./../../helpers/data/AddPropertyInfoData";
 
-// const validationSchema = yup.object().shape(
-//   fieldNames.reduce((prev, curr) => {
-//     if (curr.value === "area") {
-//       prev[curr.value] = yup
-//         .number()
-//         .min(1, "Area must be at least 1")
-//         .max(10, "Area must be at most 10")
-//         .required("Area is required");
-//     } else {
-//       //   prev[curr.value] = yup.string().required(`${curr.label} is required`);
-//     }
-//     return prev;
-//   }, {})
-// );
+const validationSchema = yup.object().shape(
+  fieldNames.reduce((prev, curr) => {
+    if (curr.value === "area") {
+      prev[curr.value] = yup
+        .number()
+        .min(1, "Area must be at least 1")
+        .max(10, "Area must be at most 10")
+        .required("Area is required");
+    } else {
+      //   prev[curr.value] = yup.string().required(`${curr.label} is required`);
+    }
+    return prev;
+  }, {})
+);
 
 const AddPropertyInfo = ({ navigation, route }) => {
-  const { city, subArea, street, building, propertyType, propertySubType } =
-    route.params;
+  const {
+    city,
+    subArea,
+    street,
+    building,
+    propertyType,
+    propertyTypeLabel,
+    propertySubType,
+    propertySubTypeLabel,
+  } = route.params;
 
   const colors = useColors();
   useEffect(() => {
@@ -130,7 +139,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
         (prev, curr) => ({ ...prev, [curr.value]: "" }),
         {}
       )}
-      //   validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={(values) => {
         // check if all dropdowns are set
         if (!!valueWaterAvailabilityDropdown) {
@@ -193,9 +202,10 @@ const AddPropertyInfo = ({ navigation, route }) => {
                   },
                 ]}
               >
-                {propertyType}
                 {"\n"}
-                {propertySubType}
+                {propertyTypeLabel}
+                {"\n"}
+                {propertySubTypeLabel}
               </Text>
               <View style={{ width: "80%" }}>
                 <View style={styles.dropdownContainer}>

@@ -141,6 +141,22 @@ const AddProperty = ({ navigation }) => {
       }}
       validationSchema={addPropertySchema}
       onSubmit={(values) => {
+        const selectedPropertyType = propertyTypeData.find(
+          (item) => item.value === valuePropertyType
+        );
+        const propertyTypeLabel = selectedPropertyType
+          ? selectedPropertyType.label
+          : "No match found";
+        const selectedPropertySubType = propertySubTypeData[
+          valuePropertyType
+        ].find((item) => item.value === valuePropertySubType);
+        const propertySubTypeLabel = selectedPropertySubType
+          ? selectedPropertySubType.label
+          : "No match found";
+
+        console.log("Property Type: ", propertyTypeLabel);
+        console.log("Property Sub Type: ", propertySubTypeLabel);
+
         // check if all dropdowns are set
         if (
           !!valueCity &&
@@ -155,6 +171,8 @@ const AddProperty = ({ navigation }) => {
             building: values.building,
             propertyType: valuePropertyType,
             propertySubType: valuePropertySubType,
+            propertyTypeLabel: propertyTypeLabel,
+            propertySubTypeLabel: propertySubTypeLabel,
           });
         } else {
           setErrorDropdowns(true);
