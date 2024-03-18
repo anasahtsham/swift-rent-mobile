@@ -36,8 +36,10 @@ const AnalyticsHeader = (props) => {
           totalRentsPaid={props.totalRentsPaid}
           rentals={props.rentals}
           rentsCollected={props.rentsCollected}
+          commission={props.commission}
           maintenanceCost={props.maintenanceCost}
           totalProperties={props.totalProperties}
+          managedProperties={props.managedProperties}
           colors={colors}
         />
       </View>

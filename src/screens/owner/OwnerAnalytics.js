@@ -1,11 +1,12 @@
 import Analytics from "../../components/common/Analytics";
-import { ownerAndManagerData } from "../../helpers/data/AnalyticsData";
+import { ownerData } from "../../helpers/data/AnalyticsData";
+import { formatedMonthYear } from "../../helpers/utils";
 
 const OwnerAnalytics = () => {
   return (
     <Analytics
-      analyticsData={ownerAndManagerData}
-      month="June 2024"
+      analyticsData={ownerData}
+      month={formatedMonthYear}
       rentsCollected="1230000"
       maintenanceCost="20000"
       totalProperties="10"

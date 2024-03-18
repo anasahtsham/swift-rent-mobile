@@ -21,7 +21,9 @@ const MainCard = (props) => {
           {title}
         </Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          {!!props.rentsCollected && (
+          {(title === "Rents Collected" ||
+            title === "Commission" ||
+            title === "Maintenance Costs") && (
             <Image
               tintColor={tintColor}
               style={{ width: 20, height: 20, marginRight: 5 }}
@@ -41,7 +43,9 @@ const MainCard = (props) => {
           >
             {value}
           </Text>
-          {!!props.rentsCollected && (
+          {(title === "Rents Collected" ||
+            title === "Commission" ||
+            title === "Maintenance Costs") && (
             <Text
               style={[
                 styles.textRegular,
@@ -92,7 +96,15 @@ const MainCard = (props) => {
             tintColor={colors.iconGreen}
           />
         )}
-        {!!props.rentsCollected && (
+        {!!props.commission && (
+          <InfoRow
+            title="Commission"
+            value={formatNumber(props.commission)}
+            imageSource={icons.downLongArrow}
+            tintColor={colors.iconGreen}
+          />
+        )}
+        {!!props.maintenanceCost && (
           <InfoRow
             title="Maintenance Costs"
             value={formatNumber(props.maintenanceCost)}
@@ -107,6 +119,17 @@ const MainCard = (props) => {
             imageSource={icons.upLongArrow}
             tintColor={colors.iconRed}
           />
+        )}
+        {!!props.managedProperties && (
+          <View>
+            <InfoRow
+              title="Manged Properties"
+              value={props.managedProperties}
+              imageSource={icons.upLongArrow}
+              tintColor={colors.iconRed}
+            />
+            <View style={{ height: 40 }}></View>
+          </View>
         )}
         {!!props.totalRentsPaid && (
           <View>

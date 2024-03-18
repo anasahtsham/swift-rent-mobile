@@ -29,11 +29,11 @@ import SetUpPassword from "./src/screens/authentication/SetUpPassword";
 import WhoAreYou from "./src/screens/authentication/WhoAreYou";
 import OwnerHiring from "./src/screens/owner/OwnerHiring";
 import RegisterTenant from "./src/screens/owner/RegisterTenant";
+import RentHistory from "./src/screens/owner/RentHistory";
 import ResidentialHome from "./src/screens/owner/ResidentialHome";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import RentHistory from "./src/screens/owner/RentHistory";
 
 const Stack = createStackNavigator();
 
@@ -47,7 +47,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Rent History"
+          initialRouteName="Splash Screen"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />

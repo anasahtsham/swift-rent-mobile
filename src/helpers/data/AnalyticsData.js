@@ -1,4 +1,4 @@
-export const ownerAndManagerData = [
+export const ownerData = [
   {
     id: "1",
     month: "Mar 2023",
@@ -388,6 +388,334 @@ export const ownerAndManagerData = [
     month: "Jul 2028",
     incomingPayment: "27000",
     outgoingPayment: "1000",
+  },
+];
+
+export const managerData = [
+  {
+    id: "1",
+    month: "Mar 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "2",
+    month: "Apr 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "3",
+    month: "May 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "4",
+    month: "Jun 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "5",
+    month: "Jul 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "6",
+    month: "Aug 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "7",
+    month: "Sep 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "8",
+    month: "Oct 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "9",
+    month: "Nov 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "10",
+    month: "Dec 2023",
+    commissionEarned: "27000",
+  },
+  {
+    id: "11",
+    month: "Jan 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "12",
+    month: "Feb 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "13",
+    month: "Mar 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "14",
+    month: "Apr 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "15",
+    month: "May 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "16",
+    month: "Jun 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "17",
+    month: "Jul 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "18",
+    month: "Aug 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "19",
+    month: "Sep 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "20",
+    month: "Oct 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "21",
+    month: "Nov 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "22",
+    month: "Dec 2024",
+    commissionEarned: "27000",
+  },
+  {
+    id: "23",
+    month: "Jan 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "24",
+    month: "Feb 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "25",
+    month: "Mar 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "26",
+    month: "Apr 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "27",
+    month: "May 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "28",
+    month: "Jun 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "29",
+    month: "Jul 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "30",
+    month: "Aug 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "31",
+    month: "Sep 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "32",
+    month: "Oct 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "33",
+    month: "Nov 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "34",
+    month: "Dec 2025",
+    commissionEarned: "27000",
+  },
+  {
+    id: "35",
+    month: "Jan 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "36",
+    month: "Feb 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "37",
+    month: "Mar 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "38",
+    month: "Apr 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "39",
+    month: "May 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "40",
+    month: "Jun 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "41",
+    month: "Jul 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "42",
+    month: "Aug 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "43",
+    month: "Sep 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "44",
+    month: "Oct 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "45",
+    month: "Nov 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "46",
+    month: "Dec 2026",
+    commissionEarned: "27000",
+  },
+  {
+    id: "47",
+    month: "Jan 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "48",
+    month: "Feb 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "49",
+    month: "Mar 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "50",
+    month: "Apr 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "51",
+    month: "May 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "52",
+    month: "Jun 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "53",
+    month: "Jul 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "54",
+    month: "Aug 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "55",
+    month: "Sep 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "56",
+    month: "Oct 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "57",
+    month: "Nov 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "58",
+    month: "Dec 2027",
+    commissionEarned: "27000",
+  },
+  {
+    id: "59",
+    month: "Jan 2028",
+    commissionEarned: "27000",
+  },
+  {
+    id: "60",
+    month: "Feb 2028",
+    commissionEarned: "27000",
+  },
+  {
+    id: "61",
+    month: "Mar 2028",
+    commissionEarned: "27000",
+  },
+  {
+    id: "62",
+    month: "Apr 2028",
+    commissionEarned: "27000",
+  },
+  {
+    id: "63",
+    month: "May 2028",
+    commissionEarned: "27000",
+  },
+  {
+    id: "64",
+    month: "Jun 2028",
+    commissionEarned: "27000",
+  },
+  {
+    id: "65",
+    month: "Jul 2028",
+    commissionEarned: "27000",
   },
 ];
 

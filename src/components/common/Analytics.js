@@ -15,6 +15,7 @@ const Analytics = (props) => {
       key={data.id}
       month={data.month}
       incomingPayment={data.incomingPayment}
+      commissionEarned={data.commissionEarned}
       outgoingPayment={data.outgoingPayment}
       properties={data.properties}
       backgroundColor={colors.backgroundRed}
@@ -31,8 +32,10 @@ const Analytics = (props) => {
         totalRentsPaid={props.totalRentsPaid}
         rentals={props.rentals}
         rentsCollected={props.rentsCollected}
+        commission={props.commission}
         maintenanceCost={props.maintenanceCost}
         totalProperties={props.totalProperties}
+        managedProperties={props.managedProperties}
         receivedRents={props.receivedRents}
         pendingRents={props.pendingRents}
         rentsPaid={props.rentsPaid}

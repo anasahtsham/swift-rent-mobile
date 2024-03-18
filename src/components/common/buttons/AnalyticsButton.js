@@ -43,6 +43,30 @@ export const AnalyticsButton = (props) => {
         </Text>
       )}
 
+      {!!props.commissionEarned && (
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            tintColor={colors.iconGreen}
+            source={icons.downLongArrow}
+            style={{ width: 20, height: 20 }}
+          />
+          <Text
+            style={{
+              fontFamily: "OpenSansRegular",
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+            }}
+          >
+            {formatNumber(props.commissionEarned)}
+          </Text>
+        </View>
+      )}
+
       {!!props.properties && (
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
@@ -70,18 +94,21 @@ export const AnalyticsButton = (props) => {
         />
       )}
 
-      <Text
-        style={{
-          fontFamily: "OpenSansRegular",
-          fontSize: FontSizes.small,
-          color: colors.textPrimary,
-        }}
-      >
-        {!!props.outgoingPayment
-          ? formatNumber(props.outgoingPayment)
-          : formatNumber(props.outcome)}
-        {!!props.incomingPayment ? "" : " PKR"}
-      </Text>
+      {(!!props.outgoingPayment || !!props.outcome) && (
+        <Text
+          style={{
+            fontFamily: "OpenSansRegular",
+            fontSize: FontSizes.small,
+            color: colors.textPrimary,
+          }}
+        >
+          {!!props.outgoingPayment
+            ? formatNumber(props.outgoingPayment)
+            : formatNumber(props.outcome)}
+          {!!props.incomingPayment ? "" : " PKR"}
+        </Text>
+      )}
+
       <Image
         tintColor={colors.iconPrimary}
         source={icons.externalLink}
