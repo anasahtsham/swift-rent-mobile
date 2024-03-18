@@ -169,11 +169,13 @@ export const registerTenantSchema = (
     rentAmount: Yup.string()
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
-      .matches(/^[0-9]*$/, "Only numbers allowed"),
+      .matches(/^[0-9]*$/, "Only numbers allowed")
+      .matches(/^([1-9][0-9]*00)$/, "Value must be a multiple of 100"),
     securityAmount: Yup.string()
       .required("This Field is required")
       .matches(/^\S*$/, "No spaces allowed")
-      .matches(/^[0-9]*$/, "Only numbers allowed"),
+      .matches(/^[0-9]*$/, "Only numbers allowed")
+      .matches(/^([1-9][0-9]*00)$/, "Value must be a multiple of 100"),
     evictionPeriod: Yup.string()
       .required("This Field is required")
       .matches(/^[0-9]*$/, "Only numbers allowed")
@@ -185,6 +187,7 @@ export const registerTenantSchema = (
     yearlyIncrease: Yup.string()
       .matches(/^[0-9]*$/, "Only numbers allowed")
       .matches(/^\S*$/, "No spaces allowed")
+      .matches(/^(100|[1-9][0-9]?)$/, "Value must be between 1 and 100")
       .test(
         "isYearlyIncreaseEditable",
         "This Field is required",
@@ -207,7 +210,8 @@ export const registerTenantSchema = (
           }
           return true;
         }
-      ),
+      )
+      .matches(/^([1-9][0-9]*00)$/, "Value must be a multiple of 100"),
     leaseTill: Yup.date()
       .typeError("Invalid date format")
       .required("This Field is required"),
