@@ -31,6 +31,8 @@ const InputField = forwardRef((props, ref) => {
     touched,
     errors,
     borderRadius,
+    isEditable,
+    setIsEditable,
     ...restOfProps
   } = props;
 
@@ -76,7 +78,7 @@ const InputField = forwardRef((props, ref) => {
       easing: Easing.bezier(0.4, 0, 0.2, 1),
       useNativeDriver: true,
     }).start();
-  }, [focusAnim, isFocused, value, isEditable]);
+  }, [focusAnim, isFocused, value]);
 
   const showDatePicker = () => {
     setPickerOpen(true);
@@ -97,8 +99,6 @@ const InputField = forwardRef((props, ref) => {
 
     handleChange({ target: { name: "date", value: formatted } });
   };
-
-  const [isEditable, setIsEditable] = useState(false);
 
   const handleOnSubmitEditing = () => {
     if (fieldType === "date") {

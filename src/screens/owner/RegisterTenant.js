@@ -70,6 +70,10 @@ const RegisterTenant = ({ navigation }) => {
     }
   }, [valueRentDue]);
 
+  const [isYearlyIncreaseEditable, setIsYearlyIncreaseEditable] =
+    useState(false);
+  const [isLateRentFineEditable, setIsLateRentFineEditable] = useState(false);
+
   return (
     <Formik
       initialValues={{
@@ -159,30 +163,25 @@ const RegisterTenant = ({ navigation }) => {
                 errorText={touched.evictionPeriod ? errors.evictionPeriod : ""}
                 returnKeyType="next"
                 ref={evictionPeriodRef}
-                onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
+                onSubmitEditing={() => tenantContactRef.current?.focus()}
                 hintTexts={{
                   english:
                     "Eviction period refers to the amount of time notice must be given before a tenant is required to vacate the property. For example, you can set it to 30 days or 60 days depending on your local laws and agreements.",
                   urdu: "خارجی مدت وقت اس وقت کا حتمی وقت ہے جب کرایہ دار کو جائیداد خالی کرنے کا حکم دیا جاتا ہے۔ مثال کے طور پر، آپ اسے 30 دن یا 60 دن کر سکتے ہیں، جو آپ کے مقامی قوانین اور معاہدوں پر منحصر ہوتا ہے۔",
                 }}
               />
-              <InputFieldWithHint
-                fieldType="numeric"
-                canBeDisabled={true}
+
+              <InputField
+                fieldType="phone-pad"
                 borderRadius={10}
-                label="Yearly Increase (%)"
-                value={values.yearlyIncrease}
-                handleChange={handleChange("yearlyIncrease")}
-                handleBlur={handleBlur("yearlyIncrease")}
-                errorText={touched.yearlyIncrease ? errors.yearlyIncrease : ""}
+                label="Tenant Contact"
+                value={values.tenantContact}
+                handleChange={handleChange("tenantContact")}
+                handleBlur={handleBlur("tenantContact")}
+                errorText={touched.tenantContact ? errors.tenantContact : ""}
+                onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
                 returnKeyType="next"
-                ref={yearlyIncreaseRef}
-                onSubmitEditing={() => lateRentFineRef.current?.focus()}
-                hintTexts={{
-                  english:
-                    "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
-                  urdu: "سالانہ اضافہ وقت کی فی صد میں اضافہ کا مطلب ہے جس سے کرایہ ہر سال بڑھایا جا سکتا ہے۔ مثال کے طور پر، آپ اسے 3 فی صد پر مقرر کر سکتے ہیں تاکہ کرایہ ہر سال 3 فی صد بڑھایا جا سکے۔",
-                }}
+                ref={tenantContactRef}
               />
               <DropDownPicker
                 {...dropdownStyles}
@@ -214,6 +213,28 @@ const RegisterTenant = ({ navigation }) => {
               <View style={{ height: valueRentDueError ? 6 : 25 }} />
 
               <InputFieldWithHint
+                isEditable={isYearlyIncreaseEditable}
+                setIsEditable={setIsYearlyIncreaseEditable}
+                fieldType="numeric"
+                canBeDisabled={true}
+                borderRadius={10}
+                label="Yearly Increase (%)"
+                value={values.yearlyIncrease}
+                handleChange={handleChange("yearlyIncrease")}
+                handleBlur={handleBlur("yearlyIncrease")}
+                errorText={touched.yearlyIncrease ? errors.yearlyIncrease : ""}
+                returnKeyType="next"
+                ref={yearlyIncreaseRef}
+                onSubmitEditing={() => lateRentFineRef.current?.focus()}
+                hintTexts={{
+                  english:
+                    "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
+                  urdu: "سالانہ اضافہ وقت کی فی صد میں اضافہ کا مطلب ہے جس سے کرایہ ہر سال بڑھایا جا سکتا ہے۔ مثال کے طور پر، آپ اسے 3 فی صد پر مقرر کر سکتے ہیں تاکہ کرایہ ہر سال 3 فی صد بڑھایا جا سکے۔",
+                }}
+              />
+              <InputFieldWithHint
+                isEditable={isLateRentFineEditable}
+                setIsEditable={setIsLateRentFineEditable}
                 fieldType="numeric"
                 canBeDisabled={true}
                 borderRadius={10}
@@ -224,24 +245,12 @@ const RegisterTenant = ({ navigation }) => {
                 errorText={touched.lateRentFine ? errors.lateRentFine : ""}
                 returnKeyType="next"
                 ref={lateRentFineRef}
-                onSubmitEditing={() => tenantContactRef.current?.focus()}
+                onSubmitEditing={() => leaseTillRef.current?.focus()}
                 hintTexts={{
                   english:
                     "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to $50 to be charged if the rent is not paid within 5 days of the due date.",
                   urdu: "دیر سے ادا کرایہ جرمانہ وہ اضافی فیس ہے جو کرایہ کی ادائیگی وقت پر نہیں کی جاتی ہے۔ مثال کے طور پر، آپ اسے 5 دن کی حد سے زائد دیر کے لئے ادا نہ ہونے پر 50 ڈالر مقرر کرسکتے ہیں۔",
                 }}
-              />
-              <InputField
-                fieldType="phone-pad"
-                borderRadius={10}
-                label="Tenant Contact"
-                value={values.tenantContact}
-                handleChange={handleChange("tenantContact")}
-                handleBlur={handleBlur("tenantContact")}
-                errorText={touched.tenantContact ? errors.tenantContact : ""}
-                onSubmitEditing={() => leaseTillRef.current?.focus()}
-                returnKeyType="next"
-                ref={tenantContactRef}
               />
 
               <InputField

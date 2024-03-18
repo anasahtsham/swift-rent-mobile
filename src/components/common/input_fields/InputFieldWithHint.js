@@ -10,6 +10,8 @@ import InputField from "./InputField";
 const InputFieldWithHint = React.forwardRef(
   (
     {
+      isEditable,
+      setIsEditable,
       canBeDisabled,
       borderRadius,
       textFieldIcon,
@@ -39,6 +41,8 @@ const InputFieldWithHint = React.forwardRef(
         }}
       >
         <InputField
+          isEditable={isEditable}
+          setIsEditable={setIsEditable}
           canBeDisabled={canBeDisabled}
           returnKeyType={returnKeyType}
           ref={inputRef}
