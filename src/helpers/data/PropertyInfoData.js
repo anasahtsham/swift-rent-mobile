@@ -4,8 +4,8 @@ export const cityData = [
 ];
 
 export const propertyTypeData = [
-  { label: "Residential Home", value: "residential_home" },
-  { label: "Plot", value: "plot" },
+  { label: "Residential Homes", value: "residential_homes" },
+  { label: "Plots", value: "plots" },
   { label: "Commercial", value: "commercial" },
 ];
 

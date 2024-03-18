@@ -141,6 +141,19 @@ const AddProperty = ({ navigation }) => {
       }}
       validationSchema={addPropertySchema}
       onSubmit={(values) => {
+        const selectedPropertyType = propertyTypeData.find(
+          (item) => item.value === valuePropertyType
+        );
+        const propertyTypeLabel = selectedPropertyType
+          ? selectedPropertyType.label
+          : "No match found";
+        const selectedPropertySubType = propertySubTypeData[
+          valuePropertyType
+        ].find((item) => item.value === valuePropertySubType);
+        const propertySubTypeLabel = selectedPropertySubType
+          ? selectedPropertySubType.label
+          : "No match found";
+
         // check if all dropdowns are set
         if (
           !!valueCity &&
@@ -148,13 +161,15 @@ const AddProperty = ({ navigation }) => {
           !!valuePropertyType &&
           !!valuePropertySubType
         ) {
-          navigation.navigate("Add Property", {
+          navigation.navigate("Add Property Info", {
             city: valueCity,
             subArea: valueSubArea,
             street: values.street,
             building: values.building,
             propertyType: valuePropertyType,
             propertySubType: valuePropertySubType,
+            propertyTypeLabel: propertyTypeLabel,
+            propertySubTypeLabel: propertySubTypeLabel,
           });
         } else {
           setErrorDropdowns(true);
@@ -239,55 +254,6 @@ const AddProperty = ({ navigation }) => {
                   />
                 </View>
 
-                <View
-                  style={[
-                    {
-                      flexDirection: "row",
-                      height: 80,
-                    },
-                  ]}
-                >
-                  <View style={{ flex: 1 }}>
-                    <InputField
-                      borderRadius={7}
-                      label="Street#"
-                      fieldType="numeric"
-                      value={values.street}
-                      handleChange={handleChange("street")}
-                      handleBlur={handleBlur("street")}
-                      errorText={touched.street ? errors.street : ""}
-                      onSubmitEditing={() => buildingRef.current.focus()}
-                      returnKeyType="next"
-                      onPressIn={() => {
-                        setOpenCity(false);
-                        setOpenSubArea(false);
-                        setOpenPropertyType(false);
-                        setOpenPropertySubType(false);
-                      }}
-                    />
-                  </View>
-                  <View style={{ width: 10 }} />
-
-                  <View style={{ flex: 1 }}>
-                    <InputField
-                      ref={buildingRef}
-                      borderRadius={7}
-                      label="Building#"
-                      fieldType="numeric"
-                      value={values.building}
-                      handleChange={handleChange("building")}
-                      handleBlur={handleBlur("building")}
-                      errorText={touched.building ? errors.building : ""}
-                      onPressIn={() => {
-                        setOpenCity(false);
-                        setOpenSubArea(false);
-                        setOpenPropertyType(false);
-                        setOpenPropertySubType(false);
-                      }}
-                    />
-                  </View>
-                </View>
-
                 <View style={styles.dropdownContainer}>
                   <DropDownPicker
                     {...dropdownStyles}
@@ -327,12 +293,66 @@ const AddProperty = ({ navigation }) => {
                   <Text
                     style={[
                       styles.textBold,
-                      { color: colors.textRed, textAlign: "center" },
+                      {
+                        color: colors.textRed,
+                        textAlign: "center",
+                        marginBottom: 20,
+                      },
                     ]}
                   >
                     Please select all dropdowns first!
                   </Text>
                 )}
+                <View
+                  style={[
+                    {
+                      flexDirection: "row",
+                      height: 80,
+                    },
+                  ]}
+                >
+                  <View style={{ flex: 1 }}>
+                    <InputField
+                      borderRadius={7}
+                      label="Street#"
+                      fieldType="numeric"
+                      value={values.street}
+                      handleChange={handleChange("street")}
+                      handleBlur={handleBlur("street")}
+                      errorText={touched.street ? errors.street : ""}
+                      onSubmitEditing={() => buildingRef.current.focus()}
+                      returnKeyType="next"
+                      onPressIn={() => {
+                        setOpenCity(false);
+                        setOpenSubArea(false);
+                        setOpenPropertyType(false);
+                        setOpenPropertySubType(false);
+                      }}
+                    />
+                  </View>
+
+                  <View style={{ width: 10 }} />
+
+                  <View style={{ flex: 1 }}>
+                    <InputField
+                      ref={buildingRef}
+                      borderRadius={7}
+                      label="Building#"
+                      fieldType="numeric"
+                      value={values.building}
+                      handleChange={handleChange("building")}
+                      handleBlur={handleBlur("building")}
+                      errorText={touched.building ? errors.building : ""}
+                      onPressIn={() => {
+                        setOpenCity(false);
+                        setOpenSubArea(false);
+                        setOpenPropertyType(false);
+                        setOpenPropertySubType(false);
+                      }}
+                      onSubmitEditing={handleSubmit}
+                    />
+                  </View>
+                </View>
               </View>
 
               <ButtonGrey
@@ -340,7 +360,19 @@ const AddProperty = ({ navigation }) => {
                 fontSize={FontSizes.medium}
                 width={buttonWidthMedium}
                 isSubmitButton={true}
-                onPress={handleSubmit}
+                onPress={() => {
+                  if (
+                    !!valueCity &&
+                    !!valueSubArea &&
+                    !!valuePropertyType &&
+                    !!valuePropertySubType
+                  ) {
+                    setErrorDropdowns(false);
+                  } else {
+                    setErrorDropdowns(true);
+                  }
+                  handleSubmit();
+                }}
               />
             </View>
           </TouchableWithoutFeedback>
@@ -366,7 +398,7 @@ const styles = StyleSheet.create({
     fontSize: FontSizes.small,
   },
   dropdownContainer: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
 });
 
