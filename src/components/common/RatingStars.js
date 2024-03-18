@@ -8,10 +8,8 @@ import {
   StyleSheet,
 } from "react-native";
 import { icons } from "../../helpers/ImageImports";
-
 import { loadLanguage, loadTheme } from "../../helpers";
 
-import * as FontSizes from "../../assets/fonts/FontSizes";
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
@@ -59,8 +57,6 @@ const RatingStars = ({
       setTheme(theme); // Store the theme in state for local use
     });
   }
-
-  console.log(rating);
 
   return (
     <View style={styles.starsContainer}>

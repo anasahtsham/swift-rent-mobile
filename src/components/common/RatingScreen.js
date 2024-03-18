@@ -19,7 +19,9 @@ import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
+
 import RatingStars from "./RatingStars";
+
 const RatingScreen = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);
 
@@ -59,11 +61,11 @@ const RatingScreen = ({ navigation }) => {
   }
 
   //state to store the rating
-  const [rating, setRating] = useState(0);
-  console.log("Rating:" + rating);
+  const [rating, setRating] = useState(1);
+
   //state to store the choice of thumbs up or down
-  const [choice, setChoice] = useState(null);
-  console.log("Choice: " + choice);
+  const [isLiked, setLiked] = useState(null);
+  console.log("isLiked: " + isLiked);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bodyBackground }}>
@@ -150,20 +152,18 @@ const RatingScreen = ({ navigation }) => {
         <RatingStars rating={rating} setRating={setRating} />
 
         <View style={styles.thumbsContainer}>
-          <TouchableOpacity onPress={() => setChoice("like")}>
+          <TouchableOpacity onPress={() => setLiked(true)}>
             <Image
               style={[styles.thumbsIcon, { marginRight: 20 }]} // add marginRight here
               source={icons.like}
-              tintColor={choice === "like" ? colors.iconGreen : colors.iconGrey}
+              tintColor={isLiked === true ? colors.iconGreen : colors.iconGrey}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setChoice("dislike")}>
+          <TouchableOpacity onPress={() => setLiked(false)}>
             <Image
               style={styles.thumbsIcon}
               source={icons.dislike}
-              tintColor={
-                choice === "dislike" ? colors.iconRed : colors.iconGrey
-              }
+              tintColor={isLiked === false ? colors.iconRed : colors.iconGrey}
             />
           </TouchableOpacity>
         </View>
