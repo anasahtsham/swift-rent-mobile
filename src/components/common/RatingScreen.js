@@ -8,6 +8,7 @@ import {
   Text,
   TextInput,
   View,
+  TouchableOpacity,
 } from "react-native";
 import { icons } from "../../helpers/ImageImports";
 
@@ -18,7 +19,7 @@ import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
-
+import RatingStars from "./RatingStars";
 const RatingScreen = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);
 
@@ -57,6 +58,9 @@ const RatingScreen = ({ navigation }) => {
     });
   }
 
+  //state to store the rating
+  const [rating, setRating] = useState(0);
+  console.log(rating);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bodyBackground }}>
       <View
@@ -140,31 +144,7 @@ const RatingScreen = ({ navigation }) => {
       />
       <View style={{ flex: 1 }}>
         <View style={styles.starsContainer}>
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
+          <RatingStars rating={rating} setRating={setRating} />
         </View>
         <View>
           <View style={styles.thumbsContainer}>
