@@ -14,6 +14,7 @@ import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ViewMaintenanceAndComplains from "./src/components/common/ViewMaintenanceAndComplains";
 import AddProperty from "./src/components/owner/AddProperty";
+import AddPropertyInfo from "./src/components/owner/AddPropertyInfo";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 import ManagerNavigator from "./src/navigation/ManagerNavigator";
 import OwnerNavigator from "./src/navigation/OwnerNavigator";
@@ -27,6 +28,7 @@ import LoginScreen from "./src/screens/authentication/LoginScreen";
 import RegisterAs from "./src/screens/authentication/RegisterAs";
 import SetUpPassword from "./src/screens/authentication/SetUpPassword";
 import WhoAreYou from "./src/screens/authentication/WhoAreYou";
+import ManagerOffers from "./src/screens/owner/ManagerOffers";
 import OwnerHiring from "./src/screens/owner/OwnerHiring";
 import RegisterTenant from "./src/screens/owner/RegisterTenant";
 import RentHistory from "./src/screens/owner/RentHistory";
@@ -34,7 +36,6 @@ import ResidentialHome from "./src/screens/owner/ResidentialHome";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import ManagerOffers from "./src/screens/owner/ManagerOffers";
 
 const Stack = createStackNavigator();
 
@@ -91,6 +92,7 @@ export default function App() {
           <Stack.Screen name="Register Tenant" component={RegisterTenant} />
           <Stack.Screen name="Rent History" component={RentHistory} />
           <Stack.Screen name="Manager Offers" component={ManagerOffers} />
+          <Stack.Screen name="Add Property Info" component={AddPropertyInfo} />
         </Stack.Navigator>
       </NavigationContainer>
     );
