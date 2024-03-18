@@ -108,9 +108,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
   };
 
   const [checkboxStates, setCheckboxStates] = useState({
-    hasBuffet: false,
     hasDayCare: false,
-    hasFridge: false,
     hasGarden: false,
     hasElectricity: false,
     hasGas: false,

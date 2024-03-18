@@ -17,9 +17,7 @@ export const fieldNames = [
 ];
 
 export const checkboxes = [
-  { label: "Buffet", stateKey: "hasBuffet" },
   { label: "Day Care", stateKey: "hasDayCare" },
-  { label: "Fridge", stateKey: "hasFridge" },
   { label: "Garden", stateKey: "hasGarden" },
   { label: "Electricity", stateKey: "hasElectricity" },
   { label: "Gas", stateKey: "hasGas" },
