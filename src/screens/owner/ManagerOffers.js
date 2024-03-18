@@ -1,4 +1,4 @@
-import { useFocusEffect, useTheme } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   BackHandler,
@@ -19,11 +19,8 @@ import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
 
-const RatingScreen = ({ navigation }) => {
+const ManagerOffers = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);
-
-  //a constant that stores the current theme so it can be used to conditionally change image tint color
-  const [theme, setTheme] = useState(null);
 
   //update theme on load
   useFocusEffect(() => {
@@ -53,7 +50,6 @@ const RatingScreen = ({ navigation }) => {
   function updateTheme() {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
-      setTheme(theme); // Store the theme in state for local use
     });
   }
 
@@ -69,63 +65,26 @@ const RatingScreen = ({ navigation }) => {
           <Image
             style={styles.userIcon}
             source={icons.userIcon}
-            tintColor={theme === "light" ? "black" : "white"}
+            tintColor="white"
           />
-          <Text
-            style={[
-              styles.personNameText,
-              styles.fontBold,
-              { color: colors.textPrimary, fontSize: FontSizes.medium },
-            ]}
-          >
+          <Text style={[styles.personNameText, { color: colors.textPrimary }]}>
             Gulzaar
           </Text>
           <Text
             style={[
               styles.personRoleText,
-              styles.fontRegular,
-              {
-                color: colors.textGreen,
-                paddingLeft: 90,
-                paddingTop: 10,
-                fontSize: FontSizes.small,
-              },
+              { color: colors.textLightBlue, paddingLeft: 100, paddingTop: 10 },
             ]}
           >
             Manager
           </Text>
         </View>
-        <Text
-          style={[
-            styles.addressLineText,
-            styles.fontRegular,
-            { color: colors.textPrimary, fontSize: FontSizes.small },
-          ]}
-        >
-          House 540, Street 321,
-        </Text>
-        <Text
-          style={[
-            styles.addressLineText,
-            styles.fontRegular,
-            {
-              color: colors.textPrimary,
-              fontSize: FontSizes.small,
-              paddingTop: 25,
-            },
-          ]}
-        >
-          G-11/1, Islamabad
+        <Text style={[styles.addressLineText, { color: colors.textPrimary }]}>
+          House 540, Street 321, G-11/1, {"\n"}Islamabad
         </Text>
       </View>
       <View style={styles.descriptionTitleContainer}>
-        <Text
-          style={[
-            styles.descriptionTitle,
-            styles.fontRegular,
-            { color: colors.textPrimary, fontSize: FontSizes.small },
-          ]}
-        >
+        <Text style={[styles.discriptionTitle, { color: colors.textPrimary }]}>
           Describe Your Expirience
         </Text>
       </View>
@@ -133,7 +92,7 @@ const RatingScreen = ({ navigation }) => {
         style={[
           styles.descriptionBox,
           {
-            backgroundColor: colors.backgroundPrimary,
+            backgroundColor: colors.backgroundSecondary,
             borderColor: colors.borderPrimary,
           },
         ]}
@@ -186,8 +145,6 @@ const RatingScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  fontBold: { fontFamily: "OpenSansBold" },
-  fontRegular: { fontFamily: "OpenSansRegular" },
   header: {
     height: 320,
     marginTop: 20,
@@ -212,13 +169,13 @@ const styles = StyleSheet.create({
   },
   addressLineText: {
     fontSize: FontSizes.extraSmall,
-    paddingLeft: 70,
-    marginTop: -25,
+    paddingLeft: 64,
+    marginTop: -20,
   },
 
   userIcon: {
-    width: 55,
-    height: 55,
+    width: 50,
+    height: 50,
     marginTop: 5,
   },
   row: {
@@ -227,7 +184,7 @@ const styles = StyleSheet.create({
 
   descriptionTitle: {
     fontSize: FontSizes.small,
-    marginTop: 20,
+    paddingLeft: 20, // increase this value to move the text to the right
   },
   descriptionTitleContainer: {
     marginTop: -230,
@@ -265,4 +222,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-export default RatingScreen;
+export default ManagerOffers;
