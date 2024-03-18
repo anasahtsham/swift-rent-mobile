@@ -1,20 +1,4 @@
-export const fieldNames = [
-  { label: "Area", value: "area" },
-  { label: "Height", value: "height" },
-  { label: "Apartments", value: "apartments" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Bedrooms", value: "bedrooms" },
-  { label: "Floors", value: "floors" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "lounges" },
-  { label: "Conference Rooms", value: "conferenceRooms" },
-  { label: "Offices", value: "offices" },
-  { label: "Shops", value: "shops" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
-  { label: "Parking Capacity", value: "parkingCapacity" },
-  { label: "Person Capacity", value: "personCapacity" },
-];
+/*********** field types*************/
 
 // residential homes
 
@@ -94,7 +78,7 @@ export const officeFieldTypes = [
   { label: "Floors", value: "floors" },
   { label: "Kitchens", value: "kitchens" },
   { label: "Lounges", value: "loulnges" },
-  { label: "Conference Rooms", vaue: "conferenceRooms" },
+  { label: "Conference Rooms", value: "conferenceRooms" },
   { label: "Store Rooms", value: "storeRooms" },
   { label: "Toilets", value: "toilets" },
   { label: "Parking Capacity", value: "parkingCapacity" },
@@ -147,26 +131,6 @@ export const factoryFieldTypes = [
 /*********** checkboxes*************/
 
 // residential
-
-export const checkboxes = [
-  { label: "Day Care", stateKey: "hasDayCare" },
-  { label: "Garden", stateKey: "hasGarden" },
-  { label: "Electricity", stateKey: "hasElectricity" },
-  { label: "Gas", stateKey: "hasGas" },
-  { label: "Lift", stateKey: "hasLift" },
-  { label: "Prayer Room", stateKey: "hasPrayerRoom" },
-  { label: "Roof Access", stateKey: "hasRoofAccess" },
-  { label: "Safety Exit", stateKey: "hasSafetyExit" },
-  {
-    label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
-  },
-  { label: "Servant Rooms", stateKey: "hasServantRooms" },
-  { label: "Wi-Fi", stateKey: "hasWiFi" },
-  { label: "Air Conditioned", stateKey: "hasAirConditioned" },
-  { label: "Furnished", stateKey: "isFurnished" },
-  { label: "Shared", stateKey: "isShared" },
-];
 
 export const housesCheckboxes = [
   { label: "Garden", stateKey: "hasGarden" },
