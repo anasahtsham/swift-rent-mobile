@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import { DateTimePickerModal } from "react-native-modal-datetime-picker";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { textPrimary } from "../../../assets/themes/DarkColorScheme";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
@@ -208,7 +207,7 @@ const InputField = forwardRef((props, ref) => {
                   color:
                     !isEditable && canBeDisabled
                       ? colors.textGrey
-                      : textPrimary,
+                      : colors.textPrimary,
                 }}
               >
                 {label}
