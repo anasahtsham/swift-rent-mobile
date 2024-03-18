@@ -164,6 +164,7 @@ const ManagerOffers = ({ navigation }) => {
         <TouchableOpacity
           activeOpacity={opacityValueForButton}
           style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
+          onPress={() => navigation.navigate("Owner Hiring")}
         >
           <View style={styles.buttonHeaderContainer}>
             <Image
@@ -174,7 +175,7 @@ const ManagerOffers = ({ navigation }) => {
             <Text
               style={[
                 styles.fontBold,
-                styles.cardTitle,
+                styles.buttonTitle,
                 { fontSize: FontSizes.small, color: colors.textPrimary },
               ]}
             >
@@ -187,16 +188,11 @@ const ManagerOffers = ({ navigation }) => {
             />
           </View>
 
-          <View
-            style={[
-              styles.ratingsRow,
-              { alignItems: "center", marginLeft: 55, marginTop: -20 },
-            ]}
-          >
+          <View style={[styles.ratingsRow]}>
             <Text
               style={[
                 styles.fontRegular,
-                styles.textWithIcons,
+                styles.buttonTextWithIcons,
                 { fontSize: FontSizes.small, color: colors.textPrimary },
               ]}
             >
@@ -210,7 +206,7 @@ const ManagerOffers = ({ navigation }) => {
             <Text
               style={[
                 styles.fontRegular,
-                styles.textWithIcons,
+                styles.buttonTextWithIcons,
                 { fontSize: FontSizes.small, color: colors.textPrimary },
               ]}
             >
@@ -224,7 +220,7 @@ const ManagerOffers = ({ navigation }) => {
             <Text
               style={[
                 styles.fontRegular,
-                styles.textWithIcons,
+                styles.buttonTextWithIcons,
                 { fontSize: FontSizes.small, color: colors.textPrimary },
               ]}
             >
@@ -259,10 +255,9 @@ const ManagerOffers = ({ navigation }) => {
             </View>
           </View>
           <View style={{ paddingTop: 15 }}>
-            <View style={styles.rightInRow}>
+            <View style={[styles.rightInRow, styles.cardSubText]}>
               <Text
                 style={[
-                  styles.cardSubText,
                   styles.fontBold,
                   { fontSize: FontSizes.small, color: colors.textPrimary },
                 ]}
@@ -271,7 +266,6 @@ const ManagerOffers = ({ navigation }) => {
               </Text>
               <Text
                 style={[
-                  styles.cardSubText,
                   styles.fontRegular,
                   { fontSize: FontSizes.small, color: colors.textPrimary },
                 ]}
@@ -279,10 +273,9 @@ const ManagerOffers = ({ navigation }) => {
                 10,000/ 10%
               </Text>
             </View>
-            <View style={styles.rightInRow}>
+            <View style={[styles.rightInRow, styles.cardSubText]}>
               <Text
                 style={[
-                  styles.cardSubText,
                   styles.fontBold,
                   { fontSize: FontSizes.small, color: colors.textPrimary },
                 ]}
@@ -291,7 +284,6 @@ const ManagerOffers = ({ navigation }) => {
               </Text>
               <Text
                 style={[
-                  styles.cardSubText,
                   styles.fontRegular,
                   { fontSize: FontSizes.small, color: colors.textPrimary },
                 ]}
@@ -302,8 +294,8 @@ const ManagerOffers = ({ navigation }) => {
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               <Text
                 style={[
-                  styles.cardSubText,
                   styles.fontBold,
+                  styles.cardSubText,
                   { fontSize: FontSizes.small, color: colors.textPrimary },
                 ]}
               >
@@ -311,8 +303,310 @@ const ManagerOffers = ({ navigation }) => {
               </Text>
               <Text
                 style={[
-                  styles.cardSubText,
                   styles.fontRegular,
+                  styles.cardSubText,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Abay betay kuch nahi milay ga
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={opacityValueForButton}
+          style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
+        >
+          <View style={styles.buttonHeaderContainer}>
+            <Image
+              style={styles.userIcon}
+              source={icons.userIcon}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontBold,
+                styles.buttonTitle,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Manager's Name
+            </Text>
+            <Image
+              style={styles.expandArrowButton}
+              source={icons.expandArrowButton}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+          </View>
+
+          <View style={[styles.ratingsRow]}>
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.buttonTextWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              4
+            </Text>
+            <Image
+              style={styles.smallIcons}
+              source={icons.like}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.buttonTextWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              1
+            </Text>
+            <Image
+              style={styles.smallIcons}
+              source={icons.dislike}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.buttonTextWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              (4)
+            </Text>
+            <View style={{ flexDirection: "row", marginLeft: 5 }}>
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+            </View>
+          </View>
+          <View style={{ paddingTop: 15 }}>
+            <View style={[styles.rightInRow, styles.cardSubText]}>
+              <Text
+                style={[
+                  styles.fontBold,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                My Offer:
+              </Text>
+              <Text
+                style={[
+                  styles.fontRegular,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                10,000/ 10%
+              </Text>
+            </View>
+            <View style={[styles.rightInRow, styles.cardSubText]}>
+              <Text
+                style={[
+                  styles.fontBold,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Manager's Offer:
+              </Text>
+              <Text
+                style={[
+                  styles.fontRegular,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                21,000/ 21%
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <Text
+                style={[
+                  styles.fontBold,
+                  styles.cardSubText,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Manager's Comment:
+              </Text>
+              <Text
+                style={[
+                  styles.fontRegular,
+                  styles.cardSubText,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Abay betay kuch nahi milay ga
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={opacityValueForButton}
+          style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
+        >
+          <View style={styles.buttonHeaderContainer}>
+            <Image
+              style={styles.userIcon}
+              source={icons.userIcon}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontBold,
+                styles.buttonTitle,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Manager's Name
+            </Text>
+            <Image
+              style={styles.expandArrowButton}
+              source={icons.expandArrowButton}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+          </View>
+
+          <View style={[styles.ratingsRow]}>
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.buttonTextWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              4
+            </Text>
+            <Image
+              style={styles.smallIcons}
+              source={icons.like}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.buttonTextWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              1
+            </Text>
+            <Image
+              style={styles.smallIcons}
+              source={icons.dislike}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.buttonTextWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              (4)
+            </Text>
+            <View style={{ flexDirection: "row", marginLeft: 5 }}>
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+            </View>
+          </View>
+          <View style={{ paddingTop: 15 }}>
+            <View style={[styles.rightInRow, styles.cardSubText]}>
+              <Text
+                style={[
+                  styles.fontBold,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                My Offer:
+              </Text>
+              <Text
+                style={[
+                  styles.fontRegular,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                10,000/ 10%
+              </Text>
+            </View>
+            <View style={[styles.rightInRow, styles.cardSubText]}>
+              <Text
+                style={[
+                  styles.fontBold,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Manager's Offer:
+              </Text>
+              <Text
+                style={[
+                  styles.fontRegular,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                21,000/ 21%
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <Text
+                style={[
+                  styles.fontBold,
+                  styles.cardSubText,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Manager's Comment:
+              </Text>
+              <Text
+                style={[
+                  styles.fontRegular,
+                  styles.cardSubText,
                   { fontSize: FontSizes.small, color: colors.textPrimary },
                 ]}
               >
@@ -361,6 +655,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    marginLeft: 64,
+    marginTop: -22,
   },
   buttonHeaderContainer: {
     flexDirection: "row",
@@ -368,8 +664,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   userIcon: {
-    width: 48,
-    height: 48,
+    width: 52,
+    height: 52,
+    marginTop: 5,
   },
   expandArrowButton: {
     width: 28,
@@ -387,12 +684,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "90%",
   },
-  cardTitle: {},
-  textWithIcons: {
-    marginRight: 6,
+  buttonTitle: {
+    marginLeft: -80,
+    marginTop: -15,
   },
+  buttonTextWithIcons: { marginLeft: 8 },
   cardSubText: {
     fontSize: FontSizes.small,
+    marginLeft: 10,
   },
 });
 export default ManagerOffers;
