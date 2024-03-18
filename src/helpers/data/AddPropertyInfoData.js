@@ -3,7 +3,7 @@
 // residential homes
 
 export const housesFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Bedrooms", value: "bedrooms" },
   { label: "Floors", value: "floors" },
@@ -16,7 +16,7 @@ export const housesFieldTypes = [
 ];
 
 export const upperFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Bedrooms", value: "bedrooms" },
   { label: "Kitchens", value: "kitchens" },
@@ -28,7 +28,7 @@ export const upperFieldTypes = [
 ];
 
 export const lowerFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Bedrooms", value: "bedrooms" },
   { label: "Kitchens", value: "kitchens" },
@@ -40,7 +40,7 @@ export const lowerFieldTypes = [
 ];
 
 export const flatFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Bedrooms", value: "bedrooms" },
   { label: "Floors", value: "floors" },
@@ -53,7 +53,7 @@ export const flatFieldTypes = [
 ];
 
 export const roomFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Bedrooms", value: "bedrooms" },
   { label: "Kitchens", value: "kitchens" },
@@ -64,16 +64,16 @@ export const roomFieldTypes = [
 
 // plots
 
-export const commercialFieldTypes = [{ label: "Area", value: "area" }];
+export const commercialFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
 
-export const agricultureFieldTypes = [{ label: "Area", value: "area" }];
+export const agricultureFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
 
-export const industrialFieldTypes = [{ label: "Area", value: "area" }];
+export const industrialFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
 
 //commercial
 
 export const officeFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft. Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Floors", value: "floors" },
   { label: "Kitchens", value: "kitchens" },
@@ -86,7 +86,7 @@ export const officeFieldTypes = [
 ];
 
 export const shopFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Floors", value: "floors" },
   { label: "Kitchens", value: "kitchens" },
@@ -98,7 +98,7 @@ export const shopFieldTypes = [
 ];
 
 export const buildingFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Apartments", value: "apartments" },
   { label: "Floors", value: "floors" },
   { label: "Offices", value: "offices" },
@@ -111,7 +111,7 @@ export const buildingFieldTypes = [
 ];
 
 export const warehouseFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Toilets", value: "toilets" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
@@ -119,7 +119,7 @@ export const warehouseFieldTypes = [
 ];
 
 export const factoryFieldTypes = [
-  { label: "Area", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Kitchen", value: "kitchen" },
   { label: "Store Rooms", value: "storeRooms" },
   { label: "Toilets", value: "toilets" },
