@@ -146,21 +146,8 @@ const RegisterTenant = ({ navigation }) => {
                 handleBlur={handleBlur("securityAmount")}
                 errorText={touched.securityAmount ? errors.securityAmount : ""}
                 returnKeyType="next"
-                onSubmitEditing={() => leaseTillRef.current?.focus()}
-                ref={securityAmountRef}
-              />
-              <InputField
-                isLeaseTill={true}
-                fieldType="date"
-                borderRadius={10}
-                label="Lease Till"
-                value={values.leaseTill}
-                handleChange={handleChange("leaseTill")}
-                handleBlur={handleBlur("leaseTill")}
-                errorText={touched.leaseTill ? errors.leaseTill : ""}
-                returnKeyType="next"
-                ref={leaseTillRef}
                 onSubmitEditing={() => evictionPeriodRef.current?.focus()}
+                ref={securityAmountRef}
               />
               <InputFieldWithHint
                 fieldType="numeric"
@@ -252,9 +239,22 @@ const RegisterTenant = ({ navigation }) => {
                 handleChange={handleChange("tenantContact")}
                 handleBlur={handleBlur("tenantContact")}
                 errorText={touched.tenantContact ? errors.tenantContact : ""}
-                returnKeyType="done"
-                onSubmitEditing={handleSubmit}
+                onSubmitEditing={() => leaseTillRef.current?.focus()}
+                returnKeyType="next"
                 ref={tenantContactRef}
+              />
+
+              <InputField
+                isLeaseTill={true}
+                fieldType="date"
+                borderRadius={10}
+                label="Lease Till"
+                value={values.leaseTill}
+                handleChange={handleChange("leaseTill")}
+                handleBlur={handleBlur("leaseTill")}
+                errorText={touched.leaseTill ? errors.leaseTill : ""}
+                ref={leaseTillRef}
+                onSubmitEditing={handleSubmit}
               />
             </View>
 

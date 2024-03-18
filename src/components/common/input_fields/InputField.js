@@ -124,14 +124,20 @@ const InputField = forwardRef((props, ref) => {
             borderColor: color,
             borderWidth: width,
             borderRadius: !!borderRadius ? borderRadius : 25,
-            height: 42,
+            height: 45,
           },
         ]}
       >
         <View style={[styles.textAndImageContainer]}>
           <View style={[styles.inputContainer]}>
             <TextInput
-              editable={canBeDisabled ? isEditable : true}
+              editable={
+                canBeDisabled
+                  ? isEditable
+                  : fieldType === "date" && !!value
+                  ? false
+                  : true
+              }
               secureTextEntry={isHidden}
               keyboardType={
                 fieldType === "email-address" ||

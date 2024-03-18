@@ -150,6 +150,7 @@ const PropertyMenu = () => {
             <ButtonWithImage text={"Manager Offers (21)"} colors={colors} />
           </View>
         </View>
+        <View style={{ height: 15 }} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginVertical: 10,
+    marginTop: 15,
   },
 });
 

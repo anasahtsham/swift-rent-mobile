@@ -21,7 +21,6 @@ const ButtonWithImage = (props) => {
         style={{
           flex: 1,
           justifyContent: "space-between",
-          paddingHorizontal: 10,
         }}
       >
         <Text
@@ -29,7 +28,6 @@ const ButtonWithImage = (props) => {
             styles.text,
             {
               color: colors.textPrimary,
-              fontWeight: "bold",
             },
           ]}
         >
@@ -63,9 +61,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
-    width: "45%",
-    height: 65,
+    paddingHorizontal: 20,
+    width: "47%",
+    height: 60,
     borderRadius: 20,
     elevation: 5,
   },
@@ -75,7 +73,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    flex: 0.15,
     width: 20,
     height: 20,
   },
