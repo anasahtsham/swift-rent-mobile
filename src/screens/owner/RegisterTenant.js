@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -120,15 +120,42 @@ const RegisterTenant = ({ navigation }) => {
           touched,
           validateForm,
         } = formikProps;
+
+        const isYearlyIncreaseEditableRef = useRef(isYearlyIncreaseEditable);
+        const isLateRentFineEditableRef = useRef(isLateRentFineEditable);
+
+        useEffect(() => {
+          isYearlyIncreaseEditableRef.current = isYearlyIncreaseEditable;
+          isLateRentFineEditableRef.current = isLateRentFineEditable;
+          console.log(
+            "\n\n\n\nisYearlyIncreaseEditable",
+            isYearlyIncreaseEditable
+          );
+          console.log(
+            "isYearlyIncreaseEditableRef.current",
+            isYearlyIncreaseEditableRef.current
+          );
+          console.log("isLateRentFineEditable", isLateRentFineEditable);
+          console.log(
+            "isLateRentFineEditableRef.current",
+            isLateRentFineEditableRef.current
+          );
+        }, [isYearlyIncreaseEditable, isLateRentFineEditable]);
+
         useEffect(() => {
           setCurrentSchema(
             registerTenantSchema(
-              isYearlyIncreaseEditable,
-              isLateRentFineEditable
+              isYearlyIncreaseEditableRef.current,
+              isLateRentFineEditableRef.current
             )
           );
           validateForm();
-        }, [isYearlyIncreaseEditable, isLateRentFineEditable]);
+        }, [
+          isYearlyIncreaseEditableRef.current,
+          isLateRentFineEditableRef.current,
+          isYearlyIncreaseEditable,
+          isLateRentFineEditable,
+        ]);
 
         return (
           <KeyboardAwareScrollView
