@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import {
   BackHandler,
   Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
   View,
   TouchableOpacity,
+  StyleSheet,
 } from "react-native";
 import { icons } from "../../helpers/ImageImports";
 
@@ -20,7 +17,12 @@ import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
 
-const RatingStars = ({ rating, setRating }) => {
+const RatingStars = ({
+  rating,
+  setRating,
+  starHeight = 30,
+  starWidth = 30,
+}) => {
   const [colors, setColors] = useState(LoadingTheme);
 
   //a constant that stores the current theme so it can be used to conditionally change image tint color
@@ -61,11 +63,11 @@ const RatingStars = ({ rating, setRating }) => {
   console.log(rating);
 
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={styles.starsContainer}>
       {[...Array(5)].map((_, i) => (
         <TouchableOpacity key={i} onPress={() => setRating(i + 1)}>
           <Image
-            style={styles.starIcon}
+            style={{ width: starWidth, height: starHeight }}
             source={icons.star}
             tintColor={i < rating ? colors.iconYellow : colors.iconGrey}
           />
@@ -75,10 +77,13 @@ const RatingStars = ({ rating, setRating }) => {
   );
 };
 
+export default RatingStars;
+
 const styles = StyleSheet.create({
-  starIcon: {
-    width: 30,
-    height: 30,
+  starsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 10,
   },
 });
-export default RatingStars;

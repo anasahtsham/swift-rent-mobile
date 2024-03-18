@@ -60,7 +60,11 @@ const RatingScreen = ({ navigation }) => {
 
   //state to store the rating
   const [rating, setRating] = useState(0);
-  console.log(rating);
+  console.log("Rating:" + rating);
+  //state to store the choice of thumbs up or down
+  const [choice, setChoice] = useState(null);
+  console.log("Choice: " + choice);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bodyBackground }}>
       <View
@@ -143,22 +147,25 @@ const RatingScreen = ({ navigation }) => {
         ]}
       />
       <View style={{ flex: 1 }}>
-        <View style={styles.starsContainer}>
-          <RatingStars rating={rating} setRating={setRating} />
-        </View>
-        <View>
-          <View style={styles.thumbsContainer}>
+        <RatingStars rating={rating} setRating={setRating} />
+
+        <View style={styles.thumbsContainer}>
+          <TouchableOpacity onPress={() => setChoice("like")}>
             <Image
               style={[styles.thumbsIcon, { marginRight: 20 }]} // add marginRight here
               source={icons.like}
-              tintColor={colors.iconGreen}
+              tintColor={choice === "like" ? colors.iconGreen : colors.iconGrey}
             />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setChoice("dislike")}>
             <Image
               style={styles.thumbsIcon}
               source={icons.dislike}
-              tintColor={colors.iconGrey}
+              tintColor={
+                choice === "dislike" ? colors.iconRed : colors.iconGrey
+              }
             />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -228,12 +235,7 @@ const styles = StyleSheet.create({
     height: 30,
     marginTop: 5,
   },
-  starsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 10,
-  },
+
   thumbsContainer: {
     flexDirection: "row",
     justifyContent: "center",

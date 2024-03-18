@@ -164,6 +164,7 @@ const ManagerOffers = ({ navigation }) => {
         <TouchableOpacity
           activeOpacity={opacityValueForButton}
           style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
+          onPress={() => navigation.navigate("Owner Hiring")}
         >
           <View style={styles.buttonHeaderContainer}>
             <Image
