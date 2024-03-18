@@ -4,6 +4,7 @@ import {
   BackHandler,
   Image,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -18,6 +19,8 @@ import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { opacityValueForButton } from "../../constants";
 
 const ManagerOffers = ({ navigation }) => {
   const [colors, setColors] = useState(LoadingTheme);
@@ -28,6 +31,9 @@ const ManagerOffers = ({ navigation }) => {
   });
 
   const [languages, setLanguage] = useState(English);
+
+  //a constant that stores the current theme so it can be used to conditionally change image tint color
+  const [theme, setTheme] = useState(null);
 
   //update language on load
   useEffect(() => {
@@ -50,6 +56,7 @@ const ManagerOffers = ({ navigation }) => {
   function updateTheme() {
     loadTheme().then((theme) => {
       setColors(theme === "light" ? DefaultTheme : DarkTheme);
+      setTheme(theme); // Store the theme in state for local use
     });
   }
 
@@ -61,165 +68,331 @@ const ManagerOffers = ({ navigation }) => {
           { backgroundColor: colors.headerAndFooterBackground },
         ]}
       >
-        <View style={styles.row}>
-          <Image
-            style={styles.userIcon}
-            source={icons.userIcon}
-            tintColor="white"
-          />
-          <Text style={[styles.personNameText, { color: colors.textPrimary }]}>
-            Gulzaar
-          </Text>
+        <View style={[styles.mainCard, { borderColor: colors.borderBlue }]}>
           <Text
             style={[
-              styles.personRoleText,
-              { color: colors.textLightBlue, paddingLeft: 100, paddingTop: 10 },
+              styles.mainTitle,
+              styles.fontBold,
+              { fontSize: FontSizes.medium, color: colors.textPrimary },
             ]}
           >
-            Manager
+            Manager Offer (3)
           </Text>
-        </View>
-        <Text style={[styles.addressLineText, { color: colors.textPrimary }]}>
-          House 540, Street 321, G-11/1, {"\n"}Islamabad
-        </Text>
-      </View>
-      <View style={styles.descriptionTitleContainer}>
-        <Text style={[styles.discriptionTitle, { color: colors.textPrimary }]}>
-          Describe Your Expirience
-        </Text>
-      </View>
-      <TextInput
-        style={[
-          styles.descriptionBox,
-          {
-            backgroundColor: colors.backgroundSecondary,
-            borderColor: colors.borderPrimary,
-          },
-        ]}
-      />
-      <View style={{ flex: 1 }}>
-        <View style={styles.starsContainer}>
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-        </View>
-        <View>
-          <View style={styles.thumbsContainer}>
-            <Image
-              style={[styles.thumbsIcon, { marginRight: 20 }]} // add marginRight here
-              source={icons.like}
-              tintColor={colors.iconGreen}
-            />
-            <Image
-              style={styles.thumbsIcon}
-              source={icons.dislike}
-              tintColor={colors.iconGrey}
-            />
+          <View style={styles.rightInRow}>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontBold,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Hiring for:
+            </Text>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Bringing Tenant/ Hiring Manager
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontBold,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              SalaryType:
+            </Text>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              OneTime/ Salary/ Commission
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontBold,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Salary Period:
+            </Text>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Weekly/ Monthly
+            </Text>
+          </View>
+          <View style={styles.rightInRow}>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontBold,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              My Offer:
+            </Text>
+            <Text
+              style={[
+                styles.subTitle,
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              10,000/ 10
+            </Text>
           </View>
         </View>
       </View>
+      <ScrollView style={{ flex: 1, marginBottom: 5 }}>
+        <TouchableOpacity
+          activeOpacity={opacityValueForButton}
+          style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
+        >
+          <View style={styles.buttonHeaderContainer}>
+            <Image
+              style={styles.userIcon}
+              source={icons.userIcon}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontBold,
+                styles.cardTitle,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Manager's Name
+            </Text>
+            <Image
+              style={styles.expandArrowButton}
+              source={icons.expandArrowButton}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+          </View>
+
+          <View
+            style={[
+              styles.ratingsRow,
+              { alignItems: "center", marginLeft: 55, marginTop: -20 },
+            ]}
+          >
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.textWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              4
+            </Text>
+            <Image
+              style={styles.smallIcons}
+              source={icons.like}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.textWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              1
+            </Text>
+            <Image
+              style={styles.smallIcons}
+              source={icons.dislike}
+              tintColor={theme === "light" ? "black" : "white"}
+            />
+            <Text
+              style={[
+                styles.fontRegular,
+                styles.textWithIcons,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              (4)
+            </Text>
+            <View style={{ flexDirection: "row", marginLeft: 5 }}>
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+              <Image
+                style={styles.smallIcons}
+                source={icons.star}
+                tintColor={theme === "light" ? "black" : "white"}
+              />
+            </View>
+          </View>
+          <View style={{ paddingTop: 15 }}>
+            <View style={styles.rightInRow}>
+              <Text
+                style={[
+                  styles.cardSubText,
+                  styles.fontBold,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                My Offer:
+              </Text>
+              <Text
+                style={[
+                  styles.cardSubText,
+                  styles.fontRegular,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                10,000/ 10%
+              </Text>
+            </View>
+            <View style={styles.rightInRow}>
+              <Text
+                style={[
+                  styles.cardSubText,
+                  styles.fontBold,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Manager's Offer:
+              </Text>
+              <Text
+                style={[
+                  styles.cardSubText,
+                  styles.fontRegular,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                21,000/ 21%
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <Text
+                style={[
+                  styles.cardSubText,
+                  styles.fontBold,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Manager's Comment:
+              </Text>
+              <Text
+                style={[
+                  styles.cardSubText,
+                  styles.fontRegular,
+                  { fontSize: FontSizes.small, color: colors.textPrimary },
+                ]}
+              >
+                Abay betay kuch nahi milay ga
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  fontBold: { fontFamily: "OpenSansBold" },
+  fontRegular: { fontFamily: "OpenSansRegular" },
+
   header: {
-    height: 320,
-    marginTop: 20,
-    paddingTop: 10,
-    paddingLeft: 20,
-    width: "90%",
-    borderRadius: 20,
+    height: 200,
+    width: "100%",
+    padding: 10,
+    paddingBottom: 15,
+    borderBottomStartRadius: 20,
+    borderBottomEndRadius: 20,
     alignSelf: "center",
   },
-  personNameText: {
-    fontSize: FontSizes.medium,
-    paddingLeft: 10,
+  mainCard: {
+    height: 180,
+    padding: 10,
+    borderRadius: 20,
+    borderWidth: 3,
   },
-  personTextContainer: {
-    paddingTop: 10,
+  mainTitle: {
+    fontSize: FontSizes.small,
+    paddingBottom: 10,
+  },
+  subTitle: {
+    fontSize: FontSizes.small,
+    marginBottom: 5,
+  },
+  rightInRow: {
     flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  ratingsRow: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  buttonHeaderContainer: {
+    flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
   },
-  personRoleText: {
-    fontWeight: "bold",
-    fontSize: FontSizes.small,
-  },
-  addressLineText: {
-    fontSize: FontSizes.extraSmall,
-    paddingLeft: 64,
-    marginTop: -20,
-  },
-
   userIcon: {
-    width: 50,
-    height: 50,
-    marginTop: 5,
+    width: 48,
+    height: 48,
   },
-  row: {
-    flexDirection: "row",
+  expandArrowButton: {
+    width: 28,
+    height: 28,
   },
-
-  descriptionTitle: {
-    fontSize: FontSizes.small,
-    paddingLeft: 20, // increase this value to move the text to the right
+  smallIcons: {
+    width: 22,
+    height: 22,
   },
-  descriptionTitleContainer: {
-    marginTop: -230,
-    marginLeft: 50,
-  },
-
-  descriptionBox: {
-    height: 100,
-    width: 300,
-    borderRadius: 15,
-    alignSelf: "center",
-    marginTop: 3,
-    padding: 10,
-    borderWidth: 1,
-  },
-  starIcon: {
-    width: 30,
-    height: 30,
-    marginTop: 5,
-  },
-  starsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 10,
-  },
-  thumbsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  thumbsIcon: {
-    width: 25,
-    height: 25,
+  button: {
+    height: "auto",
     marginTop: 10,
+    padding: 10,
+    borderRadius: 20,
+    alignSelf: "center",
+    width: "90%",
+  },
+  cardTitle: {},
+  textWithIcons: {
+    marginRight: 6,
+  },
+  cardSubText: {
+    fontSize: FontSizes.small,
   },
 });
 export default ManagerOffers;
