@@ -67,27 +67,37 @@ const OwnerHiringCard = (props) => {
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={props.rating >= 1 ? colors.iconYellow : colors.iconGrey}
+            tintColor={
+              props.rating >= 1 ? colors.iconYellow : colors.iconPrimary
+            }
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={props.rating >= 2 ? colors.iconYellow : colors.iconGrey}
+            tintColor={
+              props.rating >= 2 ? colors.iconYellow : colors.iconPrimary
+            }
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={props.rating >= 3 ? colors.iconYellow : colors.iconGrey}
+            tintColor={
+              props.rating >= 3 ? colors.iconYellow : colors.iconPrimary
+            }
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={props.rating >= 4 ? colors.iconYellow : colors.iconGrey}
+            tintColor={
+              props.rating >= 4 ? colors.iconYellow : colors.iconPrimary
+            }
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={props.rating >= 5 ? colors.iconYellow : colors.iconGrey}
+            tintColor={
+              props.rating >= 5 ? colors.iconYellow : colors.iconPrimary
+            }
           />
         </View>
       </View>

@@ -57,35 +57,45 @@ const OwnerHiring = ({ navigation }) => {
               style={styles.starIcon}
               source={icons.star}
               tintColor={
-                props.averageRating >= 1 ? colors.iconYellow : colors.iconBlack
+                props.averageRating >= 1
+                  ? colors.iconYellow
+                  : colors.iconPrimary
               }
             />
             <Image
               style={styles.starIcon}
               source={icons.star}
               tintColor={
-                props.averageRating >= 2 ? colors.iconYellow : colors.iconBlack
+                props.averageRating >= 2
+                  ? colors.iconYellow
+                  : colors.iconPrimary
               }
             />
             <Image
               style={styles.starIcon}
               source={icons.star}
               tintColor={
-                props.averageRating >= 3 ? colors.iconYellow : colors.iconBlack
+                props.averageRating >= 3
+                  ? colors.iconYellow
+                  : colors.iconPrimary
               }
             />
             <Image
               style={styles.starIcon}
               source={icons.star}
               tintColor={
-                props.averageRating >= 4 ? colors.iconYellow : colors.iconBlack
+                props.averageRating >= 4
+                  ? colors.iconYellow
+                  : colors.iconPrimary
               }
             />
             <Image
               style={styles.starIcon}
               source={icons.star}
               tintColor={
-                props.averageRating >= 5 ? colors.iconYellow : colors.iconBlack
+                props.averageRating >= 5
+                  ? colors.iconYellow
+                  : colors.iconPrimary
               }
             />
           </View>
