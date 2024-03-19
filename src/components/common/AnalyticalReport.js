@@ -13,7 +13,7 @@ import { opacityValueForButton } from "../../constants";
 import { useColors } from "./../../helpers/SetColors";
 import AnalyticalReportHeader from "./headers/AnalyticalReportHeader";
 
-const AnalyticalReport = (props) => {
+const AnalyticalReport = () => {
   const colors = useColors();
   const navigation = useNavigation();
 
