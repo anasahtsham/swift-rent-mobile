@@ -18,9 +18,15 @@ export const MaintenanceComplainsListButton = (props) => {
             width: "100%",
             justifyContent: "space-between",
             alignItems: "center",
+            marginBottom: 5,
           }}
         >
-          <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+          <Text
+            style={[
+              styles.fontBold,
+              { color: colors.textPrimary, flexWrap: "wrap", width: "90%" },
+            ]}
+          >
             {props.address}
           </Text>
           <Image
@@ -30,12 +36,8 @@ export const MaintenanceComplainsListButton = (props) => {
           />
         </View>
 
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-          {props.city}
-        </Text>
-
         {!!props.owner && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: 5 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Owner:{" "}
             </Text>
@@ -46,7 +48,7 @@ export const MaintenanceComplainsListButton = (props) => {
         )}
 
         {!!props.manager && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: 5 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Manager:{" "}
             </Text>
@@ -57,7 +59,7 @@ export const MaintenanceComplainsListButton = (props) => {
         )}
 
         {!!props.tenant && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: 5 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Tenant:{" "}
             </Text>
@@ -68,7 +70,7 @@ export const MaintenanceComplainsListButton = (props) => {
         )}
 
         {!!props.maintenanceStatus && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: 5 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Status:{" "}
             </Text>
@@ -89,7 +91,7 @@ export const MaintenanceComplainsListButton = (props) => {
         )}
 
         {!!props.complaintStatus && (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: 5 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Status:{" "}
             </Text>

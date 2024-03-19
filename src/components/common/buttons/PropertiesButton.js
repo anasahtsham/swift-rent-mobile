@@ -27,7 +27,7 @@ export const PropertiesButton = (props) => {
           <Text
             style={[
               styles.fontBold,
-              { color: colors.textPrimary, flexWrap: "wrap" },
+              { color: colors.textPrimary, flexWrap: "wrap", width: "90%" },
             ]}
           >
             {props.address}

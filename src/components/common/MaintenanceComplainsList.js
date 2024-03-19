@@ -46,7 +46,6 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
       colors={colors}
       key={list.id}
       address={list.address}
-      city={list.city}
       owner={list.owner}
       manager={list.manager}
       tenant={list.tenant}

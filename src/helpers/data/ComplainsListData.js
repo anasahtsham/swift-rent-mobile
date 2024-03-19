@@ -1,8 +1,7 @@
 export const complainsData = [
   {
     id: "1",
-    address: "Z-32/3, Street 14, House 321",
-    city: "Islamabad",
+    address: "Z-32/3, Street 14, House 321, Islamabad",
     owner: "Ali",
     manager: "Mohammad",
     tenant: "Fatima",
@@ -10,8 +9,7 @@ export const complainsData = [
   },
   {
     id: "2",
-    address: "Z-45, Street 9, House 543",
-    city: "Rawalpindi",
+    address: "Z-45, Street 9, House 543, Rawalpindi",
     owner: "Aisha",
     manager: "Ahmed",
     tenant: "Hassan",
@@ -19,8 +17,7 @@ export const complainsData = [
   },
   {
     id: "3",
-    address: "Z-12/5, Street 6, House 211",
-    city: "Islamabad",
+    address: "Z-12/5, Street 6, House 211, Islamabad",
     owner: "Fatima",
     manager: "Youssef",
     tenant: "Zainab",
@@ -28,8 +25,7 @@ export const complainsData = [
   },
   {
     id: "4",
-    address: "H-22/8, Street 3, House 741",
-    city: "Lahore",
+    address: "H-22/8, Street 3, House 741, Lahore",
     owner: "Zahra",
     manager: "Usman",
     tenant: "Abdullah",
@@ -37,8 +33,7 @@ export const complainsData = [
   },
   {
     id: "5",
-    address: "A-15, Street 11, House 923",
-    city: "Karachi",
+    address: "A-15, Street 11, House 923, Karachi",
     owner: "Sana",
     manager: "Kamran",
     tenant: "Imran",
@@ -46,8 +41,7 @@ export const complainsData = [
   },
   {
     id: "6",
-    address: "R-9/4, Street 7, House 532",
-    city: "Islamabad",
+    address: "R-9/4, Street 7, House 532, Islamabad",
     owner: "Ahmed",
     manager: "Nadia",
     tenant: "Amna",
@@ -55,8 +49,7 @@ export const complainsData = [
   },
   {
     id: "7",
-    address: "G-63, Street 2, House 321",
-    city: "Rawalpindi",
+    address: "G-63, Street 2, House 321, Rawalpindi",
     owner: "Bilal",
     manager: "Sara",
     tenant: "Yasin",
@@ -64,8 +57,7 @@ export const complainsData = [
   },
   {
     id: "8",
-    address: "P-76/3, Street 18, House 111",
-    city: "Islamabad",
+    address: "P-76/3, Street 18, House 111, Islamabad",
     owner: "Tariq",
     manager: "Farah",
     tenant: "Nadia",
@@ -73,8 +65,7 @@ export const complainsData = [
   },
   {
     id: "9",
-    address: "S-5, Street 20, House 421",
-    city: "Lahore",
+    address: "S-5, Street 20, House 421, Lahore",
     owner: "Zain",
     manager: "Ayesha",
     tenant: "Saba",
@@ -82,8 +73,7 @@ export const complainsData = [
   },
   {
     id: "10",
-    address: "K-34/7, Street 15, House 612",
-    city: "Rawalpindi",
+    address: "K-34/7, Street 15, House 612, Rawalpindi",
     owner: "Hassan",
     manager: "Aisha",
     tenant: "Omar",
