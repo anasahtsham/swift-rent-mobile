@@ -21,9 +21,15 @@ export const PropertiesButton = (props) => {
             width: "100%",
             justifyContent: "space-between",
             alignItems: "center",
+            marginBottom: 10,
           }}
         >
-          <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+          <Text
+            style={[
+              styles.fontBold,
+              { color: colors.textPrimary, flexWrap: "wrap" },
+            ]}
+          >
             {props.address}
           </Text>
           <Image
@@ -32,15 +38,6 @@ export const PropertiesButton = (props) => {
             source={icons.externalLink}
           />
         </View>
-
-        <Text
-          style={[
-            styles.fontBold,
-            { color: colors.textPrimary, marginBottom: 10 },
-          ]}
-        >
-          {props.city}
-        </Text>
         {!!props.dueDate && (
           <>
             <View

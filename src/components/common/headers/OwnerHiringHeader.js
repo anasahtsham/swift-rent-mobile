@@ -3,7 +3,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
-const OwnerHiringHeader = () => {
+const OwnerHiringHeader = (props) => {
   const colors = useColors();
   return (
     <View
@@ -25,12 +25,11 @@ const OwnerHiringHeader = () => {
             flexDirection: "row",
             justifyContent: "flex-start",
             alignItems: "center",
-            marginBottom: 10,
           }}
         >
           <Image
             source={icons.userIcon}
-            style={[styles.userIcon, { marginRight: 10 }]}
+            style={[styles.userIcon, {}]}
             tintColor={colors.iconPrimary}
           />
           <Text
@@ -39,7 +38,7 @@ const OwnerHiringHeader = () => {
               { color: colors.textPrimary, fontSize: FontSizes.medium },
             ]}
           >
-            Manager's Name
+            {props.managersName}
           </Text>
         </View>
 
@@ -50,11 +49,10 @@ const OwnerHiringHeader = () => {
               {
                 color: colors.textPrimary,
                 fontSize: FontSizes.small,
-                marginBottom: 5,
               },
             ]}
           >
-            03170572192
+            {props.managersNumber}
           </Text>
           <Text
             style={[
@@ -62,13 +60,12 @@ const OwnerHiringHeader = () => {
               {
                 color: colors.textPrimary,
                 fontSize: FontSizes.small,
-                marginBottom: 5,
               },
             ]}
           >
-            manager@email.com
+            {props.managersEmail}
           </Text>
-          <View style={[styles.rightInRow, { marginBottom: 5 }]}>
+          <View style={[styles.rightInRow, {}]}>
             <Text
               style={[
                 styles.fontRegular,
@@ -82,12 +79,11 @@ const OwnerHiringHeader = () => {
                 styles.fontBold,
                 {
                   color: colors.textPrimary,
-                  marginRight: 10,
                   fontSize: FontSizes.small,
                 },
               ]}
             >
-              15-07-2021
+              {props.managingSince}
             </Text>
           </View>
           <View style={[styles.rightInRow]}>
@@ -104,12 +100,11 @@ const OwnerHiringHeader = () => {
                 styles.fontBold,
                 {
                   color: colors.textPrimary,
-                  marginRight: 10,
                   fontSize: FontSizes.small,
                 },
               ]}
             >
-              13
+              {props.propertiesManaged}
             </Text>
           </View>
         </View>

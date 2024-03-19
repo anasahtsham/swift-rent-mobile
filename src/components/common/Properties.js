@@ -20,7 +20,6 @@ const Properties = (props) => {
       colors={colors}
       key={data.id}
       address={data.address}
-      city={data.city}
       income={data.income}
       outcome={data.outcome}
       status={data.status}

@@ -3,7 +3,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
-const OwnerHiringCard = () => {
+const OwnerHiringCard = (props) => {
   const colors = useColors();
   return (
     <View
@@ -27,7 +27,7 @@ const OwnerHiringCard = () => {
             { color: colors.textPrimary },
           ]}
         >
-          Tabassum Hussain
+          {props.name}
         </Text>
         <Text
           style={[
@@ -36,7 +36,7 @@ const OwnerHiringCard = () => {
             { color: colors.textGreen },
           ]}
         >
-          Owner/Tenant
+          {props.userType}
         </Text>
       </View>
       <View
@@ -45,7 +45,7 @@ const OwnerHiringCard = () => {
           alignItems: "center",
           justifyContent: "space-between",
           alignSelf: "flex-start",
-          width: "60%",
+          width: "67%",
           marginBottom: "1%",
         }}
       >
@@ -56,38 +56,38 @@ const OwnerHiringCard = () => {
             { color: colors.textPrimary },
           ]}
         >
-          19-03-2024
+          {props.date}
         </Text>
         <Image
           style={[styles.thumbsIcon]}
-          source={icons.like}
-          tintColor={colors.iconGreen}
+          source={props.isLiked ? icons.like : icons.dislike}
+          tintColor={props.isLiked ? colors.iconGreen : colors.iconRed}
         />
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={colors.iconYellow}
+            tintColor={props.rating >= 1 ? colors.iconYellow : colors.iconGrey}
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={colors.iconYellow}
+            tintColor={props.rating >= 2 ? colors.iconYellow : colors.iconGrey}
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={colors.iconYellow}
+            tintColor={props.rating >= 3 ? colors.iconYellow : colors.iconGrey}
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={colors.iconYellow}
+            tintColor={props.rating >= 4 ? colors.iconYellow : colors.iconGrey}
           />
           <Image
             style={styles.starIcon}
             source={icons.star}
-            tintColor={colors.iconYellow}
+            tintColor={props.rating >= 5 ? colors.iconYellow : colors.iconGrey}
           />
         </View>
       </View>
@@ -109,7 +109,7 @@ const OwnerHiringCard = () => {
           },
         ]}
       >
-        I really hate this douchebag! I really hate this douchebag!
+        {props.comment}
       </Text>
     </View>
   );
@@ -118,92 +118,26 @@ const OwnerHiringCard = () => {
 const styles = StyleSheet.create({
   fontBold: { fontFamily: "OpenSansBold" },
   fontRegular: { fontFamily: "OpenSansRegular" },
-  container: {
-    flex: 1,
-  },
-  topContainer: {
-    height: 185,
-    position: "relative",
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  managerProfileCard: {
-    width: "95%",
-    height: "90%",
-    borderWidth: 3,
-    borderRadius: 20,
-  },
-  managerName: {
-    textAlign: "left",
-  },
-  managerProfileCardSubTextContainer: {
-    paddingLeft: 15,
-    paddingTop: 5,
-  },
-  userIcon: {
-    width: 50,
-    height: 50,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-  },
-
-  rightInRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-
-  managerRatingsTitle: {
-    fontSize: FontSizes.medium,
-  },
   thumbsIcon: {
     height: 16,
     width: 16,
     justifyContent: "center",
   },
-  likesAndStarsRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    width: "70%",
-    justifyContent: "space-evenly",
-  },
   starIcon: {
     height: 20,
     width: 20,
-  },
-  starIconContainer: {
-    flexDirection: "row",
-    alignItems: "center",
   },
   managerRatingsCard: {
     height: "auto",
     borderRadius: 20,
     padding: 15,
+    marginVertical: "3%",
   },
   ratingsCardText: {
     fontSize: FontSizes.small,
   },
   remarksText: {
     fontSize: FontSizes.small,
-  },
-  footer: {
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-  },
-  footerTitle: {
-    textAlign: "center",
-  },
-  footerBodyText: {
-    fontSize: FontSizes.small,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  footerButtonContainer: {
-    marginVertical: "3%",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
   },
 });
 
