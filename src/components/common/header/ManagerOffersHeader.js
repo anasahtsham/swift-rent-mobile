@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { useColors } from "../../../helpers/SetColors";
 
-const ManagerOffersHeader = () => {
+const ManagerOffersHeader = (props) => {
   const colors = useColors();
 
   return (
@@ -20,12 +20,11 @@ const ManagerOffersHeader = () => {
             { color: colors.textPrimary },
           ]}
         >
-          Manager Offer (3)
+          Manager Offer ({props.managerOffersAmount})
         </Text>
         <View style={styles.inRow}>
           <Text
             style={[
-              styles.subTitle,
               styles.fontBold,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
@@ -34,18 +33,16 @@ const ManagerOffersHeader = () => {
           </Text>
           <Text
             style={[
-              styles.subTitle,
               styles.fontRegular,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            Bringing Tenant/ Hiring Manager
+            {props.hiringFor}
           </Text>
         </View>
         <View style={styles.inRow}>
           <Text
             style={[
-              styles.subTitle,
               styles.fontBold,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
@@ -54,18 +51,16 @@ const ManagerOffersHeader = () => {
           </Text>
           <Text
             style={[
-              styles.subTitle,
               styles.fontRegular,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            OneTime/ Salary/ Commission
+            {props.salaryType}
           </Text>
         </View>
         <View style={styles.inRow}>
           <Text
             style={[
-              styles.subTitle,
               styles.fontBold,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
@@ -74,18 +69,16 @@ const ManagerOffersHeader = () => {
           </Text>
           <Text
             style={[
-              styles.subTitle,
               styles.fontRegular,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            Weekly/ Monthly
+            {props.salaryPeriod}
           </Text>
         </View>
-        <View style={styles.inRow}>
+        <View style={[styles.inRow, { marginBottom: 0 }]}>
           <Text
             style={[
-              styles.subTitle,
               styles.fontBold,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
@@ -94,12 +87,11 @@ const ManagerOffersHeader = () => {
           </Text>
           <Text
             style={[
-              styles.subTitle,
               styles.fontRegular,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            10,000/ 10
+            {props.myOffer}
           </Text>
         </View>
       </View>
@@ -112,7 +104,7 @@ const styles = StyleSheet.create({
   fontRegular: { fontFamily: "OpenSansRegular" },
 
   header: {
-    padding: 10,
+    padding: 15,
     borderBottomStartRadius: 20,
     borderBottomEndRadius: 20,
   },
@@ -122,13 +114,10 @@ const styles = StyleSheet.create({
     borderWidth: 4,
   },
   mainTitle: { fontSize: FontSizes.medium, paddingBottom: 10 },
-  subTitle: {
-    fontSize: FontSizes.small,
-    marginBottom: 5,
-  },
   inRow: {
     flexDirection: "row",
     justifyContent: "flex-start",
+    marginBottom: 5,
   },
 });
 

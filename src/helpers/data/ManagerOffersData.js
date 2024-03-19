@@ -6,8 +6,7 @@ export const managerOffersData = [
     dislikes: 1,
     ratings: 5,
     averageRating: 3,
-    myOffer: "10,000",
-    managersOffer: "15,000",
+    managersOffer: "17,500 PKR",
     managersComment: "I will work for higher pay",
   },
   {
@@ -17,8 +16,7 @@ export const managerOffersData = [
     dislikes: 2,
     ratings: 12,
     averageRating: 4,
-    myOffer: "12,000",
-    managersOffer: "18,000",
+    managersOffer: "20%",
     managersComment: "Looking for a long-term commitment",
   },
   {
@@ -28,8 +26,7 @@ export const managerOffersData = [
     dislikes: 3,
     ratings: 10,
     averageRating: 2,
-    myOffer: "11,500",
-    managersOffer: "16,000",
+    managersOffer: "25,500 PKR",
     managersComment: "Open to negotiation on terms",
   },
   {
@@ -39,8 +36,7 @@ export const managerOffersData = [
     dislikes: 1,
     ratings: 7,
     averageRating: 5,
-    myOffer: "9,500",
-    managersOffer: "14,000",
+    managersOffer: "14%",
     managersComment: "Seeking challenging projects",
   },
   {
@@ -50,8 +46,7 @@ export const managerOffersData = [
     dislikes: 2,
     ratings: 10,
     averageRating: 1,
-    myOffer: "12,800",
-    managersOffer: "17,000",
+    managersOffer: "19,800 PKR",
     managersComment: "Experienced in team management",
   },
   {
@@ -61,8 +56,7 @@ export const managerOffersData = [
     dislikes: 4,
     ratings: 16,
     averageRating: 4,
-    myOffer: "13,000",
-    managersOffer: "19,000",
+    managersOffer: "16%",
     managersComment: "Focused on delivering quality work",
   },
   {
@@ -72,8 +66,7 @@ export const managerOffersData = [
     dislikes: 2,
     ratings: 7,
     averageRating: 3,
-    myOffer: "11,000",
-    managersOffer: "16,500",
+    managersOffer: "16,750 PKR",
     managersComment: "Excellent communication skills",
   },
   {
@@ -83,8 +76,7 @@ export const managerOffersData = [
     dislikes: 3,
     ratings: 12,
     averageRating: 2,
-    myOffer: "12,800",
-    managersOffer: "18,500",
+    managersOffer: "18%",
     managersComment: "Eager to take on new challenges",
   },
   {
@@ -94,8 +86,7 @@ export const managerOffersData = [
     dislikes: 1,
     ratings: 7,
     averageRating: 5,
-    myOffer: "10,700",
-    managersOffer: "16,200",
+    managersOffer: "15,200 PKR",
     managersComment: "Passionate about problem-solving",
   },
   {
@@ -105,8 +96,7 @@ export const managerOffersData = [
     dislikes: 2,
     ratings: 13,
     averageRating: 4,
-    myOffer: "13,500",
-    managersOffer: "20,000",
+    managersOffer: "21%",
     managersComment: "Strong leadership skills",
   },
   {
@@ -116,8 +106,7 @@ export const managerOffersData = [
     dislikes: 1,
     ratings: 9,
     averageRating: 2,
-    myOffer: "12,000",
-    managersOffer: "17,500",
+    managersOffer: "17,750 PKR",
     managersComment: "Creative problem solver",
   },
   {
@@ -127,8 +116,7 @@ export const managerOffersData = [
     dislikes: 3,
     ratings: 10,
     averageRating: 3,
-    myOffer: "11,300",
-    managersOffer: "16,500",
+    managersOffer: "16%",
     managersComment: "Adaptable and quick learner",
   },
   {
@@ -138,8 +126,7 @@ export const managerOffersData = [
     dislikes: 1,
     ratings: 6,
     averageRating: 5,
-    myOffer: "10,200",
-    managersOffer: "15,000",
+    managersOffer: "14%",
     managersComment: "Attention to detail",
   },
   {
@@ -149,8 +136,7 @@ export const managerOffersData = [
     dislikes: 2,
     ratings: 11,
     averageRating: 1,
-    myOffer: "12,700",
-    managersOffer: "18,000",
+    managersOffer: "17,800 PKR",
     managersComment: "Strong organizational skills",
   },
   {
@@ -160,8 +146,7 @@ export const managerOffersData = [
     dislikes: 1,
     ratings: 7,
     averageRating: 4,
-    myOffer: "11,000",
-    managersOffer: "16,200",
+    managersOffer: "16,300 PKR",
     managersComment: "Effective team player",
   },
   {
@@ -171,8 +156,7 @@ export const managerOffersData = [
     dislikes: 3,
     ratings: 13,
     averageRating: 3,
-    myOffer: "13,200",
-    managersOffer: "19,500",
+    managersOffer: "19%",
     managersComment: "Attention to deadlines",
   },
   {
@@ -182,8 +166,7 @@ export const managerOffersData = [
     dislikes: 0,
     ratings: 4,
     averageRating: 4,
-    myOffer: "10,500",
-    managersOffer: "15,500",
+    managersOffer: "15%",
     managersComment: "Detail-oriented approach",
   },
   {
@@ -193,8 +176,7 @@ export const managerOffersData = [
     dislikes: 2,
     ratings: 10,
     averageRating: 2,
-    myOffer: "12,800",
-    managersOffer: "18,000",
+    managersOffer: "18,200 PKR",
     managersComment: "Driven by quality",
   },
   {
@@ -204,8 +186,7 @@ export const managerOffersData = [
     dislikes: 1,
     ratings: 8,
     averageRating: 3,
-    myOffer: "11,700",
-    managersOffer: "17,000",
+    managersOffer: "17%",
     managersComment: "Strong problem-solving skills",
   },
   {
@@ -215,8 +196,7 @@ export const managerOffersData = [
     dislikes: 2,
     ratings: 8,
     averageRating: 5,
-    myOffer: "11,300",
-    managersOffer: "16,500",
+    managersOffer: "14,800 PKR",
     managersComment: "Excellent analytical skills",
   },
 ];

@@ -146,24 +146,6 @@ const ManagerOffersButton = (props) => {
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            My Offer:{" "}
-          </Text>
-          <Text
-            style={[
-              styles.fontRegular,
-              { fontSize: FontSizes.small, color: colors.textPrimary },
-            ]}
-          >
-            {props.myOffer}
-          </Text>
-        </View>
-        <View style={[styles.inRow, styles.cardSubText]}>
-          <Text
-            style={[
-              styles.fontBold,
-              { fontSize: FontSizes.small, color: colors.textPrimary },
-            ]}
-          >
             Manager's Offer:{" "}
           </Text>
           <Text

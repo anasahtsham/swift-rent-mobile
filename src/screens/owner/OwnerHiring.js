@@ -1,153 +1,19 @@
 import React from "react";
-import {
-  BackHandler,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import CustomFooterButton from "../../components/CustomFooterButton";
+import OwnerHiringHeader from "../../components/common/header/OwnerHiringHeader";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "./../../helpers/SetColors";
-import { useEffect } from "react";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { useState } from "react";
-import CustomFooterButton from "../../components/CustomFooterButton";
 
 const OwnerHiring = ({ navigation }) => {
   const colors = useColors();
-
-  // useEffect(() => {
-  //   const backAction = () => {
-  //     navigation.goBack();
-  //     return true;
-  //   };
-
-  //   const backHandler = BackHandler.addEventListener(
-  //     "hardwareBackPress",
-  //     backAction
-  //   );
-  //   return () => backHandler.remove();
-  // }, []);
 
   return (
     <View
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <View
-        style={[
-          styles.topContainer,
-          { backgroundColor: colors.backgroundPrimary },
-        ]}
-      >
-        <View
-          style={[
-            styles.managerProfileCard,
-            {
-              backgroundColor: colors.backgroundPrimary,
-              borderColor: colors.borderPrimary,
-            },
-          ]}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={icons.userIcon}
-              style={styles.userIcon}
-              tintColor={colors.iconPrimary}
-            />
-            <Text
-              style={[
-                styles.managerName,
-                styles.fontBold,
-                { color: colors.textPrimary, fontSize: FontSizes.medium },
-              ]}
-            >
-              Manager's Name
-            </Text>
-          </View>
-
-          <View
-            style={[
-              styles.managerProfileCardSubTextContainer,
-
-              { color: colors.textPrimary, fontSize: FontSizes.small },
-            ]}
-          >
-            <Text
-              style={[
-                styles.fontRegular,
-                { color: colors.textPrimary, fontSize: FontSizes.small },
-              ]}
-            >
-              phone number
-            </Text>
-            <Text
-              style={[
-                styles.fontRegular,
-                { color: colors.textPrimary, fontSize: FontSizes.small },
-              ]}
-            >
-              manager@email.com
-            </Text>
-            <View style={styles.rightInRow}>
-              <Text
-                style={[
-                  styles.fontRegular,
-                  { color: colors.textPrimary, fontSize: FontSizes.small },
-                ]}
-              >
-                Managing Since:
-              </Text>
-              <Text
-                style={[
-                  styles.fontBold,
-                  {
-                    color: colors.textPrimary,
-                    marginRight: 10,
-                    fontSize: FontSizes.small,
-                  },
-                ]}
-              >
-                15-07-2021
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.rightInRow,
-
-                { color: colors.textPrimary, fontSize: FontSizes.small },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.fontRegular,
-                  { color: colors.textPrimary, fontSize: FontSizes.small },
-                ]}
-              >
-                Properties Managed:
-              </Text>
-              <Text
-                style={[
-                  styles.fontBold,
-                  {
-                    color: colors.textPrimary,
-                    marginRight: 10,
-                    fontSize: FontSizes.small,
-                  },
-                ]}
-              >
-                13
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
+      <OwnerHiringHeader />
       <View
         style={{
           flexDirection: "row",

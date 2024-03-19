@@ -12,6 +12,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonWithImage from "../../components/common/buttons/ButtonWithImage";
 import PropertyMenuHeader from "../../components/common/header/PropertyMenuHeader";
 import { useColors } from "./../../helpers/SetColors";
+import { managerOffersData } from "./../../helpers/data/ManagerOffersData";
 
 const PropertyMenu = () => {
   const colors = useColors();
@@ -29,6 +30,8 @@ const PropertyMenu = () => {
     );
     return () => backHandler.remove();
   }, []);
+
+  let managerOffersAmount = managerOffersData.length;
 
   const Card = ({ title, endText, children }) => (
     <View style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}>
@@ -156,7 +159,7 @@ const PropertyMenu = () => {
           </View>
           <View style={styles.buttonRow}>
             <ButtonWithImage
-              text={"Manager Offers (21)"}
+              text={"Manager Offers (" + managerOffersAmount + ")"}
               colors={colors}
               onPress={() => navigation.navigate("Manager Offers")}
             />

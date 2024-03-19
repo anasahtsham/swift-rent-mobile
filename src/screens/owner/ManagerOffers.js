@@ -24,10 +24,19 @@ const ManagerOffers = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bodyBackground }}>
-      <ManagerOffersHeader />
+      <ManagerOffersHeader
+        managerOffersAmount={managerOffersData.length}
+        hiringFor="Bringing Tenant/ Hiring Manager"
+        salaryType="OneTime/ Salary/ Commission"
+        salaryPeriod="Monthly/ Weekly/ Daily"
+        myOffer="10,000/ 10%"
+      />
       <FlatList
         style={{ flex: 1, marginBottom: 5 }}
-        data={managerOffersData}
+        data={managerOffersData.sort(
+          (firstOffer, secondOffer) =>
+            secondOffer.averageRating - firstOffer.averageRating
+        )}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <ManagerOffersButton
@@ -36,7 +45,6 @@ const ManagerOffers = ({ navigation }) => {
             dislikes={item.dislikes}
             ratings={item.ratings}
             averageRating={item.averageRating}
-            myOffer={item.myOffer}
             managersOffer={item.managersOffer}
             managersComment={item.managersComment}
           />
