@@ -1,45 +1,29 @@
-import { useFocusEffect, useTheme } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   BackHandler,
   Image,
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
-  View,
   TouchableOpacity,
+  View,
 } from "react-native";
 import { icons } from "../../helpers/ImageImports";
 
-import { loadLanguage, loadTheme } from "../../helpers";
-
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as DarkTheme from "../../assets/themes/DarkColorScheme";
-import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
-import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
 
+import { Formik } from "formik";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { buttonWidthMedium } from "../../constants";
+import { useColors } from "../../helpers/SetColors";
+import { ratingScreenSchema } from "../../helpers/validation/ValidationSchemas";
 import RatingStars from "./RatingStars";
+import ButtonGrey from "./buttons/ButtonGrey";
 
 const RatingScreen = ({ navigation }) => {
-  const [colors, setColors] = useState(LoadingTheme);
+  const colors = useColors();
 
-  //a constant that stores the current theme so it can be used to conditionally change image tint color
-  const [theme, setTheme] = useState(null);
-
-  //update theme on load
-  useFocusEffect(() => {
-    updateTheme();
-  });
-
-  const [languages, setLanguage] = useState(English);
-
-  //update language on load
   useEffect(() => {
-    loadLanguage().then((language) => {
-      setLanguage(language === "english" ? English : Urdu);
-    });
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -52,199 +36,233 @@ const RatingScreen = ({ navigation }) => {
     return () => backHandler.remove();
   }, []);
 
-  //update theme on clicking toggle theme button
-  function updateTheme() {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-      setTheme(theme); // Store the theme in state for local use
-    });
-  }
-
   //state to store the rating
   const [rating, setRating] = useState(1);
 
   //state to store the choice of thumbs up or down
-  const [isLiked, setLiked] = useState(null);
-  console.log("isLiked: " + isLiked);
+  const [isLiked, setIsLiked] = useState(null);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bodyBackground }}>
-      <View
-        style={[
-          styles.header,
-          { backgroundColor: colors.headerAndFooterBackground },
-        ]}
-      >
-        <View style={styles.row}>
-          <Image
-            style={styles.userIcon}
-            source={icons.userIcon}
-            tintColor={theme === "light" ? "black" : "white"}
-          />
-          <Text
+    <Formik
+      initialValues={{ description: "" }}
+      validationSchema={ratingScreenSchema}
+      onSubmit={(values) => console.log(values)}
+    >
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        errors,
+        touched,
+      }) => (
+        <KeyboardAwareScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
+          style={{
+            flex: 1,
+            backgroundColor: colors.bodyBackground,
+            paddingHorizontal: 10,
+          }}
+        >
+          <View
             style={[
-              styles.personNameText,
-              styles.fontBold,
-              { color: colors.textPrimary, fontSize: FontSizes.medium },
+              styles.ratingCard,
+              { backgroundColor: colors.headerAndFooterBackground },
             ]}
           >
-            Gulzaar
-          </Text>
-          <Text
-            style={[
-              styles.personRoleText,
-              styles.fontRegular,
-              {
-                color: colors.textGreen,
-                paddingLeft: 90,
-                paddingTop: 10,
-                fontSize: FontSizes.small,
-              },
-            ]}
-          >
-            Manager
-          </Text>
-        </View>
-        <Text
-          style={[
-            styles.addressLineText,
-            styles.fontRegular,
-            { color: colors.textPrimary, fontSize: FontSizes.small },
-          ]}
-        >
-          House 540, Street 321,
-        </Text>
-        <Text
-          style={[
-            styles.addressLineText,
-            styles.fontRegular,
-            {
-              color: colors.textPrimary,
-              fontSize: FontSizes.small,
-              paddingTop: 25,
-            },
-          ]}
-        >
-          G-11/1, Islamabad
-        </Text>
-      </View>
-      <View style={styles.descriptionTitleContainer}>
-        <Text
-          style={[
-            styles.descriptionTitle,
-            styles.fontRegular,
-            { color: colors.textPrimary, fontSize: FontSizes.small },
-          ]}
-        >
-          Describe Your Expirience
-        </Text>
-      </View>
-      <TextInput
-        style={[
-          styles.descriptionBox,
-          {
-            backgroundColor: colors.backgroundPrimary,
-            borderColor: colors.borderPrimary,
-          },
-        ]}
-      />
-      <View style={{ flex: 1 }}>
-        <RatingStars rating={rating} setRating={setRating} />
+            <View style={[styles.cardHeader, {}]}>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  style={styles.userIcon}
+                  source={icons.userIcon}
+                  tintColor={colors.iconPrimary}
+                />
+              </View>
+              <View style={{ justifyContent: "space-between" }}>
+                <Text
+                  style={[
+                    styles.fontBold,
+                    { color: colors.textPrimary, fontSize: FontSizes.medium },
+                  ]}
+                >
+                  Gulzaar
+                </Text>
+                <Text
+                  style={[
+                    styles.addressLineText,
+                    styles.fontRegular,
+                    { color: colors.textPrimary, fontSize: FontSizes.small },
+                  ]}
+                >
+                  House 540, Street 321,
+                </Text>
+                <Text
+                  style={[
+                    styles.addressLineText,
+                    styles.fontRegular,
+                    {
+                      color: colors.textPrimary,
+                      fontSize: FontSizes.small,
+                    },
+                  ]}
+                >
+                  G-11/1, Islamabad
+                </Text>
+              </View>
+              <View
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "right",
+                }}
+              >
+                <Text
+                  style={[
+                    styles.fontBold,
+                    {
+                      color: colors.textGreen,
+                      fontSize: FontSizes.small,
+                    },
+                  ]}
+                >
+                  Manager
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={[
+                styles.descriptionTitle,
+                styles.fontRegular,
 
-        <View style={styles.thumbsContainer}>
-          <TouchableOpacity onPress={() => setLiked(true)}>
-            <Image
-              style={[styles.thumbsIcon, { marginRight: 20 }]} // add marginRight here
-              source={icons.like}
-              tintColor={isLiked === true ? colors.iconGreen : colors.iconGrey}
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              Describe Your Expirience
+            </Text>
+
+            <TextInput
+              multiline={true}
+              onChangeText={handleChange("description")}
+              onBlur={handleBlur("description")}
+              value={values.description}
+              style={[
+                styles.descriptionBox,
+                {
+                  borderColor: colors.borderPrimary,
+                  color: colors.textPrimary,
+                },
+              ]}
             />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setLiked(false)}>
-            <Image
-              style={styles.thumbsIcon}
-              source={icons.dislike}
-              tintColor={isLiked === false ? colors.iconRed : colors.iconGrey}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
+            <View style={{ height: !errors.description ? 18 : 1 }} />
+            {errors.description && touched.description && (
+              <Text style={{ color: "red" }}>{errors.description}</Text>
+            )}
+            <View style={{ justifyContent: "space-between", marginTop: 10 }}>
+              <RatingStars rating={rating} setRating={setRating} />
+
+              <View style={styles.thumbsContainer}>
+                <TouchableOpacity
+                  style={{
+                    padding: 10,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onPress={() => setIsLiked(true)}
+                >
+                  <Image
+                    style={[styles.thumbsIcon, {}]}
+                    source={icons.like}
+                    tintColor={
+                      isLiked === true ? colors.iconGreen : colors.iconGrey
+                    }
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    padding: 10,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onPress={() => setIsLiked(false)}
+                >
+                  <Image
+                    style={styles.thumbsIcon}
+                    source={icons.dislike}
+                    tintColor={
+                      isLiked === false ? colors.iconRed : colors.iconGrey
+                    }
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+
+          <ButtonGrey
+            fontSize={FontSizes.medium}
+            width={buttonWidthMedium}
+            buttonText="Submit"
+            isSubmitButton={true}
+            onPress={handleSubmit}
+          />
+        </KeyboardAwareScrollView>
+      )}
+    </Formik>
   );
 };
 
 const styles = StyleSheet.create({
   fontBold: { fontFamily: "OpenSansBold" },
   fontRegular: { fontFamily: "OpenSansRegular" },
-  header: {
-    height: 320,
-    marginTop: 20,
-    paddingTop: 10,
-    paddingLeft: 20,
-    width: "90%",
+  ratingCard: {
     borderRadius: 20,
-    alignSelf: "center",
-  },
-  personNameText: {
-    fontSize: FontSizes.medium,
-    paddingLeft: 10,
+    width: "90%",
+    padding: 15,
+    marginBottom: 50,
   },
   personTextContainer: {
-    paddingTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  personRoleText: {
-    fontWeight: "bold",
-    fontSize: FontSizes.small,
-  },
   addressLineText: {
     fontSize: FontSizes.extraSmall,
-    paddingLeft: 70,
-    marginTop: -25,
   },
-
   userIcon: {
     width: 55,
     height: 55,
-    marginTop: 5,
   },
-  row: {
+  cardHeader: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
-
   descriptionTitle: {
     fontSize: FontSizes.small,
-    marginTop: 20,
+    marginVertical: 10,
   },
-  descriptionTitleContainer: {
-    marginTop: -230,
-    marginLeft: 50,
-  },
-
   descriptionBox: {
     height: 100,
-    width: 300,
     borderRadius: 15,
-    alignSelf: "center",
-    marginTop: 3,
     padding: 10,
     borderWidth: 1,
+    verticalAlign: "top",
+    fontSize: FontSizes.small,
   },
-  starIcon: {
-    width: 30,
-    height: 30,
-    marginTop: 5,
-  },
-
   thumbsContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 20,
   },
   thumbsIcon: {
     width: 25,
     height: 25,
-    marginTop: 10,
   },
 });
 export default RatingScreen;

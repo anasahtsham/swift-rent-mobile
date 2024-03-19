@@ -6,13 +6,13 @@ import { useColorsOnFocus } from "../../../helpers/SetColors";
 const ButtonGrey = (props) => {
   const colors = useColorsOnFocus();
 
-  if (props.fontSize === undefined) {
-    throw new Error('The prop "fontSize" is required in ButtonGrey component');
-  }
+  // if (props.fontSize === undefined) {
+  //   throw new Error('The prop "fontSize" is required in ButtonGrey component');
+  // }
 
-  if (props.width === undefined) {
-    throw new Error('The prop "width" is required in ButtonGrey component');
-  }
+  // if (props.width === undefined) {
+  //   throw new Error('The prop "width" is required in ButtonGrey component');
+  // }
 
   const handlePress = () => {
     props.navigation.navigate(props.destinationScreen, {

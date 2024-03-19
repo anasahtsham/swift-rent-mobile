@@ -216,3 +216,7 @@ export const registerTenantSchema = (
       .typeError("Invalid date format")
       .required("This Field is required"),
   });
+
+export const ratingScreenSchema = Yup.object().shape({
+  description: Yup.string().matches(/^(?!.*  ).*$/, "No double spaces"),
+});

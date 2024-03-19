@@ -1,14 +1,14 @@
-import { useFocusEffect, useTheme } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   BackHandler,
   Image,
-  View,
-  TouchableOpacity,
   StyleSheet,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { icons } from "../../helpers/ImageImports";
 import { loadLanguage, loadTheme } from "../../helpers";
+import { icons } from "../../helpers/ImageImports";
 
 import * as English from "../../assets/fonts/displaytext/EN/en-pack";
 import * as DarkTheme from "../../assets/themes/DarkColorScheme";
@@ -61,7 +61,11 @@ const RatingStars = ({
   return (
     <View style={styles.starsContainer}>
       {[...Array(5)].map((_, i) => (
-        <TouchableOpacity key={i} onPress={() => setRating(i + 1)}>
+        <TouchableOpacity
+          style={{ padding: 5 }}
+          key={i}
+          onPress={() => setRating(i + 1)}
+        >
           <Image
             style={{ width: starWidth, height: starHeight }}
             source={icons.star}
@@ -80,6 +84,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 10,
   },
 });
