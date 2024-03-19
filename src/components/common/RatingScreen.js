@@ -46,7 +46,9 @@ const RatingScreen = ({ navigation }) => {
     <Formik
       initialValues={{ description: "" }}
       validationSchema={ratingScreenSchema}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={() => {
+        navigation.goBack();
+      }}
     >
       {({
         handleChange,
@@ -156,14 +158,23 @@ const RatingScreen = ({ navigation }) => {
               style={[
                 styles.descriptionBox,
                 {
-                  borderColor: colors.borderPrimary,
                   color: colors.textPrimary,
+                  borderColor:
+                    !errors.description && touched.description
+                      ? colors.borderPrimary
+                      : colors.borderRed,
                 },
               ]}
             />
-            <View style={{ height: !errors.description ? 18 : 1 }} />
+            <View
+              style={{
+                height: !errors.description && touched.description ? 18 : 0,
+              }}
+            />
             {errors.description && touched.description && (
-              <Text style={{ color: "red" }}>{errors.description}</Text>
+              <Text style={{ color: colors.textRed, marginLeft: 10 }}>
+                {errors.description}
+              </Text>
             )}
             <View style={{ justifyContent: "space-between", marginTop: 10 }}>
               <RatingStars rating={rating} setRating={setRating} />
