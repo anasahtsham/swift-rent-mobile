@@ -10,7 +10,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonWithImage from "../../components/common/buttons/ButtonWithImage";
-import PropertyMenuHeader from "../../components/common/header/PropertyMenuHeader";
+import PropertyMenuHeader from "../../components/common/headers/PropertyMenuHeader";
 import { useColors } from "./../../helpers/SetColors";
 import { managerOffersData } from "./../../helpers/data/ManagerOffersData";
 

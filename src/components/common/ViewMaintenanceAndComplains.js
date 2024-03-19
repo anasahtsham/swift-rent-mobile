@@ -19,7 +19,7 @@ import {
   maintenanceHeaderData,
 } from "../../helpers/data/MaintenanceAndComplainsData";
 import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/ValidationSchemas";
-import ViewMaintenanceAndComplainsHeader from "./header/ViewMaintenanceAndComplainsHeader";
+import ViewMaintenanceAndComplainsHeader from "./headers/ViewMaintenanceAndComplainsHeader";
 import InputField from "./input_fields/InputField";
 
 const ViewMaintenanceAndComplains = ({ route }) => {

@@ -3,7 +3,7 @@ import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 import { useColorsOnFocus } from "../../helpers/SetColors";
-import ProfileHeader from "./header/ProfileHeader";
+import ProfileHeader from "./headers/ProfileHeader";
 
 const Profile = (props) => {
   const navigation = useNavigation();

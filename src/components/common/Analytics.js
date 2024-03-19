@@ -3,7 +3,7 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import AnalyticsButton from "./buttons/AnalyticsButton";
-import AnalyticsHeader from "./header/AnalyticsHeader";
+import AnalyticsHeader from "./headers/AnalyticsHeader";
 
 const Analytics = (props) => {
   const navigation = useNavigation();

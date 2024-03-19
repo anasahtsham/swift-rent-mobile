@@ -5,7 +5,7 @@ import { buttonWidthSmall } from "../../constants";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import ButtonGrey from "./buttons/ButtonGrey";
 import { PropertiesButton } from "./buttons/PropertiesButton";
-import PropertiesHeader from "./header/PropertiesHeader";
+import PropertiesHeader from "./headers/PropertiesHeader";
 
 const Properties = (props) => {
   const colors = useColorsOnFocus();

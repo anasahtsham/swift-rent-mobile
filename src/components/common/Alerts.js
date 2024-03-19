@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import { AlertButton } from "./buttons/AlertButton";
-import AlertsHeader from "./header/AlertsHeader";
+import AlertsHeader from "./headers/AlertsHeader";
 
 const Alerts = (props) => {
   const navigation = useNavigation();

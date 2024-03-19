@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BackHandler, FlatList, SafeAreaView, StyleSheet } from "react-native";
 
 import ManagerOffersButton from "../../components/common/buttons/ManagerOffersButton";
-import ManagerOffersHeader from "../../components/common/header/ManagerOffersHeader";
+import ManagerOffersHeader from "../../components/common/headers/ManagerOffersHeader";
 import { managerOffersData } from "../../helpers/data/ManagerOffersData";
 import { useColors } from "./../../helpers/SetColors";
 

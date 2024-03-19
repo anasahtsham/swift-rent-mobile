@@ -15,7 +15,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import ButtonGrey from "../common/buttons/ButtonGrey";
-import Checkbox from "../common/checkbox/Checkbox";
+import Checkbox from "../common/checkboxes/Checkbox";
 import InputField from "../common/input_fields/InputField";
 import {
   agricultureCheckboxes,

@@ -1,8 +1,10 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import CustomFooterButton from "../../components/CustomFooterButton";
-import OwnerHiringHeader from "../../components/common/header/OwnerHiringHeader";
+import OwnerHiringCard from "../../components/common/cards/OwnerHiringCard";
+import OwnerHiringHeader from "../../components/common/headers/OwnerHiringHeader";
+import { buttonWidthSmall } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "./../../helpers/SetColors";
 
@@ -14,14 +16,17 @@ const OwnerHiring = ({ navigation }) => {
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
       <OwnerHiringHeader />
-
-      <View
+      <ScrollView
         style={{
-          flexDirection: "row",
+          paddingVertical: 15,
+          height: "120%",
+        }}
+        contentContainerStyle={{
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={{ width: "90%", marginBottom: "3%" }}>
           <Text
             style={[
               styles.managerRatingsTitle,
@@ -31,174 +36,84 @@ const OwnerHiring = ({ navigation }) => {
           >
             Manager Ratings
           </Text>
-        </View>
-      </View>
-      <View style={styles.likesAndStarsRow}>
-        <Text
-          style={[
-            {
-              color: colors.textPrimary,
-              fontSize: FontSizes.small,
-            },
-          ]}
-        >
-          4
-        </Text>
-        <Image
-          style={[styles.thumbsIcon]}
-          source={icons.like}
-          tintColor={colors.iconGreen}
-        />
-
-        <Text style={{ color: colors.textPrimary, fontSize: FontSizes.small }}>
-          1
-        </Text>
-
-        <Image
-          style={styles.thumbsIcon}
-          source={icons.dislike}
-          tintColor={colors.iconRed}
-        />
-        <Text style={{ color: colors.textPrimary, fontSize: FontSizes.small }}>
-          (4)
-        </Text>
-        <View style={styles.starIconContainer}>
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-          <Image
-            style={styles.starIcon}
-            source={icons.star}
-            tintColor={colors.iconYellow}
-          />
-        </View>
-      </View>
-      <View
-        style={[
-          styles.hiringButton,
-          { backgroundColor: colors.backgroundPrimary },
-        ]}
-      >
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text
-            style={[
-              styles.fontBold,
-              styles.hiringButtonText,
-              { color: colors.textPrimary, marginBottom: 4 },
-            ]}
-          >
-            Tabassum Hussain:
-          </Text>
-
-          <Text
-            style={[
-              styles.fontRegular,
-              styles.hiringButtonText,
-              { color: colors.textPrimary },
-            ]}
-          >
-            19-03-2024
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-          }}
-        >
-          <Text
-            style={[
-              styles.fontRegular,
-              {
-                paddingLeft: 10,
-                fontSize: FontSizes.small,
-                color: colors.textPrimary,
-              },
-            ]}
-          >
-            Islamabad, G-11/1, St.# 21, {"\n"} H.# 25
-          </Text>
-
-          <View style={styles.starIconContainer}>
+          <View style={styles.likesAndStarsRow}>
+            <Text
+              style={[
+                {
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                },
+              ]}
+            >
+              4
+            </Text>
             <Image
               style={[styles.thumbsIcon]}
               source={icons.like}
               tintColor={colors.iconGreen}
             />
+
+            <Text
+              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+            >
+              1
+            </Text>
+
             <Image
-              style={styles.starIcon}
-              source={icons.star}
-              tintColor={colors.iconYellow}
+              style={styles.thumbsIcon}
+              source={icons.dislike}
+              tintColor={colors.iconRed}
             />
-            <Image
-              style={styles.starIcon}
-              source={icons.star}
-              tintColor={colors.iconYellow}
-            />
-            <Image
-              style={styles.starIcon}
-              source={icons.star}
-              tintColor={colors.iconYellow}
-            />
-            <Image
-              style={styles.starIcon}
-              source={icons.star}
-              tintColor={colors.iconYellow}
-            />
-            <Image
-              style={styles.starIcon}
-              source={icons.star}
-              tintColor={colors.iconYellow}
-            />
+            <Text
+              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+            >
+              (4)
+            </Text>
+            <View style={styles.starIconContainer}>
+              <Image
+                style={styles.starIcon}
+                source={icons.star}
+                tintColor={colors.iconYellow}
+              />
+              <Image
+                style={styles.starIcon}
+                source={icons.star}
+                tintColor={colors.iconYellow}
+              />
+              <Image
+                style={styles.starIcon}
+                source={icons.star}
+                tintColor={colors.iconYellow}
+              />
+              <Image
+                style={styles.starIcon}
+                source={icons.star}
+                tintColor={colors.iconYellow}
+              />
+              <Image
+                style={styles.starIcon}
+                source={icons.star}
+                tintColor={colors.iconYellow}
+              />
+            </View>
           </View>
+          <OwnerHiringCard />
         </View>
-        <Text
-          style={[
-            styles.fontBold,
-            styles.remarksText,
-            { color: colors.textPrimary, marginBottom: 4 },
-          ]}
-        >
-          Remarks:
-        </Text>
-        <Text
-          style={[
-            styles.fontRegular,
-            {
-              color: colors.textPrimary,
-              paddingLeft: 10,
-              fontSize: FontSizes.small,
-            },
-          ]}
-        >
-          I really hate this douchebag! I really hate this douchebag!
-        </Text>
-      </View>
+      </ScrollView>
       <View
-        style={[styles.footer, { backgroundColor: colors.backgroundPrimary }]}
+        style={[
+          styles.footer,
+          { backgroundColor: colors.headerAndFooterBackground },
+        ]}
       >
         <Text
           style={[
             styles.footerTitle,
-            { fontSize: FontSizes.small, color: colors.textPrimary },
+            {
+              fontSize: FontSizes.small,
+              fontWeight: "bold",
+              color: colors.textPrimary,
+            },
           ]}
         >
           Hiring To Manage Property
@@ -275,7 +190,7 @@ const OwnerHiring = ({ navigation }) => {
             21,000/ 21%
           </Text>
         </View>
-        <View style={{ marginRight: 5, marginLeft: 25 }}>
+        <View style={{}}>
           <Text
             style={[
               styles.fontBold,
@@ -295,7 +210,7 @@ const OwnerHiring = ({ navigation }) => {
         </View>
         <View style={styles.footerButtonContainer}>
           <CustomFooterButton
-            buttonWidth={120}
+            buttonWidth={buttonWidthSmall}
             onPress={() =>
               navigation.navigate("Rents", { header: "Received Rents" })
             }
@@ -304,7 +219,7 @@ const OwnerHiring = ({ navigation }) => {
             isBold={true}
           />
           <CustomFooterButton
-            buttonWidth={120}
+            buttonWidth={buttonWidthSmall}
             onPress={() =>
               navigation.navigate("Rents", { header: "Pending Rents" })
             }
@@ -360,82 +275,53 @@ const styles = StyleSheet.create({
 
   managerRatingsTitle: {
     fontSize: FontSizes.medium,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 10,
   },
   thumbsIcon: {
     height: 16,
     width: 16,
-    marginLeft: 5,
-    marginRight: 10,
     justifyContent: "center",
   },
   likesAndStarsRow: {
     flexDirection: "row",
-    justifyContent: "flex-end",
     alignItems: "center",
-    marginLeft: 5,
-    marginRight: 5,
+    width: "70%",
+    justifyContent: "space-evenly",
   },
   starIcon: {
     height: 20,
     width: 20,
-    marginLeft: -2,
   },
   starIconContainer: {
     flexDirection: "row",
-    marginLeft: 5,
-    marginRight: 5,
     alignItems: "center",
   },
-  hiringButton: {
+  managerRatingsCard: {
     height: "auto",
-    width: "95%",
-    marginTop: 20,
-    paddingBottom: 5,
-    position: "relative",
-
     borderRadius: 20,
-    alignSelf: "center",
+    padding: 15,
   },
-  hiringButtonText: {
-    paddingTop: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
+  ratingsCardText: {
     fontSize: FontSizes.small,
   },
   remarksText: {
-    paddingTop: 5,
-    paddingLeft: 10,
     fontSize: FontSizes.small,
   },
   footer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    height: 250,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
   footerTitle: {
-    fontSize: FontSizes.small,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 10,
     textAlign: "center",
   },
   footerBodyText: {
     fontSize: FontSizes.small,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginRight: 5,
-    marginLeft: 25,
   },
   footerButtonContainer: {
+    marginVertical: "3%",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginTop: 30,
   },
 });
 
