@@ -140,7 +140,7 @@ const OwnerHiring = ({ navigation }) => {
       </ScrollView>
       <OwnerHiringFooter
         navigation={navigation}
-        hiringPurpose="To Manage Property / To Bring Tenant"
+        hiringPurpose="Manage Property/ Bring Tenant"
         salaryType="OneTime/ Salary/ Commission"
         salaryPeriod="Weekly/ Monthly/ Yearly"
         myOffer="10,000/ 10%"

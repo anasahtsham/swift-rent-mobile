@@ -31,7 +31,7 @@ const OwnerHiringFooter = ({
           },
         ]}
       >
-        Hiring {hiringPurpose}
+        Hiring To {hiringPurpose}
       </Text>
       <View style={styles.footerBodyText}>
         <Text
