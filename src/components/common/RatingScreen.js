@@ -37,7 +37,7 @@ const RatingScreen = ({ navigation }) => {
   }, []);
 
   //state to store the rating
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(0);
 
   //state to store the choice of thumbs up or down
   const [isLiked, setIsLiked] = useState(null);
@@ -159,19 +159,18 @@ const RatingScreen = ({ navigation }) => {
                 styles.descriptionBox,
                 {
                   color: colors.textPrimary,
-                  borderColor:
-                    !errors.description && touched.description
-                      ? colors.borderPrimary
-                      : colors.borderRed,
+                  borderColor: !errors.description
+                    ? colors.borderPrimary
+                    : colors.borderRed,
                 },
               ]}
             />
             <View
               style={{
-                height: !errors.description && touched.description ? 18 : 0,
+                height: !errors.description ? 18 : 0,
               }}
             />
-            {errors.description && touched.description && (
+            {errors.description && (
               <Text style={{ color: colors.textRed, marginLeft: 10 }}>
                 {errors.description}
               </Text>

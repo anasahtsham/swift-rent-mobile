@@ -14,6 +14,7 @@ const OwnerHiring = ({ navigation }) => {
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
       <OwnerHiringHeader />
+
       <View
         style={{
           flexDirection: "row",

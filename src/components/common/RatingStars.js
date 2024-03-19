@@ -1,5 +1,4 @@
-import { useFocusEffect } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   BackHandler,
   Image,
@@ -7,13 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { loadLanguage, loadTheme } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 
-import * as English from "../../assets/fonts/displaytext/EN/en-pack";
-import * as DarkTheme from "../../assets/themes/DarkColorScheme";
-import * as DefaultTheme from "../../assets/themes/DefaultColorScheme";
-import * as LoadingTheme from "../../assets/themes/LoadingColorScheme";
+import { useColors } from "../../helpers/SetColors";
 
 const RatingStars = ({
   rating,
@@ -21,23 +16,10 @@ const RatingStars = ({
   starHeight = 30,
   starWidth = 30,
 }) => {
-  const [colors, setColors] = useState(LoadingTheme);
-
-  //a constant that stores the current theme so it can be used to conditionally change image tint color
-  const [theme, setTheme] = useState(null);
-
-  //update theme on load
-  useFocusEffect(() => {
-    updateTheme();
-  });
-
-  const [languages, setLanguage] = useState(English);
+  const colors = useColors();
 
   //update language on load
   useEffect(() => {
-    loadLanguage().then((language) => {
-      setLanguage(language === "english" ? English : Urdu);
-    });
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -49,14 +31,6 @@ const RatingStars = ({
     );
     return () => backHandler.remove();
   }, []);
-
-  //update theme on clicking toggle theme button
-  function updateTheme() {
-    loadTheme().then((theme) => {
-      setColors(theme === "light" ? DefaultTheme : DarkTheme);
-      setTheme(theme); // Store the theme in state for local use
-    });
-  }
 
   return (
     <View style={styles.starsContainer}>
