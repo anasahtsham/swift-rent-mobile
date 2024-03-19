@@ -28,11 +28,11 @@ import LoginScreen from "./src/screens/authentication/LoginScreen";
 import RegisterAs from "./src/screens/authentication/RegisterAs";
 import SetUpPassword from "./src/screens/authentication/SetUpPassword";
 import WhoAreYou from "./src/screens/authentication/WhoAreYou";
+import HireManagerRequestForm from "./src/screens/owner/HireManagerRequestForm";
 import ManagerOffers from "./src/screens/owner/ManagerOffers";
 import OwnerHiring from "./src/screens/owner/OwnerHiring";
 import RegisterTenant from "./src/screens/owner/RegisterTenant";
 import RentHistory from "./src/screens/owner/RentHistory";
-import ResidentialHome from "./src/screens/owner/ResidentialHome";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
@@ -88,11 +88,14 @@ export default function App() {
             name="View Maintenance And Complains"
             component={ViewMaintenanceAndComplains}
           />
-          <Stack.Screen name="Residential Home" component={ResidentialHome} />
           <Stack.Screen name="Register Tenant" component={RegisterTenant} />
           <Stack.Screen name="Rent History" component={RentHistory} />
           <Stack.Screen name="Manager Offers" component={ManagerOffers} />
           <Stack.Screen name="Add Property Info" component={AddPropertyInfo} />
+          <Stack.Screen
+            name="Hire Manager Request Form"
+            component={HireManagerRequestForm}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
