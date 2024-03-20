@@ -26,11 +26,14 @@ const Checkbox = (props) => {
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            tintColor={props.isSelected ? colors.iconGreen : colors.iconGrey}
-            source={props.checkboxIcon}
-            style={{ height: 30, width: 30, marginRight: 10 }}
-          />
+          {!!props.checkboxIcon && (
+            <Image
+              tintColor={props.isSelected ? colors.iconGreen : colors.iconGrey}
+              source={props.checkboxIcon}
+              style={{ height: 30, width: 30, marginRight: 10 }}
+            />
+          )}
+
           <Text
             style={{
               color: props.isSelected ? colors.textPrimary : colors.textGrey,
