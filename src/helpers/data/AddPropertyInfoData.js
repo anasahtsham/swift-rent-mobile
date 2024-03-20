@@ -1,4 +1,26 @@
-/*********** field types*************/
+/*********** field icons *************/
+
+import { icons } from "../ImageImports";
+
+export const fieldIcons = {
+  area: icons.areaIcon,
+  height: icons.heightIcon,
+  apartments: icons.apartments,
+  balcony: icons.balconyIcon,
+  bedrooms: icons.bedroomsIcon,
+  floors: icons.floorsIcon,
+  kitchens: icons.kitchensIcon,
+  lounges: icons.loungesIcon,
+  conferenceRooms: icons.conferenceRoomsIcon,
+  offices: icons.officesIcon,
+  shops: icons.shopsIcon,
+  storeRooms: icons.storeRoomsIcon,
+  toilets: icons.toiletsIcon,
+  parkingCapacity: icons.parkingCapacityIcon,
+  personCapacity: icons.personCapacityIcon,
+};
+
+/*********** field types *************/
 
 // residential homes
 

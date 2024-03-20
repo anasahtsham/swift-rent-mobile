@@ -26,6 +26,7 @@ import {
   commercialFieldTypes,
   factoryCheckboxes,
   factoryFieldTypes,
+  fieldIcons,
   flatCheckboxes,
   flatFieldTypes,
   housesCheckboxes,
@@ -343,6 +344,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
                     onPressIn={() => {
                       setOpenWaterAvailabilityDropdown(false);
                     }}
+                    textFieldIcon={fieldIcons[field.value]}
                   />
                 ))}
                 {checkboxes.map((checkbox, index) => (
