@@ -42,8 +42,8 @@ const RatingStars = ({
         >
           <Image
             style={{ width: starWidth, height: starHeight }}
-            source={icons.star}
-            tintColor={i < rating ? colors.iconYellow : colors.iconGrey}
+            source={i < rating ? icons.star : icons.starHollow}
+            tintColor={colors.iconYellow}
           />
         </TouchableOpacity>
       ))}
