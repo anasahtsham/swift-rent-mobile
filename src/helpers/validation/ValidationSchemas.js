@@ -220,3 +220,21 @@ export const registerTenantSchema = (
 export const ratingScreenSchema = Yup.object().shape({
   description: Yup.string().matches(/^(?!.*  ).*$/, "No double spaces"),
 });
+
+export const managerOneTimeFeeSchema = Yup.object().shape({
+  managerOneTimeFee: Yup.string().required("Manager One Time Fee is required"),
+  rentAmount: Yup.string().required("Rent Amount is required"),
+  specialTerms: Yup.string().required("Special Terms is required"),
+});
+
+export const managerPercentageSchema = Yup.object().shape({
+  percentage: Yup.string().required("Percentage is required"),
+  rentAmount: Yup.string().required("Rent Amount is required"),
+  specialTerms: Yup.string().required("Special Terms is required"),
+});
+
+export const managerFixedSchema = Yup.object().shape({
+  fixed: Yup.string().required("Fixed is required"),
+  rentAmount: Yup.string().required("Rent Amount is required"),
+  specialTerms: Yup.string().required("Special Terms is required"),
+});

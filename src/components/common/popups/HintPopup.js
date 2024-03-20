@@ -13,7 +13,13 @@ const HintPopup = (props) => {
   const { english: englishHintText, urdu: urudHintText } = props.hintTexts;
   const [hintText, setHintText] = useState(englishHintText);
   return (
-    <View style={{ top: 14, right: -25, position: "absolute" }}>
+    <View
+      style={{
+        top: !!props.top ? props.top : 41,
+        right: !!props.right ? props.right : -25,
+        position: "absolute",
+      }}
+    >
       <Popover
         arrowShift={-0.2} // shifts arrow position upwards by a little, on default it was down a little
         offset={5} // adds gap between ? and popover
