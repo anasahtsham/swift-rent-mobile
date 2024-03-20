@@ -22,6 +22,7 @@ import {
   agricultureFieldTypes,
   buildingCheckboxes,
   buildingFieldTypes,
+  checkboxIcons,
   commercialCheckboxes,
   commercialFieldTypes,
   factoryCheckboxes,
@@ -350,6 +351,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
                 {checkboxes.map((checkbox, index) => (
                   <React.Fragment key={index}>
                     <Checkbox
+                      checkboxIcon={checkboxIcons[checkbox.stateKey]}
                       isSelected={checkboxStates[checkbox.stateKey]}
                       setIsSelected={(newValue) =>
                         setCheckboxStates((prevState) => ({

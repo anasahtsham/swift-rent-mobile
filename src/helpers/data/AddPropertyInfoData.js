@@ -20,6 +20,25 @@ export const fieldIcons = {
   personCapacity: icons.personCapacityIcon,
 };
 
+/*********** checkbox icons *************/
+
+export const checkboxIcons = {
+  hasDayCare: icons.daycare,
+  hasGarden: icons.garden,
+  hasElectricity: icons.electricity,
+  hasGas: icons.gas,
+  hasLift: icons.lift,
+  hasPrayerRoom: icons.prayerRoom,
+  hasRoofAccess: icons.roofAccess,
+  hasSafetyExit: icons.safetyExit,
+  hasSeperateElectricityMeter: icons.electricityMeter,
+  hasServantRooms: icons.servantRooms,
+  hasWiFi: icons.wifi,
+  hasAirConditioned: icons.airConditioned,
+  isFurnished: icons.furnished,
+  isShared: icons.shared,
+};
+
 /*********** field types *************/
 
 // residential homes
