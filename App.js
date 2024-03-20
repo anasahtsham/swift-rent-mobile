@@ -50,7 +50,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="V D"
+          initialRouteName="Verify Documentation"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -97,7 +97,10 @@ export default function App() {
             name="Hire Manager Request Form"
             component={HireManagerRequestForm}
           />
-          <Stack.Screen name="V D" component={VerifiyDocumentation} />
+          <Stack.Screen
+            name="Verify Documentation"
+            component={VerifiyDocumentation}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -29,6 +29,7 @@ const ButtonGrey = (props) => {
           borderColor: colors.buttonBorderPrimary,
           width: props.width,
         },
+        props.burronStyle,
       ]}
       onPress={props.isSubmitButton ? props.onPress : handlePress}
       activeOpacity={opacityValueForButton}

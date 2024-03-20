@@ -57,3 +57,4 @@ export const dropDownTheme = "DARK";
 export const dropDownDisabled = "#9E9E9E";
 
 export const hintBackground = "#353535";
+export const documentUploadBackground = "#e6e6e6";
