@@ -79,6 +79,7 @@ const LoginScreen = ({ navigation }) => {
                 handleBlur={handleBlur("emailOrPhone")}
                 errorText={touched.emailOrPhone ? errors.emailOrPhone : ""} // If the user has touched the input field and there's an error, display the error message
                 onSubmitEditing={() => passwordRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
+                returnKeyType="next" // This changes the "Next" button on the keyboard to "Next"
               />
               <InputField
                 ref={passwordRef}
