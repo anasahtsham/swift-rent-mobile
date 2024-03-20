@@ -26,6 +26,9 @@ const ChangePassword = ({ navigation }) => {
     return () => backHandler.remove();
   }, []);
 
+  const newPassRef = React.useRef();
+  const confirmPassRef = React.useRef();
+
   return (
     <Formik
       initialValues={{
@@ -72,22 +75,28 @@ const ChangePassword = ({ navigation }) => {
 
             <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
               <InputField
+                onSubmitEditing={() => newPassRef.current.focus()}
                 fieldType="password"
                 label="Old Password"
                 value={values.oldPassword}
                 handleChange={handleChange("oldPassword")}
                 handleBlur={handleBlur("oldPassword")}
                 errorText={touched.oldPassword ? errors.oldPassword : ""}
+                returnKeyType="next"
               />
               <InputField
+                ref={newPassRef}
+                onSubmitEditing={() => confirmPassRef.current.focus()}
                 fieldType="password"
                 label="Password"
                 value={values.password}
                 handleChange={handleChange("password")}
                 handleBlur={handleBlur("password")}
                 errorText={touched.password ? errors.password : ""}
+                returnKeyType="next"
               />
               <InputField
+                ref={confirmPassRef}
                 fieldType="password"
                 label="Confirm Password"
                 value={values.confirmPassword}
@@ -96,6 +105,7 @@ const ChangePassword = ({ navigation }) => {
                 errorText={
                   touched.confirmPassword ? errors.confirmPassword : ""
                 }
+                onSubmitEditing={handleSubmit}
               />
             </View>
 

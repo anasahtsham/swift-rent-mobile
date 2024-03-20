@@ -280,7 +280,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
                   styles.textBold,
                   {
                     color: colors.textPrimary,
-                    fontSize: FontSizes.medium,
+                    fontSize: FontSizes.large,
                     textAlign: "center",
                     width: "80%",
                     marginBottom: 50,
@@ -363,7 +363,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
               </View>
 
               <ButtonGrey
-                buttonText="Next"
+                buttonText="Finish"
                 fontSize={FontSizes.medium}
                 width={buttonWidthMedium}
                 isSubmitButton={true}
@@ -376,6 +376,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
                   handleSubmit();
                 }}
               />
+              <View style={{ height: 20 }} />
             </View>
           </TouchableWithoutFeedback>
         </KeyboardAwareScrollView>

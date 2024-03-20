@@ -1,4 +1,10 @@
 import * as Yup from "yup";
+import {
+  checkEmptySpace,
+  validateEmail,
+  validatePasswordLength,
+  validatePhoneNumber,
+} from "./ValidationFunctions";
 
 // This file contains all the validation schemas used in the app
 
@@ -26,104 +32,110 @@ export const getToKnowSchema = Yup.object().shape({
 
 export const contactInfoSchema = Yup.object().shape({
   email: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
-    .email("Invalid email")
-    .matches(
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      "Invalid email"
-    )
-    .test(
-      "emailOrPhoneNumber",
-      "Either email or phone number must be provided",
-      function (value) {
-        const { phoneNumber } = this.parent;
-        if (!value && !phoneNumber) {
-          return false;
-        }
-        return true;
-      }
-    ),
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test("is-valid-email", "Invalid email", validateEmail),
   phoneNumber: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
-    .matches(/^03\d{9}$/, "Phone number must be 11 digits and start with 03")
+    .required("Phone number is required")
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
     .test(
-      "emailOrPhoneNumber",
-      "Either email or phone number must be provided",
-      function (value) {
-        const { email } = this.parent;
-        if (!value && !email) {
-          return false;
-        }
-        return true;
-      }
+      "is-valid-phone-number",
+      "Phone number must be 11 digits and start with 03",
+      validatePhoneNumber
     ),
 });
 
 export const setUpPasswordSchema = Yup.object().shape({
   password: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more"),
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    ),
   confirmPassword: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more")
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    )
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
 export const loginSchema = Yup.object().shape({
   emailOrPhone: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
     .test(
-      "emailOrPhone",
+      "is-valid-email-or-phone",
       "Invalid email or phone number",
-      (value) =>
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ||
-        /^03\d{9}$/.test(value)
+      (value) => validateEmail(value) || validatePhoneNumber(value)
     ),
-
   password: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more"),
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    ),
 });
 
 export const forgotPasswordSchema = Yup.object().shape({
   emailOrPhone: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
     .test(
-      "emailOrPhone",
+      "is-valid-email-or-phone",
       "Invalid email or phone number",
-      (value) =>
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ||
-        /^03\d{9}$/.test(value)
+      (value) => validateEmail(value) || validatePhoneNumber(value)
     ),
   password: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more"),
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    ),
   confirmPassword: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more")
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    )
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
 export const changePasswordSchema = Yup.object().shape({
   oldPassword: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more"),
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    ),
   password: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more"),
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    ),
   confirmPassword: Yup.string()
-    .matches(/^\S*$/, "No spaces allowed")
     .required("Required")
-    .min(8, "Password must be 8 characters or more")
+    .test("is-empty-space", "No spaces allowed", checkEmptySpace)
+    .test(
+      "is-valid-password-length",
+      "Password must be 8 characters or more",
+      validatePasswordLength
+    )
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
@@ -219,4 +231,22 @@ export const registerTenantSchema = (
 
 export const ratingScreenSchema = Yup.object().shape({
   description: Yup.string().matches(/^(?!.*  ).*$/, "No double spaces"),
+});
+
+export const managerOneTimeFeeSchema = Yup.object().shape({
+  managerOneTimeFee: Yup.string().required("Manager One Time Fee is required"),
+  rentAmount: Yup.string().required("Rent Amount is required"),
+  specialTerms: Yup.string().required("Special Terms is required"),
+});
+
+export const managerPercentageSchema = Yup.object().shape({
+  percentage: Yup.string().required("Percentage is required"),
+  rentAmount: Yup.string().required("Rent Amount is required"),
+  specialTerms: Yup.string().required("Special Terms is required"),
+});
+
+export const managerFixedSchema = Yup.object().shape({
+  fixed: Yup.string().required("Fixed is required"),
+  rentAmount: Yup.string().required("Rent Amount is required"),
+  specialTerms: Yup.string().required("Special Terms is required"),
 });

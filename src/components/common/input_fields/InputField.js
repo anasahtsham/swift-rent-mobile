@@ -101,11 +101,7 @@ const InputField = forwardRef((props, ref) => {
   };
 
   const handleOnSubmitEditing = () => {
-    if (fieldType === "date") {
-      showDatePicker();
-    } else {
-      onSubmitEditing();
-    }
+    onSubmitEditing ? onSubmitEditing() : inputRef.current?.blur();
   };
 
   return (

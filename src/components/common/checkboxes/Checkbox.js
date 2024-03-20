@@ -17,6 +17,7 @@ const Checkbox = (props) => {
         borderColor: colors.borderPrimary,
         borderWidth: 1,
         height: 45,
+        width: "100%",
         paddingHorizontal: 15,
       }}
     >

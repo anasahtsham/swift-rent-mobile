@@ -55,48 +55,28 @@ const OwnerHiring = ({ navigation }) => {
           <View style={styles.starIconContainer}>
             <Image
               style={styles.starIcon}
-              source={icons.star}
-              tintColor={
-                props.averageRating >= 1
-                  ? colors.iconYellow
-                  : colors.iconPrimary
-              }
+              source={props.averageRating >= 1 ? icons.star : icons.starHollow}
+              tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={icons.star}
-              tintColor={
-                props.averageRating >= 2
-                  ? colors.iconYellow
-                  : colors.iconPrimary
-              }
+              source={props.averageRating >= 2 ? icons.star : icons.starHollow}
+              tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={icons.star}
-              tintColor={
-                props.averageRating >= 3
-                  ? colors.iconYellow
-                  : colors.iconPrimary
-              }
+              source={props.averageRating >= 3 ? icons.star : icons.starHollow}
+              tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={icons.star}
-              tintColor={
-                props.averageRating >= 4
-                  ? colors.iconYellow
-                  : colors.iconPrimary
-              }
+              source={props.averageRating >= 4 ? icons.star : icons.starHollow}
+              tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={icons.star}
-              tintColor={
-                props.averageRating >= 5
-                  ? colors.iconYellow
-                  : colors.iconPrimary
-              }
+              source={props.averageRating >= 5 ? icons.star : icons.starHollow}
+              tintColor={colors.iconYellow}
             />
           </View>
         </View>

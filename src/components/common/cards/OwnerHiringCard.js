@@ -66,38 +66,28 @@ const OwnerHiringCard = (props) => {
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             style={styles.starIcon}
-            source={icons.star}
-            tintColor={
-              props.rating >= 1 ? colors.iconYellow : colors.iconPrimary
-            }
+            source={props.rating >= 1 ? icons.star : icons.starHollow}
+            tintColor={colors.iconYellow}
           />
           <Image
             style={styles.starIcon}
-            source={icons.star}
-            tintColor={
-              props.rating >= 2 ? colors.iconYellow : colors.iconPrimary
-            }
+            source={props.rating >= 2 ? icons.star : icons.starHollow}
+            tintColor={colors.iconYellow}
           />
           <Image
             style={styles.starIcon}
-            source={icons.star}
-            tintColor={
-              props.rating >= 3 ? colors.iconYellow : colors.iconPrimary
-            }
+            source={props.rating >= 3 ? icons.star : icons.starHollow}
+            tintColor={colors.iconYellow}
           />
           <Image
             style={styles.starIcon}
-            source={icons.star}
-            tintColor={
-              props.rating >= 4 ? colors.iconYellow : colors.iconPrimary
-            }
+            source={props.rating >= 4 ? icons.star : icons.starHollow}
+            tintColor={colors.iconYellow}
           />
           <Image
             style={styles.starIcon}
-            source={icons.star}
-            tintColor={
-              props.rating >= 5 ? colors.iconYellow : colors.iconPrimary
-            }
+            source={props.rating >= 5 ? icons.star : icons.starHollow}
+            tintColor={colors.iconYellow}
           />
         </View>
       </View>

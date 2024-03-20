@@ -1,7 +1,5 @@
 // Description: This file contains the image imports for the app that are used all across it.
 
-import { Button } from "react-native-elements";
-
 export const icons = {
   userIcon: require("../assets/icons/userIcon.png"),
   passwordFieldIcon: require("../assets/icons/passwordFieldIcon.png"),
@@ -14,6 +12,7 @@ export const icons = {
   barGraph: require("../assets/icons/bar-graph.png"),
   home: require("../assets/icons/home.png"),
   star: require("../assets/icons/star.png"),
+  starHollow: require("../assets/icons/star-hollow.png"),
   like: require("../assets/icons/like.png"),
   dislike: require("../assets/icons/dislike.png"),
   hidePasswordIcon: require("../assets/icons/hide-password.png"),
