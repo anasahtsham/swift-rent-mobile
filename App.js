@@ -36,6 +36,7 @@ import RentHistory from "./src/screens/owner/RentHistory";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
+import VerifiyDocumentation from "./src/screens/owner/VerifyDocumentation";
 
 const Stack = createStackNavigator();
 
@@ -49,7 +50,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Owner Navigator"
+          initialRouteName="V D"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -96,6 +97,7 @@ export default function App() {
             name="Hire Manager Request Form"
             component={HireManagerRequestForm}
           />
+          <Stack.Screen name="V D" component={VerifiyDocumentation} />
         </Stack.Navigator>
       </NavigationContainer>
     );
