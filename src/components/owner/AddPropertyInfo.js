@@ -22,10 +22,12 @@ import {
   agricultureFieldTypes,
   buildingCheckboxes,
   buildingFieldTypes,
+  checkboxIcons,
   commercialCheckboxes,
   commercialFieldTypes,
   factoryCheckboxes,
   factoryFieldTypes,
+  fieldIcons,
   flatCheckboxes,
   flatFieldTypes,
   housesCheckboxes,
@@ -343,11 +345,13 @@ const AddPropertyInfo = ({ navigation, route }) => {
                     onPressIn={() => {
                       setOpenWaterAvailabilityDropdown(false);
                     }}
+                    textFieldIcon={fieldIcons[field.value]}
                   />
                 ))}
                 {checkboxes.map((checkbox, index) => (
                   <React.Fragment key={index}>
                     <Checkbox
+                      checkboxIcon={checkboxIcons[checkbox.stateKey]}
                       isSelected={checkboxStates[checkbox.stateKey]}
                       setIsSelected={(newValue) =>
                         setCheckboxStates((prevState) => ({

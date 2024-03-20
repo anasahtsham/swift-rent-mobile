@@ -33,10 +33,10 @@ import ManagerOffers from "./src/screens/owner/ManagerOffers";
 import OwnerHiring from "./src/screens/owner/OwnerHiring";
 import RegisterTenant from "./src/screens/owner/RegisterTenant";
 import RentHistory from "./src/screens/owner/RentHistory";
+import VerifiyDocumentation from "./src/screens/owner/VerifyDocumentation";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import VerifiyDocumentation from "./src/screens/owner/VerifyDocumentation";
 
 const Stack = createStackNavigator();
 
@@ -50,7 +50,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Verify Documentation"
+          initialRouteName="Owner Navigator"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />

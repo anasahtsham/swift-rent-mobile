@@ -1,4 +1,45 @@
-/*********** field types*************/
+/*********** field icons *************/
+
+import { icons } from "../ImageImports";
+
+export const fieldIcons = {
+  area: icons.areaIcon,
+  height: icons.heightIcon,
+  apartments: icons.apartments,
+  balcony: icons.balconyIcon,
+  bedrooms: icons.bedroomsIcon,
+  floors: icons.floorsIcon,
+  kitchens: icons.kitchensIcon,
+  lounges: icons.loungesIcon,
+  conferenceRooms: icons.conferenceRoomsIcon,
+  offices: icons.officesIcon,
+  shops: icons.shopsIcon,
+  storeRooms: icons.storeRoomsIcon,
+  toilets: icons.toiletsIcon,
+  parkingCapacity: icons.parkingCapacityIcon,
+  personCapacity: icons.personCapacityIcon,
+};
+
+/*********** checkbox icons *************/
+
+export const checkboxIcons = {
+  hasDayCare: icons.daycare,
+  hasGarden: icons.garden,
+  hasElectricity: icons.electricity,
+  hasGas: icons.gas,
+  hasLift: icons.lift,
+  hasPrayerRoom: icons.prayerRoom,
+  hasRoofAccess: icons.roofAccess,
+  hasSafetyExit: icons.safetyExit,
+  hasSeperateElectricityMeter: icons.electricityMeter,
+  hasServantRooms: icons.servantRooms,
+  hasWiFi: icons.wifi,
+  hasAirConditioned: icons.airConditioned,
+  isFurnished: icons.furnished,
+  isShared: icons.shared,
+};
+
+/*********** field types *************/
 
 // residential homes
 
@@ -73,11 +114,11 @@ export const industrialFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
 //commercial
 
 export const officeFieldTypes = [
-  { label: "Area Sq. Ft. Sq. Ft.", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Floors", value: "floors" },
   { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "loulnges" },
+  { label: "Lounges", value: "lounges" },
   { label: "Conference Rooms", value: "conferenceRooms" },
   { label: "Store Rooms", value: "storeRooms" },
   { label: "Toilets", value: "toilets" },
