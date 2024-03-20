@@ -95,11 +95,11 @@ export const industrialFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
 //commercial
 
 export const officeFieldTypes = [
-  { label: "Area Sq. Ft. Sq. Ft.", value: "area" },
+  { label: "Area Sq. Ft.", value: "area" },
   { label: "Balcony", value: "balcony" },
   { label: "Floors", value: "floors" },
   { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "loulnges" },
+  { label: "Lounges", value: "lounges" },
   { label: "Conference Rooms", value: "conferenceRooms" },
   { label: "Store Rooms", value: "storeRooms" },
   { label: "Toilets", value: "toilets" },
