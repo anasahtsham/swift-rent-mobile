@@ -1,17 +1,17 @@
+import * as ImagePicker from "expo-image-picker";
 import React, { useState } from "react";
 import {
   Image,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
   Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { Button } from "react-native-elements";
-import * as ImagePicker from "expo-image-picker";
-import { useColorsOnFocus } from "../../helpers/SetColors";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
+import { useColorsOnFocus } from "../../helpers/SetColors";
 
 const VerifyDocumentation = ({ navigation }) => {
   const colors = useColorsOnFocus();
@@ -82,7 +82,14 @@ const VerifyDocumentation = ({ navigation }) => {
           ]}
         >
           {!imageUri && (
-            <View style={styles.centeredView}>
+            <View
+              style={{
+                width: 300,
+                height: 500,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <Text
                 style={
                   (styles.fontBold,
@@ -96,10 +103,7 @@ const VerifyDocumentation = ({ navigation }) => {
           {imageUri && (
             <Image
               source={{ uri: imageUri }}
-              style={{
-                width: 350,
-                height: 600,
-              }}
+              style={{ width: 300, height: 500, resizeMode: "contain" }}
             />
           )}
         </View>
@@ -113,83 +117,81 @@ const VerifyDocumentation = ({ navigation }) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View
-            style={[
-              styles.customPopUp,
+        <View
+          style={[
+            styles.customPopUp,
+            {
+              backgroundColor: colors.backgroundPrimary,
+              borderRadius: 20,
+            },
+          ]}
+        >
+          <Button
+            buttonStyle={[
+              styles.customPopUpButtons,
               {
-                backgroundColor: colors.backgroundPrimary,
-                borderRadius: 20,
+                marginTop: 0,
+                backgroundColor: colors.buttonBackgroundPrimary,
+                borderColor: colors.borderPrimary,
               },
             ]}
-          >
-            <Button
-              buttonStyle={[
-                styles.customPopUpButtons,
-                {
-                  marginTop: 0,
-                  backgroundColor: colors.buttonBackgroundPrimary,
-                  borderColor: colors.borderPrimary,
-                },
-              ]}
-              title="Open Camera"
-              titleStyle={[
-                styles.fontBold,
-                {
-                  color: colors.textPrimary,
-                  fontSize: FontSizes.small,
-                  fontWeight: "bold",
-                },
-              ]}
-              onPress={() => {
-                openCamera(), setModalVisible(!modalVisible);
-              }}
-            />
-            <Button
-              buttonStyle={[
-                styles.customPopUpButtons,
-                {
-                  backgroundColor: colors.buttonBackgroundPrimary,
-                  borderColor: colors.borderPrimary,
-                },
-              ]}
-              title="Open Gallery"
-              titleStyle={[
-                styles.fontBold,
-                {
-                  color: colors.textPrimary,
-                  fontSize: FontSizes.small,
-                  fontWeight: "bold",
-                },
-              ]}
-              onPress={() => {
-                openGallery(), setModalVisible(!modalVisible);
-              }}
-            />
+            title="Open Camera"
+            titleStyle={[
+              styles.fontBold,
+              {
+                color: colors.textPrimary,
+                fontSize: FontSizes.small,
+                fontWeight: "bold",
+              },
+            ]}
+            onPress={() => {
+              openCamera(), setModalVisible(!modalVisible);
+            }}
+          />
+          <Button
+            buttonStyle={[
+              styles.customPopUpButtons,
+              {
+                backgroundColor: colors.buttonBackgroundPrimary,
+                borderColor: colors.borderPrimary,
+              },
+            ]}
+            title="Open Gallery"
+            titleStyle={[
+              styles.fontBold,
+              {
+                color: colors.textPrimary,
+                fontSize: FontSizes.small,
+                fontWeight: "bold",
+              },
+            ]}
+            onPress={() => {
+              openGallery(), setModalVisible(!modalVisible);
+            }}
+          />
 
-            <Button
-              buttonStyle={[
-                styles.customPopUpButtons,
-                {
-                  width: 100,
-                  backgroundColor: colors.buttonBackgroundPrimary,
-                  borderColor: colors.borderPrimary,
-                },
-              ]}
-              title="Delete Image"
-              titleStyle={[
-                styles.fontBold,
-                {
-                  color: colors.textPrimary,
-                  fontSize: FontSizes.small,
-                  fontWeight: "bold",
-                },
-              ]}
-              onPress={() => {
-                setImageUri(null), setModalVisible(!modalVisible);
-              }}
-            />
-          </View>
+          <Button
+            buttonStyle={[
+              styles.customPopUpButtons,
+              {
+                width: 100,
+                backgroundColor: colors.buttonBackgroundPrimary,
+                borderColor: colors.borderPrimary,
+              },
+            ]}
+            title="Delete Image"
+            titleStyle={[
+              styles.fontBold,
+              {
+                color: colors.textPrimary,
+                fontSize: FontSizes.small,
+                fontWeight: "bold",
+              },
+            ]}
+            onPress={() => {
+              setImageUri(null), setModalVisible(!modalVisible);
+            }}
+          />
         </View>
       </Modal>
       <ButtonGrey
@@ -199,10 +201,10 @@ const VerifyDocumentation = ({ navigation }) => {
             : colors.buttonBackgroundPrimary,
         }}
         navigation={navigation}
-        destinationScreen="Owner Navigator"
-        userType="UserType"
-        isSubmitButton={false}
-        onPress={() => {}}
+        isSubmitButton={true}
+        onPress={() => {
+          navigation.goBack();
+        }}
         buttonText="Submit"
         fontSize={FontSizes.medium}
         width={150}
@@ -211,33 +213,21 @@ const VerifyDocumentation = ({ navigation }) => {
   );
 };
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   fontBold: { fontFamily: "OpenSansBold" },
   fontRegular: { fontFamily: "OpenSansRegular" },
-
-  container: {
-    flex: 1,
-
-    justifyContent: "center",
-    alignItems: "center",
-  },
   imageContainer: {
-    width: 356,
-    height: 606,
     borderWidth: 4,
-
     borderWidth: 3,
     borderStyle: "dashed",
   },
   customPopUp: {
+    position: "absolute",
+    top: "40%",
+    alignSelf: "center",
     width: 250,
     paddingVertical: 20,
     paddingHorizontal: 10,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   customPopUpButtons: {
     marginTop: 10,
