@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import {
   BackHandler,
@@ -12,6 +11,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
 import { useColors } from "./../../helpers/SetColors";
 import AnalyticalReportHeader from "./headers/AnalyticalReportHeader";
+import { useNavigation } from "@react-navigation/native";
 
 const AnalyticalReport = () => {
   const colors = useColors();
@@ -30,6 +30,33 @@ const AnalyticalReport = () => {
     return () => backHandler.remove();
   }, []);
 
+  // Either this below component can be renaamed merged or placed inside a new file to foloow component design practices:
+  const Card = ({ title, colors, data }) => (
+    <View
+      activeOpacity={opacityValueForButton}
+      style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
+    >
+      <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
+        {title}
+      </Text>
+      {data.map((item, index) => (
+        <View key={index} style={styles.rightInRow}>
+          <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
+            {item.label}
+          </Text>
+          <Text
+            style={[
+              styles.cardFetchableData,
+              { color: item.color || colors.textPrimary },
+            ]}
+          >
+            {item.value}
+          </Text>
+        </View>
+      ))}
+    </View>
+  );
+
   return (
     <SafeAreaView style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
       <AnalyticalReportHeader colors={colors} />
@@ -40,161 +67,47 @@ const AnalyticalReport = () => {
         ]}
       >
         <ScrollView>
-          <View
-            activeOpacity={opacityValueForButton}
-            style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
-          >
-            <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
-              Properties Status
-            </Text>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Total Properties
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                5
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Properties on Rent
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Vacant Properties
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textRed }]}
-              >
-                1
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Managed Properties
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                2
-              </Text>
-            </View>
-          </View>
-          <View
-            activeOpacity={opacityValueForButton}
-            style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
-          >
-            <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
-              Maintenance
-            </Text>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Total Requests
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                6
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Accepted
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Rejected
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textRed }]}
-              >
-                1
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Pending
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                2
-              </Text>
-            </View>
-          </View>
-          <View
-            activeOpacity={opacityValueForButton}
-            style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
-          >
-            <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>
-              Complaints
-            </Text>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Total Requests
-              </Text>
-              <Text
-                style={[
-                  styles.cardFetchableData,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                5
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Resolved Requests
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
-            <View style={styles.rightInRow}>
-              <Text style={[styles.cardSubText, { color: colors.textPrimary }]}>
-                Pending Requests
-              </Text>
-              <Text
-                style={[styles.cardFetchableData, { color: colors.textGreen }]}
-              >
-                4
-              </Text>
-            </View>
-          </View>
+          <Card
+            title="Properties Status"
+            colors={colors}
+            data={[
+              { label: "Total Properties", value: 5 },
+              {
+                label: "Properties on Rent",
+                value: 4,
+                color: colors.textGreen,
+              },
+              { label: "Vacant Properties", value: 1, color: colors.textRed },
+              { label: "Managed Properties", value: 2 },
+            ]}
+          />
+          <Card
+            title="Maintenance"
+            colors={colors}
+            data={[
+              { label: "Total Requests", value: 6 },
+              { label: "Accepted", value: 4, color: colors.textGreen },
+              { label: "Rejected", value: 1, color: colors.textRed },
+              { label: "Pending", value: 2 },
+            ]}
+          />
+          <Card
+            title="Complaints"
+            colors={colors}
+            data={[
+              { label: "Total Requests", value: 5 },
+              { label: "Resolved Requests", value: 4, color: colors.textGreen },
+              { label: "Pending Requests", value: 4, color: colors.textGreen },
+            ]}
+          />
           <View style={{ height: 260 }} />
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
+
+export default AnalyticalReport;
 
 const styles = StyleSheet.create({
   fontBold: { fontFamily: "OpenSansBold" },
@@ -304,5 +217,3 @@ const styles = StyleSheet.create({
     fontSize: FontSizes.small,
   },
 });
-
-export default AnalyticalReport;
