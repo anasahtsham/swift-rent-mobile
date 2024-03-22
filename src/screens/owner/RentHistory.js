@@ -1,18 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
-import { Formik } from "formik";
 import React, { useEffect } from "react";
-import {
-  BackHandler,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { BackHandler, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import { backgroundPrimary } from "../../assets/themes/DefaultColorScheme";
 
 const RentHistory = ({ route }) => {
   const colors = useColors();

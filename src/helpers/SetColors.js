@@ -17,6 +17,8 @@ export const useColors = () => {
     });
   }, []);
 
+  colorsValue = colors;
+
   return colors;
 };
 

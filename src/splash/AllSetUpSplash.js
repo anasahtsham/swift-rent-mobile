@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
@@ -33,8 +33,13 @@ const AllSetUpSplash = ({ route }) => {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace(userScreen); // Navigate to Welcome Screen after 3 seconds
-    }, 3000); // where 1000 milliseconds = 1 second
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: userScreen }],
+        })
+      );
+    }, 3000);
 
     const backAction = () => {
       return true; // This will prevent the back action

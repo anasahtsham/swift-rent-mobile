@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import InputField from "../components/common/input_fields/InputField";
 import InputFieldWithHint from "../components/common/input_fields/InputFieldWithHint";
 import { icons } from "../helpers/ImageImports";
-import { setColorsToDefault, useColors } from "../helpers/SetColors";
+import { setColorsToDefault } from "../helpers/SetColors";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),

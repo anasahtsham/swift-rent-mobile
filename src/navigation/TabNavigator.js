@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import { useEffect, useRef } from "react";
 import { Animated, BackHandler, Easing } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
@@ -13,6 +14,7 @@ const TabNavigator = (props) => {
   const screen4 = props.screen4;
 
   const colors = useColorsOnFocus();
+  const navigation = useNavigation();
 
   const BottomTab = createBottomTabNavigator();
 
@@ -73,7 +75,13 @@ const TabNavigator = (props) => {
   // Prevent the user from going back to the previous screen when the tab navigator is focused
   useEffect(() => {
     const backAction = () => {
-      return true; // This will prevent the back action
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: props.screen1 }],
+        })
+      );
+      return true;
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -81,11 +89,12 @@ const TabNavigator = (props) => {
       backAction
     );
 
-    return () => backHandler.remove(); // Don't forget to remove the listener when the component unmounts
+    return () => backHandler.remove();
   }, []);
 
   return (
     <BottomTab.Navigator
+      initialRouteName={props.screen1}
       screenOptions={{
         headerShown: false,
         tabBarActiveBackgroundColor: colors.bottomBarActiveBackgroundPrimary,

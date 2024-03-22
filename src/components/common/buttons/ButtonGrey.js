@@ -15,6 +15,14 @@ const ButtonGrey = (props) => {
   // }
 
   const handlePress = () => {
+    if (props.isSubmitButton) {
+      props.onPress();
+      return;
+    }
+    if (props.isSendToNavigationButton) {
+      props.onPress();
+      return;
+    }
     props.navigation.navigate(props.destinationScreen, {
       userType: props.userType,
     });
@@ -31,7 +39,7 @@ const ButtonGrey = (props) => {
         },
         props.buttonStyle,
       ]}
-      onPress={props.isSubmitButton ? props.onPress : handlePress}
+      onPress={handlePress}
       activeOpacity={opacityValueForButton}
     >
       <Text

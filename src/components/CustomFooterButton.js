@@ -1,16 +1,8 @@
 import React from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  View,
-  ViewBase,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useColors } from "../helpers/SetColors";
 
 import * as FontSizes from "../assets/fonts/FontSizes";
-import { borderGreen, borderRed } from "../assets/themes/DarkColorScheme";
-import { opacityValueForButton } from "../constants";
 
 const CustomFooterButton = ({
   onPress,
