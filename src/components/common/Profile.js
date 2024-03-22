@@ -33,6 +33,16 @@ const Profile = (props) => {
             onPress={() => navigation.navigate("Change Password")}
           />
           <Button
+            title="My Ratings"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate("Ratings")}
+          />
+          <Button
             title="Customer Support"
             titleStyle={{ color: colors.textPrimary }}
             buttonStyle={[

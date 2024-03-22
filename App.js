@@ -10,6 +10,7 @@ import MonthReport from "./src/components/common/MonthReport";
 import ProblemForm from "./src/components/common/ProblemForm";
 import PropertyMenu from "./src/components/common/PropertyMenu";
 import RatingScreen from "./src/components/common/RatingScreen";
+import Ratings from "./src/components/common/Ratings";
 import Rents from "./src/components/common/Rents";
 import SettingScreen from "./src/components/common/SettingScreen";
 import ViewMaintenanceAndComplains from "./src/components/common/ViewMaintenanceAndComplains";
@@ -101,6 +102,7 @@ export default function App() {
             name="Verify Documentation"
             component={VerifiyDocumentation}
           />
+          <Stack.Screen name="Ratings" component={Ratings} />
         </Stack.Navigator>
       </NavigationContainer>
     );

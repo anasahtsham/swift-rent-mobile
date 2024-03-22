@@ -32,7 +32,7 @@ export const iconYellow = "#fff";
 export const iconGreen = "#fff";
 export const iconWhite = "#fff";
 export const iconGrey = "#fff";
-export const iconBlack = "#000";
+export const iconBlack = "#fff";
 
 export const logoPrimary = "#fff";
 
