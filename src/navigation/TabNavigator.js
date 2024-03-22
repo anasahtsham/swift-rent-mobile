@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { CommonActions, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { useEffect, useRef } from "react";
 import { Animated, BackHandler, Easing } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
@@ -75,12 +75,6 @@ const TabNavigator = (props) => {
   // Prevent the user from going back to the previous screen when the tab navigator is focused
   useEffect(() => {
     const backAction = () => {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: props.screen1 }],
-        })
-      );
       return true;
     };
 
@@ -90,7 +84,7 @@ const TabNavigator = (props) => {
     );
 
     return () => backHandler.remove();
-  }, []);
+  }, [navigation]);
 
   return (
     <BottomTab.Navigator
