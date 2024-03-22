@@ -1,3 +1,4 @@
+import { CommonActions } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
@@ -10,6 +11,15 @@ const LoginAs = ({ navigation }) => {
   const colors = getColors();
 
   const languages = useLanguages();
+
+  const handlePress = (destinationScreen) => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: destinationScreen }],
+      })
+    );
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -36,22 +46,22 @@ const LoginAs = ({ navigation }) => {
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyOwner}
-            destinationScreen="Owner Navigator"
-            navigation={navigation}
+            isSendToNavigationButton={true}
+            onPress={() => handlePress("Owner Navigator")}
           />
           <ButtonGrey
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyManager}
-            destinationScreen="Manager Navigator"
-            navigation={navigation}
+            isSendToNavigationButton={true}
+            onPress={() => handlePress("Manager Navigator")}
           />
           <ButtonGrey
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.tenant}
-            destinationScreen="Tenant Navigator"
-            navigation={navigation}
+            isSendToNavigationButton={true}
+            onPress={() => handlePress("Tenant Navigator")}
           />
         </View>
       </View>
