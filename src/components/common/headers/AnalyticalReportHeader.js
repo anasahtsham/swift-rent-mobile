@@ -1,9 +1,27 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from "react-native-chart-kit";
+import AnalyticalReportLineGraph from "../AnalyticalReportLineGraph";
 
 const AnalyticalReportHeader = (props) => {
   const colors = props.colors;
+
+  const windowWidth = useWindowDimensions().width;
   return (
     <View
       style={[
@@ -56,10 +74,12 @@ const AnalyticalReportHeader = (props) => {
               </Text>
             </Text>
           </View>
-          <Image
+          {/*Old image of bar graph: */}
+          {/* <Image
             style={styles.barGraphImageDimensions}
             source={icons.barGraph}
-          />
+          /> */}
+          <AnalyticalReportLineGraph />
         </View>
         <View style={styles.cardBottomRowContainer}>
           <Text style={[styles.monthNameText, { color: colors.textPrimary }]}>
