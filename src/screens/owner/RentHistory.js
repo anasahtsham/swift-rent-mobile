@@ -2,10 +2,10 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { getColors } from "../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 
 const RentHistory = ({ route }) => {
-  const colors = getColors();
+  const colors = useColors();
   const navigation = useNavigation();
 
   useEffect(() => {

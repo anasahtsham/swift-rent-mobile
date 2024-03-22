@@ -2,7 +2,7 @@ import { CommonActions, useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
-import { getColors } from "../helpers/SetColors";
+import { useColors } from "../helpers/SetColors";
 
 const AllSetUpSplash = ({ route }) => {
   const { userType, firstName, lastName, date, email, phoneNumber, password } =
@@ -27,7 +27,7 @@ const AllSetUpSplash = ({ route }) => {
   }
 
   //set theme
-  const colors = getColors();
+  const colors = useColors();
 
   // timer to send off from splash screen
   const navigation = useNavigation();

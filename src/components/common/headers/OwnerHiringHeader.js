@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
-import { getColors } from "../../../helpers/SetColors";
+import { useColors } from "../../../helpers/SetColors";
 
 const OwnerHiringHeader = (props) => {
-  const colors = getColors();
+  const colors = useColors();
   return (
     <View
       style={[

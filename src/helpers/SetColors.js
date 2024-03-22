@@ -8,7 +8,7 @@ import * as LoadingTheme from "../assets/themes/LoadingColorScheme";
 
 // These functions are used to set the colors accross the app
 
-const useColors = () => {
+export const useColors = () => {
   const [colors, setColors] = useState(LoadingTheme);
 
   useEffect(() => {
@@ -19,13 +19,6 @@ const useColors = () => {
 
   colorsValue = colors;
 
-  return colors;
-};
-
-export let colorsValue;
-
-export const getColors = () => {
-  const colors = useColors();
   return colors;
 };
 

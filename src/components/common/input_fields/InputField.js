@@ -13,7 +13,7 @@ import {
 import { DateTimePickerModal } from "react-native-modal-datetime-picker";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
-import { getColors } from "../../../helpers/SetColors";
+import { useColors } from "../../../helpers/SetColors";
 
 const InputField = forwardRef((props, ref) => {
   const {
@@ -36,7 +36,7 @@ const InputField = forwardRef((props, ref) => {
     ...restOfProps
   } = props;
 
-  const colors = getColors();
+  const colors = useColors();
 
   const [isFocused, setIsFocused] = useState(false);
   const [isHidden, setIsHidden] = useState(fieldType === "password");

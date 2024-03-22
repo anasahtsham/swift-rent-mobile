@@ -10,11 +10,11 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
-import { getColors } from "./../../helpers/SetColors";
+import { useColors } from "./../../helpers/SetColors";
 import AnalyticalReportHeader from "./headers/AnalyticalReportHeader";
 
 const AnalyticalReport = () => {
-  const colors = getColors();
+  const colors = useColors();
   const navigation = useNavigation();
 
   useEffect(() => {

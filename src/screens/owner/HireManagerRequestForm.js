@@ -14,7 +14,7 @@ import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import Checkbox from "../../components/common/checkboxes/Checkbox";
 import HintPopup from "../../components/common/popups/HintPopup";
 import { buttonWidthMedium } from "../../constants";
-import { getColors } from "../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 import {
   managerFixedSchema,
   managerOneTimeFeeSchema,
@@ -23,7 +23,7 @@ import {
 import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
 
 const HireManagerRequestForm = ({ navigation }) => {
-  const colors = getColors();
+  const colors = useColors();
 
   const dropdownStyles = {
     style: {

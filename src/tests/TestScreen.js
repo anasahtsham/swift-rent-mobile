@@ -28,7 +28,7 @@ const TestScreen = () => {
     urdu: "یہ پاپ اوور کا مواد ہے۔",
   };
   setColorsToDefault();
-  const colors = getColors();
+  const colors = useColors();
   return (
     <Formik
       initialValues={{

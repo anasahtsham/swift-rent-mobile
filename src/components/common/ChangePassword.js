@@ -5,13 +5,13 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import { buttonWidthSmall } from "../../constants";
-import { getColors } from "../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { changePasswordSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
 
 const ChangePassword = ({ navigation }) => {
-  const colors = getColors();
+  const colors = useColors();
   const languages = useLanguages();
   useEffect(() => {
     const backAction = () => {

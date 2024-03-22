@@ -7,12 +7,12 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import InputField from "../../components/common/input_fields/InputField";
 import { buttonWidthSmall } from "../../constants";
-import { getColors } from "../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 import { registerTenantSchema } from "../../helpers/validation/ValidationSchemas";
 import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
 
 const RegisterTenant = ({ navigation }) => {
-  const colors = getColors();
+  const colors = useColors();
 
   const dropdownStyles = {
     style: {

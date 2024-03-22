@@ -4,10 +4,10 @@ import { BackHandler, FlatList, SafeAreaView, StyleSheet } from "react-native";
 import ManagerOffersButton from "../../components/common/buttons/ManagerOffersButton";
 import ManagerOffersHeader from "../../components/common/headers/ManagerOffersHeader";
 import { managerOffersData } from "../../helpers/data/ManagerOffersData";
-import { getColors } from "./../../helpers/SetColors";
+import { useColors } from "./../../helpers/SetColors";
 
 const ManagerOffers = ({ navigation }) => {
-  const colors = getColors();
+  const colors = useColors();
 
   useEffect(() => {
     const backAction = () => {

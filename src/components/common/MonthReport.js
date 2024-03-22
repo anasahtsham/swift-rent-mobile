@@ -9,11 +9,11 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { getColors } from "./../../helpers/SetColors";
+import { useColors } from "./../../helpers/SetColors";
 import MonthReportHeader from "./headers/MonthReportHeader";
 
 const MonthReport = (props) => {
-  const colors = getColors();
+  const colors = useColors();
   const navigation = useNavigation();
 
   useEffect(() => {

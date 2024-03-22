@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
 import SwiftRentLogoLarge from "../components/common/images/SwiftRentLogoLarge";
-import { getColors } from "../helpers/SetColors";
+import { useColors } from "../helpers/SetColors";
 
 const SplashScreen = ({ navigation }) => {
   //set theme
-  const colors = getColors();
+  const colors = useColors();
 
   // timer to send off from splash screen
   useEffect(() => {

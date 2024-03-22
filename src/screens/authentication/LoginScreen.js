@@ -7,13 +7,13 @@ import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import { buttonWidthSmall } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
-import { getColors } from "../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { loginSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
 
 const LoginScreen = ({ navigation }) => {
-  const colors = getColors();
+  const colors = useColors();
   const languages = useLanguages();
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard

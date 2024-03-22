@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { getColors } from "../helpers/SetColors";
+import { useColors } from "../helpers/SetColors";
 
 import * as FontSizes from "../assets/fonts/FontSizes";
 
@@ -12,7 +12,7 @@ const CustomFooterButton = ({
   buttonHeight,
   buttonWidth,
 }) => {
-  const colors = getColors();
+  const colors = useColors();
   return (
     <TouchableOpacity
       activeOpacity={0.7}

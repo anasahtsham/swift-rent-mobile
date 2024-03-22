@@ -10,13 +10,13 @@ import {
 } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
-import { getColors } from "../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 import { complainsData } from "./../../helpers/data/ComplainsListData";
 import { maintenanceData } from "./../../helpers/data/MaintenanceData";
 import { MaintenanceComplainsListButton } from "./buttons/MaintenanceComplainsListButton";
 
 const MaintenanceComplainsList = ({ navigation, route }) => {
-  const colors = getColors();
+  const colors = useColors();
   const { header } = route.params;
 
   let dataToBeRendered = [];

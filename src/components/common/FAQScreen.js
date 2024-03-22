@@ -3,12 +3,12 @@ import { BackHandler, Image, StyleSheet, Text, View } from "react-native";
 import Accordion from "react-native-collapsible/Accordion";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { icons } from "../../helpers/ImageImports";
-import { getColors } from "../../helpers/SetColors";
+import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import ButtonGrey from "./buttons/ButtonGrey";
 
 const FAQScreen = ({ navigation }) => {
-  const colors = getColors();
+  const colors = useColors();
   const languages = useLanguages();
 
   const [activeSections, setActiveSections] = useState([]);
