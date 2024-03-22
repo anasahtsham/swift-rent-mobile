@@ -3,10 +3,10 @@ import { Image } from "react-native-elements";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
-import { useColors } from "../../../helpers/SetColors";
+import { getColors } from "../../../helpers/SetColors";
 
 const Checkbox = (props) => {
-  const colors = useColors();
+  const colors = getColors();
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}

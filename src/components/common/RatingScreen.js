@@ -15,13 +15,13 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { buttonWidthMedium } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import { ratingScreenSchema } from "../../helpers/validation/ValidationSchemas";
 import RatingStars from "./RatingStars";
 import ButtonGrey from "./buttons/ButtonGrey";
 
 const RatingScreen = ({ navigation }) => {
-  const colors = useColors();
+  const colors = getColors();
 
   useEffect(() => {
     const backAction = () => {

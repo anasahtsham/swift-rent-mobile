@@ -12,7 +12,7 @@ import {
 import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import {
   cityData,
   propertySubTypeData,
@@ -24,7 +24,7 @@ import ButtonGrey from "../common/buttons/ButtonGrey";
 import InputField from "../common/input_fields/InputField";
 
 const AddProperty = ({ navigation }) => {
-  const colors = useColors();
+  const colors = getColors();
 
   const dropdownStyles = {
     style: {

@@ -6,13 +6,13 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import { buttonWidthSmall } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { forgotPasswordSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
 
 const LoginScreen = ({ navigation }) => {
-  const colors = useColors();
+  const colors = getColors();
   const languages = useLanguages();
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard

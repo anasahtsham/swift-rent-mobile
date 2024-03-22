@@ -11,11 +11,11 @@ import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonWithImage from "../../components/common/buttons/ButtonWithImage";
 import PropertyMenuHeader from "../../components/common/headers/PropertyMenuHeader";
-import { useColors } from "./../../helpers/SetColors";
+import { getColors } from "./../../helpers/SetColors";
 import { managerOffersData } from "./../../helpers/data/ManagerOffersData";
 
 const PropertyMenu = () => {
-  const colors = useColors();
+  const colors = getColors();
   const navigation = useNavigation();
 
   useEffect(() => {

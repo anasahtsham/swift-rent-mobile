@@ -13,13 +13,13 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import { reportBugSchema } from "../../helpers/validation/ValidationSchemas";
 import ButtonGrey from "./buttons/ButtonGrey";
 
 const ProblemForm = ({ navigation, route }) => {
   const { headerText } = route.params;
-  const colors = useColors();
+  const colors = getColors();
 
   useEffect(() => {
     const backAction = () => {

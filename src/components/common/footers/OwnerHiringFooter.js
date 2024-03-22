@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { buttonWidthSmall } from "../../../constants";
-import { useColors } from "../../../helpers/SetColors";
+import { getColors } from "../../../helpers/SetColors";
 import CustomFooterButton from "../../CustomFooterButton";
 
 const OwnerHiringFooter = ({
@@ -13,7 +13,7 @@ const OwnerHiringFooter = ({
   managersOffer,
   managersComment,
 }) => {
-  const colors = useColors();
+  const colors = getColors();
   return (
     <View
       style={[

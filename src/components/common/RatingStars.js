@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { icons } from "../../helpers/ImageImports";
 
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 
 const RatingStars = ({
   rating,
@@ -16,7 +16,7 @@ const RatingStars = ({
   starHeight = 30,
   starWidth = 30,
 }) => {
-  const colors = useColors();
+  const colors = getColors();
 
   //update language on load
   useEffect(() => {

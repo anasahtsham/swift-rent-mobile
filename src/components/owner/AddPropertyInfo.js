@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as yup from "yup";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import ButtonGrey from "../common/buttons/ButtonGrey";
 import Checkbox from "../common/checkboxes/Checkbox";
 import InputField from "../common/input_fields/InputField";
@@ -62,7 +62,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
     propertySubTypeLabel,
   } = route.params;
 
-  const colors = useColors();
+  const colors = getColors();
   useEffect(() => {
     const backAction = () => {
       navigation.goBack();

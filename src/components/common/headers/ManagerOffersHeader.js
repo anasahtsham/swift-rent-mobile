@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { useColors } from "../../../helpers/SetColors";
+import { getColors } from "../../../helpers/SetColors";
 
 const ManagerOffersHeader = (props) => {
-  const colors = useColors();
+  const colors = getColors();
 
   return (
     <View

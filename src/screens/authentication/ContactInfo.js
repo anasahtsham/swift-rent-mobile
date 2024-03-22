@@ -8,14 +8,14 @@ import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMed
 import InputField from "../../components/common/input_fields/InputField";
 import { buttonWidthSmaller } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { contactInfoSchema } from "../../helpers/validation/ValidationSchemas";
 
 const ContactInfo = ({ navigation, route }) => {
   const { userType, firstName, lastName, date } = route.params;
 
-  const colors = useColors();
+  const colors = getColors();
   const languages = useLanguages();
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard

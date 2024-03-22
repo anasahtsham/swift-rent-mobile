@@ -3,11 +3,11 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import { buttonWidthMedium } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
 const RegisterAs = ({ navigation }) => {
-  const colors = useColors();
+  const colors = getColors();
 
   const languages = useLanguages();
 

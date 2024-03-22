@@ -20,6 +20,11 @@ export const useColors = () => {
   return colors;
 };
 
+export const getColors = () => {
+  const colors = useColors();
+  return colors;
+};
+
 export const useColorsOnFocus = () => {
   const [colors, setColors] = useState(LoadingTheme);
 

@@ -3,10 +3,10 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
-import { useColors } from "../../../helpers/SetColors";
+import { getColors } from "../../../helpers/SetColors";
 
 const ManagerOffersButton = (props) => {
-  const colors = useColors();
+  const colors = getColors();
   const navigation = useNavigation();
   return (
     <TouchableOpacity

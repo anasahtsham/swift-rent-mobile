@@ -11,7 +11,7 @@ import {
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { borderGreen, borderRed } from "../../assets/themes/DarkColorScheme";
 import { opacityValueForButton } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import {
   pendingRentsData,
   receivedRentsData,
@@ -21,7 +21,7 @@ import {
 import RentsButton from "./buttons/RentsButton";
 
 const Rents = ({ navigation, route }) => {
-  const colors = useColors();
+  const colors = getColors();
   const { header } = route.params;
 
   let firstButtonText = "";

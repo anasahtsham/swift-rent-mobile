@@ -11,7 +11,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import { getColors } from "../../helpers/SetColors";
 import {
   complaintsData,
   complaintsHeaderData,
@@ -23,7 +23,7 @@ import ViewMaintenanceAndComplainsHeader from "./headers/ViewMaintenanceAndCompl
 import InputField from "./input_fields/InputField";
 
 const ViewMaintenanceAndComplains = ({ route }) => {
-  const colors = useColors();
+  const colors = getColors();
   const navigation = useNavigation();
   const headerTitle = route.params.headerTitle;
 

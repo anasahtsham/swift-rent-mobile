@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import Popover, { PopoverPlacement } from "react-native-popover-view";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
-import { useColors } from "../../../helpers/SetColors";
+import { getColors } from "../../../helpers/SetColors";
 import { opacityValueForButton } from "./../../../constants/index";
 import InputField from "./InputField";
 
@@ -27,7 +27,7 @@ const InputFieldWithHint = React.forwardRef(
     },
     ref
   ) => {
-    const colors = useColors();
+    const colors = getColors();
     const { english: englishHintText, urdu: urudHintText } = hintTexts;
     const [hintText, setHintText] = useState(englishHintText);
 

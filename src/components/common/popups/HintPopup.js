@@ -5,10 +5,10 @@ import Popover from "react-native-popover-view/dist/Popover";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
-import { useColors } from "../../../helpers/SetColors";
+import { getColors } from "../../../helpers/SetColors";
 
 const HintPopup = (props) => {
-  const colors = useColors();
+  const colors = getColors();
 
   const { english: englishHintText, urdu: urudHintText } = props.hintTexts;
   const [hintText, setHintText] = useState(englishHintText);

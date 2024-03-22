@@ -6,10 +6,10 @@ import OwnerHiringFooter from "../../components/common/footers/OwnerHiringFooter
 import OwnerHiringHeader from "../../components/common/headers/OwnerHiringHeader";
 import { icons } from "../../helpers/ImageImports";
 import { ratingsData } from "../../helpers/data/OwnerHiringData";
-import { useColors } from "./../../helpers/SetColors";
+import { getColors } from "./../../helpers/SetColors";
 
 const OwnerHiring = ({ navigation }) => {
-  const colors = useColors();
+  const colors = getColors();
 
   const BodyHeader = (props) => {
     return (
