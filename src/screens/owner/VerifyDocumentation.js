@@ -77,7 +77,9 @@ const VerifyDocumentation = ({ navigation }) => {
               backgroundColor: modalVisible
                 ? "rgba(0, 0, 0, 0.5)"
                 : colors.backgroundPrimary,
-              borderColor: colors.borderPrimary,
+              borderColor: modalVisible
+                ? colors.borderGrey
+                : colors.borderPrimary,
             },
           ]}
         >
@@ -194,21 +196,23 @@ const VerifyDocumentation = ({ navigation }) => {
           />
         </View>
       </Modal>
-      <ButtonGrey
-        buttonStyle={{
-          backgroundColor: modalVisible
-            ? "rgba(0, 0, 0, 0.5)"
-            : colors.buttonBackgroundPrimary,
-        }}
-        navigation={navigation}
-        isSubmitButton={true}
-        onPress={() => {
-          navigation.goBack();
-        }}
-        buttonText="Submit"
-        fontSize={FontSizes.medium}
-        width={150}
-      />
+      {!modalVisible && (
+        <ButtonGrey
+          buttonStyle={{
+            backgroundColor: modalVisible
+              ? "rgba(0, 0, 0, 0.5)"
+              : colors.buttonBackgroundPrimary,
+          }}
+          navigation={navigation}
+          isSubmitButton={true}
+          onPress={() => {
+            navigation.goBack();
+          }}
+          buttonText="Submit"
+          fontSize={FontSizes.medium}
+          width={150}
+        />
+      )}
     </View>
   );
 };
