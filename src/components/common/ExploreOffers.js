@@ -89,7 +89,9 @@ const ExploreOffers = ({ navigation }) => {
     <View
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <View style={styles.header}>
+      <View
+        style={[styles.header, { backgroundColor: colors.backgroundPrimary }]}
+      >
         <InputField
           onSubmitEditing={() => console.log("Submit editing")}
           canBeDisabled={true}
@@ -99,12 +101,12 @@ const ExploreOffers = ({ navigation }) => {
           value="Initial value"
           onBlur={() => console.log("Blur event")}
           onFocus={() => console.log("Focus event")}
-          textFieldIcon={require("../../assets/icons/search.png")}
+          textFieldIcon={require("../../assets/icons/search-icon.png")}
           fieldType="text"
           handleChange={(event) => console.log("Change event", event)}
           touched={false}
           errors={false}
-          borderRadius={25}
+          borderRadius={20}
           isEditable={true}
           setIsEditable={(value) => console.log("Set editable", value)}
         />
