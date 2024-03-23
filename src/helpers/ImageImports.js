@@ -57,4 +57,5 @@ export const icons = {
   airConditioned: require("../assets/icons/air-conditioned.png"),
   furnished: require("../assets/icons/furnished.png"),
   shared: require("../assets/icons/shared.png"),
+  searchIcon: require("../assets/icons/search-icon.png"),
 };

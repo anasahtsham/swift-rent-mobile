@@ -155,7 +155,7 @@ const TabNavigator = (props) => {
             tabBarIcon: (props) => (
               <AnimatedTabBarIcon
                 {...props}
-                source={icons.propertiesIcon}
+                source={icons.searchIcon}
                 colors={colors}
               />
             ),
