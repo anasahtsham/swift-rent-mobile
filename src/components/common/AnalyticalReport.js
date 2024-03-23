@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import {
   BackHandler,
@@ -11,7 +12,6 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../constants";
 import { useColors } from "./../../helpers/SetColors";
 import AnalyticalReportHeader from "./headers/AnalyticalReportHeader";
-import { useNavigation } from "@react-navigation/native";
 
 const AnalyticalReport = () => {
   const colors = useColors();
@@ -100,7 +100,7 @@ const AnalyticalReport = () => {
               { label: "Pending Requests", value: 4, color: colors.textGreen },
             ]}
           />
-          <View style={{ height: 260 }} />
+          <View style={{ height: 350 }} />
         </ScrollView>
       </View>
     </SafeAreaView>
