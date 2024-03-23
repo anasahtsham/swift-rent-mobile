@@ -1,21 +1,5 @@
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { icons } from "../../../helpers/ImageImports";
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
 import AnalyticalReportLineGraph from "../AnalyticalReportLineGraph";
 
 const AnalyticalReportHeader = (props) => {
@@ -83,6 +67,15 @@ const AnalyticalReportHeader = (props) => {
         </View>
         <View style={styles.cardBottomRowContainer}>
           <Text style={[styles.monthNameText, { color: colors.textPrimary }]}>
+            - Profits
+          </Text>
+          <Text style={[styles.monthNameText, { color: colors.textGreen }]}>
+            - Total Revenue
+          </Text>
+          <Text style={[styles.monthNameText, { color: colors.textRed }]}>
+            - Maintenance Cost
+          </Text>
+          {/* <Text style={[styles.monthNameText, { color: colors.textPrimary }]}>
             Month Name
           </Text>
           <Image
@@ -104,7 +97,7 @@ const AnalyticalReportHeader = (props) => {
             style={[styles.monthNameTextNested, { color: colors.textPrimary }]}
           >
             11,000
-          </Text>
+          </Text> */}
         </View>
       </View>
     </View>
