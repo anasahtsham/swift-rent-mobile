@@ -6,22 +6,47 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import { Circle, Path, Rect, Svg, Text } from "react-native-svg";
+import { Path, Rect, Svg, Text } from "react-native-svg";
 import { useColors } from "../../helpers/SetColors";
 
 const AnalyticalReportLineGraph = (props) => {
   const colors = useColors();
   const windowWidth = useWindowDimensions().width;
 
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+  ];
+
   const data = [
-    {
-      values: [
-        12000, 18000, 24000, 30000, 36000, 42000, 45000, 39000, 33000, 27000,
-        24000, 30000, 36000, 42000, 45000, 39000, 33000, 27000, 24000, 30000,
-        36000, 42000, 45000, 39000, 33000, 27000, 24000, 30000, 36000, 42000,
-      ],
-      color: colors.textPrimary, // Total profit
-    },
     {
       values: [
         2000, 4000, 6000, 8000, 10000, 12000, 10000, 8000, 6000, 4000, 3000,
@@ -29,6 +54,16 @@ const AnalyticalReportLineGraph = (props) => {
         10000, 12000, 10000, 8000, 6000, 4000, 3000, 5000,
       ],
       color: colors.textRed, // Maintenance cost
+      months: monthNames,
+    },
+    {
+      values: [
+        12000, 18000, 24000, 30000, 36000, 42000, 45000, 39000, 33000, 27000,
+        24000, 30000, 36000, 42000, 45000, 39000, 33000, 27000, 24000, 30000,
+        36000, 42000, 45000, 39000, 33000, 27000, 24000, 30000, 36000, 42000,
+      ],
+      color: colors.textPrimary, // Total profit
+      months: monthNames,
     },
     {
       values: [
@@ -37,6 +72,7 @@ const AnalyticalReportLineGraph = (props) => {
         38500, 42000, 45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
       ],
       color: colors.textGreen, // Total revenue
+      months: monthNames,
     },
   ];
 
@@ -57,7 +93,8 @@ const AnalyticalReportLineGraph = (props) => {
   const line = d3
     .line()
     .x((d, i) => scaleX(i))
-    .y((d) => scaleY(d));
+    .y((d) => scaleY(d))
+    .curve(d3.curveBasis);
 
   const [tooltip, setTooltip] = useState({
     visible: false,
@@ -76,7 +113,10 @@ const AnalyticalReportLineGraph = (props) => {
             (data[0].values.length - 1)
         );
         if (index >= 0 && index < data[0].values.length) {
-          const values = data.map((dataset) => dataset.values[index]);
+          const values = data.map((dataset) => ({
+            value: dataset.values[index],
+            month: dataset.months[index % 12], // use modulo to cycle through the months
+          }));
           setTooltip({
             visible: true,
             values,
@@ -98,6 +138,14 @@ const AnalyticalReportLineGraph = (props) => {
   const viewBoxWidth = contentWidth;
   const viewBoxHeight = contentHeight * (1 / aspectRatio);
 
+  function formatNumber(num) {
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + "k";
+    } else {
+      return num;
+    }
+  }
+
   return (
     <View style={styles.graphContainer} {...panResponder.panHandlers}>
       <Svg
@@ -111,19 +159,9 @@ const AnalyticalReportLineGraph = (props) => {
             d={line(dataset.values)}
             fill="none"
             stroke={dataset.color}
+            strokeWidth={3}
           />
         ))}
-        {data.map((dataset, index) =>
-          dataset.values.map((d, i) => (
-            <Circle
-              key={i}
-              cx={scaleX(i)}
-              cy={scaleY(d)}
-              r={3}
-              fill={dataset.color}
-            />
-          ))
-        )}
         <Text
           x={-50} // controls y axis label position
           y={scaleY(minValue)}
@@ -131,7 +169,7 @@ const AnalyticalReportLineGraph = (props) => {
           fontSize="16"
           fill={colors.textPrimary}
         >
-          {minValue}
+          {formatNumber(minValue)}
         </Text>
         <Text
           x={-50} // controls y axis label position
@@ -140,7 +178,7 @@ const AnalyticalReportLineGraph = (props) => {
           fontSize="16"
           fill={colors.textPrimary}
         >
-          {(minValue + maxValue) / 2}
+          {formatNumber((minValue + maxValue) / 2)}
         </Text>
         <Text
           x={-50} // controls y axis label position
@@ -149,10 +187,20 @@ const AnalyticalReportLineGraph = (props) => {
           fontSize="16"
           fill={colors.textPrimary}
         >
-          {maxValue}
+          {formatNumber(maxValue)}
         </Text>
         {tooltip.visible && (
           <View>
+            <Text
+              x={tooltip.x}
+              y={tooltip.y - tooltip.values.length * 20}
+              textAnchor="middle"
+              fontSize="16"
+              fill={colors.textPrimary}
+              dy={-10}
+            >
+              {`${tooltip.values[0].month}`}
+            </Text>
             {tooltip.values.map((value, i) => (
               <React.Fragment key={i}>
                 <Rect
@@ -170,7 +218,7 @@ const AnalyticalReportLineGraph = (props) => {
                   fill={data[i].color}
                   dy={-10}
                 >
-                  {value.toFixed(2)}
+                  {`${value.value ? value.value.toFixed(2) : ""}`}
                 </Text>
               </React.Fragment>
             ))}
