@@ -12,6 +12,7 @@ const TabNavigator = (props) => {
   const screen2 = props.screen2;
   const screen3 = props.screen3;
   const screen4 = props.screen4;
+  const exploreOffersScreen = props.exploreOffersScreen;
 
   const colors = useColorsOnFocus();
   const navigation = useNavigation();
@@ -143,6 +144,24 @@ const TabNavigator = (props) => {
           ),
         }}
       />
+      {props.exploreOffersScreen && (
+        <BottomTab.Screen
+          name={exploreOffersScreen}
+          component={props.componentExploreOffers}
+          options={{
+            tabBarLabel: (props) => (
+              <AnimatedTabBarLabel {...props} text="Explore" colors={colors} />
+            ),
+            tabBarIcon: (props) => (
+              <AnimatedTabBarIcon
+                {...props}
+                source={icons.propertiesIcon}
+                colors={colors}
+              />
+            ),
+          }}
+        />
+      )}
       <BottomTab.Screen
         name={screen3}
         component={props.component3}
