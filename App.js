@@ -38,6 +38,7 @@ import VerifiyDocumentation from "./src/screens/owner/VerifyDocumentation";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
+import ExploreOffers from "./src/components/common/ExploreOffers";
 
 const Stack = createStackNavigator();
 
@@ -51,7 +52,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Owner Navigator"
+          initialRouteName="Explore Offers"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
@@ -103,6 +104,7 @@ export default function App() {
             component={VerifiyDocumentation}
           />
           <Stack.Screen name="Ratings" component={Ratings} />
+          <Stack.Screen name="Explore Offers" component={ExploreOffers} />
         </Stack.Navigator>
       </NavigationContainer>
     );
