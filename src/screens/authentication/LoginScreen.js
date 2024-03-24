@@ -1,6 +1,6 @@
 import { Formik } from "formik";
-import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { BackHandler, Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
@@ -12,13 +12,27 @@ import { useLanguages } from "../../helpers/SetLanguages";
 import { loginSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, route }) => {
+  const { newRegister } = route.params || {};
   const colors = useColors();
   const languages = useLanguages();
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const emailOrPhoneRef = React.useRef();
   const passwordRef = React.useRef();
+
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <Formik
@@ -28,11 +42,15 @@ const LoginScreen = ({ navigation }) => {
       }}
       validationSchema={loginSchema}
       onSubmit={(values) => {
-        // Pass the user's email or phone and password to the next screen so that the user can be redirected to their respective dashboard
-        navigation.navigate("Login As", {
-          emailOrPhone: values.emailOrPhone,
-          password: values.password,
-        });
+        if (newRegister) {
+          navigation.navigate("Register As");
+          return;
+        } else {
+          navigation.navigate("Login As", {
+            emailOrPhone: values.emailOrPhone,
+            password: values.password,
+          });
+        }
       }}
     >
       {({

@@ -1,5 +1,6 @@
 import { CommonActions } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect } from "react";
+import { BackHandler, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
@@ -20,6 +21,19 @@ const LoginAs = ({ navigation }) => {
       })
     );
   };
+
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <View style={styles.mainContainer}>

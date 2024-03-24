@@ -1,6 +1,6 @@
 import { Formik } from "formik";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
@@ -17,6 +17,19 @@ const ContactInfo = ({ navigation, route }) => {
 
   const colors = useColors();
   const languages = useLanguages();
+
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const emailRef = React.useRef();
