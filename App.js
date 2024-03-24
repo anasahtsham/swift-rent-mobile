@@ -4,6 +4,7 @@ import { StatusBar } from "react-native";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import AnalyticalReport from "./src/components/common/AnalyticalReport";
 import ChangePassword from "./src/components/common/ChangePassword";
+import ExploreOffers from "./src/components/common/ExploreOffers";
 import FAQScreen from "./src/components/common/FAQScreen";
 import MaintenanceComplainsList from "./src/components/common/MaintenanceComplainsList";
 import MonthReport from "./src/components/common/MonthReport";
@@ -38,7 +39,6 @@ import VerifiyDocumentation from "./src/screens/owner/VerifyDocumentation";
 import AllSetUpSplash from "./src/splash/AllSetUpSplash";
 import SplashScreen from "./src/splash/SplashScreen";
 import TestScreen from "./src/tests/TestScreen";
-import ExploreOffers from "./src/components/common/ExploreOffers";
 
 const Stack = createStackNavigator();
 
@@ -52,7 +52,7 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Login As"
+          initialRouteName="Splash Screen"
         >
           {/* Authentication Screens */}
           <Stack.Screen name="Test Screen" component={TestScreen} />
