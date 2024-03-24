@@ -1,25 +1,26 @@
-import React, { useCallback, useState } from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import OwnerHiringCard from "../../components/common/cards/OwnerHiringCard";
-import OwnerHiringFooter from "../../components/common/footers/OwnerHiringFooter";
-import OwnerHiringHeader from "../../components/common/headers/OwnerHiringHeader";
-import { icons } from "../../helpers/ImageImports";
-import { ratingsData } from "../../helpers/data/OwnerHiringData";
-import { useColors, useColorsOnFocus } from "./../../helpers/SetColors";
-import InputField from "./input_fields/InputField";
-import { TextInput } from "react-native-gesture-handler";
-import { iconPrimary } from "../../assets/themes/DarkColorScheme";
-import ExploreOffersCard from "./cards/ExploreOffersCard";
-import ExploreOffersButton from "./buttons/ExploreOffersButton";
-import { exploreOffersData } from "../../helpers/data/ExploreOffersData";
-import { FlatList } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  FlatList,
+  Image,
+  Keyboard,
+  Pressable,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
+import { TextInput } from "react-native-gesture-handler";
+import * as FontSizes from "../../assets/fonts/FontSizes";
+import { icons } from "../../helpers/ImageImports";
+import { exploreOffersData } from "../../helpers/data/ExploreOffersData";
 import { cityData } from "../../helpers/data/PropertyInfoData";
+import { useColorsOnFocus } from "./../../helpers/SetColors";
+import ExploreOffersButton from "./buttons/ExploreOffersButton";
 
 const ExploreOffers = ({ navigation }) => {
   const colors = useColorsOnFocus();
-  const [headerHeight, setHeaderHeight] = useState("auto");
+
+  //dropdown initializors
   const [openCity, setOpenCity] = useState(false);
   const [valueCity, setValueCity] = useState(null);
   const [itemsCity, setItemsCity] = useState(cityData);
@@ -27,18 +28,20 @@ const ExploreOffers = ({ navigation }) => {
   const [openPurpose, setOpenPurpose] = useState(false);
   const [valuePurpose, setValuePurpose] = useState(null);
   const [itemsPurpose, setItemsPurpose] = useState([
-    { label: "Manage Property", value: "manage_property" },
-    { label: "Bring Tenant", value: "bring_tenant" },
+    { label: "Acquiring Tenant", value: "acquiring_tenant" },
+    { label: "Caretaking", value: "caretaking" },
+    { label: "Leasing Property", value: "leasing_property" },
   ]);
 
+  // dropdown functions
   const onCityOpen = useCallback(() => {
     setOpenPurpose(false);
-    setHeaderHeight("30%");
+    setHeaderHeight(220);
   }, []);
 
   const onPurposeOpen = useCallback(() => {
     setOpenCity(false);
-    setHeaderHeight("30%");
+    setHeaderHeight(290);
   }, []);
 
   const onCityClose = useCallback(() => {
@@ -52,6 +55,7 @@ const ExploreOffers = ({ navigation }) => {
       setHeaderHeight("auto");
     }
   }, [openCity]);
+
   const dropdownStyles = {
     style: {
       backgroundColor: colors.buttonBackgroundPrimary,
@@ -72,105 +76,166 @@ const ExploreOffers = ({ navigation }) => {
     itemSeparator: true,
   };
 
+  const [headerHeight, setHeaderHeight] = useState("auto");
+
+  const [searchText, setSearchText] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchTextRef = useRef();
+
+  const originalData = exploreOffersData;
+  const [filteredData, setFilteredData] = useState(originalData);
+  useEffect(() => {
+    let newData = originalData;
+
+    if (valueCity) {
+      newData = newData.filter((item) =>
+        item.address.includes(
+          valueCity === "islamabad" ? "Islamabad" : "Rawalpindi"
+        )
+      );
+    }
+
+    if (valuePurpose) {
+      newData = newData.filter((item) => {
+        return (
+          item.purpose ===
+          (valuePurpose === "acquiring_tenant"
+            ? "Acquiring Tenant"
+            : valuePurpose === "caretaking"
+            ? "Caretaking"
+            : "Leasing Property")
+        );
+      });
+    }
+
+    setFilteredData(newData);
+  }, [valueCity, valuePurpose]);
+
   return (
-    <View
-      style={[styles.container, { backgroundColor: colors.bodyBackground }]}
+    <TouchableWithoutFeedback
+      onPress={() => {
+        setOpenPurpose(false);
+        setOpenCity(false);
+        setHeaderHeight("auto");
+        Keyboard.dismiss();
+      }}
     >
       <View
-        style={[
-          styles.header,
-          {
-            backgroundColor: colors.headerAndFooterBackground,
-            height: headerHeight,
-          },
-        ]}
+        style={[styles.container, { backgroundColor: colors.bodyBackground }]}
       >
         <View
           style={[
-            styles.searchField,
+            styles.header,
             {
-              borderColor: colors.borderPrimary,
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
+              backgroundColor: colors.headerAndFooterBackground,
+              height: headerHeight,
             },
           ]}
         >
-          <TextInput
-            style={{ color: colors.textPrimary }}
-            placeholderTextColor={colors.textGrey}
-            placeholder="Search by ID "
-          />
-          <Image
-            source={icons.searchIcon}
-            style={{ width: 24, height: 24 }}
-            tintColor={colors.iconPrimary}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            marginTop: 10,
-          }}
-        >
-          <View style={{ width: "40%" }}>
-            <DropDownPicker
-              {...dropdownStyles}
-              zIndex={1000}
-              open={openCity}
-              value={valueCity}
-              items={itemsCity}
-              onOpen={onCityOpen}
-              onClose={onCityClose}
-              setOpen={setOpenCity}
-              setValue={setValueCity}
-              setItems={setItemsCity}
-              placeholder="City"
+          <Pressable
+            onPress={() => searchTextRef.current.focus()}
+            style={[
+              styles.searchField,
+              {
+                borderColor: isSearchFocused
+                  ? colors.borderBlue
+                  : colors.borderPrimary,
+                justifyContent: "space-between",
+                flexDirection: "row",
+                alignItems: "center",
+              },
+            ]}
+          >
+            <TextInput
+              ref={searchTextRef}
+              style={{ color: colors.textPrimary }}
+              placeholderTextColor={colors.textGrey}
+              placeholder="Search by ID "
+              onFocus={() => {
+                setOpenCity(false);
+                setOpenPurpose(false);
+                setHeaderHeight("auto");
+                setIsSearchFocused(true);
+              }}
+              onBlur={() => setIsSearchFocused(false)}
+              onChangeText={setSearchText}
+              value={searchText}
             />
-          </View>
-          <View style={{ width: "40%" }}>
-            <DropDownPicker
-              {...dropdownStyles}
-              zIndex={1000}
-              open={openPurpose}
-              value={valuePurpose}
-              items={itemsPurpose}
-              onOpen={onPurposeOpen}
-              onClose={onPurposeClose}
-              setOpen={setOpenPurpose}
-              setValue={setValuePurpose}
-              setItems={setItemsPurpose}
-              placeholder="Purpose"
+            <Image
+              source={icons.searchIcon}
+              style={{ width: 24, height: 24 }}
+              tintColor={colors.iconPrimary}
             />
+          </Pressable>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              marginTop: 10,
+            }}
+          >
+            <View style={{ width: "40%" }}>
+              <DropDownPicker
+                {...dropdownStyles}
+                zIndex={1000}
+                open={openCity}
+                value={valueCity}
+                items={itemsCity}
+                onOpen={onCityOpen}
+                onClose={onCityClose}
+                setOpen={setOpenCity}
+                setValue={setValueCity}
+                setItems={setItemsCity}
+                placeholder="City"
+              />
+            </View>
+            <View style={{ width: "40%" }}>
+              <DropDownPicker
+                {...dropdownStyles}
+                listItemContainerStyle={{
+                  height: 50,
+                }}
+                zIndex={1000}
+                open={openPurpose}
+                value={valuePurpose}
+                items={itemsPurpose}
+                onOpen={onPurposeOpen}
+                onClose={onPurposeClose}
+                setOpen={setOpenPurpose}
+                setValue={setValuePurpose}
+                setItems={setItemsPurpose}
+                placeholder="Purpose"
+              />
+            </View>
           </View>
         </View>
+
+        <FlatList
+          style={{ flex: 1, marginBottom: 5 }}
+          data={filteredData.sort(
+            (firstOffer, secondOffer) =>
+              secondOffer.averageRating - firstOffer.averageRating
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <ExploreOffersButton
+              ownerName={item.ownerName}
+              likes={item.likes}
+              dislikes={item.dislikes}
+              ratings={item.ratings}
+              averageRating={item.averageRating}
+              address={item.address}
+              purpose={item.purpose}
+              offer={item.offer}
+              colors={colors}
+            />
+          )}
+        />
+
+        <View style={{ height: 60 }} />
       </View>
-
-      <FlatList
-        style={{ flex: 1, marginBottom: 5 }}
-        data={exploreOffersData.sort(
-          (firstOffer, secondOffer) =>
-            secondOffer.averageRating - firstOffer.averageRating
-        )}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <ExploreOffersButton
-            ownerName={item.ownerName}
-            likes={item.likes}
-            dislikes={item.dislikes}
-            ratings={item.ratings}
-            averageRating={item.averageRating}
-            address={item.address}
-            purpose={item.purpose}
-            offer={item.offer}
-            colors={colors}
-          />
-        )}
-      />
-
-      <View style={{ height: 60 }} />
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

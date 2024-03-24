@@ -7,7 +7,7 @@ export const exploreOffersData = [
     dislikes: 2,
     ratings: 9,
     averageRating: 3.67,
-    purpose: "Bring Tenant",
+    purpose: "Acquiring Tenant",
     offer: "10% commission",
   },
 
@@ -19,7 +19,7 @@ export const exploreOffersData = [
     dislikes: 3,
     ratings: 15,
     averageRating: 3.75,
-    purpose: "Manage Property",
+    purpose: "Caretaking",
     offer: "7,000 PKR",
   },
 
@@ -31,7 +31,7 @@ export const exploreOffersData = [
     dislikes: 0,
     ratings: 5,
     averageRating: 5,
-    purpose: "Manage Property",
+    purpose: "Leasing Property",
     offer: "6,500 PKR",
   },
 
@@ -43,7 +43,7 @@ export const exploreOffersData = [
     dislikes: 1,
     ratings: 4,
     averageRating: 4,
-    purpose: "Bring Tenant",
+    purpose: "Acquiring Tenant",
     offer: "8% commission",
   },
 
@@ -55,7 +55,7 @@ export const exploreOffersData = [
     dislikes: 2,
     ratings: 10,
     averageRating: 3.33,
-    purpose: "Manage Property",
+    purpose: "Caretaking",
     offer: "12,000 PKR",
   },
   {
@@ -66,7 +66,7 @@ export const exploreOffersData = [
     dislikes: 4,
     ratings: 14,
     averageRating: 3.5,
-    purpose: "Bring Tenant",
+    purpose: "Leasing Property",
     offer: "15% commission",
   },
 
@@ -78,7 +78,7 @@ export const exploreOffersData = [
     dislikes: 1,
     ratings: 7,
     averageRating: 4.2,
-    purpose: "Manage Property",
+    purpose: "Caretaking",
     offer: "9,000 PKR",
   },
 
@@ -90,7 +90,7 @@ export const exploreOffersData = [
     dislikes: 3,
     ratings: 12,
     averageRating: 3.6,
-    purpose: "Bring Tenant",
+    purpose: "Acquiring Tenant",
     offer: "20% commission",
   },
 
@@ -102,7 +102,7 @@ export const exploreOffersData = [
     dislikes: 0,
     ratings: 7,
     averageRating: 5,
-    purpose: "Manage Property",
+    purpose: "Caretaking",
     offer: "7,200 PKR",
   },
 
@@ -114,7 +114,7 @@ export const exploreOffersData = [
     dislikes: 2,
     ratings: 13,
     averageRating: 4.33,
-    purpose: "Bring Tenant",
+    purpose: "Acquiring Tenant",
     offer: "10% commission",
   },
 ];
