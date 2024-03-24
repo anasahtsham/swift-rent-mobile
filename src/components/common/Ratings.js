@@ -16,7 +16,11 @@ import {
 } from "../../assets/themes/DarkColorScheme";
 import { opacityValueForButton } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import { rentsPaidData } from "../../helpers/data/RentsData";
+import {
+  givenRatings,
+  myRatings,
+  pendingRatings,
+} from "../../helpers/data/RatingsData";
 import RatingsButton from "./buttons/RatingsButton";
 
 const Ratings = ({ navigation }) => {
@@ -24,7 +28,15 @@ const Ratings = ({ navigation }) => {
 
   const [currentScreen, setCurrentScreen] = useState("My Ratings");
 
-  let dataToBeRendered = rentsPaidData;
+  let dataToBeRendered = [];
+
+  if (currentScreen === "My Ratings") {
+    dataToBeRendered = myRatings;
+  } else if (currentScreen === "Given Ratings") {
+    dataToBeRendered = givenRatings;
+  } else if (currentScreen === "Pending Ratings") {
+    dataToBeRendered = pendingRatings;
+  }
 
   useEffect(() => {
     const backAction = () => {
@@ -39,17 +51,16 @@ const Ratings = ({ navigation }) => {
     return () => backHandler.remove();
   }, []);
 
-  const renderItem = ({ item: rent }) => (
+  const renderItem = ({ item: rating }) => (
     <RatingsButton
       colors={colors}
-      key={rent.id}
-      address={rent.address}
-      city={rent.city}
-      manager={rent.manager}
-      tenant={rent.tenant}
-      amountCollected={rent.amountCollected}
-      rentPaid={rent.rentPaid}
-      rentAmount={rent.rentAmount}
+      key={rating.id}
+      userName={rating.userName}
+      userType={rating.userType}
+      address={rating.address}
+      rating={rating.rating}
+      isLiked={rating.isLiked}
+      remarks={rating.remarks}
     />
   );
 

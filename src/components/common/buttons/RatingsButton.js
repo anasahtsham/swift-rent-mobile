@@ -1,110 +1,109 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
-import { formatNumber } from "../../../helpers/index";
+import { icons } from "./../../../helpers/ImageImports";
 
 export const RatingsButton = (props) => {
   const colors = props.colors;
+  const navigation = useNavigation();
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("Rating Screen", {
+          userNameValue: props.userName,
+          userTypeValue: props.userType,
+          addressValue: props.address,
+          ratingValue: props.rating,
+          isLikedValue: props.isLiked,
+          remarksValue: props.remarks,
+        });
+      }}
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
-      <View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+          {props.userName}
+        </Text>
+        <View style={{ alignItems: "flex-end" }}>
+          <Image
+            source={icons.externalLink}
+            tintColor={colors.iconPrimary}
+            style={styles.icon}
+          />
+          <Text style={[styles.fontBold, { color: colors.textGreen }]}>
+            {props.userType}
+          </Text>
+        </View>
+      </View>
+
+      <View style={{ flexDirection: "row", flexWrap: "wrap", marginBottom: 5 }}>
+        <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+          Address:{" "}
+        </Text>
         <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
           {props.address}
         </Text>
-
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-          {props.city}
-        </Text>
-
-        {!!props.manager && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Manager:{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.manager}
-            </Text>
-          </View>
-        )}
-
-        {!!props.tenant && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Rented To:{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.tenant}
-            </Text>
-          </View>
-        )}
-
-        {!!props.amountCollected && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Collected:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color: colors.textGreen,
-                },
-              ]}
-            >
-              {formatNumber(props.amountCollected)}{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
-            </Text>
-          </View>
-        )}
-
-        {!!props.rentPaid && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Paid:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color: colors.textGreen,
-                },
-              ]}
-            >
-              {formatNumber(props.rentPaid)}{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
-            </Text>
-          </View>
-        )}
-
-        {!!props.rentAmount && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Rent:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color: colors.textRed,
-                },
-              ]}
-            >
-              {formatNumber(props.rentAmount)}{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
-            </Text>
-          </View>
-        )}
       </View>
-    </View>
+
+      {(!!props.rating || !!props.isLiked || !!props.remarks) && (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginBottom: 5,
+            }}
+          >
+            <Image
+              source={props.rating >= 1 ? icons.star : icons.starHollow}
+              style={styles.icon}
+              tintColor={colors.iconYellow}
+            />
+            <Image
+              source={props.rating >= 2 ? icons.star : icons.starHollow}
+              style={styles.icon}
+              tintColor={colors.iconYellow}
+            />
+            <Image
+              source={props.rating >= 3 ? icons.star : icons.starHollow}
+              style={styles.icon}
+              tintColor={colors.iconYellow}
+            />
+            <Image
+              source={props.rating >= 4 ? icons.star : icons.starHollow}
+              style={styles.icon}
+              tintColor={colors.iconYellow}
+            />
+            <Image
+              source={props.rating >= 5 ? icons.star : icons.starHollow}
+              style={styles.icon}
+              tintColor={colors.iconYellow}
+            />
+          </View>
+          <Image
+            source={props.isLiked ? icons.like : icons.dislike}
+            style={[styles.icon, { marginBottom: 5 }]}
+            tintColor={props.isLiked ? colors.iconGreen : colors.iconRed}
+          />
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Remarks:{" "}
+            </Text>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              {props.remarks}
+            </Text>
+          </View>
+        </>
+      )}
+    </TouchableOpacity>
   );
 };
 
@@ -113,9 +112,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginTop: 20,
     padding: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
   },
   fontBold: {
     fontFamily: "OpenSansBold",

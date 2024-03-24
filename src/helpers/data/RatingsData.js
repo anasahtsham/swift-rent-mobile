@@ -1,0 +1,130 @@
+export const myRatings = [
+  {
+    id: 1,
+    userName: "My Ratings Data",
+    userType: "Manager",
+    address: "123, Main Street, New York, 10001",
+    rating: 5,
+    isLiked: true,
+    remarks: "Excellent service provided, highly recommended.",
+  },
+  {
+    id: 2,
+    userName: "Fatima Ali",
+    userType: "Tenant",
+    address: "456, Elm Street, Los Angeles, 90001",
+    rating: 4,
+    isLiked: true,
+    remarks: "The experience was satisfactory, could use some improvements.",
+  },
+  {
+    id: 3,
+    userName: "Ahmed Khan",
+    userType: "Owner",
+    address: "789, Broadway, Chicago, 60601",
+    rating: 3,
+    isLiked: false,
+    remarks: "Average service, could be better.",
+  },
+  {
+    id: 4,
+    userName: "Aisha Hussain",
+    userType: "Manager",
+    address: "321, Park Avenue, Houston, 77001",
+    rating: 5,
+    isLiked: true,
+    remarks: "Impressed with the professionalism and promptness.",
+  },
+  {
+    id: 5,
+    userName: "Omar Patel",
+    userType: "Tenant",
+    address: "654, Sunset Boulevard, Phoenix, 85001",
+    rating: 2,
+    isLiked: false,
+    remarks: "Disappointed with the service, needs significant improvement.",
+  },
+  // You can add more entries here...
+];
+
+export const givenRatings = [
+  {
+    id: 1,
+    userName: "Given Ratings Data",
+    userType: "Manager",
+    address: "123, Main Street, New York, 10001",
+    rating: 5,
+    isLiked: true,
+    remarks: "Excellent service provided, highly recommended.",
+  },
+  {
+    id: 2,
+    userName: "Fatima Ali",
+    userType: "Tenant",
+    address: "456, Elm Street, Los Angeles, 90001",
+    rating: 4,
+    isLiked: true,
+    remarks: "The experience was satisfactory, could use some improvements.",
+  },
+  {
+    id: 3,
+    userName: "Ahmed Khan",
+    userType: "Owner",
+    address: "789, Broadway, Chicago, 60601",
+    rating: 3,
+    isLiked: false,
+    remarks: "Average service, could be better.",
+  },
+  {
+    id: 4,
+    userName: "Aisha Hussain",
+    userType: "Manager",
+    address: "321, Park Avenue, Houston, 77001",
+    rating: 5,
+    isLiked: true,
+    remarks: "Impressed with the professionalism and promptness.",
+  },
+  {
+    id: 5,
+    userName: "Omar Patel",
+    userType: "Tenant",
+    address: "654, Sunset Boulevard, Phoenix, 85001",
+    rating: 2,
+    isLiked: false,
+    remarks: "Disappointed with the service, needs significant improvement.",
+  },
+];
+
+export const pendingRatings = [
+  {
+    id: 1,
+    userName: "Pending Rents Data",
+    userType: "Tenant",
+    address: "540, Street 321, G-11/1, Islamabad",
+  },
+  {
+    id: 2,
+    userName: "Ali Hassan",
+    userType: "Manager",
+    address: "540, Street 321, G-11/1, Islamabad",
+  },
+  {
+    id: 3,
+    userName: "Fatima Ahmed",
+    userType: "Owner",
+    address: "540, Street 321, G-11/1, Islamabad",
+  },
+  {
+    id: 4,
+    userName: "Muhammad Khan",
+    userType: "Tenant",
+    address: "540, Street 321, G-11/1, Islamabad",
+  },
+  {
+    id: 5,
+    userName: "Aisha Patel",
+    userType: "Manager",
+    address: "540, Street 321, G-11/1, Islamabad",
+  },
+  // Add more entries as needed...
+];

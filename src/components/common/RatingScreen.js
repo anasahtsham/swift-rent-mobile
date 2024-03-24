@@ -20,10 +20,25 @@ import { ratingScreenSchema } from "../../helpers/validation/ValidationSchemas";
 import RatingStars from "./RatingStars";
 import ButtonGrey from "./buttons/ButtonGrey";
 
-const RatingScreen = ({ navigation }) => {
+const RatingScreen = ({ navigation, route }) => {
   const colors = useColors();
+  const {
+    userNameValue = "Default User Name",
+    userTypeValue = "Default User Type",
+    addressValue = "Default Address",
+    ratingValue = 0,
+    isLikedValue = false,
+    remarksValue = "Default Remarks",
+  } = route.params || {};
 
   useEffect(() => {
+    if (ratingValue) {
+      setRating(ratingValue);
+    }
+    if (isLikedValue) {
+      setIsLiked(isLikedValue);
+    }
+
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -44,7 +59,7 @@ const RatingScreen = ({ navigation }) => {
 
   return (
     <Formik
-      initialValues={{ description: "" }}
+      initialValues={{ remark: !!remarksValue ? remarksValue : "" }}
       validationSchema={ratingScreenSchema}
       onSubmit={() => {
         navigation.goBack();
@@ -77,53 +92,21 @@ const RatingScreen = ({ navigation }) => {
             ]}
           >
             <View style={[styles.cardHeader, {}]}>
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  style={styles.userIcon}
-                  source={icons.userIcon}
-                  tintColor={colors.iconPrimary}
-                />
-              </View>
-              <View style={{ justifyContent: "space-between" }}>
+              <View style={{ justifyContent: "space-between", width: "60%" }}>
                 <Text
                   style={[
                     styles.fontBold,
                     { color: colors.textPrimary, fontSize: FontSizes.medium },
                   ]}
                 >
-                  Gulzaar
-                </Text>
-                <Text
-                  style={[
-                    styles.addressLineText,
-                    styles.fontRegular,
-                    { color: colors.textPrimary, fontSize: FontSizes.small },
-                  ]}
-                >
-                  House 540, Street 321,
-                </Text>
-                <Text
-                  style={[
-                    styles.addressLineText,
-                    styles.fontRegular,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  G-11/1, Islamabad
+                  {!!userNameValue ? userNameValue : "User Name"}
                 </Text>
               </View>
               <View
                 style={{
-                  justifyContent: "flex-start",
-                  alignItems: "right",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  height: "90%",
                 }}
               >
                 <Text
@@ -135,10 +118,21 @@ const RatingScreen = ({ navigation }) => {
                     },
                   ]}
                 >
-                  Manager
+                  {!!userTypeValue ? userTypeValue : "User Type"}
                 </Text>
               </View>
             </View>
+
+            <Text
+              style={[
+                styles.addressLineText,
+                styles.fontRegular,
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              {!!addressValue ? addressValue : "Address"}
+            </Text>
+
             <Text
               style={[
                 styles.descriptionTitle,
@@ -152,14 +146,14 @@ const RatingScreen = ({ navigation }) => {
 
             <TextInput
               multiline={true}
-              onChangeText={handleChange("description")}
-              onBlur={handleBlur("description")}
-              value={values.description}
+              onChangeText={handleChange("remark")}
+              onBlur={handleBlur("remark")}
+              value={values.remark}
               style={[
                 styles.descriptionBox,
                 {
                   color: colors.textPrimary,
-                  borderColor: !errors.description
+                  borderColor: !errors.remark
                     ? colors.borderPrimary
                     : colors.borderRed,
                 },
@@ -167,12 +161,12 @@ const RatingScreen = ({ navigation }) => {
             />
             <View
               style={{
-                height: !errors.description ? 18 : 0,
+                height: !errors.remark ? 18 : 0,
               }}
             />
-            {errors.description && (
+            {errors.remark && (
               <Text style={{ color: colors.textRed, marginLeft: 10 }}>
-                {errors.description}
+                {errors.remark}
               </Text>
             )}
             <View style={{ justifyContent: "space-between", marginTop: 10 }}>
@@ -251,6 +245,7 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   descriptionTitle: {
     fontSize: FontSizes.small,
