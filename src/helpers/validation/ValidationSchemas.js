@@ -233,8 +233,8 @@ export const ratingScreenSchema = Yup.object().shape({
   description: Yup.string().matches(/^(?!.*  ).*$/, "No double spaces"),
 });
 
-export const managerOneTimeFeeSchema = Yup.object().shape({
-  managerOneTimeFee: Yup.string().required("Manager One Time Fee is required"),
+export const agentOneTimeFeeSchema = Yup.object().shape({
+  agentOneTimeFee: Yup.string().required("Agent One Time Fee is required"),
   rentAmount: Yup.string().required("Rent Amount is required"),
   specialTerms: Yup.string().required("Special Terms is required"),
 });

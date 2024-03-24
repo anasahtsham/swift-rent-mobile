@@ -16,8 +16,8 @@ import HintPopup from "../../components/common/popups/HintPopup";
 import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import {
+  agentOneTimeFeeSchema,
   managerFixedSchema,
-  managerOneTimeFeeSchema,
   managerPercentageSchema,
 } from "../../helpers/validation/ValidationSchemas";
 import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
@@ -50,41 +50,33 @@ const HireManagerRequestForm = ({ navigation }) => {
     useState(false);
   const [valuePurposeOfHireDropdown, setPurposeOfHireDropdown] = useState(null);
   const [itemsPurposeOfHireDropdown, setItemsPurposeOfHireDropdown] = useState([
-    { label: "Find Tenant", value: "find_tenant" },
-    { label: "Manage Property", value: "manage_property" },
+    { label: "Acquiring Tenant", value: "acquire_tenant" },
+    { label: "Caretaking", value: "caretaking" },
+    { label: "Leasing Property", value: "leasing_property" },
   ]);
 
-  //Manager Type Of Income Dropdown
-  const [openManagerTypeOfIncomeDropdown, setOpenManagerTypeOfIncomeDropdown] =
+  // Rent Collection By Dropdown
+  const [openRentCollectionByDropdown, setOpenRentCollectionByDropdown] =
     useState(false);
-  const [valueManagerTypeOfIncomeDropdown, setManagerTypeOfIncomeDropdown] =
+  const [valueRentCollectionByDropdown, setRentCollectionByDropdown] =
     useState(null);
-  const [
-    itemsManagerTypeOfIncomeDropdown,
-    setItemsManagerTypeOfIncomeDropdown,
-  ] = useState([
-    { label: "By Owner", value: "by_owner" },
-    { label: "Self Salaried", value: "self_salaried" },
-  ]);
+  const [itemsRentCollectionByDropdown, setItemsRentCollectionByDropdown] =
+    useState([
+      { label: "Manager", value: "by_manager" },
+      { label: "Both", value: "both" },
+    ]);
 
-  // Maintenance By Dropdown
-  const [openMaintenanceByDropdown, setOpenMaintenanceByDropdown] =
+  // Bring Tenants By Dropdown
+  const [openBringTenantsByDropdown, setOpenBringTenantsByDropdown] =
     useState(false);
-  const [valueMaintenanceByDropdown, setMaintenanceByDropdown] = useState(null);
-  const [itemsMaintenanceByDropdown, setItemsMaintenanceByDropdown] = useState([
-    { label: "Owner", value: "by_owner" },
-    { label: "Manager", value: "by_manager" },
-    { label: "Both", value: "both" },
-  ]);
-
-  // Complains By Dropdown
-  const [openComplainsByDropdown, setOpenComplainsByDropdown] = useState(false);
-  const [valueComplainsByDropdown, setComplainsByDropdown] = useState(null);
-  const [itemsComplainsByDropdown, setItemsComplainsByDropdown] = useState([
-    { label: "Owner", value: "by_owner" },
-    { label: "Manager", value: "by_manager" },
-    { label: "Both", value: "both" },
-  ]);
+  const [valueBringTenantsByDropdown, setBringTenantsByDropdown] =
+    useState(null);
+  const [itemsBringTenantsByDropdown, setItemsBringTenantsByDropdown] =
+    useState([
+      { label: "Owner", value: "by_owner" },
+      { label: "Manager", value: "by_manager" },
+      { label: "Both", value: "both" },
+    ]);
 
   // Payment Type Dropdown
   const [openPaymentTypeDropdown, setOpenPaymentTypeDropdown] = useState(false);
@@ -106,53 +98,40 @@ const HireManagerRequestForm = ({ navigation }) => {
 
   //dropdown open functions
   const onPurposeOfHireDropdownOpen = useCallback(() => {
-    setOpenManagerTypeOfIncomeDropdown(false);
-    setOpenMaintenanceByDropdown(false);
-    setOpenComplainsByDropdown(false);
+    setOpenRentCollectionByDropdown(false);
+    setOpenBringTenantsByDropdown(false);
     setOpenPaymentTypeDropdown(false);
     setOpenRentPeriodDropdown(false);
   }, []);
-  const onManagerTypeOfIncomeDropdownOpen = useCallback(() => {
+  const onRentCollectionByDropdownOpen = useCallback(() => {
     setOpenPurposeOfHireDropdown(false);
-    setOpenMaintenanceByDropdown(false);
-    setOpenComplainsByDropdown(false);
+    setOpenBringTenantsByDropdown(false);
     setOpenPaymentTypeDropdown(false);
     setOpenRentPeriodDropdown(false);
   }, []);
-  const onMaintenanceByDropdownOpen = useCallback(() => {
-    setOpenManagerTypeOfIncomeDropdown(false);
+  const onBringTenantsByDropdownOpen = useCallback(() => {
     setOpenPurposeOfHireDropdown(false);
-    setOpenComplainsByDropdown(false);
-    setOpenPaymentTypeDropdown(false);
-    setOpenRentPeriodDropdown(false);
-  }, []);
-  const onComplainsByDropdownOpen = useCallback(() => {
-    setOpenPurposeOfHireDropdown(false);
-    setOpenManagerTypeOfIncomeDropdown(false);
-    setOpenMaintenanceByDropdown(false);
+    setOpenRentCollectionByDropdown(false);
     setOpenPaymentTypeDropdown(false);
     setOpenRentPeriodDropdown(false);
   }, []);
   const onPaymentTypeDropdownOpen = useCallback(() => {
     setOpenPurposeOfHireDropdown(false);
-    setOpenManagerTypeOfIncomeDropdown(false);
-    setOpenMaintenanceByDropdown(false);
-    setOpenComplainsByDropdown(false);
+    setOpenRentCollectionByDropdown(false);
+    setOpenBringTenantsByDropdown(false);
     setOpenRentPeriodDropdown(false);
   }, []);
   const onRentPeriodDropdownOpen = useCallback(() => {
     setOpenPurposeOfHireDropdown(false);
-    setOpenManagerTypeOfIncomeDropdown(false);
-    setOpenMaintenanceByDropdown(false);
-    setOpenComplainsByDropdown(false);
+    setOpenRentCollectionByDropdown(false);
+    setOpenBringTenantsByDropdown(false);
     setOpenPaymentTypeDropdown(false);
   }, []);
 
   const handleCloseAllDropdowns = () => {
     setOpenPurposeOfHireDropdown(false);
-    setOpenManagerTypeOfIncomeDropdown(false);
-    setOpenMaintenanceByDropdown(false);
-    setOpenComplainsByDropdown(false);
+    setOpenRentCollectionByDropdown(false);
+    setOpenBringTenantsByDropdown(false);
     setOpenPaymentTypeDropdown(false);
     setOpenRentPeriodDropdown(false);
   };
@@ -162,7 +141,7 @@ const HireManagerRequestForm = ({ navigation }) => {
     useState(false);
 
   const [validationSchema, setValidationSchema] = useState(
-    managerOneTimeFeeSchema
+    agentOneTimeFeeSchema
   );
 
   useEffect(() => {
@@ -183,37 +162,28 @@ const HireManagerRequestForm = ({ navigation }) => {
     setErrorDropdowns(false);
 
     // console.log("\npurpose", !valuePurposeOfHireDropdown);
-    // console.log("managerTypeOfIncome", !valueManagerTypeOfIncomeDropdown);
     // console.log("paymentType", !valuePaymentTypeDropdown);
     // console.log("rentPeriod", !valueRentPeriodDropdown);
-    // console.log("maintenanceBy", !valueMaintenanceByDropdown);
-    // console.log("complainsBy", !valueComplainsByDropdown);
+    // console.log("RentCollectionBy", !valueRentCollectionByDropdown);
+    // console.log("BringTenantsBy", !valueBringTenantsByDropdown);
 
     // Check if the 'Purpose Of Hire' dropdown value is not selected
     if (!valuePurposeOfHireDropdown) {
       setErrorDropdowns(true);
     }
-    // Check if the 'Purpose Of Hire' dropdown value is 'manage_property'
-    else if (valuePurposeOfHireDropdown === "manage_property") {
-      if (!valueManagerTypeOfIncomeDropdown) {
+    // Check if the 'Purpose Of Hire' dropdown value is 'caretaking'
+    else if (valuePurposeOfHireDropdown === "caretaking") {
+      // Check if the 'Payment Type' dropdown value is not selected
+      if (!valuePaymentTypeDropdown) {
         setErrorDropdowns(true);
       }
-      // Check if the 'Type Of Income' dropdown value is 'self_salaried'
-      if (valueManagerTypeOfIncomeDropdown === "self_salaried") {
-        // Check if the 'Rent Period' dropdown value is not selected
-        if (!valueRentPeriodDropdown) {
-          setErrorDropdowns(true);
-        }
-      }
-      // Check if the 'Type Of Income' dropdown value is 'by_owner'
-      else if (valueManagerTypeOfIncomeDropdown === "by_owner") {
-        // Check if the 'Payment Type' dropdown value is not selected
-        if (!valuePaymentTypeDropdown) {
-          setErrorDropdowns(true);
-        }
-      }
       // Check if the 'Maintenance By' or 'Complains By' dropdown values are not selected
-      if (!valueMaintenanceByDropdown || !valueComplainsByDropdown) {
+      if (!valueRentCollectionByDropdown || !valueBringTenantsByDropdown) {
+        setErrorDropdowns(true);
+      }
+    } else if (valuePurposeOfHireDropdown === "leasing_property") {
+      // Check if the 'Rent Period' dropdown value is not selected
+      if (!valueRentPeriodDropdown) {
         setErrorDropdowns(true);
       }
     }
@@ -222,7 +192,7 @@ const HireManagerRequestForm = ({ navigation }) => {
   return (
     <Formik
       initialValues={{
-        managerOneTimeFee: "",
+        agentOneTimeFee: "",
         rentAmount: "",
         specialTerms: "",
         percentage: "",
@@ -314,16 +284,16 @@ const HireManagerRequestForm = ({ navigation }) => {
                 />
               </View>
 
-              {valuePurposeOfHireDropdown === "find_tenant" && (
+              {valuePurposeOfHireDropdown === "acquire_tenant" && (
                 <InputFieldWithHint
                   borderRadius={7}
-                  label="Manager One Time Fee"
+                  label="Agent One Time Fee"
                   fieldType="numeric"
-                  value={values.managerOneTimeFee}
-                  handleChange={handleChange("managerOneTimeFee")}
-                  handleBlur={handleBlur("managerOneTimeFee")}
+                  value={values.agentOneTimeFee}
+                  handleChange={handleChange("agentOneTimeFee")}
+                  handleBlur={handleBlur("agentOneTimeFee")}
                   errorText={
-                    touched.managerOneTimeFee ? errors.managerOneTimeFee : ""
+                    touched.agentOneTimeFee ? errors.agentOneTimeFee : ""
                   }
                   hintTexts={{
                     english: "English Hint Text",
@@ -332,109 +302,9 @@ const HireManagerRequestForm = ({ navigation }) => {
                 />
               )}
 
-              {valuePurposeOfHireDropdown === "manage_property" && (
+              {valuePurposeOfHireDropdown === "caretaking" && (
                 <>
-                  <View style={[styles.dropdown, {}]}>
-                    <Text
-                      style={[
-                        styles.dropdownLabel,
-                        { color: colors.textPrimary },
-                      ]}
-                    >
-                      Manager Type Of Income
-                    </Text>
-                    <DropDownPicker
-                      {...dropdownStyles}
-                      listMode="SCROLLVIEW"
-                      theme={colors.dropDownTheme}
-                      zIndex={5000}
-                      zIndexInverse={2000}
-                      open={openManagerTypeOfIncomeDropdown}
-                      value={valueManagerTypeOfIncomeDropdown}
-                      items={itemsManagerTypeOfIncomeDropdown}
-                      onOpen={onManagerTypeOfIncomeDropdownOpen}
-                      setOpen={setOpenManagerTypeOfIncomeDropdown}
-                      setValue={setManagerTypeOfIncomeDropdown}
-                      setItems={setItemsManagerTypeOfIncomeDropdown}
-                      placeholder="Manager Type Of Income"
-                    />
-                    <HintPopup
-                      hintTexts={{
-                        english: "English Hint Text",
-                        urdu: "Urdu Hint Text",
-                      }}
-                    />
-                  </View>
-
-                  {valueManagerTypeOfIncomeDropdown === "by_owner" && (
-                    <>
-                      <View style={[styles.dropdown, {}]}>
-                        <Text
-                          style={[
-                            styles.dropdownLabel,
-                            { color: colors.textPrimary },
-                          ]}
-                        >
-                          Payment Type
-                        </Text>
-                        <DropDownPicker
-                          {...dropdownStyles}
-                          listMode="SCROLLVIEW"
-                          theme={colors.dropDownTheme}
-                          zIndex={4000}
-                          zIndexInverse={3000}
-                          open={openPaymentTypeDropdown}
-                          value={valuePaymentTypeDropdown}
-                          items={itemsPaymentTypeDropdown}
-                          onOpen={onPaymentTypeDropdownOpen}
-                          setOpen={setOpenPaymentTypeDropdown}
-                          setValue={setPaymentTypeDropdown}
-                          setItems={setItemsPaymentTypeDropdown}
-                          placeholder="Payment Type"
-                        />
-                        <HintPopup
-                          hintTexts={{
-                            english: "English Hint Text",
-                            urdu: "Urdu Hint Text",
-                          }}
-                        />
-                      </View>
-                      {valuePaymentTypeDropdown === "percentage" && (
-                        <InputFieldWithHint
-                          borderRadius={7}
-                          label="Percentage"
-                          fieldType="numeric"
-                          value={values.percentage}
-                          handleChange={handleChange("percentage")}
-                          handleBlur={handleBlur("percentage")}
-                          errorText={
-                            touched.percentage ? errors.percentage : ""
-                          }
-                          hintTexts={{
-                            english: "English Hint Text",
-                            urdu: "Urdu Hint Text",
-                          }}
-                        />
-                      )}
-                      {valuePaymentTypeDropdown === "fixed" && (
-                        <InputFieldWithHint
-                          borderRadius={7}
-                          label="Fixed"
-                          fieldType="numeric"
-                          value={values.fixed}
-                          handleChange={handleChange("fixed")}
-                          handleBlur={handleBlur("fixed")}
-                          errorText={touched.fixed ? errors.fixed : ""}
-                          hintTexts={{
-                            english: "English Hint Text",
-                            urdu: "Urdu Hint Text",
-                          }}
-                        />
-                      )}
-                    </>
-                  )}
-
-                  {valueManagerTypeOfIncomeDropdown === "self_salaried" && (
+                  <>
                     <View style={[styles.dropdown, {}]}>
                       <Text
                         style={[
@@ -442,22 +312,22 @@ const HireManagerRequestForm = ({ navigation }) => {
                           { color: colors.textPrimary },
                         ]}
                       >
-                        Rent Period
+                        Payment Type
                       </Text>
                       <DropDownPicker
                         {...dropdownStyles}
                         listMode="SCROLLVIEW"
                         theme={colors.dropDownTheme}
-                        zIndex={3000}
-                        zIndexInverse={4000}
-                        open={openRentPeriodDropdown}
-                        value={valueRentPeriodDropdown}
-                        items={itemsRentPeriodDropdown}
-                        onOpen={onRentPeriodDropdownOpen}
-                        setOpen={setOpenRentPeriodDropdown}
-                        setValue={setRentPeriodDropdown}
-                        setItems={setItemsRentPeriodDropdown}
-                        placeholder="Rent Period"
+                        zIndex={4000}
+                        zIndexInverse={3000}
+                        open={openPaymentTypeDropdown}
+                        value={valuePaymentTypeDropdown}
+                        items={itemsPaymentTypeDropdown}
+                        onOpen={onPaymentTypeDropdownOpen}
+                        setOpen={setOpenPaymentTypeDropdown}
+                        setValue={setPaymentTypeDropdown}
+                        setItems={setItemsPaymentTypeDropdown}
+                        placeholder="Payment Type"
                       />
                       <HintPopup
                         hintTexts={{
@@ -466,7 +336,37 @@ const HireManagerRequestForm = ({ navigation }) => {
                         }}
                       />
                     </View>
-                  )}
+                    {valuePaymentTypeDropdown === "percentage" && (
+                      <InputFieldWithHint
+                        borderRadius={7}
+                        label="Percentage"
+                        fieldType="numeric"
+                        value={values.percentage}
+                        handleChange={handleChange("percentage")}
+                        handleBlur={handleBlur("percentage")}
+                        errorText={touched.percentage ? errors.percentage : ""}
+                        hintTexts={{
+                          english: "English Hint Text",
+                          urdu: "Urdu Hint Text",
+                        }}
+                      />
+                    )}
+                    {valuePaymentTypeDropdown === "fixed" && (
+                      <InputFieldWithHint
+                        borderRadius={7}
+                        label="Fixed"
+                        fieldType="numeric"
+                        value={values.fixed}
+                        handleChange={handleChange("fixed")}
+                        handleBlur={handleBlur("fixed")}
+                        errorText={touched.fixed ? errors.fixed : ""}
+                        hintTexts={{
+                          english: "English Hint Text",
+                          urdu: "Urdu Hint Text",
+                        }}
+                      />
+                    )}
+                  </>
 
                   <View style={[styles.dropdown, {}]}>
                     <Text
@@ -475,7 +375,7 @@ const HireManagerRequestForm = ({ navigation }) => {
                         { color: colors.textPrimary },
                       ]}
                     >
-                      Maintenance Managed By
+                      Rent Collected By
                     </Text>
                     <DropDownPicker
                       {...dropdownStyles}
@@ -483,14 +383,14 @@ const HireManagerRequestForm = ({ navigation }) => {
                       theme={colors.dropDownTheme}
                       zIndex={2000}
                       zIndexInverse={5000}
-                      open={openMaintenanceByDropdown}
-                      value={valueMaintenanceByDropdown}
-                      items={itemsMaintenanceByDropdown}
-                      onOpen={onMaintenanceByDropdownOpen}
-                      setOpen={setOpenMaintenanceByDropdown}
-                      setValue={setMaintenanceByDropdown}
-                      setItems={setItemsMaintenanceByDropdown}
-                      placeholder="Maintenance Managed By"
+                      open={openRentCollectionByDropdown}
+                      value={valueRentCollectionByDropdown}
+                      items={itemsRentCollectionByDropdown}
+                      onOpen={onRentCollectionByDropdownOpen}
+                      setOpen={setOpenRentCollectionByDropdown}
+                      setValue={setRentCollectionByDropdown}
+                      setItems={setItemsRentCollectionByDropdown}
+                      placeholder="Rent Collected By"
                     />
                     <HintPopup
                       hintTexts={{
@@ -507,7 +407,7 @@ const HireManagerRequestForm = ({ navigation }) => {
                         { color: colors.textPrimary },
                       ]}
                     >
-                      Complains Managed By
+                      Who will Bring Tenant?
                     </Text>
                     <DropDownPicker
                       {...dropdownStyles}
@@ -515,14 +415,14 @@ const HireManagerRequestForm = ({ navigation }) => {
                       theme={colors.dropDownTheme}
                       zIndex={1000}
                       zIndexInverse={6000}
-                      open={openComplainsByDropdown}
-                      value={valueComplainsByDropdown}
-                      items={itemsComplainsByDropdown}
-                      onOpen={onComplainsByDropdownOpen}
-                      setOpen={setOpenComplainsByDropdown}
-                      setValue={setComplainsByDropdown}
-                      setItems={setItemsComplainsByDropdown}
-                      placeholder="Complains Managed By"
+                      open={openBringTenantsByDropdown}
+                      value={valueBringTenantsByDropdown}
+                      items={itemsBringTenantsByDropdown}
+                      onOpen={onBringTenantsByDropdownOpen}
+                      setOpen={setOpenBringTenantsByDropdown}
+                      setValue={setBringTenantsByDropdown}
+                      setItems={setItemsBringTenantsByDropdown}
+                      placeholder="Who will Bring Tenant?"
                     />
                     <HintPopup
                       hintTexts={{
@@ -532,6 +432,40 @@ const HireManagerRequestForm = ({ navigation }) => {
                     />
                   </View>
                 </>
+              )}
+
+              {valuePurposeOfHireDropdown === "leasing_property" && (
+                <View style={[styles.dropdown, {}]}>
+                  <Text
+                    style={[
+                      styles.dropdownLabel,
+                      { color: colors.textPrimary },
+                    ]}
+                  >
+                    Rent Period
+                  </Text>
+                  <DropDownPicker
+                    {...dropdownStyles}
+                    listMode="SCROLLVIEW"
+                    theme={colors.dropDownTheme}
+                    zIndex={3000}
+                    zIndexInverse={4000}
+                    open={openRentPeriodDropdown}
+                    value={valueRentPeriodDropdown}
+                    items={itemsRentPeriodDropdown}
+                    onOpen={onRentPeriodDropdownOpen}
+                    setOpen={setOpenRentPeriodDropdown}
+                    setValue={setRentPeriodDropdown}
+                    setItems={setItemsRentPeriodDropdown}
+                    placeholder="Rent Period"
+                  />
+                  <HintPopup
+                    hintTexts={{
+                      english: "English Hint Text",
+                      urdu: "Urdu Hint Text",
+                    }}
+                  />
+                </View>
               )}
 
               <InputFieldWithHint
