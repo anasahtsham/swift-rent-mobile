@@ -5,6 +5,8 @@ export const propertiesData = [
     income: "32000",
     outcome: "16000",
     status: "Vacant",
+    manager: "Aisha Malik",
+    tenant: "Noor Ahmed",
     rentStatus: "Pending",
   },
   {
