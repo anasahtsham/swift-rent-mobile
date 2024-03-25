@@ -28,7 +28,7 @@ const RatingScreen = ({ navigation, route }) => {
     addressValue = "Default Address",
     ratingValue = 0,
     isLikedValue = false,
-    remarksValue = "Default Remarks",
+    remarksValue = "",
   } = route.params || {};
 
   useEffect(() => {
@@ -145,6 +145,8 @@ const RatingScreen = ({ navigation, route }) => {
             </Text>
 
             <TextInput
+              placeholder="Remarks"
+              placeholderTextColor={colors.textGrey}
               multiline={true}
               onChangeText={handleChange("remark")}
               onBlur={handleBlur("remark")}
