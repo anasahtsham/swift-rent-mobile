@@ -230,7 +230,7 @@ export const registerTenantSchema = (
   });
 
 export const ratingScreenSchema = Yup.object().shape({
-  description: Yup.string().matches(/^(?!.*  ).*$/, "No double spaces"),
+  remark: Yup.string().matches(/^(?!.*  ).*$/, "No double spaces"),
 });
 
 export const agentOneTimeFeeSchema = Yup.object().shape({
