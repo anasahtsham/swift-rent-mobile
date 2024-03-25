@@ -102,6 +102,7 @@ const PropertyMenu = () => {
           <CardRow title="Rent: " value="40,000" />
           <CardRow title="Security: " value="80,000" />
         </Card>
+
         <View style={styles.buttonContainer}>
           <PropertyMenuButton
             onPress={() => {
@@ -165,6 +166,7 @@ const PropertyMenu = () => {
             onPress={() => navigation.navigate("Manager Offers")}
           />
         </View>
+
         <View style={{ height: 15 }} />
       </ScrollView>
     </SafeAreaView>
