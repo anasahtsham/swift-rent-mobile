@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import ButtonWithImage from "../../components/common/buttons/ButtonWithImage";
 import PropertyMenuHeader from "../../components/common/headers/PropertyMenuHeader";
 import { useColors } from "./../../helpers/SetColors";
 import { managerOffersData } from "./../../helpers/data/ManagerOffersData";
+import PropertyMenuButton from "./buttons/PropertyMenuButton";
 
 const PropertyMenu = () => {
   const colors = useColors();
@@ -103,79 +103,67 @@ const PropertyMenu = () => {
           <CardRow title="Security: " value="80,000" />
         </Card>
         <View style={styles.buttonContainer}>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage
-              onPress={() => {
-                navigation.navigate("Maintenance Complains List", {
-                  header: "Maintenance",
-                });
-              }}
-              text={"Maintenance"}
-              secondaryText="1"
-              secondaryTextColor={colors.textRed}
-              colors={colors}
-            />
-            <ButtonWithImage
-              onPress={() => {
-                navigation.navigate("Maintenance Complains List", {
-                  header: "Complains",
-                });
-              }}
-              text={"Complains"}
-              secondaryText="0"
-              secondaryTextColor={colors.textGreen}
-              colors={colors}
-            />
-          </View>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage
-              onPress={() => {
-                navigation.navigate("Verify Documentation");
-              }}
-              text={"Receive/ Verify Rent"}
-              colors={colors}
-            />
-            <ButtonWithImage
-              onPress={() => {
-                navigation.navigate("Hire Manager Request Form");
-              }}
-              text={"Appoint A Manager"}
-              colors={colors}
-            />
-          </View>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage
-              onPress={() => {
-                navigation.navigate("Register Tenant");
-              }}
-              text={"Register Tenant"}
-              colors={colors}
-            />
-            <ButtonWithImage text={"Fire Manager"} colors={colors} />
-          </View>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage text={"Eviction Notice"} colors={colors} />
-            <ButtonWithImage text={"Chat Manager/Tenant"} colors={colors} />
-          </View>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage
-              text={"Rate Manager /Tenant"}
-              colors={colors}
-              onPress={() => navigation.navigate("Rating Screen")}
-            />
-            <ButtonWithImage
-              text={"Rent History"}
-              colors={colors}
-              onPress={() => navigation.navigate("Rent History")}
-            />
-          </View>
-          <View style={styles.buttonRow}>
-            <ButtonWithImage
-              text={"Manager Offers (" + managerOffersAmount + ")"}
-              colors={colors}
-              onPress={() => navigation.navigate("Manager Offers")}
-            />
-          </View>
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Maintenance Complains List", {
+                header: "Maintenance",
+              });
+            }}
+            text={"Maintenance"}
+            secondaryText="1"
+            secondaryTextColor={colors.textRed}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Maintenance Complains List", {
+                header: "Complains",
+              });
+            }}
+            text={"Complains"}
+            secondaryText="0"
+            secondaryTextColor={colors.textGreen}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Verify Documentation");
+            }}
+            text={"Receive/ Verify Rent"}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Hire Manager Request Form");
+            }}
+            text={"Appoint A Manager"}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Register Tenant");
+            }}
+            text={"Register Tenant"}
+            colors={colors}
+          />
+          <PropertyMenuButton text={"Fire Manager"} colors={colors} />
+          <PropertyMenuButton text={"Eviction Notice"} colors={colors} />
+          <PropertyMenuButton text={"Chat Manager/Tenant"} colors={colors} />
+          <PropertyMenuButton
+            text={"Rate Manager /Tenant"}
+            colors={colors}
+            onPress={() => navigation.navigate("Rating Screen")}
+          />
+          <PropertyMenuButton
+            text={"Rent History"}
+            colors={colors}
+            onPress={() => navigation.navigate("Rent History")}
+          />
+          <PropertyMenuButton
+            text={"Manager Offers (" + managerOffersAmount + ")"}
+            colors={colors}
+            onPress={() => navigation.navigate("Manager Offers")}
+          />
         </View>
         <View style={{ height: 15 }} />
       </ScrollView>

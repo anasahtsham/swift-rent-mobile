@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
-import { icons } from "./../../../helpers/ImageImports";
+import { icons } from "../../../helpers/ImageImports";
 
-const ButtonWithImage = (props) => {
+const PropertyMenuButton = (props) => {
   const colors = props.colors;
 
   return (
@@ -62,8 +62,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-    width: "47%",
-    height: 75,
+    paddingVertical: 10,
+    marginVertical: 5,
+    width: "100%",
     borderRadius: 20,
     elevation: 5,
   },
@@ -78,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ButtonWithImage;
+export default PropertyMenuButton;
