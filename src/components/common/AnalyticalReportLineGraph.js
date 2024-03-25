@@ -6,7 +6,7 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import { Path, Rect, Svg, Text } from "react-native-svg";
+import { Circle, Line, Path, Rect, Svg, Text } from "react-native-svg";
 import { useColors } from "../../helpers/SetColors";
 
 const AnalyticalReportLineGraph = (props) => {
@@ -103,6 +103,9 @@ const AnalyticalReportLineGraph = (props) => {
     y: 0,
   });
 
+  const [lineX, setLineX] = useState(null);
+  const [index, setIndex] = useState(null);
+
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -123,10 +126,14 @@ const AnalyticalReportLineGraph = (props) => {
             x: 250, // Set the x-coordinate to a fixed value
             y: 50, // Increase the padding factor
           });
+          setLineX(scaleX(index)); // Update lineX
+          setIndex(index); // Update index
         }
       },
       onPanResponderRelease: () => {
         setTooltip({ visible: false, values: [], x: 0, y: 0 });
+        setLineX(null); // Reset lineX
+        setIndex(null); // Reset index
       },
     })
   ).current;
@@ -153,6 +160,26 @@ const AnalyticalReportLineGraph = (props) => {
         height={contentHeight}
         viewBox={`-100 10 ${viewBoxWidth * 1.2} ${viewBoxHeight}`}
       >
+        {lineX !== null && (
+          <Line
+            x1={lineX}
+            y1={0}
+            x2={lineX}
+            y2={190}
+            stroke={colors.textPrimary}
+            strokeWidth={2}
+          />
+        )}
+        {index !== null &&
+          data.map((dataset, i) => (
+            <Circle
+              key={i}
+              cx={scaleX(index)}
+              cy={scaleY(dataset.values[index])}
+              r={5}
+              fill={dataset.color}
+            />
+          ))}
         {data.map((dataset, index) => (
           <Path
             key={index}
