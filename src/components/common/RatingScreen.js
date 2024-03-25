@@ -23,9 +23,9 @@ import ButtonGrey from "./buttons/ButtonGrey";
 const RatingScreen = ({ navigation, route }) => {
   const colors = useColors();
   const {
-    userNameValue = "Default User Name",
-    userTypeValue = "Default User Type",
-    addressValue = "Default Address",
+    userNameValue = "User Name",
+    userTypeValue = "User Type",
+    addressValue = "Address",
     ratingValue = 0,
     isLikedValue = false,
     remarksValue = "",
