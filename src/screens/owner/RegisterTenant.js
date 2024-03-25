@@ -166,6 +166,17 @@ const RegisterTenant = ({ navigation }) => {
               </Text>
 
               <View style={[styles.bodyContainer, { marginBottom: 20 }]}>
+                <Text
+                  style={{
+                    fontSize: FontSizes.extraSmall,
+                    color: colors.textPrimary,
+                    fontFamily: "OpenSansRegular",
+                    alignSelf: "flex-start",
+                    marginLeft: 10,
+                  }}
+                >
+                  Rent Due Date
+                </Text>
                 <DropDownPicker
                   {...dropdownStyles}
                   listMode="SCROLLVIEW"
