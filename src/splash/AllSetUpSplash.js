@@ -5,16 +5,7 @@ import * as FontSizes from "../assets/fonts/FontSizes";
 import { useColors } from "../helpers/SetColors";
 
 const AllSetUpSplash = ({ route }) => {
-  const { userType, firstName, lastName, date, email, phoneNumber, password } =
-    route.params; // getting all the values needed to register the user from the previous screens
-
-  console.log("\n\n\n\n\nuserType: ", userType);
-  console.log("firstName: ", firstName);
-  console.log("lastName: ", lastName);
-  console.log("date: ", date);
-  console.log("email: ", email);
-  console.log("phoneNumber: ", phoneNumber);
-  console.log("password: ", password);
+  const { userType } = route.params;
 
   let userScreen = ""; // setting the user based on the user type at registration
 

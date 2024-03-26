@@ -91,9 +91,9 @@ const InputField = forwardRef((props, ref) => {
   };
 
   const handleConfirm = (date) => {
-    let formatted = `${String(date.getDate()).padStart(2, "0")}-${String(
+    let formatted = `${date.getFullYear()}-${String(
       date.getMonth() + 1
-    ).padStart(2, "0")}-${date.getFullYear()}`;
+    ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
     hideDatePicker();
     setSelectedDate(date);
 

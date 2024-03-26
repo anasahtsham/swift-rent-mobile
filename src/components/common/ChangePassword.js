@@ -114,7 +114,7 @@ const ChangePassword = ({ navigation }) => {
               fontSize={FontSizes.medium}
               buttonText={languages.change}
               onPress={handleSubmit}
-              isSubmitButton={true}
+              hasOwnOnPress={true}
             />
           </View>
         </KeyboardAwareScrollView>

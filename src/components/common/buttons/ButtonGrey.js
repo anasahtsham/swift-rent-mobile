@@ -15,11 +15,7 @@ const ButtonGrey = (props) => {
   // }
 
   const handlePress = () => {
-    if (props.isSubmitButton) {
-      props.onPress();
-      return;
-    }
-    if (props.isSendToNavigationButton) {
+    if (props.hasOwnOnPress) {
       props.onPress();
       return;
     }

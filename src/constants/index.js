@@ -4,3 +4,5 @@ export const opacityValueForButton = 0.5; // The opacity value for the Touchable
 export const buttonWidthMedium = "60%";
 export const buttonWidthSmall = "40%";
 export const buttonWidthSmaller = "30%";
+
+export const BASE_URL = "http://192.168.18.130:3000"; // The base URL for the API

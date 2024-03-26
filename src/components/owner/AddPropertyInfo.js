@@ -370,7 +370,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
                 buttonText="Finish"
                 fontSize={FontSizes.medium}
                 width={buttonWidthMedium}
-                isSubmitButton={true}
+                hasOwnOnPress={true}
                 onPress={() => {
                   if (!!valueWaterAvailabilityDropdown) {
                     setErrorDropdowns(false);

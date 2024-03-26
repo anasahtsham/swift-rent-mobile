@@ -529,7 +529,7 @@ const HireManagerRequestForm = ({ navigation }) => {
                 buttonText="Submit"
                 fontSize={FontSizes.medium}
                 width={buttonWidthMedium}
-                isSubmitButton={true}
+                hasOwnOnPress={true}
                 onPress={() => {
                   validateDropdowns();
                   handleSubmit();

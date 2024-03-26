@@ -1,13 +1,17 @@
+import { CommonActions } from "@react-navigation/native";
+import axios from "axios";
 import { useEffect } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { buttonWidthMedium } from "../../constants";
+import { BASE_URL, buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-const RegisterAs = ({ navigation }) => {
+const RegisterAs = ({ navigation, route }) => {
+  const { isManager, isOwner, isTenant, userID } = route.params;
+
   const colors = useColors();
 
   const languages = useLanguages();
@@ -24,6 +28,49 @@ const RegisterAs = ({ navigation }) => {
     );
     return () => backHandler.remove();
   }, []);
+
+  const handlePress = (destinationScreen) => {
+    let userType;
+    switch (destinationScreen) {
+      case "Owner Navigator":
+        userType = "owner";
+        break;
+      case "Manager Navigator":
+        userType = "manager";
+        break;
+      case "Tenant Navigator":
+        userType = "tenant";
+        break;
+      default:
+        userType = "";
+    }
+
+    console.log("userID: ", userID);
+    console.log("userType: ", userType);
+
+    // Prepare the data to send to the API
+    const data = {
+      userID: userID,
+      userType: userType,
+    };
+
+    // Send a POST request to the API
+    axios
+      .post(`${BASE_URL}/api/auth/register-alternate-role`, data)
+      .then((response) => {
+        // Handle the response here. For example, you could navigate to the next screen:
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: destinationScreen }],
+          })
+        );
+      })
+      .catch((error) => {
+        // Handle the error here. For example, you could show an error message:
+        console.error("There was an error!", error);
+      });
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -46,30 +93,35 @@ const RegisterAs = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonsContainer}>
-          <ButtonGrey
-            width={buttonWidthMedium}
-            fontSize={FontSizes.medium}
-            buttonText={languages.propertyOwner}
-            userType="owner"
-            destinationScreen="Get To Know"
-            navigation={navigation}
-          />
-          <ButtonGrey
-            width={buttonWidthMedium}
-            fontSize={FontSizes.medium}
-            buttonText={languages.propertyManager}
-            userType="manager"
-            destinationScreen="Get To Know"
-            navigation={navigation}
-          />
-          <ButtonGrey
-            width={buttonWidthMedium}
-            fontSize={FontSizes.medium}
-            buttonText={languages.tenant}
-            destinationScreen="Get To Know"
-            userType="tenant"
-            navigation={navigation}
-          />
+          {!isOwner && (
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
+              buttonText={languages.propertyOwner}
+              hasOwnOnPress={true}
+              onPress={() => handlePress("Owner Navigator")}
+            />
+          )}
+
+          {!isManager && (
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
+              buttonText={languages.propertyManager}
+              hasOwnOnPress={true}
+              onPress={() => handlePress("Manager Navigator")}
+            />
+          )}
+
+          {!isTenant && (
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
+              buttonText={languages.tenant}
+              hasOwnOnPress={true}
+              onPress={() => handlePress("Tenant Navigator")}
+            />
+          )}
         </View>
       </View>
     </View>

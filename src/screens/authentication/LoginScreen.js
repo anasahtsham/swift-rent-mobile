@@ -1,11 +1,13 @@
+import axios from "axios";
 import { Formik } from "formik";
+import { md5 } from "js-md5";
 import React, { useEffect } from "react";
 import { BackHandler, Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { buttonWidthSmall } from "../../constants";
+import { BASE_URL, buttonWidthSmall } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -43,13 +45,45 @@ const LoginScreen = ({ navigation, route }) => {
       validationSchema={loginSchema}
       onSubmit={(values) => {
         if (newRegister) {
-          navigation.navigate("Register As");
-          return;
-        } else {
-          navigation.navigate("Login As", {
+          // Prepare the data to send to the API
+          const data = {
             emailOrPhone: values.emailOrPhone,
-            password: values.password,
-          });
+            userPassword: md5(values.password),
+          };
+
+          // Send a POST request to the API
+          axios
+            .post(`${BASE_URL}/api/auth/login`, data)
+            .then((response) => {
+              // Pass the response data to the "Register As" screen as route parameters
+              navigation.navigate("Register As", response.data);
+            })
+            .catch((error) => {
+              // Handle the error here. For example, you could show an error message:
+              console.error("There was an error!", error);
+            });
+        } else {
+          // Prepare the data to send to the API
+
+          const data = {
+            emailOrPhone: values.emailOrPhone,
+            userPassword: md5(values.password),
+          };
+
+          // Send a POST request to the API
+          axios
+            .post(`${BASE_URL}/api/auth/login`, data)
+            .then((response) => {
+              // Handle the response here. For example, you could navigate to the next screen:
+              navigation.navigate("Login As", {
+                emailOrPhone: values.emailOrPhone,
+                password: values.password,
+              });
+            })
+            .catch((error) => {
+              // Handle the error here. For example, you could show an error message:
+              console.error("There was an error!", error);
+            });
         }
       }}
     >
@@ -131,7 +165,7 @@ const LoginScreen = ({ navigation, route }) => {
               fontSize={FontSizes.medium}
               buttonText={languages.login}
               onPress={handleSubmit} // When the user presses "Login", the form will be submitted
-              isSubmitButton={true} // Indicates to the component that this is a submit button so that it can change its flow
+              hasOwnOnPress={true} // Indicates to the component that this is a submit button so that it can change its flow
             />
           </View>
         </KeyboardAwareScrollView>

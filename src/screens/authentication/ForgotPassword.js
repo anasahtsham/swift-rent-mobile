@@ -120,7 +120,7 @@ const LoginScreen = ({ navigation }) => {
               fontSize={FontSizes.medium}
               buttonText={languages.change}
               onPress={handleSubmit} // When the user presses "Change", the form will be submitted
-              isSubmitButton={true} // Indicates to the component that this is a submit button so that it can change its flow
+              hasOwnOnPress={true} // Indicates to the component that this is a submit button so that it can change its flow
             />
           </View>
         </KeyboardAwareScrollView>

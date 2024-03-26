@@ -1,11 +1,13 @@
+import axios from "axios";
 import { Formik } from "formik";
+import { md5 } from "js-md5";
 import React, { useEffect } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { buttonWidthSmaller } from "../../constants";
+import { BASE_URL, buttonWidthSmaller } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { setUpPasswordSchema } from "../../helpers/validation/ValidationSchemas";
@@ -44,16 +46,25 @@ const SetUpPassword = ({ navigation, route }) => {
       }}
       validationSchema={setUpPasswordSchema}
       onSubmit={(values) => {
-        // Pass the user's password to the next screen
-        navigation.navigate("All Set Up", {
+        const data = {
           userType: userType,
           firstName: firstName,
           lastName: lastName,
-          date: date,
+          DOB: date,
           email: email,
-          phoneNumber: phoneNumber,
-          password: values.password,
-        });
+          phone: phoneNumber,
+          userPassword: md5(values.password),
+        };
+
+        // Send a POST request to the registration API
+        axios
+          .post(`${BASE_URL}/api/auth/register`, data)
+          .then((response) => {
+            navigation.navigate("All Set Up", { userType: userType });
+          })
+          .catch((error) => {
+            console.error("There was an error!", error);
+          });
       }}
     >
       {({
@@ -138,7 +149,7 @@ const SetUpPassword = ({ navigation, route }) => {
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
                   onPress={handleSubmit} // When the user presses "Next", the form is submitted
-                  isSubmitButton={true} // Indicates that this button is a submit button
+                  hasOwnOnPress={true} // Indicates that this button is a submit button
                 />
               </View>
             </View>

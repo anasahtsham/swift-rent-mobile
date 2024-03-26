@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
@@ -6,7 +7,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import InputField from "../../components/common/input_fields/InputField";
-import { buttonWidthSmaller } from "../../constants";
+import { BASE_URL, buttonWidthSmaller } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -42,16 +43,41 @@ const ContactInfo = ({ navigation, route }) => {
         phoneNumber: "",
       }}
       validationSchema={contactInfoSchema}
-      onSubmit={(values) => {
-        // Pass the user's email and phone number to the next screen
-        navigation.navigate("Set Up Password", {
-          userType: userType,
-          firstName: firstName,
-          lastName: lastName,
-          date: date,
+      onSubmit={(values, { setErrors }) => {
+        // Prepare the data to send to the API
+        const data = {
           email: values.email,
-          phoneNumber: values.phoneNumber,
-        });
+          phone: values.phoneNumber,
+        };
+
+        // Send a POST request to the API
+        axios
+          .post(`${BASE_URL}/api/auth/verify-credentials`, data)
+          .then((response) => {
+            // If the response data contains "success": true, navigate to the next screen
+            if (response.data.success) {
+              navigation.navigate("Set Up Password", {
+                userType: userType,
+                firstName: firstName,
+                lastName: lastName,
+                date: date,
+                email: values.email,
+                phoneNumber: values.phoneNumber,
+              });
+            }
+          })
+          .catch((error) => {
+            // If the response data contains an error, set the Formik errors
+            if (error.response && error.response.data.error) {
+              setErrors({
+                email: "Credentials in use.",
+                phoneNumber: "Credentials in use.",
+              });
+            } else {
+              // Handle other errors here. For example, you could show an error message:
+              console.error("There was an error!", error);
+            }
+          });
       }}
     >
       {({
@@ -136,7 +162,7 @@ const ContactInfo = ({ navigation, route }) => {
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
                   onPress={handleSubmit} // When the user presses "Next", the form is submitted
-                  isSubmitButton={true} // Indicates that this button is a submit button
+                  hasOwnOnPress={true} // Indicates that this button is a submit button
                 />
               </View>
             </View>

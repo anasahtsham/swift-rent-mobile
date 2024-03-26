@@ -135,7 +135,7 @@ const GetToKnow = ({ navigation, route }) => {
                   width={buttonWidthSmaller}
                   fontSize={FontSizes.small}
                   buttonText={languages.back}
-                  isSubmitButton={true}
+                  hasOwnOnPress={true}
                   onPress={() => navigation.goBack()}
                 />
                 <ButtonGrey
@@ -143,7 +143,7 @@ const GetToKnow = ({ navigation, route }) => {
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
                   onPress={handleSubmit} // When the user presses "Next", the form is submitted
-                  isSubmitButton={true} // pass true so that the component can change its functionality according to submit button and the onPress is called that is passed from the prop instead of the default navigation
+                  hasOwnOnPress={true} // pass true so that the component can change its functionality according to submit button and the onPress is called that is passed from the prop instead of the default navigation
                 />
               </View>
             </View>

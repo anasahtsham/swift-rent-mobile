@@ -60,21 +60,21 @@ const LoginAs = ({ navigation }) => {
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyOwner}
-            isSendToNavigationButton={true}
+            hasOwnOnPress={true}
             onPress={() => handlePress("Owner Navigator")}
           />
           <ButtonGrey
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyManager}
-            isSendToNavigationButton={true}
+            hasOwnOnPress={true}
             onPress={() => handlePress("Manager Navigator")}
           />
           <ButtonGrey
             width={buttonWidthMedium}
             fontSize={FontSizes.medium}
             buttonText={languages.tenant}
-            isSendToNavigationButton={true}
+            hasOwnOnPress={true}
             onPress={() => handlePress("Tenant Navigator")}
           />
         </View>

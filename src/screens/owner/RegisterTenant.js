@@ -335,7 +335,7 @@ const RegisterTenant = ({ navigation }) => {
                     handleSubmit();
                   }
                 }} // When the user presses "Change", the form will be submitted
-                isSubmitButton={true} // Indicates to the component that this is a submit button so that it can change its flow
+                hasOwnOnPress={true} // Indicates to the component that this is a submit button so that it can change its flow
               />
               <View style={{ height: 30 }} />
             </View>

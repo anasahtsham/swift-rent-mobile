@@ -204,7 +204,7 @@ const VerifyDocumentation = ({ navigation }) => {
               : colors.buttonBackgroundPrimary,
           }}
           navigation={navigation}
-          isSubmitButton={true}
+          hasOwnOnPress={true}
           onPress={() => {
             navigation.goBack();
           }}

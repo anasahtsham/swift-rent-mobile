@@ -359,7 +359,7 @@ const AddProperty = ({ navigation }) => {
                 buttonText="Next"
                 fontSize={FontSizes.medium}
                 width={buttonWidthMedium}
-                isSubmitButton={true}
+                hasOwnOnPress={true}
                 onPress={() => {
                   if (
                     !!valueCity &&

@@ -215,7 +215,7 @@ const RatingScreen = ({ navigation, route }) => {
             fontSize={FontSizes.medium}
             width={buttonWidthMedium}
             buttonText="Submit"
-            isSubmitButton={true}
+            hasOwnOnPress={true}
             onPress={handleSubmit}
           />
         </KeyboardAwareScrollView>
