@@ -2,7 +2,14 @@ import axios from "axios";
 import { Formik } from "formik";
 import { md5 } from "js-md5";
 import React, { useEffect } from "react";
-import { BackHandler, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  BackHandler,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
@@ -59,8 +66,13 @@ const LoginScreen = ({ navigation, route }) => {
               navigation.navigate("Register As", response.data);
             })
             .catch((error) => {
-              // Handle the error here. For example, you could show an error message:
-              console.error("There was an error!", error);
+              // If the response data contains an error
+              if (error.response && error.response.data.error) {
+                Alert.alert("Error", error.response.data.error);
+              } else {
+                // Handle other errors here. For example, you could show an error message:
+                console.error("There was an error!", error);
+              }
             });
         } else {
           // Prepare the data to send to the API
@@ -74,15 +86,37 @@ const LoginScreen = ({ navigation, route }) => {
           axios
             .post(`${BASE_URL}/api/auth/login`, data)
             .then((response) => {
-              // Handle the response here. For example, you could navigate to the next screen:
-              navigation.navigate("Login As", {
-                emailOrPhone: values.emailOrPhone,
-                password: values.password,
-              });
+              const { isOwner, isManager, isTenant, success } = response.data;
+
+              if (success) {
+                const roles = [isOwner, isManager, isTenant];
+                const trueRoles = roles.filter(Boolean);
+
+                if (trueRoles.length === 1) {
+                  if (isOwner) {
+                    navigation.navigate("Owner Navigator");
+                  } else if (isManager) {
+                    navigation.navigate("Manager Navigator");
+                  } else if (isTenant) {
+                    navigation.navigate("Tenant Navigator");
+                  }
+                } else {
+                  // Navigate to "Login As" screen with response.data
+                  navigation.navigate("Login As", response.data);
+                }
+              } else {
+                // Handle the case where success is false
+                console.log("Login unsuccessful");
+              }
             })
             .catch((error) => {
-              // Handle the error here. For example, you could show an error message:
-              console.error("There was an error!", error);
+              // If the response data contains an error
+              if (error.response && error.response.data.error) {
+                Alert.alert("Error", error.response.data.error);
+              } else {
+                // Handle other errors here. For example, you could show an error message:
+                console.error("There was an error!", error);
+              }
             });
         }
       }}

@@ -8,7 +8,9 @@ import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
-const LoginAs = ({ navigation }) => {
+const LoginAs = ({ navigation, route }) => {
+  const { isManager, isOwner, isTenant, userID } = route.params;
+
   const colors = useColors();
 
   const languages = useLanguages();
@@ -56,27 +58,35 @@ const LoginAs = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonsContainer}>
-          <ButtonGrey
-            width={buttonWidthMedium}
-            fontSize={FontSizes.medium}
-            buttonText={languages.propertyOwner}
-            hasOwnOnPress={true}
-            onPress={() => handlePress("Owner Navigator")}
-          />
-          <ButtonGrey
-            width={buttonWidthMedium}
-            fontSize={FontSizes.medium}
-            buttonText={languages.propertyManager}
-            hasOwnOnPress={true}
-            onPress={() => handlePress("Manager Navigator")}
-          />
-          <ButtonGrey
-            width={buttonWidthMedium}
-            fontSize={FontSizes.medium}
-            buttonText={languages.tenant}
-            hasOwnOnPress={true}
-            onPress={() => handlePress("Tenant Navigator")}
-          />
+          {isOwner && (
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
+              buttonText={languages.propertyOwner}
+              hasOwnOnPress={true}
+              onPress={() => handlePress("Owner Navigator")}
+            />
+          )}
+
+          {isManager && (
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
+              buttonText={languages.propertyManager}
+              hasOwnOnPress={true}
+              onPress={() => handlePress("Manager Navigator")}
+            />
+          )}
+
+          {isTenant && (
+            <ButtonGrey
+              width={buttonWidthMedium}
+              fontSize={FontSizes.medium}
+              buttonText={languages.tenant}
+              hasOwnOnPress={true}
+              onPress={() => handlePress("Tenant Navigator")}
+            />
+          )}
         </View>
       </View>
     </View>

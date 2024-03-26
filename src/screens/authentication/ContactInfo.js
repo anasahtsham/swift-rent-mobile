@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect } from "react";
-import { BackHandler, StyleSheet, Text, View } from "react-native";
+import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
@@ -67,12 +67,9 @@ const ContactInfo = ({ navigation, route }) => {
             }
           })
           .catch((error) => {
-            // If the response data contains an error, set the Formik errors
+            // If the response data contains an error
             if (error.response && error.response.data.error) {
-              setErrors({
-                email: "Credentials in use.",
-                phoneNumber: "Credentials in use.",
-              });
+              Alert.alert("Error", error.response.data.error);
             } else {
               // Handle other errors here. For example, you could show an error message:
               console.error("There was an error!", error);
