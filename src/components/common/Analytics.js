@@ -29,8 +29,10 @@ const Analytics = (props) => {
   const userType = useUserType();
 
   useFocusEffect(() => {
-    console.log("userID: ", userID);
-    console.log("userType: ", userType);
+    if (userID !== null && userType !== null) {
+      console.log("userType", userType);
+      console.log("userID", userID);
+    }
   });
 
   return (
