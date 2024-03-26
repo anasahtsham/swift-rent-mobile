@@ -8,6 +8,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import { BASE_URL, buttonWidthSmaller } from "../../constants";
+import { saveUserID, saveUserType } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { setUpPasswordSchema } from "../../helpers/validation/ValidationSchemas";
@@ -60,6 +61,8 @@ const SetUpPassword = ({ navigation, route }) => {
         axios
           .post(`${BASE_URL}/api/auth/register`, data)
           .then((response) => {
+            saveUserID(response.data.userID.toString());
+            saveUserType(userType.toString());
             navigation.navigate("All Set Up", { userType: userType });
           })
           .catch((error) => {

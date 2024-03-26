@@ -6,6 +6,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import { BASE_URL, buttonWidthMedium } from "../../constants";
+import { saveUserID, saveUserType } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
@@ -45,9 +46,6 @@ const RegisterAs = ({ navigation, route }) => {
         userType = "";
     }
 
-    console.log("userID: ", userID);
-    console.log("userType: ", userType);
-
     // Prepare the data to send to the API
     const data = {
       userID: userID,
@@ -58,6 +56,8 @@ const RegisterAs = ({ navigation, route }) => {
     axios
       .post(`${BASE_URL}/api/auth/register-alternate-role`, data)
       .then((response) => {
+        saveUserID(userID.toString());
+        saveUserType(userType.toString());
         // Handle the response here. For example, you could navigate to the next screen:
         navigation.dispatch(
           CommonActions.reset({

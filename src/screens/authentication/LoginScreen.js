@@ -15,6 +15,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import { BASE_URL, buttonWidthSmall } from "../../constants";
+import { saveUserID, saveUserType } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -75,6 +76,7 @@ const LoginScreen = ({ navigation, route }) => {
               }
             });
         } else {
+          // If the login is not part of the registration process
           // Prepare the data to send to the API
 
           const data = {
@@ -94,10 +96,16 @@ const LoginScreen = ({ navigation, route }) => {
 
                 if (trueRoles.length === 1) {
                   if (isOwner) {
+                    saveUserID(response.data.userID.toString());
+                    saveUserType("owner");
                     navigation.navigate("Owner Navigator");
                   } else if (isManager) {
+                    saveUserID(response.data.userID.toString());
+                    saveUserType("manager");
                     navigation.navigate("Manager Navigator");
                   } else if (isTenant) {
+                    saveUserID(response.data.userID.toString());
+                    saveUserType("tenant");
                     navigation.navigate("Tenant Navigator");
                   }
                 } else {

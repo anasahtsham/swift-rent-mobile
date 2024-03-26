@@ -5,6 +5,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import { buttonWidthMedium } from "../../constants";
+import { saveUserID, saveUserType } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
@@ -16,6 +17,23 @@ const LoginAs = ({ navigation, route }) => {
   const languages = useLanguages();
 
   const handlePress = (destinationScreen) => {
+    let userType;
+    switch (destinationScreen) {
+      case "Owner Navigator":
+        userType = "owner";
+        break;
+      case "Manager Navigator":
+        userType = "manager";
+        break;
+      case "Tenant Navigator":
+        userType = "tenant";
+        break;
+      default:
+        userType = "";
+    }
+
+    saveUserID(userID.toString());
+    saveUserType(userType);
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
