@@ -8,6 +8,16 @@ import AnalyticsButton from "./buttons/AnalyticsButton";
 import AnalyticsHeader from "./headers/AnalyticsHeader";
 
 const Analytics = (props) => {
+  const userID = useUserID();
+  const userType = useUserType();
+
+  useFocusEffect(() => {
+    if (userID !== null && userType !== null) {
+      console.log("userType", userType);
+      console.log("userID", userID);
+    }
+  });
+
   const navigation = useNavigation();
   const colors = useColorsOnFocus();
 
@@ -24,16 +34,6 @@ const Analytics = (props) => {
       navigation={navigation}
     />
   );
-
-  const userID = useUserID();
-  const userType = useUserType();
-
-  useFocusEffect(() => {
-    if (userID !== null && userType !== null) {
-      console.log("userType", userType);
-      console.log("userID", userID);
-    }
-  });
 
   return (
     <SafeAreaView
