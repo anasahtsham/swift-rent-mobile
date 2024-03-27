@@ -250,11 +250,11 @@ const AddProperty = ({ navigation }) => {
                     <DropDownPicker
                       {...dropdownStyles}
                       searchable={true}
-                      searchPlaceholder="Search Sub Area"
+                      searchPlaceholder="Search Area"
                       listParentLabelStyle={{
                         fontWeight: "bold",
                       }}
-                      categorySelectable={false}
+                      categorySelectable={valueCity === 1 ? false : true}
                       theme={colors.dropDownTheme}
                       zIndex={3000}
                       zIndexInverse={2000}
@@ -265,7 +265,7 @@ const AddProperty = ({ navigation }) => {
                       setOpen={setOpenArea}
                       setValue={setValueArea}
                       setItems={setItemsArea}
-                      placeholder="Sub Area"
+                      placeholder="Area"
                     />
                   </View>
                 )}

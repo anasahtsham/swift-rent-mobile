@@ -6,6 +6,16 @@ import { formatNumber } from "./../../../helpers/index";
 
 export const PropertiesButton = (props) => {
   const colors = props.colors;
+  function formatPropertyStatus(status) {
+    switch (status) {
+      case "V":
+        return "Vacant";
+      case "R":
+        return "Rented";
+      default:
+        return status;
+    }
+  }
   return (
     <TouchableOpacity
       onPress={() => {
@@ -167,6 +177,26 @@ export const PropertiesButton = (props) => {
               ]}
             >
               {props.rentStatus}
+            </Text>
+          </View>
+        )}
+        {!!props.propertystatus && (
+          <View style={{ flexDirection: "row", marginTop: 10 }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Status:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontBold,
+                {
+                  color:
+                    props.propertystatus === "R"
+                      ? colors.textGreen
+                      : colors.textRed,
+                },
+              ]}
+            >
+              {formatPropertyStatus(props.propertystatus)}
             </Text>
           </View>
         )}

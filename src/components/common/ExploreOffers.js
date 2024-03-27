@@ -31,17 +31,18 @@ const ExploreOffers = ({ navigation }) => {
     { label: "Acquiring Tenant", value: "acquiring_tenant" },
     { label: "Caretaking", value: "caretaking" },
     { label: "Leasing Property", value: "leasing_property" },
+    { label: "All Purposes", value: "all_purposes" },
   ]);
 
   // dropdown functions
   const onCityOpen = useCallback(() => {
     setOpenPurpose(false);
-    setHeaderHeight(220);
+    setHeaderHeight(260);
   }, []);
 
   const onPurposeOpen = useCallback(() => {
     setOpenCity(false);
-    setHeaderHeight(290);
+    setHeaderHeight(340);
   }, []);
 
   const onCityClose = useCallback(() => {
@@ -87,25 +88,33 @@ const ExploreOffers = ({ navigation }) => {
   useEffect(() => {
     let newData = originalData;
 
-    if (valueCity) {
-      newData = newData.filter((item) =>
-        item.address.includes(
-          valueCity === "islamabad" ? "Islamabad" : "Rawalpindi"
-        )
-      );
+    if (valueCity === "islamabad") {
+      newData = newData.filter((item) => item.address.includes("Islamabad"));
+    }
+    if (valueCity === "rawalpindi") {
+      newData = newData.filter((item) => item.address.includes("Rawalpindi"));
+    }
+    if (valueCity === "all_cities") {
+      newData = originalData;
     }
 
-    if (valuePurpose) {
+    if (valuePurpose === "acquiring_tenant") {
       newData = newData.filter((item) => {
-        return (
-          item.purpose ===
-          (valuePurpose === "acquiring_tenant"
-            ? "Acquiring Tenant"
-            : valuePurpose === "caretaking"
-            ? "Caretaking"
-            : "Leasing Property")
-        );
+        return item.purpose === "Acquiring Tenant";
       });
+    }
+    if (valuePurpose === "caretaking") {
+      newData = newData.filter((item) => {
+        return item.purpose === "Caretaking";
+      });
+    }
+    if (valuePurpose === "leasing_property") {
+      newData = newData.filter((item) => {
+        return item.purpose === "Leasing Property";
+      });
+    }
+    if (valuePurpose === "all_purposes") {
+      newData = originalData;
     }
 
     setFilteredData(newData);

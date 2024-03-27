@@ -1,7 +1,8 @@
-// export const cityData = [
-//   { label: "Islamabad", value: "islamabad" },
-//   { label: "Rawalpindi", value: "rawalpindi" },
-// ];
+export const cityData = [
+  { label: "Islamabad", value: "islamabad" },
+  { label: "Rawalpindi", value: "rawalpindi" },
+  { label: "All Cities", value: "all_cities" },
+];
 
 // export const propertyTypeData = [
 //   { label: "Residential Homes", value: "residential_homes" },

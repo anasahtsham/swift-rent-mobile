@@ -22,6 +22,7 @@ const Properties = (props) => {
       address={data.address}
       income={data.income}
       outcome={data.outcome}
+      propertystatus={data.propertystatus}
       status={data.status}
       manager={data.manager}
       tenant={data.tenant}
