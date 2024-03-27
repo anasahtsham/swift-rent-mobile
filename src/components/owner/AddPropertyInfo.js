@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Formik } from "formik";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -12,14 +13,17 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as yup from "yup";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { buttonWidthMedium } from "../../constants";
+import { BASE_URL, buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
+import { useUserID } from "../../helpers/SetUserID";
 import ButtonGrey from "../common/buttons/ButtonGrey";
 import Checkbox from "../common/checkboxes/Checkbox";
 import InputField from "../common/input_fields/InputField";
 import {
   agricultureCheckboxes,
   agricultureFieldTypes,
+  apartmentCheckboxes,
+  apartmentFieldTypes,
   buildingCheckboxes,
   buildingFieldTypes,
   checkboxIcons,
@@ -28,8 +32,6 @@ import {
   factoryCheckboxes,
   factoryFieldTypes,
   fieldIcons,
-  flatCheckboxes,
-  flatFieldTypes,
   housesCheckboxes,
   housesFieldTypes,
   industrialCheckboxes,
@@ -51,16 +53,23 @@ import {
 let fieldNames = [];
 
 const AddPropertyInfo = ({ navigation, route }) => {
+  const userID = useUserID();
+
   const {
-    city,
-    subArea,
+    areaID,
+    propertySubTypeID,
     street,
     building,
-    propertyType,
     propertyTypeLabel,
-    propertySubType,
     propertySubTypeLabel,
   } = route.params;
+
+  // console.log("areaID: ", areaID);
+  // console.log("propertySubTypeID: ", propertySubTypeID);
+  // console.log("street: ", street);
+  // console.log("building: ", building);
+  // console.log("propertyTypeLabel: ", propertyTypeLabel);
+  // console.log("propertySubTypeLabel: ", propertySubTypeLabel);
 
   const colors = useColors();
   useEffect(() => {
@@ -104,9 +113,9 @@ const AddPropertyInfo = ({ navigation, route }) => {
     useState(null);
   const [itemsWaterAvailabilityDropdown, setItemsWaterAvailabilityDropdown] =
     useState([
-      { label: "Boring", value: "boring" },
-      { label: "Water Truck", value: "water_truck" },
-      { label: "Water Supply", value: "water_supply" },
+      { label: "Boring", value: "B" },
+      { label: "Water Truck", value: "T" },
+      { label: "Water Supply", value: "S" },
     ]);
 
   const [errorDropdowns, setErrorDropdowns] = useState(false);
@@ -140,56 +149,56 @@ const AddPropertyInfo = ({ navigation, route }) => {
 
   let checkboxes = [];
 
-  switch (propertySubType) {
-    case "house":
+  switch (propertySubTypeID) {
+    case 1:
       checkboxes = housesCheckboxes;
       fieldNames = housesFieldTypes;
       break;
-    case "upper_floor":
+    case 2:
       checkboxes = upperCheckboxes;
       fieldNames = upperFieldTypes;
       break;
-    case "lower_floor":
+    case 3:
       checkboxes = lowerCheckboxes;
       fieldNames = lowerFieldTypes;
       break;
-    case "flat":
-      checkboxes = flatCheckboxes;
-      fieldNames = flatFieldTypes;
+    case 4:
+      checkboxes = apartmentCheckboxes;
+      fieldNames = apartmentFieldTypes;
       break;
-    case "room":
+    case 5:
       checkboxes = roomCheckboxes;
       fieldNames = roomFieldTypes;
       break;
-    case "commercial":
+    case 6:
       checkboxes = commercialCheckboxes;
       fieldNames = commercialFieldTypes;
       break;
-    case "agriculture":
+    case 7:
       checkboxes = agricultureCheckboxes;
       fieldNames = agricultureFieldTypes;
       break;
-    case "industrial":
+    case 8:
       checkboxes = industrialCheckboxes;
       fieldNames = industrialFieldTypes;
       break;
-    case "office":
+    case 9:
       checkboxes = officeCheckboxes;
       fieldNames = officeFieldTypes;
       break;
-    case "shop":
+    case 10:
       checkboxes = shopCheckboxes;
       fieldNames = shopFieldTypes;
       break;
-    case "building":
+    case 11:
       checkboxes = buildingCheckboxes;
       fieldNames = buildingFieldTypes;
       break;
-    case "warehouse":
+    case 12:
       checkboxes = warehouseCheckboxes;
       fieldNames = warehouseFieldTypes;
       break;
-    case "factory":
+    case 13:
       checkboxes = factoryCheckboxes;
       fieldNames = factoryFieldTypes;
       break;
@@ -230,27 +239,58 @@ const AddPropertyInfo = ({ navigation, route }) => {
       onSubmit={(values) => {
         // check if all dropdowns are set
         if (!!valueWaterAvailabilityDropdown) {
-          console.log("\n\n");
+          // console.log("\n\n");
 
-          // Log each value of fieldNames
-          fieldNames.map((field) => {
-            console.log(field.value, values[field.value]);
-          });
+          // // Log each value of fieldNames
+          // fieldNames.map((field) => {
+          //   console.log(field.value, values[field.value]);
+          // });
 
-          console.log("\n");
+          // console.log("\n");
 
-          // Log each value of checkboxes
-          checkboxes.map((checkbox) => {
-            console.log(checkbox.stateKey, checkboxStates[checkbox.stateKey]);
-          });
-          navigation.navigate("Add Property Info", {
-            city: city,
-            subArea: subArea,
-            street: street,
-            building: building,
-            propertyType: propertyType,
-            propertySubType: propertySubType,
-          });
+          // // Log each value of checkboxes
+          // checkboxes.map((checkbox) => {
+          //   console.log(checkbox.stateKey, checkboxStates[checkbox.stateKey]);
+          // });
+
+          // Create an object that contains all the form data
+          const formData = {
+            userID: userID.toString(),
+            areaID: areaID.toString(),
+            propertySubTypeID: propertySubTypeID.toString(),
+            street: street.toString(),
+            building: building.toString(),
+            ...Object.fromEntries(
+              Object.entries(values).map(([key, value]) => [
+                key,
+                value === ""
+                  ? "0"
+                  : isNaN(parseInt(value))
+                  ? value
+                  : parseInt(value).toString(),
+              ])
+            ),
+            ...Object.fromEntries(
+              Object.entries(checkboxStates).map(([key, value]) => [
+                key,
+                value.toString(),
+              ])
+            ),
+            WaterAvailabilityType: valueWaterAvailabilityDropdown,
+          };
+
+          console.log(formData);
+
+          // Send a POST request to the API endpoint with the form data
+          axios
+            .post(`${BASE_URL}/api/owner/add-property`, formData)
+            .then((response) => {
+              console.log(response.data);
+              navigation.navigate("Property Menu");
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         } else {
           setErrorDropdowns(true);
         }

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Formik } from "formik";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -11,14 +12,8 @@ import {
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { buttonWidthMedium } from "../../constants";
+import { BASE_URL, buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import {
-  cityData,
-  propertySubTypeData,
-  propertyTypeData,
-  subSectorData,
-} from "../../helpers/data/PropertyInfoData";
 import { addPropertySchema } from "../../helpers/validation/ValidationSchemas";
 import ButtonGrey from "../common/buttons/ButtonGrey";
 import InputField from "../common/input_fields/InputField";
@@ -48,19 +43,37 @@ const AddProperty = ({ navigation }) => {
 
   const [openCity, setOpenCity] = useState(false);
   const [valueCity, setValueCity] = useState(null);
-  const [itemsCity, setItemsCity] = useState(cityData);
+  const [itemsCity, setItemsCity] = useState([]);
 
-  const [openSubArea, setOpenSubArea] = useState(false);
-  const [valueSubArea, setValueSubArea] = useState(null);
-  const [itemsSubArea, setItemsSubArea] = useState(subSectorData);
+  const [openArea, setOpenArea] = useState(false);
+  const [valueArea, setValueArea] = useState(null);
+  const [originalItemsArea, setOriginalItemsArea] = useState([]);
+  const [itemsArea, setItemsArea] = useState([]);
 
   const [openPropertyType, setOpenPropertyType] = useState(false);
   const [valuePropertyType, setValuePropertyType] = useState(null);
-  const [itemsPropertyType, setItemsPropertyType] = useState(propertyTypeData);
+  const [itemsPropertyType, setItemsPropertyType] = useState([]);
 
   const [openPropertySubType, setOpenPropertySubType] = useState(false);
   const [valuePropertySubType, setValuePropertySubType] = useState(null);
+  const [originalItemsPropertySubType, setOriginalItemsPropertySubType] =
+    useState({});
   const [itemsPropertySubType, setItemsPropertySubType] = useState([]);
+
+  // populate dropdowns with data from the server
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/api/owner/fetch-property-data`)
+      .then((response) => {
+        const data = response.data;
+        setItemsCity(data.cities);
+        setItemsArea(data.areas);
+        setOriginalItemsArea(data.areas); // Store the original data
+        setItemsPropertyType(data.propertyTypes);
+        setOriginalItemsPropertySubType(data.propertySubTypes); // Store the original data
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
 
   const [errorDropdowns, setErrorDropdowns] = useState(false);
 
@@ -70,39 +83,37 @@ const AddProperty = ({ navigation }) => {
   useEffect(() => {
     if (
       !!valueCity &&
-      !!valueSubArea &&
+      !!valueArea &&
       !!valuePropertyType &&
       !!valuePropertySubType
     ) {
       setErrorDropdowns(false);
     }
     if (valuePropertyType) {
-      switch (valuePropertyType) {
-        case "residential_homes":
-          setItemsPropertySubType(propertySubTypeData.residential_homes);
-          break;
-        case "plots":
-          setItemsPropertySubType(propertySubTypeData.plots);
-          break;
-        case "commercial":
-          setItemsPropertySubType(propertySubTypeData.commercial);
-          break;
-        default:
-          setItemsPropertySubType([]);
-      }
+      setItemsPropertySubType(
+        originalItemsPropertySubType[valuePropertyType] || []
+      );
     } else {
       setItemsPropertySubType([]);
     }
-  }, [valuePropertyType, valueCity, valuePropertySubType, valueSubArea]);
+    if (valueCity) {
+      const cityAreas = originalItemsArea.filter(
+        (area) => area.cityID === valueCity
+      );
+      setItemsArea(cityAreas);
+    } else {
+      setItemsArea([]);
+    }
+  }, [valueCity, valueArea, valuePropertyType, valuePropertySubType]);
 
   //close all other dropdowns when one is opened
   const onCityOpen = useCallback(() => {
-    setOpenSubArea(false);
+    setOpenArea(false);
     setOpenPropertyType(false);
     setOpenPropertySubType(false);
   }, []);
 
-  const onSubAreaOpen = useCallback(() => {
+  const onAreaOpen = useCallback(() => {
     setOpenCity(false);
     setOpenPropertyType(false);
     setOpenPropertySubType(false);
@@ -110,13 +121,13 @@ const AddProperty = ({ navigation }) => {
 
   const onPropertyTypeOpen = useCallback(() => {
     setOpenCity(false);
-    setOpenSubArea(false);
+    setOpenArea(false);
     setOpenPropertySubType(false);
   }, []);
 
   const onPropertySubTypeOpen = useCallback(() => {
     setOpenCity(false);
-    setOpenSubArea(false);
+    setOpenArea(false);
     setOpenPropertyType(false);
   }, []);
 
@@ -133,6 +144,15 @@ const AddProperty = ({ navigation }) => {
     return () => backHandler.remove();
   }, []);
 
+  const getLabel = (items, value) => {
+    return items.reduce((acc, item) => {
+      if (item.value === value) {
+        return item.label;
+      }
+      return acc;
+    }, "");
+  };
+
   return (
     <Formik
       initialValues={{
@@ -141,35 +161,29 @@ const AddProperty = ({ navigation }) => {
       }}
       validationSchema={addPropertySchema}
       onSubmit={(values) => {
-        const selectedPropertyType = propertyTypeData.find(
-          (item) => item.value === valuePropertyType
-        );
-        const propertyTypeLabel = selectedPropertyType
-          ? selectedPropertyType.label
-          : "No match found";
-        const selectedPropertySubType = propertySubTypeData[
+        const filteredPropertyTypeLabel = getLabel(
+          itemsPropertyType,
           valuePropertyType
-        ].find((item) => item.value === valuePropertySubType);
-        const propertySubTypeLabel = selectedPropertySubType
-          ? selectedPropertySubType.label
-          : "No match found";
+        );
+        const filteredPropertySubTypeLabel = getLabel(
+          itemsPropertySubType,
+          valuePropertySubType
+        );
 
         // check if all dropdowns are set
         if (
           !!valueCity &&
-          !!valueSubArea &&
+          !!valueArea &&
           !!valuePropertyType &&
           !!valuePropertySubType
         ) {
           navigation.navigate("Add Property Info", {
-            city: valueCity,
-            subArea: valueSubArea,
+            areaID: valueArea,
+            propertySubTypeID: valuePropertySubType,
             street: values.street,
             building: values.building,
-            propertyType: valuePropertyType,
-            propertySubType: valuePropertySubType,
-            propertyTypeLabel: propertyTypeLabel,
-            propertySubTypeLabel: propertySubTypeLabel,
+            propertyTypeLabel: filteredPropertyTypeLabel,
+            propertySubTypeLabel: filteredPropertySubTypeLabel,
           });
         } else {
           setErrorDropdowns(true);
@@ -188,7 +202,7 @@ const AddProperty = ({ navigation }) => {
           <TouchableWithoutFeedback
             onPress={() => {
               setOpenCity(false);
-              setOpenSubArea(false);
+              setOpenArea(false);
               setOpenPropertyType(false);
               setOpenPropertySubType(false);
               Keyboard.dismiss();
@@ -231,28 +245,30 @@ const AddProperty = ({ navigation }) => {
                     placeholder="City"
                   />
                 </View>
-                <View style={styles.dropdownContainer}>
-                  <DropDownPicker
-                    {...dropdownStyles}
-                    searchable={true}
-                    searchPlaceholder="Search Sub Area"
-                    listParentLabelStyle={{
-                      fontWeight: "bold",
-                    }}
-                    categorySelectable={false}
-                    theme={colors.dropDownTheme}
-                    zIndex={3000}
-                    zIndexInverse={2000}
-                    open={openSubArea}
-                    value={valueSubArea}
-                    items={itemsSubArea}
-                    onOpen={onSubAreaOpen}
-                    setOpen={setOpenSubArea}
-                    setValue={setValueSubArea}
-                    setItems={setItemsSubArea}
-                    placeholder="Sub Area"
-                  />
-                </View>
+                {!!valueCity && (
+                  <View style={styles.dropdownContainer}>
+                    <DropDownPicker
+                      {...dropdownStyles}
+                      searchable={true}
+                      searchPlaceholder="Search Sub Area"
+                      listParentLabelStyle={{
+                        fontWeight: "bold",
+                      }}
+                      categorySelectable={false}
+                      theme={colors.dropDownTheme}
+                      zIndex={3000}
+                      zIndexInverse={2000}
+                      open={openArea}
+                      value={valueArea}
+                      items={itemsArea}
+                      onOpen={onAreaOpen}
+                      setOpen={setOpenArea}
+                      setValue={setValueArea}
+                      setItems={setItemsArea}
+                      placeholder="Sub Area"
+                    />
+                  </View>
+                )}
 
                 <View style={styles.dropdownContainer}>
                   <DropDownPicker
@@ -324,7 +340,7 @@ const AddProperty = ({ navigation }) => {
                       returnKeyType="next"
                       onPressIn={() => {
                         setOpenCity(false);
-                        setOpenSubArea(false);
+                        setOpenArea(false);
                         setOpenPropertyType(false);
                         setOpenPropertySubType(false);
                       }}
@@ -345,7 +361,7 @@ const AddProperty = ({ navigation }) => {
                       errorText={touched.building ? errors.building : ""}
                       onPressIn={() => {
                         setOpenCity(false);
-                        setOpenSubArea(false);
+                        setOpenArea(false);
                         setOpenPropertyType(false);
                         setOpenPropertySubType(false);
                       }}
@@ -363,7 +379,7 @@ const AddProperty = ({ navigation }) => {
                 onPress={() => {
                   if (
                     !!valueCity &&
-                    !!valueSubArea &&
+                    !!valueArea &&
                     !!valuePropertyType &&
                     !!valuePropertySubType
                   ) {

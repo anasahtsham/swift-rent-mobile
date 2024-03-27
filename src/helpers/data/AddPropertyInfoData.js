@@ -3,7 +3,7 @@
 import { icons } from "../ImageImports";
 
 export const fieldIcons = {
-  area: icons.areaIcon,
+  areaSqft: icons.areaSqftIcon,
   height: icons.heightIcon,
   apartments: icons.apartments,
   balcony: icons.balconyIcon,
@@ -44,126 +44,132 @@ export const checkboxIcons = {
 // residential homes
 
 export const housesFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Bedrooms", value: "bedrooms" },
-  { label: "Floors", value: "floors" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "lounges" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Balconies", value: "noOfBalcony" },
+  { label: "No. Of Bedrooms", value: "noOfBedroom" },
+  { label: "No. Of Floors", value: "noOfFloor" },
+  { label: "No. Of Kitchens", value: "noOfKitchen" },
+  { label: "No. Of Lounges", value: "noOfLounge" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
 ];
 
 export const upperFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Bedrooms", value: "bedrooms" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "lounges" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Balconies", value: "noOfBalcony" },
+  { label: "No. Of Bedrooms", value: "noOfBedroom" },
+  { label: "No. Of Kitchens", value: "noOfKitchen" },
+  { label: "No. Of Lounges", value: "noOfLounge" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
 ];
 
 export const lowerFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Bedrooms", value: "bedrooms" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "lounges" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Balconies", value: "noOfBalcony" },
+  { label: "No. Of Bedrooms", value: "noOfBedroom" },
+  { label: "No. Of Kitchens", value: "noOfKitchen" },
+  { label: "No. Of Lounges", value: "noOfLounge" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
 ];
 
-export const flatFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Bedrooms", value: "bedrooms" },
-  { label: "Floors", value: "floors" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "lounges" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+export const apartmentFieldTypes = [
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Balconies", value: "noOfBalcony" },
+  { label: "No. Of Bedrooms", value: "noOfBedroom" },
+  { label: "No. Of Floors", value: "noOfFloor" },
+  { label: "No. Of Kitchens", value: "noOfKitchen" },
+  { label: "No. Of Lounges", value: "noOfLounge" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
 ];
 
 export const roomFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Bedrooms", value: "bedrooms" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Balconies", value: "noOfBalcony" },
+  { label: "No. Of Bedrooms", value: "noOfBedroom" },
+  { label: "No. Of Kitchens", value: "noOfKitchen" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
 ];
 
 // plots
 
-export const commercialFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
+export const commercialFieldTypes = [
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+];
 
-export const agricultureFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
+export const agricultureFieldTypes = [
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+];
 
-export const industrialFieldTypes = [{ label: "Area Sq. Ft.", value: "area" }];
+export const industrialFieldTypes = [
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+];
 
 //commercial
 
 export const officeFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Floors", value: "floors" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Lounges", value: "lounges" },
-  { label: "Conference Rooms", value: "conferenceRooms" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Balconies", value: "noOfBalcony" },
+  { label: "No. Of Floors", value: "noOfFloor" },
+  { label: "No. Of Kitchens", value: "noOfKitchen" },
+  { label: "No. Of Lounges", value: "noOfLounge" },
+  { label: "No. Of Conference Rooms", value: "noOfConferenceRoom" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
 ];
 
 export const shopFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Balcony", value: "balcony" },
-  { label: "Floors", value: "floors" },
-  { label: "Kitchens", value: "kitchens" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Balconies", value: "noOfBalcony" },
+  { label: "No. Of Floors", value: "noOfFloor" },
+  { label: "No. Of Kitchens", value: "noOfKitchen" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
   { label: "Height", value: "height" },
 ];
 
 export const buildingFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Apartments", value: "apartments" },
-  { label: "Floors", value: "floors" },
-  { label: "Offices", value: "offices" },
-  { label: "Shops", value: "shops" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Apartments", value: "noOfApartment" },
+  { label: "No. Of Floors", value: "noOfFloor" },
+  { label: "No. Of Offices", value: "noOfOffice" },
+  { label: "No. Of Shops", value: "noOfShops" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
   { label: "Height", value: "height" },
 ];
 
 export const warehouseFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
   { label: "Height", value: "height" },
 ];
 
 export const factoryFieldTypes = [
-  { label: "Area Sq. Ft.", value: "area" },
-  { label: "Kitchen", value: "kitchen" },
-  { label: "Store Rooms", value: "storeRooms" },
-  { label: "Toilets", value: "toilets" },
+  { label: "Area Sq. Ft.", value: "areaSqft" },
+  { label: "No. Of Kitchen", value: "noOfKitchen" },
+  { label: "No. Of Store Rooms", value: "noOfStoreRoom" },
+  { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
   { label: "Height", value: "height" },
@@ -181,7 +187,7 @@ export const housesCheckboxes = [
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   {
     label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
+    stateKey: "hasSeperateMeter",
   },
   { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Furnished", stateKey: "isFurnished" },
@@ -195,7 +201,7 @@ export const upperCheckboxes = [
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   {
     label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
+    stateKey: "hasSeperateMeter",
   },
   { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Furnished", stateKey: "isFurnished" },
@@ -209,13 +215,13 @@ export const lowerCheckboxes = [
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   {
     label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
+    stateKey: "hasSeperateMeter",
   },
   { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Furnished", stateKey: "isFurnished" },
 ];
 
-export const flatCheckboxes = [
+export const apartmentCheckboxes = [
   { label: "Garden", stateKey: "hasGarden" },
   { label: "Electricity", stateKey: "hasElectricity" },
   { label: "Gas", stateKey: "hasGas" },
@@ -223,18 +229,18 @@ export const flatCheckboxes = [
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   {
     label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
+    stateKey: "hasSeperateMeter",
   },
   { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Furnished", stateKey: "isFurnished" },
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
   {
     label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
+    stateKey: "hasSeperateMeter",
   },
   { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Wi-Fi", stateKey: "hasWiFi" },
-  { label: "Air Conditioned", stateKey: "hasAirConditioned" },
+  { label: "Air Conditioned", stateKey: "isAirConditioned" },
   { label: "Furnished", stateKey: "isFurnished" },
   { label: "Shared", stateKey: "isShared" },
 ];
@@ -247,16 +253,16 @@ export const roomCheckboxes = [
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   {
     label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
+    stateKey: "hasSeperateMeter",
   },
   { label: "Furnished", stateKey: "isFurnished" },
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
   {
     label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateElectricityMeter",
+    stateKey: "hasSeperateMeter",
   },
   { label: "Wi-Fi", stateKey: "hasWiFi" },
-  { label: "Air Conditioned", stateKey: "hasAirConditioned" },
+  { label: "Air Conditioned", stateKey: "isAirConditioned" },
   { label: "Furnished", stateKey: "isFurnished" },
   { label: "Shared", stateKey: "isShared" },
 ];
@@ -291,7 +297,7 @@ export const officeCheckboxes = [
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
   { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Wi-Fi", stateKey: "hasWiFi" },
-  { label: "Air Conditioned", stateKey: "hasAirConditioned" },
+  { label: "Air Conditioned", stateKey: "isAirConditioned" },
   { label: "Furnished", stateKey: "isFurnished" },
   { label: "Shared", stateKey: "isShared" },
 ];
@@ -304,7 +310,7 @@ export const shopCheckboxes = [
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
   { label: "Wi-Fi", stateKey: "hasWiFi" },
-  { label: "Air Conditioned", stateKey: "hasAirConditioned" },
+  { label: "Air Conditioned", stateKey: "isAirConditioned" },
 ];
 
 export const buildingCheckboxes = [
@@ -323,7 +329,7 @@ export const warehouseCheckboxes = [
   { label: "Lift", stateKey: "hasLift" },
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
-  { label: "Air Conditioned", stateKey: "hasAirConditioned" },
+  { label: "Air Conditioned", stateKey: "isAirConditioned" },
 ];
 
 export const factoryCheckboxes = [
@@ -332,5 +338,5 @@ export const factoryCheckboxes = [
   { label: "Lift", stateKey: "hasLift" },
   { label: "Roof Access", stateKey: "hasRoofAccess" },
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
-  { label: "Air Conditioned", stateKey: "hasAirConditioned" },
+  { label: "Air Conditioned", stateKey: "isAirConditioned" },
 ];
