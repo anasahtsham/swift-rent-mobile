@@ -21,7 +21,6 @@ export const PropertiesButton = (props) => {
             width: "100%",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: 10,
           }}
         >
           <Text
@@ -38,6 +37,7 @@ export const PropertiesButton = (props) => {
             source={icons.externalLink}
           />
         </View>
+
         {!!props.dueDate && (
           <>
             <View
@@ -71,7 +71,8 @@ export const PropertiesButton = (props) => {
             </View>
           </>
         )}
-        {!props.dueDate && (
+
+        {/* {!props.dueDate && (
           <View
             style={{
               flexDirection: "row",
@@ -113,7 +114,7 @@ export const PropertiesButton = (props) => {
               {props.status}
             </Text>
           </View>
-        )}
+        )} */}
 
         {!!props.owner && (
           <View style={{ flexDirection: "row", marginTop: 10 }}>

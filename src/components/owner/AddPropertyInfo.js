@@ -286,7 +286,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
             .post(`${BASE_URL}/api/owner/add-property`, formData)
             .then((response) => {
               console.log(response.data);
-              navigation.navigate("Property Menu");
+              navigation.pop(2);
             })
             .catch((error) => {
               console.error(error);

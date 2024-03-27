@@ -1,48 +1,45 @@
-export const propertiesData = [
-  {
-    id: 1,
-    address: "325, Street 23, G-10/4, Islamabad",
-    income: "32000",
-    outcome: "16000",
-    status: "Vacant",
-    manager: "Aisha Malik",
-    tenant: "Noor Ahmed",
-    rentStatus: "Pending",
-  },
-  {
-    id: 2,
-    address: "772, Street 14, G-11/1, Islamabad",
-    income: "18000",
-    outcome: "10000",
-    status: "On-Rent",
-    manager: "Aisha Malik",
-    tenant: "Noor Ahmed",
-  },
-  {
-    id: 3,
-    address: "489, Street 45, G-11/1, Rawalpindi",
-    income: "25000",
-    outcome: "12000",
-    status: "Vacant",
-    manager: "Ibrahim Khan",
-  },
-  {
-    id: 4,
-    address: "211, Street 36, G-10/4, Islamabad",
-    income: "48000",
-    outcome: "23000",
-    status: "On-Rent",
-  },
-  {
-    id: 5,
-    address: "548, Street 8, G-11/1, Islamabad",
-    income: "41000",
-    outcome: "20000",
-    status: "Vacant",
-    manager: "Ali Ahmed",
-  },
-  // Add more properties data here...
-];
+// export const propertiesData = [
+//   {
+//     id: 1,
+//     address: "325, Street 23, G-10/4, Islamabad",
+//     manager: "Aisha Malik",
+//     tenant: "Noor Ahmed",
+//     rentStatus: "Pending",
+//   },
+//   {
+//     id: 2,
+//     address: "772, Street 14, G-11/1, Islamabad",
+//     income: "18000",
+//     outcome: "10000",
+//     status: "On-Rent",
+//     manager: "Aisha Malik",
+//     tenant: "Noor Ahmed",
+//   },
+//   {
+//     id: 3,
+//     address: "489, Street 45, G-11/1, Rawalpindi",
+//     income: "25000",
+//     outcome: "12000",
+//     status: "Vacant",
+//     manager: "Ibrahim Khan",
+//   },
+//   {
+//     id: 4,
+//     address: "211, Street 36, G-10/4, Islamabad",
+//     income: "48000",
+//     outcome: "23000",
+//     status: "On-Rent",
+//   },
+//   {
+//     id: 5,
+//     address: "548, Street 8, G-11/1, Islamabad",
+//     income: "41000",
+//     outcome: "20000",
+//     status: "Vacant",
+//     manager: "Ali Ahmed",
+//   },
+//   // Add more properties data here...
+// ];
 
 export const rentalsData = [
   {
