@@ -14,7 +14,8 @@ import { useColors } from "./../../helpers/SetColors";
 import { managerOffersData } from "./../../helpers/data/ManagerOffersData";
 import PropertyMenuButton from "./buttons/PropertyMenuButton";
 
-const PropertyMenu = () => {
+const PropertyMenu = ({ route }) => {
+  const { propertyAddress } = route.params;
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -69,7 +70,7 @@ const PropertyMenu = () => {
         flex: 1,
       }}
     >
-      <PropertyMenuHeader colors={colors} />
+      <PropertyMenuHeader propertyAddress={propertyAddress} colors={colors} />
       <ScrollView contentContainerStyle={{ alignItems: "center" }}>
         <Card title="Property Information" endText="Managed">
           <CardRow title="Registered On: " value="06-02-2024" />

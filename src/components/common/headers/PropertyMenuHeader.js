@@ -26,7 +26,7 @@ const PropertyMenuHeader = (props) => {
             marginBottom: 10,
           }}
         >
-          Property Adress
+          {props.propertyAddress}
         </Text>
         <View style={styles.inRow}>
           <Text style={[styles.topCardTopText, { color: colors.textPrimary }]}>
