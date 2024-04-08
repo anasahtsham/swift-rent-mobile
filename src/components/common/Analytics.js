@@ -1,4 +1,4 @@
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { useColorsOnFocus } from "../../helpers/SetColors";
@@ -11,12 +11,12 @@ const Analytics = (props) => {
   const userID = useUserID();
   const userType = useUserType();
 
-  useFocusEffect(() => {
-    if (userID !== null && userType !== null) {
-      console.log("userType", userType);
-      console.log("userID", userID);
-    }
-  });
+  // useFocusEffect(() => {
+  //   if (userID !== null && userType !== null) {
+  //     console.log("userType", userType);
+  //     console.log("userID", userID);
+  //   }
+  // });
 
   const navigation = useNavigation();
   const colors = useColorsOnFocus();
