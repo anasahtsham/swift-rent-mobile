@@ -1,16 +1,20 @@
+import axios from "axios";
 import { Formik } from "formik";
+import { md5 } from "js-md5";
 import React, { useEffect } from "react";
-import { BackHandler, StyleSheet, Text, View } from "react-native";
+import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import { buttonWidthSmall } from "../../constants";
+import { BASE_URL, buttonWidthSmall } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import { changePasswordSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
+import { useUserID } from "./../../helpers/SetUserID";
 
 const ChangePassword = ({ navigation }) => {
+  const userID = useUserID();
   const colors = useColors();
   const languages = useLanguages();
   useEffect(() => {
@@ -37,8 +41,30 @@ const ChangePassword = ({ navigation }) => {
         confirmPassword: "",
       }}
       validationSchema={changePasswordSchema}
-      onSubmit={() => {
-        navigation.navigate("Change Password");
+      onSubmit={async (values) => {
+        try {
+          const data = {
+            userID: userID,
+            oldPassword: md5(values.oldPassword),
+            newPassword: md5(values.password),
+          };
+
+          const response = await axios.post(
+            `${BASE_URL}/api/auth/change-password`,
+            data
+          );
+
+          if (response.status === 200) {
+            // Password changed successfully
+            Alert.alert("Password changed successfully");
+            navigation.goBack();
+          } else {
+            // Handle error
+            Alert.alert("Error changing password", response.data.error);
+          }
+        } catch (error) {
+          Alert.alert("Error changing password", error.toString());
+        }
       }}
     >
       {({
