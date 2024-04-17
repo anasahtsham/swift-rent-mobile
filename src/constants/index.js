@@ -5,4 +5,4 @@ export const buttonWidthMedium = "60%";
 export const buttonWidthSmall = "40%";
 export const buttonWidthSmaller = "30%";
 
-export const BASE_URL = "http://192.168.18.130:3000"; // The base URL for the API
+export const BASE_URL = "http://0.tcp.in.ngrok.io:11208"; // The base URL for the API
