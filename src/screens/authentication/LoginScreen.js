@@ -114,7 +114,7 @@ const LoginScreen = ({ navigation, route }) => {
                 }
               } else {
                 // Handle the case where success is false
-                console.log("Login unsuccessful");
+                Alert.alert("Login unsuccessful");
               }
             })
             .catch((error) => {
@@ -123,7 +123,7 @@ const LoginScreen = ({ navigation, route }) => {
                 Alert.alert("Error", error.response.data.error);
               } else {
                 // Handle other errors here. For example, you could show an error message:
-                console.error("There was an error!", error);
+                Alert.alert("Error", error.toString());
               }
             });
         }

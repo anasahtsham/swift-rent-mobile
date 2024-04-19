@@ -47,7 +47,7 @@ export default function App() {
   if (useCustomFonts()) {
     return (
       <NavigationContainer>
-        <StatusBar barStyle="light-content" />
+        <StatusBar style="light" backgroundColor="#000" />
         <Stack.Navigator
           screenOptions={{
             headerShown: false,

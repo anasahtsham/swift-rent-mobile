@@ -10,9 +10,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -21,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/icons/favicons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.swiftrent.app"
     },
     "web": {
       "favicon": "./src/assets/icons/favicons/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "431635b5-4731-45a8-a7c4-60cc2f913f42"
+      }
     }
   }
 }
