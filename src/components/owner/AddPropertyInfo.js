@@ -279,7 +279,9 @@ const AddPropertyInfo = ({ navigation, route }) => {
             WaterAvailabilityType: valueWaterAvailabilityDropdown,
           };
 
-          console.log(formData);
+          console.log(
+            JSON.stringify(formData, Object.keys(formData).sort(), 2)
+          );
 
           // Send a POST request to the API endpoint with the form data
           axios
