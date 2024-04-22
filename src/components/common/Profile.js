@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
+import { saveUserID, saveUserType } from "../../helpers";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import ProfileHeader from "./headers/ProfileHeader";
 
@@ -84,7 +85,11 @@ const Profile = (props) => {
               { backgroundColor: colors.backgroundPrimary },
             ]}
             containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Welcome Screen")}
+            onPress={() => {
+              saveUserID("");
+              saveUserType("");
+              navigation.navigate("Welcome Screen");
+            }}
           />
         </View>
         <View style={{ height: 60 }}></View>

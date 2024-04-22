@@ -3,20 +3,36 @@ import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
 import SwiftRentLogoLarge from "../components/common/images/SwiftRentLogoLarge";
 import { useColors } from "../helpers/SetColors";
+import { useUserID } from "./../helpers/SetUserID";
+import { useUserType } from "./../helpers/SetUserType";
 
 const SplashScreen = ({ navigation }) => {
   //set theme
   const colors = useColors();
 
+  const userID = useUserID();
+  const userType = useUserType();
+
   // timer to send off from splash screen
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace("Welcome Screen"); // Navigate to Welcome Screen after 3 seconds
+      if (userID === null) {
+        navigation.navigate("Welcome Screen");
+      }
+      if (userType === "owner") {
+        navigation.navigate("Owner Navigator");
+      }
+      if (userType === "manager") {
+        navigation.navigate("Manager Navigator");
+      }
+      if (userType === "tenant") {
+        navigation.navigate("Tenant Navigator");
+      }
     }, 3000); // where 1000 milliseconds = 1 second
 
     // Clear the timer to prevent memory leaks
     return () => clearTimeout(timer);
-  }, [navigation]);
+  }, [navigation, userID, userType]);
 
   return (
     <View
