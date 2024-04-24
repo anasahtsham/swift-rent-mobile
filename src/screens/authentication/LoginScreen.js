@@ -63,8 +63,16 @@ const LoginScreen = ({ navigation, route }) => {
           axios
             .post(`${BASE_URL}/api/auth/login`, data)
             .then((response) => {
-              // Pass the response data to the "Register As" screen as route parameters
-              navigation.navigate("Register As", response.data);
+              const { isOwner, isManager, isTenant } = response.data;
+
+              // Check if the user is registered as an owner, manager, and tenant
+              if (isOwner && isManager && isTenant) {
+                // If the user is registered as all three, navigate to the "Login As" screen
+                navigation.navigate("Login As", response.data);
+              } else {
+                // If not, navigate to the "Register As" screen
+                navigation.navigate("Register As", response.data);
+              }
             })
             .catch((error) => {
               // If the response data contains an error
