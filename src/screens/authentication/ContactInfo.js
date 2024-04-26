@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Formik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
@@ -18,6 +18,8 @@ const ContactInfo = ({ navigation, route }) => {
 
   const colors = useColors();
   const languages = useLanguages();
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const backAction = () => {
@@ -43,7 +45,8 @@ const ContactInfo = ({ navigation, route }) => {
         phoneNumber: "",
       }}
       validationSchema={contactInfoSchema}
-      onSubmit={(values, { setErrors }) => {
+      onSubmit={(values, {}) => {
+        setLoading(true);
         // Prepare the data to send to the API
         const data = {
           email: values.email,
@@ -74,6 +77,9 @@ const ContactInfo = ({ navigation, route }) => {
               // Handle other errors here. For example, you could show an error message:
               console.error("There was an error!", error);
             }
+          })
+          .finally(() => {
+            setLoading(false);
           });
       }}
     >
@@ -155,6 +161,7 @@ const ContactInfo = ({ navigation, route }) => {
                   navigation={navigation}
                 />
                 <ButtonGrey
+                  loading={loading}
                   width={buttonWidthSmaller}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}

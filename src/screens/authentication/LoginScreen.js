@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Formik } from "formik";
 import { md5 } from "js-md5";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   BackHandler,
@@ -26,6 +26,7 @@ const LoginScreen = ({ navigation, route }) => {
   const { newRegister } = route.params || {};
   const colors = useColors();
   const languages = useLanguages();
+  const [loading, setLoading] = useState(false);
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const emailOrPhoneRef = React.useRef();
@@ -52,6 +53,7 @@ const LoginScreen = ({ navigation, route }) => {
       }}
       validationSchema={loginSchema}
       onSubmit={(values) => {
+        setLoading(true);
         if (newRegister) {
           // Prepare the data to send to the API
           const data = {
@@ -82,7 +84,8 @@ const LoginScreen = ({ navigation, route }) => {
                 // Handle other errors here. For example, you could show an error message:
                 console.error("There was an error!", error);
               }
-            });
+            })
+            .finally(() => setLoading(false));
         } else {
           // If the login is not part of the registration process
           // Prepare the data to send to the API
@@ -133,7 +136,8 @@ const LoginScreen = ({ navigation, route }) => {
                 // Handle other errors here. For example, you could show an error message:
                 Alert.alert("Error", error.toString());
               }
-            });
+            })
+            .finally(() => setLoading(false));
         }
       }}
     >
@@ -211,6 +215,7 @@ const LoginScreen = ({ navigation, route }) => {
             </View>
 
             <ButtonGrey
+              loading={loading}
               width={buttonWidthSmall}
               fontSize={FontSizes.medium}
               buttonText={languages.login}

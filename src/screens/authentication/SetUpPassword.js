@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Formik } from "formik";
 import { md5 } from "js-md5";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
@@ -21,6 +21,8 @@ const SetUpPassword = ({ navigation, route }) => {
 
   const colors = useColors();
   const languages = useLanguages();
+
+  const [loading, setLoading] = useState(false);
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const passwordRef = React.useRef();
@@ -47,6 +49,7 @@ const SetUpPassword = ({ navigation, route }) => {
       }}
       validationSchema={setUpPasswordSchema}
       onSubmit={(values) => {
+        setLoading(true);
         const data = {
           userType: userType,
           firstName: firstName,
@@ -67,6 +70,9 @@ const SetUpPassword = ({ navigation, route }) => {
           })
           .catch((error) => {
             console.error("There was an error!", error);
+          })
+          .finally(() => {
+            setLoading(false);
           });
       }}
     >
@@ -148,6 +154,7 @@ const SetUpPassword = ({ navigation, route }) => {
                   navigation={navigation}
                 />
                 <ButtonGrey
+                  loading={loading}
                   width={buttonWidthSmaller}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
