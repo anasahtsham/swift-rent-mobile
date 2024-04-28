@@ -13,10 +13,12 @@ import { BASE_URL } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import { useUserID } from "../../helpers/SetUserID";
+import { useUserType } from "../../helpers/SetUserType";
 import ProfileHeader from "./headers/ProfileHeader";
 
 const Profile = () => {
   const userID = useUserID();
+  const userType = useUserType();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
 
@@ -95,6 +97,8 @@ const Profile = () => {
             onPress={() =>
               navigation.navigate("Problem Form", {
                 headerText: "Customer Support",
+                userID: userID,
+                userType: userType,
               })
             }
           />

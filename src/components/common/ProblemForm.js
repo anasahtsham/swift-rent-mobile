@@ -1,6 +1,8 @@
+import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import {
+  Alert,
   BackHandler,
   Keyboard,
   SafeAreaView,
@@ -12,14 +14,29 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BUTTON_WIDTH_MEDIUM } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { reportBugSchema } from "./../../helpers/validation/ReportBugValidation";
 import ButtonGrey from "./buttons/ButtonGrey";
 
 const ProblemForm = ({ navigation, route }) => {
-  const { headerText } = route.params;
+  const { headerText, userID, userType } = route.params;
   const colors = useColors();
+
+  let userTypeToSend = "";
+
+  switch (userType) {
+    case "owner":
+      userTypeToSend = "O";
+      break;
+    case "tenant":
+      userTypeToSend = "T";
+      break;
+    case "manager":
+      userTypeToSend = "M";
+    default:
+      userTypeToSend = "";
+  }
 
   useEffect(() => {
     const backAction = () => {
@@ -52,7 +69,23 @@ const ProblemForm = ({ navigation, route }) => {
           <Formik
             initialValues={{ issueType: "", issueDescription: "" }}
             validationSchema={reportBugSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => {
+              if (headerText === "Customer Support") {
+                axios
+                  .post(`${BASE_URL}/api/common/customer-support`, {
+                    senderID: userID,
+                    senderType: userTypeToSend,
+                    complaintTitle: values.issueType,
+                    complaintDescription: values.issueDescription,
+                  })
+                  .then((response) => {
+                    Alert.alert("Report Sent", response.data.message);
+                  })
+                  .catch((error) => {
+                    Alert.alert("Error", error.response.data.error);
+                  });
+              }
+            }}
           >
             {({
               handleChange,
@@ -86,7 +119,6 @@ const ProblemForm = ({ navigation, route }) => {
                       {
                         color: colors.textPrimary,
                         borderColor: colors.borderPrimary,
-                        backgroundColor: colors.textInputFieldBackground,
                       },
                     ]}
                     onChangeText={handleChange("issueType")}
@@ -109,7 +141,6 @@ const ProblemForm = ({ navigation, route }) => {
                         textAlignVertical: "top",
                         color: colors.textPrimary,
                         borderColor: colors.borderPrimary,
-                        backgroundColor: colors.textInputFieldBackground,
                       },
                     ]}
                     onChangeText={handleChange("issueDescription")}
