@@ -8,7 +8,7 @@ import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import InputField from "../../components/common/input_fields/InputField";
 import { buttonWidthSmall } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import { registerTenantSchema } from "../../helpers/validation/ValidationSchemas";
+import { registerTenantSchema } from "../../helpers/validation/RegisterTenantValidation";
 import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
 
 const RegisterTenant = ({ navigation }) => {

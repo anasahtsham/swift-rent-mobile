@@ -19,7 +19,7 @@ import { saveUserID, saveUserType } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-import { loginSchema } from "../../helpers/validation/ValidationSchemas";
+import { loginSchema } from "../../helpers/validation/LoginValidation";
 import InputField from "./../../components/common/input_fields/InputField";
 
 const LoginScreen = ({ navigation, route }) => {

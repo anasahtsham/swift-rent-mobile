@@ -19,7 +19,7 @@ import {
   agentOneTimeFeeSchema,
   managerFixedSchema,
   managerPercentageSchema,
-} from "../../helpers/validation/ValidationSchemas";
+} from "../../helpers/validation/HireManagerValidation";
 import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
 
 const HireManagerRequestForm = ({ navigation }) => {

@@ -9,9 +9,9 @@ import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import { BASE_URL, buttonWidthSmall } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-import { changePasswordSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
 import { useUserID } from "./../../helpers/SetUserID";
+import { changePasswordSchema } from "./../../helpers/validation/ChangePasswordValidation";
 
 const ChangePassword = ({ navigation }) => {
   const userID = useUserID();

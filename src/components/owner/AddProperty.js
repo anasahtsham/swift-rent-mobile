@@ -14,7 +14,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL, buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import { addPropertySchema } from "../../helpers/validation/ValidationSchemas";
+import { addPropertySchema } from "../../helpers/validation/AddPropertyValidation";
 import ButtonGrey from "../common/buttons/ButtonGrey";
 import InputField from "../common/input_fields/InputField";
 

@@ -9,8 +9,8 @@ import { buttonWidthSmaller } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-import { getToKnowSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
+import { getToKnowSchema } from "./../../helpers/validation/GetToKnowValidation";
 
 const GetToKnow = ({ navigation, route }) => {
   const { userType } = route.params; // userType is either "tenant", "owner", or "manager"

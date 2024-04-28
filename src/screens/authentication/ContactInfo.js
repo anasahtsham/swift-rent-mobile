@@ -11,7 +11,7 @@ import { BASE_URL, buttonWidthSmaller } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-import { contactInfoSchema } from "../../helpers/validation/ValidationSchemas";
+import { contactInfoSchema } from "../../helpers/validation/ContactInfoValidation";
 
 const ContactInfo = ({ navigation, route }) => {
   const { userType, firstName, lastName, date } = route.params;

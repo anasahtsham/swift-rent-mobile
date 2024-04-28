@@ -11,8 +11,8 @@ import { BASE_URL, buttonWidthSmaller } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
-import { setUpPasswordSchema } from "../../helpers/validation/ValidationSchemas";
 import InputField from "./../../components/common/input_fields/InputField";
+import { setUpPasswordSchema } from "./../../helpers/validation/SetUpPasswordValidation";
 
 const SetUpPassword = ({ navigation, route }) => {
   // Get the user's first name, last name, date of birth, email, and phone number from the previous screens

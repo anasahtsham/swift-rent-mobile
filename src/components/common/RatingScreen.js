@@ -1,3 +1,4 @@
+import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import {
   BackHandler,
@@ -8,15 +9,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { icons } from "../../helpers/ImageImports";
-
-import * as FontSizes from "../../assets/fonts/FontSizes";
-
-import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
+import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
-import { ratingScreenSchema } from "../../helpers/validation/ValidationSchemas";
+import { ratingScreenSchema } from "../../helpers/validation/RatingScreenValidation";
 import RatingStars from "./RatingStars";
 import ButtonGrey from "./buttons/ButtonGrey";
 

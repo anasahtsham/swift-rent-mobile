@@ -14,7 +14,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { buttonWidthMedium } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import { reportBugSchema } from "../../helpers/validation/ValidationSchemas";
+import { reportBugSchema } from "./../../helpers/validation/ReportBugValidation";
 import ButtonGrey from "./buttons/ButtonGrey";
 
 const ProblemForm = ({ navigation, route }) => {

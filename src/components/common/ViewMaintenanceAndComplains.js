@@ -18,7 +18,7 @@ import {
   maintenanceData,
   maintenanceHeaderData,
 } from "../../helpers/data/MaintenanceAndComplainsData";
-import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/ValidationSchemas";
+import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/ViewMaintenanceAndComplainsValidation";
 import ViewMaintenanceAndComplainsHeader from "./headers/ViewMaintenanceAndComplainsHeader";
 import InputField from "./input_fields/InputField";
 
