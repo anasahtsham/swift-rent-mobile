@@ -1,7 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import {
+  Alert,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from "react-native";
 import { Button } from "react-native-elements";
 import { BASE_URL } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
@@ -36,6 +42,7 @@ const Profile = () => {
           }
         })
         .catch((error) => {
+          Alert.alert("Error", error.response.data.error);
           console.error(error);
         })
         .finally(() => {
