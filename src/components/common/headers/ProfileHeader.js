@@ -1,8 +1,32 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
 const ProfileHeader = (props) => {
   const colors = props.colors;
+
+  if (props.loading) {
+    return (
+      <View
+        style={[
+          styles.header,
+          { backgroundColor: colors.headerAndFooterBackground },
+        ]}
+      >
+        <View
+          style={[
+            styles.userInfoContainer,
+            {
+              borderColor: colors.borderBlue,
+              backgroundColor: colors.headerAndFooterBackground,
+            },
+          ]}
+        >
+          <ActivityIndicator size="large" color={colors.textPrimary} />
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View
       style={[

@@ -12,6 +12,7 @@ import ProfileHeader from "./headers/ProfileHeader";
 const Profile = () => {
   const userID = useUserID();
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(true);
 
   const colors = useColorsOnFocus();
 
@@ -36,16 +37,19 @@ const Profile = () => {
         })
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
-  }),
-    [userID];
+  }, [userID]);
 
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
       <ProfileHeader
+        loading={loading}
         userName={userProfile.name}
         phone={userProfile.phone}
         email={userProfile.email}
