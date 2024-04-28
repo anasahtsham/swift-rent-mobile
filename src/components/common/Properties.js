@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { buttonWidthSmall } from "../../constants";
+import { BUTTON_WIDTH_SMALL } from "../../constants";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import ButtonGrey from "./buttons/ButtonGrey";
 import { PropertiesButton } from "./buttons/PropertiesButton";
@@ -67,7 +67,7 @@ const Properties = (props) => {
         </Text>
         {!props.isManager && (
           <ButtonGrey
-            width={buttonWidthSmall}
+            width={BUTTON_WIDTH_SMALL}
             fontSize={14}
             buttonText={props.isTenant ? "Rental Requests" : "+ Add a Property"}
             destinationScreen="Add Property"

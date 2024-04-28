@@ -14,7 +14,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { BASE_URL, buttonWidthSmall } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
@@ -216,7 +216,7 @@ const LoginScreen = ({ navigation, route }) => {
 
             <ButtonGrey
               loading={loading}
-              width={buttonWidthSmall}
+              width={BUTTON_WIDTH_SMALL}
               fontSize={FontSizes.medium}
               buttonText={languages.login}
               onPress={handleSubmit} // When the user presses "Login", the form will be submitted

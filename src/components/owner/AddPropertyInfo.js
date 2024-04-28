@@ -13,7 +13,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as yup from "yup";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BASE_URL, buttonWidthMedium } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useUserID } from "../../helpers/SetUserID";
 import ButtonGrey from "../common/buttons/ButtonGrey";
@@ -416,7 +416,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
               <ButtonGrey
                 buttonText="Finish"
                 fontSize={FontSizes.medium}
-                width={buttonWidthMedium}
+                width={BUTTON_WIDTH_MEDIUM}
                 hasOwnOnPress={true}
                 onPress={() => {
                   if (!!valueWaterAvailabilityDropdown) {

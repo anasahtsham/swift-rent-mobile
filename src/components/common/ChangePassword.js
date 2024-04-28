@@ -6,7 +6,7 @@ import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import { BASE_URL, buttonWidthSmall } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 import InputField from "./../../components/common/input_fields/InputField";
@@ -136,7 +136,7 @@ const ChangePassword = ({ navigation }) => {
             </View>
 
             <ButtonGrey
-              width={buttonWidthSmall}
+              width={BUTTON_WIDTH_SMALL}
               fontSize={FontSizes.medium}
               buttonText={languages.change}
               onPress={handleSubmit}

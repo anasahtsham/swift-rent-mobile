@@ -15,7 +15,7 @@ import * as DefaultTheme from "../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../assets/themes/LoadingColorScheme";
 import ButtonGrey from "../components/common/buttons/ButtonGrey";
 import ThemeSetter from "../components/common/buttons/ThemeSetter";
-import { buttonWidthMedium } from "../constants";
+import { BUTTON_WIDTH_MEDIUM } from "../constants";
 import { loadTheme } from "../helpers";
 import { useLanguages } from "./../helpers/SetLanguages";
 
@@ -80,7 +80,7 @@ const WelcomeScreen = ({ navigation }) => {
 
         <View style={styles.buttonAndLoginContainer}>
           <ButtonGrey
-            width={buttonWidthMedium}
+            width={BUTTON_WIDTH_MEDIUM}
             fontSize={FontSizes.medium}
             buttonText={languages.getStarted}
             destinationScreen="Who Are You"

@@ -3,7 +3,7 @@ import { BackHandler, Pressable, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { buttonWidthMedium } from "../../constants";
+import { BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
 
@@ -47,7 +47,7 @@ const WhoAreYou = ({ navigation }) => {
 
         <View style={styles.buttonsContainer}>
           <ButtonGrey
-            width={buttonWidthMedium}
+            width={BUTTON_WIDTH_MEDIUM}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyOwner}
             userType="owner"
@@ -55,7 +55,7 @@ const WhoAreYou = ({ navigation }) => {
             navigation={navigation}
           />
           <ButtonGrey
-            width={buttonWidthMedium}
+            width={BUTTON_WIDTH_MEDIUM}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyManager}
             userType="manager"
@@ -63,7 +63,7 @@ const WhoAreYou = ({ navigation }) => {
             navigation={navigation}
           />
           <ButtonGrey
-            width={buttonWidthMedium}
+            width={BUTTON_WIDTH_MEDIUM}
             fontSize={FontSizes.medium}
             buttonText={languages.tenant}
             userType="tenant"

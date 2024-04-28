@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { buttonWidthMedium } from "../../constants";
+import { BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { reportBugSchema } from "./../../helpers/validation/ReportBugValidation";
 import ButtonGrey from "./buttons/ButtonGrey";
@@ -145,7 +145,7 @@ const ProblemForm = ({ navigation, route }) => {
                 >
                   <ButtonGrey
                     fontSize={FontSizes.medium}
-                    width={buttonWidthMedium}
+                    width={BUTTON_WIDTH_MEDIUM}
                     buttonText="Submit"
                     hasOwnOnPress={true}
                     onPress={handleSubmit}

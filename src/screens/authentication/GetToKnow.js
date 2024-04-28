@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { buttonWidthSmaller } from "../../constants";
+import { BUTTON_WIDTH_SMALLer } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -132,14 +132,14 @@ const GetToKnow = ({ navigation, route }) => {
 
               <View style={styles.buttonsContainer}>
                 <ButtonGrey
-                  width={buttonWidthSmaller}
+                  width={BUTTON_WIDTH_SMALLer}
                   fontSize={FontSizes.small}
                   buttonText={languages.back}
                   hasOwnOnPress={true}
                   onPress={() => navigation.goBack()}
                 />
                 <ButtonGrey
-                  width={buttonWidthSmaller}
+                  width={BUTTON_WIDTH_SMALLer}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
                   onPress={handleSubmit} // When the user presses "Next", the form is submitted

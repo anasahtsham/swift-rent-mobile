@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { buttonWidthSmall } from "../../../constants";
+import { BUTTON_WIDTH_SMALL } from "../../../constants";
 import { useColors } from "../../../helpers/SetColors";
 import CustomFooterButton from "../../CustomFooterButton";
 
@@ -125,14 +125,14 @@ const OwnerHiringFooter = ({
       </View>
       <View style={styles.footerButtonContainer}>
         <CustomFooterButton
-          buttonWidth={buttonWidthSmall}
+          buttonWidth={BUTTON_WIDTH_SMALL}
           onPress={() => navigation.goBack()}
           borderColor={colors.borderGreen}
           buttonText="Accept"
           isBold={true}
         />
         <CustomFooterButton
-          buttonWidth={buttonWidthSmall}
+          buttonWidth={BUTTON_WIDTH_SMALL}
           onPress={() => navigation.goBack()}
           borderColor={colors.borderRed}
           buttonText="Reject"

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { buttonWidthMedium } from "../../constants";
+import { BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { ratingScreenSchema } from "../../helpers/validation/RatingScreenValidation";
@@ -211,7 +211,7 @@ const RatingScreen = ({ navigation, route }) => {
 
           <ButtonGrey
             fontSize={FontSizes.medium}
-            width={buttonWidthMedium}
+            width={BUTTON_WIDTH_MEDIUM}
             buttonText="Submit"
             hasOwnOnPress={true}
             onPress={handleSubmit}

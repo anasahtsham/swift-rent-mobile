@@ -7,7 +7,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
 import InputField from "../../components/common/input_fields/InputField";
-import { BASE_URL, buttonWidthSmaller } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALLer } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -153,7 +153,7 @@ const ContactInfo = ({ navigation, route }) => {
 
               <View style={styles.buttonsContainer}>
                 <ButtonGrey
-                  width={buttonWidthSmaller}
+                  width={BUTTON_WIDTH_SMALLer}
                   fontSize={FontSizes.small}
                   buttonText={languages.back}
                   userType={userType}
@@ -162,7 +162,7 @@ const ContactInfo = ({ navigation, route }) => {
                 />
                 <ButtonGrey
                   loading={loading}
-                  width={buttonWidthSmaller}
+                  width={BUTTON_WIDTH_SMALLer}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
                   onPress={handleSubmit} // When the user presses "Next", the form is submitted

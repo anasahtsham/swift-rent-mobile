@@ -2,12 +2,12 @@ import axios from "axios";
 import { Formik } from "formik";
 import { md5 } from "js-md5";
 import React, { useEffect, useState } from "react";
-import { BackHandler, StyleSheet, Text, View } from "react-native";
+import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { BASE_URL, buttonWidthSmaller } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALLer } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -69,6 +69,7 @@ const SetUpPassword = ({ navigation, route }) => {
             navigation.navigate("All Set Up", { userType: userType });
           })
           .catch((error) => {
+            Alert.alert("Error", error.response.data.error);
             console.error("There was an error!", error);
           })
           .finally(() => {
@@ -146,7 +147,7 @@ const SetUpPassword = ({ navigation, route }) => {
 
               <View style={styles.buttonsContainer}>
                 <ButtonGrey
-                  width={buttonWidthSmaller}
+                  width={BUTTON_WIDTH_SMALLer}
                   fontSize={FontSizes.small}
                   buttonText={languages.back}
                   userType={userType}
@@ -155,7 +156,7 @@ const SetUpPassword = ({ navigation, route }) => {
                 />
                 <ButtonGrey
                   loading={loading}
-                  width={buttonWidthSmaller}
+                  width={BUTTON_WIDTH_SMALLer}
                   fontSize={FontSizes.small}
                   buttonText={languages.next}
                   onPress={handleSubmit} // When the user presses "Next", the form is submitted

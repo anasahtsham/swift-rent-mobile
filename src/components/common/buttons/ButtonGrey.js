@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { useColorsOnFocus } from "../../../helpers/SetColors";
 
 const ButtonGrey = (props) => {
@@ -41,7 +41,7 @@ const ButtonGrey = (props) => {
         props.buttonStyle,
       ]}
       onPress={handlePress}
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
     >
       {props.loading && (
         <ActivityIndicator size="small" color={colors.buttonTextPrimary} />

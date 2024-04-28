@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BASE_URL, buttonWidthMedium } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { addPropertySchema } from "../../helpers/validation/AddPropertyValidation";
 import ButtonGrey from "../common/buttons/ButtonGrey";
@@ -335,7 +335,7 @@ const AddProperty = ({ navigation }) => {
               <ButtonGrey
                 buttonText="Next"
                 fontSize={FontSizes.medium}
-                width={buttonWidthMedium}
+                width={BUTTON_WIDTH_MEDIUM}
                 hasOwnOnPress={true}
                 onPress={() => {
                   if (

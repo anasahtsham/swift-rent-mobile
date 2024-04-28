@@ -1,10 +1,11 @@
+import axios from "axios";
 import { Formik } from "formik";
-import React, { useEffect } from "react";
-import { BackHandler, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import { buttonWidthSmall } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -15,10 +16,10 @@ const LoginScreen = ({ navigation }) => {
   const colors = useColors();
   const languages = useLanguages();
 
+  const [loading, setLoading] = useState(false); // Indicates if the form is loading or not
+
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
   const emailOrPhoneRef = React.useRef();
-  const passwordRef = React.useRef();
-  const confirmPasswordRef = React.useRef();
 
   useEffect(() => {
     const backAction = () => {
@@ -37,12 +38,27 @@ const LoginScreen = ({ navigation }) => {
     <Formik
       initialValues={{
         emailOrPhone: "",
-        password: "",
-        confirmPassword: "",
       }}
       validationSchema={forgotPasswordSchema}
-      onSubmit={() => {
-        navigation.navigate("Forgot Password");
+      onSubmit={(values) => {
+        setLoading(true);
+        axios
+          .post(`${BASE_URL}/api/auth/forgot-password`, {
+            emailOrPhone: values.emailOrPhone,
+          })
+          .then((response) => {
+            Alert.alert("Success", response.data.success);
+          })
+          .catch((error) => {
+            if (error.response && error.response.data.error) {
+              Alert.alert("Error", error.response.data.error);
+            } else {
+              console.error("There was an error!", error);
+            }
+          })
+          .finally(() => {
+            setLoading(false);
+          });
       }}
     >
       {({
@@ -87,36 +103,14 @@ const LoginScreen = ({ navigation }) => {
                 handleBlur={handleBlur("emailOrPhone")}
                 errorText={touched.emailOrPhone ? errors.emailOrPhone : ""} // If the user has touched the input field and there's an error, display the error message
                 ref={emailOrPhoneRef}
-                onSubmitEditing={() => passwordRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
+                onSubmitEditing={() => handleSubmit()} // When the user presses "Next" on the keyboard, the form will be submitted
                 returnKeyType="next"
-              />
-              <InputField
-                fieldType="password"
-                label="New Password"
-                value={values.password}
-                handleChange={handleChange("password")}
-                handleBlur={handleBlur("password")}
-                errorText={touched.password ? errors.password : ""} // If the user has touched the input field and there's an error, display the error message
-                ref={passwordRef}
-                onSubmitEditing={() => confirmPasswordRef.current.focus()} // When the user presses "Next" on the keyboard, the focus will move to the next input field
-                returnKeyType="next"
-              />
-              <InputField
-                fieldType="password"
-                label="Confirm Password"
-                value={values.confirmPassword}
-                handleChange={handleChange("confirmPassword")}
-                handleBlur={handleBlur("confirmPassword")}
-                errorText={
-                  touched.confirmPassword ? errors.confirmPassword : "" // If the user has touched the input field and there's an error, display the error message
-                }
-                ref={confirmPasswordRef}
-                onSubmitEditing={handleSubmit} // When the user presses "Next" on the keyboard, the form will be submitted
               />
             </View>
 
             <ButtonGrey
-              width={buttonWidthSmall}
+              loading={loading}
+              width={BUTTON_WIDTH_SMALL}
               fontSize={FontSizes.medium}
               buttonText={languages.change}
               onPress={handleSubmit} // When the user presses "Change", the form will be submitted

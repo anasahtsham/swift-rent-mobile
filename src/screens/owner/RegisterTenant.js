@@ -6,7 +6,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import InputField from "../../components/common/input_fields/InputField";
-import { buttonWidthSmall } from "../../constants";
+import { BUTTON_WIDTH_SMALL } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { registerTenantSchema } from "../../helpers/validation/RegisterTenantValidation";
 import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
@@ -323,7 +323,7 @@ const RegisterTenant = ({ navigation }) => {
               </View>
 
               <ButtonGrey
-                width={buttonWidthSmall}
+                width={BUTTON_WIDTH_SMALL}
                 fontSize={FontSizes.medium}
                 buttonText="Register"
                 onPress={() => {

@@ -4,7 +4,7 @@ import { BackHandler, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import SwiftRentLogoMedium from "../../components/common/images/SwiftRentLogoMedium";
-import { buttonWidthMedium } from "../../constants";
+import { BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
@@ -78,7 +78,7 @@ const LoginAs = ({ navigation, route }) => {
         <View style={styles.buttonsContainer}>
           {isOwner && (
             <ButtonGrey
-              width={buttonWidthMedium}
+              width={BUTTON_WIDTH_MEDIUM}
               fontSize={FontSizes.medium}
               buttonText={languages.propertyOwner}
               hasOwnOnPress={true}
@@ -88,7 +88,7 @@ const LoginAs = ({ navigation, route }) => {
 
           {isManager && (
             <ButtonGrey
-              width={buttonWidthMedium}
+              width={BUTTON_WIDTH_MEDIUM}
               fontSize={FontSizes.medium}
               buttonText={languages.propertyManager}
               hasOwnOnPress={true}
@@ -98,7 +98,7 @@ const LoginAs = ({ navigation, route }) => {
 
           {isTenant && (
             <ButtonGrey
-              width={buttonWidthMedium}
+              width={BUTTON_WIDTH_MEDIUM}
               fontSize={FontSizes.medium}
               buttonText={languages.tenant}
               hasOwnOnPress={true}

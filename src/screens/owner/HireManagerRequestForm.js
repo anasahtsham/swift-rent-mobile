@@ -13,7 +13,7 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import Checkbox from "../../components/common/checkboxes/Checkbox";
 import HintPopup from "../../components/common/popups/HintPopup";
-import { buttonWidthMedium } from "../../constants";
+import { BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import {
   agentOneTimeFeeSchema,
@@ -528,7 +528,7 @@ const HireManagerRequestForm = ({ navigation }) => {
               <ButtonGrey
                 buttonText="Submit"
                 fontSize={FontSizes.medium}
-                width={buttonWidthMedium}
+                width={BUTTON_WIDTH_MEDIUM}
                 hasOwnOnPress={true}
                 onPress={() => {
                   validateDropdowns();
