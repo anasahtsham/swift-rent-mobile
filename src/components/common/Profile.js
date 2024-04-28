@@ -1,24 +1,54 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
+import { BASE_URL } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
 import { useColorsOnFocus } from "../../helpers/SetColors";
+import { useUserID } from "../../helpers/SetUserID";
 import ProfileHeader from "./headers/ProfileHeader";
 
-const Profile = (props) => {
+const Profile = () => {
+  const userID = useUserID();
   const navigation = useNavigation();
 
   const colors = useColorsOnFocus();
+
+  const [userProfile, setUserProfile] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    if (userID) {
+      axios
+        .post(`${BASE_URL}/api/common/get-user-profile-info`, {
+          userID: userID,
+        })
+        .then((response) => {
+          if (response.data.success) {
+            setUserProfile(response.data.userProfile);
+          } else {
+            console.error(response.data.error);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }),
+    [userID];
 
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
       <ProfileHeader
-        userName={props.userName}
-        phone={props.phone}
-        email={props.email}
+        userName={userProfile.name}
+        phone={userProfile.phone}
+        email={userProfile.email}
         colors={colors}
       />
       <ScrollView>

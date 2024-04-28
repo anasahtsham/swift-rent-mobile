@@ -1,6 +1,5 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { icons } from "../../../helpers/ImageImports";
 
 const ProfileHeader = (props) => {
   const colors = props.colors;
@@ -20,25 +19,17 @@ const ProfileHeader = (props) => {
           },
         ]}
       >
-        <View style={styles.userNameAndPFP}>
-          <Image
-            tintColor={colors.iconPrimary}
-            source={icons.userIcon}
-            style={[styles.userImage]}
-          />
-          <Text
-            style={[
-              {
-                color: colors.textPrimary,
-                fontSize: FontSizes.medium,
-                fontFamily: "OpenSansBold",
-                marginLeft: 10,
-              },
-            ]}
-          >
-            {props.userName}
-          </Text>
-        </View>
+        <Text
+          style={[
+            {
+              color: colors.textPrimary,
+              fontSize: FontSizes.medium,
+              fontFamily: "OpenSansBold",
+            },
+          ]}
+        >
+          {props.userName}
+        </Text>
         <Text
           style={{
             color: colors.textPrimary,
