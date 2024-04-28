@@ -28,7 +28,6 @@ export const icons = {
   crossIcon: require("../assets/icons/disabled.png"),
   checkIcon: require("../assets/icons/check.png"),
   expandArrowButton: require("../assets/icons/external-link-button-arrow.png"),
-  areaIcon: require("../assets/icons/area.png"),
   heightIcon: require("../assets/icons/height.png"),
   apartments: require("../assets/icons/apartments.png"),
   balconyIcon: require("../assets/icons/balcony.png"),
@@ -45,7 +44,7 @@ export const icons = {
   personCapacityIcon: require("../assets/icons/person-capacity.png"),
   daycare: require("../assets/icons/daycare.png"),
   garden: require("../assets/icons/garden.png"),
-  electricity: require("../assets/icons/electricity.png"),
+  electricity: require("../assets/icons/electricity-meter.png"),
   gas: require("../assets/icons/gas.png"),
   lift: require("../assets/icons/lift.png"),
   prayerRoom: require("../assets/icons/prayer-room.png"),
@@ -58,4 +57,5 @@ export const icons = {
   furnished: require("../assets/icons/furnished.png"),
   shared: require("../assets/icons/shared.png"),
   searchIcon: require("../assets/icons/search-icon.png"),
+  areaSqftIcon: require("../assets/icons/area.png"),
 };

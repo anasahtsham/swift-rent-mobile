@@ -58,16 +58,15 @@ const AddPropertyInfo = ({ navigation, route }) => {
   const {
     areaID,
     propertySubTypeID,
-    street,
-    building,
+    address,
     propertyTypeLabel,
     propertySubTypeLabel,
   } = route.params;
 
+  // logs to check the values passed from the previous screen
   // console.log("areaID: ", areaID);
   // console.log("propertySubTypeID: ", propertySubTypeID);
-  // console.log("street: ", street);
-  // console.log("building: ", building);
+  // console.log("address: ", address);
   // console.log("propertyTypeLabel: ", propertyTypeLabel);
   // console.log("propertySubTypeLabel: ", propertySubTypeLabel);
 
@@ -220,9 +219,16 @@ const AddPropertyInfo = ({ navigation, route }) => {
     setValidationSchema(
       yup.object().shape(
         fieldNames.reduce((prev, curr) => {
-          prev[curr.value] = yup
-            .string()
-            .matches(/^[0-9]*$/, "Only digits allowed and no spaces");
+          if (curr.value === "areaSqft") {
+            prev[curr.value] = yup
+              .string()
+              .matches(/^[0-9]*$/, "Only digits allowed and no spaces")
+              .required("Area Sqft is required");
+          } else {
+            prev[curr.value] = yup
+              .string()
+              .matches(/^[0-9]*$/, "Only digits allowed and no spaces");
+          }
           return prev;
         }, {})
       )
@@ -258,8 +264,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
             userID: userID.toString(),
             areaID: areaID.toString(),
             propertySubTypeID: propertySubTypeID.toString(),
-            street: street.toString(),
-            building: building.toString(),
+            propertyAddress: address.toString(),
             ...Object.fromEntries(
               Object.entries(values).map(([key, value]) => [
                 key,

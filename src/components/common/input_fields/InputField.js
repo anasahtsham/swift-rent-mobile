@@ -15,6 +15,10 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
+// this input fields has the field types of: -
+// email-address, password, phone-pad, numeric, and date
+// if left empty (prop not passed) it defaults to default
+
 const InputField = forwardRef((props, ref) => {
   const {
     onSubmitEditing,

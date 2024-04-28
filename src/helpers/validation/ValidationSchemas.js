@@ -159,12 +159,9 @@ export const reportBugSchema = Yup.object().shape({
 });
 
 export const addPropertySchema = Yup.object().shape({
-  street: Yup.string()
+  address: Yup.string()
     .required("Required")
-    .matches(/^\d*$/, "Only digits from 0-9 are allowed"),
-  building: Yup.string()
-    .required("Required")
-    .matches(/^\d*$/, "Only digits from 0-9 are allowed"),
+    .matches(/^(?!.*  ).*$/, "No double spaces"),
 });
 
 export const viewMaintenanceAndComplainsSchema = Yup.object().shape({

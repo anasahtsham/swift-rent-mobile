@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Formik } from "formik";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   BackHandler,
   Keyboard,
@@ -76,8 +76,6 @@ const AddProperty = ({ navigation }) => {
   }, []);
 
   const [errorDropdowns, setErrorDropdowns] = useState(false);
-
-  const buildingRef = useRef();
 
   // set property sub type items based on property type
   useEffect(() => {
@@ -156,8 +154,7 @@ const AddProperty = ({ navigation }) => {
   return (
     <Formik
       initialValues={{
-        street: "",
-        building: "",
+        address: "",
       }}
       validationSchema={addPropertySchema}
       onSubmit={(values) => {
@@ -180,8 +177,7 @@ const AddProperty = ({ navigation }) => {
           navigation.navigate("Add Property Info", {
             areaID: valueArea,
             propertySubTypeID: valuePropertySubType,
-            street: values.street,
-            building: values.building,
+            address: values.address,
             propertyTypeLabel: filteredPropertyTypeLabel,
             propertySubTypeLabel: filteredPropertySubTypeLabel,
           });
@@ -319,56 +315,21 @@ const AddProperty = ({ navigation }) => {
                     Please select all dropdowns first!
                   </Text>
                 )}
-                <View
-                  style={[
-                    {
-                      flexDirection: "row",
-                      height: 80,
-                    },
-                  ]}
-                >
-                  <View style={{ flex: 1 }}>
-                    <InputField
-                      borderRadius={7}
-                      label="Street#"
-                      fieldType="numeric"
-                      value={values.street}
-                      handleChange={handleChange("street")}
-                      handleBlur={handleBlur("street")}
-                      errorText={touched.street ? errors.street : ""}
-                      onSubmitEditing={() => buildingRef.current.focus()}
-                      returnKeyType="next"
-                      onPressIn={() => {
-                        setOpenCity(false);
-                        setOpenArea(false);
-                        setOpenPropertyType(false);
-                        setOpenPropertySubType(false);
-                      }}
-                    />
-                  </View>
-
-                  <View style={{ width: 10 }} />
-
-                  <View style={{ flex: 1 }}>
-                    <InputField
-                      ref={buildingRef}
-                      borderRadius={7}
-                      label="Building#"
-                      fieldType="numeric"
-                      value={values.building}
-                      handleChange={handleChange("building")}
-                      handleBlur={handleBlur("building")}
-                      errorText={touched.building ? errors.building : ""}
-                      onPressIn={() => {
-                        setOpenCity(false);
-                        setOpenArea(false);
-                        setOpenPropertyType(false);
-                        setOpenPropertySubType(false);
-                      }}
-                      onSubmitEditing={handleSubmit}
-                    />
-                  </View>
-                </View>
+                <InputField
+                  borderRadius={7}
+                  label="Address"
+                  value={values.address}
+                  handleChange={handleChange("address")}
+                  handleBlur={handleBlur("address")}
+                  errorText={touched.address ? errors.address : ""}
+                  returnKeyType="next"
+                  onPressIn={() => {
+                    setOpenCity(false);
+                    setOpenArea(false);
+                    setOpenPropertyType(false);
+                    setOpenPropertySubType(false);
+                  }}
+                />
               </View>
 
               <ButtonGrey
