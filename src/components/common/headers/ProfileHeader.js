@@ -52,7 +52,13 @@ const ProfileHeader = (props) => {
             },
           ]}
         >
-          {props.userName}
+          {`${props.userName} (${
+            props.userType === "O"
+              ? "Owner"
+              : props.userType === "M"
+              ? "Manger"
+              : "Tenant"
+          })`}
         </Text>
         <Text
           style={{
@@ -61,7 +67,7 @@ const ProfileHeader = (props) => {
             marginBottom: 5,
           }}
         >
-          {props.phone}
+          {`Phone: ${props.phone}`}
         </Text>
         <Text
           style={{
@@ -70,7 +76,7 @@ const ProfileHeader = (props) => {
             marginBottom: 5,
           }}
         >
-          {props.email}
+          {`Email: ${props.email}`}
         </Text>
       </View>
     </View>

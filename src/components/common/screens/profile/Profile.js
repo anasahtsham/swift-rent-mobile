@@ -60,6 +60,7 @@ const Profile = () => {
       <ProfileHeader
         loading={loading}
         userName={userProfile.name}
+        userType={userType}
         phone={userProfile.phone}
         email={userProfile.email}
         colors={colors}
