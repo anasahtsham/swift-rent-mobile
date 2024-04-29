@@ -67,20 +67,28 @@ export default function App() {
           <Stack.Screen name="Register As" component={RegisterAs} />
           <Stack.Screen name="Set Up Password" component={SetUpPassword} />
           <Stack.Screen name="All Set Up" component={AllSetUpSplash} />
-          {/* Tab Navigator */}
+
+          {/* Tab Navigators */}
           <Stack.Screen name="Owner Navigator" component={OwnerNavigator} />
           <Stack.Screen name="Tenant Navigator" component={TenantNavigator} />
           <Stack.Screen name="Manager Navigator" component={ManagerNavigator} />
-          {/* Owner Screens */}
-          <Stack.Screen name="Setting Screen" component={SettingScreen} />
-          <Stack.Screen name="Change Password" component={ChangePassword} />
+
+          {/* Common Screens */}
           <Stack.Screen name="FAQ Screen" component={FAQScreen} />
-          <Stack.Screen name="Rents" component={Rents} />
-          <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
+          <Stack.Screen name="Change Password" component={ChangePassword} />
+          <Stack.Screen name="Setting Screen" component={SettingScreen} />
           <Stack.Screen name="Rating Screen" component={RatingScreen} />
+          <Stack.Screen name="Problem Form" component={ProblemForm} />
+          <Stack.Screen
+            name="Verify Documentation"
+            component={VerifiyDocumentation}
+          />
+          <Stack.Screen name="Ratings" component={Ratings} />
+
+          {/* Owner Screens */}
+          <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
           <Stack.Screen name="Property Menu" component={PropertyMenu} />
           <Stack.Screen name="Analytical Report" component={AnalyticalReport} />
-          <Stack.Screen name="Problem Form" component={ProblemForm} />
           <Stack.Screen name="Month Report" component={MonthReport} />
           <Stack.Screen name="Add Property" component={AddProperty} />
           <Stack.Screen
@@ -99,12 +107,12 @@ export default function App() {
             name="Hire Manager Request Form"
             component={HireManagerRequestForm}
           />
-          <Stack.Screen
-            name="Verify Documentation"
-            component={VerifiyDocumentation}
-          />
-          <Stack.Screen name="Ratings" component={Ratings} />
+
+          {/* Manager Screens */}
           <Stack.Screen name="Explore Offers" component={ExploreOffers} />
+
+          {/* Tenant Screens */}
+          <Stack.Screen name="Rents" component={Rents} />
         </Stack.Navigator>
       </NavigationContainer>
     );
