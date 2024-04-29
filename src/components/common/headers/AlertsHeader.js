@@ -86,7 +86,7 @@ const AlertsHeader = (props) => {
           <HeaderButton
             onPress={() => props.onHeaderButtonPress("C")}
             colors={colors}
-            borderColor={colors.borderYellow}
+            borderColor={colors.borderPurple}
             isSelected={props.selectedTypes.includes("C")}
           >
             Complains

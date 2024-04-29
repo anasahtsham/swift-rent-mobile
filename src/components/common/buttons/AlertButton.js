@@ -14,7 +14,7 @@ export const AlertButton = (props) => {
       case "L":
         return colors.backgroundBlue;
       case "C":
-        return colors.backgroundYellow;
+        return colors.backgroundPurple;
       case "A":
         return colors.backgroundRed;
       default:
