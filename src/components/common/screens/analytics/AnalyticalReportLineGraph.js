@@ -123,7 +123,7 @@ const AnalyticalReportLineGraph = (props) => {
           setTooltip({
             visible: true,
             values,
-            x: 250, // Set the x-coordinate to a fixed value
+            x: 0, // Set the x-coordinate to a fixed value
             y: 50, // Increase the padding factor
           });
           setLineX(scaleX(index)); // Update lineX
