@@ -50,7 +50,7 @@ const WhoAreYou = ({ navigation }) => {
             width={BUTTON_WIDTH_MEDIUM}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyOwner}
-            userType="owner"
+            userType="O"
             destinationScreen="Get To Know"
             navigation={navigation}
           />
@@ -58,7 +58,7 @@ const WhoAreYou = ({ navigation }) => {
             width={BUTTON_WIDTH_MEDIUM}
             fontSize={FontSizes.medium}
             buttonText={languages.propertyManager}
-            userType="manager"
+            userType="M"
             destinationScreen="Get To Know"
             navigation={navigation}
           />
@@ -66,7 +66,7 @@ const WhoAreYou = ({ navigation }) => {
             width={BUTTON_WIDTH_MEDIUM}
             fontSize={FontSizes.medium}
             buttonText={languages.tenant}
-            userType="tenant"
+            userType="T"
             destinationScreen="Get To Know"
             navigation={navigation}
           />

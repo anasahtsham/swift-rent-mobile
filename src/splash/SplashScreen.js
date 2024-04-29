@@ -19,13 +19,13 @@ const SplashScreen = ({ navigation }) => {
       if (userID === null) {
         navigation.navigate("Welcome Screen");
       }
-      if (userType === "owner") {
+      if (userType === "O") {
         navigation.navigate("Owner Navigator");
       }
-      if (userType === "manager") {
+      if (userType === "M") {
         navigation.navigate("Manager Navigator");
       }
-      if (userType === "tenant") {
+      if (userType === "T") {
         navigation.navigate("Tenant Navigator");
       }
     }, 3000); // where 1000 milliseconds = 1 second

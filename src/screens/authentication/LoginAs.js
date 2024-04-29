@@ -20,13 +20,13 @@ const LoginAs = ({ navigation, route }) => {
     let userType;
     switch (destinationScreen) {
       case "Owner Navigator":
-        userType = "owner";
+        userType = "O";
         break;
       case "Manager Navigator":
-        userType = "manager";
+        userType = "M";
         break;
       case "Tenant Navigator":
-        userType = "tenant";
+        userType = "T";
         break;
       default:
         userType = "";

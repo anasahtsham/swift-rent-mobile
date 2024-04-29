@@ -13,7 +13,7 @@ import InputField from "./../../components/common/input_fields/InputField";
 import { getToKnowSchema } from "./../../helpers/validation/GetToKnowValidation";
 
 const GetToKnow = ({ navigation, route }) => {
-  const { userType } = route.params; // userType is either "tenant", "owner", or "manager"
+  const { userType } = route.params; // userType is either "T", "O", or "M" (tenant, owner, or manager)
 
   const colors = useColors();
   const languages = useLanguages();

@@ -9,11 +9,11 @@ const AllSetUpSplash = ({ route }) => {
 
   let userScreen = ""; // setting the user based on the user type at registration
 
-  if (userType === "owner") {
+  if (userType === "O") {
     userScreen = "Owner Navigator";
-  } else if (userType === "manager") {
+  } else if (userType === "M") {
     userScreen = "Manager Navigator";
-  } else if (userType === "tenant") {
+  } else if (userType === "T") {
     userScreen = "Tenant Navigator";
   }
 

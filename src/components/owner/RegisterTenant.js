@@ -20,19 +20,6 @@ const RegisterTenant = ({ navigation, route }) => {
   const userID = useUserID();
   const userType = useUserType();
 
-  let formattedUserType = "";
-
-  switch (userType) {
-    case "owner":
-      formattedUserType = "O";
-      break;
-    case "manager":
-      formattedUserType = "M";
-      break;
-    default:
-      formattedUserType = "";
-  }
-
   const dropdownStyles = {
     style: {
       backgroundColor: colors.buttonBackgroundPrimary,
@@ -141,7 +128,7 @@ const RegisterTenant = ({ navigation, route }) => {
           propertyID: id,
           phone: values.tenantContact,
           registeredByID: userID,
-          registeredByType: formattedUserType,
+          registeredByType: userType,
           leasedForMonths: values.leasedForMonths,
           incrementPercentage: values.yearlyIncrease,
           incrementPeriod: values.incrementPeriod,

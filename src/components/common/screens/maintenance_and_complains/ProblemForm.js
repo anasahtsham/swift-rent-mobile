@@ -23,21 +23,6 @@ const ProblemForm = ({ navigation, route }) => {
   const { headerText, userID, userType } = route.params;
   const colors = useColors();
 
-  let userTypeToSend = "";
-
-  switch (userType) {
-    case "owner":
-      userTypeToSend = "O";
-      break;
-    case "tenant":
-      userTypeToSend = "T";
-      break;
-    case "manager":
-      userTypeToSend = "M";
-    default:
-      userTypeToSend = "";
-  }
-
   useEffect(() => {
     const backAction = () => {
       navigation.goBack();
@@ -74,7 +59,7 @@ const ProblemForm = ({ navigation, route }) => {
                 axios
                   .post(`${BASE_URL}/api/common/customer-support`, {
                     senderID: userID,
-                    senderType: userTypeToSend,
+                    senderType: userType,
                     complaintTitle: values.issueType,
                     complaintDescription: values.issueDescription,
                   })

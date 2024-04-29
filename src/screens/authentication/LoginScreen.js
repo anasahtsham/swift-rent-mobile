@@ -108,15 +108,15 @@ const LoginScreen = ({ navigation, route }) => {
                 if (trueRoles.length === 1) {
                   if (isOwner) {
                     saveUserID(response.data.userID.toString());
-                    saveUserType("owner");
+                    saveUserType("O");
                     navigation.navigate("Owner Navigator");
                   } else if (isManager) {
                     saveUserID(response.data.userID.toString());
-                    saveUserType("manager");
+                    saveUserType("M");
                     navigation.navigate("Manager Navigator");
                   } else if (isTenant) {
                     saveUserID(response.data.userID.toString());
-                    saveUserType("tenant");
+                    saveUserType("T");
                     navigation.navigate("Tenant Navigator");
                   }
                 } else {
