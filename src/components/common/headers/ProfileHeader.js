@@ -1,5 +1,6 @@
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { formatUserTypeToFullForm } from "../../../helpers/utils";
 
 const ProfileHeader = (props) => {
   const colors = props.colors;
@@ -52,13 +53,7 @@ const ProfileHeader = (props) => {
             },
           ]}
         >
-          {`${props.userName} (${
-            props.userType === "O"
-              ? "Owner"
-              : props.userType === "M"
-              ? "Manger"
-              : "Tenant"
-          })`}
+          {`${props.userName} (${formatUserTypeToFullForm(props.userType)})`}
         </Text>
         <Text
           style={{

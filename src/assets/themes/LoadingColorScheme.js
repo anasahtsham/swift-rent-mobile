@@ -16,6 +16,8 @@ export const backgroundGrey = "#fff";
 export const backgroundRed = "#fff";
 export const backgroundYellow = "#fff";
 export const backgroundGreen = "#fff";
+export const backgroundBlue = "#fff";
+export const backgroundPurple = "#fff";
 
 export const borderPrimary = "#fff";
 export const borderSecondary = "#fff";
@@ -24,6 +26,7 @@ export const borderBlue = "#fff";
 export const borderRed = "#fff";
 export const borderYellow = "#fff";
 export const borderGreen = "#fff";
+export const borderPurple = "#fff";
 
 export const iconPrimary = "#fff";
 export const iconBlue = "#fff";

@@ -1,27 +1,29 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
-import { icons } from "../../../helpers/ImageImports";
+import { formatUserTypeToFullForm } from "../../../helpers/utils";
 
 export const AlertButton = (props) => {
   const colors = props.colors;
 
+  // R = Rent, L = Lease, C = Complaint, A = Admin
+
   function getBackgroundColor(notificationType) {
     switch (notificationType) {
-      case "Maintenance":
-        return colors.backgroundRed;
-      case "Complains":
-        return colors.backgroundYellow;
-      case "Rent":
+      case "R":
         return colors.backgroundGreen;
+      case "L":
+        return colors.backgroundBlue;
+      case "C":
+        return colors.backgroundYellow;
+      case "A":
+        return colors.backgroundRed;
       default:
         return colors.backgroundPrimary;
     }
   }
 
   return (
-    <TouchableOpacity
-      activeOpacity={opacityValueForButton}
+    <View
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View
@@ -33,8 +35,12 @@ export const AlertButton = (props) => {
           },
         ]}
       >
-        <Text style={styles.timeAndDateText}>{props.dateAndYear}</Text>
-        <Text style={styles.timeAndDateText}>{props.time}</Text>
+        <Text style={[styles.timeAndDateText, { color: colors.textWhite }]}>
+          {props.dateAndYear}
+        </Text>
+        <Text style={[styles.timeAndDateText, { color: colors.textWhite }]}>
+          {props.time}
+        </Text>
       </View>
       <View style={{ flex: 1, flexDirection: "column" }}>
         <Text
@@ -45,7 +51,7 @@ export const AlertButton = (props) => {
             },
           ]}
         >
-          {props.name} - {props.userType}
+          {props.name} - {formatUserTypeToFullForm(props.userType)}
         </Text>
         <Text
           style={[
@@ -59,14 +65,7 @@ export const AlertButton = (props) => {
           {props.notificationText}
         </Text>
       </View>
-      <View>
-        <Image
-          style={styles.buttonImage}
-          tintColor={colors.iconPrimary}
-          source={icons.externalLink}
-        />
-      </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
