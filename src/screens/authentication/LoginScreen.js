@@ -1,3 +1,4 @@
+import { CommonActions } from "@react-navigation/native";
 import axios from "axios";
 import { Formik } from "formik";
 import { md5 } from "js-md5";
@@ -55,6 +56,7 @@ const LoginScreen = ({ navigation, route }) => {
       onSubmit={(values) => {
         setLoading(true);
         if (newRegister) {
+          // If the login is part of the registration process
           // Prepare the data to send to the API
           const data = {
             emailOrPhone: values.emailOrPhone,
@@ -109,15 +111,30 @@ const LoginScreen = ({ navigation, route }) => {
                   if (isOwner) {
                     saveUserID(response.data.userID.toString());
                     saveUserType("O");
-                    navigation.navigate("Owner Navigator");
+                    navigation.dispatch(
+                      CommonActions.reset({
+                        index: 0,
+                        routes: [{ name: "Owner Navigator" }],
+                      })
+                    );
                   } else if (isManager) {
                     saveUserID(response.data.userID.toString());
                     saveUserType("M");
-                    navigation.navigate("Manager Navigator");
+                    navigation.dispatch(
+                      CommonActions.reset({
+                        index: 0,
+                        routes: [{ name: "Manager Navigator" }],
+                      })
+                    );
                   } else if (isTenant) {
                     saveUserID(response.data.userID.toString());
                     saveUserType("T");
-                    navigation.navigate("Tenant Navigator");
+                    navigation.dispatch(
+                      CommonActions.reset({
+                        index: 0,
+                        routes: [{ name: "Tenant Navigator" }],
+                      })
+                    );
                   }
                 } else {
                   // Navigate to "Login As" screen with response.data

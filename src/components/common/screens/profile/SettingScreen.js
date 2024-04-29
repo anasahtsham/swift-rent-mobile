@@ -75,12 +75,12 @@ const SettingScreen = ({ navigation, route }) => {
         loading={loading}
         hasOwnOnPress={true}
         onPress={handleSwitchRole}
-        fontSize={FontSizes.small}
+        fontSize={FontSizes.medium}
         width={BUTTON_WIDTH_MEDIUM}
         buttonText="Switch Role"
       />
       <ButtonGrey
-        fontSize={FontSizes.small}
+        fontSize={FontSizes.medium}
         width={BUTTON_WIDTH_MEDIUM}
         buttonText="Go Back"
         destinationScreen="Profile"
