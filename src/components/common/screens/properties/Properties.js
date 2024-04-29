@@ -71,7 +71,9 @@ const Properties = (props) => {
             width={BUTTON_WIDTH_SMALL}
             fontSize={14}
             buttonText={props.isTenant ? "Rental Requests" : "+ Add a Property"}
-            destinationScreen="Add Property"
+            destinationScreen={
+              props.isTenant ? "Rental Requests" : "Add Property"
+            }
             navigation={navigation}
           />
         )}
