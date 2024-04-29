@@ -7,6 +7,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Circle, Line, Path, Rect, Svg, Text } from "react-native-svg";
+import { formatNumberToThousands } from "../../../../helpers/utils";
 
 const AnalyticalReportLineGraph = (props) => {
   const colors = props.colors;
@@ -83,14 +84,6 @@ const AnalyticalReportLineGraph = (props) => {
   const viewBoxWidth = contentWidth;
   const viewBoxHeight = contentHeight * (1 / aspectRatio);
 
-  function formatNumber(num) {
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + "k";
-    } else {
-      return num;
-    }
-  }
-
   return (
     <View style={styles.graphContainer} {...panResponder.panHandlers}>
       <Svg
@@ -134,7 +127,7 @@ const AnalyticalReportLineGraph = (props) => {
           fontSize="16"
           fill={colors.textPrimary}
         >
-          {formatNumber(minValue)}
+          {formatNumberToThousands(minValue)}
         </Text>
         <Text
           x={-50} // controls y axis label position
@@ -143,7 +136,7 @@ const AnalyticalReportLineGraph = (props) => {
           fontSize="16"
           fill={colors.textPrimary}
         >
-          {formatNumber((minValue + maxValue) / 2)}
+          {formatNumberToThousands((minValue + maxValue) / 2)}
         </Text>
         <Text
           x={-50} // controls y axis label position
@@ -152,7 +145,7 @@ const AnalyticalReportLineGraph = (props) => {
           fontSize="16"
           fill={colors.textPrimary}
         >
-          {formatNumber(maxValue)}
+          {formatNumberToThousands(maxValue)}
         </Text>
         {tooltip.visible && (
           <View>

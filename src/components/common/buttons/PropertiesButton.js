@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
-import { formatNumber } from "./../../../helpers/index";
+import { formatNumberToCrore } from "./../../../helpers/utils";
 
 export const PropertiesButton = (props) => {
   const colors = props.colors;
@@ -62,7 +62,7 @@ export const PropertiesButton = (props) => {
                 Rent:{" "}
               </Text>
               <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-                {formatNumber(props.rentAmount)}
+                {formatNumberToCrore(props.rentAmount)}
               </Text>
               <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
                 {" "}

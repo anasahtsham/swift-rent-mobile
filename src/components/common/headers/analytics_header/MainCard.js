@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { opacityValueForButton } from "../../../../constants/index";
-import { formatNumber } from "../../../../helpers";
 import { icons } from "../../../../helpers/ImageImports";
+import { formatNumberToCrore } from "../../../../helpers/utils";
 import { styles } from "./styles";
 
 const MainCard = (props) => {
@@ -91,7 +91,7 @@ const MainCard = (props) => {
         {!!props.rentsCollected && (
           <InfoRow
             title="Rents Collected"
-            value={formatNumber(props.rentsCollected)}
+            value={formatNumberToCrore(props.rentsCollected)}
             imageSource={icons.downLongArrow}
             tintColor={colors.iconGreen}
           />
@@ -99,7 +99,7 @@ const MainCard = (props) => {
         {!!props.commission && (
           <InfoRow
             title="Commission"
-            value={formatNumber(props.commission)}
+            value={formatNumberToCrore(props.commission)}
             imageSource={icons.downLongArrow}
             tintColor={colors.iconGreen}
           />
@@ -107,7 +107,7 @@ const MainCard = (props) => {
         {!!props.maintenanceCost && (
           <InfoRow
             title="Maintenance Costs"
-            value={formatNumber(props.maintenanceCost)}
+            value={formatNumberToCrore(props.maintenanceCost)}
             imageSource={icons.upLongArrow}
             tintColor={colors.iconRed}
           />
@@ -115,7 +115,7 @@ const MainCard = (props) => {
         {!!props.totalRentsPaid && (
           <InfoRow
             title="Rents Paid"
-            value={formatNumber(props.totalRentsPaid)}
+            value={formatNumberToCrore(props.totalRentsPaid)}
             imageSource={icons.upLongArrow}
             tintColor={colors.iconRed}
           />

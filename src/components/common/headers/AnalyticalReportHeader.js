@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import AnalyticalReportLineGraph from "../screens/analytics/AnalyticalReportLineGraph";
+import { formatNumberToCrore } from "./../../../helpers/utils/index";
 
 const AnalyticalReportHeader = (props) => {
   const colors = props.colors;
@@ -20,35 +21,47 @@ const AnalyticalReportHeader = (props) => {
     "December",
   ];
 
-  const totalRevenue = [
+  const totalRevenues = [
     14000, 21000, 28000, 35000, 42000, 49000, 45500, 42000, 38500, 35000, 31500,
     35000, 38500, 42000, 45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
     45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
   ];
 
-  const maintenanceCost = [
+  const totalMaintenanceCosts = [
     3000, 4000, 6000, 7000, 9000, 10000, 4500, 5000, 7500, 9000, 8500, 8000,
     5500, 3000, 3500, 4000, 6500, 8000, 10500, 11500, 13500, 14000, 13000,
     10500, 8500, 6500, 6000, 6500, 9000, 8500,
   ];
 
-  const totalProfit = totalRevenue.map(
-    (revenue, index) => revenue - maintenanceCost[index]
+  const totalProfits = totalRevenues.map(
+    (revenue, index) => revenue - totalMaintenanceCosts[index]
   );
+
+  function calculateTotalSum(array) {
+    return array.reduce((sum, current) => sum + current, 0);
+  }
+
+  const totalRevenueSum = calculateTotalSum(totalRevenues);
+  const totalMaintenanceCostSum = calculateTotalSum(totalMaintenanceCosts);
+  const totalProfitSum = calculateTotalSum(totalProfits);
+
+  console.log(`Total Revenue Sum: ${totalRevenueSum}`);
+  console.log(`Total Maintenance Cost Sum: ${totalMaintenanceCostSum}`);
+  console.log(`Total Profit Sum: ${totalProfitSum}`);
 
   const data = [
     {
-      values: maintenanceCost,
+      values: totalMaintenanceCosts,
       color: colors.textRed, // Maintenance cost
       months: monthNames,
     },
     {
-      values: totalProfit,
+      values: totalProfits,
       color: colors.textPrimary, // Total profit
       months: monthNames,
     },
     {
-      values: totalRevenue,
+      values: totalRevenues,
       color: colors.textGreen, // Total revenue
       months: monthNames,
     },
@@ -78,7 +91,7 @@ const AnalyticalReportHeader = (props) => {
               Total Revenue
             </Text>
             <Text style={[styles.nestedText, { color: colors.textGreen }]}>
-              +200000
+              {`${formatNumberToCrore(totalRevenueSum)}`}
             </Text>
           </View>
           <View style={styles.inRow}>
@@ -88,7 +101,7 @@ const AnalyticalReportHeader = (props) => {
               Maintenance Cost
             </Text>
             <Text style={[styles.nestedText, { color: colors.textRed }]}>
-              -8500
+              {`${formatNumberToCrore(totalMaintenanceCostSum)} `}
             </Text>
           </View>
           <View style={styles.inRow}>
@@ -98,7 +111,7 @@ const AnalyticalReportHeader = (props) => {
               Total Profit
             </Text>
             <Text style={[styles.nestedText, { color: colors.textPrimary }]}>
-              191500{" "}
+              {`${formatNumberToCrore(totalProfitSum)} `}
               <Text
                 style={[styles.currencyStyles, { color: colors.textPrimary }]}
               >

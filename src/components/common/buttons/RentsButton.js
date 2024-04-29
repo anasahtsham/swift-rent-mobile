@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
-import { formatNumber } from "../../../helpers/index";
+import { formatNumberToCrore } from "../../../helpers/utils";
 
 export const RentsButton = (props) => {
   const colors = props.colors;
@@ -54,7 +54,7 @@ export const RentsButton = (props) => {
                 },
               ]}
             >
-              {formatNumber(props.amountCollected)}{" "}
+              {formatNumberToCrore(props.amountCollected)}{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               PKR
@@ -75,7 +75,7 @@ export const RentsButton = (props) => {
                 },
               ]}
             >
-              {formatNumber(props.rentPaid)}{" "}
+              {formatNumberToCrore(props.rentPaid)}{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               PKR
@@ -96,7 +96,7 @@ export const RentsButton = (props) => {
                 },
               ]}
             >
-              {formatNumber(props.rentAmount)}{" "}
+              {formatNumberToCrore(props.rentAmount)}{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               PKR

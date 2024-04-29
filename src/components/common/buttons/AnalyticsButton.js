@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
-import { formatNumber } from "../../../helpers";
 import { icons } from "../../../helpers/ImageImports";
+import { formatNumberToCrore } from "../../../helpers/utils";
 
 export const AnalyticsButton = (props) => {
   const colors = props.colors;
@@ -39,7 +39,7 @@ export const AnalyticsButton = (props) => {
             color: colors.textPrimary,
           }}
         >
-          {formatNumber(props.incomingPayment)}
+          {formatNumberToCrore(props.incomingPayment)}
         </Text>
       )}
 
@@ -62,7 +62,7 @@ export const AnalyticsButton = (props) => {
               color: colors.textPrimary,
             }}
           >
-            {formatNumber(props.commissionEarned)}
+            {formatNumberToCrore(props.commissionEarned)}
           </Text>
         </View>
       )}
@@ -103,8 +103,8 @@ export const AnalyticsButton = (props) => {
           }}
         >
           {!!props.outgoingPayment
-            ? formatNumber(props.outgoingPayment)
-            : formatNumber(props.outcome)}
+            ? formatNumberToCrore(props.outgoingPayment)
+            : formatNumberToCrore(props.outcome)}
           {!!props.incomingPayment ? "" : " PKR"}
         </Text>
       )}

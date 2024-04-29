@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
-import { formatNumber } from "./../../../helpers/index";
+import { formatNumberToCrore } from "./../../../helpers/utils";
 
 export const PendingRentsButton = (props) => {
   const colors = props.colors;
@@ -54,7 +54,7 @@ export const PendingRentsButton = (props) => {
                 },
               ]}
             >
-              {formatNumber(props.rentDue)}{" "}
+              {formatNumberToCrore(props.rentDue)}{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               PKR

@@ -73,14 +73,3 @@ export const loadUserID = async () => {
     console.error("Error loading user ID:", error);
   }
 };
-
-// This function is used to format the number to a more readable format and also so that it does not take too much space
-
-export function formatNumber(num) {
-  num = Number(num);
-  if (num >= 10000000) {
-    return (num / 10000000).toFixed(1) + " Crore";
-  } else {
-    return num.toLocaleString();
-  }
-}
