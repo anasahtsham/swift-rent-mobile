@@ -22,6 +22,7 @@ import HireManagerRequestForm from "./src/components/owner/HireManagerRequestFor
 import ManagerOffers from "./src/components/owner/ManagerOffers";
 import OwnerHiring from "./src/components/owner/OwnerHiring";
 import RegisterTenant from "./src/components/owner/RegisterTenant";
+import RentalRequestAgreementForm from "./src/components/tenant/RentalRequestAgreementForm";
 import RentalRequests from "./src/components/tenant/RentalRequests";
 import Rents from "./src/components/tenant/Rents";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
@@ -115,6 +116,10 @@ export default function App() {
           {/* Tenant Screens */}
           <Stack.Screen name="Rents" component={Rents} />
           <Stack.Screen name="Rental Requests" component={RentalRequests} />
+          <Stack.Screen
+            name="Rental Request Agreement Form"
+            component={RentalRequestAgreementForm}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

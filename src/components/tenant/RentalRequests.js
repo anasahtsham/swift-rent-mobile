@@ -33,6 +33,7 @@ const RentalRequests = ({ navigation }) => {
         setRentalRequestsData(response.data.leaseRequests);
       } catch (error) {
         Alert.alert("Error", error.message);
+        navigation.goBack();
       } finally {
         setLoading(false);
       }
@@ -54,13 +55,14 @@ const RentalRequests = ({ navigation }) => {
     return () => backHandler.remove();
   }, [userID]);
 
-  const renderItem = ({ item: rent }) => (
+  const renderItem = ({ item: rentRequest }) => (
     <RentalRequestsButton
       colors={colors}
-      key={rent.id}
-      address={rent.address}
-      registrarName={rent.registrarname}
-      registrarType={rent.registrartype}
+      key={rentRequest.id}
+      propertyLeaseID={rentRequest.id}
+      address={rentRequest.address}
+      registrarName={rentRequest.registrarname}
+      registrarType={rentRequest.registrartype}
     />
   );
 

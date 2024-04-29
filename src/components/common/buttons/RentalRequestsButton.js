@@ -1,14 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 
 export const RentalRequestsButton = (props) => {
+  const navigation = useNavigation();
   const colors = props.colors;
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
+      onPress={() => {
+        navigation.navigate("Rental Request Agreement Form", {
+          propertyLeaseID: props.propertyLeaseID,
+        });
+      }}
     >
       <View>
         <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
