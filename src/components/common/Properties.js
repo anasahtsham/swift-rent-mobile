@@ -19,6 +19,7 @@ const Properties = (props) => {
     <PropertiesButton
       colors={colors}
       key={data.id}
+      id={data.id}
       address={data.address}
       income={data.income}
       outcome={data.outcome}

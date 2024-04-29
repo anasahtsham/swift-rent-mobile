@@ -15,7 +15,7 @@ import { managerOffersData } from "./../../helpers/data/ManagerOffersData";
 import PropertyMenuButton from "./buttons/PropertyMenuButton";
 
 const PropertyMenu = ({ route }) => {
-  const { propertyAddress } = route.params;
+  const { propertyAddress, id } = route.params;
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -143,7 +143,7 @@ const PropertyMenu = ({ route }) => {
           />
           <PropertyMenuButton
             onPress={() => {
-              navigation.navigate("Register Tenant");
+              navigation.navigate("Register Tenant", { id: id });
             }}
             text={"Register Tenant"}
             colors={colors}

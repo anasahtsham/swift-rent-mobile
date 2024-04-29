@@ -20,6 +20,7 @@ export const PropertiesButton = (props) => {
     <TouchableOpacity
       onPress={() => {
         props.navigation.navigate("Property Menu", {
+          id: props.id,
           propertyAddress: props.address,
         });
       }}

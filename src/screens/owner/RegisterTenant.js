@@ -1,18 +1,37 @@
+import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import ButtonGrey from "../../components/common/buttons/ButtonGrey";
 import InputField from "../../components/common/input_fields/InputField";
-import { BUTTON_WIDTH_SMALL } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
+import { useUserID } from "../../helpers/SetUserID";
+import { useUserType } from "../../helpers/SetUserType";
 import { registerTenantSchema } from "../../helpers/validation/RegisterTenantValidation";
 import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
 
-const RegisterTenant = ({ navigation }) => {
+const RegisterTenant = ({ navigation, route }) => {
+  const { id } = route.params;
   const colors = useColors();
+  const userID = useUserID();
+  const userType = useUserType();
+
+  let formattedUserType = "";
+
+  switch (userType) {
+    case "owner":
+      formattedUserType = "O";
+      break;
+    case "manager":
+      formattedUserType = "M";
+      break;
+    default:
+      formattedUserType = "";
+  }
 
   const dropdownStyles = {
     style: {
@@ -34,14 +53,7 @@ const RegisterTenant = ({ navigation }) => {
     itemSeparator: true,
   };
 
-  // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
-  const securityAmountRef = React.useRef();
-  const leaseTillRef = React.useRef();
-  const evictionPeriodRef = React.useRef();
-  const yearlyIncreaseRef = React.useRef();
-  const lateRentFineRef = React.useRef();
-  const tenantContactRef = React.useRef();
-
+  //dropdown for rent due date
   const [openRentDue, setOpenRentDue] = useState(false);
   const [valueRentDue, setValueRentDue] = useState(null);
   const [valueRentDueError, setValueRentDueError] = useState(false);
@@ -76,33 +88,86 @@ const RegisterTenant = ({ navigation }) => {
     { label: "28", value: "28" },
   ]);
 
-  const [isYearlyIncreaseEditable, setIsYearlyIncreaseEditable] =
-    useState(false);
-  const [isLateRentFineEditable, setIsLateRentFineEditable] = useState(false);
-  const [currentSchema, setCurrentSchema] = useState(
-    registerTenantSchema(isYearlyIncreaseEditable, isLateRentFineEditable)
-  );
-
   useEffect(() => {
     if (valueRentDue) {
       setValueRentDueError(false);
     }
   }, [valueRentDue]);
 
+  // Refs are used to focus on the next input field when the user presses "Next" on the keyboard
+  const tenantContactRef = React.useRef();
+  const leasedForMonthsRef = React.useRef();
+  const securityAmountRef = React.useRef();
+  const advancePaymentRef = React.useRef();
+  const advancePaymentForMonthsRef = React.useRef();
+  const yearlyIncreaseRef = React.useRef();
+  const incrementPeriodRef = React.useRef();
+  const lateRentFineRef = React.useRef();
+
+  const [isSecurityAmountEditable, setIsSecurityAmountEditable] =
+    useState(false);
+  const [isAdvancePaymentEditable, setIsAdvancePaymentEditable] =
+    useState(false);
+  const [isYearlyIncreaseEditable, setIsYearlyIncreaseEditable] =
+    useState(false);
+  const [isLateRentFineEditable, setIsLateRentFineEditable] = useState(false);
+  const [currentSchema, setCurrentSchema] = useState(
+    registerTenantSchema(
+      isSecurityAmountEditable,
+      isAdvancePaymentEditable,
+      isYearlyIncreaseEditable,
+      isLateRentFineEditable
+    )
+  );
+
   return (
     <Formik
       initialValues={{
+        //sorted in order of the form generation
         rentAmount: "",
-        securityAmount: "",
-        leaseTill: "",
-        evictionPeriod: "",
-        yearlyIncrease: "",
-        lateRentFine: "",
         tenantContact: "",
+        leasedForMonths: "",
+        securityAmount: "",
+        advancePayment: "",
+        advancePaymentForMonths: "",
+        yearlyIncrease: "",
+        incrementPeriod: "",
+        lateRentFine: "",
       }}
       validationSchema={currentSchema}
-      onSubmit={() => {
-        navigation.navigate("Property Menu");
+      onSubmit={(values) => {
+        const data = {
+          // sorted in order for postman
+          propertyID: id,
+          phone: values.tenantContact,
+          registeredByID: userID,
+          registeredByType: formattedUserType,
+          leasedForMonths: values.leasedForMonths,
+          incrementPercentage: values.yearlyIncrease,
+          incrementPeriod: values.incrementPeriod,
+          rent: values.rentAmount,
+          securityDeposit: values.securityAmount,
+          advancePayment: values.advancePayment,
+          advancePaymentMonths: values.advancePaymentForMonths,
+          dueDate: valueRentDue,
+          fine: values.lateRentFine,
+        };
+
+        console.log(data);
+        axios
+          .post(`${BASE_URL}/api/owner/register-tenant`, data)
+          .then((response) => {
+            if (response.data.success) {
+              Alert.alert("Success", "Tenant Registered Successfully!");
+              navigation.goBack();
+            } else {
+              Alert.alert("Error", response.data.error);
+            }
+          })
+          .catch((error) => {
+            Alert.alert("Error", error.response.data.error);
+            console.error(error);
+          });
       }}
     >
       {(formikProps) => {
@@ -116,15 +181,21 @@ const RegisterTenant = ({ navigation }) => {
           touched,
         } = formikProps;
 
+        const isSecurityAmountEditableRef = useRef(isSecurityAmountEditable);
+        const isAdvancePaymentEditableRef = useRef(isAdvancePaymentEditable);
         const isYearlyIncreaseEditableRef = useRef(isYearlyIncreaseEditable);
         const isLateRentFineEditableRef = useRef(isLateRentFineEditable);
 
         useEffect(() => {
+          isSecurityAmountEditableRef.current = isSecurityAmountEditable;
+          isAdvancePaymentEditableRef.current = isAdvancePaymentEditable;
           isYearlyIncreaseEditableRef.current = isYearlyIncreaseEditable;
           isLateRentFineEditableRef.current = isLateRentFineEditable;
 
           setCurrentSchema(
             registerTenantSchema(
+              isSecurityAmountEditable,
+              isAdvancePaymentEditable,
               isYearlyIncreaseEditable,
               isLateRentFineEditable
             )
@@ -132,8 +203,12 @@ const RegisterTenant = ({ navigation }) => {
 
           validateForm();
         }, [
+          isSecurityAmountEditableRef.current,
+          isAdvancePaymentEditableRef.current,
           isYearlyIncreaseEditableRef.current,
           isLateRentFineEditableRef.current,
+          isSecurityAmountEditable,
+          isAdvancePaymentEditable,
           isYearlyIncreaseEditable,
           isLateRentFineEditable,
         ]);
@@ -216,40 +291,7 @@ const RegisterTenant = ({ navigation }) => {
                   handleBlur={handleBlur("rentAmount")}
                   errorText={touched.rentAmount ? errors.rentAmount : ""}
                   returnKeyType="next"
-                  onSubmitEditing={() => securityAmountRef.current.focus()}
-                />
-                <InputField
-                  fieldType="numeric"
-                  borderRadius={10}
-                  label="Security Amount (PKR)"
-                  value={values.securityAmount}
-                  handleChange={handleChange("securityAmount")}
-                  handleBlur={handleBlur("securityAmount")}
-                  errorText={
-                    touched.securityAmount ? errors.securityAmount : ""
-                  }
-                  returnKeyType="next"
-                  onSubmitEditing={() => evictionPeriodRef.current?.focus()}
-                  ref={securityAmountRef}
-                />
-                <InputFieldWithHint
-                  fieldType="numeric"
-                  borderRadius={10}
-                  label="Eviction Period (Days)"
-                  value={values.evictionPeriod}
-                  handleChange={handleChange("evictionPeriod")}
-                  handleBlur={handleBlur("evictionPeriod")}
-                  errorText={
-                    touched.evictionPeriod ? errors.evictionPeriod : ""
-                  }
-                  returnKeyType="next"
-                  ref={evictionPeriodRef}
-                  onSubmitEditing={() => tenantContactRef.current?.focus()}
-                  hintTexts={{
-                    english:
-                      "Eviction period refers to the amount of time notice must be given before a tenant is required to vacate the property. For example, you can set it to 30 days or 60 days depending on your local laws and agreements.",
-                    urdu: "خارجی مدت وقت اس وقت کا حتمی وقت ہے جب کرایہ دار کو جائیداد خالی کرنے کا حکم دیا جاتا ہے۔ مثال کے طور پر، آپ اسے 30 دن یا 60 دن کر سکتے ہیں، جو آپ کے مقامی قوانین اور معاہدوں پر منحصر ہوتا ہے۔",
-                  }}
+                  onSubmitEditing={() => tenantContactRef.current.focus()}
                 />
 
                 <InputField
@@ -260,10 +302,97 @@ const RegisterTenant = ({ navigation }) => {
                   handleChange={handleChange("tenantContact")}
                   handleBlur={handleBlur("tenantContact")}
                   errorText={touched.tenantContact ? errors.tenantContact : ""}
-                  onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
+                  onSubmitEditing={() => leasedForMonthsRef.current?.focus()}
                   returnKeyType="next"
                   ref={tenantContactRef}
                 />
+
+                <InputField
+                  fieldType="numeric"
+                  borderRadius={10}
+                  label="Leased For (Months)"
+                  value={values.leasedForMonths}
+                  handleChange={handleChange("leasedForMonths")}
+                  handleBlur={handleBlur("leasedForMonths")}
+                  errorText={
+                    touched.leasedForMonths ? errors.leasedForMonths : ""
+                  }
+                  returnKeyType="next"
+                  ref={leasedForMonthsRef}
+                  onSubmitEditing={() => securityAmountRef.current?.focus()}
+                />
+
+                <InputFieldWithHint
+                  isEditable={isSecurityAmountEditable}
+                  setIsEditable={setIsSecurityAmountEditable}
+                  fieldType="numeric"
+                  canBeDisabled={true}
+                  borderRadius={10}
+                  label="Security Amount (PKR)"
+                  value={isSecurityAmountEditable ? values.securityAmount : ""}
+                  handleChange={handleChange("securityAmount")}
+                  handleBlur={handleBlur("securityAmount")}
+                  errorText={
+                    touched.securityAmount ? errors.securityAmount : ""
+                  }
+                  returnKeyType="next"
+                  onSubmitEditing={() => advancePaymentRef.current?.focus()}
+                  ref={securityAmountRef}
+                  hintTexts={{
+                    english:
+                      "Security amount refers to the amount of money that the tenant pays as a security deposit. For example, you can set it to $2000 to be paid as a security deposit.",
+                    urdu: "سیکیورٹی رقم وہ رقم ہے جو کرایہ دار سیکیورٹی جمع کرانے کے طور پر ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 2000 ڈالر پر مقرر کرسکتے ہیں تاکہ یہ سیکیورٹی جمع کرایا جائے۔",
+                  }}
+                />
+
+                <InputFieldWithHint
+                  isEditable={isAdvancePaymentEditable}
+                  setIsEditable={setIsAdvancePaymentEditable}
+                  fieldType="numeric"
+                  canBeDisabled={true}
+                  borderRadius={10}
+                  label="Advance Payment (PKR)"
+                  value={isAdvancePaymentEditable ? values.advancePayment : ""}
+                  handleChange={handleChange("advancePayment")}
+                  handleBlur={handleBlur("advancePayment")}
+                  errorText={
+                    touched.advancePayment ? errors.advancePayment : ""
+                  }
+                  returnKeyType="next"
+                  ref={advancePaymentRef}
+                  onSubmitEditing={() =>
+                    advancePaymentForMonthsRef.current?.focus()
+                  }
+                  hintTexts={{
+                    english:
+                      "Advance payment refers to the amount of rent that the tenant pays in advance. For example, you can set it to $1000 to be paid before the start of each month.",
+                    urdu: "اعلی ادا کرایہ وہ رقم ہے جو کرایہ دار پہلے ہی ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 1000 ڈالر پر مقرر کرسکتے ہیں تاکہ ہر مہینے کی شروعات سے پہلے ادا کیا جائے۔",
+                  }}
+                />
+
+                {isAdvancePaymentEditable && (
+                  <InputFieldWithHint
+                    fieldType="numeric"
+                    borderRadius={10}
+                    label="Advance Payment For (Months)"
+                    value={values.advancePaymentForMonths}
+                    handleChange={handleChange("advancePaymentForMonths")}
+                    handleBlur={handleBlur("advancePaymentForMonths")}
+                    errorText={
+                      touched.advancePaymentForMonths
+                        ? errors.advancePaymentForMonths
+                        : ""
+                    }
+                    returnKeyType="next"
+                    ref={advancePaymentForMonthsRef}
+                    onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
+                    hintTexts={{
+                      english:
+                        "Advance payment for months refers to the number of months for which the advance payment is made. For example, you can set it to 2 to pay the rent for 2 months in advance.",
+                      urdu: "مہینوں کے لیے اعلی ادا کرایہ وہ مہینے ہیں جن کے لیے اعلی ادا کیا جاتا ہے۔ مثال کے طور پر، آپ اسے 2 پر مقرر کرسکتے ہیں تاکہ کرایہ کو 2 مہینے پہلے ادا کیا جائے۔",
+                    }}
+                  />
+                )}
 
                 <InputFieldWithHint
                   isEditable={isYearlyIncreaseEditable}
@@ -280,13 +409,36 @@ const RegisterTenant = ({ navigation }) => {
                   }
                   returnKeyType="next"
                   ref={yearlyIncreaseRef}
-                  onSubmitEditing={() => lateRentFineRef.current?.focus()}
+                  onSubmitEditing={() => incrementPeriodRef.current?.focus()}
                   hintTexts={{
                     english:
                       "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
                     urdu: "سالانہ اضافہ وقت کی فی صد میں اضافہ کا مطلب ہے جس سے کرایہ ہر سال بڑھایا جا سکتا ہے۔ مثال کے طور پر، آپ اسے 3 فی صد پر مقرر کر سکتے ہیں تاکہ کرایہ ہر سال 3 فی صد بڑھایا جا سکے۔",
                   }}
                 />
+
+                {isYearlyIncreaseEditable && (
+                  <InputFieldWithHint
+                    fieldType="numeric"
+                    borderRadius={10}
+                    label="Increment Period (Months)"
+                    value={values.incrementPeriod}
+                    handleChange={handleChange("incrementPeriod")}
+                    handleBlur={handleBlur("incrementPeriod")}
+                    errorText={
+                      touched.incrementPeriod ? errors.incrementPeriod : ""
+                    }
+                    returnKeyType="next"
+                    ref={incrementPeriodRef}
+                    onSubmitEditing={() => lateRentFineRef.current?.focus()}
+                    hintTexts={{
+                      english:
+                        "Increment period refers to the amount of time after which the rent will be increased by the yearly increase percentage. For example, you can set it to 12 months to increase the rent annually.",
+                      urdu: "اضافہ مدت وقت اس وقت کی مدت ہے جس کے بعد کرایہ سالانہ اضافہ فی صد سے بڑھایا جائے گا۔ مثال کے طور پر، آپ اسے 12 مہینے پر مقرر کر سکتے ہیں تاکہ کرایہ سالانہ بڑھایا جائے۔",
+                    }}
+                  />
+                )}
+
                 <InputFieldWithHint
                   isEditable={isLateRentFineEditable}
                   setIsEditable={setIsLateRentFineEditable}
@@ -298,27 +450,13 @@ const RegisterTenant = ({ navigation }) => {
                   handleChange={handleChange("lateRentFine")}
                   handleBlur={handleBlur("lateRentFine")}
                   errorText={touched.lateRentFine ? errors.lateRentFine : ""}
-                  returnKeyType="next"
                   ref={lateRentFineRef}
-                  onSubmitEditing={() => leaseTillRef.current?.focus()}
+                  onSubmitEditing={handleSubmit}
                   hintTexts={{
                     english:
                       "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to $50 to be charged if the rent is not paid within 5 days of the due date.",
                     urdu: "دیر سے ادا کرایہ جرمانہ وہ اضافی فیس ہے جو کرایہ کی ادائیگی وقت پر نہیں کی جاتی ہے۔ مثال کے طور پر، آپ اسے 5 دن کی حد سے زائد دیر کے لئے ادا نہ ہونے پر 50 ڈالر مقرر کرسکتے ہیں۔",
                   }}
-                />
-
-                <InputField
-                  isLeaseTill={true}
-                  fieldType="date"
-                  borderRadius={10}
-                  label="Lease Till"
-                  value={values.leaseTill}
-                  handleChange={handleChange("leaseTill")}
-                  handleBlur={handleBlur("leaseTill")}
-                  errorText={touched.leaseTill ? errors.leaseTill : ""}
-                  ref={leaseTillRef}
-                  onSubmitEditing={handleSubmit}
                 />
               </View>
 

@@ -3,9 +3,6 @@ import * as Yup from "yup";
 import {
   between1and100Message,
   between1and100Regex,
-  between30and60Message,
-  between30and60Regex,
-  invalidDateMessage,
   multipleOfHunderedMessage,
   multipleOfHunderedRegex,
   noSpacesMessage,
@@ -20,6 +17,8 @@ import {
 } from "./ValidationRegexAndMessages";
 
 export const registerTenantSchema = (
+  isSecurityAmountEditable,
+  isAdvancePaymentEditable,
   isYearlyIncreaseEditable,
   isLateRentFineEditable
 ) =>
@@ -29,49 +28,75 @@ export const registerTenantSchema = (
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
       .matches(multipleOfHunderedRegex, multipleOfHunderedMessage),
-    securityAmount: Yup.string()
-      .required(requiredMessage)
-      .matches(noSpacesRegex, noSpacesMessage)
-      .matches(onlyNumbersRegex, onlyNumbersMessage)
-      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage),
-    evictionPeriod: Yup.string()
-      .required(requiredMessage)
-      .matches(noSpacesRegex, noSpacesMessage)
-      .matches(between30and60Regex, between30and60Message),
     tenantContact: Yup.string()
       .required(requiredMessage)
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(numberStartsWith03Regex, numberStartsWith03Message)
       .matches(number11DigitsRegex, number11DigitsMessage),
+    leasedForMonths: Yup.string()
+      .required(requiredMessage)
+      .matches(noSpacesRegex, noSpacesMessage)
+      .matches(onlyNumbersRegex, onlyNumbersMessage),
+
+    securityAmount: Yup.string()
+      .matches(noSpacesRegex, noSpacesMessage)
+      .matches(onlyNumbersRegex, onlyNumbersMessage)
+      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+      .test("isSecurityAmountEditable", requiredMessage, function (value) {
+        if (isSecurityAmountEditable && !value) {
+          return false;
+        }
+        return true;
+      }),
+
+    advancePayment: Yup.string()
+      .matches(noSpacesRegex, noSpacesMessage)
+      .matches(onlyNumbersRegex, onlyNumbersMessage)
+      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+      .test("isAdvancePaymentEditable", requiredMessage, function (value) {
+        if (isAdvancePaymentEditable && !value) {
+          return false;
+        }
+        return true;
+      }),
+    advancePaymentForMonths: Yup.string()
+      .matches(noSpacesRegex, noSpacesMessage)
+      .matches(onlyNumbersRegex, onlyNumbersMessage)
+      .test("isAdvancePaymentEditable", requiredMessage, function (value) {
+        if (isAdvancePaymentEditable && !value) {
+          return false;
+        }
+        return true;
+      }),
+
     yearlyIncrease: Yup.string()
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
       .matches(between1and100Regex, between1and100Message)
-      .test(
-        "isYearlyIncreaseEditable",
-        "This Field is required",
-        function (value) {
-          if (isYearlyIncreaseEditable && !value) {
-            return false;
-          }
-          return true;
+      .test("isYearlyIncreaseEditable", requiredMessage, function (value) {
+        if (isYearlyIncreaseEditable && !value) {
+          return false;
         }
-      ),
+        return true;
+      }),
+    incrementPeriod: Yup.string()
+      .matches(noSpacesRegex, noSpacesMessage)
+      .matches(onlyNumbersRegex, onlyNumbersMessage)
+      .test("isYearlyIncreaseEditable", requiredMessage, function (value) {
+        if (isYearlyIncreaseEditable && !value) {
+          return false;
+        }
+        return true;
+      }),
+
     lateRentFine: Yup.string()
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
-      .test(
-        "isLateRentFineEditable",
-        "This Field is required",
-        function (value) {
-          if (isLateRentFineEditable && !value) {
-            return false;
-          }
-          return true;
+      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+      .test("isLateRentFineEditable", requiredMessage, function (value) {
+        if (isLateRentFineEditable && !value) {
+          return false;
         }
-      )
-      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage),
-    leaseTill: Yup.date()
-      .typeError(invalidDateMessage)
-      .required(requiredMessage),
+        return true;
+      }),
   });

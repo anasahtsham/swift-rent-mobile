@@ -133,7 +133,10 @@ const Profile = () => {
             onPress={() => {
               saveUserID("");
               saveUserType("");
-              navigation.navigate("Welcome Screen");
+              navigation.reset({
+                index: 0,
+                routes: [{ name: "Welcome Screen" }],
+              });
             }}
           />
         </View>
