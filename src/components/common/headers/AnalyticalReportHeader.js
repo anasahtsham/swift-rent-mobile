@@ -1,11 +1,59 @@
-import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import AnalyticalReportLineGraph from "../screens/analytics/AnalyticalReportLineGraph";
 
 const AnalyticalReportHeader = (props) => {
   const colors = props.colors;
 
-  const windowWidth = useWindowDimensions().width;
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const totalRevenue = [
+    14000, 21000, 28000, 35000, 42000, 49000, 45500, 42000, 38500, 35000, 31500,
+    35000, 38500, 42000, 45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
+    45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
+  ];
+
+  const maintenanceCost = [
+    3000, 4000, 6000, 7000, 9000, 10000, 4500, 5000, 7500, 9000, 8500, 8000,
+    5500, 3000, 3500, 4000, 6500, 8000, 10500, 11500, 13500, 14000, 13000,
+    10500, 8500, 6500, 6000, 6500, 9000, 8500,
+  ];
+
+  const totalProfit = totalRevenue.map(
+    (revenue, index) => revenue - maintenanceCost[index]
+  );
+
+  const data = [
+    {
+      values: maintenanceCost,
+      color: colors.textRed, // Maintenance cost
+      months: monthNames,
+    },
+    {
+      values: totalProfit,
+      color: colors.textPrimary, // Total profit
+      months: monthNames,
+    },
+    {
+      values: totalRevenue,
+      color: colors.textGreen, // Total revenue
+      months: monthNames,
+    },
+  ];
+
   return (
     <View
       style={[
@@ -58,12 +106,7 @@ const AnalyticalReportHeader = (props) => {
               </Text>
             </Text>
           </View>
-          {/*Old image of bar graph: */}
-          {/* <Image
-            style={styles.barGraphImageDimensions}
-            source={icons.barGraph}
-          /> */}
-          <AnalyticalReportLineGraph />
+          <AnalyticalReportLineGraph colors={colors} data={data} />
         </View>
         <View style={styles.cardBottomRowContainer}>
           <Text style={[styles.monthNameText, { color: colors.textPrimary }]}>

@@ -7,74 +7,12 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Circle, Line, Path, Rect, Svg, Text } from "react-native-svg";
-import { useColors } from "../../../../helpers/SetColors";
 
 const AnalyticalReportLineGraph = (props) => {
-  const colors = useColors();
+  const colors = props.colors;
   const windowWidth = useWindowDimensions().width;
 
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-  ];
-
-  const data = [
-    {
-      values: [
-        2000, 4000, 6000, 8000, 10000, 12000, 10000, 8000, 6000, 4000, 3000,
-        5000, 7000, 9000, 11000, 9000, 7000, 5000, 3000, 4000, 6000, 8000,
-        10000, 12000, 10000, 8000, 6000, 4000, 3000, 5000,
-      ],
-      color: colors.textRed, // Maintenance cost
-      months: monthNames,
-    },
-    {
-      values: [
-        12000, 18000, 24000, 30000, 36000, 42000, 45000, 39000, 33000, 27000,
-        24000, 30000, 36000, 42000, 45000, 39000, 33000, 27000, 24000, 30000,
-        36000, 42000, 45000, 39000, 33000, 27000, 24000, 30000, 36000, 42000,
-      ],
-      color: colors.textPrimary, // Total profit
-      months: monthNames,
-    },
-    {
-      values: [
-        14000, 21000, 28000, 35000, 42000, 49000, 45500, 42000, 38500, 35000,
-        31500, 35000, 38500, 42000, 45500, 42000, 38500, 35000, 31500, 35000,
-        38500, 42000, 45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
-      ],
-      color: colors.textGreen, // Total revenue
-      months: monthNames,
-    },
-  ];
+  const data = props.data;
 
   // Calculate the minimum, average, and maximum values
   const yValues = [...new Set(data.flatMap((dataset) => dataset.values))];
@@ -172,11 +110,11 @@ const AnalyticalReportLineGraph = (props) => {
         )}
         {index !== null &&
           data.map((dataset, i) => (
-            <Circle
+            <Circle //dot being shown on the line
               key={i}
               cx={scaleX(index)}
               cy={scaleY(dataset.values[index])}
-              r={5}
+              r={7}
               fill={dataset.color}
             />
           ))}
