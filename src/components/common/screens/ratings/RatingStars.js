@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { icons } from "../../helpers/ImageImports";
+import { icons } from "../../../../helpers/ImageImports";
 
-import { useColors } from "../../helpers/SetColors";
+import { useColors } from "../../../../helpers/SetColors";
 
 const RatingStars = ({
   rating,

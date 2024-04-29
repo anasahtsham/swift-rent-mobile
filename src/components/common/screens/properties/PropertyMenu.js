@@ -8,11 +8,11 @@ import {
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import PropertyMenuHeader from "../../components/common/headers/PropertyMenuHeader";
-import { useColors } from "./../../helpers/SetColors";
-import { managerOffersData } from "./../../helpers/data/ManagerOffersData";
-import PropertyMenuButton from "./buttons/PropertyMenuButton";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { useColors } from "../../../../helpers/SetColors";
+import { managerOffersData } from "../../../../helpers/data/ManagerOffersData";
+import PropertyMenuButton from "../../buttons/PropertyMenuButton";
+import PropertyMenuHeader from "../../headers/PropertyMenuHeader";
 
 const PropertyMenu = ({ route }) => {
   const { propertyAddress, id } = route.params;

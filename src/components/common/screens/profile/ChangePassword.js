@@ -4,14 +4,14 @@ import { md5 } from "js-md5";
 import React, { useEffect } from "react";
 import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
-import { useLanguages } from "../../helpers/SetLanguages";
-import InputField from "./../../components/common/input_fields/InputField";
-import { useUserID } from "./../../helpers/SetUserID";
-import { changePasswordSchema } from "./../../helpers/validation/ChangePasswordValidation";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../../../constants";
+import { useColors } from "../../../../helpers/SetColors";
+import { useLanguages } from "../../../../helpers/SetLanguages";
+import { useUserID } from "../../../../helpers/SetUserID";
+import { changePasswordSchema } from "../../../../helpers/validation/ChangePasswordValidation";
+import ButtonGrey from "../../buttons/ButtonGrey";
+import InputField from "../../input_fields/InputField";
 
 const ChangePassword = ({ navigation }) => {
   const userID = useUserID();

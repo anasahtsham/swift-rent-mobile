@@ -1,11 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BUTTON_WIDTH_SMALL } from "../../constants";
-import { useColorsOnFocus } from "../../helpers/SetColors";
-import ButtonGrey from "./buttons/ButtonGrey";
-import { PropertiesButton } from "./buttons/PropertiesButton";
-import PropertiesHeader from "./headers/PropertiesHeader";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { BUTTON_WIDTH_SMALL } from "../../../../constants";
+import { useColorsOnFocus } from "../../../../helpers/SetColors";
+import ButtonGrey from "../../buttons/ButtonGrey";
+import { PropertiesButton } from "../../buttons/PropertiesButton";
+import PropertiesHeader from "../../headers/PropertiesHeader";
 
 const Properties = (props) => {
   const colors = useColorsOnFocus();

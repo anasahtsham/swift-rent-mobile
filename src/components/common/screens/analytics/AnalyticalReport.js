@@ -8,10 +8,10 @@ import {
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../constants";
-import { useColors } from "./../../helpers/SetColors";
-import AnalyticalReportHeader from "./headers/AnalyticalReportHeader";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { opacityValueForButton } from "../../../../constants";
+import { useColors } from "../../../../helpers/SetColors";
+import AnalyticalReportHeader from "../../headers/AnalyticalReportHeader";
 
 const AnalyticalReport = () => {
   const colors = useColors();

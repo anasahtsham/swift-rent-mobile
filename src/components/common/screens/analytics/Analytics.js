@@ -1,11 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { useColorsOnFocus } from "../../helpers/SetColors";
-import { useUserID } from "./../../helpers/SetUserID";
-import { useUserType } from "./../../helpers/SetUserType";
-import AnalyticsButton from "./buttons/AnalyticsButton";
-import AnalyticsHeader from "./headers/AnalyticsHeader";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { useColorsOnFocus } from "../../../../helpers/SetColors";
+import { useUserID } from "../../../../helpers/SetUserID";
+import { useUserType } from "../../../../helpers/SetUserType";
+import AnalyticsButton from "../../buttons/AnalyticsButton";
+import AnalyticsHeader from "../../headers/AnalyticsHeader";
 
 const Analytics = (props) => {
   const userID = useUserID();

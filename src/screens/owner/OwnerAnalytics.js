@@ -1,4 +1,4 @@
-import Analytics from "../../components/common/Analytics";
+import Analytics from "../../components/common/screens/analytics/Analytics";
 import { ownerData } from "../../helpers/data/AnalyticsData";
 import { formatedMonthYear } from "../../helpers/utils";
 

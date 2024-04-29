@@ -1,7 +1,7 @@
 import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
-import Properties from "../../components/common/Properties";
+import Properties from "../../components/common/screens/properties/Properties";
 import { BASE_URL } from "../../constants";
 import { useUserID } from "./../../helpers/SetUserID";
 

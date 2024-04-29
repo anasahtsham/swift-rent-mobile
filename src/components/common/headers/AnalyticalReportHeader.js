@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import AnalyticalReportLineGraph from "../AnalyticalReportLineGraph";
+import AnalyticalReportLineGraph from "../screens/analytics/AnalyticalReportLineGraph";
 
 const AnalyticalReportHeader = (props) => {
   const colors = props.colors;

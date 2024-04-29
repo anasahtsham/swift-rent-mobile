@@ -7,7 +7,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Circle, Line, Path, Rect, Svg, Text } from "react-native-svg";
-import { useColors } from "../../helpers/SetColors";
+import { useColors } from "../../../../helpers/SetColors";
 
 const AnalyticalReportLineGraph = (props) => {
   const colors = useColors();

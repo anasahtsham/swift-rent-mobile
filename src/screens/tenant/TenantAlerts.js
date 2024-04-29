@@ -1,4 +1,4 @@
-import Alerts from "../../components/common/Alerts";
+import Alerts from "../../components/common/screens/alerts/Alerts";
 import { alertsData } from "../../helpers/data/AlertsData";
 
 const TenantAlerts = () => {

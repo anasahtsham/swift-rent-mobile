@@ -8,20 +8,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import * as FontSizes from "../../assets/fonts/FontSizes";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import {
   borderBlue,
   borderGreen,
   borderRed,
-} from "../../assets/themes/DarkColorScheme";
-import { opacityValueForButton } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+} from "../../../../assets/themes/DarkColorScheme";
+import { opacityValueForButton } from "../../../../constants";
+import { useColors } from "../../../../helpers/SetColors";
 import {
   givenRatings,
   myRatings,
   pendingRatings,
-} from "../../helpers/data/RatingsData";
-import RatingsButton from "./buttons/RatingsButton";
+} from "../../../../helpers/data/RatingsData";
+import RatingsButton from "../../buttons/RatingsButton";
 
 const Ratings = ({ navigation }) => {
   const colors = useColors();

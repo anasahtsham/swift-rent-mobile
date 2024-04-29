@@ -1,4 +1,4 @@
-import Properties from "../../components/common/Properties";
+import Properties from "../../components/common/screens/properties/Properties";
 import { propertiesData } from "../../helpers/data/PropertiesData";
 
 const ManagerProperties = () => {

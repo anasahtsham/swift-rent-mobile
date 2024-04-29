@@ -9,12 +9,12 @@ import {
   View,
 } from "react-native";
 import { Button } from "react-native-elements";
-import { BASE_URL } from "../../constants";
-import { saveUserID, saveUserType } from "../../helpers";
-import { useColorsOnFocus } from "../../helpers/SetColors";
-import { useUserID } from "../../helpers/SetUserID";
-import { useUserType } from "../../helpers/SetUserType";
-import ProfileHeader from "./headers/ProfileHeader";
+import { BASE_URL } from "../../../../constants";
+import { saveUserID, saveUserType } from "../../../../helpers";
+import { useColorsOnFocus } from "../../../../helpers/SetColors";
+import { useUserID } from "../../../../helpers/SetUserID";
+import { useUserType } from "../../../../helpers/SetUserType";
+import ProfileHeader from "../../headers/ProfileHeader";
 
 const Profile = () => {
   const userID = useUserID();

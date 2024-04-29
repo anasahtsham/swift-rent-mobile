@@ -10,13 +10,13 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BUTTON_WIDTH_MEDIUM } from "../../constants";
-import { icons } from "../../helpers/ImageImports";
-import { useColors } from "../../helpers/SetColors";
-import { ratingScreenSchema } from "../../helpers/validation/RatingScreenValidation";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { BUTTON_WIDTH_MEDIUM } from "../../../../constants";
+import { icons } from "../../../../helpers/ImageImports";
+import { useColors } from "../../../../helpers/SetColors";
+import { ratingScreenSchema } from "../../../../helpers/validation/RatingScreenValidation";
+import ButtonGrey from "../../buttons/ButtonGrey";
 import RatingStars from "./RatingStars";
-import ButtonGrey from "./buttons/ButtonGrey";
 
 const RatingScreen = ({ navigation, route }) => {
   const colors = useColors();

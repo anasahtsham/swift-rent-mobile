@@ -1,4 +1,4 @@
-import Profile from "../../components/common/Profile";
+import Profile from "../../components/common/screens/profile/Profile";
 
 const ManagerProfile = () => {
   return <Profile />;
