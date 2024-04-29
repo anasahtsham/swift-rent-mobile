@@ -554,7 +554,7 @@ const styles = StyleSheet.create({
     marginBottom: 35,
   },
   dropdownLabel: {
-    fontSize: FontSizes.small,
+    fontSize: FontSizes.extraSmall,
     marginBottom: 5,
     marginLeft: 10,
   },
