@@ -120,7 +120,9 @@ const Profile = () => {
               { backgroundColor: colors.backgroundPrimary },
             ]}
             containerStyle={styles.buttonContainer}
-            onPress={() => navigation.navigate("Setting Screen")}
+            onPress={() =>
+              navigation.navigate("Setting Screen", { userID: userID })
+            }
           />
           <Button
             title="Logout"
