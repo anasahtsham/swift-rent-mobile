@@ -74,7 +74,15 @@ const WelcomeScreen = ({ navigation }) => {
               { color: colors.textLightBlue, fontSize: FontSizes.large },
             ]}
           >
-            {languages.welcomeToSwiftRent}
+            {languages.welcomeTo}
+          </Text>
+          <Text
+            style={[
+              styles.welcomeText,
+              { color: colors.textLightBlue, fontSize: FontSizes.large },
+            ]}
+          >
+            {languages.swiftRent}
           </Text>
         </View>
 

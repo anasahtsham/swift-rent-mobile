@@ -1,5 +1,6 @@
 //welcome screen
-export const welcomeToSwiftRent = "Welcome To Swift Rent";
+export const welcomeTo = "Welcome To";
+export const swiftRent = "SwiftRent";
 export const getStarted = "Get Started";
 export const alreadyHaveAnAccount = "Already have an account?";
 export const login = "Login";
