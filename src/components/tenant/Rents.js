@@ -18,7 +18,7 @@ import {
   rentsPaidData,
   rentsPendingData,
 } from "../../helpers/data/RentsData";
-import RentsButton from "./buttons/RentsButton";
+import RentsButton from "../common/buttons/RentsButton";
 
 const Rents = ({ navigation, route }) => {
   const colors = useColors();

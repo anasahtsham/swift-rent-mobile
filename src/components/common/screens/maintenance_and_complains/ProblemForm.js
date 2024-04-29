@@ -13,11 +13,11 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
-import { reportBugSchema } from "./../../helpers/validation/ReportBugValidation";
-import ButtonGrey from "./buttons/ButtonGrey";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../../../constants";
+import { useColors } from "../../../../helpers/SetColors";
+import { reportBugSchema } from "../../../../helpers/validation/ReportBugValidation";
+import ButtonGrey from "../../buttons/ButtonGrey";
 
 const ProblemForm = ({ navigation, route }) => {
   const { headerText, userID, userType } = route.params;

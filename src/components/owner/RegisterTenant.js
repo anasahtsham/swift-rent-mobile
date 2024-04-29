@@ -5,14 +5,14 @@ import { Alert, StyleSheet, Text, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import InputField from "../../components/common/input_fields/InputField";
 import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useUserID } from "../../helpers/SetUserID";
 import { useUserType } from "../../helpers/SetUserType";
 import { registerTenantSchema } from "../../helpers/validation/RegisterTenantValidation";
-import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
+import ButtonGrey from "../common/buttons/ButtonGrey";
+import InputField from "../common/input_fields/InputField";
+import InputFieldWithHint from "../common/input_fields/InputFieldWithHint";
 
 const RegisterTenant = ({ navigation, route }) => {
   const { id } = route.params;

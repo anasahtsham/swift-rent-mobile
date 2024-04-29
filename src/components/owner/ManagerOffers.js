@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { BackHandler, FlatList, SafeAreaView, StyleSheet } from "react-native";
 
-import ManagerOffersButton from "../../components/common/buttons/ManagerOffersButton";
-import ManagerOffersHeader from "../../components/common/headers/ManagerOffersHeader";
+import { useColors } from "../../helpers/SetColors";
 import { managerOffersData } from "../../helpers/data/ManagerOffersData";
-import { useColors } from "./../../helpers/SetColors";
+import ManagerOffersButton from "../common/buttons/ManagerOffersButton";
+import ManagerOffersHeader from "../common/headers/ManagerOffersHeader";
 
 const ManagerOffers = ({ navigation }) => {
   const colors = useColors();

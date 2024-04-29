@@ -10,9 +10,6 @@ import {
 import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import Checkbox from "../../components/common/checkboxes/Checkbox";
-import HintPopup from "../../components/common/popups/HintPopup";
 import { BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import {
@@ -20,7 +17,10 @@ import {
   managerFixedSchema,
   managerPercentageSchema,
 } from "../../helpers/validation/HireManagerValidation";
-import InputFieldWithHint from "./../../components/common/input_fields/InputFieldWithHint";
+import ButtonGrey from "../common/buttons/ButtonGrey";
+import Checkbox from "../common/checkboxes/Checkbox";
+import InputFieldWithHint from "../common/input_fields/InputFieldWithHint";
+import HintPopup from "../common/popups/HintPopup";
 
 const HireManagerRequestForm = ({ navigation }) => {
   const colors = useColors();

@@ -1,8 +1,8 @@
+import ExploreOffers from "../components/manager/ExploreOffers";
 import ManagerAlerts from "../screens/manager/ManagerAlerts";
 import ManagerAnalytics from "../screens/manager/ManagerAnalytics";
 import ManagerProfile from "../screens/manager/ManagerProfile";
 import ManagerProperties from "../screens/manager/ManagerProperties";
-import ExploreOffers from "./../components/common/ExploreOffers";
 import TabNavigator from "./TabNavigator";
 
 // This is the navigation bar that is used when the user type is manager

@@ -9,18 +9,18 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { opacityValueForButton } from "../../../../constants";
+import { useColors } from "../../../../helpers/SetColors";
 import {
   complaintsData,
   complaintsHeaderData,
   maintenanceData,
   maintenanceHeaderData,
-} from "../../helpers/data/MaintenanceAndComplainsData";
-import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/ViewMaintenanceAndComplainsValidation";
-import ViewMaintenanceAndComplainsHeader from "./headers/ViewMaintenanceAndComplainsHeader";
-import InputField from "./input_fields/InputField";
+} from "../../../../helpers/data/MaintenanceAndComplainsData";
+import { viewMaintenanceAndComplainsSchema } from "../../../../helpers/validation/ViewMaintenanceAndComplainsValidation";
+import ViewMaintenanceAndComplainsHeader from "../../headers/ViewMaintenanceAndComplainsHeader";
+import InputField from "../../input_fields/InputField";
 
 const ViewMaintenanceAndComplains = ({ route }) => {
   const colors = useColors();

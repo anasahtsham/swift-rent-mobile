@@ -1,12 +1,12 @@
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import OwnerHiringCard from "../../components/common/cards/OwnerHiringCard";
-import OwnerHiringFooter from "../../components/common/footers/OwnerHiringFooter";
-import OwnerHiringHeader from "../../components/common/headers/OwnerHiringHeader";
 import { icons } from "../../helpers/ImageImports";
+import { useColors } from "../../helpers/SetColors";
 import { ratingsData } from "../../helpers/data/OwnerHiringData";
-import { useColors } from "./../../helpers/SetColors";
+import OwnerHiringCard from "../common/cards/OwnerHiringCard";
+import OwnerHiringFooter from "../common/footers/OwnerHiringFooter";
+import OwnerHiringHeader from "../common/headers/OwnerHiringHeader";
 
 const OwnerHiring = ({ navigation }) => {
   const colors = useColors();

@@ -9,9 +9,9 @@ import {
   View,
 } from "react-native";
 import { Button } from "react-native-elements";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import ButtonGrey from "../../components/common/buttons/ButtonGrey";
-import { useColorsOnFocus } from "../../helpers/SetColors";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { useColorsOnFocus } from "../../../../helpers/SetColors";
+import ButtonGrey from "../../buttons/ButtonGrey";
 
 const VerifyDocumentation = ({ navigation }) => {
   const colors = useColorsOnFocus();

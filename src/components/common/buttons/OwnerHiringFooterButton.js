@@ -1,10 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useColors } from "../helpers/SetColors";
+import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { useColors } from "../../../helpers/SetColors";
 
-import * as FontSizes from "../assets/fonts/FontSizes";
-
-const CustomFooterButton = ({
+const OwnerHiringFooterButton = ({
   onPress,
   borderColor,
   isBold,
@@ -54,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomFooterButton;
+export default OwnerHiringFooterButton;

@@ -12,10 +12,10 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { TextInput } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { icons } from "../../helpers/ImageImports";
+import { useColorsOnFocus } from "../../helpers/SetColors";
 import { exploreOffersData } from "../../helpers/data/ExploreOffersData";
 import { cityData } from "../../helpers/data/PropertyInfoData";
-import { useColorsOnFocus } from "./../../helpers/SetColors";
-import ExploreOffersButton from "./buttons/ExploreOffersButton";
+import ExploreOffersButton from "../common/buttons/ExploreOffersButton";
 
 const ExploreOffers = ({ navigation }) => {
   const colors = useColorsOnFocus();
