@@ -45,10 +45,6 @@ const AnalyticalReportHeader = (props) => {
   const totalMaintenanceCostSum = calculateTotalSum(totalMaintenanceCosts);
   const totalProfitSum = calculateTotalSum(totalProfits);
 
-  console.log(`Total Revenue Sum: ${totalRevenueSum}`);
-  console.log(`Total Maintenance Cost Sum: ${totalMaintenanceCostSum}`);
-  console.log(`Total Profit Sum: ${totalProfitSum}`);
-
   const data = [
     {
       values: totalMaintenanceCosts,
