@@ -2,21 +2,6 @@ import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const getStatusColor = (status) => {
-  switch (status.toLowerCase()) {
-    case "pending":
-      return "textRed";
-    case "in-progress":
-      return "textYellow";
-    case "resolved":
-      return "textGreen";
-    case "responded":
-      return "textGreen";
-    default:
-      return "textPrimary";
-  }
-};
-
 const RentalRequestAgreementFormHeader = ({
   colors,
   loading,
@@ -128,7 +113,7 @@ const RentalRequestAgreementFormHeader = ({
                   styles.dynamicData,
                 ]}
               >
-                {props.incrementPeriod}
+                {props.incrementPeriod || 0}
                 {" (Months)"}
               </Text>
             </View>
@@ -147,7 +132,7 @@ const RentalRequestAgreementFormHeader = ({
                   styles.dynamicData,
                 ]}
               >
-                {props.incrementPercentage}
+                {props.incrementPercentage || 0}
                 {"%"}
               </Text>
             </View>

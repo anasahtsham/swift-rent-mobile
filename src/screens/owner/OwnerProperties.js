@@ -24,13 +24,7 @@ const OwnerProperties = () => {
             }
           );
 
-          // Add IDs to the response data
-          const responseWithIds = response.data.map((item, index) => ({
-            ...item,
-            id: index + 1,
-          }));
-
-          setPropertiesData(responseWithIds);
+          setPropertiesData(response.data);
         } catch (error) {
           Alert.alert("Error fetching property list:", error.message);
           console.error("Error fetching property list:", error);

@@ -1,5 +1,6 @@
+import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   ActivityIndicator,
   BackHandler,
@@ -22,36 +23,40 @@ const RentalRequests = ({ navigation }) => {
   const [rentalRequestsData, setRentalRequestsData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchRentalRequests = async () => {
-      try {
-        const response = await axios.post(
-          `${BASE_URL}/api/tenant/lease-request`,
-          { tenantID: userID }
-        );
-        setRentalRequestsData(response.data.leaseRequests);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
+  useFocusEffect(
+    useCallback(() => {
+      console.log("userID", userID);
+      const fetchRentalRequests = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/api/tenant/lease-request`,
+            { tenantID: userID }
+          );
+          setRentalRequestsData(response.data.leaseRequests);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      if (userID !== null) {
+        fetchRentalRequests();
       }
-    };
 
-    if (userID !== null) {
-      fetchRentalRequests();
-    }
+      const backAction = () => {
+        navigation.goBack();
+        return true; // This will prevent the app from closing
+      };
 
-    const backAction = () => {
-      navigation.goBack();
-      return true; // This will prevent the app from closing
-    };
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
 
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, [userID]);
+      return () => backHandler.remove();
+    }, [userID])
+  );
 
   const renderItem = ({ item: rentRequest }) => (
     <RentalRequestsButton

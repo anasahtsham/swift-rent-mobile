@@ -1,3 +1,4 @@
+import { CommonActions } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../assets/fonts/FontSizes";
@@ -18,16 +19,36 @@ const SplashScreen = ({ navigation }) => {
     const timer = setTimeout(() => {
       switch (userType) {
         case "O":
-          navigation.navigate("Owner Navigator");
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: "Owner Navigator" }],
+            })
+          );
           break;
         case "M":
-          navigation.navigate("Manager Navigator");
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: "Manager Navigator" }],
+            })
+          );
           break;
         case "T":
-          navigation.navigate("Tenant Navigator");
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: "Tenant Navigator" }],
+            })
+          );
           break;
         default:
-          navigation.navigate("Welcome Screen");
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: "Welcome Screen" }],
+            })
+          );
           break;
       }
     }, 3000); // where 1000 milliseconds = 1 second

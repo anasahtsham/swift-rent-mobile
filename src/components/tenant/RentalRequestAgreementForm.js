@@ -99,7 +99,7 @@ const RentalRequestAgreementForm = ({ route }) => {
           })
           .then((response) => {
             Alert.alert("Rejected", response.data.message);
-            navigation.goBack();
+            navigation.pop(2);
           })
           .catch((error) => {
             Alert.alert("Error", error.message);
@@ -214,7 +214,7 @@ const RentalRequestAgreementForm = ({ route }) => {
                     ]}
                   >
                     {formatNumberToCrore(advancePayment)} (
-                    {advancePaymentForMonths})
+                    {advancePaymentForMonths || 0})
                   </Text>
                 </View>
                 <View style={{ flexDirection: "row", marginBottom: 20 }}>

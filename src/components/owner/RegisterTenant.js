@@ -147,7 +147,7 @@ const RegisterTenant = ({ navigation, route }) => {
           .post(`${BASE_URL}/api/owner/register-tenant`, data)
           .then((response) => {
             if (response.data.success) {
-              Alert.alert("Success", "Tenant Registered Successfully!");
+              Alert.alert("Success", response.data.success);
               navigation.goBack();
             } else {
               Alert.alert("Error", response.data.error);
@@ -460,7 +460,6 @@ const RegisterTenant = ({ navigation, route }) => {
                 onPress={() => {
                   if (!valueRentDue) {
                     setValueRentDueError(true);
-                    handleSubmit();
                   } else {
                     setValueRentDueError(false);
                     handleSubmit();
