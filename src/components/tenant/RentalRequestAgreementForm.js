@@ -21,7 +21,7 @@ import RentalRequestAgreementFormHeader from "../common/headers/RentalRequestAgr
 import InputField from "../common/input_fields/InputField";
 
 const RentalRequestAgreementForm = ({ route }) => {
-  const { propertyLeaseID } = route.params;
+  const { propertyLeaseID, leaseID } = route.params;
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -92,7 +92,18 @@ const RentalRequestAgreementForm = ({ route }) => {
       initialValues={{ remarks: "" }}
       validationSchema={viewMaintenanceAndComplainsSchema}
       onSubmit={(values) => {
-        Alert.alert("Success", "Form Submitted");
+        axios
+          .post(`${BASE_URL}/api/tenant/lease-reject`, {
+            leaseID: leaseID,
+            reasonForRejection: values.remarks,
+          })
+          .then((response) => {
+            Alert.alert("Rejected", response.data.message);
+            navigation.goBack();
+          })
+          .catch((error) => {
+            Alert.alert("Error", error.message);
+          });
       }}
     >
       {({
@@ -269,6 +280,7 @@ const RentalRequestAgreementForm = ({ route }) => {
               activeOpacity={opacityValueForButton}
               style={[styles.button, { borderColor: colors.borderRed }]}
               onPress={() => {
+                console.log(leaseID);
                 if (values.remarks === "") {
                   Alert.alert(
                     "Please fill the remarks field",

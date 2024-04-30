@@ -57,6 +57,7 @@ const RentalRequests = ({ navigation }) => {
     <RentalRequestsButton
       colors={colors}
       key={rentRequest.id}
+      leaseID={rentRequest.id}
       propertyLeaseID={rentRequest.id}
       address={rentRequest.address}
       registrarName={rentRequest.registrarname}

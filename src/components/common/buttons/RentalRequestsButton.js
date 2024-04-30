@@ -14,6 +14,7 @@ export const RentalRequestsButton = (props) => {
       onPress={() => {
         navigation.navigate("Rental Request Agreement Form", {
           propertyLeaseID: props.propertyLeaseID,
+          leaseID: props.leaseID,
         });
       }}
     >
