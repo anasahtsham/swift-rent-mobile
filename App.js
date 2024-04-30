@@ -8,6 +8,7 @@ import MaintenanceComplainsList from "./src/components/common/screens/maintenanc
 import ProblemForm from "./src/components/common/screens/maintenance_and_complains/ProblemForm";
 import ViewMaintenanceAndComplains from "./src/components/common/screens/maintenance_and_complains/ViewMaintenanceAndComplains";
 import ChangePassword from "./src/components/common/screens/profile/ChangePassword";
+import CustomerSupport from "./src/components/common/screens/profile/CustomerSupport";
 import FAQScreen from "./src/components/common/screens/profile/FAQScreen";
 import SettingScreen from "./src/components/common/screens/profile/SettingScreen";
 import PropertyMenu from "./src/components/common/screens/properties/PropertyMenu";
@@ -86,6 +87,7 @@ export default function App() {
             component={VerifiyDocumentation}
           />
           <Stack.Screen name="Ratings" component={Ratings} />
+          <Stack.Screen name="Customer Support" component={CustomerSupport} />
 
           {/* Owner Screens */}
           <Stack.Screen name="Owner Hiring" component={OwnerHiring} />

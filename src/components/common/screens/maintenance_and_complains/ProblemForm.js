@@ -22,6 +22,7 @@ import ButtonGrey from "../../buttons/ButtonGrey";
 const ProblemForm = ({ navigation, route }) => {
   const { headerText, userID, userType } = route.params;
   const colors = useColors();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const backAction = () => {
@@ -55,6 +56,7 @@ const ProblemForm = ({ navigation, route }) => {
             initialValues={{ issueType: "", issueDescription: "" }}
             validationSchema={reportBugSchema}
             onSubmit={(values) => {
+              setLoading(true);
               if (headerText === "Customer Support") {
                 axios
                   .post(`${BASE_URL}/api/common/customer-support`, {
@@ -64,11 +66,15 @@ const ProblemForm = ({ navigation, route }) => {
                     complaintDescription: values.issueDescription,
                   })
                   .then((response) => {
-                    Alert.alert("Report Sent", response.data.message);
+                    Alert.alert("Success", "Your complaint has been submitted");
+                    navigation.goBack();
                   })
                   .catch((error) => {
                     Alert.alert("Error", error.response.data.error);
-                  });
+                  }).finally;
+                {
+                  setLoading(false);
+                }
               }
             }}
           >
@@ -160,6 +166,7 @@ const ProblemForm = ({ navigation, route }) => {
                   }}
                 >
                   <ButtonGrey
+                    loading={loading}
                     fontSize={FontSizes.medium}
                     width={BUTTON_WIDTH_MEDIUM}
                     buttonText="Submit"

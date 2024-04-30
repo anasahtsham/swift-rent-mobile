@@ -95,13 +95,7 @@ const Profile = () => {
               { backgroundColor: colors.backgroundPrimary },
             ]}
             containerStyle={styles.buttonContainer}
-            onPress={() =>
-              navigation.navigate("Problem Form", {
-                headerText: "Customer Support",
-                userID: userID,
-                userType: userType,
-              })
-            }
+            onPress={() => navigation.navigate("Customer Support")}
           />
           <Button
             title="FAQ's"
