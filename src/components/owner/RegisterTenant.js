@@ -19,6 +19,7 @@ const RegisterTenant = ({ navigation, route }) => {
   const colors = useColors();
   const userID = useUserID();
   const userType = useUserType();
+  const [loading, setLoading] = useState(false);
 
   const dropdownStyles = {
     style: {
@@ -123,6 +124,7 @@ const RegisterTenant = ({ navigation, route }) => {
       }}
       validationSchema={currentSchema}
       onSubmit={(values) => {
+        setLoading(true);
         const data = {
           // sorted in order for postman
           propertyID: id,
@@ -154,6 +156,9 @@ const RegisterTenant = ({ navigation, route }) => {
           .catch((error) => {
             Alert.alert("Error", error.response.data.error);
             console.error(error);
+          })
+          .finally(() => {
+            setLoading(false);
           });
       }}
     >
@@ -448,6 +453,7 @@ const RegisterTenant = ({ navigation, route }) => {
               </View>
 
               <ButtonGrey
+                loading={loading}
                 width={BUTTON_WIDTH_SMALL}
                 fontSize={FontSizes.medium}
                 buttonText="Register"

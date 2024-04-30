@@ -24,7 +24,7 @@ export const RentalRequestsButton = (props) => {
 
         <View style={{ flexDirection: "row" }}>
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-            Registrar Name:{" "}
+            Registrar:{" "}
           </Text>
           <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
             {`${props.registrarName} (${props.registrarType})`}

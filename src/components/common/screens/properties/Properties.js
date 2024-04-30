@@ -1,5 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { BUTTON_WIDTH_SMALL } from "../../../../constants";
 import { useColorsOnFocus } from "../../../../helpers/SetColors";
@@ -78,6 +84,9 @@ const Properties = (props) => {
           />
         )}
       </View>
+      {props.loading && (
+        <ActivityIndicator size="large" color={colors.textWhite} />
+      )}
       <FlatList
         data={dataToRender}
         renderItem={renderItem}

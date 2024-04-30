@@ -16,17 +16,19 @@ const SplashScreen = ({ navigation }) => {
   // timer to send off from splash screen
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (userID === null) {
-        navigation.navigate("Welcome Screen");
-      }
-      if (userType === "O") {
-        navigation.navigate("Owner Navigator");
-      }
-      if (userType === "M") {
-        navigation.navigate("Manager Navigator");
-      }
-      if (userType === "T") {
-        navigation.navigate("Tenant Navigator");
+      switch (userType) {
+        case "O":
+          navigation.navigate("Owner Navigator");
+          break;
+        case "M":
+          navigation.navigate("Manager Navigator");
+          break;
+        case "T":
+          navigation.navigate("Tenant Navigator");
+          break;
+        default:
+          navigation.navigate("Welcome Screen");
+          break;
       }
     }, 3000); // where 1000 milliseconds = 1 second
 
