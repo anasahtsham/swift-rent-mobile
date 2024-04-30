@@ -5,9 +5,8 @@ export const BUTTON_WIDTH_MEDIUM = "60%";
 export const BUTTON_WIDTH_SMALL = "40%";
 export const BUTTON_WIDTH_SMALLER = "30%";
 
-export const BASE_URL =
-  "https://a693-2407-d000-b-f3a9-b9d4-d4cd-a957-6035.ngrok-free.app"; // The base URL for the API
+export const BASE_URL = "https://4845-101-50-71-2.ngrok-free.app"; // The base URL for the API
 
 //http://192.168.18.130:3000
 //http://192.168.18.69:3000
-//https://a693-2407-d000-b-f3a9-b9d4-d4cd-a957-6035.ngrok-free.app
+//https://4845-101-50-71-2.ngrok-free.app

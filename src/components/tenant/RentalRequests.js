@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   BackHandler,
   FlatList,
   SafeAreaView,
@@ -32,8 +31,7 @@ const RentalRequests = ({ navigation }) => {
         );
         setRentalRequestsData(response.data.leaseRequests);
       } catch (error) {
-        Alert.alert("Error", error.message);
-        navigation.goBack();
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -82,7 +80,11 @@ const RentalRequests = ({ navigation }) => {
             },
           ]}
         >
-          Rental Requests
+          {Array.isArray(rentalRequestsData) &&
+          rentalRequestsData.length === 0 &&
+          loading === false
+            ? "No Rental Requests Found"
+            : "Rental Requests"}
         </Text>
       </View>
       {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
