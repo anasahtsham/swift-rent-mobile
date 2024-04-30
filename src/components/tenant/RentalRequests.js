@@ -25,7 +25,6 @@ const RentalRequests = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
-      console.log("userID", userID);
       const fetchRentalRequests = async () => {
         try {
           const response = await axios.post(
