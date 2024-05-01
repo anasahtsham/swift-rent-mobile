@@ -1,6 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   Alert,
   SafeAreaView,
@@ -30,28 +30,32 @@ const Profile = () => {
     phone: "03000000000",
   });
 
-  useEffect(() => {
-    if (userID) {
-      axios
-        .post(`${BASE_URL}/api/common/get-user-profile-info`, {
-          userID: userID,
-        })
-        .then((response) => {
-          if (response.data.success) {
-            setUserProfile(response.data.userProfile);
-          } else {
-            console.error(response.data.error);
+  useFocusEffect(
+    useCallback(() => {
+      const fetchUserProfile = async () => {
+        if (userID) {
+          try {
+            const response = await axios.post(
+              `${BASE_URL}/api/common/get-user-profile-info`,
+              { userID: userID }
+            );
+            if (response.data.success) {
+              setUserProfile(response.data.userProfile);
+            } else {
+              console.error(response.data.error);
+            }
+          } catch (error) {
+            Alert.alert("Error", error.response.data.error);
+            console.error(error);
+          } finally {
+            setLoading(false);
           }
-        })
-        .catch((error) => {
-          Alert.alert("Error", error.response.data.error);
-          console.error(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, [userID]);
+        }
+      };
+
+      fetchUserProfile();
+    }, [userID])
+  );
 
   return (
     <SafeAreaView
