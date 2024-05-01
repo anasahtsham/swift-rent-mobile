@@ -11,6 +11,7 @@ import { BUTTON_WIDTH_SMALL } from "../../../../constants";
 import { useColorsOnFocus } from "../../../../helpers/SetColors";
 import ButtonGrey from "../../buttons/ButtonGrey";
 import { PropertiesButton } from "../../buttons/PropertiesButton";
+import RentalsButton from "../../buttons/RentalsButton";
 import PropertiesHeader from "../../headers/PropertiesHeader";
 
 const Properties = (props) => {
@@ -21,25 +22,29 @@ const Properties = (props) => {
     ? props.rentalsData
     : props.propertiesData;
 
-  const renderItem = ({ item: data }) => (
-    <PropertiesButton
-      colors={colors}
-      key={data.id}
-      id={data.id}
-      address={data.address}
-      income={data.income}
-      outcome={data.outcome}
-      propertystatus={data.propertystatus}
-      status={data.status}
-      manager={data.manager}
-      tenant={data.tenant}
-      rentStatus={data.rentStatus}
-      rentAmount={data.rentAmount}
-      dueDate={data.dueDate}
-      owner={data.owner}
-      navigation={navigation}
-    />
-  );
+  const renderItem = ({ item: data }) =>
+    props.isTenant ? (
+      <RentalsButton
+        colors={colors}
+        key={data.id}
+        id={data.id}
+        address={data.address}
+        owner={data.ownerName}
+        manager={data.managerName}
+        navigation={navigation}
+      />
+    ) : (
+      <PropertiesButton
+        colors={colors}
+        key={data.id}
+        id={data.id}
+        address={data.address}
+        tenant={data.tenantname}
+        manager={data.managername}
+        propertystatus={data.propertystatus}
+        navigation={navigation}
+      />
+    );
 
   let headerText = "My Properties";
   if (props.isTenant) {

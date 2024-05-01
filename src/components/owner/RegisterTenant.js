@@ -142,7 +142,6 @@ const RegisterTenant = ({ navigation, route }) => {
           fine: values.lateRentFine,
         };
 
-        console.log(data);
         axios
           .post(`${BASE_URL}/api/owner/register-tenant`, data)
           .then((response) => {

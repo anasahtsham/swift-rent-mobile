@@ -3,7 +3,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 
-export const PropertiesButton = (props) => {
+export const RentalsButton = (props) => {
   const colors = props.colors;
   function formatPropertyStatus(status) {
     switch (status) {
@@ -50,13 +50,13 @@ export const PropertiesButton = (props) => {
           />
         </View>
 
-        {!!props.tenant && (
+        {!!props.owner && (
           <View style={{ flexDirection: "row", marginTop: 10 }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Rented To:{" "}
+              Owner:{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.tenant}
+              {props.owner}
             </Text>
           </View>
         )}
@@ -120,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PropertiesButton;
+export default RentalsButton;

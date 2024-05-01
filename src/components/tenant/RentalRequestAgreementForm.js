@@ -22,6 +22,7 @@ import InputField from "../common/input_fields/InputField";
 
 const RentalRequestAgreementForm = ({ route }) => {
   const { propertyLeaseID, leaseID } = route.params;
+  console.log("Lease ID: ", leaseID);
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -91,15 +92,16 @@ const RentalRequestAgreementForm = ({ route }) => {
     <Formik
       initialValues={{ remarks: "" }}
       validationSchema={viewMaintenanceAndComplainsSchema}
-      onSubmit={(values) => {
+      onSubmit={() => {
         axios
-          .post(`${BASE_URL}/api/tenant/lease-reject`, {
-            leaseID: leaseID,
-            reasonForRejection: values.remarks,
-          })
+          .post(`${BASE_URL}/api/tenant/lease-accept`, { leaseID: leaseID })
           .then((response) => {
-            Alert.alert("Rejected", response.data.message);
-            navigation.pop(2);
+            if (response.data.success) {
+              Alert.alert("Success", "Lease accepted successfully");
+              navigation.pop(2);
+            } else {
+              Alert.alert("Error", response.data.error);
+            }
           })
           .catch((error) => {
             Alert.alert("Error", error.message);
@@ -280,14 +282,24 @@ const RentalRequestAgreementForm = ({ route }) => {
               activeOpacity={opacityValueForButton}
               style={[styles.button, { borderColor: colors.borderRed }]}
               onPress={() => {
-                console.log(leaseID);
                 if (values.remarks === "") {
                   Alert.alert(
                     "Please fill the remarks field",
                     "Remarks is required"
                   );
                 } else {
-                  handleSubmit();
+                  axios
+                    .post(`${BASE_URL}/api/tenant/lease-reject`, {
+                      leaseID: leaseID,
+                      reasonForRejection: values.remarks,
+                    })
+                    .then((response) => {
+                      Alert.alert("Rejected", response.data.message);
+                      navigation.pop(2);
+                    })
+                    .catch((error) => {
+                      Alert.alert("Error", error.message);
+                    });
                 }
               }}
             >

@@ -18,7 +18,7 @@ export const RentalRequestsButton = (props) => {
         });
       }}
     >
-      <View>
+      <View style={{ width: "80%" }}>
         <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
           {props.address}
         </Text>
@@ -35,7 +35,7 @@ export const RentalRequestsButton = (props) => {
       <Image
         tintColor={colors.iconPrimary}
         source={icons.externalLink}
-        style={{ width: 20, height: 20 }}
+        style={styles.icon}
       />
     </TouchableOpacity>
   );

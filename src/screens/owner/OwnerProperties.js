@@ -23,7 +23,6 @@ const OwnerProperties = () => {
               userID: userID,
             }
           );
-
           setPropertiesData(response.data);
         } catch (error) {
           Alert.alert("Error fetching property list:", error.message);
