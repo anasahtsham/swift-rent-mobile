@@ -25,9 +25,9 @@ const Profile = () => {
   const colors = useColorsOnFocus();
 
   const [userProfile, setUserProfile] = useState({
-    name: "",
-    email: "",
-    phone: "",
+    name: "Username",
+    email: "email@gmail.com",
+    phone: "03000000000",
   });
 
   useEffect(() => {
