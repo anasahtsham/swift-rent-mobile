@@ -13,6 +13,8 @@ import {
   noLeadingOrTrailingSpacesRegex,
   notOnlyNumbersMessage,
   notOnlyNumbersRegex,
+  notOnlySpacesMessage,
+  notOnlySpacesRegex,
   notOnlySpecialCharactersMessage,
   notOnlySpecialCharactersRegex,
   requiredMessage,
@@ -27,6 +29,7 @@ export const reportBugSchema = Yup.object().shape({
     .matches(noDoubleSpacesRegex, noDoubleSpacesMessage)
     .matches(notOnlyNumbersRegex, notOnlyNumbersMessage)
     .matches(notOnlySpecialCharactersRegex, notOnlySpecialCharactersMessage),
+
   issueDescription: Yup.string()
     .required(requiredMessage)
     .min(min3CharactersInt, min3CharactersMessage)
@@ -34,5 +37,6 @@ export const reportBugSchema = Yup.object().shape({
     .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
     .matches(noDoubleSpacesRegex, noDoubleSpacesMessage)
     .matches(notOnlyNumbersRegex, notOnlyNumbersMessage)
+    .matches(notOnlySpacesRegex, notOnlySpacesMessage)
     .matches(notOnlySpecialCharactersRegex, notOnlySpecialCharactersMessage),
 });

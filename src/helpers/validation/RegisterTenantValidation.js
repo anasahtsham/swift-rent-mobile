@@ -1,8 +1,10 @@
 import * as Yup from "yup";
 
 import {
-  between1and100Message,
-  between1and100Regex,
+  from1To100Message,
+  from1To100Regex,
+  from1To99Message,
+  from1To99Regex,
   multipleOfHunderedMessage,
   multipleOfHunderedRegex,
   noSpacesMessage,
@@ -62,6 +64,7 @@ export const registerTenantSchema = (
     advancePaymentForMonths: Yup.string()
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
+      .matches(from1To99Regex, from1To99Message)
       .test("isAdvancePaymentEditable", requiredMessage, function (value) {
         if (isAdvancePaymentEditable && !value) {
           return false;
@@ -72,7 +75,7 @@ export const registerTenantSchema = (
     yearlyIncrease: Yup.string()
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
-      .matches(between1and100Regex, between1and100Message)
+      .matches(from1To100Regex, from1To100Message)
       .test("isYearlyIncreaseEditable", requiredMessage, function (value) {
         if (isYearlyIncreaseEditable && !value) {
           return false;
@@ -82,6 +85,7 @@ export const registerTenantSchema = (
     incrementPeriod: Yup.string()
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
+      .matches(from1To99Regex, from1To99Message)
       .test("isYearlyIncreaseEditable", requiredMessage, function (value) {
         if (isYearlyIncreaseEditable && !value) {
           return false;
