@@ -67,16 +67,16 @@ const ProblemForm = ({ navigation, route }) => {
                     complaintTitle: values.issueType,
                     complaintDescription: values.issueDescription,
                   })
-                  .then((response) => {
+                  .then(() => {
                     Alert.alert("Success", "Your complaint has been submitted");
                     navigation.goBack();
                   })
                   .catch((error) => {
                     Alert.alert("Error", error.response.data.error);
-                  }).finally;
-                {
-                  setLoading(false);
-                }
+                  })
+                  .finally(() => {
+                    setLoading(false);
+                  });
               }
             }}
           >
