@@ -49,10 +49,7 @@ const ChangePassword = ({ navigation }) => {
             newPassword: md5(values.password),
           };
 
-          const response = await axios.post(
-            `${BASE_URL}/api/auth/change-password`,
-            data
-          );
+          await axios.post(`${BASE_URL}/api/auth/change-password`, data);
           // Password changed successfully
           Alert.alert("Password changed successfully");
           navigation.goBack();
