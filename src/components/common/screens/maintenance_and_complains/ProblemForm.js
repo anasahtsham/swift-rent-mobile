@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Alert,
   BackHandler,
@@ -38,6 +38,8 @@ const ProblemForm = ({ navigation, route }) => {
   }, []);
 
   const [height, setHeight] = useState();
+
+  const descriptionRef = useRef();
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{ flexGrow: 1 }}
@@ -115,13 +117,17 @@ const ProblemForm = ({ navigation, route }) => {
                     onChangeText={handleChange("issueType")}
                     onBlur={handleBlur("issueType")}
                     value={values.issueType}
+                    onSubmitEditing={() => descriptionRef.current.focus()}
+                    returnKeyType="next"
                   />
                   {touched.issueType && errors.issueType && (
                     <Text style={{ color: colors.textRed, marginTop: 10 }}>
                       {errors.issueType}
                     </Text>
                   )}
+
                   <TextInput
+                    ref={descriptionRef}
                     placeholder="Describe your problem"
                     placeholderTextColor={colors.textPrimary}
                     style={[
