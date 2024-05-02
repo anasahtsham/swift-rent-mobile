@@ -204,6 +204,20 @@ const RegisterTenant = ({ navigation, route }) => {
           isLateRentFineEditable,
         ]);
 
+        // function that sets the advance payment based on the rent amount and the number of months
+        useEffect(() => {
+          if (isAdvancePaymentEditable) {
+            formikProps.setFieldValue(
+              "advancePayment",
+              (values.advancePaymentForMonths * values.rentAmount).toString()
+            );
+          }
+        }, [
+          values.advancePaymentForMonths,
+          values.rentAmount,
+          isAdvancePaymentEditable,
+        ]);
+
         return (
           <KeyboardAwareScrollView
             contentContainerStyle={{ flexGrow: 1 }}
@@ -231,7 +245,7 @@ const RegisterTenant = ({ navigation, route }) => {
                 Register Tenant
               </Text>
 
-              <View style={[styles.bodyContainer, { marginBottom: 20 }]}>
+              <View style={[styles.bodyContainer, { marginBottom: 10 }]}>
                 <Text
                   style={{
                     fontSize: FontSizes.extraSmall,
@@ -327,7 +341,9 @@ const RegisterTenant = ({ navigation, route }) => {
                     touched.securityAmount ? errors.securityAmount : ""
                   }
                   returnKeyType="next"
-                  onSubmitEditing={() => advancePaymentRef.current?.focus()}
+                  onSubmitEditing={() =>
+                    advancePaymentForMonthsRef.current?.focus()
+                  }
                   ref={securityAmountRef}
                   hintTexts={{
                     english:
@@ -337,6 +353,7 @@ const RegisterTenant = ({ navigation, route }) => {
                 />
 
                 <InputFieldWithHint
+                  editable={false}
                   isEditable={isAdvancePaymentEditable}
                   setIsEditable={setIsAdvancePaymentEditable}
                   fieldType="numeric"
@@ -344,7 +361,7 @@ const RegisterTenant = ({ navigation, route }) => {
                   borderRadius={10}
                   label="Advance Payment (PKR)"
                   value={isAdvancePaymentEditable ? values.advancePayment : ""}
-                  handleChange={handleChange("advancePayment")}
+                  // handleChange={handleChange("advancePayment")} // This is not needed as the value is calculated based on the advancePaymentForMonths and rentAmount
                   handleBlur={handleBlur("advancePayment")}
                   errorText={
                     touched.advancePayment ? errors.advancePayment : ""
@@ -450,6 +467,20 @@ const RegisterTenant = ({ navigation, route }) => {
                   }}
                 />
               </View>
+
+              <Text
+                style={{
+                  fontSize: FontSizes.small,
+                  color: colors.textGrey,
+                  fontFamily: "OpenSansRegular",
+                  textAlign: "center",
+                  marginBottom: 10,
+                  width: "60%",
+                }}
+              >
+                <Text style={{ fontFamily: "OpenSansBold" }}>NOTE: </Text>
+                Rent payment will start from this month.
+              </Text>
 
               <ButtonGrey
                 loading={loading}
