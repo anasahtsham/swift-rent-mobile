@@ -1,6 +1,7 @@
 import * as d3 from "d3";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
+  Animated,
   PanResponder,
   StyleSheet,
   View,
@@ -8,6 +9,8 @@ import {
 } from "react-native";
 import { Circle, Line, Path, Rect, Svg, Text } from "react-native-svg";
 import { formatNumberToThousands } from "../../../../helpers/utils";
+
+const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 const AnalyticalReportLineGraph = (props) => {
   const colors = props.colors;
@@ -84,6 +87,16 @@ const AnalyticalReportLineGraph = (props) => {
   const viewBoxWidth = contentWidth;
   const viewBoxHeight = contentHeight * (1 / aspectRatio);
 
+  const [lineLength] = useState(new Animated.Value(1000)); // Assume the length is 1000
+
+  useEffect(() => {
+    Animated.timing(lineLength, {
+      toValue: 0,
+      duration: 5000, // Duration of the animation in milliseconds
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
   return (
     <View style={styles.graphContainer} {...panResponder.panHandlers}>
       <Svg
@@ -112,12 +125,14 @@ const AnalyticalReportLineGraph = (props) => {
             />
           ))}
         {data.map((dataset, index) => (
-          <Path
+          <AnimatedPath
             key={index}
             d={line(dataset.values)}
             fill="none"
             stroke={dataset.color}
             strokeWidth={3}
+            strokeDasharray={1000} // Assume the length is 1000
+            strokeDashoffset={lineLength}
           />
         ))}
         <Text
