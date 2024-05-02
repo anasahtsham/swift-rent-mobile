@@ -18,9 +18,8 @@ const Properties = (props) => {
   const colors = useColorsOnFocus();
   const navigation = useNavigation();
 
-  const dataToRender = props.isTenant
-    ? props.rentalsData
-    : props.propertiesData;
+  const dataToRender =
+    (props.isTenant ? props.rentalsData : props.propertiesData) || [];
 
   const renderItem = ({ item: data }) =>
     props.isTenant ? (
@@ -91,6 +90,21 @@ const Properties = (props) => {
       </View>
       {props.loading && (
         <ActivityIndicator size="large" color={colors.textWhite} />
+      )}
+      {dataToRender.length === 0 && !props.loading && (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text
+            style={{
+              fontFamily: "OpenSansRegular",
+              fontSize: FontSizes.medium,
+              color: colors.textWhite,
+            }}
+          >
+            No properties yet
+          </Text>
+        </View>
       )}
       <FlatList
         data={dataToRender}

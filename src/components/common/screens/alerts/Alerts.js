@@ -3,12 +3,13 @@ import axios from "axios";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   FlatList,
   SafeAreaView,
   StyleSheet,
+  Text,
   View,
 } from "react-native";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { BASE_URL } from "../../../../constants";
 import { useColorsOnFocus } from "../../../../helpers/SetColors";
 import { AlertButton } from "../../buttons/AlertButton";
@@ -28,8 +29,6 @@ const Alerts = () => {
 
   useFocusEffect(
     useCallback(() => {
-      let isCancelled = false;
-
       const fetchNotifications = async () => {
         if (!userID || !userType) return;
         try {
@@ -40,27 +39,15 @@ const Alerts = () => {
               userType: userType,
             }
           );
-
-          if (!isCancelled && response.data.notifications) {
-            setAlertsData(response.data.notifications);
-          }
+          setAlertsData(response.data.notifications);
         } catch (error) {
-          if (!isCancelled) {
-            console.error(error);
-            Alert.alert("Error", error.response?.data?.message);
-          }
+          console.error(error);
         } finally {
-          if (!isCancelled) {
-            setLoading(false);
-          }
+          setLoading(false);
         }
       };
 
       fetchNotifications();
-
-      return () => {
-        isCancelled = true;
-      };
     }, [userID, userType])
   );
 
@@ -110,6 +97,22 @@ const Alerts = () => {
           color={colors.textPrimary}
           style={{ flex: 1 }}
         />
+      )}
+      {/* if the filteredData is an empty array show text in medium bold size that no notifications yet */}
+      {filteredData.length === 0 && !loading && (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text
+            style={{
+              fontFamily: "OpenSansRegular",
+              fontSize: FontSizes.medium,
+              color: colors.textPrimary,
+            }}
+          >
+            No notifications yet
+          </Text>
+        </View>
       )}
       <FlatList
         data={filteredData}
