@@ -53,17 +53,11 @@ const ChangePassword = ({ navigation }) => {
             `${BASE_URL}/api/auth/change-password`,
             data
           );
-
-          if (response.status === 200) {
-            // Password changed successfully
-            Alert.alert("Password changed successfully");
-            navigation.goBack();
-          } else {
-            // Handle error
-            Alert.alert("Error changing password", response.data.error);
-          }
+          // Password changed successfully
+          Alert.alert("Password changed successfully");
+          navigation.goBack();
         } catch (error) {
-          Alert.alert("Error changing password", error.toString());
+          Alert.alert("Error changing password", error.response.data.error);
         }
       }}
     >
