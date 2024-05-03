@@ -1,5 +1,8 @@
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   BackHandler,
   FlatList,
   SafeAreaView,
@@ -9,26 +12,48 @@ import {
   View,
 } from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../../constants";
+import { BASE_URL, opacityValueForButton } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import { complainsData } from "../../../../helpers/data/ComplainsListData";
-import { maintenanceData } from "../../../../helpers/data/MaintenanceData";
 import { MaintenanceComplainsListButton } from "../../buttons/MaintenanceComplainsListButton";
+import AllMaintenancesCard from "../../cards/AllMaintenancesCard";
+import { useUserID } from "./../../../../helpers/SetUserID";
+import MaintenanceComplainsListHeader from "./../../headers/MaintenanceComplainsListHeader";
 
 const MaintenanceComplainsList = ({ navigation, route }) => {
+  const userID = useUserID();
   const colors = useColors();
   const { header } = route.params;
+  const [loading, setLoading] = useState(true);
+
+  const [maintenanceData, setMaintenanceData] = useState([]);
 
   let dataToBeRendered = [];
 
-  if (header === "Maintenance" || header === "My Requests") {
+  if (header === "Maintenance") {
     dataToBeRendered = maintenanceData;
   }
-  if (header === "Complains" || header === "My Complains") {
+  if (header === "Complains") {
     dataToBeRendered = complainsData;
   }
 
   useEffect(() => {
+    if (userID) {
+      axios
+        .post(`${BASE_URL}/api/owner/display-all-maintenace-reports`, {
+          ownerID: userID,
+        })
+        .then((response) => {
+          setMaintenanceData(response.data.maintenanceReports);
+        })
+        .catch((error) => {
+          Alert.alert("Error", error.response.data.alert);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -41,30 +66,41 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
     return () => backHandler.remove();
   }, []);
 
-  const renderItem = ({ item: list }) => (
-    <MaintenanceComplainsListButton
-      colors={colors}
-      key={list.id}
-      address={list.address}
-      owner={list.owner}
-      manager={list.manager}
-      tenant={list.tenant}
-      maintenanceStatus={list.maintenanceStatus}
-      complaintStatus={list.complaintStatus}
-      onPress={() =>
-        navigation.navigate("View Maintenance And Complains", {
-          headerTitle: !!list.maintenanceStatus
-            ? "Maintenance Request"
-            : "Complain",
-        })
-      }
-    />
-  );
+  const renderItem = ({ item: list }) =>
+    (header === "Maintenance" && (
+      <AllMaintenancesCard
+        colors={colors}
+        key={list.id}
+        title={list.title}
+        description={list.description}
+        cost={list.cost}
+        date={list.date}
+      />
+    )) || (
+      <MaintenanceComplainsListButton
+        colors={colors}
+        key={list.id}
+        address={list.address}
+        owner={list.owner}
+        manager={list.manager}
+        tenant={list.tenant}
+        maintenanceStatus={list.maintenanceStatus}
+        complaintStatus={list.complaintStatus}
+        onPress={() =>
+          navigation.navigate("View Maintenance And Complains", {
+            headerTitle: !!list.maintenanceStatus
+              ? "Maintenance Request"
+              : "Complain",
+          })
+        }
+      />
+    );
 
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
+      <MaintenanceComplainsListHeader colors={colors} />
       {header === "My Requests" && (
         <View
           style={[
@@ -150,6 +186,7 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
           {header}
         </Text>
       </View>
+      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
       <FlatList
         data={dataToBeRendered}
         renderItem={renderItem}

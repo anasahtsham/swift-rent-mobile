@@ -16,7 +16,7 @@ const PropertiesHeader = (props) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("Maintenance Complains List", {
-            header: props.isTenant ? "My Requests" : "Maintenance",
+            header: "Maintenance",
           });
         }}
         activeOpacity={opacityValueForButton}
@@ -42,7 +42,7 @@ const PropertiesHeader = (props) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate("Maintenance Complains List", {
-            header: props.isTenant ? "My Complains" : "Complains",
+            header: "Complains",
           })
         }
         activeOpacity={opacityValueForButton}

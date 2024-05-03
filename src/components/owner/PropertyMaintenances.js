@@ -14,7 +14,7 @@ import {
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL, opacityValueForButton } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import PropertyMaintenancesButton from "../common/buttons/PropertyMaintenancesButton";
+import PropertyMaintenancesCard from "../common/cards/PropertyMaintenancesCard";
 import { useUserID } from "./../../helpers/SetUserID";
 
 const PropertyMaintenances = ({ navigation, route }) => {
@@ -59,7 +59,7 @@ const PropertyMaintenances = ({ navigation, route }) => {
   }, [userID]);
 
   const renderItem = ({ item: list }) => (
-    <PropertyMaintenancesButton
+    <PropertyMaintenancesCard
       colors={colors}
       key={list.id}
       title={list.title}

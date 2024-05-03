@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-export const PropertyMaintenancesButton = (props) => {
+export const PropertyMaintenancesCard = (props) => {
   const colors = props.colors;
   return (
     <View
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PropertyMaintenancesButton;
+export default PropertyMaintenancesCard;
