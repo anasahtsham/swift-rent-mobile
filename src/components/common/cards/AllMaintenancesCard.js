@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { formatNumberToCrore } from "./../../../helpers/utils/index";
 
 export const AllMaintenancesCard = (props) => {
   const colors = props.colors;
   return (
     <View
-      onPress={props.onPress}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View>
-        <View style={{ flexDirection: "row", marginBottom: 5 }}>
+        <View
+          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
+        >
           <Text
             style={[
               styles.fontBold,
@@ -20,7 +22,9 @@ export const AllMaintenancesCard = (props) => {
           </Text>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: 5 }}>
+        <View
+          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
+        >
           <Text
             style={[
               styles.fontBold,
@@ -31,16 +35,31 @@ export const AllMaintenancesCard = (props) => {
           </Text>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: 5 }}>
+        <View
+          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
+        >
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-            Cost:{" "}
+            Address:{" "}
           </Text>
           <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-            {props.cost}
+            {props.address}
           </Text>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: 5 }}>
+        <View
+          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
+        >
+          <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+            Cost:{" "}
+          </Text>
+          <Text style={[styles.fontBold, { color: colors.textRed }]}>
+            {`${formatNumberToCrore(props.cost)} PKR`}
+          </Text>
+        </View>
+
+        <View
+          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
+        >
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
             Date:{" "}
           </Text>

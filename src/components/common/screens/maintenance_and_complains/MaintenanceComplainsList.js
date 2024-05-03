@@ -25,14 +25,10 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
   const colors = useColors();
   const { header } = route.params;
   const [loading, setLoading] = useState(true);
-
   const [maintenanceData, setMaintenanceData] = useState([]);
+  const [totalMaintenanceExpenses, setTotalMaintenanceExpenses] = useState(0);
+  const [totalMaintenances, setTotalMaintenances] = useState(0);
 
-  let dataToBeRendered = [];
-
-  if (header === "Maintenance") {
-    dataToBeRendered = maintenanceData;
-  }
   if (header === "Complains") {
     dataToBeRendered = complainsData;
   }
@@ -45,6 +41,8 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
         })
         .then((response) => {
           setMaintenanceData(response.data.maintenanceReports);
+          setTotalMaintenanceExpenses(response.data.totalMaintenanceCost);
+          setTotalMaintenances(response.data.totalMaintenanceReports);
         })
         .catch((error) => {
           Alert.alert("Error", error.response.data.alert);
@@ -64,43 +62,53 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
       backAction
     );
     return () => backHandler.remove();
-  }, []);
+  }, [userID]);
 
-  const renderItem = ({ item: list }) =>
-    (header === "Maintenance" && (
-      <AllMaintenancesCard
-        colors={colors}
-        key={list.id}
-        title={list.title}
-        description={list.description}
-        cost={list.cost}
-        date={list.date}
-      />
-    )) || (
-      <MaintenanceComplainsListButton
-        colors={colors}
-        key={list.id}
-        address={list.address}
-        owner={list.owner}
-        manager={list.manager}
-        tenant={list.tenant}
-        maintenanceStatus={list.maintenanceStatus}
-        complaintStatus={list.complaintStatus}
-        onPress={() =>
-          navigation.navigate("View Maintenance And Complains", {
-            headerTitle: !!list.maintenanceStatus
-              ? "Maintenance Request"
-              : "Complain",
-          })
-        }
-      />
-    );
+  const renderItem = ({ item: list }) => {
+    if (header === "Maintenance") {
+      return (
+        <AllMaintenancesCard
+          colors={colors}
+          key={list.id}
+          title={list.title}
+          description={list.description}
+          address={list.address}
+          cost={list.cost}
+          date={list.date}
+        />
+      );
+    } else {
+      return (
+        <MaintenanceComplainsListButton
+          colors={colors}
+          key={list.id}
+          address={list.address}
+          owner={list.owner}
+          manager={list.manager}
+          tenant={list.tenant}
+          maintenanceStatus={list.maintenanceStatus}
+          complaintStatus={list.complaintStatus}
+          onPress={() =>
+            navigation.navigate("View Maintenance And Complains", {
+              headerTitle: !!list.maintenanceStatus
+                ? "Maintenance Request"
+                : "Complain",
+            })
+          }
+        />
+      );
+    }
+  };
 
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <MaintenanceComplainsListHeader colors={colors} />
+      <MaintenanceComplainsListHeader
+        colors={colors}
+        totalMaintenanceExpenses={totalMaintenanceExpenses}
+        totalMaintenances={totalMaintenances}
+      />
       {header === "My Requests" && (
         <View
           style={[
@@ -188,7 +196,7 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
       </View>
       {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
       <FlatList
-        data={dataToBeRendered}
+        data={header === "Maintenance" ? maintenanceData : dataToBeRendered}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.buttons}

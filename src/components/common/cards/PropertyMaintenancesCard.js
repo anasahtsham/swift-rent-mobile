@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { formatNumberToCrore } from "../../../helpers/utils";
 
 export const PropertyMaintenancesCard = (props) => {
   const colors = props.colors;
@@ -35,8 +36,8 @@ export const PropertyMaintenancesCard = (props) => {
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
             Cost:{" "}
           </Text>
-          <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-            {props.cost}
+          <Text style={[styles.fontBold, { color: colors.textRed }]}>
+            {`${formatNumberToCrore(props.cost)} PKR`}
           </Text>
         </View>
 
