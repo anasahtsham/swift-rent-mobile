@@ -17,11 +17,13 @@ import VerifiyDocumentation from "./src/components/common/screens/properties/Ver
 import RatingScreen from "./src/components/common/screens/ratings/RatingScreen";
 import Ratings from "./src/components/common/screens/ratings/Ratings";
 import ExploreOffers from "./src/components/manager/ExploreOffers";
+import AddMaintenanceReport from "./src/components/owner/AddMaintenanceReport";
 import AddProperty from "./src/components/owner/AddProperty";
 import AddPropertyInfo from "./src/components/owner/AddPropertyInfo";
 import HireManagerRequestForm from "./src/components/owner/HireManagerRequestForm";
 import ManagerOffers from "./src/components/owner/ManagerOffers";
 import OwnerHiring from "./src/components/owner/OwnerHiring";
+import PropertyMaintenances from "./src/components/owner/PropertyMaintenances";
 import RegisterTenant from "./src/components/owner/RegisterTenant";
 import RentalRequestAgreementForm from "./src/components/tenant/RentalRequestAgreementForm";
 import RentalRequests from "./src/components/tenant/RentalRequests";
@@ -110,6 +112,14 @@ export default function App() {
           <Stack.Screen
             name="Hire Manager Request Form"
             component={HireManagerRequestForm}
+          />
+          <Stack.Screen
+            name={"Property Maintenances"}
+            component={PropertyMaintenances}
+          />
+          <Stack.Screen
+            name={"Add Maintenance Report"}
+            component={AddMaintenanceReport}
           />
 
           {/* Manager Screens */}

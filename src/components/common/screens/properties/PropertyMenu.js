@@ -107,9 +107,7 @@ const PropertyMenu = ({ route }) => {
         <View style={styles.buttonContainer}>
           <PropertyMenuButton
             onPress={() => {
-              navigation.navigate("Maintenance Complains List", {
-                header: "Maintenance",
-              });
+              navigation.navigate("Property Maintenances", { propertyID: id });
             }}
             text={"Maintenance"}
             secondaryText="1"

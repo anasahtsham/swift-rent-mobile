@@ -20,8 +20,6 @@ const SplashScreen = ({ navigation }) => {
 
   // timer to send off from splash screen
   useEffect(() => {
-    console.log("userID: ", userID);
-    console.log("userType: ", userType);
     if (userID && userType) {
       axios
         .post(`${BASE_URL}/api/auth/check-ban`, { userID: userID })
@@ -43,7 +41,6 @@ const SplashScreen = ({ navigation }) => {
           } else {
             switch (userType) {
               case "O":
-                console.log("Owner");
                 navigation.dispatch(
                   CommonActions.reset({
                     index: 0,
@@ -79,8 +76,6 @@ const SplashScreen = ({ navigation }) => {
           }
         })
         .catch((error) => {
-          // error.response prettify JSON log
-          console.log(JSON.stringify(error.response, null, 2));
           Alert.alert("Error", error.response.data.error);
         })
         .finally(() => {
