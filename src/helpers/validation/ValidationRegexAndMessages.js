@@ -22,9 +22,8 @@ export const onlyNumbersMessage = "Only numbers allowed";
 
 export const requiredMessage = "This Field is required";
 
-export const nameFirstCharacterUppercaseRegex = /^[A-Z][a-z]*$/;
-export const nameFirstCharacterUppercaseMessage =
-  "First character must be uppercase and the rest lowercase";
+export const nameFirstCharacterUppercaseRegex = /^([A-Z][a-z]*\.?\s?-?)*$/;
+export const nameFirstCharacterUppercaseMessage = "First word must be capital.";
 
 export const min3CharactersInt = 3;
 export const min3CharactersMessage = `Name must be ${min3CharactersInt} characters or more`;

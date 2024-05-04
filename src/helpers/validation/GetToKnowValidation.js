@@ -6,14 +6,14 @@ import {
   min3CharactersMessage,
   nameFirstCharacterUppercaseMessage,
   nameFirstCharacterUppercaseRegex,
-  noSpacesMessage,
-  noSpacesRegex,
+  noLeadingOrTrailingSpacesMessage,
+  noLeadingOrTrailingSpacesRegex,
   requiredMessage,
 } from "./ValidationRegexAndMessages";
 
 export const getToKnowSchema = Yup.object().shape({
   firstName: Yup.string()
-    .matches(noSpacesRegex, noSpacesMessage)
+    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
     .required(requiredMessage)
     .matches(
       nameFirstCharacterUppercaseRegex,
@@ -21,7 +21,7 @@ export const getToKnowSchema = Yup.object().shape({
     )
     .min(min3CharactersInt, min3CharactersMessage),
   lastName: Yup.string()
-    .matches(noSpacesRegex, noSpacesMessage)
+    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
     .required(requiredMessage)
     .matches(
       nameFirstCharacterUppercaseRegex,
