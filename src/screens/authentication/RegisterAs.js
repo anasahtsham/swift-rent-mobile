@@ -32,15 +32,16 @@ const RegisterAs = ({ navigation, route }) => {
 
   const handlePress = (destinationScreen) => {
     let userType;
+    //keep as small full forms
     switch (destinationScreen) {
       case "Owner Navigator":
-        userType = "O";
+        userType = "owner";
         break;
       case "Manager Navigator":
-        userType = "M";
+        userType = "manager";
         break;
       case "Tenant Navigator":
-        userType = "T";
+        userType = "tenant";
         break;
       default:
         userType = "";
