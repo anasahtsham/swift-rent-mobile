@@ -55,10 +55,9 @@ const RegisterAs = ({ navigation, route }) => {
     // Send a POST request to the API
     axios
       .post(`${BASE_URL}/api/auth/register-alternate-role`, data)
-      .then((response) => {
+      .then(() => {
         saveUserID(userID.toString());
         saveUserType(userType.toString());
-        // Handle the response here. For example, you could navigate to the next screen:
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
