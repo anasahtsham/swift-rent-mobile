@@ -24,6 +24,7 @@ const InputFieldWithHint = React.forwardRef(
       hintTexts,
       returnKeyType,
       onSubmitEditing,
+      onFocus,
     },
     ref
   ) => {
@@ -55,6 +56,7 @@ const InputFieldWithHint = React.forwardRef(
           handleChange={handleChange}
           handleBlur={handleBlur}
           errorText={errorText}
+          onFocus={onFocus}
         />
         {/* places the ? aligned to the center of the text field */}
         <View style={{ top: 12, right: -25, position: "absolute" }}>

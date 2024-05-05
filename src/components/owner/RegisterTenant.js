@@ -268,7 +268,7 @@ const RegisterTenant = ({ navigation, route }) => {
                   setOpen={setOpenRentDue}
                   setValue={setValueRentDue}
                   setItems={setItemsRentDue}
-                  placeholder="Rent Due Date"
+                  placeholder="Rent Due Date*"
                 />
 
                 {valueRentDueError && (
@@ -290,7 +290,7 @@ const RegisterTenant = ({ navigation, route }) => {
                 <InputField
                   fieldType="numeric"
                   borderRadius={10}
-                  label="Rent Amount (PKR)"
+                  label="Rent Amount (PKR)*"
                   value={values.rentAmount}
                   handleChange={handleChange("rentAmount")}
                   handleBlur={handleBlur("rentAmount")}
@@ -302,7 +302,7 @@ const RegisterTenant = ({ navigation, route }) => {
                 <InputField
                   fieldType="phone-pad"
                   borderRadius={10}
-                  label="Tenant Contact"
+                  label="Tenant Contact*"
                   value={values.tenantContact}
                   handleChange={handleChange("tenantContact")}
                   handleBlur={handleBlur("tenantContact")}
@@ -312,10 +312,10 @@ const RegisterTenant = ({ navigation, route }) => {
                   ref={tenantContactRef}
                 />
 
-                <InputField
+                <InputFieldWithHint
                   fieldType="numeric"
                   borderRadius={10}
-                  label="Leased For (Months)"
+                  label="Leased For (Months)*"
                   value={values.leasedForMonths}
                   handleChange={handleChange("leasedForMonths")}
                   handleBlur={handleBlur("leasedForMonths")}
@@ -325,6 +325,11 @@ const RegisterTenant = ({ navigation, route }) => {
                   returnKeyType="next"
                   ref={leasedForMonthsRef}
                   onSubmitEditing={() => securityAmountRef.current?.focus()}
+                  hintTexts={{
+                    english:
+                      "Leased for months refers to the number of months for which the property is leased. For example, you can set it to 12 to lease the property for 12 months.",
+                    urdu: "مہینوں کے لیے کرایہ وہ مہینے ہیں جن کے لیے جائیداد کرایہ دی گئی ہے۔ مثال کے طور پر، آپ اسے 12 پر مقرر کرسکتے ہیں تاکہ جائیداد کو 12 مہینے کے لیے کرایہ دیا جائے۔",
+                  }}
                 />
 
                 <InputFieldWithHint
@@ -333,7 +338,11 @@ const RegisterTenant = ({ navigation, route }) => {
                   fieldType="numeric"
                   canBeDisabled={true}
                   borderRadius={10}
-                  label="Security Amount (PKR)"
+                  label={
+                    isSecurityAmountEditable
+                      ? "Security Amount (PKR)*"
+                      : "Security Amount (PKR)"
+                  }
                   value={isSecurityAmountEditable ? values.securityAmount : ""}
                   handleChange={handleChange("securityAmount")}
                   handleBlur={handleBlur("securityAmount")}
@@ -352,37 +361,15 @@ const RegisterTenant = ({ navigation, route }) => {
                   }}
                 />
 
-                <InputFieldWithHint
-                  editable={false}
-                  isEditable={isAdvancePaymentEditable}
-                  setIsEditable={setIsAdvancePaymentEditable}
-                  fieldType="numeric"
-                  canBeDisabled={true}
-                  borderRadius={10}
-                  label="Advance Payment (PKR)"
-                  value={isAdvancePaymentEditable ? values.advancePayment : ""}
-                  // handleChange={handleChange("advancePayment")} // This is not needed as the value is calculated based on the advancePaymentForMonths and rentAmount
-                  handleBlur={handleBlur("advancePayment")}
-                  errorText={
-                    touched.advancePayment ? errors.advancePayment : ""
-                  }
-                  returnKeyType="next"
-                  ref={advancePaymentRef}
-                  onSubmitEditing={() =>
-                    advancePaymentForMonthsRef.current?.focus()
-                  }
-                  hintTexts={{
-                    english:
-                      "Advance payment refers to the amount of rent that the tenant pays in advance. For example, you can set it to $1000 to be paid before the start of each month.",
-                    urdu: "اعلی ادا کرایہ وہ رقم ہے جو کرایہ دار پہلے ہی ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 1000 ڈالر پر مقرر کرسکتے ہیں تاکہ ہر مہینے کی شروعات سے پہلے ادا کیا جائے۔",
-                  }}
-                />
-
                 {isAdvancePaymentEditable && (
                   <InputFieldWithHint
                     fieldType="numeric"
                     borderRadius={10}
-                    label="Advance Payment For (Months)"
+                    label={
+                      isAdvancePaymentEditable
+                        ? "Advance Payment For (Months)*"
+                        : "Advance Payment For (Months)"
+                    }
                     value={values.advancePaymentForMonths}
                     handleChange={handleChange("advancePaymentForMonths")}
                     handleBlur={handleBlur("advancePaymentForMonths")}
@@ -403,12 +390,44 @@ const RegisterTenant = ({ navigation, route }) => {
                 )}
 
                 <InputFieldWithHint
+                  editable={false}
+                  isEditable={isAdvancePaymentEditable}
+                  setIsEditable={setIsAdvancePaymentEditable}
+                  fieldType="numeric"
+                  canBeDisabled={true}
+                  borderRadius={10}
+                  label={
+                    isAdvancePaymentEditable
+                      ? "Advance Payment (PKR)*"
+                      : "Advance Payment (PKR)"
+                  }
+                  value={isAdvancePaymentEditable ? values.advancePayment : ""}
+                  // handleChange={handleChange("advancePayment")} // This is not needed as the value is calculated based on the advancePaymentForMonths and rentAmount
+                  handleBlur={handleBlur("advancePayment")}
+                  errorText={
+                    touched.advancePayment ? errors.advancePayment : ""
+                  }
+                  returnKeyType="next"
+                  ref={advancePaymentRef}
+                  onFocus={() => advancePaymentForMonthsRef.current?.focus()}
+                  hintTexts={{
+                    english:
+                      "Advance payment refers to the amount of rent that the tenant pays in advance. For example, you can set it to $1000 to be paid before the start of each month.",
+                    urdu: "اعلی ادا کرایہ وہ رقم ہے جو کرایہ دار پہلے ہی ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 1000 ڈالر پر مقرر کرسکتے ہیں تاکہ ہر مہینے کی شروعات سے پہلے ادا کیا جائے۔",
+                  }}
+                />
+
+                <InputFieldWithHint
                   isEditable={isYearlyIncreaseEditable}
                   setIsEditable={setIsYearlyIncreaseEditable}
                   fieldType="numeric"
                   canBeDisabled={true}
                   borderRadius={10}
-                  label="Yearly Increase (%)"
+                  label={
+                    isYearlyIncreaseEditable
+                      ? "Yearly Increase (%)*"
+                      : "Yearly Increase (%)"
+                  }
                   value={isYearlyIncreaseEditable ? values.yearlyIncrease : ""}
                   handleChange={handleChange("yearlyIncrease")}
                   handleBlur={handleBlur("yearlyIncrease")}
@@ -429,7 +448,11 @@ const RegisterTenant = ({ navigation, route }) => {
                   <InputFieldWithHint
                     fieldType="numeric"
                     borderRadius={10}
-                    label="Increment Period (Months)"
+                    label={
+                      isYearlyIncreaseEditable
+                        ? "Increment Period (%)*"
+                        : "Increment Period (%)"
+                    }
                     value={values.incrementPeriod}
                     handleChange={handleChange("incrementPeriod")}
                     handleBlur={handleBlur("incrementPeriod")}
@@ -453,7 +476,11 @@ const RegisterTenant = ({ navigation, route }) => {
                   fieldType="numeric"
                   canBeDisabled={true}
                   borderRadius={10}
-                  label="Late Rent Fine (PKR)"
+                  label={
+                    isLateRentFineEditable
+                      ? "Late Rent Fine (PKR)*"
+                      : "Late Rent Fine (PKR)"
+                  }
                   value={isLateRentFineEditable ? values.lateRentFine : ""}
                   handleChange={handleChange("lateRentFine")}
                   handleBlur={handleBlur("lateRentFine")}
