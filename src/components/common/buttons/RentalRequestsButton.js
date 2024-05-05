@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 20,
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
   },
   fontBold: {

@@ -50,8 +50,7 @@ const ChangePassword = ({ navigation }) => {
           };
 
           await axios.post(`${BASE_URL}/api/auth/change-password`, data);
-          // Password changed successfully
-          Alert.alert("Password changed successfully");
+          Alert.alert("Success", "Password changed successfully");
           navigation.goBack();
         } catch (error) {
           Alert.alert("Error changing password", error.response.data.error);

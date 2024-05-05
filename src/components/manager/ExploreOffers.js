@@ -133,36 +133,41 @@ const ExploreOffers = ({ navigation }) => {
   );
 
   useEffect(() => {
-    let newData = originalData;
+    let newDataCities = originalData;
 
     let cities = cityValuesFromAPI.map((cityObj) => cityObj.cityname);
 
     if (valueCity) {
+      newDataCities = originalData;
       if (cities.includes(valueCity.toLowerCase())) {
-        newData = newData.filter((item) =>
+        newDataCities = newDataCities.filter((item) =>
           item.propertyAddress.toLowerCase().includes(valueCity.toLowerCase())
         );
       }
       if (valueCity === "all_cities") {
-        newData = originalData;
+        newDataCities = originalData;
       }
     }
 
+    let newDataPurpose = newDataCities;
+
     if (valuePurpose === "acquiring_tenant") {
-      newData = newData.filter((item) => {
-        return item.purpose === "Acquiring Tenant";
+      newDataPurpose = newDataCities;
+      newDataPurpose = newDataPurpose.filter((item) => {
+        return item.purpose === "A";
       });
     }
     if (valuePurpose === "caretaking") {
-      newData = newData.filter((item) => {
-        return item.purpose === "Caretaking";
+      newDataPurpose = newDataCities;
+      newDataPurpose = newDataPurpose.filter((item) => {
+        return item.purpose === "C";
       });
     }
     if (valuePurpose === "all_purposes") {
-      newData = originalData;
+      newDataPurpose = newDataCities;
     }
 
-    setFilteredData(newData);
+    setFilteredData(newDataPurpose);
   }, [valueCity, valuePurpose, originalData, cityValuesFromAPI]);
 
   return (

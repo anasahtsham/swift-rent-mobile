@@ -34,3 +34,12 @@ export function formatNumberToThousands(num) {
     return num;
   }
 }
+
+export function formatNumberForAPI(obj) {
+  obj = parseInt(obj);
+  if (obj === null || obj === undefined || isNaN(obj) || obj === 0) {
+    return 0;
+  } else {
+    return parseInt(obj);
+  }
+}

@@ -93,7 +93,7 @@ const ManagerOffersHeader = (props) => {
           </Text>
         </View>
 
-        {!!props.oneTimePay && (
+        {props.oneTimePay === 0 && (
           <View style={styles.inRow}>
             <Text
               style={[

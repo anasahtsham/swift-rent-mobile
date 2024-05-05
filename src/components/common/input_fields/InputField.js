@@ -50,16 +50,16 @@ const InputField = forwardRef((props, ref) => {
   let color = isFocused ? colors.borderBlue : colors.borderPrimary;
   let width = isFocused ? 3 : 1;
 
-  //for date picker
+  //for date of birth
   const [isPickerOpen, setPickerOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   let maxDate = new Date(
-    new Date().getFullYear() - 18,
+    new Date().getFullYear() - 18, //minumum age is 18
     new Date().getMonth(),
     new Date().getDate()
   );
   let minDate = new Date(
-    new Date().getFullYear() - 100,
+    new Date().getFullYear() - 110, //maximum age is 110
     new Date().getMonth(),
     new Date().getDate()
   );

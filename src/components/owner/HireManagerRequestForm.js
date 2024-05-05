@@ -23,6 +23,7 @@ import ButtonGrey from "../common/buttons/ButtonGrey";
 import Checkbox from "../common/checkboxes/Checkbox";
 import InputFieldWithHint from "../common/input_fields/InputFieldWithHint";
 import HintPopup from "../common/popups/HintPopup";
+import { formatNumberForAPI } from "./../../helpers/utils/index";
 
 const HireManagerRequestForm = ({ navigation, route }) => {
   const { propertyID } = route.params;
@@ -66,7 +67,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
       case "caretaking":
         return "C";
       default:
-        return "";
+        return null;
     }
   };
 
@@ -92,7 +93,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
       case "both":
         return "B";
       default:
-        return "";
+        return null;
     }
   };
 
@@ -112,7 +113,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
       case "fixed":
         return "F";
       default:
-        return "";
+        return null;
     }
   };
 
@@ -209,12 +210,12 @@ const HireManagerRequestForm = ({ navigation, route }) => {
           const data = {
             propertyID: propertyID,
             purpose: formatPurposeOfHire(valuePurposeOfHireDropdown),
-            oneTimePay: parseInt(values.agentOneTimeFee),
+            oneTimePay: formatNumberForAPI(values.agentOneTimeFee),
             salaryPaymentType: formatPaymentType(valuePaymentTypeDropdown),
-            salaryFixed: parseInt(values.fixed),
-            salaryPercentage: parseInt(values.percentage),
+            salaryFixed: formatNumberForAPI(values.fixed),
+            salaryPercentage: formatNumberForAPI(values.percentage),
             whoBringsTenant: formatBringTenantsBy(valueBringTenantsByDropdown),
-            rent: parseInt(values.rentAmount),
+            rent: values.rentAmount,
             specialCondition: values.specialTerms,
             needHelpWithLegalWork: isLetManagerHandlePaperwork,
           };

@@ -2,6 +2,7 @@ import axios from "axios";
 import { Formik } from "formik";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
+  Alert,
   BackHandler,
   Keyboard,
   StyleSheet,
@@ -54,6 +55,7 @@ let fieldNames = [];
 
 const AddPropertyInfo = ({ navigation, route }) => {
   const userID = useUserID();
+  const [loading, setLoading] = useState(false);
 
   const {
     areaID,
@@ -117,14 +119,14 @@ const AddPropertyInfo = ({ navigation, route }) => {
       { label: "Water Supply", value: "S" },
     ]);
 
-  const [errorDropdowns, setErrorDropdowns] = useState(false);
+  // const [errorDropdowns, setErrorDropdowns] = useState(false);
 
   //dropdown error handling
-  useEffect(() => {
-    if (!!valueWaterAvailabilityDropdown) {
-      setErrorDropdowns(false);
-    }
-  }, [valueWaterAvailabilityDropdown]);
+  // useEffect(() => {
+  //   if (!!valueWaterAvailabilityDropdown) {
+  //     setErrorDropdowns(false);
+  //   }
+  // }, [valueWaterAvailabilityDropdown]);
 
   //dropdown open functions
   const onWaterAvailabilityDropdownOpen = useCallback(() => {}, []);
@@ -219,16 +221,16 @@ const AddPropertyInfo = ({ navigation, route }) => {
     setValidationSchema(
       yup.object().shape(
         fieldNames.reduce((prev, curr) => {
-          if (curr.value === "areaSqft") {
-            prev[curr.value] = yup
-              .string()
-              .matches(/^[0-9]*$/, "Only digits allowed and no spaces")
-              .required("Area Sqft is required");
-          } else {
-            prev[curr.value] = yup
-              .string()
-              .matches(/^[0-9]*$/, "Only digits allowed and no spaces");
-          }
+          // if (curr.value === "areaSqft") {
+          //   prev[curr.value] = yup
+          //     .string()
+          //     .matches(/^[0-9]*$/, "Only digits allowed and no spaces")
+          //     .required("Area Sqft is required");
+          // }
+          prev[curr.value] = yup
+            .string()
+            .matches(/^[0-9]*$/, "Only digits allowed and no spaces");
+
           return prev;
         }, {})
       )
@@ -243,64 +245,64 @@ const AddPropertyInfo = ({ navigation, route }) => {
       )}
       validationSchema={validationSchema}
       onSubmit={(values) => {
+        setLoading(true);
         // check if all dropdowns are set
-        if (!!valueWaterAvailabilityDropdown) {
-          // console.log("\n\n");
+        // if (!!valueWaterAvailabilityDropdown) {
+        // console.log("\n\n");
 
-          // // Log each value of fieldNames
-          // fieldNames.map((field) => {
-          //   console.log(field.value, values[field.value]);
-          // });
+        // // Log each value of fieldNames
+        // fieldNames.map((field) => {
+        //   console.log(field.value, values[field.value]);
+        // });
 
-          // console.log("\n");
+        // console.log("\n");
 
-          // // Log each value of checkboxes
-          // checkboxes.map((checkbox) => {
-          //   console.log(checkbox.stateKey, checkboxStates[checkbox.stateKey]);
-          // });
+        // // Log each value of checkboxes
+        // checkboxes.map((checkbox) => {
+        //   console.log(checkbox.stateKey, checkboxStates[checkbox.stateKey]);
+        // });
 
-          // Create an object that contains all the form data
-          const formData = {
-            userID: userID.toString(),
-            areaID: areaID.toString(),
-            propertySubTypeID: propertySubTypeID.toString(),
-            propertyAddress: address.toString(),
-            ...Object.fromEntries(
-              Object.entries(values).map(([key, value]) => [
-                key,
-                value === ""
-                  ? "0"
-                  : isNaN(parseInt(value))
-                  ? value
-                  : parseInt(value).toString(),
-              ])
-            ),
-            ...Object.fromEntries(
-              Object.entries(checkboxStates).map(([key, value]) => [
-                key,
-                value.toString(),
-              ])
-            ),
-            WaterAvailabilityType: valueWaterAvailabilityDropdown,
-          };
+        // Create an object that contains all the form data
+        const formData = {
+          userID: userID.toString(),
+          areaID: areaID.toString(),
+          propertySubTypeID: propertySubTypeID.toString(),
+          propertyAddress: address.toString(),
+          ...Object.fromEntries(
+            Object.entries(values).map(([key, value]) => [
+              key,
+              value === ""
+                ? "0"
+                : isNaN(parseInt(value))
+                ? value
+                : parseInt(value).toString(),
+            ])
+          ),
+          ...Object.fromEntries(
+            Object.entries(checkboxStates).map(([key, value]) => [
+              key,
+              value.toString(),
+            ])
+          ),
+          WaterAvailabilityType: valueWaterAvailabilityDropdown,
+        };
 
-          console.log(
-            JSON.stringify(formData, Object.keys(formData).sort(), 2)
-          );
-
-          // Send a POST request to the API endpoint with the form data
-          axios
-            .post(`${BASE_URL}/api/owner/add-property`, formData)
-            .then((response) => {
-              console.log(response.data);
-              navigation.pop(2);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        } else {
-          setErrorDropdowns(true);
-        }
+        // Send a POST request to the API endpoint with the form data
+        axios
+          .post(`${BASE_URL}/api/owner/add-property`, formData)
+          .then(() => {
+            Alert.alert("Success", "Property added successfully!");
+            navigation.pop(2);
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+        // } else {
+        //   setErrorDropdowns(true);
+        // }
       }}
     >
       {({
@@ -359,8 +361,8 @@ const AddPropertyInfo = ({ navigation, route }) => {
                     placeholder="Water Availibility"
                   />
                 </View>
-                <View style={{ height: errorDropdowns ? 0 : 20 }} />
-                {errorDropdowns && (
+                <View style={{ height: 20 }} />
+                {/* {errorDropdowns && (
                   <Text
                     style={[
                       styles.textBold,
@@ -373,7 +375,8 @@ const AddPropertyInfo = ({ navigation, route }) => {
                   >
                     Please select all dropdowns first!
                   </Text>
-                )}
+                )} */}
+
                 {fieldNames.map((field, index) => (
                   <InputField
                     key={field.value}
@@ -414,16 +417,17 @@ const AddPropertyInfo = ({ navigation, route }) => {
               </View>
 
               <ButtonGrey
+                loading={loading}
                 buttonText="Finish"
                 fontSize={FontSizes.medium}
                 width={BUTTON_WIDTH_MEDIUM}
                 hasOwnOnPress={true}
                 onPress={() => {
-                  if (!!valueWaterAvailabilityDropdown) {
-                    setErrorDropdowns(false);
-                  } else {
-                    setErrorDropdowns(true);
-                  }
+                  // if (!!valueWaterAvailabilityDropdown) {
+                  //   setErrorDropdowns(false);
+                  // } else {
+                  //   setErrorDropdowns(true);
+                  // }
                   handleSubmit();
                 }}
               />

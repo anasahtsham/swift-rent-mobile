@@ -98,9 +98,13 @@ const RentalRequestAgreementFormHeader = ({
                 {props.leasedForMonths}
               </Text>
             </View>
+
             <View style={[styles.inRow]}>
               <Text
-                style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+                style={{
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                }}
               >
                 Increment Period:{" "}
               </Text>
@@ -117,9 +121,13 @@ const RentalRequestAgreementFormHeader = ({
                 {" (Months)"}
               </Text>
             </View>
+
             <View style={[styles.inRow]}>
               <Text
-                style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
+                style={{
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                }}
               >
                 Increment Percentage:{" "}
               </Text>
@@ -136,6 +144,7 @@ const RentalRequestAgreementFormHeader = ({
                 {"%"}
               </Text>
             </View>
+
             <View style={[styles.inRow]}>
               <Text
                 style={{ color: colors.textPrimary, fontSize: FontSizes.small }}

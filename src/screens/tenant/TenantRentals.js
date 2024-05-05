@@ -24,7 +24,7 @@ const TenantRentals = () => {
             setLoading(false);
           } catch (error) {
             console.error(error);
-            Alert.alert("Error", error.message);
+            Alert.alert("Error", "Network Error");
           } finally {
             setLoading(false);
           }

@@ -47,6 +47,7 @@ const SettingScreen = ({ navigation, route }) => {
         const roles = [isOwner, isManager, isTenant];
         const trueRoles = roles.filter(Boolean); // Filter out the false values
 
+        console.log("trueRoles", trueRoles);
         if (trueRoles.length === 1) {
           // If only one role is true, display an alert
           Alert.alert("Alert", "You only have one account");

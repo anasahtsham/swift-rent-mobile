@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -41,7 +42,11 @@ const Alerts = () => {
           );
           setAlertsData(response.data.notifications);
         } catch (error) {
-          console.error(error);
+          // if status 404 then show alert that no notifications found
+          if (!error.response.status === 404) {
+            Alert.alert("Error", "Network Error");
+            console.log(error.response);
+          }
         } finally {
           setLoading(false);
         }

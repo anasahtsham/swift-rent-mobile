@@ -68,9 +68,8 @@ const SetUpPassword = ({ navigation, route }) => {
             saveUserType(userType.toString());
             navigation.navigate("All Set Up", { userType: userType });
           })
-          .catch((error) => {
-            Alert.alert("Error", error.response.data.error);
-            console.error("There was an error!", error);
+          .catch(() => {
+            Alert.alert("Error", "Try again");
           })
           .finally(() => {
             setLoading(false);

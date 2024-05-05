@@ -9,6 +9,7 @@ import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { useUserID } from "../../helpers/SetUserID";
 import { useUserType } from "../../helpers/SetUserType";
+import { formatNumberForAPI } from "../../helpers/utils";
 import { registerTenantSchema } from "../../helpers/validation/RegisterTenantValidation";
 import ButtonGrey from "../common/buttons/ButtonGrey";
 import InputField from "../common/input_fields/InputField";
@@ -124,7 +125,11 @@ const RegisterTenant = ({ navigation, route }) => {
       }}
       validationSchema={currentSchema}
       onSubmit={(values, { setErrors }) => {
-        if (values.incrementPeriod >= values.leasedForMonths) {
+        setLoading(true);
+        if (
+          isYearlyIncreaseEditable &&
+          parseInt(values.incrementPeriod) >= parseInt(values.leasedForMonths)
+        ) {
           setErrors({
             incrementPeriod:
               "Increment Period can not be more than or equal to Leased For Months",
@@ -134,22 +139,23 @@ const RegisterTenant = ({ navigation, route }) => {
           return;
         }
 
-        setLoading(true);
         const data = {
           // sorted in order for postman
-          propertyID: id,
+          propertyID: formatNumberForAPI(id),
           phone: values.tenantContact,
-          registeredByID: userID,
+          registeredByID: formatNumberForAPI(userID),
           registeredByType: userType,
-          leasedForMonths: values.leasedForMonths,
-          incrementPercentage: values.yearlyIncrease,
-          incrementPeriod: values.incrementPeriod,
-          rent: values.rentAmount,
-          securityDeposit: values.securityAmount,
-          advancePayment: values.advancePayment,
-          advancePaymentForMonths: values.advancePaymentForMonths,
-          dueDate: valueRentDue,
-          fine: values.lateRentFine,
+          leasedForMonths: formatNumberForAPI(values.leasedForMonths),
+          incrementPercentage: formatNumberForAPI(values.yearlyIncrease),
+          incrementPeriod: formatNumberForAPI(values.incrementPeriod),
+          rent: formatNumberForAPI(values.rentAmount),
+          securityDeposit: formatNumberForAPI(values.securityAmount),
+          advancePayment: formatNumberForAPI(values.advancePayment),
+          advancePaymentForMonths: formatNumberForAPI(
+            values.advancePaymentForMonths
+          ),
+          dueDate: formatNumberForAPI(valueRentDue),
+          fine: formatNumberForAPI(values.lateRentFine),
         };
 
         axios

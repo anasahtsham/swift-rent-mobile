@@ -49,23 +49,19 @@ const RentalRequestAgreementForm = ({ route }) => {
           { propertyLeaseID: propertyLeaseID }
         );
         const details = response.data.leaseRequestDetails;
-        setRent(parseFloat(details.rent.replace(/[^0-9.-]+/g, "")));
-        setSecurity(
-          parseFloat(details.securitydeposit.replace(/[^0-9.-]+/g, ""))
-        );
-        setAdvancePayment(
-          parseFloat(details.advancepayment.replace(/[^0-9.-]+/g, ""))
-        );
-        setAdvancePaymentForMonths(parseInt(details.advancepaymentformonths));
-        setLateRentFine(parseFloat(details.fine.replace(/[^0-9.-]+/g, "")));
+        setRent(details.rent);
+        setSecurity(details.securitydeposit);
+        setAdvancePayment(details.advancepayment);
+        setAdvancePaymentForMonths(details.advancepaymentformonths);
+        setLateRentFine(details.fine);
         setAddress(details.propertyaddress + ", " + details.fulladdress);
         setRegistrarName(details.registrarname);
         setRegistrarType(details.registrartype);
         setLeaseStartDate(details.leasestartdate);
-        setLeasedForMonths(parseInt(details.leasedformonths));
-        setIncrementPeriod(parseInt(details.incrementperiod));
-        setIncrementPercentage(parseInt(details.incrementpercentage));
-        setDueDate(parseInt(details.duedate));
+        setLeasedForMonths(details.leasedformonths);
+        setIncrementPeriod(details.incrementperiod);
+        setIncrementPercentage(details.incrementpercentage);
+        setDueDate(details.duedate);
       } catch (error) {
         Alert.alert("Error", error.message);
       } finally {
@@ -231,9 +227,9 @@ const RentalRequestAgreementForm = ({ route }) => {
                       },
                     ]}
                   >
-                    {`${formatNumberToCrore(
-                      advancePayment
-                    )} PKR (${advancePaymentForMonths} months)`}
+                    {`${formatNumberToCrore(advancePayment)} PKR (${
+                      advancePaymentForMonths || 0
+                    } months)`}
                   </Text>
                 </View>
                 <View
@@ -264,7 +260,7 @@ const RentalRequestAgreementForm = ({ route }) => {
                       },
                     ]}
                   >
-                    {formatNumberToCrore(lateRentFine)}
+                    {`${formatNumberToCrore(lateRentFine)} PKR`}
                   </Text>
                 </View>
               </>
@@ -319,7 +315,7 @@ const RentalRequestAgreementForm = ({ route }) => {
                       reasonForRejection: values.remarks,
                     })
                     .then((response) => {
-                      Alert.alert("Rejected", response.data.message);
+                      Alert.alert("Rejected", "Lease agreement was rejected");
                       navigation.pop(2);
                     })
                     .catch((error) => {
