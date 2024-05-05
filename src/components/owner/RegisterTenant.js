@@ -123,7 +123,17 @@ const RegisterTenant = ({ navigation, route }) => {
         lateRentFine: "",
       }}
       validationSchema={currentSchema}
-      onSubmit={(values) => {
+      onSubmit={(values, { setErrors }) => {
+        if (values.incrementPeriod >= values.leasedForMonths) {
+          setErrors({
+            incrementPeriod:
+              "Increment Period can not be more than or equal to Leased For Months",
+            leasedForMonths:
+              "Increment Period can not be more than or equal to Leased For Months",
+          });
+          return;
+        }
+
         setLoading(true);
         const data = {
           // sorted in order for postman
@@ -137,7 +147,7 @@ const RegisterTenant = ({ navigation, route }) => {
           rent: values.rentAmount,
           securityDeposit: values.securityAmount,
           advancePayment: values.advancePayment,
-          advancePaymentMonths: values.advancePaymentForMonths,
+          advancePaymentForMonths: values.advancePaymentForMonths,
           dueDate: valueRentDue,
           fine: values.lateRentFine,
         };
@@ -450,8 +460,8 @@ const RegisterTenant = ({ navigation, route }) => {
                     borderRadius={10}
                     label={
                       isYearlyIncreaseEditable
-                        ? "Increment Period (%)*"
-                        : "Increment Period (%)"
+                        ? "Increment Period (Months)*"
+                        : "Increment Period (Months)"
                     }
                     value={values.incrementPeriod}
                     handleChange={handleChange("incrementPeriod")}

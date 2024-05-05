@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { useRef } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { BUTTON_WIDTH_SMALL } from "../../../constants";
 import { useColors } from "../../../helpers/SetColors";
@@ -12,6 +12,7 @@ const CounterRequestFormFooter = ({
   navigation,
   purpose,
   salaryPaymentType,
+  loading,
 }) => {
   const colors = useColors();
 
@@ -29,6 +30,19 @@ const CounterRequestFormFooter = ({
         return "";
     }
   };
+
+  if (loading) {
+    return (
+      <View
+        style={[
+          styles.footer,
+          { backgroundColor: colors.headerAndFooterBackground },
+        ]}
+      >
+        <ActivityIndicator size="large" color={colors.textPrimary} />
+      </View>
+    );
+  }
 
   return (
     <Formik

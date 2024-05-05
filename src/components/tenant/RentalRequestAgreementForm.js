@@ -22,7 +22,6 @@ import InputField from "../common/input_fields/InputField";
 
 const RentalRequestAgreementForm = ({ route }) => {
   const { propertyLeaseID, leaseID } = route.params;
-  console.log("Lease ID: ", leaseID);
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -149,12 +148,18 @@ const RentalRequestAgreementForm = ({ route }) => {
             )}
             {!loading && (
               <>
-                <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginBottom: 10,
+                  }}
+                >
                   <Text
                     style={[
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >
@@ -166,10 +171,11 @@ const RentalRequestAgreementForm = ({ route }) => {
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >
-                    {formatNumberToCrore(rent)}
+                    {`${formatNumberToCrore(rent)} PKR`}
                   </Text>
                 </View>
                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
@@ -178,6 +184,7 @@ const RentalRequestAgreementForm = ({ route }) => {
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >
@@ -189,18 +196,26 @@ const RentalRequestAgreementForm = ({ route }) => {
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >
-                    {formatNumberToCrore(security)}
+                    {`${formatNumberToCrore(security)} PKR`}
                   </Text>
                 </View>
-                <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginBottom: 10,
+                    flexWrap: "wrap",
+                  }}
+                >
                   <Text
                     style={[
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >
@@ -212,19 +227,28 @@ const RentalRequestAgreementForm = ({ route }) => {
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >
-                    {formatNumberToCrore(advancePayment)} (
-                    {advancePaymentForMonths || 0})
+                    {`${formatNumberToCrore(
+                      advancePayment
+                    )} PKR (${advancePaymentForMonths} months)`}
                   </Text>
                 </View>
-                <View style={{ flexDirection: "row", marginBottom: 20 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginBottom: 20,
+                    flexWrap: "wrap",
+                  }}
+                >
                   <Text
                     style={[
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >
@@ -236,6 +260,7 @@ const RentalRequestAgreementForm = ({ route }) => {
                       {
                         color: colors.textPrimary,
                         fontSize: FontSizes.small,
+                        flexWrap: "wrap",
                       },
                     ]}
                   >

@@ -1,15 +1,16 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   BackHandler,
   Image,
-  Keyboard,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import { BASE_URL } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { dummyRatingsData } from "../../helpers/data/OwnerHiringData";
@@ -19,22 +20,20 @@ import CounterRequestFormHeader from "../common/headers/CounterRequestFormHeader
 
 const CounterRequestForm = ({ navigation, route }) => {
   const { managerHireRequestID } = route.params;
-  console.log("managerHireRequestID", managerHireRequestID);
   const colors = useColors();
   const [loading, setLoading] = useState(true);
 
   //header data
-  const [ownerName, setOwnerName] = useState("Asif Anjum");
-  const [address, setAddress] = useState("House 1, Street 2, Sector 3, DHA");
-  const [oneTimePay, setOneTimePay] = useState("0");
-  const [salaryFixed, setSalaryFixed] = useState("10000");
+  const [ownerName, setOwnerName] = useState("");
+  const [address, setAddress] = useState("");
+  const [oneTimePay, setOneTimePay] = useState("");
+  const [purpose, setPurpose] = useState("");
+  const [salaryFixed, setSalaryFixed] = useState("");
   const [salaryPercentage, setSalaryPercentage] = useState("");
-  const [whoBringsTenant, setWhoBringsTenant] = useState("O");
-  const [rent, setRent] = useState("100000");
-  const [specialCondition, setSpecialCondition] = useState(
-    "i dont like afghani people"
-  );
-  const [needHelpWithLegalWork, setNeedHelpWithLegalWork] = useState(true);
+  const [whoBringsTenant, setWhoBringsTenant] = useState("");
+  const [rent, setRent] = useState("");
+  const [specialCondition, setSpecialCondition] = useState("");
+  const [needHelpWithLegalWork, setNeedHelpWithLegalWork] = useState(null);
 
   //body header data
   const [likes, setLikes] = useState(1);
@@ -46,12 +45,37 @@ const CounterRequestForm = ({ navigation, route }) => {
   const [ratingsData, setRatingsData] = useState(dummyRatingsData);
 
   //footer data
-  const [purpose, setPurpose] = useState("C");
 
   //header and footer data (both use these variables)
-  const [salaryPaymentType, setSalaryPaymentType] = useState("P");
+  const [salaryPaymentType, setSalaryPaymentType] = useState("");
 
   useEffect(() => {
+    const data = {
+      managerHireRequestID: managerHireRequestID,
+    };
+
+    axios
+      .post(`${BASE_URL}/api/manager/detailed-hire-request`, data)
+      .then((response) => {
+        setOwnerName(response.data.ownerName);
+        setAddress(response.data.propertyAddress);
+        setOneTimePay(response.data.onetimepay);
+        setSalaryPaymentType(response.data.salarypaymenttype);
+        setSalaryFixed(response.data.salaryfixed);
+        setSalaryPercentage(response.data.salarypercentage);
+        setWhoBringsTenant(response.data.whobringstenant);
+        setRent(response.data.rent);
+        setSpecialCondition(response.data.specialcondition);
+        setNeedHelpWithLegalWork(response.data.needhelpwithlegalwork);
+        setPurpose(response.data.purpose);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -65,6 +89,9 @@ const CounterRequestForm = ({ navigation, route }) => {
   }, []);
 
   const OwnerHiringBodyHeader = (props) => {
+    if (loading) {
+      return <ActivityIndicator size="large" color={colors.textPrimary} />;
+    }
     return (
       <>
         <Text
@@ -138,57 +165,57 @@ const CounterRequestForm = ({ navigation, route }) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View
-        style={[styles.container, { backgroundColor: colors.bodyBackground }]}
+    <View
+      style={[styles.container, { backgroundColor: colors.bodyBackground }]}
+    >
+      <CounterRequestFormHeader
+        loading={loading}
+        ownerName={ownerName}
+        address={address}
+        purpose={purpose}
+        oneTimePay={oneTimePay}
+        salaryPaymentType={salaryPaymentType}
+        salaryFixed={salaryFixed}
+        salaryPercentage={salaryPercentage}
+        whoBringsTenant={whoBringsTenant}
+        rent={rent}
+        specialCondition={specialCondition}
+        needHelpWithLegalWork={needHelpWithLegalWork}
+      />
+      <ScrollView
+        style={{ paddingVertical: "3%" }}
+        contentContainerStyle={{
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <CounterRequestFormHeader
-          ownerName={ownerName}
-          address={address}
-          oneTimePay={oneTimePay}
-          salaryPaymentType={salaryPaymentType}
-          salaryFixed={salaryFixed}
-          salaryPercentage={salaryPercentage}
-          whoBringsTenant={whoBringsTenant}
-          rent={rent}
-          specialCondition={specialCondition}
-          needHelpWithLegalWork={needHelpWithLegalWork}
-        />
-        <ScrollView
-          style={{ paddingVertical: "3%" }}
-          contentContainerStyle={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <View style={{ width: "90%" }}>
-            <OwnerHiringBodyHeader
-              likes={likes}
-              dislikes={dislikes}
-              ratings={ratings}
-              averageRating={averageRating}
+        <View style={{ width: "90%" }}>
+          <OwnerHiringBodyHeader
+            likes={likes}
+            dislikes={dislikes}
+            ratings={ratings}
+            averageRating={averageRating}
+          />
+          {ratingsData.map((owner) => (
+            <CounterRequestFormCard
+              key={owner.id}
+              name={owner.name}
+              userType={owner.userType}
+              date={owner.date}
+              isLiked={owner.isLiked}
+              rating={owner.rating}
+              comment={owner.comment}
             />
-            {ratingsData.map((owner) => (
-              <CounterRequestFormCard
-                key={owner.id}
-                name={owner.name}
-                userType={owner.userType}
-                date={owner.date}
-                isLiked={owner.isLiked}
-                rating={owner.rating}
-                comment={owner.comment}
-              />
-            ))}
-            <View style={{ height: 20 }} />
-          </View>
-        </ScrollView>
-        <CounterRequestFormFooter
-          navigation={navigation}
-          purpose={purpose}
-          salaryPaymentType={salaryPaymentType}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+          ))}
+          <View style={{ height: 20 }} />
+        </View>
+      </ScrollView>
+      <CounterRequestFormFooter
+        loading={loading}
+        navigation={navigation}
+        salaryPaymentType={salaryPaymentType}
+      />
+    </View>
   );
 };
 
