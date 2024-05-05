@@ -7,6 +7,18 @@ import { icons } from "../../../helpers/ImageImports";
 const ExploreOffersButton = (props) => {
   const colors = props.colors;
   const navigation = useNavigation();
+
+  const formatPurpose = (purpose) => {
+    switch (purpose) {
+      case "C":
+        return "Caretaking";
+      case "A":
+        return "Acquiring Tenant";
+      default:
+        return "";
+    }
+  };
+
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}
@@ -14,25 +26,16 @@ const ExploreOffersButton = (props) => {
       onPress={() => navigation.navigate("Owner Hiring")}
     >
       <View style={[styles.buttonHeaderContainer, {}]}>
-        <View style={{ marginRight: "3%" }}>
-          <Image
-            style={styles.userIcon}
-            source={icons.userIcon}
-            tintColor={colors.iconPrimary}
-          />
-        </View>
-
         <View
           style={{
             justifyContent: "space-between",
-            width: "70%",
           }}
         >
           <Text
             style={[
               styles.fontBold,
               {
-                fontSize: FontSizes.small,
+                fontSize: FontSizes.medium,
                 color: colors.textPrimary,
               },
             ]}
@@ -50,7 +53,7 @@ const ExploreOffersButton = (props) => {
                 },
               ]}
             >
-              {props.likes}
+              {/* {props.likes} */}2
             </Text>
             <Image
               style={styles.icon}
@@ -63,7 +66,7 @@ const ExploreOffersButton = (props) => {
                 { fontSize: FontSizes.small, color: colors.textPrimary },
               ]}
             >
-              {props.dislikes}
+              {/* {props.dislikes} */}3
             </Text>
             <Image
               style={styles.icon}
@@ -76,41 +79,46 @@ const ExploreOffersButton = (props) => {
                 { fontSize: FontSizes.small, color: colors.textPrimary },
               ]}
             >
-              ({props.ratings})
+              {/* ({props.ratings}) */}(5)
             </Text>
             <View style={{ flexDirection: "row" }}>
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 1 ? icons.star : icons.starHollow
+                  // props.averageRating >= 1 ? icons.star : icons.starHollow
+                  3 >= 1 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 2 ? icons.star : icons.starHollow
+                  // props.averageRating >= 2 ? icons.star : icons.starHollow
+                  3 >= 2 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 3 ? icons.star : icons.starHollow
+                  // props.averageRating >= 3 ? icons.star : icons.starHollow
+                  3 >= 3 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 4 ? icons.star : icons.starHollow
+                  // props.averageRating >= 4 ? icons.star : icons.starHollow
+                  3 >= 4 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 5 ? icons.star : icons.starHollow
+                  // props.averageRating >= 5 ? icons.star : icons.starHollow
+                  3 >= 5 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
@@ -135,27 +143,10 @@ const ExploreOffersButton = (props) => {
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            {props.address}
+            {props.propertyAddress}
           </Text>
         </View>
-        <View style={[styles.inRow, styles.cardSubText]}>
-          <Text
-            style={[
-              styles.fontBold,
-              { fontSize: FontSizes.small, color: colors.textPrimary },
-            ]}
-          >
-            Offer:{" "}
-          </Text>
-          <Text
-            style={[
-              styles.fontRegular,
-              { fontSize: FontSizes.small, color: colors.textPrimary },
-            ]}
-          >
-            {props.offer}
-          </Text>
-        </View>
+
         <View style={[styles.inRow, styles.cardSubText]}>
           <Text
             style={[
@@ -172,7 +163,7 @@ const ExploreOffersButton = (props) => {
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            {props.purpose}
+            {formatPurpose(props.purpose)}
           </Text>
         </View>
       </View>
@@ -194,7 +185,7 @@ const styles = StyleSheet.create({
   },
   buttonHeaderContainer: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
   },
   inRow: {
     flexDirection: "row",

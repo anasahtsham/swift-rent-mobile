@@ -1,48 +1,60 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   FlatList,
   Image,
   Keyboard,
-  Pressable,
   StyleSheet,
+  Text,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
-import { TextInput } from "react-native-gesture-handler";
 import * as FontSizes from "../../assets/fonts/FontSizes";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColorsOnFocus } from "../../helpers/SetColors";
-import { exploreOffersData } from "../../helpers/data/ExploreOffersData";
-import { cityData } from "../../helpers/data/PropertyInfoData";
 import ExploreOffersButton from "../common/buttons/ExploreOffersButton";
 
 const ExploreOffers = ({ navigation }) => {
   const colors = useColorsOnFocus();
+  const [loading, setLoading] = useState(true);
 
   //dropdown initializors
   const [openCity, setOpenCity] = useState(false);
   const [valueCity, setValueCity] = useState(null);
-  const [itemsCity, setItemsCity] = useState(cityData);
+  const [itemsCity, setItemsCity] = useState([]);
+  // city values from API to be used in filtering
+  const [cityValuesFromAPI, setCityValuesFromAPI] = useState([
+    {
+      cityname: "islamabad",
+    },
+    {
+      cityname: "rawalpindi",
+    },
+  ]);
 
   const [openPurpose, setOpenPurpose] = useState(false);
   const [valuePurpose, setValuePurpose] = useState(null);
   const [itemsPurpose, setItemsPurpose] = useState([
     { label: "Acquiring Tenant", value: "acquiring_tenant" },
     { label: "Caretaking", value: "caretaking" },
-    { label: "Leasing Property", value: "leasing_property" },
     { label: "All Purposes", value: "all_purposes" },
   ]);
 
   // dropdown functions
   const onCityOpen = useCallback(() => {
     setOpenPurpose(false);
-    setHeaderHeight(260);
+    setHeaderHeight("100%");
   }, []);
 
   const onPurposeOpen = useCallback(() => {
     setOpenCity(false);
-    setHeaderHeight(340);
+    setHeaderHeight("100%");
   }, []);
 
   const onCityClose = useCallback(() => {
@@ -79,23 +91,63 @@ const ExploreOffers = ({ navigation }) => {
 
   const [headerHeight, setHeaderHeight] = useState("auto");
 
-  const [searchText, setSearchText] = useState("");
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const searchTextRef = useRef();
-
-  const originalData = exploreOffersData;
+  const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState(originalData);
+
+  useFocusEffect(
+    useCallback(() => {
+      axios
+        .get(`${BASE_URL}/api/manager/view-hire-requests`)
+        .then((response) => {
+          setOriginalData(response.data);
+        })
+        .catch((error) => {
+          Alert.alert("Error", error.response.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+
+      axios
+        .get(`${BASE_URL}/api/manager/get-cities`)
+        .then((response) => {
+          setCityValuesFromAPI(response.data);
+        })
+        .catch((error) => {
+          Alert.alert("Error", error.response.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+
+      axios
+        .get(`${BASE_URL}/api/manager/get-cities-dropdown`)
+        .then((response) => {
+          setItemsCity(response.data);
+        })
+        .catch((error) => {
+          Alert.alert("Error", error.response.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }, [])
+  );
+
   useEffect(() => {
     let newData = originalData;
 
-    if (valueCity === "islamabad") {
-      newData = newData.filter((item) => item.address.includes("Islamabad"));
-    }
-    if (valueCity === "rawalpindi") {
-      newData = newData.filter((item) => item.address.includes("Rawalpindi"));
-    }
-    if (valueCity === "all_cities") {
-      newData = originalData;
+    let cities = cityValuesFromAPI.map((cityObj) => cityObj.cityname);
+
+    if (valueCity) {
+      if (cities.includes(valueCity.toLowerCase())) {
+        newData = newData.filter((item) =>
+          item.propertyAddress.toLowerCase().includes(valueCity.toLowerCase())
+        );
+      }
+      if (valueCity === "all_cities") {
+        newData = originalData;
+      }
     }
 
     if (valuePurpose === "acquiring_tenant") {
@@ -108,17 +160,12 @@ const ExploreOffers = ({ navigation }) => {
         return item.purpose === "Caretaking";
       });
     }
-    if (valuePurpose === "leasing_property") {
-      newData = newData.filter((item) => {
-        return item.purpose === "Leasing Property";
-      });
-    }
     if (valuePurpose === "all_purposes") {
       newData = originalData;
     }
 
     setFilteredData(newData);
-  }, [valueCity, valuePurpose]);
+  }, [valueCity, valuePurpose, originalData, cityValuesFromAPI]);
 
   return (
     <TouchableWithoutFeedback
@@ -141,41 +188,45 @@ const ExploreOffers = ({ navigation }) => {
             },
           ]}
         >
-          <Pressable
-            onPress={() => searchTextRef.current.focus()}
-            style={[
-              styles.searchField,
-              {
-                borderColor: isSearchFocused
-                  ? colors.borderBlue
-                  : colors.borderPrimary,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                alignItems: "center",
-              },
-            ]}
+          <TouchableOpacity
+            style={{
+              marginBottom: 10,
+              padding: 5,
+              borderRadius: 20,
+              borderColor: colors.borderBlue,
+              borderWidth: 3,
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignContent: "center",
+            }}
+            // onPress={() => {
+            //   navigation.navigate("Home");
+            // }}
+            activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           >
-            <TextInput
-              ref={searchTextRef}
-              style={{ color: colors.textPrimary }}
-              placeholderTextColor={colors.textGrey}
-              placeholder="Search by ID "
-              onFocus={() => {
-                setOpenCity(false);
-                setOpenPurpose(false);
-                setHeaderHeight("auto");
-                setIsSearchFocused(true);
-              }}
-              onBlur={() => setIsSearchFocused(false)}
-              onChangeText={setSearchText}
-              value={searchText}
-            />
+            <Text
+              style={[
+                styles.fontRegular,
+                {
+                  fontSize: FontSizes.medium,
+                  color: colors.textPrimary,
+                  textAlign: "center",
+                },
+              ]}
+            >
+              My Counter Offers
+            </Text>
             <Image
-              source={icons.searchIcon}
-              style={{ width: 24, height: 24 }}
-              tintColor={colors.iconPrimary}
+              source={icons.externalLink}
+              tintColor={colors.textPrimary}
+              style={{
+                height: 20,
+                width: 20,
+                alignSelf: "center",
+                marginTop: 5,
+              }}
             />
-          </Pressable>
+          </TouchableOpacity>
 
           <View
             style={{
@@ -220,6 +271,26 @@ const ExploreOffers = ({ navigation }) => {
           </View>
         </View>
 
+        {loading && (
+          <ActivityIndicator size="large" color={colors.textPrimary} />
+        )}
+
+        {originalData.length === 0 && !loading && (
+          <Text
+            style={[
+              styles.fontBold,
+              {
+                fontSize: FontSizes.medium,
+                color: colors.textPrimary,
+                textAlign: "center",
+                marginTop: 20,
+              },
+            ]}
+          >
+            No offers available
+          </Text>
+        )}
+
         <FlatList
           style={{ flex: 1, marginBottom: 5 }}
           data={filteredData.sort(
@@ -229,13 +300,15 @@ const ExploreOffers = ({ navigation }) => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <ExploreOffersButton
+              id={item.id}
               ownerName={item.ownerName}
+              propertyAddress={item.propertyAddress}
+              purpose={item.purpose}
               likes={item.likes}
               dislikes={item.dislikes}
               ratings={item.ratings}
               averageRating={item.averageRating}
               address={item.address}
-              purpose={item.purpose}
               offer={item.offer}
               colors={colors}
             />
