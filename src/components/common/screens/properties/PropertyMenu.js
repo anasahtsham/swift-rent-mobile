@@ -134,7 +134,9 @@ const PropertyMenu = ({ route }) => {
           />
           <PropertyMenuButton
             onPress={() => {
-              navigation.navigate("Hire Manager Request Form");
+              navigation.navigate("Hire Manager Request Form", {
+                propertyID: id,
+              });
             }}
             text={"Appoint A Manager"}
             colors={colors}

@@ -113,7 +113,7 @@ const AddPropertyInfo = ({ navigation, route }) => {
   const [itemsWaterAvailabilityDropdown, setItemsWaterAvailabilityDropdown] =
     useState([
       { label: "Boring", value: "B" },
-      { label: "Water Truck", value: "T" },
+      { label: "Water Tanker", value: "T" },
       { label: "Water Supply", value: "S" },
     ]);
 

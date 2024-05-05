@@ -1,6 +1,8 @@
+import axios from "axios";
 import { Formik } from "formik";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  Alert,
   Keyboard,
   StyleSheet,
   Text,
@@ -10,7 +12,7 @@ import {
 import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BUTTON_WIDTH_MEDIUM } from "../../constants";
+import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import {
   agentOneTimeFeeSchema,
@@ -22,8 +24,10 @@ import Checkbox from "../common/checkboxes/Checkbox";
 import InputFieldWithHint from "../common/input_fields/InputFieldWithHint";
 import HintPopup from "../common/popups/HintPopup";
 
-const HireManagerRequestForm = ({ navigation }) => {
+const HireManagerRequestForm = ({ navigation, route }) => {
+  const { propertyID } = route.params;
   const colors = useColors();
+  const [loading, setLoading] = useState(false);
 
   const dropdownStyles = {
     style: {
@@ -52,19 +56,19 @@ const HireManagerRequestForm = ({ navigation }) => {
   const [itemsPurposeOfHireDropdown, setItemsPurposeOfHireDropdown] = useState([
     { label: "Acquiring Tenant", value: "acquire_tenant" },
     { label: "Caretaking", value: "caretaking" },
-    { label: "Leasing Property", value: "leasing_property" },
   ]);
 
-  // Rent Collection By Dropdown
-  const [openRentCollectionByDropdown, setOpenRentCollectionByDropdown] =
-    useState(false);
-  const [valueRentCollectionByDropdown, setRentCollectionByDropdown] =
-    useState(null);
-  const [itemsRentCollectionByDropdown, setItemsRentCollectionByDropdown] =
-    useState([
-      { label: "Manager", value: "by_manager" },
-      { label: "Both", value: "both" },
-    ]);
+  //function that formats values for acquire_tenant to A, caretaking to C and leasing_property to L using switch statement
+  const formatPurposeOfHire = (value) => {
+    switch (value) {
+      case "acquire_tenant":
+        return "A";
+      case "caretaking":
+        return "C";
+      default:
+        return "";
+    }
+  };
 
   // Bring Tenants By Dropdown
   const [openBringTenantsByDropdown, setOpenBringTenantsByDropdown] =
@@ -78,6 +82,20 @@ const HireManagerRequestForm = ({ navigation }) => {
       { label: "Both", value: "both" },
     ]);
 
+  //function that formats values for by_owner to O, by_manager to M and both to B using switch statement
+  const formatBringTenantsBy = (value) => {
+    switch (value) {
+      case "by_owner":
+        return "O";
+      case "by_manager":
+        return "M";
+      case "both":
+        return "B";
+      default:
+        return "";
+    }
+  };
+
   // Payment Type Dropdown
   const [openPaymentTypeDropdown, setOpenPaymentTypeDropdown] = useState(false);
   const [valuePaymentTypeDropdown, setPaymentTypeDropdown] = useState(null);
@@ -86,54 +104,40 @@ const HireManagerRequestForm = ({ navigation }) => {
     { label: "Fixed", value: "fixed" },
   ]);
 
-  // Rent Period Dropdown
-  const [openRentPeriodDropdown, setOpenRentPeriodDropdown] = useState(false);
-  const [valueRentPeriodDropdown, setRentPeriodDropdown] = useState(null);
-  const [itemsRentPeriodDropdown, setItemsRentPeriodDropdown] = useState([
-    { label: "Monthly", value: "monthly" },
-    { label: "Yearly", value: "yearly" },
-  ]);
+  //function that formats values for percentage to P and fixed to F using switch statement
+  const formatPaymentType = (value) => {
+    switch (value) {
+      case "percentage":
+        return "P";
+      case "fixed":
+        return "F";
+      default:
+        return "";
+    }
+  };
 
   const [errorDropdowns, setErrorDropdowns] = useState(false);
 
   //dropdown open functions
   const onPurposeOfHireDropdownOpen = useCallback(() => {
-    setOpenRentCollectionByDropdown(false);
-    setOpenBringTenantsByDropdown(false);
-    setOpenPaymentTypeDropdown(false);
-    setOpenRentPeriodDropdown(false);
-  }, []);
-  const onRentCollectionByDropdownOpen = useCallback(() => {
-    setOpenPurposeOfHireDropdown(false);
-    setOpenBringTenantsByDropdown(false);
-    setOpenPaymentTypeDropdown(false);
-    setOpenRentPeriodDropdown(false);
-  }, []);
-  const onBringTenantsByDropdownOpen = useCallback(() => {
-    setOpenPurposeOfHireDropdown(false);
-    setOpenRentCollectionByDropdown(false);
-    setOpenPaymentTypeDropdown(false);
-    setOpenRentPeriodDropdown(false);
-  }, []);
-  const onPaymentTypeDropdownOpen = useCallback(() => {
-    setOpenPurposeOfHireDropdown(false);
-    setOpenRentCollectionByDropdown(false);
-    setOpenBringTenantsByDropdown(false);
-    setOpenRentPeriodDropdown(false);
-  }, []);
-  const onRentPeriodDropdownOpen = useCallback(() => {
-    setOpenPurposeOfHireDropdown(false);
-    setOpenRentCollectionByDropdown(false);
     setOpenBringTenantsByDropdown(false);
     setOpenPaymentTypeDropdown(false);
   }, []);
 
+  const onBringTenantsByDropdownOpen = useCallback(() => {
+    setOpenPurposeOfHireDropdown(false);
+    setOpenPaymentTypeDropdown(false);
+  }, []);
+
+  const onPaymentTypeDropdownOpen = useCallback(() => {
+    setOpenPurposeOfHireDropdown(false);
+    setOpenBringTenantsByDropdown(false);
+  }, []);
+
   const handleCloseAllDropdowns = () => {
     setOpenPurposeOfHireDropdown(false);
-    setOpenRentCollectionByDropdown(false);
     setOpenBringTenantsByDropdown(false);
     setOpenPaymentTypeDropdown(false);
-    setOpenRentPeriodDropdown(false);
   };
 
   //checkboxes
@@ -163,8 +167,6 @@ const HireManagerRequestForm = ({ navigation }) => {
 
     // console.log("\npurpose", !valuePurposeOfHireDropdown);
     // console.log("paymentType", !valuePaymentTypeDropdown);
-    // console.log("rentPeriod", !valueRentPeriodDropdown);
-    // console.log("RentCollectionBy", !valueRentCollectionByDropdown);
     // console.log("BringTenantsBy", !valueBringTenantsByDropdown);
 
     // Check if the 'Purpose Of Hire' dropdown value is not selected
@@ -178,16 +180,15 @@ const HireManagerRequestForm = ({ navigation }) => {
         setErrorDropdowns(true);
       }
       // Check if the 'Maintenance By' or 'Complains By' dropdown values are not selected
-      if (!valueRentCollectionByDropdown || !valueBringTenantsByDropdown) {
-        setErrorDropdowns(true);
-      }
-    } else if (valuePurposeOfHireDropdown === "leasing_property") {
-      // Check if the 'Rent Period' dropdown value is not selected
-      if (!valueRentPeriodDropdown) {
+      if (!valueBringTenantsByDropdown) {
         setErrorDropdowns(true);
       }
     }
   }
+
+  const agentOneTimeFeeRef = useRef(null);
+  const rentAmountRef = useRef(null);
+  const specialTermsRef = useRef(null);
 
   return (
     <Formik
@@ -203,8 +204,39 @@ const HireManagerRequestForm = ({ navigation }) => {
         validateDropdowns();
 
         if (errorDropdowns === false) {
-          console.log("form is valid");
-          navigation.navigate("Hire Manager Request Form");
+          setLoading(true);
+
+          const data = {
+            propertyID: propertyID,
+            purpose: formatPurposeOfHire(valuePurposeOfHireDropdown),
+            oneTimePay: values.agentOneTimeFee,
+            salaryPamentType: formatPaymentType(valuePaymentTypeDropdown),
+            salaryFixed: isNaN(parseInt(values.fixed, 10))
+              ? null
+              : parseInt(values.fixed, 10),
+            salaryPercentage: isNaN(parseInt(values.percentage, 10))
+              ? null
+              : parseInt(values.percentage, 10),
+            whoBringsTenant: formatBringTenantsBy(valueBringTenantsByDropdown),
+            rent: values.rentAmount,
+            specialCondition: values.specialTerms,
+            needHelpWithLegalWork: isLetManagerHandlePaperwork,
+          };
+
+          console.log(JSON.stringify(data, null, 2));
+
+          axios
+            .post(`${BASE_URL}/api/owner/generate-hire-request`, data)
+            .then((response) => {
+              Alert.alert("Success", response.data.success);
+              navigation.goBack();
+            })
+            .catch((error) => {
+              Alert.alert("Error", error.response.data.message);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
         } else {
           setErrorDropdowns(true);
         }
@@ -233,6 +265,9 @@ const HireManagerRequestForm = ({ navigation }) => {
             style={{
               backgroundColor: colors.backgroundPrimary,
             }}
+            onTouchEnd={() => {
+              handleCloseAllDropdowns();
+            }}
           >
             <View
               style={{
@@ -259,7 +294,7 @@ const HireManagerRequestForm = ({ navigation }) => {
                 <Text
                   style={[styles.dropdownLabel, { color: colors.textPrimary }]}
                 >
-                  Purpose Of Hire
+                  Purpose Of Hire*
                 </Text>
                 <DropDownPicker
                   {...dropdownStyles}
@@ -274,20 +309,25 @@ const HireManagerRequestForm = ({ navigation }) => {
                   setOpen={setOpenPurposeOfHireDropdown}
                   setValue={setPurposeOfHireDropdown}
                   setItems={setItemsPurposeOfHireDropdown}
-                  placeholder="Purpose Of Hire"
+                  placeholder="Purpose Of Hire*"
                 />
                 <HintPopup
+                  top={34}
                   hintTexts={{
-                    english: "English Hint Text",
-                    urdu: "Urdu Hint Text",
+                    english:
+                      "Will the manager acquire tenant or do caretaking?",
+                    urdu: "مینیجر کرایہ دار کو حاصل کرے گا یا کیرٹیکنگ کرے گا؟",
                   }}
                 />
               </View>
 
               {valuePurposeOfHireDropdown === "acquire_tenant" && (
                 <InputFieldWithHint
+                  ref={agentOneTimeFeeRef}
+                  returnKeyType="next"
+                  onSubmitEditing={() => rentAmountRef.current.focus()}
                   borderRadius={7}
-                  label="Agent One Time Fee"
+                  label="Agent One Time Fee (PKR)*"
                   fieldType="numeric"
                   value={values.agentOneTimeFee}
                   handleChange={handleChange("agentOneTimeFee")}
@@ -296,8 +336,9 @@ const HireManagerRequestForm = ({ navigation }) => {
                     touched.agentOneTimeFee ? errors.agentOneTimeFee : ""
                   }
                   hintTexts={{
-                    english: "English Hint Text",
-                    urdu: "Urdu Hint Text",
+                    english:
+                      "In the case of acquiring tenant, what is the agent's one-time fee?",
+                    urdu: "کرایہ دار حاصل کرنے کی صورت میں ایجنٹ کی ایک بار کی فیس کیا ہے؟",
                   }}
                 />
               )}
@@ -312,7 +353,7 @@ const HireManagerRequestForm = ({ navigation }) => {
                           { color: colors.textPrimary },
                         ]}
                       >
-                        Payment Type
+                        Payment Type*
                       </Text>
                       <DropDownPicker
                         {...dropdownStyles}
@@ -327,42 +368,46 @@ const HireManagerRequestForm = ({ navigation }) => {
                         setOpen={setOpenPaymentTypeDropdown}
                         setValue={setPaymentTypeDropdown}
                         setItems={setItemsPaymentTypeDropdown}
-                        placeholder="Payment Type"
+                        placeholder="Payment Type*"
                       />
                       <HintPopup
+                        top={34}
                         hintTexts={{
-                          english: "English Hint Text",
-                          urdu: "Urdu Hint Text",
+                          english:
+                            "Will the manager be paid in percentage or fixed amount?",
+                          urdu: "کیا مینیجر کو فی صد یا مقررہ رقم میں ادا کیا جائے گا؟",
                         }}
                       />
                     </View>
                     {valuePaymentTypeDropdown === "percentage" && (
                       <InputFieldWithHint
                         borderRadius={7}
-                        label="Percentage"
+                        label="Percentage*"
                         fieldType="numeric"
                         value={values.percentage}
                         handleChange={handleChange("percentage")}
                         handleBlur={handleBlur("percentage")}
                         errorText={touched.percentage ? errors.percentage : ""}
                         hintTexts={{
-                          english: "English Hint Text",
-                          urdu: "Urdu Hint Text",
+                          english:
+                            "If the payment type is percentage, what is the percentage? keep in mind that by doing this the manager will get the advance payment cut in percentage",
+                          urdu: "اگر ادائیگی کی قسم فی صد ہے تو فی صد کیا ہے؟ یاد رہے کہ ایسا کرنے سے مینیجر کو فی صد میں پیشگوئی کٹ جائے گی۔",
                         }}
                       />
                     )}
                     {valuePaymentTypeDropdown === "fixed" && (
                       <InputFieldWithHint
                         borderRadius={7}
-                        label="Fixed"
+                        label="Fixed*"
                         fieldType="numeric"
                         value={values.fixed}
                         handleChange={handleChange("fixed")}
                         handleBlur={handleBlur("fixed")}
                         errorText={touched.fixed ? errors.fixed : ""}
                         hintTexts={{
-                          english: "English Hint Text",
-                          urdu: "Urdu Hint Text",
+                          english:
+                            "If the payment type is fixed, what is the fixed amount? Keep in mind that by doing this the manager will get the advance payment cut in fixed amount.",
+                          urdu: "اگر ادائیگی کی قسم مقررہ ہے تو مقررہ رقم کیا ہے؟ یاد رہے کہ ایسا کرنے سے مینیجر کو فیکس رقم میں پیشگوئی کٹ جائے گی۔",
                         }}
                       />
                     )}
@@ -375,39 +420,7 @@ const HireManagerRequestForm = ({ navigation }) => {
                         { color: colors.textPrimary },
                       ]}
                     >
-                      Rent Collected By
-                    </Text>
-                    <DropDownPicker
-                      {...dropdownStyles}
-                      listMode="SCROLLVIEW"
-                      theme={colors.dropDownTheme}
-                      zIndex={2000}
-                      zIndexInverse={5000}
-                      open={openRentCollectionByDropdown}
-                      value={valueRentCollectionByDropdown}
-                      items={itemsRentCollectionByDropdown}
-                      onOpen={onRentCollectionByDropdownOpen}
-                      setOpen={setOpenRentCollectionByDropdown}
-                      setValue={setRentCollectionByDropdown}
-                      setItems={setItemsRentCollectionByDropdown}
-                      placeholder="Rent Collected By"
-                    />
-                    <HintPopup
-                      hintTexts={{
-                        english: "English Hint Text",
-                        urdu: "Urdu Hint Text",
-                      }}
-                    />
-                  </View>
-
-                  <View style={[styles.dropdown, {}]}>
-                    <Text
-                      style={[
-                        styles.dropdownLabel,
-                        { color: colors.textPrimary },
-                      ]}
-                    >
-                      Who will Bring Tenant?
+                      Who will Bring Tenant?*
                     </Text>
                     <DropDownPicker
                       {...dropdownStyles}
@@ -422,77 +435,48 @@ const HireManagerRequestForm = ({ navigation }) => {
                       setOpen={setOpenBringTenantsByDropdown}
                       setValue={setBringTenantsByDropdown}
                       setItems={setItemsBringTenantsByDropdown}
-                      placeholder="Who will Bring Tenant?"
+                      placeholder="Who will Bring Tenant?*"
                     />
                     <HintPopup
+                      top={34}
                       hintTexts={{
-                        english: "English Hint Text",
-                        urdu: "Urdu Hint Text",
+                        english: "Who will bring the tenant?",
+                        urdu: "کرایہ دار کو کون لائے گا؟",
                       }}
                     />
                   </View>
                 </>
               )}
 
-              {valuePurposeOfHireDropdown === "leasing_property" && (
-                <View style={[styles.dropdown, {}]}>
-                  <Text
-                    style={[
-                      styles.dropdownLabel,
-                      { color: colors.textPrimary },
-                    ]}
-                  >
-                    Rent Period
-                  </Text>
-                  <DropDownPicker
-                    {...dropdownStyles}
-                    listMode="SCROLLVIEW"
-                    theme={colors.dropDownTheme}
-                    zIndex={3000}
-                    zIndexInverse={4000}
-                    open={openRentPeriodDropdown}
-                    value={valueRentPeriodDropdown}
-                    items={itemsRentPeriodDropdown}
-                    onOpen={onRentPeriodDropdownOpen}
-                    setOpen={setOpenRentPeriodDropdown}
-                    setValue={setRentPeriodDropdown}
-                    setItems={setItemsRentPeriodDropdown}
-                    placeholder="Rent Period"
-                  />
-                  <HintPopup
-                    hintTexts={{
-                      english: "English Hint Text",
-                      urdu: "Urdu Hint Text",
-                    }}
-                  />
-                </View>
-              )}
-
               <InputFieldWithHint
+                ref={rentAmountRef}
+                returnKeyType="next"
+                onSubmitEditing={() => specialTermsRef.current.focus()}
                 borderRadius={7}
-                label="Rent Amount"
+                label="Rent Amount (PKR)*"
                 fieldType="numeric"
                 value={values.rentAmount}
                 handleChange={handleChange("rentAmount")}
                 handleBlur={handleBlur("rentAmount")}
                 errorText={touched.rentAmount ? errors.rentAmount : ""}
                 hintTexts={{
-                  english: "English Hint Text",
-                  urdu: "Urdu Hint Text",
+                  english: "What is the rent amount?",
+                  urdu: "کرایہ کی رقم کیا ہے؟",
                 }}
               />
 
               <InputFieldWithHint
+                ref={specialTermsRef}
                 borderRadius={7}
-                label="Special Terms"
+                label="Special Terms*"
                 fieldType="text"
                 value={values.specialTerms}
                 handleChange={handleChange("specialTerms")}
                 handleBlur={handleBlur("specialTerms")}
                 errorText={touched.specialTerms ? errors.specialTerms : ""}
                 hintTexts={{
-                  english: "English Hint Text",
-                  urdu: "Urdu Hint Text",
+                  english: "Any special terms?",
+                  urdu: "کوئی خاص شرائط؟",
                 }}
               />
               <View>
@@ -505,8 +489,8 @@ const HireManagerRequestForm = ({ navigation }) => {
                   top={12}
                   right={-25}
                   hintTexts={{
-                    english: "English Hint Text",
-                    urdu: "Urdu Hint Text",
+                    english: "Will the manager handle the paperwork?",
+                    urdu: "کیا مینیجر کاغذات کا انتظام کرے گا؟",
                   }}
                 />
               </View>
@@ -526,6 +510,7 @@ const HireManagerRequestForm = ({ navigation }) => {
                 </Text>
               )}
               <ButtonGrey
+                loading={loading}
                 buttonText="Submit"
                 fontSize={FontSizes.medium}
                 width={BUTTON_WIDTH_MEDIUM}

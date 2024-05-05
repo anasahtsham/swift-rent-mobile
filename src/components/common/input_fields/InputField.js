@@ -211,7 +211,6 @@ const InputField = forwardRef((props, ref) => {
                 }}
               >
                 {label}
-                {errorText ? "*" : ""}
               </Text>
             </Animated.View>
           </View>
