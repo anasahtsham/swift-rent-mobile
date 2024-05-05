@@ -211,6 +211,7 @@ const CounterRequestForm = ({ navigation, route }) => {
         </View>
       </ScrollView>
       <CounterRequestFormFooter
+        managerHireRequestID={managerHireRequestID}
         loading={loading}
         navigation={navigation}
         salaryPaymentType={salaryPaymentType}

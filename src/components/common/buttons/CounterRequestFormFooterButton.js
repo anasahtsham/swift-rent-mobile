@@ -1,15 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { useColors } from "../../../helpers/SetColors";
 
-const OwnerHiringFooterButton = ({
+const CounterRequestFormFooterButton = ({
   onPress,
   borderColor,
   isBold,
   buttonText,
   buttonHeight,
   buttonWidth,
+  loading,
 }) => {
   const colors = useColors();
   return (
@@ -22,14 +29,19 @@ const OwnerHiringFooterButton = ({
       onPress={onPress}
     >
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Text
-          style={[
-            isBold ? styles.fontBold : styles.fontRegular,
-            { color: colors.textPrimary, fontSize: FontSizes.small },
-          ]}
-        >
-          {buttonText}
-        </Text>
+        {loading && (
+          <ActivityIndicator size="small" color={colors.textPrimary} />
+        )}
+        {!loading && (
+          <Text
+            style={[
+              isBold ? styles.fontBold : styles.fontRegular,
+              { color: colors.textPrimary, fontSize: FontSizes.small },
+            ]}
+          >
+            {buttonText}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -53,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OwnerHiringFooterButton;
+export default CounterRequestFormFooterButton;

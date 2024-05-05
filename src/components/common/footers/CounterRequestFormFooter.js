@@ -1,24 +1,25 @@
+import axios from "axios";
 import { Formik } from "formik";
-import { useRef } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { ActivityIndicator, Alert, StyleSheet, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { BUTTON_WIDTH_SMALL } from "../../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../../constants";
 import { useColors } from "../../../helpers/SetColors";
 import { getValidationSchema } from "../../../helpers/validation/CounterRequestFormFooterValidation";
-import OwnerHiringFooterButton from "../buttons/OwnerHiringFooterButton";
+import CounterRequestFormFooterButton from "../buttons/CounterRequestFormFooterButton";
 import InputField from "../input_fields/InputField";
+import { useUserID } from "./../../../helpers/SetUserID";
 
 const CounterRequestFormFooter = ({
+  managerHireRequestID,
   navigation,
   purpose,
   salaryPaymentType,
   loading,
 }) => {
   const colors = useColors();
-
-  const fixedCounterOfferRef = useRef();
-  const percentageCounterOfferRef = useRef();
-  const oneTimeCounterOfferRef = useRef();
+  const managerID = useUserID();
+  const [loadingButton, setLoadingButton] = useState(false);
 
   const formattedPurpose = (purpose) => {
     switch (purpose) {
@@ -54,7 +55,28 @@ const CounterRequestFormFooter = ({
       }}
       validationSchema={getValidationSchema(salaryPaymentType)}
       onSubmit={(values) => {
-        console.log(values);
+        setLoadingButton(true);
+
+        const data = {
+          managerID: parseInt(managerID),
+          managerHireRequestID: parseInt(managerHireRequestID),
+          oneTimePay: parseInt(values.oneTimeCounterOffer),
+          salaryFixed: parseInt(values.fixedCounterOffer),
+          salaryPercentage: parseInt(values.percentageCounterOffer),
+          rent: parseInt(values.rentCounterOffer),
+        };
+
+        axios
+          .post(`${BASE_URL}/api/manager/send-counter-request`, data)
+          .then((response) => {
+            Alert.alert("Success", response.data.success);
+          })
+          .catch((error) => {
+            Alert.alert("Error", error.response.data.error);
+          })
+          .finally(() => {
+            setLoadingButton(false);
+          });
       }}
     >
       {({
@@ -68,25 +90,13 @@ const CounterRequestFormFooter = ({
         <View
           style={[
             styles.footer,
-            { backgroundColor: colors.headerAndFooterBackground },
+            {
+              backgroundColor: colors.headerAndFooterBackground,
+              paddingTop: 20,
+            },
           ]}
         >
-          <Text
-            style={[
-              styles.footerTitle,
-              {
-                fontSize: FontSizes.midSmall,
-                fontWeight: "bold",
-                color: colors.textPrimary,
-              },
-            ]}
-          >
-            Hiring For {formattedPurpose(purpose)}
-          </Text>
-
           <InputField
-            onSubmitEditing={() => fixedCounterOfferRef.current.focus()}
-            returnKeyType="next"
             label="Desired Rent (PKR)*"
             value={values.rentCounterOffer}
             onChangeText={handleChange("rentCounterOffer")}
@@ -98,9 +108,6 @@ const CounterRequestFormFooter = ({
 
           {salaryPaymentType === "F" && (
             <InputField
-              ref={fixedCounterOfferRef}
-              onSubmitEditing={() => percentageCounterOfferRef.current.focus()}
-              returnKeyType="next"
               label="Desired Fixed Payment (PKR)*"
               value={values.fixedCounterOffer}
               onChangeText={handleChange("fixedCounterOffer")}
@@ -115,9 +122,6 @@ const CounterRequestFormFooter = ({
 
           {salaryPaymentType === "P" && (
             <InputField
-              ref={percentageCounterOfferRef}
-              onSubmitEditing={() => oneTimeCounterOfferRef.current.focus()}
-              returnKeyType="next"
               label="Desired Percentage (%)*"
               value={values.percentageCounterOffer}
               onChangeText={handleChange("percentageCounterOffer")}
@@ -134,8 +138,6 @@ const CounterRequestFormFooter = ({
 
           {salaryPaymentType !== "P" && salaryPaymentType !== "F" && (
             <InputField
-              ref={oneTimeCounterOfferRef}
-              returnKeyType="done"
               label="Desired One Time Payment (PKR)*"
               value={values.oneTimeCounterOffer}
               onChangeText={handleChange("oneTimeCounterOffer")}
@@ -149,7 +151,8 @@ const CounterRequestFormFooter = ({
           )}
 
           <View style={styles.footerButtonContainer}>
-            <OwnerHiringFooterButton
+            <CounterRequestFormFooterButton
+              loading={loadingButton}
               buttonWidth={BUTTON_WIDTH_SMALL}
               onPress={handleSubmit}
               borderColor={colors.borderGreen}
@@ -157,7 +160,7 @@ const CounterRequestFormFooter = ({
               isBold={true}
             />
 
-            <OwnerHiringFooterButton
+            <CounterRequestFormFooterButton
               buttonWidth={BUTTON_WIDTH_SMALL}
               onPress={() => navigation.goBack()}
               borderColor={colors.borderRed}
