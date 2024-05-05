@@ -1,4 +1,4 @@
-export const ratingsData = [
+export const dummyRatingsData = [
   {
     id: 1,
     name: "Hammad Tariq",

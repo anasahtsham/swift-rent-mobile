@@ -5,7 +5,6 @@ import {
   ActivityIndicator,
   Alert,
   FlatList,
-  Image,
   Keyboard,
   StyleSheet,
   Text,
@@ -16,7 +15,6 @@ import {
 import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
-import { icons } from "../../helpers/ImageImports";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import ExploreOffersButton from "../common/buttons/ExploreOffersButton";
 
@@ -192,9 +190,9 @@ const ExploreOffers = ({ navigation }) => {
             style={{
               marginBottom: 10,
               padding: 5,
-              borderRadius: 20,
+              borderRadius: 10,
               borderColor: colors.borderBlue,
-              borderWidth: 3,
+              borderWidth: 4,
               flexDirection: "row",
               justifyContent: "space-around",
               alignContent: "center",
@@ -216,16 +214,6 @@ const ExploreOffers = ({ navigation }) => {
             >
               My Counter Offers
             </Text>
-            <Image
-              source={icons.externalLink}
-              tintColor={colors.textPrimary}
-              style={{
-                height: 20,
-                width: 20,
-                alignSelf: "center",
-                marginTop: 5,
-              }}
-            />
           </TouchableOpacity>
 
           <View
@@ -308,7 +296,6 @@ const ExploreOffers = ({ navigation }) => {
               dislikes={item.dislikes}
               ratings={item.ratings}
               averageRating={item.averageRating}
-              address={item.address}
               offer={item.offer}
               colors={colors}
             />

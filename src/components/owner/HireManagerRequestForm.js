@@ -210,7 +210,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
             propertyID: propertyID,
             purpose: formatPurposeOfHire(valuePurposeOfHireDropdown),
             oneTimePay: values.agentOneTimeFee,
-            salaryPamentType: formatPaymentType(valuePaymentTypeDropdown),
+            salaryPaymentType: formatPaymentType(valuePaymentTypeDropdown),
             salaryFixed: isNaN(parseInt(values.fixed, 10))
               ? 0
               : parseInt(values.fixed, 10),

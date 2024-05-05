@@ -23,7 +23,9 @@ const ExploreOffersButton = (props) => {
     <TouchableOpacity
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
-      onPress={() => navigation.navigate("Owner Hiring")}
+      onPress={() =>
+        navigation.navigate("Owner Hiring", { managerHireRequestID: props.id })
+      }
     >
       <View style={[styles.buttonHeaderContainer, {}]}>
         <View

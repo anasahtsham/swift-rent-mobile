@@ -16,13 +16,13 @@ import RentHistory from "./src/components/common/screens/properties/RentHistory"
 import VerifiyDocumentation from "./src/components/common/screens/properties/VerifyDocumentation";
 import RatingScreen from "./src/components/common/screens/ratings/RatingScreen";
 import Ratings from "./src/components/common/screens/ratings/Ratings";
+import CounterRequestForm from "./src/components/manager/CounterRequestForm";
 import ExploreOffers from "./src/components/manager/ExploreOffers";
 import AddMaintenanceReport from "./src/components/owner/AddMaintenanceReport";
 import AddProperty from "./src/components/owner/AddProperty";
 import AddPropertyInfo from "./src/components/owner/AddPropertyInfo";
 import HireManagerRequestForm from "./src/components/owner/HireManagerRequestForm";
 import ManagerOffers from "./src/components/owner/ManagerOffers";
-import OwnerHiring from "./src/components/owner/OwnerHiring";
 import PropertyMaintenances from "./src/components/owner/PropertyMaintenances";
 import RegisterTenant from "./src/components/owner/RegisterTenant";
 import RentalRequestAgreementForm from "./src/components/tenant/RentalRequestAgreementForm";
@@ -92,7 +92,7 @@ export default function App() {
           <Stack.Screen name="Customer Support" component={CustomerSupport} />
 
           {/* Owner Screens */}
-          <Stack.Screen name="Owner Hiring" component={OwnerHiring} />
+          <Stack.Screen name="Owner Hiring" component={CounterRequestForm} />
           <Stack.Screen name="Property Menu" component={PropertyMenu} />
           <Stack.Screen name="Analytical Report" component={AnalyticalReport} />
           <Stack.Screen name="Month Report" component={MonthReport} />

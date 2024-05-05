@@ -3,12 +3,12 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
-const OwnerHiringCard = (props) => {
+const CounterRequestFormCard = (props) => {
   const colors = useColors();
   return (
     <View
       style={[
-        styles.managerRatingsCard,
+        styles.ratingsCard,
         { backgroundColor: colors.backgroundPrimary },
       ]}
     >
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
   },
-  managerRatingsCard: {
+  ratingsCard: {
     height: "auto",
     borderRadius: 20,
     padding: 15,
@@ -141,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OwnerHiringCard;
+export default CounterRequestFormCard;
