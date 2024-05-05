@@ -255,7 +255,7 @@ const RegisterTenant = ({ navigation, route }) => {
                     marginLeft: 10,
                   }}
                 >
-                  Rent Due Date
+                  Rent Due Date*
                 </Text>
                 <DropDownPicker
                   {...dropdownStyles}
