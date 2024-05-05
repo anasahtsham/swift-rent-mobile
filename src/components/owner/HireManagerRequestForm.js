@@ -212,18 +212,16 @@ const HireManagerRequestForm = ({ navigation, route }) => {
             oneTimePay: values.agentOneTimeFee,
             salaryPamentType: formatPaymentType(valuePaymentTypeDropdown),
             salaryFixed: isNaN(parseInt(values.fixed, 10))
-              ? null
+              ? 0
               : parseInt(values.fixed, 10),
             salaryPercentage: isNaN(parseInt(values.percentage, 10))
-              ? null
+              ? 0
               : parseInt(values.percentage, 10),
             whoBringsTenant: formatBringTenantsBy(valueBringTenantsByDropdown),
             rent: values.rentAmount,
             specialCondition: values.specialTerms,
             needHelpWithLegalWork: isLetManagerHandlePaperwork,
           };
-
-          console.log(JSON.stringify(data, null, 2));
 
           axios
             .post(`${BASE_URL}/api/owner/generate-hire-request`, data)
@@ -382,7 +380,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                     {valuePaymentTypeDropdown === "percentage" && (
                       <InputFieldWithHint
                         borderRadius={7}
-                        label="Percentage*"
+                        label="Percentage (%)*"
                         fieldType="numeric"
                         value={values.percentage}
                         handleChange={handleChange("percentage")}
@@ -398,7 +396,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                     {valuePaymentTypeDropdown === "fixed" && (
                       <InputFieldWithHint
                         borderRadius={7}
-                        label="Fixed*"
+                        label="Fixed (PKR)*"
                         fieldType="numeric"
                         value={values.fixed}
                         handleChange={handleChange("fixed")}
@@ -468,7 +466,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
               <InputFieldWithHint
                 ref={specialTermsRef}
                 borderRadius={7}
-                label="Special Terms*"
+                label="Special Terms"
                 fieldType="text"
                 value={values.specialTerms}
                 handleChange={handleChange("specialTerms")}
