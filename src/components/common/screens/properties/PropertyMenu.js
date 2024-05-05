@@ -10,7 +10,6 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { useColors } from "../../../../helpers/SetColors";
-import { managerOffersData } from "../../../../helpers/data/ManagerOffersData";
 import PropertyMenuButton from "../../buttons/PropertyMenuButton";
 import PropertyMenuHeader from "../../headers/PropertyMenuHeader";
 
@@ -31,8 +30,6 @@ const PropertyMenu = ({ route }) => {
     );
     return () => backHandler.remove();
   }, []);
-
-  let managerOffersAmount = managerOffersData.length;
 
   const Card = ({ title, endText, children }) => (
     <View style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}>
@@ -162,9 +159,11 @@ const PropertyMenu = ({ route }) => {
             onPress={() => navigation.navigate("Rent History")}
           />
           <PropertyMenuButton
-            text={"Manager Offers (" + managerOffersAmount + ")"}
+            text={`Manager Offers (${3})`}
             colors={colors}
-            onPress={() => navigation.navigate("Manager Offers")}
+            onPress={() =>
+              navigation.navigate("Manager Offers", { propertyID: id })
+            }
           />
         </View>
 

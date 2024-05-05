@@ -1,4 +1,4 @@
-export const managerOffersData = [
+export const dummyManagerOffersData = [
   {
     id: 1,
     managerName: "Yusuf Khan",

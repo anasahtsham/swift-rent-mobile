@@ -13,7 +13,6 @@ import { useUserID } from "./../../../helpers/SetUserID";
 const CounterRequestFormFooter = ({
   managerHireRequestID,
   navigation,
-  purpose,
   salaryPaymentType,
   loading,
 }) => {
@@ -70,6 +69,7 @@ const CounterRequestFormFooter = ({
           .post(`${BASE_URL}/api/manager/send-counter-request`, data)
           .then((response) => {
             Alert.alert("Success", response.data.success);
+            navigation.goBack();
           })
           .catch((error) => {
             Alert.alert("Error", error.response.data.error);

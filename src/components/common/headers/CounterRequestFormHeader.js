@@ -198,7 +198,7 @@ const CounterRequestFormHeader = (props) => {
                 style={[
                   styles.fontBold,
                   {
-                    color: colors.textPrimary,
+                    color: colors.textGreen,
                     fontSize: FontSizes.small,
                   },
                 ]}

@@ -209,16 +209,12 @@ const HireManagerRequestForm = ({ navigation, route }) => {
           const data = {
             propertyID: propertyID,
             purpose: formatPurposeOfHire(valuePurposeOfHireDropdown),
-            oneTimePay: values.agentOneTimeFee,
+            oneTimePay: parseInt(values.agentOneTimeFee),
             salaryPaymentType: formatPaymentType(valuePaymentTypeDropdown),
-            salaryFixed: isNaN(parseInt(values.fixed, 10))
-              ? 0
-              : parseInt(values.fixed, 10),
-            salaryPercentage: isNaN(parseInt(values.percentage, 10))
-              ? 0
-              : parseInt(values.percentage, 10),
+            salaryFixed: parseInt(values.fixed),
+            salaryPercentage: parseInt(values.percentage),
             whoBringsTenant: formatBringTenantsBy(valueBringTenantsByDropdown),
-            rent: values.rentAmount,
+            rent: parseInt(values.rentAmount),
             specialCondition: values.specialTerms,
             needHelpWithLegalWork: isLetManagerHandlePaperwork,
           };

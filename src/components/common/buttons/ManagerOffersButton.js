@@ -4,6 +4,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { opacityValueForButton } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
+import { formatNumberToCrore } from "./../../../helpers/utils/index";
 
 const ManagerOffersButton = (props) => {
   const colors = useColors();
@@ -12,28 +13,19 @@ const ManagerOffersButton = (props) => {
     <TouchableOpacity
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
-      onPress={() => navigation.navigate("Owner Hiring")}
+      // onPress={() => navigation.navigate("Owner Hiring")}
     >
       <View style={[styles.buttonHeaderContainer, {}]}>
-        <View style={{ marginRight: "3%" }}>
-          <Image
-            style={styles.userIcon}
-            source={icons.userIcon}
-            tintColor={colors.iconPrimary}
-          />
-        </View>
-
         <View
           style={{
             justifyContent: "space-between",
-            width: "70%",
           }}
         >
           <Text
             style={[
               styles.fontBold,
               {
-                fontSize: FontSizes.small,
+                fontSize: FontSizes.medium,
                 color: colors.textPrimary,
               },
             ]}
@@ -48,70 +40,84 @@ const ManagerOffersButton = (props) => {
                 {
                   fontSize: FontSizes.small,
                   color: colors.textPrimary,
+                  marginRight: 5,
                 },
               ]}
             >
-              {props.likes}
+              {/* {props.likes} */}6
             </Text>
             <Image
-              style={styles.icon}
+              style={[styles.icon, { marginRight: 5 }]}
               source={icons.like}
               tintColor={colors.iconGreen}
             />
             <Text
               style={[
                 styles.fontRegular,
-                { fontSize: FontSizes.small, color: colors.textPrimary },
+                {
+                  fontSize: FontSizes.small,
+                  color: colors.textPrimary,
+                  marginRight: 5,
+                },
               ]}
             >
-              {props.dislikes}
+              {/* {props.dislikes} */}4
             </Text>
             <Image
-              style={styles.icon}
+              style={[styles.icon, { marginRight: 5 }]}
               source={icons.dislike}
               tintColor={colors.iconRed}
             />
             <Text
               style={[
                 styles.fontRegular,
-                { fontSize: FontSizes.small, color: colors.textPrimary },
+                {
+                  fontSize: FontSizes.small,
+                  color: colors.textPrimary,
+                  marginRight: 5,
+                },
               ]}
             >
-              ({props.ratings})
+              {/* ({props.ratings}) */}10
             </Text>
             <View style={{ flexDirection: "row" }}>
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 1 ? icons.star : icons.starHollow
+                  // props.averageRating >= 1 ? icons.star : icons.starHollow
+                  2.5 >= 1 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 2 ? icons.star : icons.starHollow
+                  // props.averageRating >= 2 ? icons.star : icons.starHollow
+                  2.5 >= 2 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 3 ? icons.star : icons.starHollow
+                  // props.averageRating >= 3 ? icons.star : icons.starHollow
+                  2.5 >= 3 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 4 ? icons.star : icons.starHollow
+                  // props.averageRating >= 4 ? icons.star : icons.starHollow
+                  2.5 >= 4 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
               <Image
                 style={styles.icon}
                 source={
-                  props.averageRating >= 5 ? icons.star : icons.starHollow
+                  // props.averageRating >= 5 ? icons.star : icons.starHollow
+                  2.5 >= 5 ? icons.star : icons.starHollow
                 }
                 tintColor={colors.iconYellow}
               />
@@ -119,7 +125,7 @@ const ManagerOffersButton = (props) => {
           </View>
         </View>
 
-        <View style={{ marginLeft: "3%" }}>
+        <View>
           <Image
             style={styles.icon}
             source={icons.externalLink}
@@ -128,7 +134,72 @@ const ManagerOffersButton = (props) => {
         </View>
       </View>
 
-      <View style={{ marginTop: 15 }}>
+      {/* after header */}
+
+      <View style={{ marginTop: 5 }}>
+        {!!props.oneTimePay && (
+          <View style={[styles.inRow, styles.cardSubText]}>
+            <Text
+              style={[
+                styles.fontBold,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              One Time Pay:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              {`${formatNumberToCrore(props.oneTimePay)} PKR`}
+            </Text>
+          </View>
+        )}
+
+        {!!props.salaryFixed && (
+          <View style={[styles.inRow, styles.cardSubText]}>
+            <Text
+              style={[
+                styles.fontBold,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Salary Fixed:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              {`${formatNumberToCrore(props.salaryFixed)} PKR`}
+            </Text>
+          </View>
+        )}
+
+        {!!props.salaryPercentage && (
+          <View style={[styles.inRow, styles.cardSubText]}>
+            <Text
+              style={[
+                styles.fontBold,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Salary Percentage:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              {`${props.salaryPercentage}%`}
+            </Text>
+          </View>
+        )}
+
         <View style={[styles.inRow, styles.cardSubText]}>
           <Text
             style={[
@@ -136,7 +207,7 @@ const ManagerOffersButton = (props) => {
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            Manager's Offer:{" "}
+            Rent:{" "}
           </Text>
           <Text
             style={[
@@ -144,9 +215,10 @@ const ManagerOffersButton = (props) => {
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            {props.managersOffer}
+            {`${formatNumberToCrore(props.rent)} PKR`}
           </Text>
         </View>
+
         <View style={[styles.inRow, styles.cardSubText]}>
           <Text
             style={[
@@ -154,16 +226,15 @@ const ManagerOffersButton = (props) => {
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            Manager's Comment:{" "}
+            Counter Request On:{" "}
           </Text>
           <Text
             style={[
               styles.fontRegular,
-              styles.cardSubText,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
-            {props.managersComment}
+            {props.counterRequestOn}
           </Text>
         </View>
       </View>
@@ -184,7 +255,7 @@ const styles = StyleSheet.create({
   },
   buttonHeaderContainer: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
   },
   inRow: {
     flexDirection: "row",
