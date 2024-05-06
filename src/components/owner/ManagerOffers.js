@@ -34,7 +34,6 @@ const ManagerOffers = ({ navigation, route }) => {
   const [managerOffersData, setManagerOffersData] = useState([]);
 
   const fetchData = async () => {
-    console.log("fetching data");
     try {
       const response = await axios.post(
         `${BASE_URL}/api/owner/view-counter-requests`,
@@ -84,7 +83,6 @@ const ManagerOffers = ({ navigation, route }) => {
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.bodyBackground }}>
       <ManagerOffersHeader
         loading={loading}
-        managerOffersAmount={managerOffersData.length}
         purpose={purpose}
         oneTimePay={oneTimePay}
         salaryPaymentType={salaryPaymentType}
@@ -107,7 +105,7 @@ const ManagerOffers = ({ navigation, route }) => {
           marginBottom: 5,
         }}
       >
-        Manager(s) Offers
+        Manager Counter Offers ({managerOffersData.length})
       </Text>
 
       {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}

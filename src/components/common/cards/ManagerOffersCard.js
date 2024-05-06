@@ -23,7 +23,6 @@ const ManagerOffersCard = (props) => {
   //interview handlers and api calls
   const interviewManager = async () => {
     setAcceptLoading(true);
-    console.log("interview manager api call");
     try {
       await axios.post(`${BASE_URL}/api/owner/interview-counter-request`, {
         managerCounterRequestID: props.managerCounterRequestID,

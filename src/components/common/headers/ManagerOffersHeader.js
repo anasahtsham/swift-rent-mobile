@@ -68,10 +68,10 @@ const ManagerOffersHeader = (props) => {
           style={[
             styles.mainTitle,
             styles.fontBold,
-            { color: colors.textPrimary },
+            { color: colors.textPrimary, textAlign: "center" },
           ]}
         >
-          Manager Offers ({props.managerOffersAmount})
+          My Offer
         </Text>
 
         <View style={styles.inRow}>
