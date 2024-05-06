@@ -36,13 +36,26 @@ const ExploreOffersButton = (props) => {
 
   return (
     <TouchableOpacity
-      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+      activeOpacity={
+        props.counterRequestStatus === "P" ||
+        props.counterRequestStatus === "I" ||
+        props.counterRequestStatus === "A"
+          ? 1
+          : OPACITY_VALUE_FOR_BUTTON
+      }
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
-      onPress={() =>
+      onPress={() => {
+        if (
+          props.counterRequestStatus === "P" ||
+          props.counterRequestStatus === "I" ||
+          props.counterRequestStatus === "A"
+        ) {
+          return;
+        }
         navigation.navigate("Counter Request Form", {
           managerHireRequestID: props.id,
-        })
-      }
+        });
+      }}
     >
       <View style={[styles.buttonHeaderContainer, {}]}>
         <View
@@ -145,13 +158,17 @@ const ExploreOffersButton = (props) => {
           </View>
         </View>
 
-        <View style={{ marginLeft: "3%" }}>
-          <Image
-            style={styles.icon}
-            source={icons.externalLink}
-            tintColor={colors.iconPrimary}
-          />
-        </View>
+        {props.counterRequestStatus === "P" ||
+        props.counterRequestStatus === "I" ||
+        props.counterRequestStatus === "A" ? null : (
+          <View style={{ marginLeft: "3%" }}>
+            <Image
+              style={styles.icon}
+              source={icons.externalLink}
+              tintColor={colors.iconPrimary}
+            />
+          </View>
+        )}
       </View>
 
       <View style={{ marginTop: 15 }}>
