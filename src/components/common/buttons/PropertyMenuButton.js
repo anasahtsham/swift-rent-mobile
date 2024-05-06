@@ -1,10 +1,31 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 
 const PropertyMenuButton = (props) => {
   const colors = props.colors;
+
+  if (props.loading) {
+    return (
+      <TouchableOpacity
+        style={[
+          styles.button,
+          { backgroundColor: colors.backgroundPrimary, alignItems: "center" },
+        ]}
+        activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+      >
+        <ActivityIndicator size="small" color={colors.textPrimary} />
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <TouchableOpacity
@@ -48,10 +69,12 @@ const PropertyMenuButton = (props) => {
         )}
       </View>
 
-      <Image
-        source={icons.externalLink}
-        style={[styles.image, { tintColor: colors.iconPrimary }]}
-      />
+      {!props.doesNotOpenScreen && (
+        <Image
+          source={icons.externalLink}
+          style={[styles.image, { tintColor: colors.iconPrimary }]}
+        />
+      )}
     </TouchableOpacity>
   );
 };

@@ -60,7 +60,6 @@ const ManagerOffers = ({ navigation, route }) => {
       setManagerOffersData(response.data.managerHireCounterRequests);
     } catch (error) {
       Alert.alert("Error", "Something went wrong");
-      console.log(JSON.stringify(error.response, null, 2));
     } finally {
       setLoading(false);
     }

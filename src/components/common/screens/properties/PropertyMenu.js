@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BackHandler,
   SafeAreaView,
@@ -10,6 +10,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { useColors } from "../../../../helpers/SetColors";
+import { deleteHireRequest } from "../../../owner/DeleteHireRequest";
 import PropertyMenuButton from "../../buttons/PropertyMenuButton";
 import PropertyMenuHeader from "../../headers/PropertyMenuHeader";
 
@@ -17,6 +18,9 @@ const PropertyMenu = ({ route }) => {
   const { propertyAddress, id } = route.params;
   const colors = useColors();
   const navigation = useNavigation();
+
+  const [deleteHireRequestLoading, setDeleteHireRequestLoading] =
+    useState(false);
 
   useEffect(() => {
     const backAction = () => {
@@ -128,7 +132,16 @@ const PropertyMenu = ({ route }) => {
                 propertyID: id,
               });
             }}
-            text={"Appoint A Manager"}
+            text={"Make Manager Hire Request"}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            doesNotOpenScreen={true}
+            loading={deleteHireRequestLoading}
+            onPress={() => {
+              deleteHireRequest(id, setDeleteHireRequestLoading);
+            }}
+            text={"Delete Hire Request"}
             colors={colors}
           />
           <PropertyMenuButton
