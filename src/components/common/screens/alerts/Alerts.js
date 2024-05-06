@@ -5,9 +5,11 @@ import {
   ActivityIndicator,
   Alert,
   FlatList,
+  Linking,
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
@@ -40,7 +42,36 @@ const Alerts = () => {
               userType: userType,
             }
           );
-          setAlertsData(response.data.notifications);
+          const notifications = response.data.notifications.map(
+            (notification) => {
+              const phoneNumberRegex = /03\d{9}/g;
+              const phoneNumber =
+                notification.notificationtext.match(phoneNumberRegex);
+
+              if (phoneNumber) {
+                const parts = notification.notificationtext.split(
+                  phoneNumber[0]
+                );
+                notification.notificationtext = (
+                  <>
+                    <Text>{parts[0]}</Text>
+                    <TouchableOpacity
+                      onPress={() => Linking.openURL(`tel:${phoneNumber[0]}`)}
+                    >
+                      <Text style={{ color: colors.textDarkBlue }}>
+                        {phoneNumber[0]}
+                      </Text>
+                    </TouchableOpacity>
+                    <Text>{parts[1]}</Text>
+                  </>
+                );
+              }
+
+              return notification;
+            }
+          );
+
+          setAlertsData(notifications);
         } catch (error) {
           // if status 404 then show alert that no notifications found
           if (!error.response.status === 404) {
