@@ -14,7 +14,6 @@ import ManagerOffersHeader from "../common/headers/ManagerOffersHeader";
 
 const ManagerOffers = ({ navigation, route }) => {
   const { propertyID } = route.params;
-  console.log("Property ID: ", propertyID);
   const colors = useColors();
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +37,7 @@ const ManagerOffers = ({ navigation, route }) => {
         propertyID: propertyID,
       })
       .then((response) => {
-        console.log(JSON.stringify(response.data, null, 2));
+        //header
         setPurpose(response.data.ownerDemands.purpose);
         setOneTimePay(response.data.ownerDemands.onetimepay);
         setSalaryPaymentType(response.data.ownerDemands.salarypaymenttype);
@@ -51,6 +50,7 @@ const ManagerOffers = ({ navigation, route }) => {
           response.data.ownerDemands.needhelpwithlegalwork
         );
 
+        //buttons
         setManagerOffersData(response.data.managerHireCounterRequests);
       })
       .catch((error) => {
@@ -99,6 +99,7 @@ const ManagerOffers = ({ navigation, route }) => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <ManagerOffersButton
+            id={item.id}
             managerName={item.managerName}
             oneTimePay={item.onetimepay}
             salaryFixed={item.salaryfixed}

@@ -24,7 +24,9 @@ const ExploreOffersButton = (props) => {
       activeOpacity={opacityValueForButton}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
       onPress={() =>
-        navigation.navigate("Owner Hiring", { managerHireRequestID: props.id })
+        navigation.navigate("Counter Request Form", {
+          managerHireRequestID: props.id,
+        })
       }
     >
       <View style={[styles.buttonHeaderContainer, {}]}>

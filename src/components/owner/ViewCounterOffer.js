@@ -18,8 +18,8 @@ import CounterRequestFormCard from "../common/cards/CounterRequestFormCard";
 import CounterRequestFormFooter from "../common/footers/CounterRequestFormFooter";
 import CounterRequestFormHeader from "../common/headers/CounterRequestFormHeader";
 
-const CounterRequestForm = ({ navigation, route }) => {
-  const { managerHireRequestID } = route.params;
+const ViewCounterOffer = ({ navigation, route }) => {
+  const { counterRequestID } = route.params;
   const colors = useColors();
   const [loading, setLoading] = useState(true);
 
@@ -51,7 +51,7 @@ const CounterRequestForm = ({ navigation, route }) => {
 
   useEffect(() => {
     const data = {
-      managerHireRequestID: managerHireRequestID,
+      managerHireRequestID: counterRequestID,
     };
 
     axios
@@ -88,7 +88,7 @@ const CounterRequestForm = ({ navigation, route }) => {
     return () => backHandler.remove();
   }, []);
 
-  const CounterRequestBodyHeader = (props) => {
+  const ViewCounterOfferBodyHeader = (props) => {
     if (loading) {
       return <ActivityIndicator size="large" color={colors.textPrimary} />;
     }
@@ -190,7 +190,7 @@ const CounterRequestForm = ({ navigation, route }) => {
         }}
       >
         <View style={{ width: "90%" }}>
-          <CounterRequestBodyHeader
+          <ViewCounterOfferBodyHeader
             likes={likes}
             dislikes={dislikes}
             ratings={ratings}
@@ -211,7 +211,7 @@ const CounterRequestForm = ({ navigation, route }) => {
         </View>
       </ScrollView>
       <CounterRequestFormFooter
-        managerHireRequestID={managerHireRequestID}
+        managerHireRequestID={counterRequestID}
         loading={loading}
         navigation={navigation}
         salaryPaymentType={salaryPaymentType}
@@ -250,4 +250,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CounterRequestForm;
+export default ViewCounterOffer;

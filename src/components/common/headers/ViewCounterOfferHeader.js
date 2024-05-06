@@ -10,7 +10,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { useColors } from "../../../helpers/SetColors";
 import { formatNumberToCrore } from "./../../../helpers/utils/index";
 
-const CounterRequestFormHeader = (props) => {
+const ViewCounterOfferHeader = (props) => {
   const colors = useColors();
 
   const formatWhoBringsTenant = (whoBringsTenant) => {
@@ -113,115 +113,20 @@ const CounterRequestFormHeader = (props) => {
             {props.oneTimePay > 0 &&
               (props.salaryPaymentType !== "P" ||
                 props.salaryPaymentType !== "F") && (
-                <View style={{ flexDirection: "row" }}>
-                  <Text
-                    style={[
-                      styles.fontRegular,
-                      {
-                        color: colors.textPrimary,
-                        fontSize: FontSizes.small,
-                      },
-                    ]}
-                  >
-                    One Time Pay:{" "}
-                  </Text>
-                  <Text
-                    style={[
-                      styles.fontBold,
-                      {
-                        color: colors.textPrimary,
-                        fontSize: FontSizes.small,
-                      },
-                    ]}
-                  >
-                    {`${formatNumberToCrore(props.oneTimePay)}`}
-                  </Text>
-                </View>
+                <Text
+                  style={[
+                    styles.fontRegular,
+                    {
+                      color: colors.textPrimary,
+                      fontSize: FontSizes.small,
+                    },
+                  ]}
+                >
+                  {`One Time Pay: ${formatNumberToCrore(props.oneTimePay)}`}
+                </Text>
               )}
 
             {props.salaryPaymentType === "P" && (
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={[
-                    styles.fontRegular,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  Salary Percentage:{" "}
-                </Text>
-                <Text
-                  style={[
-                    styles.fontBold,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  {`${props.salaryPercentage}%`}
-                </Text>
-              </View>
-            )}
-
-            {props.salaryPaymentType === "F" && (
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={[
-                    styles.fontRegular,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  Salary Fixed:{" "}
-                </Text>
-                <Text
-                  style={[
-                    styles.fontBold,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  {`${formatNumberToCrore(props.salaryFixed)}`}
-                </Text>
-              </View>
-            )}
-
-            {(props.salaryPaymentType === "P" ||
-              props.salaryPaymentType === "F") && (
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={[
-                    styles.fontRegular,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  Who Brings Tenant:{" "}
-                </Text>
-                <Text
-                  style={[
-                    styles.fontBold,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  {`${formatWhoBringsTenant(props.whoBringsTenant)}`}
-                </Text>
-              </View>
-            )}
-
-            <View style={{ flexDirection: "row" }}>
               <Text
                 style={[
                   styles.fontRegular,
@@ -231,48 +136,63 @@ const CounterRequestFormHeader = (props) => {
                   },
                 ]}
               >
-                Rent:{" "}
+                {`Salary Percentage: ${props.salaryPercentage}%`}
               </Text>
+            )}
+
+            {props.salaryPaymentType === "F" && (
               <Text
                 style={[
-                  styles.fontBold,
+                  styles.fontRegular,
                   {
                     color: colors.textPrimary,
                     fontSize: FontSizes.small,
                   },
                 ]}
               >
-                {`${formatNumberToCrore(props.rent)}`}
+                {`Salary Fixed: ${formatNumberToCrore(props.salaryFixed)}`}
               </Text>
-            </View>
-
-            {!!props.specialCondition && (
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={[
-                    styles.fontRegular,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  Special Condition:{" "}
-                </Text>
-                <Text
-                  style={[
-                    styles.fontBold,
-                    {
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  {`${props.specialCondition}`}
-                </Text>
-              </View>
             )}
 
+            {(props.salaryPaymentType === "P" ||
+              props.salaryPaymentType === "F") && (
+              <Text
+                style={[
+                  styles.fontRegular,
+                  {
+                    color: colors.textPrimary,
+                    fontSize: FontSizes.small,
+                  },
+                ]}
+              >
+                {`Who Brings Tenant: ${formatWhoBringsTenant(
+                  props.whoBringsTenant
+                )}`}
+              </Text>
+            )}
+
+            <Text
+              style={[
+                styles.fontRegular,
+                {
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                },
+              ]}
+            >
+              {`Rent: ${formatNumberToCrore(props.rent)}`}
+            </Text>
+            <Text
+              style={[
+                styles.fontRegular,
+                {
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                },
+              ]}
+            >
+              {`Special Condition: ${props.specialCondition}`}
+            </Text>
             {props.needHelpWithLegalWork && (
               <Text
                 style={[
@@ -311,4 +231,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CounterRequestFormHeader;
+export default ViewCounterOfferHeader;
