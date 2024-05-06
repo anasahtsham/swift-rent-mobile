@@ -36,7 +36,7 @@ const OwnerProperties = () => {
     }, [userID]) // Re-run the effect when userID changes
   );
 
-  return <Properties propertiesData={propertiesData} loading={loading} />;
+  return <Properties ownerPropertiesData={propertiesData} loading={loading} />;
 };
 
 export default OwnerProperties;

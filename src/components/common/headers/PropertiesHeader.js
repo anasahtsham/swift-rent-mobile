@@ -13,31 +13,33 @@ const PropertiesHeader = (props) => {
         { backgroundColor: colors.headerAndFooterBackground },
       ]}
     >
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("Maintenance Complains List", {
-            header: "Maintenance",
-          });
-        }}
-        activeOpacity={OPACITY_VALUE_FOR_BUTTON}
-        style={[
-          styles.headerCards,
-          {
-            borderColor: colors.borderBlue,
-            backgroundColor: colors.headerAndFooterBackground,
-          },
-        ]}
-      >
-        <Text
-          style={{
-            color: colors.textPrimary,
-            fontSize: FontSizes.medium,
-            textAlign: "center",
+      {!props.isTenant && !props.isManager && (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Maintenance Complains List", {
+              header: "Maintenance",
+            });
           }}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+          style={[
+            styles.headerCards,
+            {
+              borderColor: colors.borderBlue,
+              backgroundColor: colors.headerAndFooterBackground,
+            },
+          ]}
         >
-          Maintenance
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={{
+              color: colors.textPrimary,
+              fontSize: FontSizes.medium,
+              textAlign: "center",
+            }}
+          >
+            Maintenance
+          </Text>
+        </TouchableOpacity>
+      )}
 
       <TouchableOpacity
         onPress={() =>
@@ -49,6 +51,7 @@ const PropertiesHeader = (props) => {
         style={[
           styles.headerCards,
           {
+            width: props.isTenant || props.isManager ? "100%" : "auto",
             borderColor: colors.borderBlue,
             backgroundColor: colors.headerAndFooterBackground,
           },

@@ -19,7 +19,11 @@ const Properties = (props) => {
   const navigation = useNavigation();
 
   const dataToRender =
-    (props.isTenant ? props.rentalsData : props.propertiesData) || [];
+    (props.isTenant
+      ? props.rentalsData
+      : props.isManager
+      ? props.managerPropertiesData
+      : props.ownerPropertiesData) || [];
 
   const renderItem = ({ item: data }) =>
     props.isTenant ? (
@@ -57,7 +61,11 @@ const Properties = (props) => {
     <View
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <PropertiesHeader isTenant={props.isTenant} colors={colors} />
+      <PropertiesHeader
+        isTenant={props.isTenant}
+        isManager={props.isManager}
+        colors={colors}
+      />
       <View
         style={{
           paddingTop: 20,
