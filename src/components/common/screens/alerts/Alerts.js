@@ -9,7 +9,6 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
@@ -53,17 +52,20 @@ const Alerts = () => {
                   phoneNumber[0]
                 );
                 notification.notificationtext = (
-                  <>
-                    <Text>{parts[0]}</Text>
-                    <TouchableOpacity
+                  <Text>
+                    {parts[0]}
+                    <Text
+                      style={{
+                        color: colors.textDarkBlue,
+                        fontSize: FontSizes.small,
+                        textDecorationLine: "underline",
+                      }}
                       onPress={() => Linking.openURL(`tel:${phoneNumber[0]}`)}
                     >
-                      <Text style={{ color: colors.textDarkBlue }}>
-                        {phoneNumber[0]}
-                      </Text>
-                    </TouchableOpacity>
-                    <Text>{parts[1]}</Text>
-                  </>
+                      {phoneNumber[0]}
+                    </Text>
+                    {parts[1]}
+                  </Text>
                 );
               }
 
