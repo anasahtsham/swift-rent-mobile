@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { useColors } from "../../../helpers/SetColors";
 
 const CounterRequestFormFooterButton = ({
@@ -21,7 +22,7 @@ const CounterRequestFormFooterButton = ({
   const colors = useColors();
   return (
     <TouchableOpacity
-      activeOpacity={0.7}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[
         styles.button,
         { borderColor, height: buttonHeight, width: buttonWidth },

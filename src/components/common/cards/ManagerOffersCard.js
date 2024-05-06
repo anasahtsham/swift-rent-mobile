@@ -1,30 +1,139 @@
-import { useNavigation } from "@react-navigation/native";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import axios from "axios";
+import { useState } from "react";
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
-import { formatNumberToCrore } from "./../../../helpers/utils/index";
+import { formatNumberToCrore } from "../../../helpers/utils/index";
 
-const ManagerOffersButton = (props) => {
+const ManagerOffersCard = (props) => {
   const colors = useColors();
-  const navigation = useNavigation();
+  const [acceptLoading, setAcceptLoading] = useState(false);
+  const [rejectLoading, setRejectLoading] = useState(false);
+
+  //interview handlers and api calls
+  const interviewManager = async () => {
+    setAcceptLoading(true);
+    console.log("interview manager api call");
+    try {
+      await axios.post(`${BASE_URL}/api/owner/interview-counter-request`, {
+        managerCounterRequestID: props.managerCounterRequestID,
+      });
+      Alert.alert("Interview Requested", "Interview request sent successfully");
+      props.fetchData();
+    } catch (error) {
+      console.log(JSON.stringify(error.response, null, 2));
+    } finally {
+      setAcceptLoading(false);
+    }
+  };
+
+  const handleInterview = () => {
+    Alert.alert(
+      "Interview Manager",
+      "Are you sure you want to interview this manager?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "Interview",
+          onPress: () => {
+            interviewManager();
+          },
+        },
+      ]
+    );
+  };
+
+  //accept offer handlers and api calls
+  const acceptOffer = async () => {
+    setAcceptLoading(true);
+    try {
+      await axios.post(`${BASE_URL}/api/owner/accept-counter-request`, {
+        managerCounterRequestID: props.managerCounterRequestID,
+      });
+      Alert.alert("Accepted", "Manager offer accepted successfully");
+      props.fetchData();
+    } catch (error) {
+      console.log(JSON.stringify(error.response, null, 2));
+    } finally {
+      setAcceptLoading(false);
+    }
+  };
+
+  const handleAccept = () => {
+    Alert.alert(
+      "Accept Manager Offer",
+      "Are you sure you want to accept this manager offer?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "Accept",
+          onPress: () => {
+            acceptOffer();
+          },
+        },
+      ]
+    );
+  };
+
+  const rejectOffer = async () => {
+    setRejectLoading(true);
+    try {
+      await axios.post(`${BASE_URL}/api/owner/reject-counter-request`, {
+        managerCounterRequestID: props.managerCounterRequestID,
+      });
+      Alert.alert("Rejected", "Manager offer rejected successfully");
+      props.fetchData();
+    } catch (error) {
+      console.log(JSON.stringify(error.response, null, 2));
+    } finally {
+      setRejectLoading(false);
+    }
+  };
+
+  const handleReject = () => {
+    Alert.alert(
+      "Reject Manager Offer",
+      "Are you sure you want to reject this manager offer?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "Reject",
+          onPress: () => {
+            rejectOffer();
+          },
+        },
+      ]
+    );
+  };
+
   return (
-    <TouchableOpacity
-      activeOpacity={opacityValueForButton}
+    <View
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
-      onPress={() =>
-        navigation.navigate("View Counter Offer", {
-          counterRequestID: props.id,
-        })
-      }
     >
       <View style={[styles.buttonHeaderContainer, {}]}>
-        <View
-          style={{
-            justifyContent: "space-between",
-          }}
-        >
+        <View style={{ width: "70%" }}>
           <Text
             style={[
               styles.fontBold,
@@ -129,13 +238,21 @@ const ManagerOffersButton = (props) => {
           </View>
         </View>
 
-        <View>
-          <Image
-            style={styles.icon}
-            source={icons.externalLink}
-            tintColor={colors.iconPrimary}
-          />
-        </View>
+        <TouchableOpacity
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+          onPress={() => {
+            console.log("show ratings screen");
+          }}
+        >
+          <Text
+            style={[
+              styles.fontRegular,
+              { color: colors.textDarkBlue, fontSize: FontSizes.small },
+            ]}
+          >
+            View Ratings
+          </Text>
+        </TouchableOpacity>
       </View>
 
       {/* after header */}
@@ -242,7 +359,84 @@ const ManagerOffersButton = (props) => {
           </Text>
         </View>
       </View>
-    </TouchableOpacity>
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          marginTop: 5,
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            borderColor:
+              props.counterRequestStatus === "P"
+                ? colors.borderBlue
+                : colors.borderGreen,
+            borderRadius: 20,
+            borderWidth: 4,
+            alignContent: "center",
+            justifyContent: "center",
+            paddingVertical: 5,
+            paddingHorizontal: 10,
+          }}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+          onPress={() => {
+            props.counterRequestStatus === "P"
+              ? handleInterview()
+              : handleAccept();
+          }}
+        >
+          {acceptLoading && (
+            <ActivityIndicator size="small" color={colors.textPrimary} />
+          )}
+          {!acceptLoading && (
+            <Text
+              style={[
+                styles.fontBold,
+                {
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                },
+              ]}
+            >
+              {props.counterRequestStatus === "P" ? "Interview" : "Accept"}
+            </Text>
+          )}
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            borderColor: colors.borderRed,
+            borderRadius: 20,
+            borderWidth: 4,
+            alignContent: "center",
+            justifyContent: "center",
+            paddingVertical: 5,
+            paddingHorizontal: 10,
+          }}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+          onPress={() => handleReject()}
+        >
+          {rejectLoading && (
+            <ActivityIndicator size="small" color={colors.textPrimary} />
+          )}
+          {!rejectLoading && (
+            <Text
+              style={[
+                styles.fontBold,
+                {
+                  color: colors.textPrimary,
+                  fontSize: FontSizes.small,
+                },
+              ]}
+            >
+              Reject
+            </Text>
+          )}
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -259,7 +453,6 @@ const styles = StyleSheet.create({
   },
   buttonHeaderContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
   },
   inRow: {
     flexDirection: "row",
@@ -271,14 +464,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  userIcon: {
-    width: 52,
-    height: 52,
-  },
-  expandArrowButton: {
-    width: 28,
-    height: 28,
-  },
   icon: {
     width: 22,
     height: 22,
@@ -289,4 +474,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ManagerOffersButton;
+export default ManagerOffersCard;

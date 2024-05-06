@@ -25,7 +25,6 @@ import HireManagerRequestForm from "./src/components/owner/HireManagerRequestFor
 import ManagerOffers from "./src/components/owner/ManagerOffers";
 import PropertyMaintenances from "./src/components/owner/PropertyMaintenances";
 import RegisterTenant from "./src/components/owner/RegisterTenant";
-import ViewCounterOffer from "./src/components/owner/ViewCounterOffer";
 import RentalRequestAgreementForm from "./src/components/tenant/RentalRequestAgreementForm";
 import RentalRequests from "./src/components/tenant/RentalRequests";
 import Rents from "./src/components/tenant/Rents";
@@ -120,10 +119,6 @@ export default function App() {
           <Stack.Screen
             name={"Add Maintenance Report"}
             component={AddMaintenanceReport}
-          />
-          <Stack.Screen
-            name={"View Counter Offer"}
-            component={ViewCounterOffer}
           />
 
           {/* Manager Screens */}

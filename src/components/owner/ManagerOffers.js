@@ -6,10 +6,12 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
+  Text,
 } from "react-native";
+import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
-import ManagerOffersButton from "../common/buttons/ManagerOffersButton";
+import ManagerOffersCard from "../common/cards/ManagerOffersCard";
 import ManagerOffersHeader from "../common/headers/ManagerOffersHeader";
 
 const ManagerOffers = ({ navigation, route }) => {
@@ -31,34 +33,40 @@ const ManagerOffers = ({ navigation, route }) => {
   //button data
   const [managerOffersData, setManagerOffersData] = useState([]);
 
-  useEffect(() => {
-    axios
-      .post(`${BASE_URL}/api/owner/view-counter-requests`, {
-        propertyID: propertyID,
-      })
-      .then((response) => {
-        //header
-        setPurpose(response.data.ownerDemands.purpose);
-        setOneTimePay(response.data.ownerDemands.onetimepay);
-        setSalaryPaymentType(response.data.ownerDemands.salarypaymenttype);
-        setSalaryFixed(response.data.ownerDemands.salaryfixed);
-        setSalaryPercentage(response.data.ownerDemands.salarypercentage);
-        setWhoBringsTenant(response.data.ownerDemands.whobringstenant);
-        setRent(response.data.ownerDemands.rent);
-        setSpecialCondition(response.data.ownerDemands.specialcondition);
-        setNeedHelpWithLegalWork(
-          response.data.ownerDemands.needhelpwithlegalwork
-        );
+  const fetchData = async () => {
+    console.log("fetching data");
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/owner/view-counter-requests`,
+        {
+          propertyID: propertyID,
+        }
+      );
 
-        //buttons
-        setManagerOffersData(response.data.managerHireCounterRequests);
-      })
-      .catch((error) => {
-        console.log(JSON.stringify(error.response, null, 2));
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      //header
+      setPurpose(response.data.ownerDemands.purpose);
+      setOneTimePay(response.data.ownerDemands.onetimepay);
+      setSalaryPaymentType(response.data.ownerDemands.salarypaymenttype);
+      setSalaryFixed(response.data.ownerDemands.salaryfixed);
+      setSalaryPercentage(response.data.ownerDemands.salarypercentage);
+      setWhoBringsTenant(response.data.ownerDemands.whobringstenant);
+      setRent(response.data.ownerDemands.rent);
+      setSpecialCondition(response.data.ownerDemands.specialcondition);
+      setNeedHelpWithLegalWork(
+        response.data.ownerDemands.needhelpwithlegalwork
+      );
+
+      //buttons
+      setManagerOffersData(response.data.managerHireCounterRequests);
+    } catch (error) {
+      console.log(JSON.stringify(error.response, null, 2));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
 
     const backAction = () => {
       navigation.goBack();
@@ -88,6 +96,20 @@ const ManagerOffers = ({ navigation, route }) => {
         needHelpWithLegalWork={needHelpWithLegalWork}
       />
 
+      <Text
+        style={{
+          fontFamily: "OpenSansRegular",
+          fontWeight: "bold",
+          color: colors.textPrimary,
+          fontSize: FontSizes.medium,
+          marginLeft: 10,
+          marginTop: 10,
+          marginBottom: 5,
+        }}
+      >
+        Manager(s) Offers
+      </Text>
+
       {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
 
       <FlatList
@@ -98,13 +120,15 @@ const ManagerOffers = ({ navigation, route }) => {
         )}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <ManagerOffersButton
-            id={item.id}
+          <ManagerOffersCard
+            fetchData={fetchData}
+            managerCounterRequestID={item.id}
             managerName={item.managerName}
             oneTimePay={item.onetimepay}
             salaryFixed={item.salaryfixed}
             salaryPercentage={item.salarypercentage}
             rent={item.rent}
+            counterRequestStatus={item.counterrequeststatus}
             counterRequestOn={item.counterRequestOn}
             likes={item.likes}
             dislikes={item.dislikes}
