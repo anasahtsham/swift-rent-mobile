@@ -54,29 +54,44 @@ const CounterRequestFormFooter = ({
       }}
       validationSchema={getValidationSchema(salaryPaymentType)}
       onSubmit={(values) => {
-        setLoadingButton(true);
+        Alert.alert(
+          "Confirmation",
+          "Are you sure you want to send this counter request?",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                setLoadingButton(true);
 
-        const data = {
-          managerID: parseInt(managerID),
-          managerHireRequestID: parseInt(managerHireRequestID),
-          oneTimePay: parseInt(values.oneTimeCounterOffer),
-          salaryFixed: parseInt(values.fixedCounterOffer),
-          salaryPercentage: parseInt(values.percentageCounterOffer),
-          rent: parseInt(values.rentCounterOffer),
-        };
+                const data = {
+                  managerID: parseInt(managerID),
+                  managerHireRequestID: parseInt(managerHireRequestID),
+                  oneTimePay: parseInt(values.oneTimeCounterOffer),
+                  salaryFixed: parseInt(values.fixedCounterOffer),
+                  salaryPercentage: parseInt(values.percentageCounterOffer),
+                  rent: parseInt(values.rentCounterOffer),
+                };
 
-        axios
-          .post(`${BASE_URL}/api/manager/send-counter-request`, data)
-          .then((response) => {
-            Alert.alert("Success", response.data.success);
-            navigation.goBack();
-          })
-          .catch((error) => {
-            Alert.alert("Error", error.response.data.error);
-          })
-          .finally(() => {
-            setLoadingButton(false);
-          });
+                axios
+                  .post(`${BASE_URL}/api/manager/send-counter-request`, data)
+                  .then((response) => {
+                    Alert.alert("Success", response.data.success);
+                    navigation.goBack();
+                  })
+                  .catch((error) => {
+                    Alert.alert("Error", error.response.data.error);
+                  })
+                  .finally(() => {
+                    setLoadingButton(false);
+                  });
+              },
+            },
+          ]
+        );
       }}
     >
       {({

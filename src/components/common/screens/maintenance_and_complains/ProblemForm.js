@@ -58,26 +58,44 @@ const ProblemForm = ({ navigation, route }) => {
             initialValues={{ issueType: "", issueDescription: "" }}
             validationSchema={reportBugSchema}
             onSubmit={(values) => {
-              setLoading(true);
-              if (headerText === "Customer Support") {
-                axios
-                  .post(`${BASE_URL}/api/common/customer-support`, {
-                    senderID: userID,
-                    senderType: userType,
-                    complaintTitle: values.issueType,
-                    complaintDescription: values.issueDescription,
-                  })
-                  .then(() => {
-                    Alert.alert("Success", "Your complaint has been submitted");
-                    navigation.goBack();
-                  })
-                  .catch((error) => {
-                    Alert.alert("Error", error.response.data.error);
-                  })
-                  .finally(() => {
-                    setLoading(false);
-                  });
-              }
+              Alert.alert(
+                "Confirmation",
+                "Are you sure you want to submit this complaint?",
+                [
+                  {
+                    text: "Cancel",
+                    style: "cancel",
+                  },
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      setLoading(true);
+                      if (headerText === "Customer Support") {
+                        axios
+                          .post(`${BASE_URL}/api/common/customer-support`, {
+                            senderID: userID,
+                            senderType: userType,
+                            complaintTitle: values.issueType,
+                            complaintDescription: values.issueDescription,
+                          })
+                          .then(() => {
+                            Alert.alert(
+                              "Success",
+                              "Your complaint has been submitted"
+                            );
+                            navigation.goBack();
+                          })
+                          .catch((error) => {
+                            Alert.alert("Error", error.response.data.error);
+                          })
+                          .finally(() => {
+                            setLoading(false);
+                          });
+                      }
+                    },
+                  },
+                ]
+              );
             }}
           >
             {({

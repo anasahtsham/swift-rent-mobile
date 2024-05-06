@@ -205,33 +205,52 @@ const HireManagerRequestForm = ({ navigation, route }) => {
         validateDropdowns();
 
         if (errorDropdowns === false) {
-          setLoading(true);
+          Alert.alert(
+            "Confirmation",
+            "Are you sure you want to submit this hire request?",
+            [
+              {
+                text: "Cancel",
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: () => {
+                  setLoading(true);
 
-          const data = {
-            propertyID: propertyID,
-            purpose: formatPurposeOfHire(valuePurposeOfHireDropdown),
-            oneTimePay: formatNumberForAPI(values.agentOneTimeFee),
-            salaryPaymentType: formatPaymentType(valuePaymentTypeDropdown),
-            salaryFixed: formatNumberForAPI(values.fixed),
-            salaryPercentage: formatNumberForAPI(values.percentage),
-            whoBringsTenant: formatBringTenantsBy(valueBringTenantsByDropdown),
-            rent: values.rentAmount,
-            specialCondition: values.specialTerms,
-            needHelpWithLegalWork: isLetManagerHandlePaperwork,
-          };
+                  const data = {
+                    propertyID: propertyID,
+                    purpose: formatPurposeOfHire(valuePurposeOfHireDropdown),
+                    oneTimePay: formatNumberForAPI(values.agentOneTimeFee),
+                    salaryPaymentType: formatPaymentType(
+                      valuePaymentTypeDropdown
+                    ),
+                    salaryFixed: formatNumberForAPI(values.fixed),
+                    salaryPercentage: formatNumberForAPI(values.percentage),
+                    whoBringsTenant: formatBringTenantsBy(
+                      valueBringTenantsByDropdown
+                    ),
+                    rent: values.rentAmount,
+                    specialCondition: values.specialTerms,
+                    needHelpWithLegalWork: isLetManagerHandlePaperwork,
+                  };
 
-          axios
-            .post(`${BASE_URL}/api/owner/generate-hire-request`, data)
-            .then((response) => {
-              Alert.alert("Success", response.data.success);
-              navigation.goBack();
-            })
-            .catch((error) => {
-              Alert.alert("Error", error.response.data.message);
-            })
-            .finally(() => {
-              setLoading(false);
-            });
+                  axios
+                    .post(`${BASE_URL}/api/owner/generate-hire-request`, data)
+                    .then((response) => {
+                      Alert.alert("Success", response.data.success);
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      Alert.alert("Error", error.response.data.message);
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                },
+              },
+            ]
+          );
         } else {
           setErrorDropdowns(true);
         }

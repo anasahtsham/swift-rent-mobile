@@ -125,56 +125,74 @@ const RegisterTenant = ({ navigation, route }) => {
       }}
       validationSchema={currentSchema}
       onSubmit={(values, { setErrors }) => {
-        setLoading(true);
-        if (
-          isYearlyIncreaseEditable &&
-          parseInt(values.incrementPeriod) >= parseInt(values.leasedForMonths)
-        ) {
-          setErrors({
-            incrementPeriod:
-              "Increment Period can not be more than or equal to Leased For Months",
-            leasedForMonths:
-              "Increment Period can not be more than or equal to Leased For Months",
-          });
-          return;
-        }
+        Alert.alert(
+          "Confirmation",
+          "Are you sure you want to send registration request to this tenant?",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                setLoading(true);
+                if (
+                  isYearlyIncreaseEditable &&
+                  parseInt(values.incrementPeriod) >=
+                    parseInt(values.leasedForMonths)
+                ) {
+                  setErrors({
+                    incrementPeriod:
+                      "Increment Period can not be more than or equal to Leased For Months",
+                    leasedForMonths:
+                      "Increment Period can not be more than or equal to Leased For Months",
+                  });
+                  return;
+                }
 
-        const data = {
-          // sorted in order for postman
-          propertyID: formatNumberForAPI(id),
-          phone: values.tenantContact,
-          registeredByID: formatNumberForAPI(userID),
-          registeredByType: userType,
-          leasedForMonths: formatNumberForAPI(values.leasedForMonths),
-          incrementPercentage: formatNumberForAPI(values.yearlyIncrease),
-          incrementPeriod: formatNumberForAPI(values.incrementPeriod),
-          rent: formatNumberForAPI(values.rentAmount),
-          securityDeposit: formatNumberForAPI(values.securityAmount),
-          advancePayment: formatNumberForAPI(values.advancePayment),
-          advancePaymentForMonths: formatNumberForAPI(
-            values.advancePaymentForMonths
-          ),
-          dueDate: formatNumberForAPI(valueRentDue),
-          fine: formatNumberForAPI(values.lateRentFine),
-        };
+                const data = {
+                  // sorted in order for postman
+                  propertyID: formatNumberForAPI(id),
+                  phone: values.tenantContact,
+                  registeredByID: formatNumberForAPI(userID),
+                  registeredByType: userType,
+                  leasedForMonths: formatNumberForAPI(values.leasedForMonths),
+                  incrementPercentage: formatNumberForAPI(
+                    values.yearlyIncrease
+                  ),
+                  incrementPeriod: formatNumberForAPI(values.incrementPeriod),
+                  rent: formatNumberForAPI(values.rentAmount),
+                  securityDeposit: formatNumberForAPI(values.securityAmount),
+                  advancePayment: formatNumberForAPI(values.advancePayment),
+                  advancePaymentForMonths: formatNumberForAPI(
+                    values.advancePaymentForMonths
+                  ),
+                  dueDate: formatNumberForAPI(valueRentDue),
+                  fine: formatNumberForAPI(values.lateRentFine),
+                };
 
-        axios
-          .post(`${BASE_URL}/api/owner/register-tenant`, data)
-          .then((response) => {
-            if (response.data.success) {
-              Alert.alert("Success", response.data.success);
-              navigation.goBack();
-            } else {
-              Alert.alert("Error", response.data.error);
-            }
-          })
-          .catch((error) => {
-            Alert.alert("Error", error.response.data.error);
-            console.error(error);
-          })
-          .finally(() => {
-            setLoading(false);
-          });
+                axios
+                  .post(`${BASE_URL}/api/owner/register-tenant`, data)
+                  .then((response) => {
+                    if (response.data.success) {
+                      Alert.alert("Success", response.data.success);
+                      navigation.goBack();
+                    } else {
+                      Alert.alert("Error", response.data.error);
+                    }
+                  })
+                  .catch((error) => {
+                    Alert.alert("Error", error.response.data.error);
+                    console.error(error);
+                  })
+                  .finally(() => {
+                    setLoading(false);
+                  });
+              },
+            },
+          ]
+        );
       }}
     >
       {(formikProps) => {

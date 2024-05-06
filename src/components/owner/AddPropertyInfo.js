@@ -245,64 +245,59 @@ const AddPropertyInfo = ({ navigation, route }) => {
       )}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        setLoading(true);
-        // check if all dropdowns are set
-        // if (!!valueWaterAvailabilityDropdown) {
-        // console.log("\n\n");
+        Alert.alert(
+          "Confirmation",
+          "Are you sure you want to add this property?",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                setLoading(true);
+                const formData = {
+                  userID: userID.toString(),
+                  areaID: areaID.toString(),
+                  propertySubTypeID: propertySubTypeID.toString(),
+                  propertyAddress: address.toString(),
+                  ...Object.fromEntries(
+                    Object.entries(values).map(([key, value]) => [
+                      key,
+                      value === ""
+                        ? "0"
+                        : isNaN(parseInt(value))
+                        ? value
+                        : parseInt(value).toString(),
+                    ])
+                  ),
+                  ...Object.fromEntries(
+                    Object.entries(checkboxStates).map(([key, value]) => [
+                      key,
+                      value.toString(),
+                    ])
+                  ),
+                  WaterAvailabilityType: valueWaterAvailabilityDropdown,
+                };
 
-        // // Log each value of fieldNames
-        // fieldNames.map((field) => {
-        //   console.log(field.value, values[field.value]);
-        // });
-
-        // console.log("\n");
-
-        // // Log each value of checkboxes
-        // checkboxes.map((checkbox) => {
-        //   console.log(checkbox.stateKey, checkboxStates[checkbox.stateKey]);
-        // });
-
-        // Create an object that contains all the form data
-        const formData = {
-          userID: userID.toString(),
-          areaID: areaID.toString(),
-          propertySubTypeID: propertySubTypeID.toString(),
-          propertyAddress: address.toString(),
-          ...Object.fromEntries(
-            Object.entries(values).map(([key, value]) => [
-              key,
-              value === ""
-                ? "0"
-                : isNaN(parseInt(value))
-                ? value
-                : parseInt(value).toString(),
-            ])
-          ),
-          ...Object.fromEntries(
-            Object.entries(checkboxStates).map(([key, value]) => [
-              key,
-              value.toString(),
-            ])
-          ),
-          WaterAvailabilityType: valueWaterAvailabilityDropdown,
-        };
-
-        // Send a POST request to the API endpoint with the form data
-        axios
-          .post(`${BASE_URL}/api/owner/add-property`, formData)
-          .then(() => {
-            Alert.alert("Success", "Property added successfully!");
-            navigation.pop(2);
-          })
-          .catch((error) => {
-            console.error(error);
-          })
-          .finally(() => {
-            setLoading(false);
-          });
-        // } else {
-        //   setErrorDropdowns(true);
-        // }
+                // Send a POST request to the API endpoint with the form data
+                axios
+                  .post(`${BASE_URL}/api/owner/add-property`, formData)
+                  .then(() => {
+                    Alert.alert("Success", "Property added successfully!");
+                    navigation.pop(2);
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                  })
+                  .finally(() => {
+                    setLoading(false);
+                  });
+              },
+            },
+          ]
+        );
       }}
     >
       {({

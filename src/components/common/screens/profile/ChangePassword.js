@@ -42,19 +42,40 @@ const ChangePassword = ({ navigation }) => {
       }}
       validationSchema={changePasswordSchema}
       onSubmit={async (values) => {
-        try {
-          const data = {
-            userID: userID,
-            oldPassword: md5(values.oldPassword),
-            newPassword: md5(values.password),
-          };
+        Alert.alert(
+          "Confirmation",
+          "Are you sure you want to change your password?",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: async () => {
+                try {
+                  const data = {
+                    userID: userID,
+                    oldPassword: md5(values.oldPassword),
+                    newPassword: md5(values.password),
+                  };
 
-          await axios.post(`${BASE_URL}/api/auth/change-password`, data);
-          Alert.alert("Success", "Password changed successfully");
-          navigation.goBack();
-        } catch (error) {
-          Alert.alert("Error changing password", error.response.data.error);
-        }
+                  await axios.post(
+                    `${BASE_URL}/api/auth/change-password`,
+                    data
+                  );
+                  Alert.alert("Success", "Password changed successfully");
+                  navigation.goBack();
+                } catch (error) {
+                  Alert.alert(
+                    "Error changing password",
+                    error.response.data.error
+                  );
+                }
+              },
+            },
+          ]
+        );
       }}
     >
       {({

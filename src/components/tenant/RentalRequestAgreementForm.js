@@ -63,7 +63,7 @@ const RentalRequestAgreementForm = ({ route }) => {
         setIncrementPercentage(details.incrementpercentage);
         setDueDate(details.duedate);
       } catch (error) {
-        Alert.alert("Error", error.message);
+        Alert.alert("Error", "Network Error. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -88,19 +88,36 @@ const RentalRequestAgreementForm = ({ route }) => {
       initialValues={{ remarks: "" }}
       validationSchema={viewMaintenanceAndComplainsSchema}
       onSubmit={() => {
-        axios
-          .post(`${BASE_URL}/api/tenant/lease-accept`, { leaseID: leaseID })
-          .then((response) => {
-            if (response.data.success) {
-              Alert.alert("Success", "Lease accepted successfully");
-              navigation.pop(2);
-            } else {
-              Alert.alert("Error", response.data.error);
-            }
-          })
-          .catch((error) => {
-            Alert.alert("Error", error.message);
-          });
+        Alert.alert(
+          "Confirmation",
+          "Are you sure you want to accept this lease?",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                axios
+                  .post(`${BASE_URL}/api/tenant/lease-accept`, {
+                    leaseID: leaseID,
+                  })
+                  .then((response) => {
+                    if (response.data.success) {
+                      Alert.alert("Success", "Lease accepted successfully");
+                      navigation.pop(2);
+                    } else {
+                      Alert.alert("Error", response.data.error);
+                    }
+                  })
+                  .catch((error) => {
+                    Alert.alert("Error", error.message);
+                  });
+              },
+            },
+          ]
+        );
       }}
     >
       {({
@@ -309,18 +326,36 @@ const RentalRequestAgreementForm = ({ route }) => {
                     "Remarks is required"
                   );
                 } else {
-                  axios
-                    .post(`${BASE_URL}/api/tenant/lease-reject`, {
-                      leaseID: leaseID,
-                      reasonForRejection: values.remarks,
-                    })
-                    .then((response) => {
-                      Alert.alert("Rejected", "Lease agreement was rejected");
-                      navigation.pop(2);
-                    })
-                    .catch((error) => {
-                      Alert.alert("Error", error.message);
-                    });
+                  Alert.alert(
+                    "Confirmation",
+                    "Are you sure you want to reject this lease?",
+                    [
+                      {
+                        text: "Cancel",
+                        style: "cancel",
+                      },
+                      {
+                        text: "OK",
+                        onPress: () => {
+                          axios
+                            .post(`${BASE_URL}/api/tenant/lease-reject`, {
+                              leaseID: leaseID,
+                              reasonForRejection: values.remarks,
+                            })
+                            .then((response) => {
+                              Alert.alert(
+                                "Rejected",
+                                "Lease agreement was rejected"
+                              );
+                              navigation.pop(2);
+                            })
+                            .catch((error) => {
+                              Alert.alert("Error", error.message);
+                            });
+                        },
+                      },
+                    ]
+                  );
                 }
               }}
             >
