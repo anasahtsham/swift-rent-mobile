@@ -124,13 +124,6 @@ const PropertyMenu = ({ route }) => {
           />
           <PropertyMenuButton
             onPress={() => {
-              navigation.navigate("Verify Documentation");
-            }}
-            text={"Receive/ Verify Rent"}
-            colors={colors}
-          />
-          <PropertyMenuButton
-            onPress={() => {
               navigation.navigate("Hire Manager Request Form", {
                 propertyID: id,
               });
@@ -145,6 +138,20 @@ const PropertyMenu = ({ route }) => {
             text={"Register Tenant"}
             colors={colors}
           />
+          <PropertyMenuButton
+            text={`Manager Offers (${3})`}
+            colors={colors}
+            onPress={() =>
+              navigation.navigate("Manager Offers", { propertyID: id })
+            }
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Verify Documentation");
+            }}
+            text={"Receive/ Verify Rent"}
+            colors={colors}
+          />
           <PropertyMenuButton text={"Fire Manager"} colors={colors} />
           <PropertyMenuButton text={"Eviction Notice"} colors={colors} />
           <PropertyMenuButton text={"Chat Manager/Tenant"} colors={colors} />
@@ -157,13 +164,6 @@ const PropertyMenu = ({ route }) => {
             text={"Rent History"}
             colors={colors}
             onPress={() => navigation.navigate("Rent History")}
-          />
-          <PropertyMenuButton
-            text={`Manager Offers (${3})`}
-            colors={colors}
-            onPress={() =>
-              navigation.navigate("Manager Offers", { propertyID: id })
-            }
           />
         </View>
 
