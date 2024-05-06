@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import {
   complaintsData,
@@ -130,7 +130,7 @@ const ViewMaintenanceAndComplains = ({ route }) => {
               ]}
             >
               <TouchableOpacity
-                activeOpacity={opacityValueForButton}
+                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
                 style={[styles.button, { borderColor: colors.borderGreen }]}
                 onPress={handleSubmit}
               >
@@ -145,7 +145,7 @@ const ViewMaintenanceAndComplains = ({ route }) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                activeOpacity={opacityValueForButton}
+                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
                 style={[styles.button, { borderColor: colors.borderRed }]}
                 onPress={handleSubmit}
               >
@@ -172,7 +172,7 @@ const ViewMaintenanceAndComplains = ({ route }) => {
               ]}
             >
               <TouchableOpacity
-                activeOpacity={opacityValueForButton}
+                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
                 style={[styles.button, { borderColor: colors.borderGreen }]}
                 onPress={handleSubmit}
               >

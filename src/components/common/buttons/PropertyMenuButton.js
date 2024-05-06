@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 
 const PropertyMenuButton = (props) => {
@@ -15,7 +15,7 @@ const PropertyMenuButton = (props) => {
           backgroundColor: colors.backgroundPrimary,
         },
       ]}
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
     >
       <View
         style={{

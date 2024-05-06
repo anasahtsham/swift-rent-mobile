@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 
 const ExploreOffersButton = (props) => {
@@ -24,7 +24,7 @@ const ExploreOffersButton = (props) => {
       case "P":
         return "Waiting for interview request";
       case "I":
-        return "Owner has requested for interview";
+        return "Selected for interview";
       case "A":
         return "Approved";
       case "R":
@@ -36,7 +36,7 @@ const ExploreOffersButton = (props) => {
 
   return (
     <TouchableOpacity
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
       onPress={() =>
         navigation.navigate("Counter Request Form", {

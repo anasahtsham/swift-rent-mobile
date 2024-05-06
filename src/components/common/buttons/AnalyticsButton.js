@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 import { formatNumberToCrore } from "../../../helpers/utils";
 
@@ -11,7 +11,7 @@ export const AnalyticsButton = (props) => {
       onPress={() => {
         props.navigation.navigate("Month Report");
       }}
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <Text

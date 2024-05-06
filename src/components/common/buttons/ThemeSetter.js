@@ -4,7 +4,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import * as DarkTheme from "../../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../../assets/themes/DefaultColorScheme";
 import * as LoadingTheme from "../../../assets/themes/LoadingColorScheme";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { loadTheme, saveTheme } from "../../../helpers";
 import { icons } from "./../../../helpers/ImageImports";
 
@@ -30,7 +30,7 @@ const ThemeSetter = (props) => {
 
   return (
     <TouchableOpacity
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[
         styles.container,
         {

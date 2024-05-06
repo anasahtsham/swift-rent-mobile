@@ -259,6 +259,20 @@ const ExploreOffers = ({ navigation }) => {
           </View>
         </View>
 
+        <Text
+          style={[
+            styles.fontBold,
+            {
+              color: colors.textPrimary,
+              fontSize: FontSizes.medium,
+              marginLeft: 20,
+              marginTop: 10,
+            },
+          ]}
+        >
+          Owner Offers
+        </Text>
+
         {loading && (
           <ActivityIndicator size="large" color={colors.textPrimary} />
         )}
@@ -332,9 +346,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
     fontSize: FontSizes.small,
-  },
-  managerRatingsTitle: {
-    fontSize: FontSizes.medium,
   },
   thumbsIcon: {
     height: 16,

@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "./../../../helpers/ImageImports";
 
 export const RatingsButton = (props) => {
@@ -19,7 +19,7 @@ export const RatingsButton = (props) => {
           remarksValue: props.remarks,
         });
       }}
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import AnalyticalReportHeader from "../../headers/AnalyticalReportHeader";
 
@@ -33,7 +33,7 @@ const AnalyticalReport = () => {
   // Either this below component can be renaamed merged or placed inside a new file to foloow component design practices:
   const Card = ({ title, colors, data }) => (
     <View
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[styles.card, { backgroundColor: colors.backgroundPrimary }]}
     >
       <Text style={[styles.cardMainText, { color: colors.textPrimary }]}>

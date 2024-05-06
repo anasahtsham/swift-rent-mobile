@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BASE_URL, opacityValueForButton } from "../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import PropertyMaintenancesCard from "../common/cards/PropertyMaintenancesCard";
 import { useUserID } from "./../../helpers/SetUserID";
@@ -85,7 +85,7 @@ const PropertyMaintenances = ({ navigation, route }) => {
               propertyID: propertyID,
             })
           }
-          activeOpacity={opacityValueForButton}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[
             styles.blueBorderCard,
             {

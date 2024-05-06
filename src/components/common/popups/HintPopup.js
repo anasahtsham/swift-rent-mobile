@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { PopoverPlacement } from "react-native-popover-view";
 import Popover from "react-native-popover-view/dist/Popover";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 
@@ -30,7 +30,7 @@ const HintPopup = (props) => {
         placement={PopoverPlacement.LEFT} // opens the popover to the left
         from={
           <TouchableOpacity
-            activeOpacity={opacityValueForButton}
+            activeOpacity={OPACITY_VALUE_FOR_BUTTON}
             style={{
               justifyContent: "center",
               backgroundColor: colors.backgroundGrey,
@@ -63,7 +63,7 @@ const HintPopup = (props) => {
             {hintText}
           </Text>
           <TouchableOpacity
-            activeOpacity={opacityValueForButton}
+            activeOpacity={OPACITY_VALUE_FOR_BUTTON}
             style={{
               alignSelf: "center",
               backgroundColor: colors.backgroundPrimary,

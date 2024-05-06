@@ -13,7 +13,7 @@ import {
   View,
 } from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
-import { BASE_URL, opacityValueForButton } from "../../../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import { useUserID } from "../../../../helpers/SetUserID";
 import { useUserType } from "../../../../helpers/SetUserType";
@@ -111,7 +111,7 @@ const CustomerSupport = ({ navigation }) => {
               userType: userType,
             })
           }
-          activeOpacity={opacityValueForButton}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[
             styles.blueBorderCard,
             {

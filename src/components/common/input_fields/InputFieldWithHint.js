@@ -4,7 +4,7 @@ import Popover, { PopoverPlacement } from "react-native-popover-view";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
-import { opacityValueForButton } from "./../../../constants/index";
+import { OPACITY_VALUE_FOR_BUTTON } from "./../../../constants/index";
 import InputField from "./InputField";
 
 const InputFieldWithHint = React.forwardRef(
@@ -70,7 +70,7 @@ const InputFieldWithHint = React.forwardRef(
             placement={PopoverPlacement.LEFT} // opens the popover to the left
             from={
               <TouchableOpacity
-                activeOpacity={opacityValueForButton}
+                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
                 style={{
                   justifyContent: "center",
                   backgroundColor: colors.backgroundGrey,
@@ -103,7 +103,7 @@ const InputFieldWithHint = React.forwardRef(
                 {hintText}
               </Text>
               <TouchableOpacity
-                activeOpacity={opacityValueForButton}
+                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
                 style={{
                   alignSelf: "center",
                   backgroundColor: colors.backgroundPrimary,

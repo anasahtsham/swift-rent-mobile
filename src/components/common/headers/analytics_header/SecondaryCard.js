@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { opacityValueForButton } from "../../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { icons } from "../../../../helpers/ImageImports";
 import { styles } from "./styles";
 
@@ -8,7 +8,7 @@ const SecondaryCard = (props) => {
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={{ flex: 1 }}
     >
       <View

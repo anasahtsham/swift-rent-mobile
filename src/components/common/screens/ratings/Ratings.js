@@ -14,7 +14,7 @@ import {
   borderGreen,
   borderRed,
 } from "../../../../assets/themes/DarkColorScheme";
-import { opacityValueForButton } from "../../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import {
   givenRatings,
@@ -97,7 +97,7 @@ const Ratings = ({ navigation }) => {
         ]}
       >
         <TouchableOpacity
-          activeOpacity={opacityValueForButton}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderGreen }]}
           onPress={() => {
             setCurrentScreen("My Ratings");
@@ -121,7 +121,7 @@ const Ratings = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          activeOpacity={opacityValueForButton}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderBlue }]}
           onPress={() => {
             setCurrentScreen("Given Ratings");
@@ -145,7 +145,7 @@ const Ratings = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          activeOpacity={opacityValueForButton}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderRed }]}
           onPress={() => {
             setCurrentScreen("Pending Ratings");

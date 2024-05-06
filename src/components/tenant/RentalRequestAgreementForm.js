@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BASE_URL, opacityValueForButton } from "../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { formatNumberToCrore } from "../../helpers/utils";
 import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/ViewMaintenanceAndComplainsValidation";
@@ -302,7 +302,7 @@ const RentalRequestAgreementForm = ({ route }) => {
             ]}
           >
             <TouchableOpacity
-              activeOpacity={opacityValueForButton}
+              activeOpacity={OPACITY_VALUE_FOR_BUTTON}
               style={[styles.button, { borderColor: colors.borderGreen }]}
               onPress={handleSubmit}
             >
@@ -317,7 +317,7 @@ const RentalRequestAgreementForm = ({ route }) => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              activeOpacity={opacityValueForButton}
+              activeOpacity={OPACITY_VALUE_FOR_BUTTON}
               style={[styles.button, { borderColor: colors.borderRed }]}
               onPress={() => {
                 if (values.remarks === "") {

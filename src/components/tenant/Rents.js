@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { borderGreen, borderRed } from "../../assets/themes/DarkColorScheme";
-import { opacityValueForButton } from "../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import {
   pendingRentsData,
@@ -109,7 +109,7 @@ const Rents = ({ navigation, route }) => {
         ]}
       >
         <TouchableOpacity
-          activeOpacity={opacityValueForButton}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderGreen }]}
           onPress={() => {
             if (header === "Received Rents" || header === "Pending Rents") {
@@ -132,7 +132,7 @@ const Rents = ({ navigation, route }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          activeOpacity={opacityValueForButton}
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderRed }]}
           onPress={() => {
             if (header === "Received Rents" || header === "Pending Rents") {

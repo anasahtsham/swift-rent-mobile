@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { opacityValueForButton } from "../../../../constants/index";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants/index";
 import { icons } from "../../../../helpers/ImageImports";
 import { formatNumberToCrore } from "../../../../helpers/utils";
 import { styles } from "./styles";
@@ -68,7 +68,7 @@ const MainCard = (props) => {
           navigation.navigate("Analytical Report");
         }
       }}
-      activeOpacity={!!props.rentsCollected ? opacityValueForButton : 1}
+      activeOpacity={!!props.rentsCollected ? OPACITY_VALUE_FOR_BUTTON : 1}
     >
       <View
         style={[

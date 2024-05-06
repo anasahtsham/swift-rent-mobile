@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 
 // R = Rent, L = Lease, C = Complaint, A = Admin
 
@@ -13,7 +13,7 @@ const HeaderButton = ({
 }) => (
   <TouchableOpacity
     onPress={onPress}
-    activeOpacity={opacityValueForButton}
+    activeOpacity={OPACITY_VALUE_FOR_BUTTON}
     style={[
       styles.headerButton,
       {

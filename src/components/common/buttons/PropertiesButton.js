@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 
 export const PropertiesButton = (props) => {
@@ -23,7 +23,7 @@ export const PropertiesButton = (props) => {
           propertyAddress: props.address,
         });
       }}
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View>

@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 
 const PropertiesHeader = (props) => {
   const colors = props.colors;
@@ -19,7 +19,7 @@ const PropertiesHeader = (props) => {
             header: "Maintenance",
           });
         }}
-        activeOpacity={opacityValueForButton}
+        activeOpacity={OPACITY_VALUE_FOR_BUTTON}
         style={[
           styles.headerCards,
           {
@@ -45,7 +45,7 @@ const PropertiesHeader = (props) => {
             header: "Complains",
           })
         }
-        activeOpacity={opacityValueForButton}
+        activeOpacity={OPACITY_VALUE_FOR_BUTTON}
         style={[
           styles.headerCards,
           {

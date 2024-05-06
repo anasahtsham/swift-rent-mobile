@@ -5,7 +5,7 @@ import * as English from "../../../assets/fonts/displaytext/EN/en-pack";
 import * as Urdu from "../../../assets/fonts/displaytext/UR/ur-pack";
 import * as DarkTheme from "../../../assets/themes/DarkColorScheme";
 import * as DefaultTheme from "../../../assets/themes/DefaultColorScheme";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { loadLanguage, loadTheme, saveLanguage } from "../../../helpers";
 import { icons } from "../../../helpers/ImageImports";
 
@@ -48,7 +48,7 @@ const LanguageSelect = () => {
           },
         ],
       ]}
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
     >
       <Image source={icons.languageIcon} style={styles.languageIcon} />
       <Text

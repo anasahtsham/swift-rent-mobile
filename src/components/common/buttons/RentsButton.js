@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { opacityValueForButton } from "../../../constants";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { formatNumberToCrore } from "../../../helpers/utils";
 
 export const RentsButton = (props) => {
   const colors = props.colors;
   return (
     <View
-      activeOpacity={opacityValueForButton}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View>

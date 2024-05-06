@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
-import { BASE_URL, opacityValueForButton } from "../../../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import { complainsData } from "../../../../helpers/data/ComplainsListData";
 import { MaintenanceComplainsListButton } from "../../buttons/MaintenanceComplainsListButton";
@@ -122,7 +122,7 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
                 headerText: "Submit Maintenance Request",
               })
             }
-            activeOpacity={opacityValueForButton}
+            activeOpacity={OPACITY_VALUE_FOR_BUTTON}
             style={[
               styles.blueBorderCard,
               {
@@ -157,7 +157,7 @@ const MaintenanceComplainsList = ({ navigation, route }) => {
                 headerText: "Submit Complain",
               })
             }
-            activeOpacity={opacityValueForButton}
+            activeOpacity={OPACITY_VALUE_FOR_BUTTON}
             style={[
               styles.blueBorderCard,
               {
