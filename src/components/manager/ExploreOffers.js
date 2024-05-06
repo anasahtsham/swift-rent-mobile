@@ -16,9 +16,11 @@ import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
 import { useColorsOnFocus } from "../../helpers/SetColors";
+import { useUserID } from "../../helpers/SetUserID";
 import ExploreOffersButton from "../common/buttons/ExploreOffersButton";
 
 const ExploreOffers = ({ navigation }) => {
+  const managerID = useUserID();
   const colors = useColorsOnFocus();
   const [loading, setLoading] = useState(true);
 
@@ -27,14 +29,7 @@ const ExploreOffers = ({ navigation }) => {
   const [valueCity, setValueCity] = useState(null);
   const [itemsCity, setItemsCity] = useState([]);
   // city values from API to be used in filtering
-  const [cityValuesFromAPI, setCityValuesFromAPI] = useState([
-    {
-      cityname: "islamabad",
-    },
-    {
-      cityname: "rawalpindi",
-    },
-  ]);
+  const [cityValuesFromAPI, setCityValuesFromAPI] = useState([]);
 
   const [openPurpose, setOpenPurpose] = useState(false);
   const [valuePurpose, setValuePurpose] = useState(null);
@@ -95,7 +90,7 @@ const ExploreOffers = ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       axios
-        .get(`${BASE_URL}/api/manager/view-hire-requests`)
+        .post(`${BASE_URL}/api/manager/view-hire-requests`, { managerID })
         .then((response) => {
           setOriginalData(response.data);
         })
@@ -129,7 +124,7 @@ const ExploreOffers = ({ navigation }) => {
         .finally(() => {
           setLoading(false);
         });
-    }, [])
+    }, [managerID])
   );
 
   useEffect(() => {
@@ -297,6 +292,7 @@ const ExploreOffers = ({ navigation }) => {
               ownerName={item.ownerName}
               propertyAddress={item.propertyAddress}
               purpose={item.purpose}
+              counterRequestStatus={item.counterrequeststatus}
               likes={item.likes}
               dislikes={item.dislikes}
               ratings={item.ratings}

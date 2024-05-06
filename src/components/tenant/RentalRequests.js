@@ -3,6 +3,7 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   BackHandler,
   FlatList,
   SafeAreaView,
@@ -33,7 +34,8 @@ const RentalRequests = ({ navigation }) => {
           );
           setRentalRequestsData(response.data.leaseRequests);
         } catch (error) {
-          console.log(error);
+          Alert.alert("Error", "Something went wrong");
+          console.log(JSON.stringify(error.response, null, 2));
         } finally {
           setLoading(false);
         }

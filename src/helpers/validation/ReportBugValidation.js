@@ -31,7 +31,6 @@ export const reportBugSchema = Yup.object().shape({
     .matches(notOnlySpecialCharactersRegex, notOnlySpecialCharactersMessage),
 
   issueDescription: Yup.string()
-    .required(requiredMessage)
     .min(min3CharactersInt, min3CharactersMessage)
     .max(max500CharactersInt, max500CharactersMessage)
     .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)

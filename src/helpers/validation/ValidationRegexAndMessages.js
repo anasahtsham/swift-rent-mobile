@@ -5,6 +5,10 @@ export const noSpacesMessage = "No spaces allowed";
 export const noLeadingOrTrailingSpacesRegex = /^[^\s].*[^\s]$/;
 export const noLeadingOrTrailingSpacesMessage = "No spaces at start or end";
 
+export const noSpecialCharacterAtStartOrEndRegex = /^[^\W_].*[^\W_]$/;
+export const noSpecialCharacterAtStartOrEndMessage =
+  "No special characters at start or end";
+
 export const noDoubleSpacesRegex = /^(?!.*  ).*$/;
 export const noDoubleSpacesMessage = "No double spaces";
 

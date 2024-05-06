@@ -58,7 +58,7 @@ const CustomerSupport = ({ navigation }) => {
               }))
             );
           } catch (error) {
-            Alert.alert("Error", error.message);
+            Alert.alert("Error", "Something went wrong");
           } finally {
             setLoading(false);
           }

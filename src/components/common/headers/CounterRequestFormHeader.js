@@ -110,6 +110,31 @@ const CounterRequestFormHeader = (props) => {
               }`}
             </Text>
 
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={[
+                  styles.fontRegular,
+                  {
+                    color: colors.textPrimary,
+                    fontSize: FontSizes.small,
+                  },
+                ]}
+              >
+                Property Rent:{" "}
+              </Text>
+              <Text
+                style={[
+                  styles.fontBold,
+                  {
+                    color: colors.textPrimary,
+                    fontSize: FontSizes.small,
+                  },
+                ]}
+              >
+                {`${formatNumberToCrore(props.rent)}`}
+              </Text>
+            </View>
+
             {props.oneTimePay > 0 &&
               (props.salaryPaymentType !== "P" ||
                 props.salaryPaymentType !== "F") && (
@@ -220,31 +245,6 @@ const CounterRequestFormHeader = (props) => {
                 </Text>
               </View>
             )}
-
-            <View style={{ flexDirection: "row" }}>
-              <Text
-                style={[
-                  styles.fontRegular,
-                  {
-                    color: colors.textPrimary,
-                    fontSize: FontSizes.small,
-                  },
-                ]}
-              >
-                Rent:{" "}
-              </Text>
-              <Text
-                style={[
-                  styles.fontBold,
-                  {
-                    color: colors.textPrimary,
-                    fontSize: FontSizes.small,
-                  },
-                ]}
-              >
-                {`${formatNumberToCrore(props.rent)}`}
-              </Text>
-            </View>
 
             {!!props.specialCondition && (
               <View style={{ flexDirection: "row" }}>

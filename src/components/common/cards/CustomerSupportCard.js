@@ -19,17 +19,19 @@ export const CustomerSupportCard = (props) => {
           {props.title}
         </Text>
 
-        <Text
-          style={[
-            styles.fontBold,
-            {
-              color: colors.textPrimary,
-              marginBottom: 5,
-            },
-          ]}
-        >
-          {props.description}
-        </Text>
+        {!!props.description && (
+          <Text
+            style={[
+              styles.fontBold,
+              {
+                color: colors.textPrimary,
+                marginBottom: 5,
+              },
+            ]}
+          >
+            {props.description}
+          </Text>
+        )}
 
         <View
           style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
@@ -55,9 +57,7 @@ export const CustomerSupportCard = (props) => {
           </View>
         )}
 
-        <View
-          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
-        >
+        <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
             Status:{" "}
           </Text>

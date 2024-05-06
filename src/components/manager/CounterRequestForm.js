@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   BackHandler,
   Image,
   ScrollView,
@@ -70,6 +71,7 @@ const CounterRequestForm = ({ navigation, route }) => {
         setPurpose(response.data.purpose);
       })
       .catch((error) => {
+        Alert.alert("Error", "Something went wrong");
         console.log(error);
       })
       .finally(() => {

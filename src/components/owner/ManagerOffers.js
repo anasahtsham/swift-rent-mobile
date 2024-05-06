@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   BackHandler,
   FlatList,
   SafeAreaView,
@@ -58,6 +59,7 @@ const ManagerOffers = ({ navigation, route }) => {
       //buttons
       setManagerOffersData(response.data.managerHireCounterRequests);
     } catch (error) {
+      Alert.alert("Error", "Something went wrong");
       console.log(JSON.stringify(error.response, null, 2));
     } finally {
       setLoading(false);

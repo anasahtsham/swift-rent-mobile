@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useState } from "react";
 import {
@@ -17,6 +18,7 @@ import { formatNumberToCrore } from "../../../helpers/utils/index";
 
 const ManagerOffersCard = (props) => {
   const colors = useColors();
+  const navigation = useNavigation();
   const [acceptLoading, setAcceptLoading] = useState(false);
   const [rejectLoading, setRejectLoading] = useState(false);
 
@@ -30,6 +32,7 @@ const ManagerOffersCard = (props) => {
       Alert.alert("Interview Requested", "Interview request sent successfully");
       props.fetchData();
     } catch (error) {
+      Alert.alert("Error", "Something went wrong");
       console.log(JSON.stringify(error.response, null, 2));
     } finally {
       setAcceptLoading(false);
@@ -64,8 +67,9 @@ const ManagerOffersCard = (props) => {
         managerCounterRequestID: props.managerCounterRequestID,
       });
       Alert.alert("Accepted", "Manager offer accepted successfully");
-      props.fetchData();
+      navigation.goBack();
     } catch (error) {
+      Alert.alert("Error", "Something went wrong");
       console.log(JSON.stringify(error.response, null, 2));
     } finally {
       setAcceptLoading(false);
@@ -101,6 +105,7 @@ const ManagerOffersCard = (props) => {
       Alert.alert("Rejected", "Manager offer rejected successfully");
       props.fetchData();
     } catch (error) {
+      Alert.alert("Error", "Something went wrong");
       console.log(JSON.stringify(error.response, null, 2));
     } finally {
       setRejectLoading(false);

@@ -45,7 +45,7 @@ const Profile = () => {
               console.error(response.data.error);
             }
           } catch (error) {
-            Alert.alert("Error", "Network Error");
+            Alert.alert("Error", "Something went wrong");
             console.error(error);
           } finally {
             setLoading(false);

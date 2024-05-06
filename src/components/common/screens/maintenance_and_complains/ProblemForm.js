@@ -85,8 +85,8 @@ const ProblemForm = ({ navigation, route }) => {
                             );
                             navigation.goBack();
                           })
-                          .catch((error) => {
-                            Alert.alert("Error", error.response.data.error);
+                          .catch(() => {
+                            Alert.alert("Error", "Something went wrong");
                           })
                           .finally(() => {
                             setLoading(false);

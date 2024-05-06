@@ -171,7 +171,7 @@ const CounterRequestFormFooter = ({
               buttonWidth={BUTTON_WIDTH_SMALL}
               onPress={handleSubmit}
               borderColor={colors.borderGreen}
-              buttonText="Accept"
+              buttonText="Send"
               isBold={true}
             />
 

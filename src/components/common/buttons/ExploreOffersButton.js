@@ -19,6 +19,21 @@ const ExploreOffersButton = (props) => {
     }
   };
 
+  const formatStatus = (status) => {
+    switch (status) {
+      case "P":
+        return "Waiting for interview request";
+      case "I":
+        return "Owner has requested for interview";
+      case "A":
+        return "Approved";
+      case "R":
+        return "Rejected";
+      default:
+        return "";
+    }
+  };
+
   return (
     <TouchableOpacity
       activeOpacity={opacityValueForButton}
@@ -154,7 +169,7 @@ const ExploreOffersButton = (props) => {
         <View style={[styles.inRow, styles.cardSubText]}>
           <Text
             style={[
-              styles.fontBold,
+              styles.fontRegular,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
           >
@@ -162,7 +177,7 @@ const ExploreOffersButton = (props) => {
           </Text>
           <Text
             style={[
-              styles.fontRegular,
+              styles.fontBold,
               styles.cardSubText,
               { fontSize: FontSizes.small, color: colors.textPrimary },
             ]}
@@ -170,6 +185,38 @@ const ExploreOffersButton = (props) => {
             {formatPurpose(props.purpose)}
           </Text>
         </View>
+
+        {props.counterRequestStatus && (
+          <View style={[styles.inRow, styles.cardSubText]}>
+            <Text
+              style={[
+                styles.fontRegular,
+                { fontSize: FontSizes.small, color: colors.textPrimary },
+              ]}
+            >
+              Status:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontBold,
+                styles.cardSubText,
+                {
+                  fontSize: FontSizes.small,
+                  color:
+                    props.counterRequestStatus === "P"
+                      ? colors.textDarkBlue
+                      : props.counterRequestStatus === "I"
+                      ? colors.textGreen
+                      : props.counterRequestStatus === "A"
+                      ? colors.textGreen
+                      : colors.textRed,
+                },
+              ]}
+            >
+              {formatStatus(props.counterRequestStatus)}
+            </Text>
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );

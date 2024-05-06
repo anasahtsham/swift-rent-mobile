@@ -63,7 +63,7 @@ const RentalRequestAgreementForm = ({ route }) => {
         setIncrementPercentage(details.incrementpercentage);
         setDueDate(details.duedate);
       } catch (error) {
-        Alert.alert("Error", "Network Error. Please try again later.");
+        Alert.alert("Error", "Something went wrong");
       } finally {
         setLoading(false);
       }
