@@ -42,6 +42,7 @@ const Properties = (props) => {
         key={data.id}
         id={data.id}
         address={data.address}
+        owner={data.ownername}
         tenant={data.tenantname}
         manager={data.managername}
         propertystatus={data.propertystatus}

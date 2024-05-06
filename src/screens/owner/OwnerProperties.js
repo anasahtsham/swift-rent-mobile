@@ -25,7 +25,7 @@ const OwnerProperties = () => {
           );
           setPropertiesData(response.data);
         } catch (error) {
-          Alert.alert("Error fetching property list:", "Network error");
+          Alert.alert("Error", "Something went wrong.");
           console.error("Error fetching property list:", error);
         } finally {
           setLoading(false);
