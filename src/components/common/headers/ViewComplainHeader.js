@@ -2,7 +2,20 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const ViewComplainHeader = ({ colors }) => {
+const ViewComplainHeader = ({ colors, ...props }) => {
+  const formatUserType = (type) => {
+    switch (type) {
+      case "T":
+        return "Tenant";
+      case "O":
+        return "Owner";
+      case "M":
+        return "Maintenance";
+      default:
+        return null;
+    }
+  };
+
   return (
     <View
       style={[
@@ -19,40 +32,19 @@ const ViewComplainHeader = ({ colors }) => {
           },
         ]}
       >
-        <View style={styles.topCardBodyText}>
-          <View style={[styles.inRow]}>
-            <Text
-              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
-            >
-              Complaint Ticket #
-            </Text>
-            <Text
-              style={{
-                color: colors.textPrimary,
-                fontFamily: "OpenSansBold",
-                fontSize: FontSizes.small,
-              }}
-            >
-              some id
-            </Text>
-          </View>
+        <Text
+          style={[
+            {
+              color: colors.textPrimary,
+              fontSize: FontSizes.medium,
+            },
+            styles.dynamicData,
+          ]}
+        >
+          {props.fullAddress}
+        </Text>
 
-          <View style={[styles.inRow]}>
-            <Text
-              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
-            >
-              Status:{" "}
-            </Text>
-            <Text
-              style={{
-                color: colors.textPrimary,
-                fontFamily: "OpenSansBold",
-                fontSize: FontSizes.small,
-              }}
-            >
-              status
-            </Text>
-          </View>
+        <View style={styles.topCardBodyText}>
           <View style={[styles.inRow]}>
             <Text
               style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
@@ -68,9 +60,10 @@ const ViewComplainHeader = ({ colors }) => {
                 styles.dynamicData,
               ]}
             >
-              someone
+              {props.senderName} ({formatUserType(props.senderType)})
             </Text>
           </View>
+
           <View style={[styles.inRow]}>
             <Text
               style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
@@ -86,25 +79,7 @@ const ViewComplainHeader = ({ colors }) => {
                 styles.dynamicData,
               ]}
             >
-              some date
-            </Text>
-          </View>
-          <View style={[styles.inRow]}>
-            <Text
-              style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
-            >
-              Address:{" "}
-            </Text>
-            <Text
-              style={[
-                {
-                  color: colors.textPrimary,
-                  fontSize: FontSizes.small,
-                },
-                styles.dynamicData,
-              ]}
-            >
-              some address
+              {props.createdOn}
             </Text>
           </View>
         </View>

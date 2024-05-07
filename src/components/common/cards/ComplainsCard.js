@@ -35,11 +35,21 @@ export const ComplainsCard = (props) => {
   return (
     <TouchableOpacity
       activeOpacity={
-        props.complaintStatus === "P" ? OPACITY_VALUE_FOR_BUTTON : 1
+        props.complaintStatus === "P" && !!props.senderName
+          ? OPACITY_VALUE_FOR_BUTTON
+          : 1
       }
       onPress={() => {
-        if (props.complaintStatus === "P") {
-          navigation.navigate("View Complain");
+        if (props.complaintStatus === "P" && !!props.senderName) {
+          navigation.navigate("View Complain", {
+            complaintID: props.complaintID,
+            fullAddress: props.fullAddress,
+            senderName: props.senderName,
+            senderType: props.senderType,
+            createdOn: props.createdOn,
+            complaintTitle: props.complaintTitle,
+            complaintDescription: props.complaintDescription,
+          });
         }
       }}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
@@ -65,7 +75,7 @@ export const ComplainsCard = (props) => {
             {props.complaintTitle}
           </Text>
 
-          {props.complaintStatus === "P" && (
+          {props.complaintStatus === "P" && !!props.senderName && (
             <Image
               tintColor={colors.textPrimary}
               style={{ width: 20, height: 20 }}
@@ -128,26 +138,31 @@ export const ComplainsCard = (props) => {
           </View>
         )}
 
-        <View style={{ flexDirection: "row" }}>
-          <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-            Status:{" "}
-          </Text>
-          <Text
-            style={[
-              styles.fontBold,
-              {
-                color: colors.textGreen,
-              },
-            ]}
-          >
-            {formatComplaintStatus(props.complaintStatus)}
-          </Text>
-        </View>
-
-        {!!props.receiverRemark && (
+        {props.complaintStatus === "P" && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Remark:{" "}
+              Status:{" "}
+            </Text>
+            <Text
+              style={[
+                styles.fontBold,
+                {
+                  color:
+                    props.complaintStatus === "P"
+                      ? colors.textRed
+                      : colors.textGreen,
+                },
+              ]}
+            >
+              {formatComplaintStatus(props.complaintStatus)}
+            </Text>
+          </View>
+        )}
+
+        {!!props.receiverRemark && (
+          <View style={{}}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Acknowledgement Remark:
             </Text>
             <Text
               style={[

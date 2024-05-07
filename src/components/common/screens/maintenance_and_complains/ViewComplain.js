@@ -1,7 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 import { Formik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   BackHandler,
   StyleSheet,
   Text,
@@ -10,15 +13,26 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
-import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import { viewMaintenanceAndComplainsSchema } from "../../../../helpers/validation/ViewMaintenanceAndComplainsValidation";
 import ViewComplainHeader from "../../headers/ViewComplainHeader";
 import InputField from "../../input_fields/InputField";
 
-const ViewComplain = () => {
+const ViewComplain = ({ route }) => {
+  const {
+    complaintID,
+    fullAddress,
+    senderName,
+    senderType,
+    createdOn,
+    complaintTitle,
+    complaintDescription,
+  } = route.params;
   const colors = useColors();
   const navigation = useNavigation();
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const backAction = () => {
@@ -37,7 +51,25 @@ const ViewComplain = () => {
     <Formik
       initialValues={{ remarks: "" }}
       validationSchema={viewMaintenanceAndComplainsSchema}
-      onSubmit={() => {}}
+      onSubmit={(values) => {
+        setLoading(true);
+        axios
+          .post(`${BASE_URL}/api/common/respond-to-complaint`, {
+            complaintID: complaintID,
+            remarkText: values.remarks,
+          })
+          .then(() => {
+            Alert.alert("Success", "Complaint acknowledged successfully");
+            navigation.pop(2);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }}
     >
       {({
         handleChange,
@@ -55,7 +87,13 @@ const ViewComplain = () => {
             backgroundColor: colors.bodyBackground,
           }}
         >
-          <ViewComplainHeader colors={colors} />
+          <ViewComplainHeader
+            fullAddress={fullAddress}
+            senderName={senderName}
+            senderType={senderType}
+            createdOn={createdOn}
+            colors={colors}
+          />
 
           <View
             style={[
@@ -67,36 +105,49 @@ const ViewComplain = () => {
               },
             ]}
           >
-            <Text
-              style={[
-                styles.requestTile,
-                { color: colors.textPrimary, fontSize: FontSizes.small },
-              ]}
-            >
-              Neighbors causing trouble
-            </Text>
-            <Text
-              style={[
-                styles.requestDescription,
-                {
-                  color: colors.textPrimary,
-                  fontSize: FontSizes.small,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              Neigbours are being very loud and annoying
-            </Text>
-            <View style={{ width: "90%", alignSelf: "center", height: 65 }}>
-              <InputField
-                borderRadius={10}
-                label={"Reply to Complaint"}
-                onChangeText={handleChange("remarks")}
-                handleBlur={handleBlur("remarks")}
-                value={values.remarks}
-                errorText={touched.remarks ? errors.remarks : ""}
-              />
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={[
+                  {
+                    color: colors.textPrimary,
+                    fontSize: FontSizes.small,
+                    fontFamily: "OpenSansBold",
+                  },
+                ]}
+              >
+                Complain:{" "}
+              </Text>
+              <Text
+                style={[
+                  { color: colors.textPrimary, fontSize: FontSizes.small },
+                ]}
+              >
+                {complaintTitle}
+              </Text>
             </View>
+            {!!complaintDescription && (
+              <Text
+                style={[
+                  {
+                    color: colors.textPrimary,
+                    fontSize: FontSizes.small,
+                  },
+                ]}
+              >
+                {complaintDescription}
+              </Text>
+            )}
+
+            <View style={{ marginTop: 20 }} />
+
+            <InputField
+              borderRadius={10}
+              label={"Reply to Complaint"}
+              onChangeText={handleChange("remarks")}
+              handleBlur={handleBlur("remarks")}
+              value={values.remarks}
+              errorText={touched.remarks ? errors.remarks : ""}
+            />
           </View>
 
           <View
@@ -113,14 +164,19 @@ const ViewComplain = () => {
               style={[styles.button, { borderColor: colors.borderBlue }]}
               onPress={handleSubmit}
             >
-              <Text
-                style={[
-                  styles.fontBold,
-                  { color: colors.textPrimary, fontSize: FontSizes.small },
-                ]}
-              >
-                Acknowledge
-              </Text>
+              {loading && (
+                <ActivityIndicator size="small" color={colors.textPrimary} />
+              )}
+              {!loading && (
+                <Text
+                  style={[
+                    styles.fontBold,
+                    { color: colors.textPrimary, fontSize: FontSizes.small },
+                  ]}
+                >
+                  Acknowledge
+                </Text>
+              )}
             </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
@@ -132,38 +188,12 @@ const ViewComplain = () => {
 const styles = StyleSheet.create({
   fontBold: { fontFamily: "OpenSansBold" },
   fontRegular: { fontFamily: "OpenSansRegular" },
-
   requestCard: {
     borderRadius: 20,
-    backgroundColor: "white",
+    padding: 10,
     alignSelf: "center",
     width: "90%",
-    paddingBottom: 10,
   },
-
-  requestTile: {
-    fontSize: FontSizes.small,
-    fontWeight: "bold",
-    paddingLeft: 20,
-    paddingTop: 15,
-    paddingBottom: 8,
-  },
-
-  requestDescription: {
-    marginHorizontal: 20,
-  },
-  remarksBox: {
-    marginHorizontal: 20,
-    marginTop: 20,
-    borderWidth: 1,
-    padding: 4,
-    borderRadius: 10,
-  },
-
-  container: {
-    flex: 1,
-  },
-
   button: {
     borderRadius: 20,
     borderWidth: 4,
@@ -173,13 +203,13 @@ const styles = StyleSheet.create({
   footer: {
     position: "absolute",
     bottom: 0,
+    left: 0,
+    right: 0,
     height: 70,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     alignItems: "center",
-    justifyContent: "space-evenly",
-    flexDirection: "row",
-    width: "100%",
+    justifyContent: "center",
   },
 });
 

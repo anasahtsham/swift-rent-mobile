@@ -1,5 +1,6 @@
+import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -34,49 +35,54 @@ const Complains = ({ navigation }) => {
 
   const [dataToRender, setDataToRender] = useState([]);
 
-  useEffect(() => {
-    if (userID && userType) {
-      setLoading(true);
-      axios
-        .post(`${BASE_URL}/api/common/view-complaints`, {
-          userID: userID,
-          userType: userType,
-        })
-        .then((response) => {
-          setSentComplaints(response.data.sentComplaints);
-          setReceivedComplaints(response.data.receivedComplaints);
-        })
-        .catch((error) => {
-          Alert.alert("Error", "Something went wrong");
-          console.log(JSON.stringify(error.response, null, 2));
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
+  useFocusEffect(
+    useCallback(() => {
+      if (userID && userType) {
+        setLoading(true);
+        axios
+          .post(`${BASE_URL}/api/common/view-complaints`, {
+            userID: userID,
+            userType: userType,
+          })
+          .then((response) => {
+            setSentComplaints(response.data.sentComplaints);
+            setReceivedComplaints(response.data.receivedComplaints);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
 
-    // based on which header is selected, render the data
-    if (header === "Sent Complains") {
-      setDataToRender(sentComplaints);
-    } else {
-      setDataToRender(receivedComplaints);
-    }
+      // based on which header is selected, render the data
+      if (header === "Sent Complains") {
+        setDataToRender(sentComplaints);
+      } else {
+        setDataToRender(receivedComplaints);
+      }
 
-    const backAction = () => {
-      navigation.goBack();
-      return true; // This will prevent the app from closing
-    };
+      const backAction = () => {
+        navigation.goBack();
+        return true; // This will prevent the app from closing
+      };
 
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, [header, userID, userType]);
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+
+      return () => backHandler.remove();
+    }, [header, userID, userType])
+  );
 
   const renderItem = ({ item: complain }) => (
     <ComplainsCard
       colors={colors}
+      header={header}
+      complaintID={complain.id}
       complaintTitle={complain.complainttitle}
       complaintDescription={complain.complaintdescription}
       fullAddress={complain.fulladdress}
@@ -137,6 +143,8 @@ const Complains = ({ navigation }) => {
           ListFooterComponent={<View style={{ height: 10 }} />}
         />
       )}
+
+      <View style={{ height: 70 }} />
 
       <View
         style={[
