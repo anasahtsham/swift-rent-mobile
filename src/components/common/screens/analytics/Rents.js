@@ -21,7 +21,7 @@ import {
   rentsPaidData,
   rentsPendingData,
 } from "../../../../helpers/data/RentsData";
-import RentsButton from "../../buttons/RentsButton";
+import RentsCard from "../../cards/RentsCard";
 
 const Rents = ({ navigation, route }) => {
   const colors = useColors();
@@ -66,7 +66,7 @@ const Rents = ({ navigation, route }) => {
   }, []);
 
   const renderItem = ({ item: rent }) => (
-    <RentsButton
+    <RentsCard
       colors={colors}
       key={rent.id}
       address={rent.address}

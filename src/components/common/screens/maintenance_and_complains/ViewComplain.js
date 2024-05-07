@@ -90,7 +90,7 @@ const ViewComplain = () => {
             <View style={{ width: "90%", alignSelf: "center", height: 65 }}>
               <InputField
                 borderRadius={10}
-                label={"Reply to Complain"}
+                label={"Reply to Complaint"}
                 onChangeText={handleChange("remarks")}
                 handleBlur={handleBlur("remarks")}
                 value={values.remarks}

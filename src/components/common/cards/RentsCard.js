@@ -3,7 +3,7 @@ import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { formatNumberToCrore } from "../../../helpers/utils";
 
-export const RentsButton = (props) => {
+export const RentsCard = (props) => {
   const colors = props.colors;
   return (
     <View
@@ -131,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RentsButton;
+export default RentsCard;

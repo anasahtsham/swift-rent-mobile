@@ -107,8 +107,6 @@ const CustomerSupport = ({ navigation }) => {
           onPress={() =>
             navigation.navigate("Problem Form", {
               headerText: "Customer Support",
-              userID: userID,
-              userType: userType,
             })
           }
           activeOpacity={OPACITY_VALUE_FOR_BUTTON}
@@ -200,9 +198,3 @@ const styles = StyleSheet.create({
 });
 
 export default CustomerSupport;
-
-// navigation.navigate("Problem Form", {
-//     headerText: "Customer Support",
-//     userID: userID,
-//     userType: userType,
-//   })

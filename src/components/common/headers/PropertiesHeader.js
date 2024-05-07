@@ -40,12 +40,12 @@ const PropertiesHeader = (props) => {
       )}
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("View Maintenance And Complains")}
+        onPress={() => navigation.navigate("Complains")}
         activeOpacity={OPACITY_VALUE_FOR_BUTTON}
         style={[
           styles.headerCards,
           {
-            width: props.isTenant || props.isManager ? "100%" : "auto",
+            width: props.isTenant || props.isManager ? "100%" : "auto", // if tenant or manager, make the button full width
             borderColor: colors.borderBlue,
             backgroundColor: colors.headerAndFooterBackground,
           },

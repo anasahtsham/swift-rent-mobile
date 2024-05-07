@@ -24,7 +24,7 @@ const ViewComplainHeader = ({ colors }) => {
             <Text
               style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
             >
-              Complain Ticket #
+              Complaint Ticket #
             </Text>
             <Text
               style={{

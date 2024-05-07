@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   BackHandler,
   FlatList,
@@ -10,47 +10,18 @@ import {
 } from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import {
-  borderGreen,
+  borderBlue,
   borderRed,
 } from "../../../../assets/themes/DarkColorScheme";
 import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
-import {
-  pendingRentsData,
-  receivedRentsData,
-  rentsPaidData,
-  rentsPendingData,
-} from "../../../../helpers/data/RentsData";
-import RentsButton from "../../buttons/RentsButton";
+import { receivedRentsData } from "../../../../helpers/data/RentsData";
+import ComplainsCard from "../../cards/ComplainsCard";
 
-const Complains = ({ navigation, route }) => {
+const Complains = ({ navigation }) => {
   const colors = useColors();
-  const { header } = route.params;
 
-  let firstButtonText = "";
-  let secondButtonText = "";
-  let dataToBeRendered = [];
-
-  if (header === "Received Rents" || header === "Pending Rents") {
-    firstButtonText = "Received Rents";
-    secondButtonText = "Pending Rents";
-  } else {
-    firstButtonText = "Rents Paid";
-    secondButtonText = "Rents Pending";
-  }
-
-  if (header === "Received Rents") {
-    dataToBeRendered = receivedRentsData;
-  }
-  if (header === "Pending Rents") {
-    dataToBeRendered = pendingRentsData;
-  }
-  if (header === "Rents Paid") {
-    dataToBeRendered = rentsPaidData;
-  }
-  if (header === "Rents Pending") {
-    dataToBeRendered = rentsPendingData;
-  }
+  const [header, setHeader] = useState("Sent Complains");
 
   useEffect(() => {
     const backAction = () => {
@@ -66,7 +37,7 @@ const Complains = ({ navigation, route }) => {
   }, []);
 
   const renderItem = ({ item: rent }) => (
-    <RentsButton
+    <ComplainsCard
       colors={colors}
       key={rent.id}
       address={rent.address}
@@ -99,7 +70,7 @@ const Complains = ({ navigation, route }) => {
         </Text>
       </View>
       <FlatList
-        data={dataToBeRendered}
+        data={receivedRentsData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.buttons}
@@ -113,24 +84,20 @@ const Complains = ({ navigation, route }) => {
       >
         <TouchableOpacity
           activeOpacity={OPACITY_VALUE_FOR_BUTTON}
-          style={[styles.button, { borderColor: borderGreen }]}
+          style={[styles.button, { borderColor: borderBlue }]}
           onPress={() => {
-            if (header === "Received Rents" || header === "Pending Rents") {
-              navigation.navigate("Rents", { header: "Received Rents" });
-            } else {
-              navigation.navigate("Rents", { header: "Rents Paid" });
-            }
+            setHeader("Sent Complains");
           }}
         >
           <Text
             style={[
-              header === "Received Rents" || header === "Rents Paid"
+              header === "Sent Complains"
                 ? styles.fontBold
                 : styles.fontRegular,
               { color: colors.textPrimary, fontSize: FontSizes.small },
             ]}
           >
-            {firstButtonText}
+            Sent Complains
           </Text>
         </TouchableOpacity>
 
@@ -138,22 +105,18 @@ const Complains = ({ navigation, route }) => {
           activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderRed }]}
           onPress={() => {
-            if (header === "Received Rents" || header === "Pending Rents") {
-              navigation.navigate("Rents", { header: "Pending Rents" });
-            } else {
-              navigation.navigate("Rents", { header: "Rents Pending" });
-            }
+            setHeader("Recieved Complains");
           }}
         >
           <Text
             style={[
-              header === "Pending Rents" || header === "Rents Pending"
+              header === "Recieved Complains"
                 ? styles.fontBold
                 : styles.fontRegular,
               { color: colors.textPrimary, fontSize: FontSizes.small },
             ]}
           >
-            {secondButtonText}
+            Recieved Complains
           </Text>
         </TouchableOpacity>
       </View>

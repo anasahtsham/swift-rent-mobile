@@ -29,5 +29,5 @@ export const complaintsData = {
   description:
     "My neighbors are making a lot of unnecessary noise at all times, no matter if it is daytime or nighttime. Please resolve this issue.",
   buttonText: "Send Response",
-  placeholder: "Reply to Complain",
+  placeholder: "Reply to Complaint",
 };

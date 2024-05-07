@@ -119,11 +119,39 @@ const PropertyMenu = ({ route }) => {
           />
           <PropertyMenuButton
             onPress={() => {
-              navigation.navigate("Maintenance Complains List", {
-                header: "Complains",
+              navigation.navigate("Problem Form", {
+                headerText: "Register Complaint",
+                sendToType: "M",
+                propertyID: id,
               });
             }}
-            text={"Complains"}
+            text={"Complaint to Manager"}
+            secondaryText="0"
+            secondaryTextColor={colors.textGreen}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Problem Form", {
+                headerText: "Register Complaint",
+                sendToType: "T",
+                propertyID: id,
+              });
+            }}
+            text={"Complaint to Tenant"}
+            secondaryText="0"
+            secondaryTextColor={colors.textGreen}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Problem Form", {
+                headerText: "Register Complaint",
+                sendToType: "O",
+                propertyID: id,
+              });
+            }}
+            text={"Complaint to Owner"}
             secondaryText="0"
             secondaryTextColor={colors.textGreen}
             colors={colors}

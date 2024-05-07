@@ -16,11 +16,16 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
+import { useUserID } from "../../../../helpers/SetUserID";
+import { useUserType } from "../../../../helpers/SetUserType";
 import { reportBugSchema } from "../../../../helpers/validation/ReportBugValidation";
 import ButtonGrey from "../../buttons/ButtonGrey";
 
 const ProblemForm = ({ navigation, route }) => {
-  const { headerText, userID, userType } = route.params;
+  const userID = useUserID();
+  const userType = useUserType();
+  // sendToType and propertyID for complain
+  const { headerText, sendToType, propertyID } = route.params;
   const colors = useColors();
   const [loading, setLoading] = useState(false);
 
@@ -70,6 +75,7 @@ const ProblemForm = ({ navigation, route }) => {
                     text: "OK",
                     onPress: () => {
                       setLoading(true);
+                      // if making complaint to admin
                       if (headerText === "Customer Support") {
                         axios
                           .post(`${BASE_URL}/api/common/customer-support`, {
@@ -78,6 +84,36 @@ const ProblemForm = ({ navigation, route }) => {
                             complaintTitle: values.issueType,
                             complaintDescription: values.issueDescription,
                           })
+                          .then(() => {
+                            Alert.alert(
+                              "Success",
+                              "Your complaint has been submitted"
+                            );
+                            navigation.goBack();
+                          })
+                          .catch(() => {
+                            Alert.alert("Error", "Something went wrong");
+                          })
+                          .finally(() => {
+                            setLoading(false);
+                          });
+                      }
+                      // if making complaint to manager, owner or tenant
+                      else {
+                        data = {
+                          propertyID: propertyID,
+                          userID: userID,
+                          userType: userType,
+                          sentToType: sendToType,
+                          title: values.issueType,
+                          description: values.issueDescription,
+                        };
+
+                        axios
+                          .post(
+                            `${BASE_URL}/api/common/register-complaint`,
+                            data
+                          )
                           .then(() => {
                             Alert.alert(
                               "Success",
@@ -115,6 +151,29 @@ const ProblemForm = ({ navigation, route }) => {
                 >
                   {headerText}
                 </Text>
+
+                {(sendToType === "M" ||
+                  sendToType === "O" ||
+                  sendToType === "T") && (
+                  <Text
+                    style={[
+                      styles.topTitle,
+                      {
+                        color: colors.textPrimary,
+                        marginBottom: 10,
+                        fontSize: FontSizes.large,
+                      },
+                    ]}
+                  >
+                    {sendToType === "M"
+                      ? "To Manager"
+                      : sendToType === "O"
+                      ? "To Owner"
+                      : sendToType === "T"
+                      ? "To Tenant"
+                      : ""}
+                  </Text>
+                )}
 
                 <View
                   style={{
