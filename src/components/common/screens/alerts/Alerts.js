@@ -77,7 +77,7 @@ const Alerts = () => {
         } catch (error) {
           // if status 404 then show alert that no notifications found
           if (!error.response.status === 404) {
-            Alert.alert("Error", "Network Error");
+            Alert.alert("Error", "Something went wrong");
             console.log(error.response);
           }
         } finally {

@@ -11,6 +11,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { useColors } from "../../../../helpers/SetColors";
 import { deleteHireRequest } from "../../../owner/DeleteHireRequest";
+import { fireManager } from "../../../owner/FireManager";
 import PropertyMenuButton from "../../buttons/PropertyMenuButton";
 import PropertyMenuHeader from "../../headers/PropertyMenuHeader";
 
@@ -21,6 +22,7 @@ const PropertyMenu = ({ route }) => {
 
   const [deleteHireRequestLoading, setDeleteHireRequestLoading] =
     useState(false);
+  const [fireManagerLoading, setFireManagerLoading] = useState(false);
 
   useEffect(() => {
     const backAction = () => {
@@ -142,6 +144,15 @@ const PropertyMenu = ({ route }) => {
               deleteHireRequest(id, setDeleteHireRequestLoading);
             }}
             text={"Delete Hire Request"}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            doesNotOpenScreen={true}
+            loading={fireManagerLoading}
+            onPress={() => {
+              fireManager(id, setFireManagerLoading);
+            }}
+            text={"Fire Manager"}
             colors={colors}
           />
           <PropertyMenuButton
