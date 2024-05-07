@@ -112,7 +112,7 @@ const LoginScreen = ({ navigation }) => {
               loading={loading}
               width={BUTTON_WIDTH_SMALL}
               fontSize={FontSizes.medium}
-              buttonText={languages.change}
+              buttonText={"Reset"}
               onPress={handleSubmit} // When the user presses "Change", the form will be submitted
               hasOwnOnPress={true} // Indicates to the component that this is a submit button so that it can change its flow
             />
