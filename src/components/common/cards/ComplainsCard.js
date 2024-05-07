@@ -1,50 +1,147 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
-import { formatNumberToCrore } from "../../../helpers/utils";
+import { icons } from "../../../helpers/ImageImports";
 
 export const ComplainsCard = (props) => {
   const colors = props.colors;
+  const navigation = useNavigation();
+
+  const formatComplaintStatus = (status) => {
+    switch (status) {
+      case "P":
+        return "Pending";
+      case "A":
+        return "Acknowledged";
+      default:
+        return null;
+    }
+  };
+
+  const formatUserType = (type) => {
+    switch (type) {
+      case "T":
+        return "Tenant";
+      case "O":
+        return "Owner";
+      case "M":
+        return "Maintenance";
+      default:
+        return null;
+    }
+  };
+
   return (
-    <View
-      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+    <TouchableOpacity
+      activeOpacity={
+        props.complaintStatus === "P" ? OPACITY_VALUE_FOR_BUTTON : 1
+      }
+      onPress={() => {
+        if (props.complaintStatus === "P") {
+          navigation.navigate("View Complain");
+        }
+      }}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View>
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-          {props.address}
-        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Text
+            style={[
+              styles.fontBold,
+              {
+                color: colors.textPrimary,
+                fontSize: FontSizes.medium,
+              },
+            ]}
+          >
+            {props.complaintTitle}
+          </Text>
 
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-          {props.city}
-        </Text>
+          {props.complaintStatus === "P" && (
+            <Image
+              tintColor={colors.textPrimary}
+              style={{ width: 20, height: 20 }}
+              source={icons.externalLink}
+            />
+          )}
+        </View>
 
-        {!!props.manager && (
+        {!!props.complaintDescription && (
+          <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+            {props.complaintDescription}
+          </Text>
+        )}
+
+        {!!props.senderName && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Manager:{" "}
+              Sender:{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.manager}
+              {props.senderName} ({formatUserType(props.senderType)})
             </Text>
           </View>
         )}
 
-        {!!props.tenant && (
+        {!!props.receiverName && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Rented To:{" "}
+              Receiver:{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.tenant}
+              {props.receiverName} ({formatUserType(props.receiverType)})
             </Text>
           </View>
         )}
 
-        {!!props.amountCollected && (
+        <View style={{ flexDirection: "row" }}>
+          <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+            Created On:{" "}
+          </Text>
+          <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+            {props.createdOn}
+          </Text>
+        </View>
+
+        {!!props.complaintResolvedOn && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Collected:{" "}
+              Resolved on:{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              {props.complaintResolvedOn}
+            </Text>
+          </View>
+        )}
+
+        <View style={{ flexDirection: "row" }}>
+          <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+            Status:{" "}
+          </Text>
+          <Text
+            style={[
+              styles.fontBold,
+              {
+                color: colors.textGreen,
+              },
+            ]}
+          >
+            {formatComplaintStatus(props.complaintStatus)}
+          </Text>
+        </View>
+
+        {!!props.receiverRemark && (
+          <View style={{ flexDirection: "row" }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Remark:{" "}
             </Text>
             <Text
               style={[
@@ -54,57 +151,12 @@ export const ComplainsCard = (props) => {
                 },
               ]}
             >
-              {formatNumberToCrore(props.amountCollected)}{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
-            </Text>
-          </View>
-        )}
-
-        {!!props.rentPaid && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Paid:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color: colors.textGreen,
-                },
-              ]}
-            >
-              {formatNumberToCrore(props.rentPaid)}{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
-            </Text>
-          </View>
-        )}
-
-        {!!props.rentAmount && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Rent:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color: colors.textRed,
-                },
-              ]}
-            >
-              {formatNumberToCrore(props.rentAmount)}{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
+              {props.receiverRemark}
             </Text>
           </View>
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -124,10 +176,6 @@ const styles = StyleSheet.create({
   fontRegular: {
     fontFamily: "OpenSansRegular",
     fontSize: FontSizes.small,
-  },
-  icon: {
-    width: 20,
-    height: 20,
   },
 });
 

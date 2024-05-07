@@ -8,7 +8,7 @@ import Rents from "./src/components/common/screens/analytics/Rents";
 import Complains from "./src/components/common/screens/maintenance_and_complains/Complains";
 import MaintenanceList from "./src/components/common/screens/maintenance_and_complains/MaintenanceList";
 import ProblemForm from "./src/components/common/screens/maintenance_and_complains/ProblemForm";
-import ViewMaintenanceAndComplains from "./src/components/common/screens/maintenance_and_complains/ViewComplain";
+import ViewComplain from "./src/components/common/screens/maintenance_and_complains/ViewComplain";
 import ChangePassword from "./src/components/common/screens/profile/ChangePassword";
 import CustomerSupport from "./src/components/common/screens/profile/CustomerSupport";
 import FAQScreen from "./src/components/common/screens/profile/FAQScreen";
@@ -93,6 +93,7 @@ export default function App() {
           <Stack.Screen name="Customer Support" component={CustomerSupport} />
           <Stack.Screen name="Rents" component={Rents} />
           <Stack.Screen name="Complains" component={Complains} />
+          <Stack.Screen name="View Complain" component={ViewComplain} />
 
           {/* Owner Screens */}
           <Stack.Screen name="Property Menu" component={PropertyMenu} />
@@ -100,10 +101,6 @@ export default function App() {
           <Stack.Screen name="Month Report" component={MonthReport} />
           <Stack.Screen name="Add Property" component={AddProperty} />
           <Stack.Screen name="Maintenance List" component={MaintenanceList} />
-          <Stack.Screen
-            name="View Maintenance And Complains"
-            component={ViewMaintenanceAndComplains}
-          />
           <Stack.Screen name="Register Tenant" component={RegisterTenant} />
           <Stack.Screen name="Rent History" component={RentHistory} />
           <Stack.Screen name="Manager Offers" component={ManagerOffers} />

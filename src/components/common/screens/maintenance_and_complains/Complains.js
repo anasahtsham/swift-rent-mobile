@@ -1,5 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   BackHandler,
   FlatList,
   SafeAreaView,
@@ -13,17 +16,52 @@ import {
   borderBlue,
   borderRed,
 } from "../../../../assets/themes/DarkColorScheme";
-import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
-import { receivedRentsData } from "../../../../helpers/data/RentsData";
+import { useUserID } from "../../../../helpers/SetUserID";
+import { useUserType } from "../../../../helpers/SetUserType";
 import ComplainsCard from "../../cards/ComplainsCard";
 
 const Complains = ({ navigation }) => {
+  const userID = useUserID();
+  const userType = useUserType();
   const colors = useColors();
+  const [loading, setLoading] = useState(true);
 
   const [header, setHeader] = useState("Sent Complains");
+  const [sentComplaints, setSentComplaints] = useState([]);
+  const [receivedComplaints, setReceivedComplaints] = useState([]);
+
+  const [dataToRender, setDataToRender] = useState([]);
 
   useEffect(() => {
+    if (userID && userType) {
+      setLoading(true);
+      axios
+        .post(`${BASE_URL}/api/common/view-complaints`, {
+          userID: userID,
+          userType: userType,
+        })
+        .then((response) => {
+          setSentComplaints(response.data.sentComplaints);
+          setReceivedComplaints(response.data.receivedComplaints);
+        })
+        .catch((error) => {
+          Alert.alert("Error", "Something went wrong");
+          console.log(JSON.stringify(error.response, null, 2));
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+
+    // based on which header is selected, render the data
+    if (header === "Sent Complains") {
+      setDataToRender(sentComplaints);
+    } else {
+      setDataToRender(receivedComplaints);
+    }
+
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -34,19 +72,21 @@ const Complains = ({ navigation }) => {
       backAction
     );
     return () => backHandler.remove();
-  }, []);
+  }, [header, userID, userType]);
 
-  const renderItem = ({ item: rent }) => (
+  const renderItem = ({ item: complain }) => (
     <ComplainsCard
       colors={colors}
-      key={rent.id}
-      address={rent.address}
-      city={rent.city}
-      manager={rent.manager}
-      tenant={rent.tenant}
-      amountCollected={rent.amountCollected}
-      rentPaid={rent.rentPaid}
-      rentAmount={rent.rentAmount}
+      complaintTitle={complain.complainttitle}
+      complaintDescription={complain.complaintdescription}
+      senderName={complain.sendername}
+      senderType={complain.sendertype}
+      receiverName={complain.receivername}
+      receiverType={complain.receivertype}
+      createdOn={complain.createdon}
+      complaintResolvedOn={complain.complaintresolvedon}
+      complaintStatus={complain.complaintstatus}
+      receiverRemark={complain.receiverremark}
     />
   );
 
@@ -69,13 +109,34 @@ const Complains = ({ navigation }) => {
           {header}
         </Text>
       </View>
-      <FlatList
-        data={receivedRentsData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.buttons}
-        ListFooterComponent={<View style={{ height: 10 }} />}
-      />
+
+      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+
+      {!loading && dataToRender.length === 0 && (
+        <Text
+          style={[
+            styles.fontBold,
+            {
+              fontSize: FontSizes.small,
+              color: colors.textWhite,
+              alignSelf: "center",
+            },
+          ]}
+        >
+          No data to show
+        </Text>
+      )}
+
+      {!loading && dataToRender.length > 0 && (
+        <FlatList
+          data={dataToRender}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.buttons}
+          ListFooterComponent={<View style={{ height: 10 }} />}
+        />
+      )}
+
       <View
         style={[
           styles.footer,
@@ -141,6 +202,10 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   footer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     height: 70,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
