@@ -12,20 +12,13 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
-import {
-  complaintsData,
-  complaintsHeaderData,
-  maintenanceData,
-  maintenanceHeaderData,
-} from "../../../../helpers/data/MaintenanceAndComplainsData";
 import { viewMaintenanceAndComplainsSchema } from "../../../../helpers/validation/ViewMaintenanceAndComplainsValidation";
-import ViewMaintenanceAndComplainsHeader from "../../headers/ViewMaintenanceAndComplainsHeader";
+import ViewComplainHeader from "../../headers/ViewComplainHeader";
 import InputField from "../../input_fields/InputField";
 
-const ViewMaintenanceAndComplains = ({ route }) => {
+const ViewComplain = () => {
   const colors = useColors();
   const navigation = useNavigation();
-  const headerTitle = route.params.headerTitle;
 
   useEffect(() => {
     const backAction = () => {
@@ -39,11 +32,6 @@ const ViewMaintenanceAndComplains = ({ route }) => {
     );
     return () => backHandler.remove();
   }, []);
-
-  const headerData =
-    headerTitle === "Maintenance Request"
-      ? maintenanceHeaderData
-      : complaintsHeaderData;
 
   return (
     <Formik
@@ -62,21 +50,21 @@ const ViewMaintenanceAndComplains = ({ route }) => {
         <KeyboardAwareScrollView
           contentContainerStyle={{
             flexGrow: 1,
-            justifyContent: "space-between",
           }}
           style={{
             backgroundColor: colors.bodyBackground,
           }}
         >
-          <ViewMaintenanceAndComplainsHeader
-            colors={colors}
-            headerTitle={headerTitle}
-            headerData={headerData}
-          />
+          <ViewComplainHeader colors={colors} />
+
           <View
             style={[
               styles.requestCard,
-              { backgroundColor: colors.backgroundPrimary, marginTop: 10 },
+              {
+                backgroundColor: colors.backgroundPrimary,
+                marginTop: 10,
+                marginBottom: 100,
+              },
             ]}
           >
             <Text
@@ -85,9 +73,7 @@ const ViewMaintenanceAndComplains = ({ route }) => {
                 { color: colors.textPrimary, fontSize: FontSizes.small },
               ]}
             >
-              {headerTitle === "Maintenance Request"
-                ? maintenanceData.title
-                : complaintsData.title}
+              Neighbors causing trouble
             </Text>
             <Text
               style={[
@@ -99,18 +85,12 @@ const ViewMaintenanceAndComplains = ({ route }) => {
                 },
               ]}
             >
-              {headerTitle === "Maintenance Request"
-                ? maintenanceData.description
-                : complaintsData.description}
+              Neigbours are being very loud and annoying
             </Text>
             <View style={{ width: "90%", alignSelf: "center", height: 65 }}>
               <InputField
                 borderRadius={10}
-                label={
-                  headerTitle === "Maintenance Request"
-                    ? "Add Remarks"
-                    : "Reply to Complain"
-                }
+                label={"Reply to Complain"}
                 onChangeText={handleChange("remarks")}
                 handleBlur={handleBlur("remarks")}
                 value={values.remarks}
@@ -119,74 +99,30 @@ const ViewMaintenanceAndComplains = ({ route }) => {
             </View>
           </View>
 
-          {headerTitle === "Maintenance Request" && (
-            <View
-              style={[
-                styles.footer,
-                {
-                  backgroundColor: colors.headerAndFooterBackground,
-                  marginTop: 150,
-                },
-              ]}
+          <View
+            style={[
+              styles.footer,
+              {
+                backgroundColor: colors.headerAndFooterBackground,
+                marginTop: 150,
+              },
+            ]}
+          >
+            <TouchableOpacity
+              activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+              style={[styles.button, { borderColor: colors.borderBlue }]}
+              onPress={handleSubmit}
             >
-              <TouchableOpacity
-                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
-                style={[styles.button, { borderColor: colors.borderGreen }]}
-                onPress={handleSubmit}
+              <Text
+                style={[
+                  styles.fontBold,
+                  { color: colors.textPrimary, fontSize: FontSizes.small },
+                ]}
               >
-                <Text
-                  style={[
-                    styles.fontBold,
-                    { color: colors.textPrimary, fontSize: FontSizes.small },
-                  ]}
-                >
-                  Accept
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
-                style={[styles.button, { borderColor: colors.borderRed }]}
-                onPress={handleSubmit}
-              >
-                <Text
-                  style={[
-                    styles.fontBold,
-                    { color: colors.textPrimary, fontSize: FontSizes.small },
-                  ]}
-                >
-                  Reject
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          {headerTitle === "Complain" && (
-            <View
-              style={[
-                styles.footer,
-                {
-                  backgroundColor: colors.headerAndFooterBackground,
-                  marginTop: 150,
-                },
-              ]}
-            >
-              <TouchableOpacity
-                activeOpacity={OPACITY_VALUE_FOR_BUTTON}
-                style={[styles.button, { borderColor: colors.borderGreen }]}
-                onPress={handleSubmit}
-              >
-                <Text
-                  style={[
-                    styles.fontBold,
-                    { color: colors.textPrimary, fontSize: FontSizes.small },
-                  ]}
-                >
-                  Send Response
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
+                Acknowledge
+              </Text>
+            </TouchableOpacity>
+          </View>
         </KeyboardAwareScrollView>
       )}
     </Formik>
@@ -235,6 +171,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   footer: {
+    position: "absolute",
+    bottom: 0,
     height: 70,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -245,4 +183,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewMaintenanceAndComplains;
+export default ViewComplain;

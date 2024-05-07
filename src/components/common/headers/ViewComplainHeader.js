@@ -2,26 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 
-const getStatusColor = (status) => {
-  switch (status.toLowerCase()) {
-    case "pending":
-      return "textRed";
-    case "in-progress":
-      return "textYellow";
-    case "resolved":
-      return "textGreen";
-    case "responded":
-      return "textGreen";
-    default:
-      return "textPrimary";
-  }
-};
-
-const ViewMaintenanceAndComplainsHeader = ({
-  colors,
-  headerData,
-  headerTitle,
-}) => {
+const ViewComplainHeader = ({ colors }) => {
   return (
     <View
       style={[
@@ -38,18 +19,12 @@ const ViewMaintenanceAndComplainsHeader = ({
           },
         ]}
       >
-        <Text style={[styles.topCardTitle, { color: colors.textPrimary }]}>
-          {headerTitle}
-        </Text>
         <View style={styles.topCardBodyText}>
           <View style={[styles.inRow]}>
             <Text
               style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
             >
-              {headerTitle === "Maintenance Request"
-                ? "Maintenance"
-                : "Complain"}{" "}
-              Ticket #
+              Complain Ticket #
             </Text>
             <Text
               style={{
@@ -58,39 +33,25 @@ const ViewMaintenanceAndComplainsHeader = ({
                 fontSize: FontSizes.small,
               }}
             >
-              {headerData.ticketID}
+              some id
             </Text>
           </View>
+
           <View style={[styles.inRow]}>
             <Text
               style={{ color: colors.textPrimary, fontSize: FontSizes.small }}
             >
               Status:{" "}
             </Text>
-            {headerData.status.map((status, index) => (
-              <React.Fragment key={index}>
-                <Text
-                  style={{
-                    color: colors[getStatusColor(status)],
-                    fontFamily: "OpenSansBold",
-                    fontSize: FontSizes.small,
-                  }}
-                >
-                  {status}
-                </Text>
-                {index < headerData.status.length - 1 && (
-                  <Text
-                    style={{
-                      color: colors.textPrimary,
-                      fontSize: FontSizes.small,
-                    }}
-                  >
-                    {" "}
-                    /{" "}
-                  </Text>
-                )}
-              </React.Fragment>
-            ))}
+            <Text
+              style={{
+                color: colors.textPrimary,
+                fontFamily: "OpenSansBold",
+                fontSize: FontSizes.small,
+              }}
+            >
+              status
+            </Text>
           </View>
           <View style={[styles.inRow]}>
             <Text
@@ -107,7 +68,7 @@ const ViewMaintenanceAndComplainsHeader = ({
                 styles.dynamicData,
               ]}
             >
-              {headerData.issuedBy}
+              someone
             </Text>
           </View>
           <View style={[styles.inRow]}>
@@ -125,7 +86,7 @@ const ViewMaintenanceAndComplainsHeader = ({
                 styles.dynamicData,
               ]}
             >
-              {headerData.issuedOn}
+              some date
             </Text>
           </View>
           <View style={[styles.inRow]}>
@@ -143,7 +104,7 @@ const ViewMaintenanceAndComplainsHeader = ({
                 styles.dynamicData,
               ]}
             >
-              {headerData.address}
+              some address
             </Text>
           </View>
         </View>
@@ -186,4 +147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewMaintenanceAndComplainsHeader;
+export default ViewComplainHeader;

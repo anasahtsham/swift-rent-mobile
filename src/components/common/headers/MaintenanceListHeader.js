@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { formatNumberToCrore } from "../../../helpers/utils";
 
-const MaintenanceComplainsListHeader = (props) => {
+const MaintenanceListHeader = (props) => {
   const colors = props.colors;
   return (
     <View
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MaintenanceComplainsListHeader;
+export default MaintenanceListHeader;

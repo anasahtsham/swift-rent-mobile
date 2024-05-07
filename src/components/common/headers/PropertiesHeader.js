@@ -16,9 +16,7 @@ const PropertiesHeader = (props) => {
       {!props.isTenant && !props.isManager && (
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Maintenance Complains List", {
-              header: "Maintenance",
-            });
+            navigation.navigate("Maintenance List");
           }}
           activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[
@@ -42,11 +40,7 @@ const PropertiesHeader = (props) => {
       )}
 
       <TouchableOpacity
-        onPress={() =>
-          navigation.navigate("Maintenance Complains List", {
-            header: "Complains",
-          })
-        }
+        onPress={() => navigation.navigate("View Maintenance And Complains")}
         activeOpacity={OPACITY_VALUE_FOR_BUTTON}
         style={[
           styles.headerCards,

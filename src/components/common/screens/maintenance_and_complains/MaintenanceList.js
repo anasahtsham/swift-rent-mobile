@@ -8,37 +8,36 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
-import PropertyMaintenancesCard from "../common/cards/PropertyMaintenancesCard";
-import { useUserID } from "./../../helpers/SetUserID";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { BASE_URL } from "../../../../constants";
+import { useColors } from "../../../../helpers/SetColors";
+import { useUserID } from "../../../../helpers/SetUserID";
+import AllMaintenancesCard from "../../cards/AllMaintenancesCard";
+import MaintenanceListHeader from "../../headers/MaintenanceListHeader";
 
-const PropertyMaintenances = ({ navigation, route }) => {
-  const { propertyID } = route.params;
-  const colors = useColors();
+const MaintenanceList = ({ navigation }) => {
   const userID = useUserID();
-  const [data, setData] = useState([]);
+  const colors = useColors();
   const [loading, setLoading] = useState(true);
+  const [maintenanceData, setMaintenanceData] = useState([]);
+  const [totalMaintenanceExpenses, setTotalMaintenanceExpenses] = useState(0);
+  const [totalMaintenances, setTotalMaintenances] = useState(0);
 
   useEffect(() => {
     if (userID) {
-      const data = {
-        ownerID: userID,
-        propertyID: propertyID,
-      };
-
       axios
-        .post(`${BASE_URL}/api/owner/display-maintenance-reports`, data)
+        .post(`${BASE_URL}/api/owner/display-all-maintenace-reports`, {
+          ownerID: userID,
+        })
         .then((response) => {
-          console.log("response", response.data);
-          setData(response.data);
+          setMaintenanceData(response.data.maintenanceReports);
+          setTotalMaintenanceExpenses(response.data.totalMaintenanceCost);
+          setTotalMaintenances(response.data.totalMaintenanceReports);
         })
         .catch((error) => {
-          Alert.alert("Error", error.message);
+          Alert.alert("Error", error.response.data.alert);
         })
         .finally(() => {
           setLoading(false);
@@ -57,52 +56,29 @@ const PropertyMaintenances = ({ navigation, route }) => {
     return () => backHandler.remove();
   }, [userID]);
 
-  const renderItem = ({ item: list }) => (
-    <PropertyMaintenancesCard
-      colors={colors}
-      title={list.title}
-      description={list.description}
-      cost={list.cost}
-      date={list.date}
-    />
-  );
+  const renderItem = ({ item: list }) => {
+    return (
+      <AllMaintenancesCard
+        colors={colors}
+        key={list.id}
+        title={list.title}
+        description={list.description}
+        address={list.address}
+        cost={list.cost}
+        date={list.date}
+      />
+    );
+  };
 
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
-      <View
-        style={[
-          styles.header,
-          { backgroundColor: colors.headerAndFooterBackground },
-        ]}
-      >
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Add Maintenance Report", {
-              propertyID: propertyID,
-            })
-          }
-          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
-          style={[
-            styles.blueBorderCard,
-            {
-              borderColor: colors.borderBlue,
-              backgroundColor: colors.headerAndFooterBackground,
-            },
-          ]}
-        >
-          <Text
-            style={{
-              color: colors.textPrimary,
-              fontSize: FontSizes.medium,
-              textAlign: "center",
-            }}
-          >
-            + New Maintenance
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <MaintenanceListHeader
+        colors={colors}
+        totalMaintenanceExpenses={totalMaintenanceExpenses}
+        totalMaintenances={totalMaintenances}
+      />
 
       <View
         style={{ paddingTop: 20, paddingHorizontal: 20, paddingBottom: 10 }}
@@ -116,12 +92,12 @@ const PropertyMaintenances = ({ navigation, route }) => {
             },
           ]}
         >
-          Previous Maintenances
+          All Maintenances
         </Text>
       </View>
       {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
       <FlatList
-        data={data}
+        data={maintenanceData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.buttons}
@@ -171,4 +147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PropertyMaintenances;
+export default MaintenanceList;

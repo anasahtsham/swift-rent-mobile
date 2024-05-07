@@ -6,14 +6,6 @@ import { icons } from "../../../helpers/ImageImports";
 export const PropertiesButton = (props) => {
   const colors = props.colors;
 
-  console.log("id", props.id);
-  console.log("address", props.address);
-  console.log("owner", props.owner);
-  console.log("tenant", props.tenant);
-  console.log("manager", props.manager);
-  console.log("propertystatus", props.propertystatus);
-  console.log("");
-
   function formatPropertyStatus(status) {
     switch (status) {
       case "V":

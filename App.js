@@ -4,9 +4,9 @@ import { StatusBar } from "react-native";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import AnalyticalReport from "./src/components/common/screens/analytics/AnalyticalReport";
 import MonthReport from "./src/components/common/screens/analytics/MonthReport";
-import MaintenanceComplainsList from "./src/components/common/screens/maintenance_and_complains/MaintenanceComplainsList";
+import MaintenanceList from "./src/components/common/screens/maintenance_and_complains/MaintenanceList";
 import ProblemForm from "./src/components/common/screens/maintenance_and_complains/ProblemForm";
-import ViewMaintenanceAndComplains from "./src/components/common/screens/maintenance_and_complains/ViewMaintenanceAndComplains";
+import ViewMaintenanceAndComplains from "./src/components/common/screens/maintenance_and_complains/ViewComplain";
 import ChangePassword from "./src/components/common/screens/profile/ChangePassword";
 import CustomerSupport from "./src/components/common/screens/profile/CustomerSupport";
 import FAQScreen from "./src/components/common/screens/profile/FAQScreen";
@@ -96,10 +96,7 @@ export default function App() {
           <Stack.Screen name="Analytical Report" component={AnalyticalReport} />
           <Stack.Screen name="Month Report" component={MonthReport} />
           <Stack.Screen name="Add Property" component={AddProperty} />
-          <Stack.Screen
-            name="Maintenance Complains List"
-            component={MaintenanceComplainsList}
-          />
+          <Stack.Screen name="Maintenance List" component={MaintenanceList} />
           <Stack.Screen
             name="View Maintenance And Complains"
             component={ViewMaintenanceAndComplains}

@@ -4,6 +4,7 @@ import { formatNumberToCrore } from "../../../helpers/utils";
 
 export const PropertyMaintenancesCard = (props) => {
   const colors = props.colors;
+
   return (
     <View
       onPress={props.onPress}
@@ -21,16 +22,18 @@ export const PropertyMaintenancesCard = (props) => {
           </Text>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: 5 }}>
-          <Text
-            style={[
-              styles.fontBold,
-              { color: colors.textPrimary, fontSize: FontSizes.small },
-            ]}
-          >
-            {props.description}
-          </Text>
-        </View>
+        {!!props.description && (
+          <View style={{ flexDirection: "row", marginBottom: 5 }}>
+            <Text
+              style={[
+                styles.fontBold,
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              {props.description}
+            </Text>
+          </View>
+        )}
 
         <View style={{ flexDirection: "row", marginBottom: 5 }}>
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
@@ -41,7 +44,7 @@ export const PropertyMaintenancesCard = (props) => {
           </Text>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: 5 }}>
+        <View style={{ flexDirection: "row" }}>
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
             Date:{" "}
           </Text>

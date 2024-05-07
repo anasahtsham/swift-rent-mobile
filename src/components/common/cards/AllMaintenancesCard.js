@@ -22,18 +22,20 @@ export const AllMaintenancesCard = (props) => {
           </Text>
         </View>
 
-        <View
-          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
-        >
-          <Text
-            style={[
-              styles.fontBold,
-              { color: colors.textPrimary, fontSize: FontSizes.small },
-            ]}
+        {!!props.description && (
+          <View
+            style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
           >
-            {props.description}
-          </Text>
-        </View>
+            <Text
+              style={[
+                styles.fontBold,
+                { color: colors.textPrimary, fontSize: FontSizes.small },
+              ]}
+            >
+              {props.description}
+            </Text>
+          </View>
+        )}
 
         <View
           style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
@@ -57,9 +59,7 @@ export const AllMaintenancesCard = (props) => {
           </Text>
         </View>
 
-        <View
-          style={{ flexDirection: "row", marginBottom: 5, flexWrap: "wrap" }}
-        >
+        <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
             Date:{" "}
           </Text>
