@@ -8,17 +8,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import * as FontSizes from "../../assets/fonts/FontSizes";
-import { borderGreen, borderRed } from "../../assets/themes/DarkColorScheme";
-import { OPACITY_VALUE_FOR_BUTTON } from "../../constants";
-import { useColors } from "../../helpers/SetColors";
+import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import {
+  borderGreen,
+  borderRed,
+} from "../../../../assets/themes/DarkColorScheme";
+import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
+import { useColors } from "../../../../helpers/SetColors";
 import {
   pendingRentsData,
   receivedRentsData,
   rentsPaidData,
   rentsPendingData,
-} from "../../helpers/data/RentsData";
-import RentsButton from "../common/buttons/RentsButton";
+} from "../../../../helpers/data/RentsData";
+import RentsButton from "../../buttons/RentsButton";
 
 const Rents = ({ navigation, route }) => {
   const colors = useColors();

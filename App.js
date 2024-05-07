@@ -4,6 +4,8 @@ import { StatusBar } from "react-native";
 import { useCustomFonts } from "./src/assets/fonts/useCustomFonts";
 import AnalyticalReport from "./src/components/common/screens/analytics/AnalyticalReport";
 import MonthReport from "./src/components/common/screens/analytics/MonthReport";
+import Rents from "./src/components/common/screens/analytics/Rents";
+import Complains from "./src/components/common/screens/maintenance_and_complains/Complains";
 import MaintenanceList from "./src/components/common/screens/maintenance_and_complains/MaintenanceList";
 import ProblemForm from "./src/components/common/screens/maintenance_and_complains/ProblemForm";
 import ViewMaintenanceAndComplains from "./src/components/common/screens/maintenance_and_complains/ViewComplain";
@@ -27,7 +29,6 @@ import PropertyMaintenances from "./src/components/owner/PropertyMaintenances";
 import RegisterTenant from "./src/components/owner/RegisterTenant";
 import RentalRequestAgreementForm from "./src/components/tenant/RentalRequestAgreementForm";
 import RentalRequests from "./src/components/tenant/RentalRequests";
-import Rents from "./src/components/tenant/Rents";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
 import ManagerNavigator from "./src/navigation/ManagerNavigator";
 import OwnerNavigator from "./src/navigation/OwnerNavigator";
@@ -90,6 +91,8 @@ export default function App() {
           />
           <Stack.Screen name="Ratings" component={Ratings} />
           <Stack.Screen name="Customer Support" component={CustomerSupport} />
+          <Stack.Screen name="Rents" component={Rents} />
+          <Stack.Screen name="Complains" component={Complains} />
 
           {/* Owner Screens */}
           <Stack.Screen name="Property Menu" component={PropertyMenu} />
@@ -126,7 +129,6 @@ export default function App() {
           />
 
           {/* Tenant Screens */}
-          <Stack.Screen name="Rents" component={Rents} />
           <Stack.Screen name="Rental Requests" component={RentalRequests} />
           <Stack.Screen
             name="Rental Request Agreement Form"
