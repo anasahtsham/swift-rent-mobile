@@ -79,6 +79,7 @@ const Complains = ({ navigation }) => {
       colors={colors}
       complaintTitle={complain.complainttitle}
       complaintDescription={complain.complaintdescription}
+      fullAddress={complain.fulladdress}
       senderName={complain.sendername}
       senderType={complain.sendertype}
       receiverName={complain.receivername}

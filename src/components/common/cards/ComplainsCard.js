@@ -80,6 +80,12 @@ export const ComplainsCard = (props) => {
           </Text>
         )}
 
+        {!!props.fullAddress && (
+          <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+            {props.fullAddress}
+          </Text>
+        )}
+
         {!!props.senderName && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
