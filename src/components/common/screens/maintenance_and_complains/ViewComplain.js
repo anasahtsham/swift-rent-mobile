@@ -15,7 +15,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
-import { viewMaintenanceAndComplainsSchema } from "../../../../helpers/validation/ViewMaintenanceAndComplainsValidation";
+import { viewComplainSchema } from "../../../../helpers/validation/ViewComplainValidation";
 import ViewComplainHeader from "../../headers/ViewComplainHeader";
 import InputField from "../../input_fields/InputField";
 
@@ -50,7 +50,7 @@ const ViewComplain = ({ route }) => {
   return (
     <Formik
       initialValues={{ remarks: "" }}
-      validationSchema={viewMaintenanceAndComplainsSchema}
+      validationSchema={viewComplainSchema}
       onSubmit={(values) => {
         setLoading(true);
         axios

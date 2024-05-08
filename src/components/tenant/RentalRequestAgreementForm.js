@@ -16,9 +16,9 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
 import { useColors } from "../../helpers/SetColors";
 import { formatNumberToCrore } from "../../helpers/utils";
-import { viewMaintenanceAndComplainsSchema } from "../../helpers/validation/ViewMaintenanceAndComplainsValidation";
 import RentalRequestAgreementFormHeader from "../common/headers/RentalRequestAgreementFormHeader";
 import InputField from "../common/input_fields/InputField";
+import { rentalRequestAgreementFormSchema } from "./../../helpers/validation/RentalRequestAgreementFromValidation";
 
 const RentalRequestAgreementForm = ({ route }) => {
   const { propertyLeaseID, leaseID } = route.params;
@@ -86,7 +86,7 @@ const RentalRequestAgreementForm = ({ route }) => {
   return (
     <Formik
       initialValues={{ remarks: "" }}
-      validationSchema={viewMaintenanceAndComplainsSchema}
+      validationSchema={rentalRequestAgreementFormSchema}
       onSubmit={() => {
         Alert.alert(
           "Confirmation",
