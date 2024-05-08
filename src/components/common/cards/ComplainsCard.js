@@ -138,26 +138,24 @@ export const ComplainsCard = (props) => {
           </View>
         )}
 
-        {props.complaintStatus === "P" && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Status:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color:
-                    props.complaintStatus === "P"
-                      ? colors.textRed
-                      : colors.textGreen,
-                },
-              ]}
-            >
-              {formatComplaintStatus(props.complaintStatus)}
-            </Text>
-          </View>
-        )}
+        <View style={{ flexDirection: "row" }}>
+          <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+            Status:{" "}
+          </Text>
+          <Text
+            style={[
+              styles.fontBold,
+              {
+                color:
+                  props.complaintStatus === "P"
+                    ? colors.textRed
+                    : colors.textGreen,
+              },
+            ]}
+          >
+            {formatComplaintStatus(props.complaintStatus)}
+          </Text>
+        </View>
 
         {!!props.receiverRemark && (
           <View style={{}}>

@@ -29,13 +29,15 @@ const RentalRequests = ({ navigation }) => {
       const fetchRentalRequests = async () => {
         try {
           const response = await axios.post(
-            `${BASE_URL}/api/tenant/lease-request`,
+            `${BASE_URL}/api/tenant/lease-requesst`,
             { tenantID: userID }
           );
           setRentalRequestsData(response.data.leaseRequests);
         } catch (error) {
-          Alert.alert("Error", "Something went wrong");
-          console.log(JSON.stringify(error.response, null, 2));
+          if (error.response.status !== 404) {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          }
         } finally {
           setLoading(false);
         }
