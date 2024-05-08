@@ -12,7 +12,7 @@ import { useLanguages } from "../../helpers/SetLanguages";
 import { forgotPasswordSchema } from "../../helpers/validation/ForgotPasswordValidation";
 import InputField from "./../../components/common/input_fields/InputField";
 
-const LoginScreen = ({ navigation }) => {
+const ForgotPassword = ({ navigation }) => {
   const colors = useColors();
   const languages = useLanguages();
 
@@ -142,4 +142,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default ForgotPassword;
