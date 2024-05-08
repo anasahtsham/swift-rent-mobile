@@ -7,13 +7,15 @@ import * as FontSizes from "../../../../../assets/fonts/FontSizes";
 import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../../../../constants";
 import { useColors } from "../../../../../helpers/SetColors";
 import { useUserID } from "../../../../../helpers/SetUserID";
+import { useUserType } from "../../../../../helpers/SetUserType";
 import { verifyOnlinePaymentSchema } from "../../../../../helpers/validation/VerifyOnlinePaymentValidation";
 import ButtonGrey from "../../../buttons/ButtonGrey";
 import InputFieldWithHint from "../../../input_fields/InputFieldWithHint";
 import { formatNumberForAPI } from "./../../../../../helpers/utils/index";
 
 const VerifyOnlinePayment = ({ navigation, route }) => {
-  const managerID = useUserID();
+  const userID = useUserID();
+  const userType = useUserType();
   const { propertyID } = route.params;
   const colors = useColors();
 
@@ -56,32 +58,75 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
               onPress: () => {
                 setLoading(true);
 
-                const data = {
-                  managerID,
-                  propertyID,
-                  collectedAmount: formatNumberForAPI(values.moneyReceived),
-                };
+                // in the case where manager is verifying that he has collected the rent from the tenant
+                if (userType === "M") {
+                  const data = {
+                    managerID: userID,
+                    propertyID,
+                    collectedAmount: formatNumberForAPI(values.moneyReceived),
+                  };
 
-                axios
-                  .post(`${BASE_URL}/api/manager/verify-online-rent`, data)
-                  .then((response) => {
-                    Alert.alert(
-                      "Success",
-                      "The rent has been collected successfully."
-                    );
-                    navigation.goBack();
-                  })
-                  .catch((error) => {
-                    if (error.response.status === 400) {
-                      Alert.alert("Error", error.response.data.success);
-                    } else {
-                      console.log(JSON.stringify(error.response, null, 2));
-                      Alert.alert("Error", "Something went wrong");
-                    }
-                  })
-                  .finally(() => {
-                    setLoading(false);
-                  });
+                  console.log(
+                    "case where manager is verifying that he has collected the rent from the tenant"
+                  );
+                  console.log(JSON.stringify(data, null, 2));
+
+                  axios
+                    .post(`${BASE_URL}/api/manager/verify-online-rent`, data)
+                    .then((response) => {
+                      Alert.alert(
+                        "Success",
+                        "The rent has been verified successfully."
+                      );
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      if (error.response.status === 400) {
+                        Alert.alert("Error", error.response.data.success);
+                      } else {
+                        console.log(JSON.stringify(error.response, null, 2));
+                        Alert.alert("Error", "Something went wrong");
+                      }
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }
+
+                // in the case where owner is verifying that he has collected the rent from the tenant or manager
+                if (userType === "O") {
+                  const data = {
+                    ownerID: userID,
+                    propertyID,
+                    collectedAmount: formatNumberForAPI(values.moneyReceived),
+                  };
+
+                  console.log(
+                    "case where owner is verifying that he has collected the rent from the tenant or manager"
+                  );
+                  console.log(JSON.stringify(data, null, 2));
+
+                  axios
+                    .post(`${BASE_URL}/api/owner/verify-online-rent`, data)
+                    .then((response) => {
+                      Alert.alert(
+                        "Success",
+                        "The rent has been collected successfully."
+                      );
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      if (error.response.status === 400) {
+                        Alert.alert("Error", error.response.data.success);
+                      } else {
+                        console.log(JSON.stringify(error.response, null, 2));
+                        Alert.alert("Error", "Something went wrong");
+                      }
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }
               },
             },
           ],

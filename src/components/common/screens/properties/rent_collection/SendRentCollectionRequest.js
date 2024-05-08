@@ -21,6 +21,7 @@ export function sendRentCollectionRequest(
         onPress: () => {
           setSendRentCollectionRequestLoading(true);
 
+          // to owner or manager as tenant
           axios
             .post(`${BASE_URL}/api/tenant/submit-collection-request`, {
               propertyID,
@@ -33,8 +34,12 @@ export function sendRentCollectionRequest(
               );
             })
             .catch((error) => {
-              console.log(JSON.stringify(error.response, null, 2));
-              Alert.alert("Error", "Something went wrong");
+              if (error.response.status === 400) {
+                Alert.alert("Error", error.response.data.success);
+              } else {
+                console.log(JSON.stringify(error.response, null, 2));
+                Alert.alert("Error", "Something went wrong");
+              }
             })
             .finally(() => {
               setSendRentCollectionRequestLoading(false);

@@ -11,6 +11,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { useColors } from "../../../../helpers/SetColors";
 import { useUserID } from "../../../../helpers/SetUserID";
+import { useUserType } from "../../../../helpers/SetUserType";
 import { deleteHireRequest } from "../../../owner/DeleteHireRequest";
 import { fireManager } from "../../../owner/FireManager";
 import PropertyMenuButton from "../../buttons/PropertyMenuButton";
@@ -19,6 +20,7 @@ import { sendRentCollectionRequest } from "./rent_collection/SendRentCollectionR
 
 const PropertyMenu = ({ route }) => {
   const userID = useUserID();
+  const userType = useUserType();
   const { propertyAddress, id } = route.params;
   const colors = useColors();
   const navigation = useNavigation();
@@ -219,42 +221,91 @@ const PropertyMenu = ({ route }) => {
 
           {/* rent related below */}
 
-          <PropertyMenuButton
-            doesNotOpenScreen={true}
-            loading={sendRentCollectionRequestLoading}
-            text={"Send Rent Collection Requst to Manager as Tenant"}
-            colors={colors}
-            onPress={() => {
-              sendRentCollectionRequest(
-                id,
-                userID,
-                setSendRentCollectionRequestLoading
-              );
-            }}
-          />
-          <PropertyMenuButton
-            text={"Send Online Rent Verification Request to Manager as Tenant"}
-            colors={colors}
-            onPress={() =>
-              navigation.navigate("Send Online Rent Verification Request", {
-                propertyID: id,
-              })
-            }
-          />
-          <PropertyMenuButton
-            text={"Verify Online Payment From Tenant as Manager"}
-            colors={colors}
-            onPress={() =>
-              navigation.navigate("Verify Online Payment", { propertyID: id })
-            }
-          />
-          <PropertyMenuButton
-            text={"Collect Rent From Tenant as Manager"}
-            colors={colors}
-            onPress={() =>
-              navigation.navigate("Collect Rent", { propertyID: id })
-            }
-          />
+          {userType === "T" && (
+            <>
+              {/* only for tenant */}
+              <PropertyMenuButton
+                doesNotOpenScreen={true}
+                loading={sendRentCollectionRequestLoading}
+                text={"Send Rent Collection Request as Tenant"}
+                colors={colors}
+                onPress={() => {
+                  sendRentCollectionRequest(
+                    id,
+                    userID,
+                    setSendRentCollectionRequestLoading
+                  );
+                }}
+              />
+
+              {/* only for tenant*/}
+              <PropertyMenuButton
+                text={"Send Online Rent Verification Request as Tenant"}
+                colors={colors}
+                onPress={() =>
+                  navigation.navigate("Send Online Rent Verification Request", {
+                    propertyID: id,
+                  })
+                }
+              />
+            </>
+          )}
+
+          {userType === "M" && (
+            <>
+              {/* only for manager */}
+              <PropertyMenuButton
+                text={"Send Online Rent Verification Request as Manager"}
+                colors={colors}
+                onPress={() =>
+                  navigation.navigate("Send Online Rent Verification Request", {
+                    propertyID: id,
+                  })
+                }
+              />
+              {/* only for manager */}
+              <PropertyMenuButton
+                text={"Verify Online Payment From Tenant as Manager"}
+                colors={colors}
+                onPress={() =>
+                  navigation.navigate("Verify Online Payment", {
+                    propertyID: id,
+                  })
+                }
+              />
+              {/* only for manager */}
+              <PropertyMenuButton
+                text={"Collect Rent From Tenant as Manager"}
+                colors={colors}
+                onPress={() =>
+                  navigation.navigate("Collect Rent", { propertyID: id })
+                }
+              />
+            </>
+          )}
+
+          {userType === "O" && (
+            <>
+              {/* only for owner */}
+              <PropertyMenuButton
+                text={"Verify Online Payment From (Tenant or Manager) as Owner"}
+                colors={colors}
+                onPress={() =>
+                  navigation.navigate("Verify Online Payment", {
+                    propertyID: id,
+                  })
+                }
+              />
+              {/* only for owner */}
+              <PropertyMenuButton
+                text={"Collect Rent From (Tenant or Manager) as Owner"}
+                colors={colors}
+                onPress={() =>
+                  navigation.navigate("Collect Rent", { propertyID: id })
+                }
+              />
+            </>
+          )}
 
           {/* not implemented below */}
 

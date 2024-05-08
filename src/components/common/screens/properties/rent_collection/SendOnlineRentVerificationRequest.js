@@ -7,12 +7,14 @@ import * as FontSizes from "../../../../../assets/fonts/FontSizes";
 import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../../../../constants";
 import { useColors } from "../../../../../helpers/SetColors";
 import { useUserID } from "../../../../../helpers/SetUserID";
+import { useUserType } from "../../../../../helpers/SetUserType";
 import { sendOnlineRentVerificationRequestSchema } from "../../../../../helpers/validation/SendOnlineRentVerificationRequestValidation";
 import ButtonGrey from "../../../buttons/ButtonGrey";
 import InputFieldWithHint from "../../../input_fields/InputFieldWithHint";
 
 const SendOnlineRentVerificationRequest = ({ navigation, route }) => {
-  const tenantID = useUserID();
+  const userID = useUserID();
+  const userType = useUserType();
   const { propertyID } = route.params;
   const colors = useColors();
 
@@ -54,31 +56,81 @@ const SendOnlineRentVerificationRequest = ({ navigation, route }) => {
               onPress: () => {
                 setLoading(true);
 
-                const data = {
-                  tenantID: tenantID,
-                  propertyID: propertyID,
-                  verificationMessage: values.verificationMessage,
-                };
+                // in the case where tenant is sending the request to (owner or manager) that he has sent the rent
+                if (userType === "T") {
+                  const data = {
+                    tenantID: userID,
+                    propertyID: propertyID,
+                    verificationMessage: values.verificationMessage,
+                  };
 
-                axios
-                  .post(
-                    `${BASE_URL}/api/tenant/submit-verification-request`,
-                    data
-                  )
-                  .then((response) => {
-                    Alert.alert(
-                      "Success",
-                      "Online Verification request sent successfully."
-                    );
-                    navigation.goBack();
-                  })
-                  .catch((error) => {
-                    console.log(JSON.stringify(error.response, null, 2));
-                    Alert.alert("Error", "Something went wrong");
-                  })
-                  .finally(() => {
-                    setLoading(false);
-                  });
+                  console.log(
+                    "case where tenant is sending the request to owner or manager that he has sent the rent"
+                  );
+                  console.log(JSON.stringify(data, null, 2));
+
+                  axios
+                    .post(
+                      `${BASE_URL}/api/tenant/submit-verification-request`,
+                      data
+                    )
+                    .then((response) => {
+                      Alert.alert(
+                        "Success",
+                        "Online Verification request sent successfully."
+                      );
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      if (error.response.status === 400) {
+                        Alert.alert("Error", error.response.data.success);
+                      } else {
+                        console.log(JSON.stringify(error.response, null, 2));
+                        Alert.alert("Error", "Something went wrong");
+                      }
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }
+
+                // in the case where manager is sending the request to owner that he has sent the rent
+                if (userType === "M") {
+                  const data = {
+                    managerID: userID,
+                    propertyID: propertyID,
+                    verificationMessage: values.verificationMessage,
+                  };
+
+                  console.log(
+                    "case where manager is sending the request to owner that he has sent the rent"
+                  );
+                  console.log(JSON.stringify(data, null, 2));
+
+                  axios
+                    .post(
+                      `${BASE_URL}/api/manager/submit-verification-request`,
+                      data
+                    )
+                    .then((response) => {
+                      Alert.alert(
+                        "Success",
+                        "Online Verification request sent successfully."
+                      );
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      if (error.response.status === 400) {
+                        Alert.alert("Error", error.response.data.success);
+                      } else {
+                        console.log(JSON.stringify(error.response, null, 2));
+                        Alert.alert("Error", "Something went wrong");
+                      }
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }
               },
             },
           ],

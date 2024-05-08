@@ -11,9 +11,11 @@ import { formatNumberForAPI } from "../../../../../helpers/utils";
 import { collectRentSchema } from "../../../../../helpers/validation/CollectRentValidation";
 import ButtonGrey from "../../../buttons/ButtonGrey";
 import InputFieldWithHint from "../../../input_fields/InputFieldWithHint";
+import { useUserType } from "./../../../../../helpers/SetUserType";
 
 const CollectRent = ({ navigation, route }) => {
-  const managerID = useUserID();
+  const userID = useUserID();
+  const userType = useUserType();
   const { propertyID } = route.params;
   const colors = useColors();
 
@@ -56,32 +58,75 @@ const CollectRent = ({ navigation, route }) => {
               onPress: () => {
                 setLoading(true);
 
-                const data = {
-                  managerID,
-                  propertyID,
-                  collectedAmount: formatNumberForAPI(values.moneyReceived),
-                };
+                // in the case where manager is collecting rent from tenant
+                if (userType === "M") {
+                  const data = {
+                    managerID: userID,
+                    propertyID,
+                    collectedAmount: formatNumberForAPI(values.moneyReceived),
+                  };
 
-                axios
-                  .post(`${BASE_URL}/api/manager/collect-rent`, data)
-                  .then((response) => {
-                    Alert.alert(
-                      "Success",
-                      "The rent has been collected successfully."
-                    );
-                    navigation.goBack();
-                  })
-                  .catch((error) => {
-                    if (error.response.status === 400) {
-                      Alert.alert("Error", error.response.data.success);
-                    } else {
-                      console.log(JSON.stringify(error.response, null, 2));
-                      Alert.alert("Error", "Something went wrong");
-                    }
-                  })
-                  .finally(() => {
-                    setLoading(false);
-                  });
+                  console.log(
+                    "case where manager is collecting rent from tenant"
+                  );
+                  console.log(JSON.stringify(data, null, 2));
+
+                  axios
+                    .post(`${BASE_URL}/api/manager/collect-rent`, data)
+                    .then((response) => {
+                      Alert.alert(
+                        "Success",
+                        "The rent has been collected successfully."
+                      );
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      if (error.response.status === 400) {
+                        Alert.alert("Error", error.response.data.success);
+                      } else {
+                        console.log(JSON.stringify(error.response, null, 2));
+                        Alert.alert("Error", "Something went wrong");
+                      }
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }
+
+                // in the case where owner is collecting rent from (tenant or manager)
+                if (userType === "O") {
+                  const data = {
+                    ownerID: userID,
+                    propertyID,
+                    collectedAmount: formatNumberForAPI(values.moneyReceived),
+                  };
+
+                  console.log(
+                    "case where owner is collecting rent from tenant or manager"
+                  );
+                  console.log(JSON.stringify(data, null, 2));
+
+                  axios
+                    .post(`${BASE_URL}/api/owner/collect-rent`, data)
+                    .then((response) => {
+                      Alert.alert(
+                        "Success",
+                        "The rent has been collected successfully."
+                      );
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      if (error.response.status === 400) {
+                        Alert.alert("Error", error.response.data.success);
+                      } else {
+                        console.log(JSON.stringify(error.response, null, 2));
+                        Alert.alert("Error", "Something went wrong");
+                      }
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }
               },
             },
           ],
