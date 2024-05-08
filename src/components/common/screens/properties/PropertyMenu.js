@@ -234,7 +234,6 @@ const PropertyMenu = ({ route }) => {
             colors={colors}
           />
           <PropertyMenuButton text={"Eviction Notice"} colors={colors} />
-          <PropertyMenuButton text={"Chat Manager/Tenant"} colors={colors} />
           <PropertyMenuButton
             text={"Rate Manager /Tenant"}
             colors={colors}
