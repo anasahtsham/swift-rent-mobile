@@ -241,6 +241,22 @@ const PropertyMenu = ({ route }) => {
               })
             }
           />
+          <PropertyMenuButton
+            text={"Verify Online Payment"}
+            colors={colors}
+            onPress={() =>
+              navigation.navigate("Verify Online Payment", { propertyID: id })
+            }
+          />
+          <PropertyMenuButton
+            text={"Collect Rent"}
+            colors={colors}
+            onPress={() =>
+              navigation.navigate("Collect Rent", { propertyID: id })
+            }
+          />
+
+          {/* not implemented below */}
 
           <PropertyMenuButton text={"Eviction Notice"} colors={colors} />
           <PropertyMenuButton
@@ -258,7 +274,7 @@ const PropertyMenu = ({ route }) => {
             onPress={() => {
               navigation.navigate("Verify Documentation");
             }}
-            text={"Receive/ Verify Rent"}
+            text={"Submit Picture of Proof"}
             colors={colors}
           />
         </View>

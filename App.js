@@ -16,7 +16,9 @@ import SettingScreen from "./src/components/common/screens/profile/SettingScreen
 import PropertyMenu from "./src/components/common/screens/properties/PropertyMenu";
 import RentHistory from "./src/components/common/screens/properties/RentHistory";
 import VerifiyDocumentation from "./src/components/common/screens/properties/VerifyDocumentation";
+import CollectRent from "./src/components/common/screens/properties/rent_collection/CollectRent";
 import SendOnlineRentVerificationRequest from "./src/components/common/screens/properties/rent_collection/SendOnlineRentVerificationRequest";
+import VerifyOnlinePayment from "./src/components/common/screens/properties/rent_collection/VerifyOnlinePayment";
 import RatingScreen from "./src/components/common/screens/ratings/RatingScreen";
 import Ratings from "./src/components/common/screens/ratings/Ratings";
 import CounterRequestForm from "./src/components/manager/CounterRequestForm";
@@ -99,6 +101,11 @@ export default function App() {
           <Stack.Screen
             name="Send Online Rent Verification Request"
             component={SendOnlineRentVerificationRequest}
+          />
+          <Stack.Screen name="Collect Rent" component={CollectRent} />
+          <Stack.Screen
+            name="Verify Online Payment"
+            component={VerifyOnlinePayment}
           />
 
           {/* Owner Screens */}
