@@ -77,23 +77,19 @@ const ManagerOffersCard = (props) => {
   };
 
   const handleAccept = () => {
-    Alert.alert(
-      "Accept Manager Offer",
-      "Are you sure you want to accept this manager offer?",
-      [
-        {
-          text: "Cancel",
-          onPress: () => {},
-          style: "cancel",
+    Alert.alert("Hire Manager", "Are you sure you want to hire this manager?", [
+      {
+        text: "Cancel",
+        onPress: () => {},
+        style: "cancel",
+      },
+      {
+        text: "Hire",
+        onPress: () => {
+          acceptOffer();
         },
-        {
-          text: "Accept",
-          onPress: () => {
-            acceptOffer();
-          },
-        },
-      ]
-    );
+      },
+    ]);
   };
 
   const rejectOffer = async () => {
@@ -404,7 +400,7 @@ const ManagerOffersCard = (props) => {
                 },
               ]}
             >
-              {props.counterRequestStatus === "P" ? "Interview" : "Accept"}
+              {props.counterRequestStatus === "P" ? "Interview" : "Hire"}
             </Text>
           )}
         </TouchableOpacity>
