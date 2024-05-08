@@ -135,7 +135,7 @@ export const shopFieldTypes = [
   { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
-  { label: "Height", value: "height" },
+  { label: "Height (meters)", value: "height" },
 ];
 
 export const buildingFieldTypes = [
@@ -148,7 +148,7 @@ export const buildingFieldTypes = [
   { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
-  { label: "Height", value: "height" },
+  { label: "Height (meters)", value: "height" },
 ];
 
 export const warehouseFieldTypes = [
@@ -156,7 +156,7 @@ export const warehouseFieldTypes = [
   { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
-  { label: "Height", value: "height" },
+  { label: "Height (meters)", value: "height" },
 ];
 
 export const factoryFieldTypes = [
@@ -166,7 +166,7 @@ export const factoryFieldTypes = [
   { label: "No. Of Toilets", value: "noOfToilet" },
   { label: "Parking Capacity", value: "parkingCapacity" },
   { label: "Person Capacity", value: "personCapacity" },
-  { label: "Height", value: "height" },
+  { label: "Height (meters)", value: "height" },
 ];
 
 /*********** checkboxes*************/
