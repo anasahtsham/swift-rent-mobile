@@ -392,8 +392,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   ref={securityAmountRef}
                   hintTexts={{
                     english:
-                      "Security amount refers to the amount of money that the tenant pays as a security deposit. For example, you can set it to $2000 to be paid as a security deposit.",
-                    urdu: "سیکیورٹی رقم وہ رقم ہے جو کرایہ دار سیکیورٹی جمع کرانے کے طور پر ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 2000 ڈالر پر مقرر کرسکتے ہیں تاکہ یہ سیکیورٹی جمع کرایا جائے۔",
+                      "Security amount refers to the amount of money that the tenant pays as a security deposit. For example, you can set it to 120,000 PKR to be paid as a security deposit.",
+                    urdu: "سیکیورٹی رقم وہ رقم ہے جو کرایہ دار سیکیورٹی جمع کرانے کے طور پر ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 120،000 پر مقرر کرسکتے ہیں تاکہ سیکیورٹی جمع کرانے کے طور پر ادا کیا جائے۔",
                   }}
                 />
 
@@ -448,8 +448,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   onFocus={() => advancePaymentForMonthsRef.current?.focus()}
                   hintTexts={{
                     english:
-                      "Advance payment refers to the amount of rent that the tenant pays in advance. For example, you can set it to $1000 to be paid before the start of each month.",
-                    urdu: "اعلی ادا کرایہ وہ رقم ہے جو کرایہ دار پہلے ہی ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 1000 ڈالر پر مقرر کرسکتے ہیں تاکہ ہر مہینے کی شروعات سے پہلے ادا کیا جائے۔",
+                      "Advance payment refers to the amount of rent that the tenant pays in advance. This will be automatically calculated based on your input for 'Advance Payment For (Months)' and 'Rent Amount'. For example, if you set the advance payment for 2 months and the rent amount to 1000, the advance payment will be 2000.",
+                    urdu: "اعلی ادا کرایہ وہ کرایہ ہے جو کرایہ دار پہلے ہی ادا کرتا ہے۔ یہ آپ کے 'اعلی ادا کرایہ کے لیے (مہینے)' اور 'کرایہ رقم' کے ان پٹ کے مطابق خود بخود حاصل ہوگا۔ مثال کے طور پر، اگر آپ نے 2 مہینے کے لیے اعلی ادا کرایہ اور کرایہ رقم کو 1000 مقرر کیا ہے تو اعلی ادا کرایہ 2000 ہوگا۔",
                   }}
                 />
 
@@ -525,8 +525,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   onSubmitEditing={handleSubmit}
                   hintTexts={{
                     english:
-                      "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to $50 to be charged if the rent is not paid within 5 days of the due date.",
-                    urdu: "دیر سے ادا کرایہ جرمانہ وہ اضافی فیس ہے جو کرایہ کی ادائیگی وقت پر نہیں کی جاتی ہے۔ مثال کے طور پر، آپ اسے 5 دن کی حد سے زائد دیر کے لئے ادا نہ ہونے پر 50 ڈالر مقرر کرسکتے ہیں۔",
+                      "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to 5000 PKR to be charged if the rent is not paid within 5 days of the due date.",
+                    urdu: "دیر سے کرایہ فائن کرایہ ادا نہ ہونے پر اضافی فیس کا مطلب ہے۔ مثال کے طور پر، آپ اسے 5000 پر مقرر کرسکتے ہیں تاکہ اگر کرایہ وقت پر ادا نہ ہو تو 5 دنوں کے اندر اضافی فیس وصول کی جائے۔",
                   }}
                 />
               </View>
