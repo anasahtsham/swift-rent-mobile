@@ -47,6 +47,19 @@ const RegisterAs = ({ navigation, route }) => {
         userType = "";
     }
 
+    const formatUserType = (userType) => {
+      switch (userType) {
+        case "owner":
+          return "O";
+        case "manager":
+          return "M";
+        case "tenant":
+          return "T";
+        default:
+          return "";
+      }
+    };
+
     // Prepare the data to send to the API
     const data = {
       userID: userID,
@@ -58,7 +71,7 @@ const RegisterAs = ({ navigation, route }) => {
       .post(`${BASE_URL}/api/auth/register-alternate-role`, data)
       .then(() => {
         saveUserID(userID.toString());
-        saveUserType(userType.toString());
+        saveUserType(formatUserType(userType.toString()));
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
