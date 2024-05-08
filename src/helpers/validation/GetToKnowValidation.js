@@ -13,20 +13,20 @@ import {
 
 export const getToKnowSchema = Yup.object().shape({
   firstName: Yup.string()
-    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
     .required(requiredMessage)
     .matches(
       nameFirstCharacterUppercaseRegex,
       nameFirstCharacterUppercaseMessage
     )
-    .min(min3CharactersInt, min3CharactersMessage),
+    .min(min3CharactersInt, min3CharactersMessage)
+    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage),
   lastName: Yup.string()
-    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
     .required(requiredMessage)
     .matches(
       nameFirstCharacterUppercaseRegex,
       nameFirstCharacterUppercaseMessage
     )
-    .min(min3CharactersInt, min3CharactersMessage),
+    .min(min3CharactersInt, min3CharactersMessage)
+    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage),
   date: Yup.date().typeError(invalidDateMessage).required(requiredMessage),
 });
