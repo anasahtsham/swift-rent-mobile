@@ -18,6 +18,10 @@ export const notOnlySpecialCharactersRegex =
   /^(?![!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$).*$/;
 export const notOnlySpecialCharactersMessage =
   "Can't be only special characters or symbols";
+export const notOnlySpecialCharactersAndNumbersRegex =
+  /^(?![!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]*$).*$/;
+export const notOnlySpecialCharactersAndNumbersMessage =
+  "Can't be only special characters or symbols or numbers";
 export const notOnlySpacesRegex = /^(?!\s+$).*$/;
 export const notOnlySpacesMessage = "Can't be only spaces";
 
