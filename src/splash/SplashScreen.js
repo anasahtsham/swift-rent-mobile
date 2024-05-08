@@ -76,6 +76,7 @@ const SplashScreen = ({ navigation }) => {
           }
         })
         .catch((error) => {
+          console.log(JSON.stringify(error.response, null, 2));
           Alert.alert("Error", error.response.data.error);
         })
         .finally(() => {

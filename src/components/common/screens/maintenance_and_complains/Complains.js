@@ -1,6 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -33,36 +33,28 @@ const Complains = ({ navigation }) => {
   const [sentComplaints, setSentComplaints] = useState([]);
   const [receivedComplaints, setReceivedComplaints] = useState([]);
 
-  const [dataToRender, setDataToRender] = useState([]);
+  const [dataToRender, setDataToRender] = useState(sentComplaints);
 
   useFocusEffect(
     useCallback(() => {
-      if (userID && userType) {
-        setLoading(true);
-        axios
-          .post(`${BASE_URL}/api/common/view-complaints`, {
-            userID: userID,
-            userType: userType,
-          })
-          .then((response) => {
-            setSentComplaints(response.data.sentComplaints);
-            setReceivedComplaints(response.data.receivedComplaints);
-          })
-          .catch((error) => {
-            Alert.alert("Error", "Something went wrong");
-            console.log(JSON.stringify(error.response, null, 2));
-          })
-          .finally(() => {
-            setLoading(false);
-          });
-      }
+      setLoading(true);
 
-      // based on which header is selected, render the data
-      if (header === "Sent Complains") {
-        setDataToRender(sentComplaints);
-      } else {
-        setDataToRender(receivedComplaints);
-      }
+      axios
+        .post(`${BASE_URL}/api/common/view-complaints`, {
+          userID: userID,
+          userType: userType,
+        })
+        .then((response) => {
+          setSentComplaints(response.data.sentComplaints);
+          setReceivedComplaints(response.data.receivedComplaints);
+        })
+        .catch((error) => {
+          Alert.alert("Error", "Something went wrong");
+          console.log(JSON.stringify(error.response, null, 2));
+        })
+        .finally(() => {
+          setLoading(false);
+        });
 
       const backAction = () => {
         navigation.goBack();
@@ -77,6 +69,15 @@ const Complains = ({ navigation }) => {
       return () => backHandler.remove();
     }, [header, userID, userType])
   );
+
+  useEffect(() => {
+    // based on which header is selected, render the data
+    if (header === "Sent Complains") {
+      setDataToRender(sentComplaints);
+    } else {
+      setDataToRender(receivedComplaints);
+    }
+  }, [sentComplaints, receivedComplaints, header]);
 
   const renderItem = ({ item: complain }) => (
     <ComplainsCard
