@@ -62,8 +62,6 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
                   collectedAmount: formatNumberForAPI(values.moneyReceived),
                 };
 
-                console.log(JSON.stringify(data, null, 2));
-
                 axios
                   .post(`${BASE_URL}/api/manager/verify-online-rent`, data)
                   .then((response) => {

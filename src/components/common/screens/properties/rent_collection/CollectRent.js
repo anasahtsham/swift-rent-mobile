@@ -62,8 +62,6 @@ const CollectRent = ({ navigation, route }) => {
                   collectedAmount: formatNumberForAPI(values.moneyReceived),
                 };
 
-                console.log(JSON.stringify(data, null, 2));
-
                 axios
                   .post(`${BASE_URL}/api/manager/collect-rent`, data)
                   .then((response) => {
