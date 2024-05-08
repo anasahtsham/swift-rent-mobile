@@ -1,16 +1,19 @@
+import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { BackHandler, StyleSheet, Text, View } from "react-native";
+import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../../../../assets/fonts/FontSizes";
-import { BUTTON_WIDTH_SMALL } from "../../../../../constants";
+import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../../../../constants";
 import { useColors } from "../../../../../helpers/SetColors";
 import { useUserID } from "../../../../../helpers/SetUserID";
+import { formatNumberForAPI } from "../../../../../helpers/utils";
+import { collectRentSchema } from "../../../../../helpers/validation/CollectRentValidation";
 import ButtonGrey from "../../../buttons/ButtonGrey";
 import InputFieldWithHint from "../../../input_fields/InputFieldWithHint";
 
 const CollectRent = ({ navigation, route }) => {
-  const tenantID = useUserID();
+  const managerID = useUserID();
   const { propertyID } = route.params;
   const colors = useColors();
 
@@ -37,8 +40,56 @@ const CollectRent = ({ navigation, route }) => {
       initialValues={{
         moneyReceived: "",
       }}
-      validationSchema={{}}
-      onSubmit={(values) => {}}
+      validationSchema={collectRentSchema}
+      onSubmit={(values) => {
+        Alert.alert(
+          "Confirmation",
+          "Are you sure you want to submit?",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                setLoading(true);
+
+                const data = {
+                  managerID,
+                  propertyID,
+                  collectedAmount: formatNumberForAPI(values.moneyReceived),
+                };
+
+                console.log(JSON.stringify(data, null, 2));
+
+                axios
+                  .post(`${BASE_URL}/api/manager/collect-rent`, data)
+                  .then((response) => {
+                    Alert.alert(
+                      "Success",
+                      "The rent has been collected successfully."
+                    );
+                    navigation.goBack();
+                  })
+                  .catch((error) => {
+                    if (error.response.status === 400) {
+                      Alert.alert("Error", error.response.data.success);
+                    } else {
+                      console.log(JSON.stringify(error.response, null, 2));
+                      Alert.alert("Error", "Something went wrong");
+                    }
+                  })
+                  .finally(() => {
+                    setLoading(false);
+                  });
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+      }}
     >
       {({
         handleChange,

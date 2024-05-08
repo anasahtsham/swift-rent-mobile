@@ -222,7 +222,7 @@ const PropertyMenu = ({ route }) => {
           <PropertyMenuButton
             doesNotOpenScreen={true}
             loading={sendRentCollectionRequestLoading}
-            text={"Send Rent Collection Requst"}
+            text={"Send Rent Collection Requst to Manager as Tenant"}
             colors={colors}
             onPress={() => {
               sendRentCollectionRequest(
@@ -233,7 +233,7 @@ const PropertyMenu = ({ route }) => {
             }}
           />
           <PropertyMenuButton
-            text={"Send Online Rent Verification Request"}
+            text={"Send Online Rent Verification Request to Manager as Tenant"}
             colors={colors}
             onPress={() =>
               navigation.navigate("Send Online Rent Verification Request", {
@@ -242,14 +242,14 @@ const PropertyMenu = ({ route }) => {
             }
           />
           <PropertyMenuButton
-            text={"Verify Online Payment"}
+            text={"Verify Online Payment From Tenant as Manager"}
             colors={colors}
             onPress={() =>
               navigation.navigate("Verify Online Payment", { propertyID: id })
             }
           />
           <PropertyMenuButton
-            text={"Collect Rent"}
+            text={"Collect Rent From Tenant as Manager"}
             colors={colors}
             onPress={() =>
               navigation.navigate("Collect Rent", { propertyID: id })
