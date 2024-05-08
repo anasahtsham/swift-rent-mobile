@@ -65,8 +65,6 @@ const TerminateLease = ({ navigation, route }) => {
                   terminationReason: values.terminationReason,
                 };
 
-                console.log(JSON.stringify(data, null, 2));
-
                 axios
                   .post(`${BASE_URL}/api/owner/terminate-tenant`, data)
                   .then((response) => {
