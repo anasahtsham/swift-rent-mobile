@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import {
   from1To100Message,
   from1To100Regex,
+  from1To1200Message,
+  from1To1200Regex,
   from1To99Message,
   from1To99Regex,
   multipleOfHunderedMessage,
@@ -37,8 +39,8 @@ export const registerTenantSchema = (
       .matches(number11DigitsRegex, number11DigitsMessage),
     leasedForMonths: Yup.string()
       .required(requiredMessage)
-      .matches(noSpacesRegex, noSpacesMessage)
-      .matches(onlyNumbersRegex, onlyNumbersMessage),
+      .matches(onlyNumbersRegex, onlyNumbersMessage)
+      .matches(from1To1200Regex, from1To1200Message),
 
     securityAmount: Yup.string()
       .matches(noSpacesRegex, noSpacesMessage)

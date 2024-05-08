@@ -62,6 +62,9 @@ export const from1To100Regex = /^(100|[1-9][0-9]?)$/;
 export const from1To100Message = "Value must be from 1 to 100";
 export const from1To99Regex = /^([1-9][0-9]?)$/;
 export const from1To99Message = "Value must be from 1 to 99";
+export const from1To1200Regex =
+  /^(1[01][0-9][0-9]|1[2][00]|[1-9][0-9]{0,2}|1200)$/;
+export const from1To1200Message = "Value must be from 1 to 1200";
 
 export const between30and60Regex = /^[3-5][0-9]$|^60$/;
 export const between30and60Message = "Value must be between 30 and 60";
