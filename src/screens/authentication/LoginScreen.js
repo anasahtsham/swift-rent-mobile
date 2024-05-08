@@ -176,7 +176,7 @@ const LoginScreen = ({ navigation, route }) => {
               { backgroundColor: colors.backgroundPrimary },
             ]}
           >
-            <View style={[styles.logoAndTextContainer, { marginBottom: 100 }]}>
+            <View style={[styles.logoAndTextContainer, { marginBottom: 50 }]}>
               <SwiftRentLogoMedium />
               <Text
                 style={[
@@ -214,22 +214,24 @@ const LoginScreen = ({ navigation, route }) => {
                 errorText={touched.password ? errors.password : ""} // If the user has touched the input field and there's an error, display the error message
                 onSubmitEditing={handleSubmit} // When the user presses "Next" on the keyboard, the form will be submitted
               />
-              <Pressable
-                onTouchEnd={() => navigation.navigate("Forgot Password")}
-              >
-                <Text
-                  style={[
-                    {
-                      fontSize: FontSizes.small,
-                      color: colors.textLightBlue,
-                      padding: 10,
-                    },
-                  ]}
-                >
-                  {languages.forgotPassword}
-                </Text>
-              </Pressable>
             </View>
+
+            <Pressable
+              onTouchEnd={() => navigation.navigate("Forgot Password")}
+            >
+              <Text
+                style={[
+                  {
+                    fontSize: FontSizes.small,
+                    color: colors.textLightBlue,
+                    padding: 10,
+                    marginBottom: 30,
+                  },
+                ]}
+              >
+                {languages.forgotPassword}
+              </Text>
+            </Pressable>
 
             <ButtonGrey
               loading={loading}
