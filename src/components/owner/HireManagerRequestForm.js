@@ -13,6 +13,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../constants";
+import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import {
   agentOneTimeFeeSchema,
@@ -337,6 +338,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
 
               {valuePurposeOfHireDropdown === "acquire_tenant" && (
                 <InputFieldWithHint
+                  textFieldIcon={icons.rupeeIcon}
                   ref={agentOneTimeFeeRef}
                   returnKeyType="next"
                   onSubmitEditing={() => rentAmountRef.current.focus()}
@@ -411,6 +413,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                     )}
                     {valuePaymentTypeDropdown === "fixed" && (
                       <InputFieldWithHint
+                        textFieldIcon={icons.rupeeIcon}
                         borderRadius={7}
                         label="Fixed (PKR)*"
                         fieldType="numeric"
@@ -463,6 +466,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
               )}
 
               <InputFieldWithHint
+                textFieldIcon={icons.rupeeIcon}
                 ref={rentAmountRef}
                 returnKeyType="next"
                 onSubmitEditing={() => specialTermsRef.current.focus()}

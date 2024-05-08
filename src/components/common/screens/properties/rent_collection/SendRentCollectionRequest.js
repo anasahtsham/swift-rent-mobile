@@ -21,11 +21,6 @@ export function sendRentCollectionRequest(
         onPress: () => {
           setSendRentCollectionRequestLoading(true);
 
-          const data = {
-            propertyID,
-            tenantID,
-          };
-
           axios
             .post(`${BASE_URL}/api/tenant/submit-collection-request`, {
               propertyID,

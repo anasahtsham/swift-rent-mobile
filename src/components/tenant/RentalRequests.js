@@ -29,7 +29,7 @@ const RentalRequests = ({ navigation }) => {
       const fetchRentalRequests = async () => {
         try {
           const response = await axios.post(
-            `${BASE_URL}/api/tenant/lease-requesst`,
+            `${BASE_URL}/api/tenant/lease-request`,
             { tenantID: userID }
           );
           setRentalRequestsData(response.data.leaseRequests);

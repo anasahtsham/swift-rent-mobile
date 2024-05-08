@@ -58,4 +58,5 @@ export const icons = {
   shared: require("../assets/icons/shared.png"),
   searchIcon: require("../assets/icons/search-icon.png"),
   areaSqftIcon: require("../assets/icons/area.png"),
+  rupeeIcon: require("../assets/icons/rupee.png"),
 };

@@ -28,6 +28,7 @@ import HireManagerRequestForm from "./src/components/owner/HireManagerRequestFor
 import ManagerOffers from "./src/components/owner/ManagerOffers";
 import PropertyMaintenances from "./src/components/owner/PropertyMaintenances";
 import RegisterTenant from "./src/components/owner/RegisterTenant";
+import TerminateLease from "./src/components/owner/TerminateLease";
 import RentalRequestAgreementForm from "./src/components/tenant/RentalRequestAgreementForm";
 import RentalRequests from "./src/components/tenant/RentalRequests";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
@@ -122,6 +123,7 @@ export default function App() {
             name={"Add Maintenance Report"}
             component={AddMaintenanceReport}
           />
+          <Stack.Screen name="Terminate Lease" component={TerminateLease} />
 
           {/* Manager Screens */}
           <Stack.Screen name="Explore Offers" component={ExploreOffers} />

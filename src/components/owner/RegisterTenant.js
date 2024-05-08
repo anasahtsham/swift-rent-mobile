@@ -6,6 +6,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../constants";
+import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useUserID } from "../../helpers/SetUserID";
 import { useUserType } from "../../helpers/SetUserType";
@@ -322,6 +323,7 @@ const RegisterTenant = ({ navigation, route }) => {
                 <View style={{ height: valueRentDueError ? 10 : 25 }} />
 
                 <InputField
+                  textFieldIcon={icons.rupeeIcon}
                   fieldType="numeric"
                   borderRadius={10}
                   label="Rent Amount (PKR)*"

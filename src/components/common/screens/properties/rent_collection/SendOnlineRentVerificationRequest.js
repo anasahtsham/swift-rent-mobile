@@ -60,8 +60,6 @@ const SendOnlineRentVerificationRequest = ({ navigation, route }) => {
                   verificationMessage: values.verificationMessage,
                 };
 
-                console.log(JSON.stringify(data, null, 2));
-
                 axios
                   .post(
                     `${BASE_URL}/api/tenant/submit-verification-request`,

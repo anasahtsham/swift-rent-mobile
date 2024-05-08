@@ -163,6 +163,25 @@ const PropertyMenu = ({ route }) => {
             secondaryTextColor={colors.textGreen}
             colors={colors}
           />
+          {/* the above buttons always stay on top */}
+
+          {/* tenant related below */}
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Register Tenant", { id: id });
+            }}
+            text={"Register Tenant"}
+            colors={colors}
+          />
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Terminate Lease", { propertyID: id });
+            }}
+            text={"Terminate Lease"}
+            colors={colors}
+          />
+
+          {/* manager related below */}
           <PropertyMenuButton
             onPress={() => {
               navigation.navigate("Hire Manager Request Form", {
@@ -171,6 +190,13 @@ const PropertyMenu = ({ route }) => {
             }}
             text={"Make Manager Hire Request"}
             colors={colors}
+          />
+          <PropertyMenuButton
+            text={`Manager Offers (${3})`}
+            colors={colors}
+            onPress={() =>
+              navigation.navigate("Manager Offers", { propertyID: id })
+            }
           />
           <PropertyMenuButton
             doesNotOpenScreen={true}
@@ -190,20 +216,9 @@ const PropertyMenu = ({ route }) => {
             text={"Fire Manager"}
             colors={colors}
           />
-          <PropertyMenuButton
-            onPress={() => {
-              navigation.navigate("Register Tenant", { id: id });
-            }}
-            text={"Register Tenant"}
-            colors={colors}
-          />
-          <PropertyMenuButton
-            text={`Manager Offers (${3})`}
-            colors={colors}
-            onPress={() =>
-              navigation.navigate("Manager Offers", { propertyID: id })
-            }
-          />
+
+          {/* rent related below */}
+
           <PropertyMenuButton
             doesNotOpenScreen={true}
             loading={sendRentCollectionRequestLoading}
@@ -226,13 +241,7 @@ const PropertyMenu = ({ route }) => {
               })
             }
           />
-          <PropertyMenuButton
-            onPress={() => {
-              navigation.navigate("Verify Documentation");
-            }}
-            text={"Receive/ Verify Rent"}
-            colors={colors}
-          />
+
           <PropertyMenuButton text={"Eviction Notice"} colors={colors} />
           <PropertyMenuButton
             text={"Rate Manager /Tenant"}
@@ -243,6 +252,14 @@ const PropertyMenu = ({ route }) => {
             text={"Rent History"}
             colors={colors}
             onPress={() => navigation.navigate("Rent History")}
+          />
+          {/* submit picture (most probably remove) */}
+          <PropertyMenuButton
+            onPress={() => {
+              navigation.navigate("Verify Documentation");
+            }}
+            text={"Receive/ Verify Rent"}
+            colors={colors}
           />
         </View>
 
