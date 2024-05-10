@@ -39,22 +39,24 @@ const Complains = ({ navigation }) => {
     useCallback(() => {
       setLoading(true);
 
-      axios
-        .post(`${BASE_URL}/api/common/view-complaints`, {
-          userID: userID,
-          userType: userType,
-        })
-        .then((response) => {
-          setSentComplaints(response.data.sentComplaints);
-          setReceivedComplaints(response.data.receivedComplaints);
-        })
-        .catch((error) => {
-          Alert.alert("Error", "Something went wrong");
-          console.log(JSON.stringify(error.response, null, 2));
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      if (userID && userType) {
+        axios
+          .post(`${BASE_URL}/api/common/view-complaints`, {
+            userID: userID,
+            userType: userType,
+          })
+          .then((response) => {
+            setSentComplaints(response.data.sentComplaints);
+            setReceivedComplaints(response.data.receivedComplaints);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
 
       const backAction = () => {
         navigation.goBack();
