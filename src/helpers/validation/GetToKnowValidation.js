@@ -6,27 +6,51 @@ import {
   min3CharactersMessage,
   nameFirstCharacterUppercaseMessage,
   nameFirstCharacterUppercaseRegex,
+  noDoubleSpacesMessage,
+  noDoubleSpacesRegex,
   noLeadingOrTrailingSpacesMessage,
   noLeadingOrTrailingSpacesRegex,
+  noSpecialCharacterAtStartOrEndMessage,
+  noSpecialCharacterAtStartOrEndRegex,
+  noSpecialCharactersExceptHyphenSpaceOrPeriodMessage,
+  noSpecialCharactersExceptHyphenSpaceOrPeriodRegex,
   requiredMessage,
 } from "./ValidationRegexAndMessages";
 
 export const getToKnowSchema = Yup.object().shape({
   firstName: Yup.string()
     .required(requiredMessage)
+    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
+    .matches(noDoubleSpacesRegex, noDoubleSpacesMessage)
     .matches(
       nameFirstCharacterUppercaseRegex,
       nameFirstCharacterUppercaseMessage
     )
-    .min(min3CharactersInt, min3CharactersMessage)
-    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage),
+    .matches(
+      noSpecialCharactersExceptHyphenSpaceOrPeriodRegex,
+      noSpecialCharactersExceptHyphenSpaceOrPeriodMessage
+    )
+    .matches(
+      noSpecialCharacterAtStartOrEndRegex,
+      noSpecialCharacterAtStartOrEndMessage
+    )
+    .min(min3CharactersInt, min3CharactersMessage),
   lastName: Yup.string()
     .required(requiredMessage)
+    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
+    .matches(noDoubleSpacesRegex, noDoubleSpacesMessage)
     .matches(
       nameFirstCharacterUppercaseRegex,
       nameFirstCharacterUppercaseMessage
     )
-    .min(min3CharactersInt, min3CharactersMessage)
-    .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage),
+    .matches(
+      noSpecialCharactersExceptHyphenSpaceOrPeriodRegex,
+      noSpecialCharactersExceptHyphenSpaceOrPeriodMessage
+    )
+    .matches(
+      noSpecialCharacterAtStartOrEndRegex,
+      noSpecialCharacterAtStartOrEndMessage
+    )
+    .min(min3CharactersInt, min3CharactersMessage),
   date: Yup.date().typeError(invalidDateMessage).required(requiredMessage),
 });

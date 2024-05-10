@@ -1,16 +1,17 @@
 // cant enter even 1 space or multiple
 export const noSpacesRegex = /^\S*$/;
 export const noSpacesMessage = "No spaces allowed";
-
 export const noLeadingOrTrailingSpacesRegex = /^[^\s].*[^\s]$/;
 export const noLeadingOrTrailingSpacesMessage = "No spaces at start or end";
-
 export const noSpecialCharacterAtStartOrEndRegex = /^[^\W_].*[^\W_]$/;
 export const noSpecialCharacterAtStartOrEndMessage =
   "No special characters at start or end";
-
 export const noDoubleSpacesRegex = /^(?!.*  ).*$/;
 export const noDoubleSpacesMessage = "No double spaces";
+export const noSpecialCharactersExceptHyphenSpaceOrPeriodRegex =
+  /^[a-zA-Z0-9\s.-]*$/;
+export const noSpecialCharactersExceptHyphenSpaceOrPeriodMessage =
+  "No special characters except hyphen, space or period";
 
 export const notOnlyNumbersRegex = /^(?!\d+$).*$/;
 export const notOnlyNumbersMessage = "Can't be only numbers";
@@ -30,7 +31,7 @@ export const onlyNumbersMessage = "Only numbers allowed";
 
 export const requiredMessage = "This Field is required";
 
-export const nameFirstCharacterUppercaseRegex = /^([A-Z][a-z]*\.?\s?-?)*$/;
+export const nameFirstCharacterUppercaseRegex = /^[A-Z]/;
 export const nameFirstCharacterUppercaseMessage = "First word must be capital.";
 
 export const min3CharactersInt = 3;
