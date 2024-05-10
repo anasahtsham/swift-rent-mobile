@@ -1,5 +1,8 @@
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   BackHandler,
   FlatList,
   SafeAreaView,
@@ -13,11 +16,10 @@ import {
   borderGreen,
   borderRed,
 } from "../../../../assets/themes/DarkColorScheme";
-import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
+import { useUserID } from "../../../../helpers/SetUserID";
 import {
-  pendingRentsData,
-  receivedRentsData,
   rentsPaidData,
   rentsPendingData,
 } from "../../../../helpers/data/RentsData";
@@ -26,10 +28,13 @@ import RentsCard from "../../cards/RentsCard";
 const Rents = ({ navigation, route }) => {
   const colors = useColors();
   const { header } = route.params;
+  const userID = useUserID();
+  const [loading, setLoading] = useState(true);
+
+  const [dataToBeRendered, setDataToBeRendered] = useState([]);
 
   let firstButtonText = "";
   let secondButtonText = "";
-  let dataToBeRendered = [];
 
   if (header === "Received Rents" || header === "Pending Rents") {
     firstButtonText = "Received Rents";
@@ -39,20 +44,46 @@ const Rents = ({ navigation, route }) => {
     secondButtonText = "Rents Pending";
   }
 
-  if (header === "Received Rents") {
-    dataToBeRendered = receivedRentsData;
-  }
-  if (header === "Pending Rents") {
-    dataToBeRendered = pendingRentsData;
-  }
-  if (header === "Rents Paid") {
-    dataToBeRendered = rentsPaidData;
-  }
-  if (header === "Rents Pending") {
-    dataToBeRendered = rentsPendingData;
-  }
-
   useEffect(() => {
+    setLoading(true);
+
+    if (userID) {
+      if (header === "Received Rents") {
+        axios
+          .post(`${BASE_URL}/api/owner/paid-list`, { ownerID: userID })
+          .then((response) => {
+            setDataToBeRendered(response.data.paidRents);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+      if (header === "Pending Rents") {
+        axios
+          .post(`${BASE_URL}/api/owner/pending-list`, { ownerID: userID })
+          .then((response) => {
+            setDataToBeRendered(response.data.pendingRents);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+      if (header === "Rents Paid") {
+        setDataToBeRendered(rentsPaidData);
+      }
+      if (header === "Rents Pending") {
+        setDataToBeRendered(rentsPendingData);
+      }
+    }
+
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -63,19 +94,17 @@ const Rents = ({ navigation, route }) => {
       backAction
     );
     return () => backHandler.remove();
-  }, []);
+  }, [header, userID]);
 
   const renderItem = ({ item: rent }) => (
     <RentsCard
+      header={header}
       colors={colors}
       key={rent.id}
-      address={rent.address}
-      city={rent.city}
-      manager={rent.manager}
-      tenant={rent.tenant}
-      amountCollected={rent.amountCollected}
-      rentPaid={rent.rentPaid}
-      rentAmount={rent.rentAmount}
+      address={rent.propertyaddress}
+      tenant={rent.tenantname}
+      amountCollected={rent.rentamount}
+      createdOn={rent.createdon}
     />
   );
 
@@ -98,13 +127,33 @@ const Rents = ({ navigation, route }) => {
           {header}
         </Text>
       </View>
-      <FlatList
-        data={dataToBeRendered}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.buttons}
-        ListFooterComponent={<View style={{ height: 10 }} />}
-      />
+
+      {loading && <ActivityIndicator size="large" color={colors.textWhite} />}
+
+      {!loading && dataToBeRendered.length === 0 && (
+        <Text
+          style={{
+            color: colors.textPrimary,
+            fontSize: FontSizes.medium,
+            textAlign: "center",
+          }}
+        >
+          No data to show
+        </Text>
+      )}
+
+      {!loading && dataToBeRendered.length > 0 && (
+        <FlatList
+          data={dataToBeRendered}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.buttons}
+          ListFooterComponent={<View style={{ height: 10 }} />}
+        />
+      )}
+
+      <View style={{ height: 70 }} />
+
       <View
         style={[
           styles.footer,
@@ -178,6 +227,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   footer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
     height: 70,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

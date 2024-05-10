@@ -36,7 +36,7 @@ const AnalyticalReportLineGraph = (props) => {
     .line()
     .x((d, i) => scaleX(i))
     .y((d) => scaleY(d))
-    .curve(d3.curveBasis);
+    .curve(d3.curveMonotoneX);
 
   const [tooltip, setTooltip] = useState({
     visible: false,

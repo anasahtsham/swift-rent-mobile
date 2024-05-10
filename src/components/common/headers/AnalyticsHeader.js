@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import MainCard from "./analytics_header/MainCard";
 import SecondaryCard from "./analytics_header/SecondaryCard";
 
@@ -23,6 +23,37 @@ const AnalyticsHeader = (props) => {
     }
   };
 
+  if (props.loading) {
+    return (
+      <View
+        style={[
+          {
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+            paddingBottom: 15,
+            borderBottomLeftRadius: 20,
+            borderBottomRightRadius: 20,
+            alignItems: "center",
+            width: "100%",
+            backgroundColor: colors.headerAndFooterBackground,
+          },
+        ]}
+      >
+        <View
+          style={{
+            borderColor: colors.borderBlue,
+            borderWidth: 4,
+            borderRadius: 20,
+            padding: 20,
+            alignSelf: "center",
+          }}
+        >
+          <ActivityIndicator size="large" color={colors.textWhite} />
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View
       style={[
@@ -45,14 +76,14 @@ const AnalyticsHeader = (props) => {
       </View>
       <View style={styles.receivedAndPendingRentsContainer}>
         <SecondaryCard
-          // onPress={goToTopRentsScreen}
+          onPress={goToTopRentsScreen}
           receivedRents={props.receivedRents}
           rentsPaid={props.rentsPaid}
           colors={colors}
         />
         <View style={{ height: 10 }}></View>
         <SecondaryCard
-          // onPress={goToBottomRentsScreen}
+          onPress={goToBottomRentsScreen}
           pendingRents={props.pendingRents}
           rentsPending={props.rentsPending}
           colors={colors}

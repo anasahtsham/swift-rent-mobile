@@ -1,23 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { useColorsOnFocus } from "../../../../helpers/SetColors";
-import { useUserID } from "../../../../helpers/SetUserID";
-import { useUserType } from "../../../../helpers/SetUserType";
 import AnalyticsButton from "../../buttons/AnalyticsButton";
 import AnalyticsHeader from "../../headers/AnalyticsHeader";
 
 const Analytics = (props) => {
-  const userID = useUserID();
-  const userType = useUserType();
-
-  // useFocusEffect(() => {
-  //   if (userID !== null && userType !== null) {
-  //     console.log("userType", userType);
-  //     console.log("userID", userID);
-  //   }
-  // });
-
   const navigation = useNavigation();
   const colors = useColorsOnFocus();
 
@@ -40,6 +35,7 @@ const Analytics = (props) => {
       style={[styles.container, { backgroundColor: colors.bodyBackground }]}
     >
       <AnalyticsHeader
+        loading={props.loading}
         month={props.month}
         totalRentsPaid={props.totalRentsPaid}
         rentals={props.rentals}
@@ -70,13 +66,20 @@ const Analytics = (props) => {
             : "Monthly Reports"}
         </Text>
       </View>
-      <FlatList
-        data={props.analyticsData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.buttons}
-        ListFooterComponent={<View style={{ height: 70 }} />}
-      />
+
+      {props.loading && (
+        <ActivityIndicator size="large" color={colors.textWhite} />
+      )}
+
+      {!props.loading && (
+        <FlatList
+          data={props.analyticsData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.buttons}
+          ListFooterComponent={<View style={{ height: 70 }} />}
+        />
+      )}
     </SafeAreaView>
   );
 };

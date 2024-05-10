@@ -11,24 +11,14 @@ export const RentsCard = (props) => {
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View>
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+        <Text
+          style={[
+            styles.fontBold,
+            { color: colors.textPrimary, fontSize: FontSizes.medium },
+          ]}
+        >
           {props.address}
         </Text>
-
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-          {props.city}
-        </Text>
-
-        {!!props.manager && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Manager:{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.manager}
-            </Text>
-          </View>
-        )}
 
         {!!props.tenant && (
           <View style={{ flexDirection: "row" }}>
@@ -44,13 +34,18 @@ export const RentsCard = (props) => {
         {!!props.amountCollected && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Collected:{" "}
+              {props.header === "Received Rents"
+                ? "Amount Collected: "
+                : "Pending Rent: "}
             </Text>
             <Text
               style={[
                 styles.fontBold,
                 {
-                  color: colors.textGreen,
+                  color:
+                    props.header === "Received Rents"
+                      ? colors.textGreen
+                      : colors.textRed,
                 },
               ]}
             >
@@ -62,44 +57,13 @@ export const RentsCard = (props) => {
           </View>
         )}
 
-        {!!props.rentPaid && (
+        {!!props.createdOn && (
           <View style={{ flexDirection: "row" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Paid:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color: colors.textGreen,
-                },
-              ]}
-            >
-              {formatNumberToCrore(props.rentPaid)}{" "}
+              Created On:{" "}
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
-            </Text>
-          </View>
-        )}
-
-        {!!props.rentAmount && (
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Rent:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.fontBold,
-                {
-                  color: colors.textRed,
-                },
-              ]}
-            >
-              {formatNumberToCrore(props.rentAmount)}{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              PKR
+              {props.createdOn}
             </Text>
           </View>
         )}

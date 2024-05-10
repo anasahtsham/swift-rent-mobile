@@ -6,32 +6,11 @@ import { formatNumberToCrore } from "./../../../helpers/utils/index";
 const AnalyticalReportHeader = (props) => {
   const colors = props.colors;
 
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const monthNames = ["May", "June", "July"];
 
-  const totalRevenues = [
-    14000, 21000, 28000, 35000, 42000, 49000, 45500, 42000, 38500, 35000, 31500,
-    35000, 38500, 42000, 45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
-    45500, 42000, 38500, 35000, 31500, 35000, 38500, 42000,
-  ];
+  const totalRevenues = [14000, 0, 0];
 
-  const totalMaintenanceCosts = [
-    3000, 4000, 6000, 7000, 9000, 10000, 4500, 5000, 7500, 9000, 8500, 8000,
-    5500, 3000, 3500, 4000, 6500, 8000, 10500, 11500, 13500, 14000, 13000,
-    10500, 8500, 6500, 6000, 6500, 9000, 8500,
-  ];
+  const totalMaintenanceCosts = [3000, 0, 0];
 
   const totalProfits = totalRevenues.map(
     (revenue, index) => revenue - totalMaintenanceCosts[index]
