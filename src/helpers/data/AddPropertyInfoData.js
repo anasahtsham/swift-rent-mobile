@@ -228,14 +228,8 @@ export const apartmentCheckboxes = [
   { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Furnished", stateKey: "isFurnished" },
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
-  {
-    label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateMeter",
-  },
-  { label: "Servant Rooms", stateKey: "hasServantRooms" },
   { label: "Wi-Fi", stateKey: "hasWiFi" },
   { label: "Air Conditioned", stateKey: "isAirConditioned" },
-  { label: "Furnished", stateKey: "isFurnished" },
   { label: "Shared", stateKey: "isShared" },
 ];
 
@@ -251,13 +245,8 @@ export const roomCheckboxes = [
   },
   { label: "Furnished", stateKey: "isFurnished" },
   { label: "Safety Exit", stateKey: "hasSafetyExit" },
-  {
-    label: "Seperate Electricity Meter",
-    stateKey: "hasSeperateMeter",
-  },
   { label: "Wi-Fi", stateKey: "hasWiFi" },
   { label: "Air Conditioned", stateKey: "isAirConditioned" },
-  { label: "Furnished", stateKey: "isFurnished" },
   { label: "Shared", stateKey: "isShared" },
 ];
 
