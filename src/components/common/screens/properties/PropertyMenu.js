@@ -55,6 +55,8 @@ const PropertyMenu = ({ route }) => {
       },
       totalMaintenanceCost: 0,
       totalPropertyRevenue: 0,
+      managerName: "Manager Name",
+      ownerName: "Owner Name",
     },
   ]);
 
@@ -295,23 +297,25 @@ const PropertyMenu = ({ route }) => {
         flex: 1,
       }}
     >
-      {!!header[0].ownerName ? (
-        <PropertyMenuHeader // if displaying to manager
+      {userType === "T" ? (
+        <PropertyMenuHeader // if displaying to tenant
           propertyAddress={header[0].propertyAddress}
           ownerName={header[0].ownerName}
           rentStatus={header[0].rentStatus}
           totalIncome={header[0].totalIncome}
           colors={colors}
         />
-      ) : !!header[0].managerName ? (
-        <PropertyMenuHeader // if displaying to tenant
-          propertyAddress={header[0].propertyAddress}
-          ownerName={header[0].ownerName}
-          managerName={header[0].managerName}
-          rentStatus={header[0].rentStatus}
-          totalSubmittedRent={header[0].totalSubmittedRent}
-          colors={colors}
-        />
+      ) : userType === "M" ? (
+        <>
+          <PropertyMenuHeader // if displaying to manager
+            propertyAddress={header[0].propertyAddress}
+            ownerName={header[0].ownerName}
+            managerName={header[0].managerName}
+            rentStatus={header[0].rentStatus}
+            totalSubmittedRent={header[0].totalSubmittedRent}
+            colors={colors}
+          />
+        </>
       ) : (
         <PropertyMenuHeader // if displaying to owner
           propertyAddress={header[0].propertyAddress}
@@ -349,8 +353,8 @@ const PropertyMenu = ({ route }) => {
         {leaseInformation[0].tenantid > 0 && (
           <Card title="Lease Information">
             {((userType === "O" &&
-              (header[0].rentStatus.tenantPaymentStatus === "Pending" ||
-                header[0].rentStatus.tenantPaymentStatus === "Collected")) ||
+              (header[0].rentStatus.tenantPaymentStatus === "P" ||
+                header[0].rentStatus.tenantPaymentStatus === "C")) ||
               userType === "M") && (
               <>
                 <CardRow
@@ -583,6 +587,7 @@ const PropertyMenu = ({ route }) => {
               loading={deleteHireRequestLoading}
               onPress={() => {
                 deleteHireRequest(id, setDeleteHireRequestLoading);
+                fetchData();
               }}
               text={"Delete Hire Request"}
               colors={colors}
@@ -595,6 +600,7 @@ const PropertyMenu = ({ route }) => {
               loading={fireManagerLoading}
               onPress={() => {
                 fireManager(id, setFireManagerLoading);
+                fetchData();
               }}
               text={"Fire Manager"}
               colors={colors}

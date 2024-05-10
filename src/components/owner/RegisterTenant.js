@@ -138,6 +138,18 @@ const RegisterTenant = ({ navigation, route }) => {
       }}
       validationSchema={currentSchema}
       onSubmit={(values, { setErrors }) => {
+        if (
+          isYearlyIncreaseEditable &&
+          parseInt(values.incrementPeriod) >= parseInt(values.leasedForMonths)
+        ) {
+          setErrors({
+            incrementPeriod:
+              "Increment Period can not be more than Leased For Months",
+            leasedForMonths:
+              "Increment Period can not be more than Leased For Months",
+          });
+          return;
+        }
         Alert.alert(
           "Confirmation",
           "Are you sure you want to send registration request to this tenant?",
@@ -150,19 +162,6 @@ const RegisterTenant = ({ navigation, route }) => {
               text: "OK",
               onPress: () => {
                 setLoading(true);
-                if (
-                  isYearlyIncreaseEditable &&
-                  parseInt(values.incrementPeriod) >=
-                    parseInt(values.leasedForMonths)
-                ) {
-                  setErrors({
-                    incrementPeriod:
-                      "Increment Period can not be more than or equal to Leased For Months",
-                    leasedForMonths:
-                      "Increment Period can not be more than or equal to Leased For Months",
-                  });
-                  return;
-                }
 
                 const data = {
                   // sorted in order for postman

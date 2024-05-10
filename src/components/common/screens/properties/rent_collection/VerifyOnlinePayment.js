@@ -168,6 +168,7 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
 
             <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
               <InputFieldWithHint
+                fieldType="numeric"
                 label="Money Received*"
                 value={values.moneyReceived}
                 handleChange={handleChange("moneyReceived")}

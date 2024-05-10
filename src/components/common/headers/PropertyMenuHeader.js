@@ -11,6 +11,8 @@ const PropertyMenuHeader = (props) => {
         return "Collected";
       case "P":
         return "Pending";
+      case "S":
+        return "Skipped";
       default:
         return status;
     }
@@ -45,7 +47,7 @@ const PropertyMenuHeader = (props) => {
     );
   }
 
-  if (!!props.ownerName) {
+  if (!!props.managerName) {
     // if displaying to manager
     return (
       <View
@@ -175,7 +177,7 @@ const PropertyMenuHeader = (props) => {
             </Text>
           </View>
 
-          <View style={styles.inRow}>
+          <View style={[styles.inRow, { marginTop: 5 }]}>
             <Text
               style={[styles.topCardTopText, { color: colors.textPrimary }]}
             >
@@ -186,16 +188,18 @@ const PropertyMenuHeader = (props) => {
             </Text>
           </View>
 
-          <View style={styles.inRow}>
-            <Text
-              style={[styles.topCardTopText, { color: colors.textPrimary }]}
-            >
-              Total Submitted Rent
-            </Text>
-            <Text style={[styles.nestedText, { color: colors.textGreen }]}>
-              {formatNumberToCrore(props.totalSubmittedRent)}
-            </Text>
-          </View>
+          {!!props.totalSubmittedRent && (
+            <View style={styles.inRow}>
+              <Text
+                style={[styles.topCardTopText, { color: colors.textPrimary }]}
+              >
+                Total Submitted Rent
+              </Text>
+              <Text style={[styles.nestedText, { color: colors.textGreen }]}>
+                {formatNumberToCrore(props.totalSubmittedRent)}
+              </Text>
+            </View>
+          )}
         </View>
       </View>
     );
