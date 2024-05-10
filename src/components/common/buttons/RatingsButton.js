@@ -7,19 +7,26 @@ import { icons } from "./../../../helpers/ImageImports";
 export const RatingsButton = (props) => {
   const colors = props.colors;
   const navigation = useNavigation();
+
+  const isLiked = props.ratingOpinon === "D" ? false : true;
+
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("Rating Screen", {
-          userNameValue: props.userName,
-          userTypeValue: props.userType,
-          addressValue: props.address,
-          ratingValue: props.rating,
-          isLikedValue: props.isLiked,
-          remarksValue: props.remarks,
-        });
+        if (props.currentScreen === "Pending Ratings") {
+          navigation.navigate("Rating Screen", {
+            ratingID: props.ratingID,
+            userNameValue: props.userName,
+            addressValue: props.address,
+            ratingValue: props.rating,
+            isLikedValue: isLiked,
+            remarksValue: props.remarks,
+          });
+        }
       }}
-      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+      activeOpacity={
+        props.currentScreen === "Pending Ratings" ? OPACITY_VALUE_FOR_BUTTON : 1
+      }
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View
@@ -29,15 +36,23 @@ export const RatingsButton = (props) => {
           justifyContent: "space-between",
         }}
       >
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+        <Text
+          style={[
+            styles.fontBold,
+            { color: colors.textPrimary, fontSize: FontSizes.medium },
+          ]}
+        >
           {props.userName}
         </Text>
         <View style={{ alignItems: "flex-end" }}>
-          <Image
-            source={icons.externalLink}
-            tintColor={colors.iconPrimary}
-            style={styles.icon}
-          />
+          {props.currentScreen === "Pending Ratings" && (
+            <Image
+              source={icons.externalLink}
+              tintColor={colors.iconPrimary}
+              style={styles.icon}
+            />
+          )}
+
           <Text style={[styles.fontBold, { color: colors.textGreen }]}>
             {props.userType}
           </Text>
@@ -53,7 +68,18 @@ export const RatingsButton = (props) => {
         </Text>
       </View>
 
-      {(!!props.rating || !!props.isLiked || !!props.remarks) && (
+      {props.currentScreen === "Pending Ratings" ? (
+        <>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Start Date:{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              {props.ratedOn}
+            </Text>
+          </View>
+        </>
+      ) : (
         <>
           <View
             style={{
@@ -87,18 +113,28 @@ export const RatingsButton = (props) => {
               style={styles.icon}
               tintColor={colors.iconYellow}
             />
+            <Image
+              source={isLiked ? icons.like : icons.dislike}
+              style={[styles.icon, { marginLeft: 10 }]}
+              tintColor={isLiked ? colors.iconGreen : colors.iconRed}
+            />
           </View>
-          <Image
-            source={props.isLiked ? icons.like : icons.dislike}
-            style={[styles.icon, { marginBottom: 5 }]}
-            tintColor={props.isLiked ? colors.iconGreen : colors.iconRed}
-          />
+
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
               Remarks:{" "}
             </Text>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               {props.remarks}
+            </Text>
+          </View>
+
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Rated On:{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              {props.ratedOn}
             </Text>
           </View>
         </>

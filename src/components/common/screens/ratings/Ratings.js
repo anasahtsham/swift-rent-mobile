@@ -1,5 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   BackHandler,
   FlatList,
   SafeAreaView,
@@ -14,31 +17,83 @@ import {
   borderGreen,
   borderRed,
 } from "../../../../assets/themes/DarkColorScheme";
-import { OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
+import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
-import {
-  givenRatings,
-  myRatings,
-  pendingRatings,
-} from "../../../../helpers/data/RatingsData";
 import RatingsButton from "../../buttons/RatingsButton";
+import { useUserID } from "./../../../../helpers/SetUserID";
+import { useUserType } from "./../../../../helpers/SetUserType";
 
 const Ratings = ({ navigation }) => {
   const colors = useColors();
+  const userID = useUserID();
+  const userType = useUserType();
+  const [loading, setLoading] = useState(true);
 
   const [currentScreen, setCurrentScreen] = useState("My Ratings");
 
-  let dataToBeRendered = [];
-
-  if (currentScreen === "My Ratings") {
-    dataToBeRendered = myRatings;
-  } else if (currentScreen === "Given Ratings") {
-    dataToBeRendered = givenRatings;
-  } else if (currentScreen === "Pending Ratings") {
-    dataToBeRendered = pendingRatings;
-  }
+  const [dataToBeRendered, setDataToBeRendered] = useState([]);
 
   useEffect(() => {
+    if (userType && userID) {
+      setLoading(true);
+
+      if (currentScreen === "My Ratings") {
+        const data = {
+          userID: userID,
+          userType: userType,
+        };
+
+        axios
+          .post(`${BASE_URL}/api/common/fetch-my-ratings`, data)
+          .then((response) => {
+            setDataToBeRendered(response.data.success);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else if (currentScreen === "Given Ratings") {
+        const data = {
+          userID: userID,
+          userType: userType,
+        };
+
+        axios
+          .post(`${BASE_URL}/api/common/fetch-given-ratings`, data)
+          .then((response) => {
+            setDataToBeRendered(response.data.success);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else if (currentScreen === "Pending Ratings") {
+        const data = {
+          userID: userID,
+          userType: userType,
+        };
+
+        axios
+          .post(`${BASE_URL}/api/common/fetch-pending-ratings`, data)
+          .then((response) => {
+            setDataToBeRendered(response.data.success);
+          })
+          .catch((error) => {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    }
+
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -49,18 +104,21 @@ const Ratings = ({ navigation }) => {
       backAction
     );
     return () => backHandler.remove();
-  }, []);
+  }, [currentScreen, userID, userType]);
 
   const renderItem = ({ item: rating }) => (
     <RatingsButton
       colors={colors}
       key={rating.id}
-      userName={rating.userName}
+      ratingID={rating.id}
+      currentScreen={currentScreen}
+      userName={rating.ratername || rating.rateename}
       userType={rating.userType}
       address={rating.address}
-      rating={rating.rating}
-      isLiked={rating.isLiked}
-      remarks={rating.remarks}
+      rating={rating.ratingstars}
+      ratingOpinon={rating.ratingopinon}
+      remarks={rating.ratingcomment}
+      ratedOn={rating.ratedon || rating.ratingstartdate}
     />
   );
 
@@ -83,13 +141,21 @@ const Ratings = ({ navigation }) => {
           {currentScreen}
         </Text>
       </View>
-      <FlatList
-        data={dataToBeRendered}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.buttons}
-        ListFooterComponent={<View style={{ height: 10 }} />}
-      />
+
+      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+
+      {!loading && (
+        <FlatList
+          data={dataToBeRendered}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.buttons}
+          ListFooterComponent={<View style={{ height: 10 }} />}
+        />
+      )}
+
+      <View style={{ height: 100 }} />
+
       <View
         style={[
           styles.footer,
@@ -192,6 +258,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   footer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
     height: "13%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

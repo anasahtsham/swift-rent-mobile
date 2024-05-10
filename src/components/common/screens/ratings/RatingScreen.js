@@ -1,6 +1,8 @@
+import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import {
+  Alert,
   BackHandler,
   Image,
   StyleSheet,
@@ -11,7 +13,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
-import { BUTTON_WIDTH_MEDIUM } from "../../../../constants";
+import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../../../constants";
 import { icons } from "../../../../helpers/ImageImports";
 import { useColors } from "../../../../helpers/SetColors";
 import { ratingScreenSchema } from "../../../../helpers/validation/RatingScreenValidation";
@@ -21,13 +23,14 @@ import RatingStars from "./RatingStars";
 const RatingScreen = ({ navigation, route }) => {
   const colors = useColors();
   const {
+    ratingID = 0,
     userNameValue = "User Name",
-    userTypeValue = "User Type",
     addressValue = "Address",
     ratingValue = 0,
     isLikedValue = false,
     remarksValue = "",
   } = route.params || {};
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (ratingValue) {
@@ -59,18 +62,48 @@ const RatingScreen = ({ navigation, route }) => {
     <Formik
       initialValues={{ remark: !!remarksValue ? remarksValue : "" }}
       validationSchema={ratingScreenSchema}
-      onSubmit={() => {
-        navigation.goBack();
+      onSubmit={(values) => {
+        Alert.alert(
+          "Confirmation",
+          "Are you sure you want to submit the rating?",
+          [
+            {
+              text: "Cancel",
+              onPress: () => setLoading(false),
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                setLoading(true);
+
+                const data = {
+                  ratingID: ratingID,
+                  ratingStars: rating,
+                  ratingOpinon: isLiked ? "L" : "D",
+                  ratingComment: values.remark,
+                };
+
+                axios
+                  .post(`${BASE_URL}/api/common/submit-rating`, data)
+                  .then(() => {
+                    navigation.goBack();
+                  })
+                  .catch((error) => {
+                    Alert.alert("Error", "Something went wrong");
+                    console.log(JSON.stringify(error.response, null, 2));
+                  })
+                  .finally(() => {
+                    setLoading(false);
+                  });
+              },
+            },
+          ],
+          { cancelable: false }
+        );
       }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-      }) => (
+      {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <KeyboardAwareScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -90,7 +123,7 @@ const RatingScreen = ({ navigation, route }) => {
             ]}
           >
             <View style={[styles.cardHeader, {}]}>
-              <View style={{ justifyContent: "space-between", width: "60%" }}>
+              <View style={{ justifyContent: "space-between", width: "100%" }}>
                 <Text
                   style={[
                     styles.fontBold,
@@ -98,25 +131,6 @@ const RatingScreen = ({ navigation, route }) => {
                   ]}
                 >
                   {!!userNameValue ? userNameValue : "User Name"}
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "flex-start",
-                  height: "90%",
-                }}
-              >
-                <Text
-                  style={[
-                    styles.fontBold,
-                    {
-                      color: colors.textGreen,
-                      fontSize: FontSizes.small,
-                    },
-                  ]}
-                >
-                  {!!userTypeValue ? userTypeValue : "User Type"}
                 </Text>
               </View>
             </View>
@@ -210,6 +224,7 @@ const RatingScreen = ({ navigation, route }) => {
           </View>
 
           <ButtonGrey
+            loading={loading}
             fontSize={FontSizes.medium}
             width={BUTTON_WIDTH_MEDIUM}
             buttonText="Submit"

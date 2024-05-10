@@ -45,14 +45,14 @@ const AnalyticsHeader = (props) => {
       </View>
       <View style={styles.receivedAndPendingRentsContainer}>
         <SecondaryCard
-          onPress={goToTopRentsScreen}
+          // onPress={goToTopRentsScreen}
           receivedRents={props.receivedRents}
           rentsPaid={props.rentsPaid}
           colors={colors}
         />
         <View style={{ height: 10 }}></View>
         <SecondaryCard
-          onPress={goToBottomRentsScreen}
+          // onPress={goToBottomRentsScreen}
           pendingRents={props.pendingRents}
           rentsPending={props.rentsPending}
           colors={colors}
