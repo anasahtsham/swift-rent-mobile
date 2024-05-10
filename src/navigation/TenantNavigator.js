@@ -1,5 +1,4 @@
 import TenantAlerts from "../screens/tenant/TenantAlerts";
-import TenantAnalytics from "../screens/tenant/TenantAnalytics";
 import TenantProfile from "../screens/tenant/TenantProfile";
 import TenantRentals from "../screens/tenant/TenantRentals";
 import TabNavigator from "./TabNavigator";
@@ -9,8 +8,6 @@ import TabNavigator from "./TabNavigator";
 const TenantNavigator = () => {
   return (
     <TabNavigator
-      screen1="Analytics"
-      component1={TenantAnalytics}
       screen2="Rentals"
       component2={TenantRentals}
       screen3="Alerts"

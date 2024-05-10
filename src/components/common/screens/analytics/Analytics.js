@@ -20,10 +20,10 @@ const Analytics = (props) => {
     <AnalyticsButton
       colors={colors}
       key={data.id}
-      month={data.month}
-      incomingPayment={data.incomingPayment}
+      month={data.currentdate}
+      incomingPayment={data.rentcollected}
       commissionEarned={data.commissionEarned}
-      outgoingPayment={data.outgoingPayment}
+      outgoingPayment={data.maintenancecost}
       properties={data.properties}
       backgroundColor={colors.backgroundRed}
       navigation={navigation}

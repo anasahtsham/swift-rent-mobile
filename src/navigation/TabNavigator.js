@@ -112,22 +112,25 @@ const TabNavigator = (props) => {
         },
       }}
     >
-      <BottomTab.Screen
-        name={screen1}
-        component={props.component1}
-        options={{
-          tabBarLabel: (props) => (
-            <AnimatedTabBarLabel {...props} text={screen1} colors={colors} />
-          ),
-          tabBarIcon: (props) => (
-            <AnimatedTabBarIcon
-              {...props}
-              source={icons.analyticsIcon}
-              colors={colors}
-            />
-          ),
-        }}
-      />
+      {props.screen1 !== undefined && (
+        <BottomTab.Screen
+          name={screen1}
+          component={props.component1}
+          options={{
+            tabBarLabel: (props) => (
+              <AnimatedTabBarLabel {...props} text={screen1} colors={colors} />
+            ),
+            tabBarIcon: (props) => (
+              <AnimatedTabBarIcon
+                {...props}
+                source={icons.analyticsIcon}
+                colors={colors}
+              />
+            ),
+          }}
+        />
+      )}
+
       <BottomTab.Screen
         name={screen2}
         component={props.component2}
@@ -178,6 +181,7 @@ const TabNavigator = (props) => {
           ),
         }}
       />
+
       <BottomTab.Screen
         name={screen4}
         component={props.component4}

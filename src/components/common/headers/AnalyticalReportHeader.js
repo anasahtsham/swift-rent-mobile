@@ -6,11 +6,11 @@ import { formatNumberToCrore } from "./../../../helpers/utils/index";
 const AnalyticalReportHeader = (props) => {
   const colors = props.colors;
 
-  const monthNames = ["May", "June", "July"];
+  const monthNames = props.monthNames;
 
-  const totalRevenues = [14000, 0, 0];
+  const totalRevenues = props.totalRevenues;
 
-  const totalMaintenanceCosts = [3000, 0, 0];
+  const totalMaintenanceCosts = props.totalMaintenanceCosts;
 
   const totalProfits = totalRevenues.map(
     (revenue, index) => revenue - totalMaintenanceCosts[index]

@@ -1,6 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
 import { icons } from "../../../helpers/ImageImports";
 import { formatNumberToCrore } from "../../../helpers/utils";
 
@@ -8,10 +7,11 @@ export const AnalyticsButton = (props) => {
   const colors = props.colors;
   return (
     <TouchableOpacity
-      onPress={() => {
-        props.navigation.navigate("Month Report");
-      }}
-      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+      // onPress={() => {
+      //   props.navigation.navigate("Month Report");
+      // }}
+      // activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+      activeOpacity={1}
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <Text
@@ -108,12 +108,6 @@ export const AnalyticsButton = (props) => {
           {!!props.incomingPayment ? "" : " PKR"}
         </Text>
       )}
-
-      <Image
-        tintColor={colors.iconPrimary}
-        source={icons.externalLink}
-        style={{ width: 20, height: 20 }}
-      />
     </TouchableOpacity>
   );
 };
