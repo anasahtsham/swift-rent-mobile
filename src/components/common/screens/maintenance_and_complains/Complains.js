@@ -29,7 +29,7 @@ const Complains = ({ navigation }) => {
   const colors = useColors();
   const [loading, setLoading] = useState(true);
 
-  const [header, setHeader] = useState("Sent Complains");
+  const [header, setHeader] = useState("Sent Complaints");
   const [sentComplaints, setSentComplaints] = useState([]);
   const [receivedComplaints, setReceivedComplaints] = useState([]);
 
@@ -74,7 +74,7 @@ const Complains = ({ navigation }) => {
 
   useEffect(() => {
     // based on which header is selected, render the data
-    if (header === "Sent Complains") {
+    if (header === "Sent Complaints") {
       setDataToRender(sentComplaints);
     } else {
       setDataToRender(receivedComplaints);
@@ -159,18 +159,18 @@ const Complains = ({ navigation }) => {
           activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderBlue }]}
           onPress={() => {
-            setHeader("Sent Complains");
+            setHeader("Sent Complaints");
           }}
         >
           <Text
             style={[
-              header === "Sent Complains"
+              header === "Sent Complaints"
                 ? styles.fontBold
                 : styles.fontRegular,
               { color: colors.textPrimary, fontSize: FontSizes.small },
             ]}
           >
-            Sent Complains
+            Sent Complaints
           </Text>
         </TouchableOpacity>
 
@@ -178,18 +178,18 @@ const Complains = ({ navigation }) => {
           activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           style={[styles.button, { borderColor: borderRed }]}
           onPress={() => {
-            setHeader("Recieved Complains");
+            setHeader("Recieved Complaints");
           }}
         >
           <Text
             style={[
-              header === "Recieved Complains"
+              header === "Recieved Complaints"
                 ? styles.fontBold
                 : styles.fontRegular,
               { color: colors.textPrimary, fontSize: FontSizes.small },
             ]}
           >
-            Recieved Complains
+            Recieved Complaints
           </Text>
         </TouchableOpacity>
       </View>

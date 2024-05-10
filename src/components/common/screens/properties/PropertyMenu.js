@@ -297,26 +297,26 @@ const PropertyMenu = ({ route }) => {
         flex: 1,
       }}
     >
-      {userType === "T" ? (
-        <PropertyMenuHeader // if displaying to tenant
+      {userType === "M" && (
+        <PropertyMenuHeader // if displaying to manager
           propertyAddress={header[0].propertyAddress}
           ownerName={header[0].ownerName}
           rentStatus={header[0].rentStatus}
           totalIncome={header[0].totalIncome}
           colors={colors}
         />
-      ) : userType === "M" ? (
-        <>
-          <PropertyMenuHeader // if displaying to manager
-            propertyAddress={header[0].propertyAddress}
-            ownerName={header[0].ownerName}
-            managerName={header[0].managerName}
-            rentStatus={header[0].rentStatus}
-            totalSubmittedRent={header[0].totalSubmittedRent}
-            colors={colors}
-          />
-        </>
-      ) : (
+      )}
+      {userType === "T" && (
+        <PropertyMenuHeader // if displaying to tenant
+          propertyAddress={header[0].propertyAddress}
+          ownerName={header[0].ownerName}
+          managerName={header[0].managerName}
+          rentStatus={header[0].rentStatus}
+          totalSubmittedRent={header[0].totalSubmittedRent}
+          colors={colors}
+        />
+      )}
+      {userType === "O" && (
         <PropertyMenuHeader // if displaying to owner
           propertyAddress={header[0].propertyAddress}
           tenantPaymentStatus={header[0].rentStatus.tenantPaymentStatus}
@@ -667,7 +667,7 @@ const PropertyMenu = ({ route }) => {
               {/* only for manager */}
               {buttons[0].verifyOnlineRent && (
                 <PropertyMenuButton
-                  text={"Verify Online Payment From Tenant"}
+                  text={"Verify Online Payment"}
                   colors={colors}
                   onPress={() =>
                     navigation.navigate("Verify Online Payment", {
@@ -680,7 +680,7 @@ const PropertyMenu = ({ route }) => {
               {/* only for manager */}
               {buttons[0].collectRent && (
                 <PropertyMenuButton
-                  text={"Collect Rent From Tenant"}
+                  text={"Collect Rent"}
                   colors={colors}
                   onPress={() =>
                     navigation.navigate("Collect Rent", { propertyID: id })
@@ -695,7 +695,7 @@ const PropertyMenu = ({ route }) => {
               {/* only for owner */}
               {buttons[0].verifyOnlineRent && (
                 <PropertyMenuButton
-                  text={"Verify Online Payment From (Tenant or Manager)"}
+                  text={"Verify Online Payment"}
                   colors={colors}
                   onPress={() =>
                     navigation.navigate("Verify Online Payment", {
@@ -708,7 +708,7 @@ const PropertyMenu = ({ route }) => {
               {/* only for owner */}
               {buttons[0].collectRent && (
                 <PropertyMenuButton
-                  text={"Collect Rent From (Tenant or Manager)"}
+                  text={"Collect Rent"}
                   colors={colors}
                   onPress={() =>
                     navigation.navigate("Collect Rent", { propertyID: id })

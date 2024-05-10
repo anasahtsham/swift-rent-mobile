@@ -47,7 +47,7 @@ const PropertyMenuHeader = (props) => {
     );
   }
 
-  if (!!props.managerName) {
+  if (!!props.ownerName && props.managerName === undefined) {
     // if displaying to manager
     return (
       <View
@@ -109,7 +109,7 @@ const PropertyMenuHeader = (props) => {
               Total Income
             </Text>
             <Text style={[styles.nestedText, { color: colors.textGreen }]}>
-              {formatNumberToCrore(props.totalIncome)}
+              {formatNumberToCrore(props.totalIncome)} PKR
             </Text>
           </View>
         </View>
@@ -117,7 +117,7 @@ const PropertyMenuHeader = (props) => {
     );
   }
 
-  if (!!props.ownerName) {
+  if (!!props.managerName) {
     // if displaying to tenant
     return (
       <View

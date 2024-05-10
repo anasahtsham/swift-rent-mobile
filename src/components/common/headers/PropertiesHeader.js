@@ -58,7 +58,7 @@ const PropertiesHeader = (props) => {
             textAlign: "center",
           }}
         >
-          Complains
+          Complaints
         </Text>
       </TouchableOpacity>
     </View>
