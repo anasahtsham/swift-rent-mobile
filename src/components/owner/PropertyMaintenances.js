@@ -34,7 +34,6 @@ const PropertyMaintenances = ({ navigation, route }) => {
       axios
         .post(`${BASE_URL}/api/owner/display-maintenance-reports`, data)
         .then((response) => {
-          console.log("response", response.data);
           setData(response.data);
         })
         .catch((error) => {

@@ -20,7 +20,6 @@ export const RentalsButton = (props) => {
       onPress={() => {
         props.navigation.navigate("Property Menu", {
           id: props.id,
-          propertyAddress: props.address,
         });
       }}
       activeOpacity={OPACITY_VALUE_FOR_BUTTON}

@@ -72,6 +72,16 @@ const Profile = () => {
       <ScrollView>
         <View style={styles.buttons}>
           <Button
+            title="About SwiftRent"
+            titleStyle={{ color: colors.textPrimary }}
+            buttonStyle={[
+              styles.button,
+              { backgroundColor: colors.backgroundPrimary },
+            ]}
+            containerStyle={styles.buttonContainer}
+            onPress={() => navigation.navigate("About Swift Rent")}
+          />
+          <Button
             title="Change Password"
             titleStyle={{ color: colors.textPrimary }}
             buttonStyle={[

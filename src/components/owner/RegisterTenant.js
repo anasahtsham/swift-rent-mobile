@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect, useRef, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as FontSizes from "../../assets/fonts/FontSizes";
@@ -82,6 +82,18 @@ const RegisterTenant = ({ navigation, route }) => {
     if (valueRentDue) {
       setValueRentDueError(false);
     }
+
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
   }, [valueRentDue]);
 
   // Refs are used to focus on the next input field when the user presses "Next" on the keyboard

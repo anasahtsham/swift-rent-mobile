@@ -9,6 +9,7 @@ import Complains from "./src/components/common/screens/maintenance_and_complains
 import MaintenanceList from "./src/components/common/screens/maintenance_and_complains/MaintenanceList";
 import ProblemForm from "./src/components/common/screens/maintenance_and_complains/ProblemForm";
 import ViewComplain from "./src/components/common/screens/maintenance_and_complains/ViewComplain";
+import AboutSwiftRent from "./src/components/common/screens/profile/AboutSwiftRent";
 import ChangePassword from "./src/components/common/screens/profile/ChangePassword";
 import CustomerSupport from "./src/components/common/screens/profile/CustomerSupport";
 import FAQScreen from "./src/components/common/screens/profile/FAQScreen";
@@ -107,6 +108,7 @@ export default function App() {
             name="Verify Online Payment"
             component={VerifyOnlinePayment}
           />
+          <Stack.Screen name="About Swift Rent" component={AboutSwiftRent} />
 
           {/* Owner Screens */}
           <Stack.Screen name="Property Menu" component={PropertyMenu} />

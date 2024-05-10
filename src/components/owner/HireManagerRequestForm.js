@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Alert,
+  BackHandler,
   Keyboard,
   StyleSheet,
   Text,
@@ -161,6 +162,18 @@ const HireManagerRequestForm = ({ navigation, route }) => {
       setValidationSchema(managerFixedSchema);
     }
     // console.log(Object.keys(validationSchema.fields));
+
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
   }, [valuePaymentTypeDropdown]);
 
   function validateDropdowns() {
