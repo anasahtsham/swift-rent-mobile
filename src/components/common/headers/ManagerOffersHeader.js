@@ -74,7 +74,8 @@ const ManagerOffersHeader = (props) => {
           My Offer
         </Text>
 
-        <View style={styles.inRow}>
+        {/* limiting scope */}
+        {/* <View style={styles.inRow}>
           <Text
             style={[
               styles.fontBold,
@@ -91,7 +92,7 @@ const ManagerOffersHeader = (props) => {
           >
             {formatPurpose(props.purpose)}
           </Text>
-        </View>
+        </View> */}
 
         {props.oneTimePay === 0 && (
           <View style={styles.inRow}>

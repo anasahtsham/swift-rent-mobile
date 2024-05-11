@@ -38,6 +38,7 @@ const ManagerProperties = () => {
 
   return (
     <Properties
+      loading={loading}
       isManager={true}
       managerPropertiesData={managerPropertiesData}
     />

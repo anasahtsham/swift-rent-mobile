@@ -145,7 +145,7 @@ const Alerts = () => {
             style={{
               fontFamily: "OpenSansRegular",
               fontSize: FontSizes.medium,
-              color: colors.textPrimary,
+              color: colors.textWhite,
             }}
           >
             No notifications yet

@@ -55,7 +55,8 @@ const HireManagerRequestForm = ({ navigation, route }) => {
   //Purpose of Hire Dropdown
   const [openPurposeOfHireDropdown, setOpenPurposeOfHireDropdown] =
     useState(false);
-  const [valuePurposeOfHireDropdown, setPurposeOfHireDropdown] = useState(null);
+  const [valuePurposeOfHireDropdown, setPurposeOfHireDropdown] =
+    useState("caretaking");
   const [itemsPurposeOfHireDropdown, setItemsPurposeOfHireDropdown] = useState([
     { label: "Acquiring Tenant", value: "acquire_tenant" },
     { label: "Caretaking", value: "caretaking" },
@@ -318,7 +319,9 @@ const HireManagerRequestForm = ({ navigation, route }) => {
               >
                 Manager Hiring Request Form
               </Text>
-              <View style={[styles.dropdown, {}]}>
+
+              {/* limiting scope */}
+              {/* <View style={[styles.dropdown, {}]}>
                 <Text
                   style={[styles.dropdownLabel, { color: colors.textPrimary }]}
                 >
@@ -347,7 +350,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                     urdu: "مینیجر کرایہ دار کو حاصل کرے گا یا کیرٹیکنگ کرے گا؟",
                   }}
                 />
-              </View>
+              </View> */}
 
               {valuePurposeOfHireDropdown === "acquire_tenant" && (
                 <InputFieldWithHint

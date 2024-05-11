@@ -87,13 +87,15 @@ const CounterRequestFormHeader = (props) => {
                 {
                   color: colors.textPrimary,
                   fontSize: FontSizes.small,
+                  fontWeight: "bold",
                 },
               ]}
             >
               {`${props.address}`}
             </Text>
 
-            <Text
+            {/* limiting scope */}
+            {/* <Text
               style={[
                 styles.fontBold,
                 {
@@ -108,7 +110,7 @@ const CounterRequestFormHeader = (props) => {
                   ? "Hiring For Caretaking"
                   : "Hiring For Acquiring Tenant"
               }`}
-            </Text>
+            </Text> */}
 
             <View style={{ flexDirection: "row" }}>
               <Text

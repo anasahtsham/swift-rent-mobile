@@ -102,7 +102,8 @@ const ExploreOffersButton = (props) => {
           </Text>
         </View>
 
-        <View style={[styles.inRow, styles.cardSubText]}>
+        {/* limiting scope */}
+        {/* <View style={[styles.inRow, styles.cardSubText]}>
           <Text
             style={[
               styles.fontRegular,
@@ -120,7 +121,7 @@ const ExploreOffersButton = (props) => {
           >
             {formatPurpose(props.purpose)}
           </Text>
-        </View>
+        </View> */}
 
         {props.counterRequestStatus && (
           <View style={[styles.inRow, styles.cardSubText]}>

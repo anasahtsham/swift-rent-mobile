@@ -8,13 +8,12 @@ import {
   Keyboard,
   StyleSheet,
   Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import * as FontSizes from "../../assets/fonts/FontSizes";
-import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../constants";
+import { BASE_URL } from "../../constants";
 import { useColorsOnFocus } from "../../helpers/SetColors";
 import { useUserID } from "../../helpers/SetUserID";
 import ExploreOffersButton from "../common/buttons/ExploreOffersButton";
@@ -186,7 +185,8 @@ const ExploreOffers = ({ navigation }) => {
             },
           ]}
         >
-          <TouchableOpacity
+          {/* limiting scope */}
+          {/* <TouchableOpacity
             style={{
               marginBottom: 10,
               padding: 5,
@@ -214,7 +214,7 @@ const ExploreOffers = ({ navigation }) => {
             >
               My Counter Offers
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <View
             style={{
@@ -223,7 +223,7 @@ const ExploreOffers = ({ navigation }) => {
               marginTop: 10,
             }}
           >
-            <View style={{ width: "40%" }}>
+            <View style={{ width: "100%" }}>
               <DropDownPicker
                 {...dropdownStyles}
                 zIndex={1000}
@@ -238,7 +238,8 @@ const ExploreOffers = ({ navigation }) => {
                 placeholder="City"
               />
             </View>
-            <View style={{ width: "40%" }}>
+            {/* limiting scope */}
+            {/* <View style={{ width: "40%" }}>
               <DropDownPicker
                 {...dropdownStyles}
                 listItemContainerStyle={{
@@ -255,7 +256,7 @@ const ExploreOffers = ({ navigation }) => {
                 setItems={setItemsPurpose}
                 placeholder="Purpose"
               />
-            </View>
+            </View> */}
           </View>
         </View>
 
