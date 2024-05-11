@@ -304,6 +304,7 @@ const ExploreOffers = ({ navigation }) => {
             <ExploreOffersButton
               id={item.id}
               ownerName={item.ownerName}
+              ownerID={item.ownerid}
               propertyAddress={item.propertyAddress}
               purpose={item.purpose}
               counterRequestStatus={item.counterrequeststatus}

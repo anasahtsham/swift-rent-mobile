@@ -32,6 +32,7 @@ import ManagerOffers from "./src/components/owner/ManagerOffers";
 import PropertyMaintenances from "./src/components/owner/PropertyMaintenances";
 import RegisterTenant from "./src/components/owner/RegisterTenant";
 import TerminateLease from "./src/components/owner/TerminateLease";
+import ViewManagerRatings from "./src/components/owner/ViewManagerRatings";
 import RentalRequestAgreementForm from "./src/components/tenant/RentalRequestAgreementForm";
 import RentalRequests from "./src/components/tenant/RentalRequests";
 import { setLanguageToEnglish } from "./src/helpers/SetLanguages";
@@ -133,6 +134,10 @@ export default function App() {
             component={AddMaintenanceReport}
           />
           <Stack.Screen name="Terminate Lease" component={TerminateLease} />
+          <Stack.Screen
+            name="View Manager Ratings"
+            component={ViewManagerRatings}
+          />
 
           {/* Manager Screens */}
           <Stack.Screen name="Explore Offers" component={ExploreOffers} />

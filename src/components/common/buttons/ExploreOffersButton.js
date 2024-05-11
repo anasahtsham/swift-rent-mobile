@@ -54,6 +54,7 @@ const ExploreOffersButton = (props) => {
         }
         navigation.navigate("Counter Request Form", {
           managerHireRequestID: props.id,
+          ownerID: props.ownerID,
         });
       }}
     >
@@ -74,88 +75,6 @@ const ExploreOffersButton = (props) => {
           >
             {props.ownerName}
           </Text>
-
-          <View style={[styles.ratingsRow, {}]}>
-            <Text
-              style={[
-                styles.fontRegular,
-                {
-                  fontSize: FontSizes.small,
-                  color: colors.textPrimary,
-                },
-              ]}
-            >
-              {/* {props.likes} */}2
-            </Text>
-            <Image
-              style={styles.icon}
-              source={icons.like}
-              tintColor={colors.iconGreen}
-            />
-            <Text
-              style={[
-                styles.fontRegular,
-                { fontSize: FontSizes.small, color: colors.textPrimary },
-              ]}
-            >
-              {/* {props.dislikes} */}3
-            </Text>
-            <Image
-              style={styles.icon}
-              source={icons.dislike}
-              tintColor={colors.iconRed}
-            />
-            <Text
-              style={[
-                styles.fontRegular,
-                { fontSize: FontSizes.small, color: colors.textPrimary },
-              ]}
-            >
-              {/* ({props.ratings}) */}(5)
-            </Text>
-            <View style={{ flexDirection: "row" }}>
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 1 ? icons.star : icons.starHollow
-                  3 >= 1 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 2 ? icons.star : icons.starHollow
-                  3 >= 2 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 3 ? icons.star : icons.starHollow
-                  3 >= 3 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 4 ? icons.star : icons.starHollow
-                  3 >= 4 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 5 ? icons.star : icons.starHollow
-                  3 >= 5 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-            </View>
-          </View>
         </View>
 
         {props.counterRequestStatus === "P" ||

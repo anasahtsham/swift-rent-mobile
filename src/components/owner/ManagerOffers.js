@@ -126,6 +126,7 @@ const ManagerOffers = ({ navigation, route }) => {
             fetchData={fetchData}
             managerCounterRequestID={item.id}
             managerName={item.managerName}
+            managerID={item.managerid}
             oneTimePay={item.onetimepay}
             salaryFixed={item.salaryfixed}
             salaryPercentage={item.salarypercentage}

@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   ActivityIndicator,
   Alert,
-  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,7 +11,6 @@ import {
 } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { BASE_URL, OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
-import { icons } from "../../../helpers/ImageImports";
 import { useColors } from "../../../helpers/SetColors";
 import { formatNumberToCrore } from "../../../helpers/utils/index";
 
@@ -133,7 +131,7 @@ const ManagerOffersCard = (props) => {
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
       <View style={[styles.buttonHeaderContainer, {}]}>
-        <View style={{ width: "70%" }}>
+        <View style={{ width: "80%" }}>
           <Text
             style={[
               styles.fontBold,
@@ -145,112 +143,41 @@ const ManagerOffersCard = (props) => {
           >
             {props.managerName}
           </Text>
-
-          <View style={[styles.ratingsRow, {}]}>
-            <Text
-              style={[
-                styles.fontRegular,
-                {
-                  fontSize: FontSizes.small,
-                  color: colors.textPrimary,
-                  marginRight: 5,
-                },
-              ]}
-            >
-              {/* {props.likes} */}6
-            </Text>
-            <Image
-              style={[styles.icon, { marginRight: 5 }]}
-              source={icons.like}
-              tintColor={colors.iconGreen}
-            />
-            <Text
-              style={[
-                styles.fontRegular,
-                {
-                  fontSize: FontSizes.small,
-                  color: colors.textPrimary,
-                  marginRight: 5,
-                },
-              ]}
-            >
-              {/* {props.dislikes} */}4
-            </Text>
-            <Image
-              style={[styles.icon, { marginRight: 5 }]}
-              source={icons.dislike}
-              tintColor={colors.iconRed}
-            />
-            <Text
-              style={[
-                styles.fontRegular,
-                {
-                  fontSize: FontSizes.small,
-                  color: colors.textPrimary,
-                  marginRight: 5,
-                },
-              ]}
-            >
-              {/* ({props.ratings}) */}10
-            </Text>
-            <View style={{ flexDirection: "row" }}>
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 1 ? icons.star : icons.starHollow
-                  2.5 >= 1 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 2 ? icons.star : icons.starHollow
-                  2.5 >= 2 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 3 ? icons.star : icons.starHollow
-                  2.5 >= 3 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 4 ? icons.star : icons.starHollow
-                  2.5 >= 4 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-              <Image
-                style={styles.icon}
-                source={
-                  // props.averageRating >= 5 ? icons.star : icons.starHollow
-                  2.5 >= 5 ? icons.star : icons.starHollow
-                }
-                tintColor={colors.iconYellow}
-              />
-            </View>
-          </View>
         </View>
 
         <TouchableOpacity
+          style={{ alignContent: "center", justifyContent: "center" }}
           activeOpacity={OPACITY_VALUE_FOR_BUTTON}
           onPress={() => {
-            console.log("show ratings screen");
+            navigation.navigate("View Manager Ratings", {
+              managerID: props.managerID,
+              managerName: props.managerName,
+            });
           }}
         >
           <Text
             style={[
               styles.fontRegular,
-              { color: colors.textDarkBlue, fontSize: FontSizes.small },
+              {
+                color: colors.textDarkBlue,
+                fontSize: FontSizes.small,
+                textAlign: "center",
+              },
             ]}
           >
-            View Ratings
+            View
+          </Text>
+          <Text
+            style={[
+              styles.fontRegular,
+              {
+                color: colors.textDarkBlue,
+                fontSize: FontSizes.small,
+                textAlign: "center",
+              },
+            ]}
+          >
+            Ratings
           </Text>
         </TouchableOpacity>
       </View>
@@ -453,6 +380,7 @@ const styles = StyleSheet.create({
   },
   buttonHeaderContainer: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   inRow: {
     flexDirection: "row",

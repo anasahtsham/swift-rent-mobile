@@ -112,13 +112,14 @@ const Ratings = ({ navigation }) => {
       key={rating.id}
       ratingID={rating.id}
       currentScreen={currentScreen}
-      userName={rating.ratername || rating.rateename}
-      userType={rating.userType}
+      userName={rating.username}
+      userType={rating.usertype}
       address={rating.address}
       rating={rating.ratingstars}
       ratingOpinon={rating.ratingopinon}
       remarks={rating.ratingcomment}
       ratedOn={rating.ratedon || rating.ratingstartdate}
+      contractDays={rating.contractdays}
     />
   );
 

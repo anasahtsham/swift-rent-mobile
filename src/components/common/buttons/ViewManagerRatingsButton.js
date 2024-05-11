@@ -1,11 +1,10 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
-import { icons } from "../../../helpers/ImageImports";
-import { useColors } from "../../../helpers/SetColors";
 import { formatUserTypeToFullForm } from "../../../helpers/utils";
+import { icons } from "./../../../helpers/ImageImports";
 
-const CounterRequestFormCard = (props) => {
-  const colors = useColors();
+export const ViewManagerRatingsButton = (props) => {
+  const colors = props.colors;
 
   const isLiked = props.ratingOpinon === "D" ? false : true;
 
@@ -123,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CounterRequestFormCard;
+export default ViewManagerRatingsButton;

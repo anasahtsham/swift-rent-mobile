@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { OPACITY_VALUE_FOR_BUTTON } from "../../../constants";
+import { formatUserTypeToFullForm } from "../../../helpers/utils";
 import { icons } from "./../../../helpers/ImageImports";
 
 export const RatingsButton = (props) => {
@@ -54,19 +55,14 @@ export const RatingsButton = (props) => {
           )}
 
           <Text style={[styles.fontBold, { color: colors.textGreen }]}>
-            {props.userType}
+            {formatUserTypeToFullForm(props.userType)}
           </Text>
         </View>
       </View>
 
-      <View style={{ flexDirection: "row", flexWrap: "wrap", marginBottom: 5 }}>
-        <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-          Address:{" "}
-        </Text>
-        <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-          {props.address}
-        </Text>
-      </View>
+      <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+        {props.address}
+      </Text>
 
       {props.currentScreen === "Pending Ratings" ? (
         <>
@@ -120,14 +116,9 @@ export const RatingsButton = (props) => {
             />
           </View>
 
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
-              Remarks:{" "}
-            </Text>
-            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
-              {props.remarks}
-            </Text>
-          </View>
+          <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+            {props.remarks}
+          </Text>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
@@ -135,6 +126,15 @@ export const RatingsButton = (props) => {
             </Text>
             <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
               {props.ratedOn}
+            </Text>
+          </View>
+
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <Text style={[styles.fontRegular, { color: colors.textPrimary }]}>
+              Contract Days:{" "}
+            </Text>
+            <Text style={[styles.fontBold, { color: colors.textPrimary }]}>
+              {props.contractDays}
             </Text>
           </View>
         </>

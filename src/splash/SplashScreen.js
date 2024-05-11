@@ -76,8 +76,13 @@ const SplashScreen = ({ navigation }) => {
           }
         })
         .catch((error) => {
-          console.log(JSON.stringify(error.response, null, 2));
-          Alert.alert("Error", error.response.data.error);
+          if (error.response.status !== 400) {
+            Alert.alert("Error", "Something went wrong");
+            console.log(JSON.stringify(error.response, null, 2));
+          } else {
+            console.log(JSON.stringify(error.response, null, 2));
+            Alert.alert("Error", error.response.data.error);
+          }
         })
         .finally(() => {
           setLoading(false);

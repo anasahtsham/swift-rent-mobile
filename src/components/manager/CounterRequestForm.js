@@ -14,13 +14,12 @@ import * as FontSizes from "../../assets/fonts/FontSizes";
 import { BASE_URL } from "../../constants";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
-import { dummyRatingsData } from "../../helpers/data/OwnerHiringData";
 import CounterRequestFormCard from "../common/cards/CounterRequestFormCard";
 import CounterRequestFormFooter from "../common/footers/CounterRequestFormFooter";
 import CounterRequestFormHeader from "../common/headers/CounterRequestFormHeader";
 
 const CounterRequestForm = ({ navigation, route }) => {
-  const { managerHireRequestID } = route.params;
+  const { managerHireRequestID, ownerID } = route.params;
   const colors = useColors();
   const [loading, setLoading] = useState(true);
 
@@ -43,7 +42,7 @@ const CounterRequestForm = ({ navigation, route }) => {
   const [averageRating, setAverageRating] = useState(1);
 
   //body data
-  const [ratingsData, setRatingsData] = useState(dummyRatingsData);
+  const [ratingsData, setRatingsData] = useState([]);
 
   //footer data
 
@@ -78,6 +77,19 @@ const CounterRequestForm = ({ navigation, route }) => {
         setLoading(false);
       });
 
+    axios
+      .post(`${BASE_URL}/api/common/fetch-my-ratings`, {
+        userID: ownerID,
+        userType: "O",
+      })
+      .then((response) => {
+        setRatingsData(response.data.success);
+      })
+      .catch((error) => {
+        Alert.alert("Error", "Something went wrong");
+        console.log(JSON.stringify(error.response, null, 2));
+      });
+
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -103,7 +115,7 @@ const CounterRequestForm = ({ navigation, route }) => {
             { color: colors.textWhite, marginBottom: "2%" },
           ]}
         >
-          Average Ratings [dummy]
+          Average Ratings
         </Text>
         <View style={styles.likesAndStarsRow}>
           <Text
@@ -114,7 +126,7 @@ const CounterRequestForm = ({ navigation, route }) => {
               },
             ]}
           >
-            {props.likes}
+            {ratingsData.filter((item) => item.ratingopinon === "L").length}
           </Text>
           <Image
             style={[styles.thumbsIcon]}
@@ -123,7 +135,7 @@ const CounterRequestForm = ({ navigation, route }) => {
           />
 
           <Text style={{ color: colors.textWhite, fontSize: FontSizes.small }}>
-            {props.dislikes}
+            {ratingsData.filter((item) => item.ratingopinon === "D").length}
           </Text>
 
           <Image
@@ -132,32 +144,72 @@ const CounterRequestForm = ({ navigation, route }) => {
             tintColor={colors.iconRed}
           />
           <Text style={{ color: colors.textWhite, fontSize: FontSizes.small }}>
-            ({props.ratings})
+            ({ratingsData.length})
           </Text>
           <View style={styles.starIconContainer}>
             <Image
               style={styles.starIcon}
-              source={props.averageRating >= 1 ? icons.star : icons.starHollow}
+              source={
+                ratingsData
+                  .filter((item) => item.ratingstars)
+                  .reduce((acc, item) => acc + Number(item.ratingstars), 0) /
+                  ratingsData.length >=
+                1
+                  ? icons.star
+                  : icons.starHollow
+              }
               tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={props.averageRating >= 2 ? icons.star : icons.starHollow}
+              source={
+                ratingsData
+                  .filter((item) => item.ratingstars)
+                  .reduce((acc, item) => acc + Number(item.ratingstars), 0) /
+                  ratingsData.length >=
+                2
+                  ? icons.star
+                  : icons.starHollow
+              }
               tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={props.averageRating >= 3 ? icons.star : icons.starHollow}
+              source={
+                ratingsData
+                  .filter((item) => item.ratingstars)
+                  .reduce((acc, item) => acc + Number(item.ratingstars), 0) /
+                  ratingsData.length >=
+                3
+                  ? icons.star
+                  : icons.starHollow
+              }
               tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={props.averageRating >= 4 ? icons.star : icons.starHollow}
+              source={
+                ratingsData
+                  .filter((item) => item.ratingstars)
+                  .reduce((acc, item) => acc + Number(item.ratingstars), 0) /
+                  ratingsData.length >=
+                4
+                  ? icons.star
+                  : icons.starHollow
+              }
               tintColor={colors.iconYellow}
             />
             <Image
               style={styles.starIcon}
-              source={props.averageRating >= 5 ? icons.star : icons.starHollow}
+              source={
+                ratingsData
+                  .filter((item) => item.ratingstars)
+                  .reduce((acc, item) => acc + Number(item.ratingstars), 0) /
+                  ratingsData.length >=
+                5
+                  ? icons.star
+                  : icons.starHollow
+              }
               tintColor={colors.iconYellow}
             />
           </View>
@@ -198,15 +250,18 @@ const CounterRequestForm = ({ navigation, route }) => {
             ratings={ratings}
             averageRating={averageRating}
           />
-          {ratingsData.map((owner) => (
+          {ratingsData.map((rating) => (
             <CounterRequestFormCard
-              key={owner.id}
-              name={owner.name}
-              userType={owner.userType}
-              date={owner.date}
-              isLiked={owner.isLiked}
-              rating={owner.rating}
-              comment={owner.comment}
+              key={rating.id}
+              ratingID={rating.id}
+              userName={rating.username}
+              userType={rating.usertype}
+              address={rating.address}
+              rating={rating.ratingstars}
+              ratingOpinon={rating.ratingopinon}
+              remarks={rating.ratingcomment}
+              ratedOn={rating.ratedon || rating.ratingstartdate}
+              contractDays={rating.contractdays}
             />
           ))}
           <View style={{ height: 20 }} />
