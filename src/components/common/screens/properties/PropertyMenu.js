@@ -356,21 +356,19 @@ const PropertyMenu = ({ route }) => {
               (header[0].rentStatus.tenantPaymentStatus === "P" ||
                 header[0].rentStatus.tenantPaymentStatus === "C")) ||
               userType === "M") && (
-              <>
-                <CardRow
-                  title="Tenant: "
-                  value={leaseInformation[0].tenantname}
-                />
-                <CardRow
-                  title="Registered By: "
-                  value={`${
-                    leaseInformation[0].registeredbyname
-                  } (${formatUserTypeToFullForm(
-                    leaseInformation[0].registeredbytype
-                  )})`}
-                />
-              </>
+              <CardRow
+                title="Tenant: "
+                value={leaseInformation[0].tenantname}
+              />
             )}
+            <CardRow
+              title="Registered By: "
+              value={`${
+                leaseInformation[0].registeredbyname
+              } (${formatUserTypeToFullForm(
+                leaseInformation[0].registeredbytype
+              )})`}
+            />
             <CardRow
               title="Lease Ends: "
               value={leaseInformation[0].leaseendson}
@@ -378,7 +376,7 @@ const PropertyMenu = ({ route }) => {
             <CardRow title="Due Date: " value={leaseInformation[0].duedate} />
             <CardRow
               title="Fine: "
-              value={formatNumberToCrore(leaseInformation[0].fine)}
+              value={`${formatNumberToCrore(leaseInformation[0].fine)} PKR`}
             />
             <CardRow
               title="Increment Percentage: "
@@ -390,17 +388,20 @@ const PropertyMenu = ({ route }) => {
             />
             <CardRow
               title="Rent: "
-              value={formatNumberToCrore(leaseInformation[0].rent)}
+              value={formatNumberToCrore(leaseInformation[0].rent) + " PKR"}
             />
             <CardRow
               title="Security: "
-              value={formatNumberToCrore(leaseInformation[0].securitydeposit)}
+              value={
+                formatNumberToCrore(leaseInformation[0].securitydeposit) +
+                " PKR"
+              }
             />
             <CardRow
               title="Advance Payment: "
               value={
                 formatNumberToCrore(leaseInformation[0].advancepayment) +
-                " (" +
+                " PKR (" +
                 leaseInformation[0].advancepaymentformonths.trim() +
                 " Months)"
               }
@@ -684,7 +685,10 @@ const PropertyMenu = ({ route }) => {
                   text={"Collect Rent"}
                   colors={colors}
                   onPress={() =>
-                    navigation.navigate("Collect Rent", { propertyID: id })
+                    navigation.navigate("Collect Rent", {
+                      propertyID: id,
+                      rentAmount: leaseInformation[0].rent,
+                    })
                   }
                 />
               )}
@@ -712,7 +716,10 @@ const PropertyMenu = ({ route }) => {
                   text={"Collect Rent"}
                   colors={colors}
                   onPress={() =>
-                    navigation.navigate("Collect Rent", { propertyID: id })
+                    navigation.navigate("Collect Rent", {
+                      propertyID: id,
+                      rentAmount: leaseInformation[0].rent,
+                    })
                   }
                 />
               )}

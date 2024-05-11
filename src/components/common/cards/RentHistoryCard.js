@@ -36,7 +36,7 @@ const RentHistoryCard = ({ date, amount }) => {
             fontWeight: "bold",
           }}
         >
-          {amount}
+          {amount} PKR
         </Text>
       </View>
     </View>

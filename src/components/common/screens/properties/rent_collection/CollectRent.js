@@ -16,7 +16,7 @@ import { useUserType } from "./../../../../../helpers/SetUserType";
 const CollectRent = ({ navigation, route }) => {
   const userID = useUserID();
   const userType = useUserType();
-  const { propertyID } = route.params;
+  const { propertyID, rentAmount } = route.params;
   const colors = useColors();
 
   const [loading, setLoading] = useState(false); // Indicates if the form is loading or not
@@ -164,16 +164,28 @@ const CollectRent = ({ navigation, route }) => {
               >
                 Collect Rent
               </Text>
+
+              <Text
+                style={[
+                  {
+                    fontSize: FontSizes.small,
+                    color: colors.textPrimary,
+                  },
+                ]}
+              >
+                Rent Amount: {rentAmount} PKR
+              </Text>
             </View>
 
             <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>
               <InputFieldWithHint
+                fieldType="numeric"
                 label="Money Received*"
                 value={values.moneyReceived}
                 handleChange={handleChange("moneyReceived")}
                 handleBlur={handleBlur("moneyReceived")}
                 errorText={touched.moneyReceived ? errors.moneyReceived : ""} // If the user has touched the input field and there's an error, display the error message
-                onSubmitEditing={() => handleSubmit} // When the user presses "Next" on the keyboard, the form will be submitted
+                onSubmitEditing={() => handleSubmit()} // When the user presses "Next" on the keyboard, the form will be submitted
                 hintTexts={{
                   english:
                     "Enter How much money have you received. If you have only received a part of the rent, enter the amount you have received, then in the next month enter the remaining amount even if his rent for that month hasnt increased automatically based on how much was left from the previous month.",

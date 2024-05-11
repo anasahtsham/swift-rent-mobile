@@ -79,7 +79,7 @@ const ForgotPassword = ({ navigation }) => {
               { backgroundColor: colors.backgroundPrimary },
             ]}
           >
-            <View style={[styles.logoAndTextContainer, { marginBottom: 100 }]}>
+            <View style={[styles.logoAndTextContainer, { marginBottom: 50 }]}>
               <Text
                 style={[
                   styles.text,
@@ -90,6 +90,20 @@ const ForgotPassword = ({ navigation }) => {
                 ]}
               >
                 {languages.resetYourPassword}
+              </Text>
+
+              <Text
+                style={[
+                  styles.text,
+                  {
+                    fontSize: FontSizes.small,
+                    color: colors.textPrimary,
+                    marginTop: 40,
+                  },
+                ]}
+              >
+                You will get a response from swiftrent2023@gmail.com within 24
+                hours
               </Text>
             </View>
 

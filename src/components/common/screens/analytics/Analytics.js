@@ -86,7 +86,7 @@ const Analytics = (props) => {
               color: colors.textWhite,
             }}
           >
-            No Data Available
+            No Monthly Reports Yet
           </Text>
         </View>
       )}

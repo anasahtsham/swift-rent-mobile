@@ -89,21 +89,42 @@ const RentalRequests = ({ navigation }) => {
             },
           ]}
         >
-          {Array.isArray(rentalRequestsData) &&
-          rentalRequestsData.length === 0 &&
-          loading === false
-            ? "No Rental Requests Found"
-            : "Rental Requests"}
+          Rental Requests
         </Text>
       </View>
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
-      <FlatList
-        data={rentalRequestsData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.buttons}
-        ListFooterComponent={<View style={{ height: 10 }} />}
-      />
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
+
+      {!loading && rentalRequestsData.length === 0 && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={[
+              styles.fontRegular,
+              {
+                fontSize: FontSizes.medium,
+                color: colors.textWhite,
+              },
+            ]}
+          >
+            No rental requests
+          </Text>
+        </View>
+      )}
+
+      {!loading && rentalRequestsData.length > 0 && (
+        <FlatList
+          data={rentalRequestsData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.buttons}
+          ListFooterComponent={<View style={{ height: 10 }} />}
+        />
+      )}
     </SafeAreaView>
   );
 };

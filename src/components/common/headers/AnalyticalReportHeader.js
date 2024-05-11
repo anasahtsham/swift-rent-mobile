@@ -66,7 +66,7 @@ const AnalyticalReportHeader = (props) => {
               Total Revenue
             </Text>
             <Text style={[styles.nestedText, { color: colors.textGreen }]}>
-              {`${formatNumberToCrore(totalRevenueSum)}`}
+              {`${formatNumberToCrore(totalRevenueSum)} PKR`}
             </Text>
           </View>
           <View style={styles.inRow}>
@@ -76,7 +76,7 @@ const AnalyticalReportHeader = (props) => {
               Maintenance Cost
             </Text>
             <Text style={[styles.nestedText, { color: colors.textRed }]}>
-              {`${formatNumberToCrore(totalMaintenanceCostSum)} `}
+              {`${formatNumberToCrore(totalMaintenanceCostSum)} PKR`}
             </Text>
           </View>
           <View style={styles.inRow}>
@@ -86,12 +86,7 @@ const AnalyticalReportHeader = (props) => {
               Total Profit
             </Text>
             <Text style={[styles.nestedText, { color: colors.textPrimary }]}>
-              {`${formatNumberToCrore(totalProfitSum)} `}
-              <Text
-                style={[styles.currencyStyles, { color: colors.textPrimary }]}
-              >
-                PKR
-              </Text>
+              {`${formatNumberToCrore(totalProfitSum)} PKR`}
             </Text>
           </View>
           <AnalyticalReportLineGraph colors={colors} data={data} />

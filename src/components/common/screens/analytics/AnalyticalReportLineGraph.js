@@ -191,7 +191,7 @@ const AnalyticalReportLineGraph = (props) => {
                   fill={data[i].color}
                   dy={-10}
                 >
-                  {`${value.value ? value.value.toFixed(2) : ""}`}
+                  {`${formatNumberToThousands(value.value)} PKR`}
                 </Text>
               </React.Fragment>
             ))}

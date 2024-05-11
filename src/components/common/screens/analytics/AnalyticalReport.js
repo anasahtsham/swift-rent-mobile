@@ -135,30 +135,32 @@ const AnalyticalReport = () => {
 
   if (loading) {
     return (
-      <View
-        style={[
-          {
-            paddingVertical: 10,
-            paddingHorizontal: 10,
-            paddingBottom: 15,
-            borderBottomLeftRadius: 20,
-            borderBottomRightRadius: 20,
-            alignItems: "center",
-            width: "100%",
-            backgroundColor: colors.headerAndFooterBackground,
-          },
-        ]}
-      >
+      <View style={{ backgroundColor: colors.bodyBackground, flex: 1 }}>
         <View
-          style={{
-            borderColor: colors.borderBlue,
-            borderWidth: 4,
-            borderRadius: 20,
-            padding: 20,
-            alignSelf: "center",
-          }}
+          style={[
+            {
+              paddingVertical: 10,
+              paddingHorizontal: 10,
+              paddingBottom: 15,
+              borderBottomLeftRadius: 20,
+              borderBottomRightRadius: 20,
+              alignItems: "center",
+              width: "100%",
+              backgroundColor: colors.headerAndFooterBackground,
+            },
+          ]}
         >
           <ActivityIndicator size="large" color={colors.textPrimary} />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: colors.bodyBackground,
+          }}
+        >
+          <ActivityIndicator size="large" color={colors.iconWhite} />
         </View>
       </View>
     );
@@ -210,7 +212,7 @@ const AnalyticalReport = () => {
               },
               {
                 label: "Total Cost of Maintenances",
-                value: formatNumberToCrore(totalCostOfMaintenances),
+                value: formatNumberToCrore(totalCostOfMaintenances) + " PKR",
                 color: colors.textRed,
               },
             ]}

@@ -13,6 +13,8 @@ const PropertyMenuHeader = (props) => {
         return "Pending";
       case "S":
         return "Skipped";
+      case "T":
+        return "To Collect";
       default:
         return status;
     }
@@ -161,23 +163,33 @@ const PropertyMenuHeader = (props) => {
             </Text>
           </View>
 
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={[styles.topCardTopText, { color: colors.textPrimary }]}
-            >
-              Manager Name:{" "}
-            </Text>
-            <Text
-              style={[
-                styles.nestedText,
-                { color: colors.textPrimary, fontWeight: "bold" },
-              ]}
-            >
-              {props.managerName}
-            </Text>
-          </View>
+          {props.managerName !== " " && (
+            <View style={{ flexDirection: "row" }}>
+              <Text
+                style={[styles.topCardTopText, { color: colors.textPrimary }]}
+              >
+                Manager Name:{" "}
+              </Text>
+              <Text
+                style={[
+                  styles.nestedText,
+                  { color: colors.textPrimary, fontWeight: "bold" },
+                ]}
+              >
+                {props.managerName}
+              </Text>
+            </View>
+          )}
 
-          <View style={[styles.inRow, { marginTop: 5 }]}>
+          <View
+            style={[
+              {
+                marginTop: 5,
+                flexDirection: "row",
+                justifyContent: "space-between",
+              },
+            ]}
+          >
             <Text
               style={[styles.topCardTopText, { color: colors.textPrimary }]}
             >
@@ -189,14 +201,22 @@ const PropertyMenuHeader = (props) => {
           </View>
 
           {!!props.totalSubmittedRent && (
-            <View style={styles.inRow}>
+            <View
+              style={[
+                {
+                  marginTop: 5,
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                },
+              ]}
+            >
               <Text
                 style={[styles.topCardTopText, { color: colors.textPrimary }]}
               >
                 Total Submitted Rent
               </Text>
               <Text style={[styles.nestedText, { color: colors.textGreen }]}>
-                {formatNumberToCrore(props.totalSubmittedRent)}
+                {formatNumberToCrore(props.totalSubmittedRent)} PKR
               </Text>
             </View>
           )}
@@ -238,6 +258,7 @@ const PropertyMenuHeader = (props) => {
             {formatPaymentStatus(props.tenantPaymentStatus)}
           </Text>
         </View>
+
         {!!props.managerPaymentStatus && (
           <View style={styles.inRow}>
             <Text
@@ -256,7 +277,7 @@ const PropertyMenuHeader = (props) => {
             Total Revenue
           </Text>
           <Text style={[styles.nestedText, { color: colors.textGreen }]}>
-            {formatNumberToCrore(props.totalPropertyRevenue)}
+            {formatNumberToCrore(props.totalPropertyRevenue)} PKR
           </Text>
         </View>
         <View style={styles.inRow}>
@@ -264,7 +285,7 @@ const PropertyMenuHeader = (props) => {
             Maintenance Expenses
           </Text>
           <Text style={[styles.nestedText, { color: colors.textRed }]}>
-            {formatNumberToCrore(props.totalMaintenanceCost)}
+            {formatNumberToCrore(props.totalMaintenanceCost)} PKR
           </Text>
         </View>
 
@@ -285,7 +306,8 @@ const PropertyMenuHeader = (props) => {
           <Text style={[styles.nestedText, { color: colors.textPrimary }]}>
             {formatNumberToCrore(
               props.totalPropertyRevenue - props.totalMaintenanceCost
-            )}
+            )}{" "}
+            PKR
           </Text>
         </View>
       </View>

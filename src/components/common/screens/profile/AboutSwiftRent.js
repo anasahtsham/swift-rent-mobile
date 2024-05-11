@@ -49,6 +49,28 @@ const AboutSwiftRent = ({ navigation }) => {
           it easy for the owners, managers, and tenants to view all their rental
           related developments at a glance.
         </Text>
+        <Text
+          style={[
+            {
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+              marginTop: 20,
+            },
+          ]}
+        >
+          Our official e-mail
+        </Text>
+        <Text
+          style={[
+            {
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+              fontWeight: "bold",
+            },
+          ]}
+        >
+          swiftrent2023@gmail.com
+        </Text>
       </View>
 
       <View style={{ alignItems: "center" }}>
@@ -57,7 +79,7 @@ const AboutSwiftRent = ({ navigation }) => {
             fontSize: FontSizes.large,
             color: colors.textPrimary,
             fontWeight: "bold",
-            marginBottom: 40,
+            marginBottom: 20,
           }}
         >
           Development Team
