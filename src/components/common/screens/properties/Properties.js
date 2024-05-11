@@ -98,7 +98,7 @@ const Properties = (props) => {
         )}
       </View>
       {props.loading && (
-        <ActivityIndicator size="large" color={colors.textPrimary} />
+        <ActivityIndicator size="large" color={colors.textWhite} />
       )}
       {dataToRender.length === 0 && !props.loading && (
         <View

@@ -39,17 +39,7 @@ const AnalyticsHeader = (props) => {
           },
         ]}
       >
-        <View
-          style={{
-            borderColor: colors.borderBlue,
-            borderWidth: 4,
-            borderRadius: 20,
-            padding: 20,
-            alignSelf: "center",
-          }}
-        >
-          <ActivityIndicator size="large" color={colors.textPrimary} />
-        </View>
+        <ActivityIndicator size="large" color={colors.textPrimary} />
       </View>
     );
   }

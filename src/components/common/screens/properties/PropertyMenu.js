@@ -261,7 +261,7 @@ const PropertyMenu = ({ route }) => {
           loading={loadingPropertyMenuInfoAndButtons}
           colors={colors}
         />
-        <ActivityIndicator size="large" color={colors.textPrimary} />
+        <ActivityIndicator size="large" color={colors.iconWhite} />
       </SafeAreaView>
     );
   }
@@ -585,8 +585,8 @@ const PropertyMenu = ({ route }) => {
             <PropertyMenuButton
               doesNotOpenScreen={true}
               loading={deleteHireRequestLoading}
-              onPress={() => {
-                deleteHireRequest(id, setDeleteHireRequestLoading);
+              onPress={async () => {
+                await deleteHireRequest(id, setDeleteHireRequestLoading);
                 fetchData();
               }}
               text={"Delete Hire Request"}
@@ -598,8 +598,8 @@ const PropertyMenu = ({ route }) => {
             <PropertyMenuButton
               doesNotOpenScreen={true}
               loading={fireManagerLoading}
-              onPress={() => {
-                fireManager(id, setFireManagerLoading);
+              onPress={async () => {
+                await fireManager(id, setFireManagerLoading);
                 fetchData();
               }}
               text={"Fire Manager"}
@@ -618,12 +618,13 @@ const PropertyMenu = ({ route }) => {
                   loading={sendRentCollectionRequestLoading}
                   text={"Send Rent Collection Request"}
                   colors={colors}
-                  onPress={() => {
-                    sendRentCollectionRequest(
+                  onPress={async () => {
+                    await sendRentCollectionRequest(
                       id,
                       userID,
                       setSendRentCollectionRequestLoading
                     );
+                    fetchData();
                   }}
                 />
               )}

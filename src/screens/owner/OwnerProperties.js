@@ -13,6 +13,8 @@ const OwnerProperties = () => {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
+
       const fetchData = async () => {
         if (!userID) return; // Don't run if userID is null
 

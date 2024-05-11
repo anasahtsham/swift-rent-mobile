@@ -100,6 +100,7 @@ const FAQScreen = ({ navigation }) => {
         "In most jurisdictions, landlords are prohibited from increasing the rent during the lease term unless specified in the lease agreement or permitted by local rent control regulations. However, landlords may increase the rent upon lease renewal or if the tenant agrees to a rent increase through an addendum to the lease agreement.",
     },
   ];
+
   const renderHeader = (section, _, isActive) => {
     return (
       <View style={styles.accordionHeader}>

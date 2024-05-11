@@ -347,6 +347,7 @@ const RegisterTenant = ({ navigation, route }) => {
                 />
 
                 <InputField
+                  textFieldIcon={icons.phoneNumberIcon}
                   fieldType="phone-pad"
                   borderRadius={10}
                   label="Tenant Contact*"

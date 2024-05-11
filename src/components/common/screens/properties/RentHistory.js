@@ -38,7 +38,6 @@ const RentHistory = ({ route }) => {
       axios
         .post(`${BASE_URL}/api/common/rent-history`, data)
         .then((response) => {
-          console.log(response.data.rentHistory);
           setRentHistoryData(response.data.rentHistory);
         })
         .catch((error) => {
@@ -75,16 +74,16 @@ const RentHistory = ({ route }) => {
     <View
       style={{ flex: 1, backgroundColor: colors.bodyBackground, padding: 10 }}
     >
-      <Text style={[styles.title, { color: colors.textPrimary }]}>
+      <Text style={[styles.title, { color: colors.textWhite }]}>
         Rent History
       </Text>
 
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
 
       {!loading && rentHistoryData.length === 0 && (
         <Text
           style={{
-            color: colors.textPrimary,
+            color: colors.textWhite,
             fontSize: FontSizes.medium,
             textAlign: "center",
             marginTop: 50,

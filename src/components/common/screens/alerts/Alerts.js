@@ -31,6 +31,8 @@ const Alerts = () => {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
+
       const fetchNotifications = async () => {
         if (!userID || !userType) return;
         try {
@@ -132,7 +134,7 @@ const Alerts = () => {
       {loading && (
         <ActivityIndicator
           size="large"
-          color={colors.textPrimary}
+          color={colors.iconWhite}
           style={{ flex: 1 }}
         />
       )}
@@ -152,13 +154,15 @@ const Alerts = () => {
           </Text>
         </View>
       )}
-      <FlatList
-        data={filteredData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.buttons}
-        ListFooterComponent={<View style={styles.bottomSpace} />}
-      />
+      {!loading && filteredData.length > 0 && (
+        <FlatList
+          data={filteredData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.buttons}
+          ListFooterComponent={<View style={styles.bottomSpace} />}
+        />
+      )}
     </SafeAreaView>
   );
 };

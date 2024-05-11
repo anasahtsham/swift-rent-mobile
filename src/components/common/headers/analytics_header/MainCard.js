@@ -63,12 +63,16 @@ const MainCard = (props) => {
 
   return (
     <TouchableOpacity
+      // onPress={() => {
+      //   if (!!props.rentsCollected) {
+      //     navigation.navigate("Analytical Report");
+      //   }
+      // }}
+      // activeOpacity={!!props.rentsCollected ? OPACITY_VALUE_FOR_BUTTON : 1}.
       onPress={() => {
-        if (!!props.rentsCollected) {
-          navigation.navigate("Analytical Report");
-        }
+        navigation.navigate("Analytical Report");
       }}
-      activeOpacity={!!props.rentsCollected ? OPACITY_VALUE_FOR_BUTTON : 1}
+      activeOpacity={OPACITY_VALUE_FOR_BUTTON}
     >
       <View
         style={[

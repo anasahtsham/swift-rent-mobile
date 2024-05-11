@@ -21,6 +21,8 @@ const OwnerAnalytics = () => {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
+
       const data = {
         ownerID: userID,
       };

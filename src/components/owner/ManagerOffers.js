@@ -102,7 +102,7 @@ const ManagerOffers = ({ navigation, route }) => {
         style={{
           fontFamily: "OpenSansRegular",
           fontWeight: "bold",
-          color: colors.textPrimary,
+          color: colors.textWhite,
           fontSize: FontSizes.medium,
           marginLeft: 10,
           marginTop: 10,
@@ -112,7 +112,7 @@ const ManagerOffers = ({ navigation, route }) => {
         Manager Counter Offers ({managerOffersData.length})
       </Text>
 
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
 
       <FlatList
         style={{ flex: 1, marginBottom: 5 }}

@@ -68,7 +68,7 @@ const Analytics = (props) => {
       </View>
 
       {props.loading && (
-        <ActivityIndicator size="large" color={colors.textPrimary} />
+        <ActivityIndicator size="large" color={colors.iconWhite} />
       )}
 
       {!props.loading && props.analyticsData.length === 0 && (

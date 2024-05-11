@@ -32,6 +32,8 @@ const Profile = () => {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
+
       const fetchUserProfile = async () => {
         if (userID) {
           try {

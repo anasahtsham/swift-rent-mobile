@@ -329,6 +329,7 @@ const AddProperty = ({ navigation }) => {
                     setOpenPropertyType(false);
                     setOpenPropertySubType(false);
                   }}
+                  onSubmitEditing={() => handleSubmit()}
                 />
               </View>
 

@@ -118,7 +118,7 @@ const PropertyMaintenances = ({ navigation, route }) => {
           Previous Maintenances
         </Text>
       </View>
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
       <FlatList
         data={data}
         renderItem={renderItem}
