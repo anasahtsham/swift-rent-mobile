@@ -145,7 +145,31 @@ const CustomerSupport = ({ navigation }) => {
           Previous Tickets
         </Text>
       </View>
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
+
+      {!loading && data.length === 0 && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={[
+              styles.fontRegular,
+              {
+                fontSize: FontSizes.medium,
+                color: colors.textWhite,
+              },
+            ]}
+          >
+            No tickets to show
+          </Text>
+        </View>
+      )}
+
       <FlatList
         data={data}
         renderItem={renderItem}

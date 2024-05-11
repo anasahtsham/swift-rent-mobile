@@ -95,14 +95,35 @@ const MaintenanceList = ({ navigation }) => {
           All Maintenances
         </Text>
       </View>
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
-      <FlatList
-        data={maintenanceData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.buttons}
-        ListFooterComponent={<View style={{ height: 10 }} />}
-      />
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
+
+      {!loading && maintenanceData.length === 0 && (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text
+            style={[
+              styles.fontRegular,
+              {
+                fontSize: FontSizes.medium,
+                color: colors.textWhite,
+              },
+            ]}
+          >
+            No maintenances to show
+          </Text>
+        </View>
+      )}
+
+      {!loading && maintenanceData.length > 0 && (
+        <FlatList
+          data={maintenanceData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.buttons}
+          ListFooterComponent={<View style={{ height: 10 }} />}
+        />
+      )}
     </SafeAreaView>
   );
 };

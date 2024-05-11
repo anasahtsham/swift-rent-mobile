@@ -128,12 +128,12 @@ const Rents = ({ navigation, route }) => {
         </Text>
       </View>
 
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
 
       {!loading && dataToBeRendered.length === 0 && (
         <Text
           style={{
-            color: colors.textPrimary,
+            color: colors.textWhite,
             fontSize: FontSizes.medium,
             textAlign: "center",
           }}

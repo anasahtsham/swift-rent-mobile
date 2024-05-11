@@ -143,7 +143,29 @@ const Ratings = ({ navigation }) => {
         </Text>
       </View>
 
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
+
+      {!loading && dataToBeRendered.length === 0 && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={[
+              styles.fontRegular,
+              {
+                fontSize: FontSizes.medium,
+                color: colors.textWhite,
+              },
+            ]}
+          >
+            No ratings to show
+          </Text>
+        </View>
+      )}
 
       {!loading && (
         <FlatList

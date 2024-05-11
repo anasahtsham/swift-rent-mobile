@@ -264,7 +264,7 @@ const ExploreOffers = ({ navigation }) => {
           style={[
             styles.fontBold,
             {
-              color: colors.textPrimary,
+              color: colors.textWhite,
               fontSize: FontSizes.medium,
               marginLeft: 20,
               marginTop: 10,
@@ -281,10 +281,10 @@ const ExploreOffers = ({ navigation }) => {
         {originalData.length === 0 && !loading && (
           <Text
             style={[
-              styles.fontBold,
+              styles.fontRegular,
               {
                 fontSize: FontSizes.medium,
-                color: colors.textPrimary,
+                color: colors.textWhite,
                 textAlign: "center",
                 marginTop: 20,
               },

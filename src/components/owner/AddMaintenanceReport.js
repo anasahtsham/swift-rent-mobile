@@ -113,7 +113,7 @@ const AddMaintenanceReport = ({ navigation, route }) => {
                   }}
                 >
                   <TextInput
-                    placeholder="Type of Maintenance"
+                    placeholder="Maintenance Title"
                     placeholderTextColor={colors.textPrimary}
                     style={[
                       styles.textFieldInput,
@@ -183,6 +183,7 @@ const AddMaintenanceReport = ({ navigation, route }) => {
                     }) => {
                       setHeight(height);
                     }}
+                    onSubmitEditing={handleSubmit}
                   />
                   {touched.maintenanceDescription &&
                     errors.maintenanceDescription && (

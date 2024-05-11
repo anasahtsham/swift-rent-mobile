@@ -1,4 +1,5 @@
 const date = new Date();
+import { md5 } from "js-md5";
 const month = date.toLocaleString("default", { month: "long" });
 const year = date.getFullYear();
 export const formatedMonthYear = `${month} ${year}`;
@@ -42,4 +43,13 @@ export function formatNumberForAPI(obj) {
   } else {
     return parseInt(obj);
   }
+}
+
+export function hashPassword(password) {
+  let hashedPassword = password + "swiftrentmobilesalt";
+  let salt_rounds = 10;
+  for (let i = 0; i < salt_rounds; i++) {
+    hashedPassword = md5(hashedPassword);
+  }
+  return hashedPassword;
 }

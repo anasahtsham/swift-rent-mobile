@@ -53,26 +53,64 @@ const ProfileHeader = (props) => {
             },
           ]}
         >
-          {`${props.userName} (${formatUserTypeToFullForm(props.userType)})`}
+          {formatUserTypeToFullForm(props.userType)}
         </Text>
+
         <Text
-          style={{
-            color: colors.textPrimary,
-            fontSize: FontSizes.small,
-            marginBottom: 5,
-          }}
+          style={[
+            {
+              color: colors.textPrimary,
+              fontSize: FontSizes.medium,
+              fontFamily: "OpenSansBold",
+            },
+          ]}
         >
-          {`Phone: ${props.phone}`}
+          {`${props.userName}`}
         </Text>
-        <Text
-          style={{
-            color: colors.textPrimary,
-            fontSize: FontSizes.small,
-            marginBottom: 5,
-          }}
-        >
-          {`Email: ${props.email}`}
-        </Text>
+
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text
+            style={{
+              color: colors.textPrimary,
+              fontSize: FontSizes.small,
+              marginBottom: 5,
+            }}
+          >
+            {`Phone: `}
+          </Text>
+          <Text
+            style={{
+              color: colors.textPrimary,
+              fontSize: FontSizes.small,
+              fontWeight: "bold",
+              marginBottom: 5,
+            }}
+          >
+            {`${props.phone}`}
+          </Text>
+        </View>
+
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text
+            style={{
+              color: colors.textPrimary,
+              fontSize: FontSizes.small,
+              marginBottom: 5,
+            }}
+          >
+            {`Email: `}
+          </Text>
+          <Text
+            style={{
+              color: colors.textPrimary,
+              fontSize: FontSizes.small,
+              fontWeight: "bold",
+              marginBottom: 5,
+            }}
+          >
+            {`${props.email}`}
+          </Text>
+        </View>
       </View>
     </View>
   );

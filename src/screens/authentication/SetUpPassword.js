@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Formik } from "formik";
-import { md5 } from "js-md5";
 import React, { useEffect, useState } from "react";
 import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -11,6 +10,7 @@ import { BASE_URL, BUTTON_WIDTH_SMALLer } from "../../constants";
 import { saveUserID, saveUserType } from "../../helpers";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
+import { hashPassword } from "../../helpers/utils/index";
 import InputField from "./../../components/common/input_fields/InputField";
 import { setUpPasswordSchema } from "./../../helpers/validation/SetUpPasswordValidation";
 
@@ -57,7 +57,7 @@ const SetUpPassword = ({ navigation, route }) => {
           DOB: date,
           email: email,
           phone: phoneNumber,
-          userPassword: md5(values.password),
+          userPassword: hashPassword(values.password),
         };
 
         // Send a POST request to the registration API

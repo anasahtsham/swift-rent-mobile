@@ -37,7 +37,7 @@ const AboutSwiftRent = ({ navigation }) => {
           style={{
             fontSize: FontSizes.small,
             color: colors.textPrimary,
-            textAlign: "center",
+            textAlign: "justify",
             marginTop: 20,
             width: 300,
             flexWrap: "wrap",

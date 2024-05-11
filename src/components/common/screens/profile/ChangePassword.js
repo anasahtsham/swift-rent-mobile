@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Formik } from "formik";
-import { md5 } from "js-md5";
 import React, { useEffect } from "react";
 import { Alert, BackHandler, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -9,6 +8,7 @@ import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
 import { useLanguages } from "../../../../helpers/SetLanguages";
 import { useUserID } from "../../../../helpers/SetUserID";
+import { hashPassword } from "../../../../helpers/utils";
 import { changePasswordSchema } from "../../../../helpers/validation/ChangePasswordValidation";
 import ButtonGrey from "../../buttons/ButtonGrey";
 import InputField from "../../input_fields/InputField";
@@ -56,8 +56,8 @@ const ChangePassword = ({ navigation }) => {
                 try {
                   const data = {
                     userID: userID,
-                    oldPassword: md5(values.oldPassword),
-                    newPassword: md5(values.password),
+                    oldPassword: hashPassword(values.oldPassword),
+                    newPassword: hashPassword(values.password),
                   };
 
                   await axios.post(

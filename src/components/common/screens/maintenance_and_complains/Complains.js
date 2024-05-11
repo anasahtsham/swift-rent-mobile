@@ -120,7 +120,7 @@ const Complains = ({ navigation }) => {
         </Text>
       </View>
 
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
 
       {!loading && dataToRender.length === 0 && (
         <Text

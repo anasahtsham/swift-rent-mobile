@@ -1,7 +1,6 @@
 import { CommonActions } from "@react-navigation/native";
 import axios from "axios";
 import { Formik } from "formik";
-import { md5 } from "js-md5";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
@@ -20,6 +19,7 @@ import { saveUserID, saveUserType } from "../../helpers";
 import { icons } from "../../helpers/ImageImports";
 import { useColors } from "../../helpers/SetColors";
 import { useLanguages } from "../../helpers/SetLanguages";
+import { hashPassword } from "../../helpers/utils";
 import { loginSchema } from "../../helpers/validation/LoginValidation";
 import InputField from "./../../components/common/input_fields/InputField";
 
@@ -60,7 +60,7 @@ const LoginScreen = ({ navigation, route }) => {
           // Prepare the data to send to the API
           const data = {
             emailOrPhone: values.emailOrPhone,
-            userPassword: md5(values.password),
+            userPassword: hashPassword(values.password),
           };
 
           // Send a POST request to the API
@@ -94,7 +94,7 @@ const LoginScreen = ({ navigation, route }) => {
 
           const data = {
             emailOrPhone: values.emailOrPhone,
-            userPassword: md5(values.password),
+            userPassword: hashPassword(values.password),
           };
 
           // Send a POST request to the API
