@@ -68,7 +68,27 @@ const Analytics = (props) => {
       </View>
 
       {props.loading && (
-        <ActivityIndicator size="large" color={colors.textWhite} />
+        <ActivityIndicator size="large" color={colors.textPrimary} />
+      )}
+
+      {!props.loading && props.analyticsData.length === 0 && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "OpenSansRegular",
+              fontSize: FontSizes.medium,
+              color: colors.textWhite,
+            }}
+          >
+            No Data Available
+          </Text>
+        </View>
       )}
 
       {!props.loading && (

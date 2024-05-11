@@ -1,17 +1,58 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
-import { BackHandler, StyleSheet, Text, View } from "react-native";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Alert,
+  BackHandler,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import * as FontSizes from "../../../../assets/fonts/FontSizes";
+import { BASE_URL } from "../../../../constants";
 import { useColors } from "../../../../helpers/SetColors";
+import RentHistoryCard from "../../cards/RentHistoryCard";
+import { useUserID } from "./../../../../helpers/SetUserID";
+import { useUserType } from "./../../../../helpers/SetUserType";
 
 const RentHistory = ({ route }) => {
+  const { propertyID } = route.params;
+  const userID = useUserID();
+  const userType = useUserType();
   const colors = useColors();
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(true);
+
+  const [rentHistoryData, setRentHistoryData] = useState([]);
 
   useEffect(() => {
+    if (userID && userType) {
+      const data = {
+        userID: userID,
+        userType: userType,
+        propertyID: propertyID,
+      };
+
+      axios
+        .post(`${BASE_URL}/api/common/rent-history`, data)
+        .then((response) => {
+          console.log(response.data.rentHistory);
+          setRentHistoryData(response.data.rentHistory);
+        })
+        .catch((error) => {
+          Alert.alert("Error", "Something went wrong");
+          console.log(JSON.stringify(error.response, null, 2));
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+
     const backAction = () => {
       navigation.goBack();
-      return true; // This will prevent the app from closing
+      return true;
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -19,132 +60,47 @@ const RentHistory = ({ route }) => {
       backAction
     );
     return () => backHandler.remove();
-  }, []);
+  }, [userID, userType]);
+
+  const renderItem = ({ item }) => {
+    return (
+      <RentHistoryCard
+        date={item.submittedon || item.collectedon}
+        amount={item.submittedamount || item.collectedamount}
+      />
+    );
+  };
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.bodyBackground }}>
+    <View
+      style={{ flex: 1, backgroundColor: colors.bodyBackground, padding: 10 }}
+    >
       <Text style={[styles.title, { color: colors.textPrimary }]}>
         Rent History
       </Text>
-      <View style={styles.rentHistoryCardContainer}>
-        <View
-          style={[
-            styles.rentHistoryCard,
-            { backgroundColor: colors.backgroundPrimary },
-          ]}
+
+      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+
+      {!loading && rentHistoryData.length === 0 && (
+        <Text
+          style={{
+            color: colors.textPrimary,
+            fontSize: FontSizes.medium,
+            textAlign: "center",
+            marginTop: 50,
+          }}
         >
-          <Text
-            style={[
-              styles.date,
-              { fontSize: FontSizes.small, color: colors.textPrimary },
-            ]}
-          >
-            January 2024
-          </Text>
-          <View style={styles.row}>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              Paid On:
-            </Text>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              5th
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              Amount:
-            </Text>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              20,000
-            </Text>
-          </View>
-        </View>
-        <View
-          style={[
-            styles.rentHistoryCard,
-            { backgroundColor: colors.backgroundPrimary },
-          ]}
-        >
-          <Text
-            style={[
-              styles.date,
-              { fontSize: FontSizes.small, color: colors.textPrimary },
-            ]}
-          >
-            January 2024
-          </Text>
-          <View style={styles.row}>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              Paid On:
-            </Text>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              5th
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              Amount:
-            </Text>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              20,000
-            </Text>
-          </View>
-        </View>
-        <View
-          style={[
-            styles.rentHistoryCard,
-            { backgroundColor: colors.backgroundPrimary },
-          ]}
-        >
-          <Text
-            style={[
-              styles.date,
-              { fontSize: FontSizes.small, color: colors.textPrimary },
-            ]}
-          >
-            January 2024
-          </Text>
-          <View style={styles.row}>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              Paid On:
-            </Text>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              5th
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              Amount:
-            </Text>
-            <Text
-              style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
-            >
-              20,000
-            </Text>
-          </View>
-        </View>
-      </View>
+          No rent history found
+        </Text>
+      )}
+
+      {!loading && rentHistoryData.length > 0 && (
+        <FlatList
+          data={rentHistoryData}
+          renderItem={renderItem}
+          keyExtractor={(index) => index.toString()}
+        />
+      )}
     </View>
   );
 };
@@ -158,32 +114,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   rentHistoryCard: {
-    height: 90,
-    borderRadius: 15,
-    marginBottom: 10,
-    alignSelf: "center",
     width: "90%",
-    paddingBottom: 10,
+    borderRadius: 15,
+    alignSelf: "center",
+    padding: 10,
+    marginTop: 10,
   },
 
   title: {
     fontSize: FontSizes.medium,
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingTop: 25,
-    paddingBottom: 8,
   },
 
   date: {
-    paddingLeft: 10,
-    paddingTop: 10,
     textAlign: "left",
     fontWeight: "bold",
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
   },
 });
 

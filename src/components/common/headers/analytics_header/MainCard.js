@@ -88,96 +88,54 @@ const MainCard = (props) => {
         >
           {props.month}
         </Text>
-        {!!props.rentsCollected && (
-          <InfoRow
-            title="Rents Collected"
-            value={formatNumberToCrore(props.rentsCollected)}
-            imageSource={icons.downLongArrow}
-            tintColor={colors.iconGreen}
-          />
-        )}
-        {!!props.commission && (
-          <InfoRow
-            title="Commission"
-            value={formatNumberToCrore(props.commission)}
-            imageSource={icons.downLongArrow}
-            tintColor={colors.iconGreen}
-          />
-        )}
-        {!!props.maintenanceCost && (
-          <InfoRow
-            title="Maintenance Costs"
-            value={formatNumberToCrore(props.maintenanceCost)}
-            imageSource={icons.upLongArrow}
-            tintColor={colors.iconRed}
-          />
-        )}
-        {!!props.totalRentsPaid && (
-          <InfoRow
-            title="Rents Paid"
-            value={formatNumberToCrore(props.totalRentsPaid)}
-            imageSource={icons.upLongArrow}
-            tintColor={colors.iconRed}
-          />
-        )}
-        {!!props.managedProperties && (
-          <View>
-            <InfoRow
-              title="Manged Properties"
-              value={props.managedProperties}
-              imageSource={icons.upLongArrow}
-              tintColor={colors.iconRed}
-            />
-            <View style={{ height: 40 }}></View>
-          </View>
-        )}
-        {!!props.totalRentsPaid && (
-          <View>
-            <InfoRow
-              title="Rentals"
-              value={props.rentals}
-              imageSource={icons.upLongArrow}
-              tintColor={colors.iconRed}
-            />
-            <View style={{ height: 40 }}></View>
-          </View>
-        )}
 
-        {!!props.rentsCollected && (
-          <View>
+        <InfoRow
+          title="Rents Collected"
+          value={formatNumberToCrore(props.rentsCollected)}
+          imageSource={icons.downLongArrow}
+          tintColor={colors.iconGreen}
+        />
+
+        <InfoRow
+          title="Maintenance Costs"
+          value={formatNumberToCrore(props.maintenanceCost)}
+          imageSource={icons.upLongArrow}
+          tintColor={colors.iconRed}
+        />
+
+        <View>
+          <Text
+            style={[
+              styles.textRegular,
+              styles.textSmall,
+              { color: colors.textPrimary },
+            ]}
+          >
+            Total Properties
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <Text
               style={[
-                styles.textRegular,
+                styles.textBold,
                 styles.textSmall,
                 { color: colors.textPrimary },
               ]}
             >
-              Total Properties
+              {props.totalProperties}
             </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={[
-                  styles.textBold,
-                  styles.textSmall,
-                  { color: colors.textPrimary },
-                ]}
-              >
-                {props.totalProperties}
-              </Text>
-              <Image
-                tintColor={colors.iconPrimary}
-                style={{ width: 20, height: 20 }}
-                source={icons.externalLink}
-              />
-            </View>
+            <Image
+              tintColor={colors.iconPrimary}
+              style={{ width: 20, height: 20 }}
+              source={icons.externalLink}
+            />
           </View>
-        )}
+        </View>
       </View>
     </TouchableOpacity>
   );

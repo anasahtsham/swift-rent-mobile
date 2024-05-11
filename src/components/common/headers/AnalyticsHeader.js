@@ -48,7 +48,7 @@ const AnalyticsHeader = (props) => {
             alignSelf: "center",
           }}
         >
-          <ActivityIndicator size="large" color={colors.textWhite} />
+          <ActivityIndicator size="large" color={colors.textPrimary} />
         </View>
       </View>
     );

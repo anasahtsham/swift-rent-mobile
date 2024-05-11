@@ -729,7 +729,9 @@ const PropertyMenu = ({ route }) => {
           <PropertyMenuButton
             text={"Rent History"}
             colors={colors}
-            onPress={() => navigation.navigate("Rent History")}
+            onPress={() =>
+              navigation.navigate("Rent History", { propertyID: id })
+            }
           />
           {/* submit picture (most probably remove) */}
           {/* <PropertyMenuButton
