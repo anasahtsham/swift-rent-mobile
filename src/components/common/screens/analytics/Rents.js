@@ -24,11 +24,13 @@ import {
   rentsPendingData,
 } from "../../../../helpers/data/RentsData";
 import RentsCard from "../../cards/RentsCard";
+import { useUserType } from "./../../../../helpers/SetUserType";
 
 const Rents = ({ navigation, route }) => {
+  const userID = useUserID();
+  const userType = useUserType();
   const colors = useColors();
   const { header } = route.params;
-  const userID = useUserID();
   const [loading, setLoading] = useState(true);
 
   const [dataToBeRendered, setDataToBeRendered] = useState([]);
@@ -47,35 +49,71 @@ const Rents = ({ navigation, route }) => {
   useEffect(() => {
     setLoading(true);
 
-    if (userID) {
-      if (header === "Received Rents") {
-        axios
-          .post(`${BASE_URL}/api/owner/paid-list`, { ownerID: userID })
-          .then((response) => {
-            setDataToBeRendered(response.data.paidRents);
-          })
-          .catch((error) => {
-            Alert.alert("Error", "Something went wrong");
-            console.log(JSON.stringify(error.response, null, 2));
-          })
-          .finally(() => {
-            setLoading(false);
-          });
+    if (userID && userType) {
+      if (userType === "O") {
+        if (header === "Received Rents") {
+          axios
+            .post(`${BASE_URL}/api/owner/paid-list`, { ownerID: userID })
+            .then((response) => {
+              setDataToBeRendered(response.data.paidRents);
+            })
+            .catch((error) => {
+              Alert.alert("Error", "Something went wrong");
+              console.log(JSON.stringify(error.response, null, 2));
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        }
+        if (header === "Pending Rents") {
+          axios
+            .post(`${BASE_URL}/api/owner/pending-list`, { ownerID: userID })
+            .then((response) => {
+              setDataToBeRendered(response.data.pendingRents);
+            })
+            .catch((error) => {
+              Alert.alert("Error", "Something went wrong");
+              console.log(JSON.stringify(error.response, null, 2));
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        }
       }
-      if (header === "Pending Rents") {
-        axios
-          .post(`${BASE_URL}/api/owner/pending-list`, { ownerID: userID })
-          .then((response) => {
-            setDataToBeRendered(response.data.pendingRents);
-          })
-          .catch((error) => {
-            Alert.alert("Error", "Something went wrong");
-            console.log(JSON.stringify(error.response, null, 2));
-          })
-          .finally(() => {
-            setLoading(false);
-          });
+
+      if (userType === "M") {
+        if (header === "Received Rents") {
+          axios
+            .post(`${BASE_URL}/api/manager/paid-list`, { managerID: userID })
+            .then((response) => {
+              setDataToBeRendered(response.data.paidRents);
+            })
+            .catch((error) => {
+              Alert.alert("Error", "Something went wrong");
+              console.log(JSON.stringify(error.response, null, 2));
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        }
+        if (header === "Pending Rents") {
+          axios
+            .post(`${BASE_URL}/api/manager/pending-list`, {
+              managerID: userID,
+            })
+            .then((response) => {
+              setDataToBeRendered(response.data.pendingRents);
+            })
+            .catch((error) => {
+              Alert.alert("Error", "Something went wrong");
+              console.log(JSON.stringify(error.response, null, 2));
+            })
+            .finally(() => {
+              setLoading(false);
+            });
+        }
       }
+
       if (header === "Rents Paid") {
         setDataToBeRendered(rentsPaidData);
       }
@@ -94,7 +132,7 @@ const Rents = ({ navigation, route }) => {
       backAction
     );
     return () => backHandler.remove();
-  }, [header, userID]);
+  }, [header, userID, userType]);
 
   const renderItem = ({ item: rent }) => (
     <RentsCard

@@ -39,13 +39,41 @@ const PropertiesHeader = (props) => {
         </TouchableOpacity>
       )}
 
+      {props.isManager && (
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Rents", {
+              header: "Received Rents",
+            })
+          }
+          activeOpacity={OPACITY_VALUE_FOR_BUTTON}
+          style={[
+            styles.headerCards,
+            {
+              borderColor: colors.borderBlue,
+              backgroundColor: colors.headerAndFooterBackground,
+            },
+          ]}
+        >
+          <Text
+            style={{
+              color: colors.textPrimary,
+              fontSize: FontSizes.medium,
+              textAlign: "center",
+            }}
+          >
+            Rents Status
+          </Text>
+        </TouchableOpacity>
+      )}
+
       <TouchableOpacity
         onPress={() => navigation.navigate("Complains")}
         activeOpacity={OPACITY_VALUE_FOR_BUTTON}
         style={[
           styles.headerCards,
           {
-            width: props.isTenant || props.isManager ? "100%" : "auto", // if tenant or manager, make the button full width
+            width: props.isTenant ? "100%" : "auto", // if tenant or manager, make the button full width
             borderColor: colors.borderBlue,
             backgroundColor: colors.headerAndFooterBackground,
           },
