@@ -16,6 +16,7 @@ import * as FontSizes from "../../../../assets/fonts/FontSizes";
 import { BASE_URL, BUTTON_WIDTH_MEDIUM } from "../../../../constants";
 import { icons } from "../../../../helpers/ImageImports";
 import { useColors } from "../../../../helpers/SetColors";
+import { formatUserTypeToFullForm } from "../../../../helpers/utils";
 import { ratingScreenSchema } from "../../../../helpers/validation/RatingScreenValidation";
 import ButtonGrey from "../../buttons/ButtonGrey";
 import RatingStars from "./RatingStars";
@@ -25,20 +26,19 @@ const RatingScreen = ({ navigation, route }) => {
   const {
     ratingID = 0,
     userNameValue = "User Name",
+    userTypeValue = "User Type",
     addressValue = "Address",
     ratingValue = 0,
     isLikedValue = false,
     remarksValue = "",
+    editRating = false,
   } = route.params || {};
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (ratingValue) {
-      setRating(ratingValue);
-    }
-    if (isLikedValue) {
-      setIsLiked(isLikedValue);
-    }
+    setRating(ratingValue);
+
+    setIsLiked(isLikedValue);
 
     const backAction = () => {
       navigation.goBack();
@@ -84,18 +84,35 @@ const RatingScreen = ({ navigation, route }) => {
                   ratingComment: values.remark,
                 };
 
-                axios
-                  .post(`${BASE_URL}/api/common/submit-rating`, data)
-                  .then(() => {
-                    navigation.goBack();
-                  })
-                  .catch((error) => {
-                    Alert.alert("Error", "Something went wrong");
-                    console.log(JSON.stringify(error.response, null, 2));
-                  })
-                  .finally(() => {
-                    setLoading(false);
-                  });
+                if (editRating) {
+                  axios
+                    .post(`${BASE_URL}/api/common/edit-rating`, data)
+                    .then(() => {
+                      Alert.alert("Success", "Rating edited successfully");
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      Alert.alert("Error", "Something went wrong");
+                      console.log(JSON.stringify(error.response, null, 2));
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                } else {
+                  axios
+                    .post(`${BASE_URL}/api/common/submit-rating`, data)
+                    .then(() => {
+                      Alert.alert("Success", "Rating submitted successfully");
+                      navigation.goBack();
+                    })
+                    .catch((error) => {
+                      Alert.alert("Error", "Something went wrong");
+                      console.log(JSON.stringify(error.response, null, 2));
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }
               },
             },
           ],
@@ -122,17 +139,26 @@ const RatingScreen = ({ navigation, route }) => {
               { backgroundColor: colors.headerAndFooterBackground },
             ]}
           >
-            <View style={[styles.cardHeader, {}]}>
-              <View style={{ justifyContent: "space-between", width: "100%" }}>
-                <Text
-                  style={[
-                    styles.fontBold,
-                    { color: colors.textPrimary, fontSize: FontSizes.medium },
-                  ]}
-                >
-                  {!!userNameValue ? userNameValue : "User Name"}
-                </Text>
-              </View>
+            <View style={[styles.cardHeader, { flexDirection: "row" }]}>
+              <Text
+                style={[
+                  styles.fontBold,
+                  { color: colors.textPrimary, fontSize: FontSizes.medium },
+                ]}
+              >
+                {!!userNameValue ? userNameValue : "User Name"}
+              </Text>
+
+              <Text
+                style={[
+                  styles.fontBold,
+                  { color: colors.textGreen, fontSize: FontSizes.small },
+                ]}
+              >
+                {!!userTypeValue
+                  ? formatUserTypeToFullForm(userTypeValue)
+                  : "User Type"}
+              </Text>
             </View>
 
             <Text

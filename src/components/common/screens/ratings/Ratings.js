@@ -1,5 +1,6 @@
+import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -33,54 +34,28 @@ const Ratings = ({ navigation }) => {
 
   const [dataToBeRendered, setDataToBeRendered] = useState([]);
 
-  useEffect(() => {
-    if (userType && userID) {
-      setLoading(true);
+  useFocusEffect(
+    useCallback(() => {
+      console.log("Ratings Screen Focused");
+      if (userType && userID) {
+        setLoading(true);
+        let url = "";
 
-      if (currentScreen === "My Ratings") {
+        if (currentScreen === "My Ratings") {
+          url = `${BASE_URL}/api/common/fetch-my-ratings`;
+        } else if (currentScreen === "Given Ratings") {
+          url = `${BASE_URL}/api/common/fetch-given-ratings`;
+        } else if (currentScreen === "Pending Ratings") {
+          url = `${BASE_URL}/api/common/fetch-pending-ratings`;
+        }
+
         const data = {
           userID: userID,
           userType: userType,
         };
 
         axios
-          .post(`${BASE_URL}/api/common/fetch-my-ratings`, data)
-          .then((response) => {
-            setDataToBeRendered(response.data.success);
-          })
-          .catch((error) => {
-            Alert.alert("Error", "Something went wrong");
-            console.log(JSON.stringify(error.response, null, 2));
-          })
-          .finally(() => {
-            setLoading(false);
-          });
-      } else if (currentScreen === "Given Ratings") {
-        const data = {
-          userID: userID,
-          userType: userType,
-        };
-
-        axios
-          .post(`${BASE_URL}/api/common/fetch-given-ratings`, data)
-          .then((response) => {
-            setDataToBeRendered(response.data.success);
-          })
-          .catch((error) => {
-            Alert.alert("Error", "Something went wrong");
-            console.log(JSON.stringify(error.response, null, 2));
-          })
-          .finally(() => {
-            setLoading(false);
-          });
-      } else if (currentScreen === "Pending Ratings") {
-        const data = {
-          userID: userID,
-          userType: userType,
-        };
-
-        axios
-          .post(`${BASE_URL}/api/common/fetch-pending-ratings`, data)
+          .post(url, data)
           .then((response) => {
             setDataToBeRendered(response.data.success);
           })
@@ -92,19 +67,19 @@ const Ratings = ({ navigation }) => {
             setLoading(false);
           });
       }
-    }
 
-    const backAction = () => {
-      navigation.goBack();
-      return true; // This will prevent the app from closing
-    };
+      const backAction = () => {
+        navigation.goBack();
+        return true; // This will prevent the app from closing
+      };
 
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, [currentScreen, userID, userType]);
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+      return () => backHandler.remove();
+    }, [currentScreen, userID, userType]) // dependencies
+  );
 
   const renderItem = ({ item: rating }) => (
     <RatingsButton

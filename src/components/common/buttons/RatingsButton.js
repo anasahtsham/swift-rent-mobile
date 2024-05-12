@@ -14,19 +14,27 @@ export const RatingsButton = (props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        if (props.currentScreen === "Pending Ratings") {
+        if (
+          props.currentScreen === "Pending Ratings" ||
+          props.currentScreen === "Given Ratings"
+        ) {
           navigation.navigate("Rating Screen", {
             ratingID: props.ratingID,
             userNameValue: props.userName,
+            userTypeValue: props.userType,
             addressValue: props.address,
             ratingValue: props.rating,
             isLikedValue: isLiked,
             remarksValue: props.remarks,
+            editRating: props.currentScreen === "Given Ratings",
           });
         }
       }}
       activeOpacity={
-        props.currentScreen === "Pending Ratings" ? OPACITY_VALUE_FOR_BUTTON : 1
+        props.currentScreen === "Pending Ratings" ||
+        props.currentScreen === "Given Ratings"
+          ? OPACITY_VALUE_FOR_BUTTON
+          : 1
       }
       style={[styles.button, { backgroundColor: colors.backgroundPrimary }]}
     >
@@ -46,7 +54,8 @@ export const RatingsButton = (props) => {
           {props.userName}
         </Text>
         <View style={{ alignItems: "flex-end" }}>
-          {props.currentScreen === "Pending Ratings" && (
+          {(props.currentScreen === "Pending Ratings" ||
+            props.currentScreen === "Given Ratings") && (
             <Image
               source={icons.externalLink}
               tintColor={colors.iconPrimary}
