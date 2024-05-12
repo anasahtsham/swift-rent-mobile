@@ -168,6 +168,7 @@ const InputField = forwardRef((props, ref) => {
                 onFocus?.(event);
               }}
               onChangeText={handleChange}
+              maxLength={100}
               {...restOfProps}
             />
             <Animated.View
