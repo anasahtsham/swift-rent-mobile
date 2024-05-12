@@ -36,7 +36,6 @@ const Ratings = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
-      console.log("Ratings Screen Focused");
       if (userType && userID) {
         setLoading(true);
         let url = "";
