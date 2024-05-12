@@ -484,7 +484,7 @@ const PropertyMenu = ({ route }) => {
               />
             )}
 
-          {managerContract[0].managerid > 0 &&
+          {(managerContract[0].managerid > 0 || !!header[0].managerName) &&
             userType !== "M" && ( // if manager exists and user is not manager
               <PropertyMenuButton
                 onPress={() => {
@@ -674,6 +674,7 @@ const PropertyMenu = ({ route }) => {
                   onPress={() =>
                     navigation.navigate("Verify Online Payment", {
                       propertyID: id,
+                      rentAmount: leaseInformation[0].rent,
                     })
                   }
                 />
@@ -705,6 +706,9 @@ const PropertyMenu = ({ route }) => {
                   onPress={() =>
                     navigation.navigate("Verify Online Payment", {
                       propertyID: id,
+                      rentAmount: leaseInformation[0].rent,
+                      salaryFixed: managerContract[0]?.salaryfixed,
+                      salaryPercentage: managerContract[0]?.salarypercentage,
                     })
                   }
                 />
@@ -719,6 +723,8 @@ const PropertyMenu = ({ route }) => {
                     navigation.navigate("Collect Rent", {
                       propertyID: id,
                       rentAmount: leaseInformation[0].rent,
+                      salaryFixed: managerContract[0]?.salaryfixed,
+                      salaryPercentage: managerContract[0]?.salarypercentage,
                     })
                   }
                 />

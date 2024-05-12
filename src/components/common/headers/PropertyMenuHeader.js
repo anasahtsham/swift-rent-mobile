@@ -15,6 +15,8 @@ const PropertyMenuHeader = (props) => {
         return "Skipped";
       case "T":
         return "To Collect";
+      case "V":
+        return "Verify Rent";
       default:
         return status;
     }
@@ -93,18 +95,22 @@ const PropertyMenuHeader = (props) => {
             </Text>
           </View>
 
-          <View style={styles.inRow}>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
             <Text
               style={[styles.topCardTopText, { color: colors.textPrimary }]}
             >
-              Rent Status:{" "}
+              Rent Status
             </Text>
             <Text style={[styles.nestedText, { color: colors.textGreen }]}>
               {formatPaymentStatus(props.rentStatus)}
             </Text>
           </View>
 
-          <View style={styles.inRow}>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
             <Text
               style={[styles.topCardTopText, { color: colors.textPrimary }]}
             >
@@ -193,7 +199,7 @@ const PropertyMenuHeader = (props) => {
             <Text
               style={[styles.topCardTopText, { color: colors.textPrimary }]}
             >
-              Rent Status:{" "}
+              Rent Status
             </Text>
             <Text style={[styles.nestedText, { color: colors.textGreen }]}>
               {formatPaymentStatus(props.rentStatus)}

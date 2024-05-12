@@ -16,7 +16,8 @@ import { formatNumberForAPI } from "./../../../../../helpers/utils/index";
 const VerifyOnlinePayment = ({ navigation, route }) => {
   const userID = useUserID();
   const userType = useUserType();
-  const { propertyID } = route.params;
+  const { propertyID, rentAmount, salaryFixed, salaryPercentage } =
+    route.params;
   const colors = useColors();
 
   const [loading, setLoading] = useState(false); // Indicates if the form is loading or not
@@ -164,6 +165,70 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
               >
                 Verify Online Payment
               </Text>
+
+              <Text
+                style={[
+                  {
+                    fontSize: FontSizes.small,
+                    color: colors.textPrimary,
+                  },
+                ]}
+              >
+                Rent Amount: {rentAmount} PKR
+              </Text>
+
+              {salaryFixed && (
+                <>
+                  <Text
+                    style={[
+                      {
+                        fontSize: FontSizes.small,
+                        color: colors.textPrimary,
+                      },
+                    ]}
+                  >
+                    Salary Fixed: {salaryFixed} PKR
+                  </Text>
+
+                  <Text
+                    style={[
+                      {
+                        fontSize: FontSizes.small,
+                        color: colors.textPrimary,
+                      },
+                    ]}
+                  >
+                    Collectable Amount: {rentAmount - salaryFixed} PKR
+                  </Text>
+                </>
+              )}
+
+              {salaryPercentage && (
+                <>
+                  <Text
+                    style={[
+                      {
+                        fontSize: FontSizes.small,
+                        color: colors.textPrimary,
+                      },
+                    ]}
+                  >
+                    Salary Percentage: {salaryPercentage}%
+                  </Text>
+
+                  <Text
+                    style={[
+                      {
+                        fontSize: FontSizes.small,
+                        color: colors.textPrimary,
+                      },
+                    ]}
+                  >
+                    Collectable Amount:{" "}
+                    {rentAmount - (rentAmount * salaryPercentage) / 100} PKR
+                  </Text>
+                </>
+              )}
             </View>
 
             <View style={[styles.textInputsContainer, { marginBottom: 40 }]}>

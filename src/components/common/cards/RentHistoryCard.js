@@ -3,7 +3,12 @@ import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { useColors } from "../../../helpers/SetColors";
 
-const RentHistoryCard = ({ date, amount }) => {
+const RentHistoryCard = ({
+  submittedOn,
+  collectedOn,
+  submittedAmount,
+  collectedAmount,
+}) => {
   const colors = useColors();
 
   return (
@@ -13,32 +18,90 @@ const RentHistoryCard = ({ date, amount }) => {
         { backgroundColor: colors.backgroundPrimary },
       ]}
     >
-      <Text
-        style={[
-          styles.date,
-          {
-            fontSize: FontSizes.small,
-            color: colors.textPrimary,
-            fontWeight: "bold",
-          },
-        ]}
-      >
-        {date}
-      </Text>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={{ fontSize: FontSizes.small, color: colors.textPrimary }}>
-          Amount:
-        </Text>
-        <Text
-          style={{
-            fontSize: FontSizes.small,
-            color: colors.textPrimary,
-            fontWeight: "bold",
-          }}
-        >
-          {amount} PKR
-        </Text>
-      </View>
+      {collectedAmount && (
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text
+            style={{
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+            }}
+          >
+            Collected Amount:
+          </Text>
+          <Text
+            style={{
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+              fontWeight: "bold",
+            }}
+          >
+            {collectedAmount} PKR
+          </Text>
+        </View>
+      )}
+
+      {collectedOn && (
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text
+            style={{
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+            }}
+          >
+            Collected On:
+          </Text>
+          <Text
+            style={{
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+              fontWeight: "bold",
+            }}
+          >
+            {collectedOn}
+          </Text>
+        </View>
+      )}
+
+      {submittedAmount && (
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text
+            style={{ fontSize: FontSizes.small, color: colors.textPrimary }}
+          >
+            Submitted Amount:
+          </Text>
+          <Text
+            style={{
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+              fontWeight: "bold",
+            }}
+          >
+            {submittedAmount} PKR
+          </Text>
+        </View>
+      )}
+
+      {submittedOn && (
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text
+            style={{
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+            }}
+          >
+            Submitted On:
+          </Text>
+          <Text
+            style={{
+              fontSize: FontSizes.small,
+              color: colors.textPrimary,
+              fontWeight: "bold",
+            }}
+          >
+            {submittedOn}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

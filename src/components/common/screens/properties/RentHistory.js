@@ -64,8 +64,10 @@ const RentHistory = ({ route }) => {
   const renderItem = ({ item }) => {
     return (
       <RentHistoryCard
-        date={item.submittedon || item.collectedon}
-        amount={item.submittedamount || item.collectedamount}
+        submittedOn={item.submittedon}
+        collectedOn={item.collectedon}
+        submittedAmount={item.submittedamount}
+        collectedAmount={item.collectedamount}
       />
     );
   };

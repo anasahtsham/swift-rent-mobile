@@ -13,6 +13,7 @@ const ManagerProperties = () => {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
       const fetchData = async () => {
         if (!managerID) return; // Don't run if managerID is null
 

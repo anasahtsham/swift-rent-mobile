@@ -104,7 +104,7 @@ const CounterRequestForm = ({ navigation, route }) => {
 
   const CounterRequestBodyHeader = (props) => {
     if (loading) {
-      return <ActivityIndicator size="large" color={colors.textPrimary} />;
+      return <ActivityIndicator size="large" color={colors.iconWhite} />;
     }
     return (
       <>
@@ -115,7 +115,7 @@ const CounterRequestForm = ({ navigation, route }) => {
             { color: colors.textWhite, marginBottom: "2%" },
           ]}
         >
-          Average Ratings
+          Ratings
         </Text>
         <View style={styles.likesAndStarsRow}>
           <Text
@@ -250,6 +250,21 @@ const CounterRequestForm = ({ navigation, route }) => {
             ratings={ratings}
             averageRating={averageRating}
           />
+          {!loading && ratingsData.length === 0 && (
+            <Text
+              style={[
+                styles.ratingsTitle,
+                styles.fontRegular,
+                {
+                  color: colors.textWhite,
+                  marginTop: "5%",
+                  alignSelf: "center",
+                },
+              ]}
+            >
+              No Ratings To Show
+            </Text>
+          )}
           {ratingsData.map((rating) => (
             <CounterRequestFormCard
               key={rating.id}

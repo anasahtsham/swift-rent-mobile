@@ -88,6 +88,7 @@ const ExploreOffers = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true);
       axios
         .post(`${BASE_URL}/api/manager/view-hire-requests`, { managerID })
         .then((response) => {
@@ -274,9 +275,7 @@ const ExploreOffers = ({ navigation }) => {
           Owner Offers
         </Text>
 
-        {loading && (
-          <ActivityIndicator size="large" color={colors.textPrimary} />
-        )}
+        {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
 
         {originalData.length === 0 && !loading && (
           <Text

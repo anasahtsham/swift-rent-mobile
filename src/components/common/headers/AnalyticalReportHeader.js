@@ -26,13 +26,13 @@ const AnalyticalReportHeader = (props) => {
 
   const data = [
     {
-      values: totalMaintenanceCosts,
-      color: colors.textRed, // Maintenance cost
+      values: totalProfits,
+      color: colors.textPrimary, // Total profit
       months: monthNames,
     },
     {
-      values: totalProfits,
-      color: colors.textPrimary, // Total profit
+      values: totalMaintenanceCosts,
+      color: colors.textRed, // Maintenance cost
       months: monthNames,
     },
     {
@@ -92,14 +92,14 @@ const AnalyticalReportHeader = (props) => {
           <AnalyticalReportLineGraph colors={colors} data={data} />
         </View>
         <View style={styles.cardBottomRowContainer}>
-          <Text style={[styles.monthNameText, { color: colors.textPrimary }]}>
-            - Profits
-          </Text>
           <Text style={[styles.monthNameText, { color: colors.textGreen }]}>
             - Total Revenue
           </Text>
           <Text style={[styles.monthNameText, { color: colors.textRed }]}>
             - Maintenance Cost
+          </Text>
+          <Text style={[styles.monthNameText, { color: colors.textPrimary }]}>
+            - Profits
           </Text>
           {/* <Text style={[styles.monthNameText, { color: colors.textPrimary }]}>
             Month Name

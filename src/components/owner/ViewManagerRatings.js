@@ -89,9 +89,25 @@ const ViewManagerRatings = ({ navigation, route }) => {
         </Text>
       </View>
 
-      {loading && <ActivityIndicator size="large" color={colors.textPrimary} />}
+      {loading && <ActivityIndicator size="large" color={colors.iconWhite} />}
 
-      {!loading && (
+      {!loading && dataToBeRendered.length === 0 && (
+        <Text
+          style={[
+            styles.fontRegular,
+            {
+              fontSize: FontSizes.medium,
+              color: colors.textWhite,
+              textAlign: "center",
+              marginTop: 20,
+            },
+          ]}
+        >
+          No ratings yet
+        </Text>
+      )}
+
+      {!loading && dataToBeRendered.length > 0 && (
         <FlatList
           data={dataToBeRendered}
           renderItem={renderItem}
