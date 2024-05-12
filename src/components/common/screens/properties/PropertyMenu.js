@@ -21,6 +21,7 @@ import {
   formatUserTypeToFullForm,
 } from "../../../../helpers/utils";
 import { deleteHireRequest } from "../../../owner/DeleteHireRequest";
+import { deleteProperty } from "../../../owner/DeleteProperty";
 import { fireManager } from "../../../owner/FireManager";
 import PropertyMenuButton from "../../buttons/PropertyMenuButton";
 import PropertyMenuHeader from "../../headers/PropertyMenuHeader";
@@ -44,6 +45,7 @@ const PropertyMenu = ({ route }) => {
     sendRentCollectionRequestLoading,
     setSendRentCollectionRequestLoading,
   ] = useState(false);
+  const [deletePropertyLoading, setDeletePropertyLoading] = useState(false);
 
   //header
   const [header, setHeader] = useState([
@@ -747,6 +749,19 @@ const PropertyMenu = ({ route }) => {
               navigation.navigate("Rent History", { propertyID: id })
             }
           />
+
+          {userType === "O" && (
+            <PropertyMenuButton
+              text={"Delete Property"}
+              colors={colors}
+              onPress={async () => {
+                await deleteProperty(id, setDeletePropertyLoading);
+                navigation.goBack();
+              }}
+              loading={deletePropertyLoading}
+            />
+          )}
+
           {/* submit picture (most probably remove) */}
           {/* <PropertyMenuButton
             onPress={() => {
