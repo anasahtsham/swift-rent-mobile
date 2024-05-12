@@ -179,7 +179,7 @@ const RatingScreen = ({ navigation, route }) => {
                 { color: colors.textPrimary, fontSize: FontSizes.small },
               ]}
             >
-              Describe Your Expirience
+              Describe Your Experience
             </Text>
 
             <TextInput
