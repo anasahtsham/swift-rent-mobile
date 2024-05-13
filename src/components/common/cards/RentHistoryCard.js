@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as FontSizes from "../../../assets/fonts/FontSizes";
 import { useColors } from "../../../helpers/SetColors";
+import { formatNumberToCrore } from "./../../../helpers/utils/index";
 
 const RentHistoryCard = ({
   submittedOn,
@@ -35,7 +36,7 @@ const RentHistoryCard = ({
               fontWeight: "bold",
             }}
           >
-            {collectedAmount} PKR
+            {formatNumberToCrore(collectedAmount)} PKR
           </Text>
         </View>
       )}
@@ -76,7 +77,7 @@ const RentHistoryCard = ({
               fontWeight: "bold",
             }}
           >
-            {submittedAmount} PKR
+            {formatNumberToCrore(submittedAmount)} PKR
           </Text>
         </View>
       )}

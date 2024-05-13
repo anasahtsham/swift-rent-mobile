@@ -147,7 +147,7 @@ const Ratings = ({ navigation }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.buttons}
-          ListFooterComponent={<View style={{ height: 10 }} />}
+          ListFooterComponent={<View style={{ height: 100 }} />}
         />
       )}
 
