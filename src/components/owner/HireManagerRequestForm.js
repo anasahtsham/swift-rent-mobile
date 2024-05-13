@@ -352,7 +352,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                 />
               </View> */}
 
-              {valuePurposeOfHireDropdown === "acquire_tenant" && (
+              {/* {valuePurposeOfHireDropdown === "acquire_tenant" && (
                 <InputFieldWithHint
                   textFieldIcon={icons.rupeeIcon}
                   ref={agentOneTimeFeeRef}
@@ -373,7 +373,7 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                     urdu: "کرایہ دار حاصل کرنے کی صورت میں ایجنٹ کی ایک بار کی فیس کیا ہے؟",
                   }}
                 />
-              )}
+              )} */}
 
               {valuePurposeOfHireDropdown === "caretaking" && (
                 <>
@@ -422,8 +422,8 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                         errorText={touched.percentage ? errors.percentage : ""}
                         hintTexts={{
                           english:
-                            "If the payment type is percentage, what is the percentage? keep in mind that by doing this the manager will get the advance payment cut in percentage",
-                          urdu: "اگر ادائیگی کی قسم فی صد ہے تو فی صد کیا ہے؟ یاد رہے کہ ایسا کرنے سے مینیجر کو فی صد میں پیشگوئی کٹ جائے گی۔",
+                            "Please enter the percentage amount from 1 to 100.",
+                          urdu: "براہ کرم فی صد رقم درج کریں جو 1 سے 100 تک ہے۔",
                         }}
                       />
                     )}
@@ -439,8 +439,8 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                         errorText={touched.fixed ? errors.fixed : ""}
                         hintTexts={{
                           english:
-                            "If the payment type is fixed, what is the fixed amount? Keep in mind that by doing this the manager will get the advance payment cut in fixed amount.",
-                          urdu: "اگر ادائیگی کی قسم مقررہ ہے تو مقررہ رقم کیا ہے؟ یاد رہے کہ ایسا کرنے سے مینیجر کو فیکس رقم میں پیشگوئی کٹ جائے گی۔",
+                            "Please enter the fixed amount for Manager's salary.",
+                          urdu: "براہ کرم مینیجر کی تنخواہ کے لئے مقررہ رقم درج کریں۔",
                         }}
                       />
                     )}
@@ -473,15 +473,16 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                     <HintPopup
                       top={34}
                       hintTexts={{
-                        english: "Who will bring the tenant?",
-                        urdu: "کرایہ دار کو کون لائے گا؟",
+                        english:
+                          "Who do you want to handle tenant registration on your property?",
+                        urdu: "آپ کس کو چاہتے ہیں کہ آپ کی پراپرٹی پر کرایہ دار کی رجسٹریشن کا انتظام کرے؟",
                       }}
                     />
                   </View>
                 </>
               )}
 
-              <InputFieldWithHint
+              <InputField
                 textFieldIcon={icons.rupeeIcon}
                 ref={rentAmountRef}
                 returnKeyType="next"
@@ -493,10 +494,6 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                 handleChange={handleChange("rentAmount")}
                 handleBlur={handleBlur("rentAmount")}
                 errorText={touched.rentAmount ? errors.rentAmount : ""}
-                hintTexts={{
-                  english: "What is the rent amount?",
-                  urdu: "کرایہ کی رقم کیا ہے؟",
-                }}
               />
 
               <InputFieldWithHint
@@ -509,8 +506,9 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                 handleBlur={handleBlur("specialTerms")}
                 errorText={touched.specialTerms ? errors.specialTerms : ""}
                 hintTexts={{
-                  english: "Any special terms?",
-                  urdu: "کوئی خاص شرائط؟",
+                  english:
+                    "Write anything specific you want to mention in your lease agreement.",
+                  urdu: "اپنے لیز اگریمنٹ میں ذکر کرنا چاہتے ہیں تو کچھ خاص لکھیں۔",
                 }}
               />
               <View>
@@ -523,8 +521,9 @@ const HireManagerRequestForm = ({ navigation, route }) => {
                   top={12}
                   right={-25}
                   hintTexts={{
-                    english: "Will the manager handle the paperwork?",
-                    urdu: "کیا مینیجر کاغذات کا انتظام کرے گا؟",
+                    english:
+                      "Do you want the manager to handle any legal paper work for you?",
+                    urdu: "کیا آپ چاہتے ہیں کہ مینیجر آپ کے لیے کوئی قانونی کاغذات کا انتظام کرے؟",
                   }}
                 />
               </View>

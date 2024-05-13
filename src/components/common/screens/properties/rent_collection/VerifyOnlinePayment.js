@@ -241,9 +241,8 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
                 errorText={touched.moneyReceived ? errors.moneyReceived : ""} // If the user has touched the input field and there's an error, display the error message
                 onSubmitEditing={() => handleSubmit} // When the user presses "Next" on the keyboard, the form will be submitted
                 hintTexts={{
-                  english:
-                    "Enter How much money have you received. If you have only received a part of the rent, enter the amount you have received, then in the next month enter the remaining amount even if his rent for that month hasnt increased automatically based on how much was left from the previous month.",
-                  urdu: "درج کریں کہ آپ نے کتنے پیسے وصول کئے ہیں۔ اگر آپ نے کرایہ کا صرف ایک حصہ وصول کیا ہے تو اس میں درج کریں جو رقم آپ نے وصول کی ہے، پھر اگلے مہینے اس باقی رقم کو درج کریں چاہے اس کا کرایہ اس مہینے میں بڑھا ہوا ہو یا نہیں جو پچھلے مہینے سے باقی رہ گیا تھا۔",
+                  english: "Enter How much money have you received.",
+                  urdu: "وہ رقم درج کریں جو آپ نے وصول کی ہے۔",
                 }}
               />
             </View>

@@ -375,8 +375,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   onSubmitEditing={() => securityAmountRef.current?.focus()}
                   hintTexts={{
                     english:
-                      "Leased for months refers to the number of months for which the property is leased. For example, you can set it to 12 to lease the property for 12 months.",
-                    urdu: "مہینوں کے لیے کرایہ وہ مہینے ہیں جن کے لیے جائیداد کرایہ دی گئی ہے۔ مثال کے طور پر، آپ اسے 12 پر مقرر کرسکتے ہیں تاکہ جائیداد کو 12 مہینے کے لیے کرایہ دیا جائے۔",
+                      "Mention the number of months for which the property is going to be leased for.",
+                    urdu: "زکر کریں کہ گھر کتنے مہینوں کے لیے کرایہ پر دیا جا رہا ہے۔",
                   }}
                 />
 
@@ -404,8 +404,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   ref={securityAmountRef}
                   hintTexts={{
                     english:
-                      "Security amount refers to the amount of money that the tenant pays as a security deposit. For example, you can set it to 120,000 PKR to be paid as a security deposit.",
-                    urdu: "سیکیورٹی رقم وہ رقم ہے جو کرایہ دار سیکیورٹی جمع کرانے کے طور پر ادا کرتا ہے۔ مثال کے طور پر، آپ اسے 120،000 پر مقرر کرسکتے ہیں تاکہ سیکیورٹی جمع کرانے کے طور پر ادا کیا جائے۔",
+                      "Security amount refers to the amount of money that the tenant pays as a security deposit.",
+                    urdu: "سیکیورٹی رقم وہ رقم ہے جو کرایہ دار امانت رقم کے طور پر ادا کرتا ہے۔",
                   }}
                 />
 
@@ -431,8 +431,8 @@ const RegisterTenant = ({ navigation, route }) => {
                     onSubmitEditing={() => yearlyIncreaseRef.current?.focus()}
                     hintTexts={{
                       english:
-                        "Advance payment for months refers to the number of months for which the advance payment is made. For example, you can set it to 2 to pay the rent for 2 months in advance.",
-                      urdu: "مہینوں کے لیے اعلی ادا کرایہ وہ مہینے ہیں جن کے لیے اعلی ادا کیا جاتا ہے۔ مثال کے طور پر، آپ اسے 2 پر مقرر کرسکتے ہیں تاکہ کرایہ کو 2 مہینے پہلے ادا کیا جائے۔",
+                        "Advance payment for months refers to the number of months that the tenant has to pay in advance.",
+                      urdu: "مہینوں کے لیے اعلی ادا کرایہ وہ مہینے ہیں جنہیں کرایہ دار کو پہلے ہی ادا کرنا ہوگا۔",
                     }}
                   />
                 )}
@@ -460,8 +460,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   onFocus={() => advancePaymentForMonthsRef.current?.focus()}
                   hintTexts={{
                     english:
-                      "Advance payment refers to the amount of rent that the tenant pays in advance. This will be automatically calculated based on your input for 'Advance Payment For (Months)' and 'Rent Amount'. For example, if you set the advance payment for 2 months and the rent amount to 1000, the advance payment will be 2000.",
-                    urdu: "اعلی ادا کرایہ وہ کرایہ ہے جو کرایہ دار پہلے ہی ادا کرتا ہے۔ یہ آپ کے 'اعلی ادا کرایہ کے لیے (مہینے)' اور 'کرایہ رقم' کے ان پٹ کے مطابق خود بخود حاصل ہوگا۔ مثال کے طور پر، اگر آپ نے 2 مہینے کے لیے اعلی ادا کرایہ اور کرایہ رقم کو 1000 مقرر کیا ہے تو اعلی ادا کرایہ 2000 ہوگا۔",
+                      "This field is automatically calculated based on the rent amount and the number of months for which the advance payment is made.",
+                    urdu: "یہ خود بخود حساب کیا جاتا ہے جو کرایہ اور مہینوں کی تعداد پر مبنی ہے جن کے لیے اعلی ادا کیا جاتا ہے۔",
                   }}
                 />
 
@@ -487,8 +487,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   onSubmitEditing={() => incrementPeriodRef.current?.focus()}
                   hintTexts={{
                     english:
-                      "Yearly increase refers to the percentage by which the rent can be increased each year. For example, you can set it to 3% to allow for a 3% increase in rent annually.",
-                    urdu: "سالانہ اضافہ وقت کی فی صد میں اضافہ کا مطلب ہے جس سے کرایہ ہر سال بڑھایا جا سکتا ہے۔ مثال کے طور پر، آپ اسے 3 فی صد پر مقرر کر سکتے ہیں تاکہ کرایہ ہر سال 3 فی صد بڑھایا جا سکے۔",
+                      "Monthly increase refers to the percentage by which the rent can be increased.",
+                    urdu: "ماہانہ اضافہ وہ فی صد ہے جس سے کرایہ بڑھایا جا سکتا ہے۔",
                   }}
                 />
 
@@ -512,8 +512,8 @@ const RegisterTenant = ({ navigation, route }) => {
                     onSubmitEditing={() => lateRentFineRef.current?.focus()}
                     hintTexts={{
                       english:
-                        "Increment period refers to the amount of time after which the rent will be increased by the yearly increase percentage. For example, you can set it to 12 months to increase the rent annually.",
-                      urdu: "اضافہ مدت وقت اس وقت کی مدت ہے جس کے بعد کرایہ سالانہ اضافہ فی صد سے بڑھایا جائے گا۔ مثال کے طور پر، آپ اسے 12 مہینے پر مقرر کر سکتے ہیں تاکہ کرایہ سالانہ بڑھایا جائے۔",
+                        "Increment period refers to the amount of time after which the rent will be increased by the monthly increase percentage.",
+                      urdu: "اضافہ مدت وہ وقت ہے جس کے بعد کرایہ ماہانہ اضافہ فی صد سے بڑھایا جائے گا۔",
                     }}
                   />
                 )}
@@ -537,8 +537,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   onSubmitEditing={handleSubmit}
                   hintTexts={{
                     english:
-                      "Late rent fine refers to the additional fee charged when the rent payment is not made on time. For example, you can set it to 5000 PKR to be charged if the rent is not paid within 5 days of the due date.",
-                    urdu: "دیر سے کرایہ فائن کرایہ ادا نہ ہونے پر اضافی فیس کا مطلب ہے۔ مثال کے طور پر، آپ اسے 5000 پر مقرر کرسکتے ہیں تاکہ اگر کرایہ وقت پر ادا نہ ہو تو 5 دنوں کے اندر اضافی فیس وصول کی جائے۔",
+                      "Late rent fine refers to the additional fee charged when the rent payment is not made on time.",
+                    urdu: "دیر سے کرایہ ادا کرنے پر اضافی فیس کا حساب ہوتا ہے۔",
                   }}
                 />
               </View>

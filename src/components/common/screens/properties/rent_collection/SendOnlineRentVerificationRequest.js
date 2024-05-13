@@ -184,8 +184,8 @@ const SendOnlineRentVerificationRequest = ({ navigation, route }) => {
                 returnKeyType="next"
                 hintTexts={{
                   english:
-                    "Let the receiever know to which bank you have sent the online rent.",
-                  urdu: "رسیور کو بتائیں کہ آپ نے آن لائن کرایہ کس بینک میں بھیجا ہے۔",
+                    "Notify the recipient about the destination of the sent funds.",
+                  urdu: "رقم بھیجنے کی جگہ کے بارے میں موصول کو مطلع کریں۔",
                 }}
               />
             </View>
