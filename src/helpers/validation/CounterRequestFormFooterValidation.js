@@ -7,6 +7,8 @@ import {
   onlyNumbersMessage,
   onlyNumbersRegex,
   requiredMessage,
+  from1to1000000000Regex,
+  from1to1000000000Message,
 } from "./ValidationRegexAndMessages";
 
 export const getValidationSchema = (salaryPaymentType) => {
@@ -14,7 +16,8 @@ export const getValidationSchema = (salaryPaymentType) => {
     rentCounterOffer: Yup.string()
       .required(requiredMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
-      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage),
+      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+      .matches(from1to1000000000Regex, from1to1000000000Message),
   };
 
   switch (salaryPaymentType) {
@@ -22,7 +25,8 @@ export const getValidationSchema = (salaryPaymentType) => {
       schema.fixedCounterOffer = Yup.string()
         .required(requiredMessage)
         .matches(onlyNumbersRegex, onlyNumbersMessage)
-        .matches(multipleOfHunderedRegex, multipleOfHunderedMessage);
+        .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+        .matches(from1to1000000000Regex, from1to1000000000Message);
       break;
     case "P":
       schema.percentageCounterOffer = Yup.string()
@@ -34,7 +38,8 @@ export const getValidationSchema = (salaryPaymentType) => {
       schema.oneTimeCounterOffer = Yup.string()
         .required(requiredMessage)
         .matches(onlyNumbersRegex, onlyNumbersMessage)
-        .matches(multipleOfHunderedRegex, multipleOfHunderedMessage);
+        .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+        .matches(from1to1000000000Regex, from1to1000000000Message);
       break;
   }
 

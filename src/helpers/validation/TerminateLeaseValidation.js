@@ -11,10 +11,14 @@ import {
   onlyNumbersMessage,
   onlyNumbersRegex,
   requiredMessage,
+  from1to1000000000Regex,
+  from1to1000000000Message,
 } from "./ValidationRegexAndMessages";
 
 export const terminateLeaseSchema = Yup.object().shape({
-  moneyReturned: Yup.string().matches(onlyNumbersRegex, onlyNumbersMessage),
+  moneyReturned: Yup.string()
+    .matches(onlyNumbersRegex, onlyNumbersMessage)
+    .matches(from1to1000000000Regex, from1to1000000000Message),
   terminationReason: Yup.string()
     .required(requiredMessage)
     .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)

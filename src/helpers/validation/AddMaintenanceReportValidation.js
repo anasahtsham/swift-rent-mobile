@@ -16,6 +16,8 @@ import {
   onlyNumbersMessage,
   onlyNumbersRegex,
   requiredMessage,
+  from1to1000000000Regex,
+  from1to1000000000Message,
 } from "./ValidationRegexAndMessages";
 
 export const addMaintenanceReportSchema = Yup.object().shape({
@@ -30,7 +32,8 @@ export const addMaintenanceReportSchema = Yup.object().shape({
 
   maintenanceCost: Yup.string()
     .required(requiredMessage)
-    .matches(onlyNumbersRegex, onlyNumbersMessage),
+    .matches(onlyNumbersRegex, onlyNumbersMessage)
+    .matches(from1to1000000000Regex, from1to1000000000Message),
 
   maintenanceDescription: Yup.string()
     .min(min3CharactersInt, min3CharactersMessage)

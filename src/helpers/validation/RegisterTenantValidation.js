@@ -18,6 +18,8 @@ import {
   onlyNumbersMessage,
   onlyNumbersRegex,
   requiredMessage,
+  from1to1000000000Regex,
+  from1to1000000000Message,
 } from "./ValidationRegexAndMessages";
 
 export const registerTenantSchema = (
@@ -31,7 +33,8 @@ export const registerTenantSchema = (
       .required(requiredMessage)
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
-      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage),
+      .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+      .matches(from1to1000000000Regex, from1to1000000000Message),
     tenantContact: Yup.string()
       .required(requiredMessage)
       .matches(noSpacesRegex, noSpacesMessage)
@@ -46,6 +49,7 @@ export const registerTenantSchema = (
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
       .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+      .matches(from1to1000000000Regex, from1to1000000000Message)
       .test("isSecurityAmountEditable", requiredMessage, function (value) {
         if (isSecurityAmountEditable && !value) {
           return false;
@@ -99,6 +103,7 @@ export const registerTenantSchema = (
       .matches(noSpacesRegex, noSpacesMessage)
       .matches(onlyNumbersRegex, onlyNumbersMessage)
       .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
+      .matches(from1to1000000000Regex, from1to1000000000Message)
       .test("isLateRentFineEditable", requiredMessage, function (value) {
         if (isLateRentFineEditable && !value) {
           return false;
