@@ -58,7 +58,6 @@ export const managerFixedSchema = Yup.object().shape({
     .required(requiredMessage)
     .matches(noSpacesRegex, noSpacesMessage)
     .matches(onlyNumbersRegex, onlyNumbersMessage)
-    .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
     .matches(from1to1000000000Regex, from1to1000000000Message),
   rentAmount: Yup.string()
     .required(requiredMessage)

@@ -25,7 +25,6 @@ export const getValidationSchema = (salaryPaymentType) => {
       schema.fixedCounterOffer = Yup.string()
         .required(requiredMessage)
         .matches(onlyNumbersRegex, onlyNumbersMessage)
-        .matches(multipleOfHunderedRegex, multipleOfHunderedMessage)
         .matches(from1to1000000000Regex, from1to1000000000Message);
       break;
     case "P":
