@@ -82,7 +82,7 @@ const SettingScreen = ({ navigation, route }) => {
       <ButtonGrey
         fontSize={FontSizes.medium}
         width={BUTTON_WIDTH_MEDIUM}
-        buttonText="Go Back"
+        buttonText="Back"
         destinationScreen="Profile"
         navigation={navigation}
       />
