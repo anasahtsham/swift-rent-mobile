@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
@@ -21,14 +22,15 @@ import { ratingScreenSchema } from "../../../../helpers/validation/RatingScreenV
 import ButtonGrey from "../../buttons/ButtonGrey";
 import RatingStars from "./RatingStars";
 
-const RatingScreen = ({ navigation, route }) => {
+const RatingScreen = ({ route }) => {
   const colors = useColors();
+  const navigation = useNavigation();
   const {
     ratingID = 0,
     userNameValue = "User Name",
     userTypeValue = "User Type",
     addressValue = "Address",
-    ratingValue = 0,
+    ratingValue = 1,
     isLikedValue = false,
     remarksValue = "",
     editRating = false,
@@ -53,7 +55,7 @@ const RatingScreen = ({ navigation, route }) => {
   }, []);
 
   //state to store the rating
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
 
   //state to store the choice of thumbs up or down
   const [isLiked, setIsLiked] = useState(null);

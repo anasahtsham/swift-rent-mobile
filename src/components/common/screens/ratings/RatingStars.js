@@ -20,6 +20,7 @@ const RatingStars = ({
 
   //update language on load
   useEffect(() => {
+    console.log("rating", rating);
     const backAction = () => {
       navigation.goBack();
       return true; // This will prevent the app from closing
@@ -30,7 +31,7 @@ const RatingStars = ({
       backAction
     );
     return () => backHandler.remove();
-  }, []);
+  }, [rating]);
 
   return (
     <View style={styles.starsContainer}>
