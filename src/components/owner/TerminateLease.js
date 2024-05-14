@@ -137,8 +137,8 @@ const TerminateLease = ({ navigation, route }) => {
                 returnKeyType="next"
                 hintTexts={{
                   english:
-                    "The security, advanced or any other money returned to the tenant.",
-                  urdu: "سیکیورٹی، ایڈوانس یا کسی بھی دوسرے پیسے جو کرایہ دار کو واپس کیے گئے۔",
+                    "The advanced or any other money returned to the tenant. Do not include the security deposit.",
+                  urdu: "پیشہ یا کسی اور رقم جو کرایہ دار کو واپس کی گئی ہے۔ سیکیورٹی جمع نہ شامل کریں۔",
                 }}
               />
 
