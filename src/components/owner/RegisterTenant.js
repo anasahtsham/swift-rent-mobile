@@ -472,9 +472,7 @@ const RegisterTenant = ({ navigation, route }) => {
                   canBeDisabled={true}
                   borderRadius={10}
                   label={
-                    isYearlyIncreaseEditable
-                      ? "Monthly Increase (%)*"
-                      : "Monthly Increase (%)"
+                    isYearlyIncreaseEditable ? "Increase (%)*" : "Increase (%)"
                   }
                   value={isYearlyIncreaseEditable ? values.yearlyIncrease : ""}
                   handleChange={handleChange("yearlyIncrease")}
