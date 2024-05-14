@@ -23,6 +23,7 @@ import {
 } from "../../helpers/validation/HireManagerValidation";
 import ButtonGrey from "../common/buttons/ButtonGrey";
 import Checkbox from "../common/checkboxes/Checkbox";
+import InputField from "../common/input_fields/InputField";
 import InputFieldWithHint from "../common/input_fields/InputFieldWithHint";
 import HintPopup from "../common/popups/HintPopup";
 import { formatNumberForAPI } from "./../../helpers/utils/index";

@@ -489,7 +489,9 @@ const PropertyMenu = ({ route }) => {
               />
             )}
 
-          {(managerContract[0].managerid > 0 || !!header[0].managerName) &&
+          {(managerContract[0].managerid > 0 ||
+            (header[0].managerName !== " " &&
+              header[0].managerName !== undefined)) &&
             userType !== "M" && ( // if manager exists and user is not manager
               <PropertyMenuButton
                 onPress={() => {
