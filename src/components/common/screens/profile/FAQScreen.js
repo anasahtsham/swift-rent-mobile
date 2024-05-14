@@ -28,10 +28,6 @@ const FAQScreen = ({ navigation }) => {
 
   const faqs = [
     {
-      title: "",
-      content: "",
-    },
-    {
       title: "How do I change my name?",
       content:
         "Contact customer support, as we do not allow users to change their names on the platform. If you have a valid reason for changing your name, please provide the necessary reasoning to support your request.",
@@ -75,6 +71,11 @@ const FAQScreen = ({ navigation }) => {
       title: "How do I track maintenance costs for my rental property?",
       content:
         "You can add maintenance reports for your rental property by navigating to a specific property and selecting the 'Maintenance' tab.",
+    },
+    {
+      title: "I have entered the wrong amount while collecting rent.",
+      content:
+        "You can contact customer support and let us know the details of the transaction. We will help you resolve the issue.",
     },
   ];
 
