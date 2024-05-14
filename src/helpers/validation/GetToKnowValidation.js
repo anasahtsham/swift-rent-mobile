@@ -10,6 +10,8 @@ import {
   noDoubleSpacesRegex,
   noLeadingOrTrailingSpacesMessage,
   noLeadingOrTrailingSpacesRegex,
+  noNumbersMessage,
+  noNumbersRegex,
   noSpecialCharacterAtStartOrEndMessage,
   noSpecialCharacterAtStartOrEndRegex,
   noSpecialCharactersExceptHyphenSpaceOrPeriodMessage,
@@ -34,7 +36,8 @@ export const getToKnowSchema = Yup.object().shape({
       noSpecialCharacterAtStartOrEndRegex,
       noSpecialCharacterAtStartOrEndMessage
     )
-    .min(min3CharactersInt, min3CharactersMessage),
+    .min(min3CharactersInt, min3CharactersMessage)
+    .matches(noNumbersRegex, noNumbersMessage),
   lastName: Yup.string()
     .required(requiredMessage)
     .matches(noLeadingOrTrailingSpacesRegex, noLeadingOrTrailingSpacesMessage)
@@ -51,6 +54,7 @@ export const getToKnowSchema = Yup.object().shape({
       noSpecialCharacterAtStartOrEndRegex,
       noSpecialCharacterAtStartOrEndMessage
     )
-    .min(min3CharactersInt, min3CharactersMessage),
+    .min(min3CharactersInt, min3CharactersMessage)
+    .matches(noNumbersRegex, noNumbersMessage),
   date: Yup.date().typeError(invalidDateMessage).required(requiredMessage),
 });

@@ -12,6 +12,8 @@ export const noSpecialCharactersExceptHyphenSpaceOrPeriodRegex =
   /^[a-zA-Z0-9\s.-]*$/;
 export const noSpecialCharactersExceptHyphenSpaceOrPeriodMessage =
   "No special characters except hyphen, space or period";
+export const noNumbersRegex = /^[^0-9]*$/;
+export const noNumbersMessage = "No numbers allowed";
 
 export const notOnlyNumbersRegex = /^(?!\d+$).*$/;
 export const notOnlyNumbersMessage = "Can't be only numbers";
