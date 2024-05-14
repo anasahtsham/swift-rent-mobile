@@ -404,8 +404,8 @@ const RegisterTenant = ({ navigation, route }) => {
                   ref={securityAmountRef}
                   hintTexts={{
                     english:
-                      "Security amount refers to the amount of money that the tenant pays as a security deposit.",
-                    urdu: "سیکیورٹی رقم وہ رقم ہے جو کرایہ دار امانت رقم کے طور پر ادا کرتا ہے۔",
+                      "Security deposit will not be counted in the analytics. It is only for record keeping. Security amount refers to the amount of money that the tenant pays as a security deposit.",
+                    urdu: "سیکیورٹی جمع رقم کو تجزیہ میں شامل نہیں کیا جائے گا۔ یہ صرف ریکارڈ رکھنے کے لیے ہے۔ سیکیورٹی رقم وہ رقم ہے جو کرایہ دار سیکیورٹی جمع کرانے کے طور پر ادا کرتا ہے۔",
                   }}
                 />
 

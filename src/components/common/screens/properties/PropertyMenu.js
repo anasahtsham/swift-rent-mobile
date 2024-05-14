@@ -25,6 +25,7 @@ import { deleteProperty } from "../../../owner/DeleteProperty";
 import { fireManager } from "../../../owner/FireManager";
 import PropertyMenuButton from "../../buttons/PropertyMenuButton";
 import PropertyMenuHeader from "../../headers/PropertyMenuHeader";
+import { deleteLeaseRequest } from "./../../../owner/DeleteLeaseRequest";
 import { sendRentCollectionRequest } from "./rent_collection/SendRentCollectionRequest";
 
 const PropertyMenu = ({ route }) => {
@@ -46,6 +47,8 @@ const PropertyMenu = ({ route }) => {
     setSendRentCollectionRequestLoading,
   ] = useState(false);
   const [deletePropertyLoading, setDeletePropertyLoading] = useState(false);
+  const [deleteLeaseRequestLoading, setDeleteLeaseRequestLoading] =
+    useState(false);
 
   //header
   const [header, setHeader] = useState([
@@ -539,14 +542,24 @@ const PropertyMenu = ({ route }) => {
             (managerContract[0].whobringstenant === "O" ||
               managerContract[0].whobringstenant === "B" ||
               !managerContract[0].managerid) &&
-            userType === "O" && ( //
-              <PropertyMenuButton
-                onPress={() => {
-                  navigation.navigate("Register Tenant", { id: id });
-                }}
-                text={"Register Tenant"}
-                colors={colors}
-              />
+            userType === "O" && (
+              <>
+                <PropertyMenuButton
+                  onPress={() => {
+                    navigation.navigate("Register Tenant", { id: id });
+                  }}
+                  text={"Register Tenant"}
+                  colors={colors}
+                />
+                <PropertyMenuButton
+                  onPress={() => {
+                    deleteLeaseRequest(id, setDeleteLeaseRequestLoading);
+                  }}
+                  text={"Delete Lease Request"}
+                  colors={colors}
+                  loading={deleteLeaseRequestLoading}
+                />
+              </>
             )}
 
           {leaseInformation[0].tenantid > 0 && userType === "O" && (
