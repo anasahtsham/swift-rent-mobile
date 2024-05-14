@@ -58,7 +58,7 @@ const AlertsHeader = (props) => {
             { color: colors.textPrimary, fontSize: FontSizes.medium },
           ]}
         >
-          Notifications {props.notificationsAmount}
+          Notifications
         </Text>
         <View
           style={{

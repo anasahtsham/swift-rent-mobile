@@ -160,7 +160,7 @@ const FAQScreen = ({ navigation }) => {
       <ButtonGrey
         fontSize={FontSizes.small}
         width="30%"
-        buttonText="Go Back"
+        buttonText="Back"
         destinationScreen="Profile"
         navigation={navigation}
       />

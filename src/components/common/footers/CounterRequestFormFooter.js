@@ -179,7 +179,7 @@ const CounterRequestFormFooter = ({
               buttonWidth={BUTTON_WIDTH_SMALL}
               onPress={() => navigation.goBack()}
               borderColor={colors.borderRed}
-              buttonText="Go Back"
+              buttonText="Back"
               isBold={true}
             />
           </View>

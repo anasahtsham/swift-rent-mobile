@@ -128,7 +128,6 @@ const Alerts = () => {
       <AlertsHeader
         colors={colors}
         onHeaderButtonPress={handleHeaderButtonPress}
-        notificationsAmount={alertsData.length}
         selectedTypes={selectedTypes}
       />
       {loading && (
