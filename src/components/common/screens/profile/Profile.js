@@ -144,12 +144,29 @@ const Profile = () => {
             ]}
             containerStyle={styles.buttonContainer}
             onPress={() => {
-              saveUserID("");
-              saveUserType("");
-              navigation.reset({
-                index: 0,
-                routes: [{ name: "Welcome Screen" }],
-              });
+              Alert.alert(
+                "Confirmation",
+                "Are you sure you want to log out?",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel",
+                  },
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      saveUserID("");
+                      saveUserType("");
+                      navigation.reset({
+                        index: 0,
+                        routes: [{ name: "Welcome Screen" }],
+                      });
+                    },
+                  },
+                ],
+                { cancelable: false }
+              );
             }}
           />
         </View>
