@@ -86,6 +86,7 @@ const ForgotPassword = ({ navigation }) => {
                   {
                     fontSize: FontSizes.large,
                     color: colors.textPrimary,
+                    marginBottom: 40,
                   },
                 ]}
               >
@@ -94,11 +95,10 @@ const ForgotPassword = ({ navigation }) => {
 
               <Text
                 style={[
-                  styles.text,
                   {
                     fontSize: FontSizes.small,
                     color: colors.textPrimary,
-                    marginTop: 40,
+                    textAlign: "center",
                   },
                 ]}
               >
