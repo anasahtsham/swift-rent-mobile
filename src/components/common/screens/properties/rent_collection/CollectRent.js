@@ -7,7 +7,10 @@ import * as FontSizes from "../../../../../assets/fonts/FontSizes";
 import { BASE_URL, BUTTON_WIDTH_SMALL } from "../../../../../constants";
 import { useColors } from "../../../../../helpers/SetColors";
 import { useUserID } from "../../../../../helpers/SetUserID";
-import { formatNumberForAPI } from "../../../../../helpers/utils";
+import {
+  formatNumberForAPI,
+  formatNumberToCrore,
+} from "../../../../../helpers/utils";
 import { collectRentSchema } from "../../../../../helpers/validation/CollectRentValidation";
 import ButtonGrey from "../../../buttons/ButtonGrey";
 import InputFieldWithHint from "../../../input_fields/InputFieldWithHint";
@@ -174,7 +177,7 @@ const CollectRent = ({ navigation, route }) => {
                   },
                 ]}
               >
-                Rent Amount: {rentAmount} PKR
+                Rent Amount: {formatNumberToCrore(rentAmount)} PKR
               </Text>
 
               {salaryFixed && (
@@ -187,7 +190,7 @@ const CollectRent = ({ navigation, route }) => {
                       },
                     ]}
                   >
-                    Salary Fixed: {salaryFixed} PKR
+                    Salary Fixed: {formatNumberToCrore(salaryFixed)} PKR
                   </Text>
 
                   <Text
@@ -198,7 +201,8 @@ const CollectRent = ({ navigation, route }) => {
                       },
                     ]}
                   >
-                    Collectable Amount: {rentAmount - salaryFixed} PKR
+                    Collectable Amount:{" "}
+                    {formatNumberToCrore(rentAmount - salaryFixed)} PKR
                   </Text>
                 </>
               )}
@@ -225,7 +229,10 @@ const CollectRent = ({ navigation, route }) => {
                     ]}
                   >
                     Collectable Amount:{" "}
-                    {rentAmount - (rentAmount * salaryPercentage) / 100} PKR
+                    {formatNumberToCrore(
+                      rentAmount - (rentAmount * salaryPercentage) / 100
+                    )}{" "}
+                    PKR
                   </Text>
                 </>
               )}

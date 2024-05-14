@@ -12,6 +12,8 @@ export const formatUserTypeToFullForm = (userType) => {
       return "Manager";
     case "T":
       return "Tenant";
+    case "A":
+      return "Admin";
     default:
       return "Unknown";
   }

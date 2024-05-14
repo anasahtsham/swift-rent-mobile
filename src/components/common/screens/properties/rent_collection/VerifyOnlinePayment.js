@@ -11,7 +11,10 @@ import { useUserType } from "../../../../../helpers/SetUserType";
 import { verifyOnlinePaymentSchema } from "../../../../../helpers/validation/VerifyOnlinePaymentValidation";
 import ButtonGrey from "../../../buttons/ButtonGrey";
 import InputFieldWithHint from "../../../input_fields/InputFieldWithHint";
-import { formatNumberForAPI } from "./../../../../../helpers/utils/index";
+import {
+  formatNumberForAPI,
+  formatNumberToCrore,
+} from "./../../../../../helpers/utils/index";
 
 const VerifyOnlinePayment = ({ navigation, route }) => {
   const userID = useUserID();
@@ -174,7 +177,7 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
                   },
                 ]}
               >
-                Rent Amount: {rentAmount} PKR
+                Rent Amount: {formatNumberToCrore(rentAmount)} PKR
               </Text>
 
               {salaryFixed && (
@@ -187,7 +190,7 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
                       },
                     ]}
                   >
-                    Salary Fixed: {salaryFixed} PKR
+                    Salary Fixed: {formatNumberToCrore(salaryFixed)} PKR
                   </Text>
 
                   <Text
@@ -198,7 +201,8 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
                       },
                     ]}
                   >
-                    Collectable Amount: {rentAmount - salaryFixed} PKR
+                    Collectable Amount:{" "}
+                    {formatNumberToCrore(rentAmount - salaryFixed)} PKR
                   </Text>
                 </>
               )}
@@ -225,7 +229,10 @@ const VerifyOnlinePayment = ({ navigation, route }) => {
                     ]}
                   >
                     Collectable Amount:{" "}
-                    {rentAmount - (rentAmount * salaryPercentage) / 100} PKR
+                    {formatNumberToCrore(
+                      rentAmount - (rentAmount * salaryPercentage) / 100
+                    )}{" "}
+                    PKR
                   </Text>
                 </>
               )}
