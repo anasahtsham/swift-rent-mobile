@@ -529,14 +529,24 @@ const PropertyMenu = ({ route }) => {
           {/* manager register tenant button */}
           {leaseInformation[0].tenantid === undefined && // if tenant does not exist
             managerContract[0].whobringstenant !== "O" &&
-            userType === "M" && ( //
-              <PropertyMenuButton
-                onPress={() => {
-                  navigation.navigate("Register Tenant", { id: id });
-                }}
-                text={"Register Tenant"}
-                colors={colors}
-              />
+            userType === "M" && (
+              <>
+                <PropertyMenuButton
+                  onPress={() => {
+                    navigation.navigate("Register Tenant", { id: id });
+                  }}
+                  text={"Register Tenant"}
+                  colors={colors}
+                />
+                <PropertyMenuButton
+                  onPress={() => {
+                    deleteLeaseRequest(id, setDeleteLeaseRequestLoading);
+                  }}
+                  text={"Delete Lease Request"}
+                  colors={colors}
+                  loading={deleteLeaseRequestLoading}
+                />
+              </>
             )}
 
           {/* owner register tenant button */}
