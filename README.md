@@ -1,5 +1,9 @@
 # SwiftRent Mobile Application
 
+Copyright (c) 2024 SwiftRent ( ibrahimahtsham@gmail.com )
+
+All Rights Reserverd
+
 ## View Analytics
 
 ![image](https://github.com/anasahtsham/swift-rent-mobile/assets/111352185/39f3b516-cb95-4063-8bad-c6802a95fb50)
